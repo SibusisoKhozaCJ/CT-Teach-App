@@ -1,0 +1,84 @@
+.registration{
+    margin: 15vh auto;
+    &_main{
+        max-width: 380px;
+      
+    }
+    &_title{
+        h1{
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 28px;
+            text-align: center;
+            color: #000000;
+        }
+    }
+    .Dob-section{    
+        margin-top: 12px;  
+        .Dob_title{
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 21px;
+            text-align: center;
+            color: #000000;
+            margin-bottom: 6px;
+        }
+    }
+    button{
+        background: #43D4DD;
+        max-height: 61px;
+        span{
+            display: block;
+            .reg-happy{
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 28px;
+                text-align: center;
+                margin: 10px 0;
+            }
+            .reg{
+                font-weight:700;
+                font-size: 11px;
+                line-height: 13px;
+                text-align: center;
+                margin: 10px 0;
+         }
+        }
+    }
+    .reg-checkbox{
+        .MuiTypography-body1{
+            background: #FBDD3F;
+            font-size: 18px;
+            line-height: 21px;
+            color: #364954;
+            padding: 2px 10px;
+            font-weight: 700;
+        }
+    }
+    .letlogin{
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: center;
+        color: #364954;
+        a{                     
+            color: #d40073;
+        }
+    }
+    .MuiOutlinedInput-notchedOutline{
+        border-color: transparent;
+        background: #EAEAEB;
+    }
+    .MuiOutlinedInput-input{
+        z-index: 9;
+    }
+    .MuiInputLabel-outlined{
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 21px;
+        color: #364954;
+    }
+   
+}
+
+

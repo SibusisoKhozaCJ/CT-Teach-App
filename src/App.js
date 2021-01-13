@@ -26,7 +26,8 @@ import { AuthContext } from './shared/contexts/authContext';
 import { isAuthenticated, getCookies } from './shared/lib/authentication';
 import ResetPage from './components/ResetPage';
 import Welcome from './components/Welcome';
-import Home from './components/HomePage'
+import Home from './components/HomePage';
+import "./index.scss"
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
   return (

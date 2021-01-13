@@ -57,38 +57,11 @@ const NewAccountPage = () => {
     };
 
     return (
-        <Box py={2}>
-            <Box
-                width="100%"
-                textAlign="center"
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                justifyContent="center"
-            >
-                <HeaderLogo light width="40%" />
-            </Box>
-            <div>
-                <Box mb={1}>
-                    <Box pb={2} display="flex" justifyContent="center" fullWidth>
-                        <Button
-                            color="primary"
-                            style={{ textTransform: 'none', textDecoration: 'underline' }}
-                            variant="text"
-                            to={`${routes.LOGIN}${search}`}
-                            component={NavLink}
-                        >
-                            I already have an account
-                        </Button>
-                    </Box>
-                </Box>
-                <Box my={2}>
-                    <Typography>
-                        Welcome to Teacher Portal! Either your questionnaire is complete or you decided to directly sign up. In
-                        order for our providers to review a questionnaire already submitted, you will need to create an
-                        account. Please enter the below information to proceed.
-                    </Typography>
-
+       
+         <section className="registration">
+            <div className="registration_main">                
+                <Box my={2} className="registration_title">
+                  <h1>REGISTRATION IS <br/>SOOOOO EASY</h1>
                 </Box>
                 <Box my={2}>
                     {error && <Box my={1}><Typography color="error">{error}</Typography></Box>}
@@ -105,12 +78,28 @@ const NewAccountPage = () => {
                             color="primary"
                             disabled={loading}
                         >
-                            Create Account
+                           <p className="reg-happy">WOOOO HOOOO!</p>
+                           <p className="reg">REGISTER</p>
                         </Button>
                     </form>
                 </Box>
+                <div className="letlogin">
+                <Box pb={2} display="flex" justifyContent="center" alignItems="center" fullWidth>
+                I’ve been here before.
+                        <Button
+                            color="primary"
+                            style={{ textTransform: 'none', textDecoration: 'underline' }}
+                            variant="text"
+                            to={`${routes.LOGIN}${search}`}
+                            component={NavLink}
+                                 >
+                             Let me login.
+                        </Button>
+                    </Box>
+                    </div>
             </div>
-        </Box>
+            </section>
+       
     );
 }
 
