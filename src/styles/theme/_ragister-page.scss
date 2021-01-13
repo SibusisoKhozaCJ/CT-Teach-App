@@ -1,8 +1,11 @@
 .registration{
     margin: 15vh auto;
     &_main{
-        max-width: 380px;
-      
+       width: 380px;  
+       padding: 10px 15px;
+       background: #fff;   
+       box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
+       
     }
     &_title{
         h1{
@@ -11,6 +14,15 @@
             line-height: 28px;
             text-align: center;
             color: #000000;
+        }
+        span{
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 28px;
+            text-align: center;
+            color: #000000;
+            display: block;
+            margin-top: -10px;
         }
     }
     .Dob-section{    
@@ -27,6 +39,8 @@
     button{
         background: #43D4DD;
         max-height: 61px;
+        margin-top: 20px;
+        border-radius: 0;
         span{
             display: block;
             .reg-happy{
@@ -77,6 +91,21 @@
         font-size: 18px;
         line-height: 21px;
         color: #364954;
+    }
+    .MuiFormControl-root{
+        width: 100%;
+        border-radius: 0;
+    }
+    .btm-lbl{
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 13px;
+        color: #364954;
+        margin-top: -5px;
+        display: block;
+    }
+    .MuiFilledInput-root{
+        border-radius: 0;
     }
    
 }

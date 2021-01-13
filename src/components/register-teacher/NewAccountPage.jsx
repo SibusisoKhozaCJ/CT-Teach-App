@@ -57,7 +57,7 @@ const NewAccountPage = () => {
     };
 
     return (
-       
+       <>
          <section className="registration">
             <div className="registration_main">                
                 <Box my={2} className="registration_title">
@@ -99,7 +99,63 @@ const NewAccountPage = () => {
                     </div>
             </div>
             </section>
-       
+
+                <section className="registration">
+                <div className="registration_main">                
+                    <Box my={2} className="registration_title">
+                    <h1>  WELCOME!</h1>
+                    <span>WE’RE SO EXCITED.</span> 
+                    </Box>
+                    <Box my={2}>
+                        {error && <Box my={1}><Typography color="error">{error}</Typography></Box>}
+                        <form onSubmit={handleSubmit}>
+                            <UserSignUp
+                                onUpdate={updateForm}
+                                form={form}
+                                loading={loading}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                disabled={loading}
+                            >
+                            <p className="reg-happy">LET’S DO IT.</p>                         
+                            </Button>
+                        </form>
+                    </Box>                
+                </div>
+                </section>
+
+                <section className="registration">
+                <div className="registration_main">                
+                    <Box my={2} className="registration_title">
+                    <h1> SCHOOL DETAILS!</h1>
+                  
+                    </Box>
+                    <Box my={2}>
+                        {error && <Box my={1}><Typography color="error">{error}</Typography></Box>}
+                        <form onSubmit={handleSubmit}>
+                            <UserSignUp
+                                onUpdate={updateForm}
+                                form={form}
+                                loading={loading}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                disabled={loading}
+                            >
+                            <p className="reg-happy">DONE!  ;)</p>                         
+                            </Button>
+                        </form>
+                    </Box>                
+                </div>
+                </section>
+   </>    
     );
 }
 
