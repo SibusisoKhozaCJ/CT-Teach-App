@@ -103,7 +103,7 @@ const UserSignUp = ({ onUpdate, form, loading }) => {
             </div>
 
 
-            <div className="registration-form">               
+            {/* <div className="registration-form">               
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <Box my={1}>
@@ -203,7 +203,7 @@ const UserSignUp = ({ onUpdate, form, loading }) => {
                        
                     </Grid>
                 </Grid>  
-            </div>
+            </div> */}
         </>
     );
 };
