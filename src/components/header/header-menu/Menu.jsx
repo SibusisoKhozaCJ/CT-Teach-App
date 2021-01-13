@@ -6,12 +6,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import ThemedDivider from './ThemedDivider';
-import MenuButton from './MenuButton';
-import routes from '../constants/routes';
-import { removeCookies } from '../lib/authentication';
-import { AuthContext } from '../contexts/authContext';
-import config from '../config';
+import ThemedDivider from '../../../shared/components/theme-divider/ThemedDivider';
+import MenuButton from '../../../shared/components/buttons/MenuButton';
+import routes from '../../../routes';
+import { removeCookies } from '../../../shared/lib/authentication';
+import { AuthContext } from '../../../shared/contexts/authContext';
+import config from '../../../config';
 
 const MAIN_MENU_OPTIONS = {
     'Home': routes.HOME,   

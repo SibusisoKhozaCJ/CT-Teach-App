@@ -1,6 +1,6 @@
 import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import HamburgerIcon from '../icons/Hamburger';
+import HamburgerIcon from '../../../assets/icons/Hamburger';
 
 const MenuButton = ({ onClick }) => {
     return (

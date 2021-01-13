@@ -5,10 +5,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
-import ROUTES from '../constants/routes';
-import ContactUsHero from '../images/contact_us_hero.png';
-import ServicesHero from '../images/contraceptive_methods.png';
-import WelcomeHero from '../images/hero.png';
+import ROUTES from '../routes';
+import ContactUsHero from '../assets/images/contact_us_hero.png';
+import ServicesHero from '../assets/images/contraceptive_methods.png';
+import WelcomeHero from '../assets/images/hero.png';
 
 const ROUTES_TO_PHOTOS = {
     [ROUTES.HOME]: ServicesHero,

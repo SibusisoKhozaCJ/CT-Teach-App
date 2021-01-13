@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import Loading from './Loading';
+import Loading from '../shared/components/loader/Loading';
 
 const UserResetConfirmCode = ({ onUpdate, form, loading }) => {
     if (loading) return (<Loading />);

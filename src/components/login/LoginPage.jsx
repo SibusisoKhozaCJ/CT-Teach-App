@@ -13,12 +13,12 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Loading from './Loading';
-import ROUTES from '../constants/routes';
-import history from '../lib/history';
-import HeaderLogo from '../icons/Header';
-import { AuthContext } from '../contexts/authContext';
-import * as Auth from '../lib/authentication'
+import Loading from '../../shared/components/loader/Loading';
+import ROUTES from '../../routes';
+import history from '../../shared/lib/history';
+import HeaderLogo from '../../assets/icons/Header';
+import { AuthContext } from '../../shared/contexts/authContext';
+import * as Auth from '../../shared/lib/authentication'
 const LoginPage = () => {
     const [loading, updateLoading] = useState(false);
     const [error, updateError] = useState();

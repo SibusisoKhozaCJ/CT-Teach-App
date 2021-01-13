@@ -10,11 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import UserSignUp from './UserSignUp';
-import HeaderLogo from '../icons/Header';
-import routes from '../constants/routes';
-import { firebaseInsert } from '../lib/authorizedFetch';
-import * as Auth from '../lib/authentication';
-import { AuthContext } from '../contexts/authContext';
+import HeaderLogo from '../../assets/icons/Header';
+import routes from '../../routes';
+import { firebaseInsert } from '../../shared/lib/authorizedFetch';
+import * as Auth from '../../shared/lib/authentication';
+import { AuthContext } from '../../shared/contexts/authContext';
 
 const NewAccountPage = () => {
     const history = useHistory();

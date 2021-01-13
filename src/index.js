@@ -1,14 +1,8 @@
-/**
- * The highest level component of the entire app. Sets up the urlChangeTracker with 
- * google analytics [which I couldn't get to work :( ] and also provides the Material-UI
- * theme to all the sub-components for the app's lifetime through the Theme Provider.
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from './theme';
+import theme from './shared/components/theme';
 
 window.ga('require', 'urlChangeTracker');
 require('dotenv').config();

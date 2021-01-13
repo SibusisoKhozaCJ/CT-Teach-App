@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation, NavLink } from 'react-router-dom';
 
 import { parse } from 'qs';
@@ -6,13 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-import HeaderLogo from '../icons/Header';
+import HeaderLogo from '../assets/icons/Header';
 
-import routes from '../constants/routes';
+import routes from '../routes';
 import UserEmail from './UserEmail';
 import UserResetConfirmCode from './UserResetConfirmCode';
 const ResetPage = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const { search } = useLocation();
     const params = parse(search, { ignoreQueryPrefix: true });
     const [form, updateForm] = useState({ email: params ? params.email : '', password: '' });

@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ImageInput from './ImageInput';
-import Loading from './Loading';
+import Loading from '../shared/components/loader/Loading';
 import PhoneField from './PhoneField';
 import AutocompleteSelect from './AutocompleteSelect';
 

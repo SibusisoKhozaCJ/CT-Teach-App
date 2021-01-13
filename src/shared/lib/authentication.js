@@ -4,7 +4,7 @@
 
 import Cookies from 'js-cookie'
 import history from './history';
-import config from '../config'
+import config from '../../config'
 import firebase from 'firebase';
 import * as authFetch from './authorizedFetch'
 firebase.initializeApp(config.firebaseConfig);
@@ -44,6 +44,11 @@ export function currentUserId() {
 export function getProfile() {
 
     return authFetch.firebaseGet('Teachers/' + currentUserId())
+}
+
+export function getAllTeachers() {
+
+    return authFetch.firebaseGet('Teachers/')
 }
 export function setCookies(email, userfirstname) {
     Cookies.set(USER_ID, currentUserId());

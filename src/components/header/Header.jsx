@@ -3,11 +3,11 @@ import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Menu from './Menu';
-import HeaderLogo from '../icons/Header';
+import Menu from './header-menu/Menu';
+import HeaderLogo from '../../assets/icons/Header';
 import { isMobile } from 'react-device-detect';
-import { AuthContext } from '../contexts/authContext';
-import useWindowDimensions from '../hooks/getWindowDimensions';
+import { AuthContext } from '../../shared/contexts/authContext';
+import useWindowDimensions from '../../hooks/getWindowDimensions';
 
 const Header = () => {
     const { headerHeight } = useWindowDimensions();

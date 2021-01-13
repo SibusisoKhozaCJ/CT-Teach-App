@@ -9,8 +9,8 @@ import Box from '@material-ui/core/Box';
 
 import Grid from '@material-ui/core/Grid';
 
-import ROUTES from '../constants/routes';
-import history from '../lib/history';
+import ROUTES from '../routes';
+import history from '../shared/lib/history';
 
 // import useWindowDimensions from '../hooks/getWindowDimensions';
 
