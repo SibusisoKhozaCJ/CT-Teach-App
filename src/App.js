@@ -18,15 +18,15 @@ import Box from '@material-ui/core/Box';
 import Header from './components/header/Header';
 import LoginPage from './components/login/LoginPage';
 import NewAccountPage from './components/register-teacher/NewAccountPage';
-import ContactUs from './components/ContactUs';
-import FormPage from './components/FormPage';
+import ContactUs from './components/contact-us/ContactUs';
+import FormPage from './components/home/FormPage';
 import routes from './routes';
 import history from './shared/lib/history';
 import { AuthContext } from './shared/contexts/authContext';
 import { isAuthenticated, getCookies } from './shared/lib/authentication';
-import ResetPage from './components/ResetPage';
-import Welcome from './components/Welcome';
-import Home from './components/HomePage';
+import ResetPage from './components/reset-password/ResetPage';
+import Welcome from './components/welcome/Welcome';
+import Home from './components/home/HomePage';
 import "./index.scss"
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();

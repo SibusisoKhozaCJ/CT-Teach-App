@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import Loading from '../shared/components/loader/Loading';
+import Loading from '../loader/Loading';
 
 const UserEmail = ({ onUpdate, form, loading }) => {
     if (loading) return (<Loading />);

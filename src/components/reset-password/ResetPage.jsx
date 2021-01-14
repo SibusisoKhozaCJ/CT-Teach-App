@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
-import HeaderLogo from '../assets/icons/Header';
+import HeaderLogo from '../../assets/icons/Header';
 
-import routes from '../routes';
-import UserEmail from './UserEmail';
+import routes from '../../routes';
+import UserEmail from '../../shared/components/inputs/UserEmail';
 import UserResetConfirmCode from './UserResetConfirmCode';
 const ResetPage = () => {
     // const history = useHistory();

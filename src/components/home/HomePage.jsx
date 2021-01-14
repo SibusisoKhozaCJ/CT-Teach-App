@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import BottomPhoto from './BottomPhoto';
-import * as Auth from '../shared/lib/authentication'
+import * as Auth from '../../shared/lib/authentication'
 const Welcome = () => {   
     useEffect(() => {
         Auth.getProfile().then((teachers)=>{
@@ -26,7 +25,6 @@ const Welcome = () => {
                 easier and better for you.
             </Typography>
          
-            <BottomPhoto />
         </div>
     );
 };

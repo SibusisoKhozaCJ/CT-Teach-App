@@ -2,7 +2,6 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import BottomPhoto from './BottomPhoto';
 
 const ContactUs = () => (
     <div>
@@ -23,7 +22,6 @@ const ContactUs = () => (
             <Typography variant="subtitle1">No teacher/personal details please</Typography>
             <Typography><Link href="mailto:support@codjika.org">support@codjika.org</Link></Typography>
         </Box>
-        <BottomPhoto />
     </div>
 );
 

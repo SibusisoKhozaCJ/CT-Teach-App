@@ -32,7 +32,8 @@ const NewAccountPage = () => {
                     email,
                     firstname,
                     lastname,
-                    userRole: 'teacher'
+                    userRole: 'teacher',
+                    tribe_code:['FC123']
                 });
                 Auth.setCookies(email, firstname);
                 setTokens({ isAuthenticate: true })
@@ -50,7 +51,7 @@ const NewAccountPage = () => {
                 updateLoading(false);
             });
     };
-debugger
+
     return (
         <>
             <section className="registration">
