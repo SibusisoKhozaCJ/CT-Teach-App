@@ -46,6 +46,10 @@ export function getProfile() {
     return authFetch.firebaseGet('Teachers/' + currentUserId())
 }
 
+export function checkIfTribeExist(code) {
+    return authFetch.firebaseGet('Tribes/' + code)
+}
+
 export function getAllTeachers() {
 
     return authFetch.firebaseGet('Teachers/')

@@ -24,6 +24,7 @@
     "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "referral-code-generator": "^1.0.8",
     "typescript": "^3.9.3",
     "url": "^0.11.0"
   },

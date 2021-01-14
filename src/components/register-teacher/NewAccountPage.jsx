@@ -5,49 +5,64 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import routes from '../../routes';
-import { firebaseInsert } from '../../shared/lib/authorizedFetch';
+import { firebaseInsert, firebaseGet } from '../../shared/lib/authorizedFetch';
 import * as Auth from '../../shared/lib/authentication';
 import { AuthContext } from '../../shared/contexts/authContext';
 import TeacherRegisterStep1 from './register-steps/step1';
 import TeacherRegisterStep2 from './register-steps/step2';
 import TeacherRegisterStep3 from './register-steps/step3';
+import referralCodeGenerator from 'referral-code-generator'
 
 const NewAccountPage = () => {
     const history = useHistory();
-    const [ currentStep, setCurrentStep ] = useState(1);
-    const { search, state: fromSignInData, pathname } = useLocation();
+    const [currentStep, setCurrentStep] = useState(1);
+    const { search, state: fromSignInData } = useLocation();
     const params = parse(search, { ignoreQueryPrefix: true });
-    const [form, updateForm] = useState({ email: params.email, password: fromSignInData && fromSignInData.password, firstname: "", lastname: "" });
+    const [form, updateForm] = useState({ email: params.email, password: fromSignInData && fromSignInData.password, firstname: "", lastname: "", type: "", schoolName: "", day: "", month: "", year: "", city: "", isTeacher: false, phone: "" });
     const [loading, updateLoading] = useState(false);
     const [error, updateError] = useState();
     const { setUser, setTokens } = useContext(AuthContext);
     const handleSubmit = async e => {
-        const { email, password, firstname, lastname } = form
+        const { email, password, firstname, lastname, city, day, month, year, type, phone, schoolName, isTeacher } = form
         e.preventDefault();
         updateLoading(true);
         updateError('');
-
         Auth.createUser(email, password)
-            .then((res) => {
+            .then(async (res) => {
                 console.log(res)
-                firebaseInsert('Teachers/' + res.user.uid, {
-                    email:email,
-                    firstname:firstname,
-                    lastname:lastname,
-                    userRole: 'teacher',
-                    tribe_code:'FC123',
-                    tribe_joned:[]
-                });
-                Auth.setCookies(email, firstname);
-                setTokens({ isAuthenticate: true })
-                updateLoading(false);
-                if (params && params.redirect) {
-                    const { redirect } = params;
-                    history.push(redirect);
+                const tribeCode = referralCodeGenerator.alphaNumeric('uppercase', 2, 3);
+                const isCodeExist = await CheckIfTribeCodeExist(tribeCode);
+                if (isCodeExist) {
+                    alert("Error while creting a tribe.")
                 } else {
-                    history.push(routes.WELCOME)
-                }
+                    firebaseInsert('Tribes/' + tribeCode, {
+                        code: tribeCode,
+                        users: [res.user.uid]
+                    });
+                    firebaseInsert('Teachers/' + res.user.uid, {
+                        email: email,
+                        firstname: firstname,
+                        lastname: lastname,
+                        city: city,
+                        dob: day + "-" + month + "-" + year,
+                        phone: phone,
+                        schoolName: schoolName,
+                        type: type,
+                        userRole: 'teacher',
+                        tribe_code: 'FC123',
+                        tribe_joned: []
+                    });
+                    Auth.setCookies(email, firstname);
+                    setTokens({ isAuthenticate: true })
+                    updateLoading(false);
+                    if (params && params.redirect) {
+                        const { redirect } = params;
+                        history.push(redirect);
+                    } else {
+                        history.push(routes.WELCOME)
+                    }
 
+                }
             })
             .catch(err => {
                 updateError(err.message);
@@ -55,15 +70,22 @@ const NewAccountPage = () => {
             });
     };
 
+    const CheckIfTribeCodeExist = async (code) => {
+        return await Auth.checkIfTribeExist(code).then((tribe) => {
+                return tribe ? true : false
+            })
+            .catch((err) => {
+                return false
+            })
+    }
+
     const handleSubmitFirstForm = async e => {
-        const { firstname, lastname, day, year, month, isTeacher } = form
         e.preventDefault();
         updateError('');
         setCurrentStep(2)
     };
 
     const handleSubmitSecondForm = async e => {
-        const { firstname, lastname, day, year, month, isTeacher, email, type } = form
         e.preventDefault();
         updateError('');
         setCurrentStep(3)
@@ -145,7 +167,6 @@ const NewAccountPage = () => {
                 <div className="registration_main">
                     <Box my={2} className="registration_title">
                         <h1> SCHOOL DETAILS!</h1>
-
                     </Box>
                     <Box my={2}>
                         {error && <Box my={1}><Typography color="error">{error}</Typography></Box>}

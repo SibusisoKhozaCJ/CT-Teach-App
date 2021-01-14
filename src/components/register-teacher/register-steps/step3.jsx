@@ -17,6 +17,7 @@ const TeacherRegisterStep3 = ({ onUpdate, form }) => {
                                 label="School Name"
                                 variant="outlined"
                                 type="text" 
+                                value={form.schoolname}
                                 onChange={handleFormEdit('schoolname')}
                             />
                         </Box>
@@ -31,6 +32,7 @@ const TeacherRegisterStep3 = ({ onUpdate, form }) => {
                                 label="City (Optional)"
                                 variant="outlined"
                                 type="text" 
+                                value={form.city}
                                 onChange={handleFormEdit('city')}
                             />
                         </Box>
@@ -45,6 +47,7 @@ const TeacherRegisterStep3 = ({ onUpdate, form }) => {
                                 label="Phone Number (Optional)"
                                 variant="outlined"
                                 type="text" 
+                                value={form.phone}
                                 onChange={handleFormEdit('phone')}
                             />
                         </Box>

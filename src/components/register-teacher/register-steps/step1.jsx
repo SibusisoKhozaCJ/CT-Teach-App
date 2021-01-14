@@ -7,11 +7,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const TeacherRegisterStep1 = ({ onUpdate, form }) => {
     const handleFormEdit = key => event => onUpdate({ ...form, [key]: event.target.value })
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(form.isTeacher);
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
-        onUpdate({ ...form, ["isTeacher"]: event.target.checked })
+        onUpdate({ ...form, [event.target.name]: event.target.checked })
     };
     return (
         <>
@@ -85,12 +85,10 @@ const TeacherRegisterStep1 = ({ onUpdate, form }) => {
                     <Grid item xs={12}>
                         <Box my={1}>
                             <FormControlLabel
-                                value="end"
-                                control={<Checkbox checked={checked}
+                                control={<Checkbox name="isTeacher" checked={checked}
                                 onChange={handleChange} color="primary" />}
                                 label="  I’m a Teacher or Trainer."
                                 labelPlacement="end"
-                                
                             />
                         </Box>
 
