@@ -14,7 +14,7 @@ const UserConfirmCode = ({ onUpdate, form, loading }) => {
             <Box mb={2}>              
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Confirm Code"
                         variant="outlined"                       

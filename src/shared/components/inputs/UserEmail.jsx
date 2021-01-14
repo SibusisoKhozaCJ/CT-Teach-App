@@ -13,7 +13,7 @@ const UserEmail = ({ onUpdate, form, loading }) => {
             <Box mb={2}>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Email"
                         variant="outlined"

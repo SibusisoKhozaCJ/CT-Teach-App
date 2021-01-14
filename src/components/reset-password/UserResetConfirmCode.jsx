@@ -14,7 +14,7 @@ const UserResetConfirmCode = ({ onUpdate, form, loading }) => {
             <Box mb={2}>              
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Confirm Code"
                         variant="outlined"                       
@@ -26,7 +26,7 @@ const UserResetConfirmCode = ({ onUpdate, form, loading }) => {
                 <FormHelperText>Please check your email for your confirmation code and enter it above.</FormHelperText>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Password"
                         variant="outlined"

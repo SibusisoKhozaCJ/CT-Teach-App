@@ -64,7 +64,7 @@ const UserAccountCreation = ({ form, formOptions, onUpdate, loading }) => {
                 <Typography variant="h4">Personal Information</Typography>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="First Name"
                         variant="outlined"
@@ -74,7 +74,7 @@ const UserAccountCreation = ({ form, formOptions, onUpdate, loading }) => {
                 </Box>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Last Name"
                         variant="outlined"
@@ -134,7 +134,7 @@ const UserAccountCreation = ({ form, formOptions, onUpdate, loading }) => {
                 <Typography variant="h4">Contact Information</Typography>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Phone Number"
                         variant="outlined"
@@ -150,7 +150,7 @@ const UserAccountCreation = ({ form, formOptions, onUpdate, loading }) => {
                 <Typography variant="h4">Address (where we will ship prescriptions)</Typography>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         label="Address"
                         variant="outlined"
@@ -162,7 +162,7 @@ const UserAccountCreation = ({ form, formOptions, onUpdate, loading }) => {
                     <Grid container>
                         <Grid item xs={8}>
                             <TextField
-                                fullWidth
+                                fullwidth
                                 required
                                 label="City"
                                 variant="outlined"
@@ -183,7 +183,7 @@ const UserAccountCreation = ({ form, formOptions, onUpdate, loading }) => {
                 </Box>
                 <Box my={1}>
                     <TextField
-                        fullWidth
+                        fullwidth
                         required
                         name='zip'
                         label="Zipcode"

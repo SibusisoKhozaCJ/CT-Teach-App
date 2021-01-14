@@ -108,7 +108,7 @@ const ResetPage = () => {
 
                             {!isConfirmedCode && < Button
                                 type="submit"
-                                fullWidth
+                                fullwidth
                                 variant="contained"
                                 color="primary"
                                 disabled={loading}

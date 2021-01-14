@@ -92,7 +92,7 @@ const LoginPage = () => {
                                     variant="outlined"
                                     type="text"
                                     value={email}
-                                    fullWidth={isMobile}
+                                    fullwidth={isMobile}
                                     onChange={handleChange('email')}
                                 />
                             </Box>
@@ -103,7 +103,7 @@ const LoginPage = () => {
                                     variant="outlined"
                                     type="password"
                                     value={password}
-                                    fullWidth={isMobile}
+                                    fullwidth={isMobile}
                                     onChange={handleChange('password')}
                                 />
                             </Box>

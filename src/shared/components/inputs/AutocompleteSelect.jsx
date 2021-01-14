@@ -13,7 +13,7 @@ const AutocompleteSelect = ({ type, maxDigits, options, onSelect, selectedValue,
 
 	return (
 		<Autocomplete
-			fullWidth
+			fullwidth
 			autoSelect
 			autoHighlight
 			disabled={disabled}
