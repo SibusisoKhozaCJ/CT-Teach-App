@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 
 import { parse } from 'qs';
 import Typography from '@material-ui/core/Typography';
@@ -12,14 +12,13 @@ import routes from '../../routes';
 import UserEmail from '../../shared/components/inputs/UserEmail';
 import UserResetConfirmCode from './UserResetConfirmCode';
 const ResetPage = () => {
-    // const history = useHistory();
     const { search } = useLocation();
     const params = parse(search, { ignoreQueryPrefix: true });
     const [form, updateForm] = useState({ email: params ? params.email : '', password: '' });
-    const [isConfirmedCode, updateIsConfirmedCode] = useState(false);
+    const [isConfirmedCode] = useState(false);
     const [loading, updateLoading] = useState(false);
     const [error, updateError] = useState();
-    const [isEmailSent, updateIsEmailSent] = useState(false);
+    const [isEmailSent] = useState(false);
 
     const resetPassword = () => {
         //    firebase forgot

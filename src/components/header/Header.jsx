@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from './header-menu/Menu';
 import HeaderLogo from '../../assets/icons/Header';
-import { isMobile } from 'react-device-detect';
 import { AuthContext } from '../../shared/contexts/authContext';
 import useWindowDimensions from '../../hooks/getWindowDimensions';
 

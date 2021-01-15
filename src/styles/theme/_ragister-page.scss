@@ -60,13 +60,17 @@
         }
     }
     .reg-checkbox{
-        .MuiTypography-body1{
-            background: #FBDD3F;
+        .MuiTypography-body1{           
             font-size: 18px;
             line-height: 21px;
             color: #364954;
             padding: 2px 10px;
             font-weight: 700;
+        }
+    }
+    .active{
+        .MuiTypography-body1{        
+        background: #FBDD3F;
         }
     }
     .letlogin{

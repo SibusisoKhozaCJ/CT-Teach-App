@@ -17,7 +17,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Header from './components/header/Header';
 import LoginPage from './components/login/LoginPage';
-import NewAccountPage from './components/register-teacher/NewAccountPage';
+import CreateNewAccountPage from './components/register-teacher/create-new-account';
 import ContactUs from './components/contact-us/ContactUs';
 import FormPage from './components/home/FormPage';
 import routes from './routes';
@@ -91,7 +91,7 @@ const App = () => {
                     <LoginPage />
                   </Route>
                   <Route path={routes.NEW_ACCOUNT}>
-                    <NewAccountPage />
+                    <CreateNewAccountPage />
                   </Route>              
                   <Route path={routes.RESET}>
                     <ResetPage />

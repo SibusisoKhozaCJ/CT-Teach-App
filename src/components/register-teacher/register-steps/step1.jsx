@@ -85,8 +85,9 @@ const TeacherRegisterStep1 = ({ onUpdate, form }) => {
                     <Grid item xs={12}>
                         <Box my={1}>
                             <FormControlLabel
+                                className={checked ? "active" : ""}
                                 control={<Checkbox name="isTeacher" checked={checked}
-                                onChange={handleChange} color="primary" />}
+                                onChange={handleChange}  />}
                                 label="  I’m a Teacher or Trainer."
                                 labelPlacement="end"
                             />

@@ -22,8 +22,8 @@ import * as Auth from '../../shared/lib/authentication'
 const LoginPage = () => {
     const [loading, updateLoading] = useState(false);
     const [error, updateError] = useState();
-    const { setUser, setTokens } = useContext(AuthContext);
-    const { search, pathname } = useLocation();
+    const { setTokens } = useContext(AuthContext);
+    const { search } = useLocation();
     const params = parse(search, { ignoreQueryPrefix: true });
     const [form, updateForm] = useState({ email: params.email, password: '' });
     const { email, password } = form;
@@ -42,8 +42,8 @@ const LoginPage = () => {
             .then(res => {
 
 
-                Auth.getProfile().
-                    then((user) => {
+                Auth.getProfile()
+                    .then((user) => {
                         Auth.setCookies(email, user.firstname);
                         setTokens({ isAuthenticate: true })
                         updateLoading(false);

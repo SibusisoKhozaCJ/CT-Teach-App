@@ -12,7 +12,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 const TeacherRegisterStep2 = ({ onUpdate, form }) => {
     const handleFormEdit = key => event => onUpdate({ ...form, [key]: event.target.value });
     const [teacherType, setTeacherTypee] = useState(form.type);
+    const [checked, setChecked] = useState(form.schoolAlreadySigned);
 
+    const handleCheckChange = (event) => {
+        setChecked(event.target.checked);
+        onUpdate({ ...form, [event.target.name]: event.target.checked })
+    };
     const handleChange = (event) => {
         setTeacherTypee(event.target.value);
         onUpdate({ ...form, [event.target.name]: event.target.value })
@@ -23,7 +28,7 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <Box my={1}>
-                            <FormControl variant="filled" >
+                            {!checked && <FormControl variant="filled" >
                                 <InputLabel id="demo-simple-select-filled-label">TYPE</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-filled-label"
@@ -32,15 +37,20 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                                     name="type"
                                     onChange={handleChange}
                                 >
-                                    {/* <MenuItem value="">
-                                <em>TYPE</em>
-                            </MenuItem> */}
                                     <MenuItem value={'school'}>SCHOOL</MenuItem>
                                     <MenuItem value={'org'}>ORGANIZATION</MenuItem>
                                     <MenuItem value={'individual'}>INDIVIDUAL</MenuItem>
                                     <MenuItem value={'distric'}>DISTRICT</MenuItem>
                                 </Select>
-                            </FormControl>
+                            </FormControl>}
+                            {checked && <TextField
+                                fullWidth
+                                required
+                                label="Enter JOIN Code"
+                                variant="outlined"
+                                value={form.joincode}
+                                onChange={handleFormEdit('joincode')}
+                            />}
                         </Box>
                         <span className="btm-lbl">CHOOSE: SCHOOL, ORG, INDIVIDUAL OR DISTRICT.</span>
                     </Grid>
@@ -85,7 +95,9 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                         <Box my={1}>
                             <FormControlLabel
                                 value="end"
-                                control={<Checkbox color="primary" />}
+                                className={checked ? "active" : ""}
+                                control={<Checkbox name="schoolAlreadySigned" checked={checked}
+                                    onChange={handleCheckChange} color="primary" />}
                                 label="  My school is already signed up.."
                                 labelPlacement="end"
                             />

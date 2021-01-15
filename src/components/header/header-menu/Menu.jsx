@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import ThemedDivider from '../../../shared/components/theme-divider/ThemedDivider';
@@ -11,7 +10,6 @@ import MenuButton from '../../../shared/components/buttons/MenuButton';
 import routes from '../../../routes';
 import { removeCookies } from '../../../shared/lib/authentication';
 import { AuthContext } from '../../../shared/contexts/authContext';
-import config from '../../../config';
 
 const MAIN_MENU_OPTIONS = {
     'Home': routes.HOME,   
@@ -19,7 +17,7 @@ const MAIN_MENU_OPTIONS = {
 
 const Menu = () => {
     const [isOpen, toggleIsOpen] = useState(false);
-    const { setUser, user, setTokens } = useContext(AuthContext);
+    const { setUser, setTokens } = useContext(AuthContext);
 
     const toggleMenu = status => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -52,11 +50,9 @@ const Menu = () => {
                     <ThemedDivider />
                     <List>
                         <ListItem button key="contact-us" to={routes.CONTACT_US} component={NavLink}>
-                            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
                             <ListItemText disableTypography primary={<Typography variant="h4">Contact Us</Typography>} />
                         </ListItem>
                         <ListItem button key="log-out" onClick={logOut}>
-                            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
                             <ListItemText disableTypography primary={<Typography variant="h4">Log Out</Typography>} />
                         </ListItem>
                     </List>

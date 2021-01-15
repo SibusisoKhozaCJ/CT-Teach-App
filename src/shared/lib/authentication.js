@@ -42,7 +42,6 @@ export function currentUserId() {
 }
 
 export function getProfile() {
-
     return authFetch.firebaseGet('Teachers/' + currentUserId())
 }
 
@@ -51,7 +50,6 @@ export function checkIfTribeExist(code) {
 }
 
 export function getAllTeachers() {
-
     return authFetch.firebaseGet('Teachers/')
 }
 export function setCookies(email, userfirstname) {
