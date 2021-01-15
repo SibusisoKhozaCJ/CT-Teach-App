@@ -1,10 +1,11 @@
 export default {
     HOME: '/home',
-    WELCOME: '/welcome',  
+    WELCOME: '/welcome',
     CONTACT_US: '/contact-us',
     LOGIN: '/login',
-    NEW_ACCOUNT: '/new-account',   
+    NEW_ACCOUNT: '/new-account',
     FORM: '/form',
-    RESET: '/reset'
+    RESET: '/reset',
+    PROFILE: '/profile'
 };
 

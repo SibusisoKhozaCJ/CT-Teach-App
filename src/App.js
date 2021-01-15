@@ -27,6 +27,8 @@ import { isAuthenticated, getCookies } from './shared/lib/authentication';
 import ResetPage from './components/ResetPage';
 import Welcome from './components/Welcome';
 import Home from './components/HomePage'
+import Profile from "./components/Profile/Profile";
+
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
   return (
@@ -91,7 +93,7 @@ const App = () => {
                   </Route>
                   <Route path={routes.NEW_ACCOUNT}>
                     <NewAccountPage />
-                  </Route>              
+                  </Route>
                   <Route path={routes.RESET}>
                     <ResetPage />
                   </Route>
@@ -100,6 +102,7 @@ const App = () => {
                   <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                   <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
                   <ProtectedRoute path={routes.FORM} component={FormPage} />
+                  <ProtectedRoute path={routes.PROFILE} component={Profile} />
                   <Redirect to="/" />
                 </Switch>
               </Grid>
