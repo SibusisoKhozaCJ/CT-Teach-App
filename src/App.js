@@ -3,7 +3,7 @@
  * the routing from page to page, and the google analytics pageview sends.
  */
 
-import React, { useMemo, useState } from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   Router,
   Switch,
@@ -28,6 +28,9 @@ import ResetPage from './components/ResetPage';
 import Welcome from './components/Welcome';
 import Home from './components/HomePage'
 import Profile from "./components/Profile/Profile";
+import {saveUser} from "./redux/actions/user-actions";
+import {connect} from "react-redux";
+import Loading from "./shared/components/loader/Loading";
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -55,12 +58,16 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   );
 };
 
-const App = () => {
+const App = (props) => {
   const { userId, isAuthenticate, userFirstName, userEmail } = getCookies();
   const [user, setUser] = useState(userId);
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
+
+  useEffect(() => {
+    props.saveUser(user);
+  });
 
   const authProviderValue = useMemo(() => ({
     user,
@@ -72,6 +79,10 @@ const App = () => {
     email,
     setUserEmail
   }), [user, setUser, tokens, setTokens, firstname, setFirstName, email, setUserEmail]);
+
+  if (props.loading) {
+    return <Loading />;
+  }
 
   return (
     <Router history={history}>
@@ -114,4 +125,16 @@ const App = () => {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    loading: state.user.loading
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    saveUser: user => dispatch(saveUser(user))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

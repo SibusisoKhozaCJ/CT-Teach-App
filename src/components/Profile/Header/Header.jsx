@@ -4,13 +4,12 @@ import EditIcon from '../../../assets/icons/EditIcon'
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import {
-  handleCloseModal,
-  handleCodeToIframe, handleEmojiCode,
-  handleOpenModal
-} from "../../../redux/actions/profile-actions";
+  findLinkOrImg,
+  openModal,
+  updateUserHeaderUserProfile
+} from "../../../redux/actions/user-actions";
 import ModalComponent from "../ModalComponent/ModalComponent";
-import { ProfileStyles } from "../Profile.styles";
-import firebase from "firebase";
+import { HeaderProfileStyles } from "../Profile.styles";
 import {createIframe} from "../../../shared/lib/createIframe";
 
 Modal.setAppElement('#modalInProfile');
@@ -36,25 +35,10 @@ function writeContentToIframe(iframe, content) {
 }
 
 const Header = ({ classes, ...props }) => {
-  const [certRef] = useState(firebase.database().ref('user_profile'));
+  const [textareaValue, setTextareaValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
   const [iframe_code, setIframe_code] = useState();
   const [iframe_emoji, setIframe_emoji] = useState();
-
-  const certRefHandler = useCallback((snapshot) => {
-    let cert = snapshot.val();
-
-    props.handleCodeToIframe(cert['e19cdj6143ec8']['code']);
-    props.handleEmojiCode(cert['e19cdj6143ec8']['emoji']);
-
-    writeContentToIframe(iframe_code, cert['e19cdj6143ec8']['code']);
-    writeContentToIframe(iframe_emoji, wrapperEmoji(cert['e19cdj6143ec8']['emoji']));
-  }, [iframe_code, iframe_emoji])
-
-  useEffect(() => {
-    if (iframe_code && iframe_emoji) {
-      certRef.on('value', certRefHandler);
-    }
-  }, [iframe_code, iframe_emoji, certRef, certRefHandler]);
 
   useEffect(() => {
     createIframe(
@@ -75,26 +59,24 @@ const Header = ({ classes, ...props }) => {
     setIframe_emoji(document.getElementById('emojiIframe').contentWindow.document);
   }, []);
 
-  const saveAbout = useCallback(async () => {
-    const certRef = firebase.database().ref('user_profile');
-
-    try {
-      await certRef.child('e19cdj6143ec8').update({
-        code: props.code,
-        emoji: props.emoji
-      });
-    } catch (e) {
-      console.warn(e)
+  useEffect(() => {
+    if (iframe_code && iframe_emoji) {
+      writeContentToIframe(iframe_code, props.code);
+      writeContentToIframe(iframe_emoji, wrapperEmoji(props.emoji));
     }
+  }, [iframe_code, iframe_emoji, props.code, props.emoji]);
 
-    props.handleCodeToIframe(props.code);
-    props.handleEmojiCode(props.emoji);
+  const saveAbout = useCallback(async (event) => {
+    event.preventDefault();
+    const data = {
+      codeInIframe: textareaValue,
+      emojiCode: inputValue,
+    }
+    props.updateUserHeaderUserProfile(data);
 
     writeContentToIframe(iframe_code, props.code);
     writeContentToIframe(iframe_emoji, wrapperEmoji(props.emoji));
-
-    props.handleCloseModal();
-  }, [props, iframe_code, iframe_emoji]);
+  }, [props, iframe_code, iframe_emoji, inputValue, textareaValue]);
 
   return (
     <div id="profile" className={classes.profileHeader}>
@@ -106,26 +88,29 @@ const Header = ({ classes, ...props }) => {
           <div id="wrapperEmojiIframe" className={classes.circleHomeIcon} />
         </div>
       </div>
-      <ModalComponent saveAbout={saveAbout} />
+      <ModalComponent
+        saveAbout={saveAbout}
+        setTextareaValue={setTextareaValue}
+        setInputValue={setInputValue}
+      />
     </div>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    code: state.profile.codeInIframe,
-    emoji: state.profile.emojiCode,
-    isLoading: state.profile.isLoading
+    code: state.user.codeInIframe,
+    emoji: state.user.emojiCode,
+    isLoading: state.user.isLoading
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleCodeToIframe: code => dispatch(handleCodeToIframe(code)),
-    handleEmojiCode: code => dispatch(handleEmojiCode(code)),
-    handleCloseModal: () => dispatch(handleCloseModal()),
-    handleOpenModal: () => dispatch(handleOpenModal())
+    updateUserHeaderUserProfile: data => dispatch(updateUserHeaderUserProfile(data)),
+    handleOpenModal: () => dispatch(openModal()),
+    handleFindLinkOrImg: code => dispatch(findLinkOrImg(code))
   }
 }
 
-export default withStyles(ProfileStyles)(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default withStyles(HeaderProfileStyles)(connect(mapStateToProps, mapDispatchToProps)(Header));

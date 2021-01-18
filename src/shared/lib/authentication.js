@@ -38,11 +38,14 @@ export function createUser(userid, userpass) {
 }
 
 export function currentUserId() {
-    return Auth.currentUser.uid;
+    if (Auth.currentUser) {
+        return Auth.currentUser?.uid;
+    } else {
+        return getCookies().userId;
+    }
 }
 
 export function getProfile() {
-
     return authFetch.firebaseGet('Teachers/' + currentUserId())
 }
 
@@ -59,7 +62,7 @@ export function setCookies(email, userfirstname) {
 
 export const getCookies = () => ({
     userId: Cookies.get(USER_ID),
-    userEmail:  Cookies.get(USER_EMAIL),      
+    userEmail:  Cookies.get(USER_EMAIL),
     isAuthenticate: Cookies.get(IS_AUTHENTICATE),
     userFirstName: Cookies.get(USER_FIRSTNAME),
 });
@@ -67,7 +70,7 @@ export const getCookies = () => ({
 export function removeCookies() {
     try {
         Cookies.remove(USER_ID);
-        Cookies.remove(USER_EMAIL);        
+        Cookies.remove(USER_EMAIL);
         Cookies.remove(IS_AUTHENTICATE);
         Cookies.remove(USER_FIRSTNAME);
         history.push('/');
@@ -80,7 +83,7 @@ export function removeCookies() {
 export function removeCookiesToReset(email) {
     try {
         Cookies.remove(USER_ID);
-        Cookies.remove(USER_EMAIL);        
+        Cookies.remove(USER_EMAIL);
         Cookies.remove(IS_AUTHENTICATE);
         Cookies.remove(USER_FIRSTNAME);
         history.push(`/reset/?email=${email}`);

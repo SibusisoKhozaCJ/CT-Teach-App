@@ -4,12 +4,8 @@ import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
 import {connect} from "react-redux";
 import {withStyles} from "@material-ui/core/styles";
-import {ProfileStyles} from "../Profile.styles";
-import {
-  handleCloseModal,
-  handleCodeToIframe,
-  handleEmojiCode, handleFindLinkOrImg
-} from "../../../redux/actions/profile-actions";
+import {HeaderProfileStyles} from "../Profile.styles";
+import {closeModal} from "../../../redux/actions/user-actions";
 
 const modalStyles = {
   overlay: {
@@ -33,23 +29,19 @@ const ModalComponent = (
   {
     classes,
     saveAbout,
+    setTextareaValue,
+    setInputValue,
     ...props
   }) => {
-  const textAreaHandler = useCallback(event => {
-    const value = event.target.value;
-    props.handleCodeToIframe(value);
-    props.handleFindLinkOrImg(value);
-  }, []);
-
   return (
     <Modal
-      isOpen={props.isOpenModal}
+      isOpen={props.openModal}
       onRequestClose={props.handleCloseModal}
       className={classes.modalContent}
       style={modalStyles}
       contentLabel='Modal'
     >
-      <div className={classes.modalPrivate}>
+      <form onSubmit={saveAbout} className={classes.modalPrivate}>
         <div className={classes.personalize}>
           <Typography variant="h5">PERSONALIZE</Typography>
           <Typography variant="h6">HEADER:</Typography>
@@ -68,7 +60,7 @@ const ModalComponent = (
           className={classes.textArea}
           placeholder="Paste your code here. There is a max of 20 lines allowed."
           defaultValue={props.code}
-          onChange={textAreaHandler}
+          onChange={event => setTextareaValue(event.target.value)}
         />
         {props.isFindLinkOrImg && <p className={classes.textareaError}>Error</p>}
         <div className={classes.personalize}>
@@ -88,11 +80,11 @@ const ModalComponent = (
           id="emoji"
           className={classes.inputWrapper}
           variant="outlined"
-          value={props.emoji}
-          onChange={event => props.handleEmojiCode(event.target.value)}
+          defaultValue={props.emoji}
+          onChange={event => setInputValue(event.target.value)}
         />
         <Button
-          onClick={handleCloseModal}
+          onClick={props.handleCloseModal}
           className={classes.btnModalCancel}
         >
           Cancel
@@ -104,27 +96,24 @@ const ModalComponent = (
         >
           Save
         </Button>
-      </div>
+      </form>
     </Modal>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    code: state.profile.codeInIframe,
-    emoji: state.profile.emojiCode,
-    isOpenModal: state.profile.isOpenModal,
-    isFindLinkOrImg: state.profile.isFindLinkOrImg
+    code: state.user.codeInIframe,
+    emoji: state.user.emojiCode,
+    openModal: state.user.openModal,
+    isFindLinkOrImg: state.user.isFindLinkOrImg
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleCodeToIframe: code => dispatch(handleCodeToIframe(code)),
-    handleEmojiCode: code => dispatch(handleEmojiCode(code)),
-    handleCloseModal: () => dispatch(handleCloseModal()),
-    handleFindLinkOrImg: code => dispatch(handleFindLinkOrImg(code))
+    handleCloseModal: () => dispatch(closeModal())
   }
 }
 
-export default withStyles(ProfileStyles)(connect(mapStateToProps, mapDispatchToProps)(ModalComponent));
+export default withStyles(HeaderProfileStyles)(connect(mapStateToProps, mapDispatchToProps)(ModalComponent));
