@@ -22,8 +22,9 @@ export function firebaseInsert(state, data) {
 }
 
 export function firebaseUpdate(state, data) {
-    firebase.database().ref(state).update(data);
+    firebase.database().ref(state).child(data.code).update(data).then();
 }
+
 export function firebaseGet(state, callback) {
     var data;
     if (callback)

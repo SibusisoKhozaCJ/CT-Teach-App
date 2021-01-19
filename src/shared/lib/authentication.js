@@ -42,11 +42,15 @@ export function currentUserId() {
 }
 
 export function getProfile() {
-    return authFetch.firebaseGet('Teachers/' + currentUserId())
+    return authFetch.firebaseGet('Users/' + currentUserId())
 }
 
 export function checkIfTribeExist(code) {
     return authFetch.firebaseGet('Tribes/' + code)
+}
+
+export function updateTribe(tribe) {
+    return authFetch.firebaseUpdate('Tribes/' , tribe)
 }
 
 export function getAllTeachers() {
