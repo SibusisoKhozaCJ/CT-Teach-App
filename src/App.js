@@ -70,7 +70,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(saveUser(user));
-  }, []);
+  }, [dispatch, user]);
 
   const authProviderValue = useMemo(() => ({
     user,

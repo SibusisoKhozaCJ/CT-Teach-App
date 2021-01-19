@@ -90,7 +90,8 @@ export const HeaderProfileStyles = theme => ({
     width: 101,
     height: 98,
     justifyContent: 'center',
-    display: 'flex'
+    display: 'flex',
+    zIndex: 10
   },
   textArea: {
     border: '1px solid #eaeaeb',
@@ -226,11 +227,13 @@ export const FormProfileStyles = theme => ({
     ...controlStyles,
     textTransform: 'uppercase',
     color: '#0198ED',
+    marginBottom: 10,
     '& > span': {
       textTransform: 'none'
     },
     [theme.breakpoints.down("sm")]: {
       fontSize: 18,
+      marginBottom: 7
     }
   },
   controlLabelHidden: {
@@ -244,14 +247,15 @@ export const FormProfileStyles = theme => ({
     marginLeft: 20,
     width: 200,
     [theme.breakpoints.down("sm")]: {
-      width: 75,
+      width: 140,
+      textAlign: 'end',
       border: 'none !important',
       marginTop: 14,
       padding: 0,
       background: 'none',
       position: 'absolute',
       top: 0,
-      left: '67%',
+      right: 0,
       fontSize: 18
     }
   },
@@ -276,14 +280,34 @@ export const FormProfileStyles = theme => ({
   activeControlInput: {
     ...activeControl,
     minWidth: 170,
+    [theme.breakpoints.down("sm")]: {
+      minWidth: 140,
+      padding: 0
+    }
   },
   activeControlTextarea: {
     ...activeControl,
     width: '100%',
     padding: 5,
   },
-  btnModalCancel,
-  btnModalSave,
+  btnButtons: {
+    position: 'absolute',
+    bottom: 0,
+    [theme.breakpoints.down("sm")]: {
+      position: 'absolute',
+      bottom: '-71vh'
+    }
+  },
+  btnCancel: {
+    ...btnModalCancel,
+    marginTop: 0,
+    marginBottom: 15
+  },
+  btnSave: {
+    ...btnModalSave,
+    marginTop: 0,
+    marginBottom: 15
+  },
   invalid: {
     borderColor: '#ff0000',
     borderRadius: 5,
@@ -355,13 +379,6 @@ export const FormProfileStyles = theme => ({
       position: 'relative',
       top: 0,
       right: 0,
-    }
-  },
-  btnButtons: {
-    [theme.breakpoints.down("sm")]: {
-      position: 'absolute',
-      bottom: '-62vh',
-      paddingBottom: 20
     }
   }
 })
