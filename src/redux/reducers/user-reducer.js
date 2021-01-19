@@ -7,7 +7,8 @@ const initialState = {
   emojiCode: '&#128512;',
   openModal: false,
   isFindLinkOrImg: false,
-  editUserInfo: false,
+  editPublicUserInfo: false,
+  editPrivateUserInfo: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -32,8 +33,10 @@ export default function userReducer(state = initialState, action) {
       } else {
         return { ...state, isFindLinkOrImg: false };
       }
-    case Types.EDIT_USER_INFO:
-      return { ...state, editUserInfo: action.payload };
+    case Types.EDIT_PUBLIC_USER_INFO:
+      return { ...state, editPublicUserInfo: action.payload };
+    case Types.EDIT_PRIVATE_USER_INFO:
+      return { ...state, editPrivateUserInfo: action.payload };
     default:
       return state;
   }

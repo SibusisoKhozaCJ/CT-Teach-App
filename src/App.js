@@ -29,7 +29,7 @@ import Welcome from './components/Welcome';
 import Home from './components/HomePage'
 import Profile from "./components/Profile/Profile";
 import {saveUser} from "./redux/actions/user-actions";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Loading from "./shared/components/loader/Loading";
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -58,16 +58,18 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   );
 };
 
-const App = (props) => {
+const App = () => {
   const { userId, isAuthenticate, userFirstName, userEmail } = getCookies();
   const [user, setUser] = useState(userId);
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
+  const {loading} = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    props.saveUser(user);
-  });
+    dispatch(saveUser(user));
+  }, []);
 
   const authProviderValue = useMemo(() => ({
     user,
@@ -80,7 +82,7 @@ const App = (props) => {
     setUserEmail
   }), [user, setUser, tokens, setTokens, firstname, setFirstName, email, setUserEmail]);
 
-  if (props.loading) {
+  if (loading) {
     return <Loading />;
   }
 
@@ -125,16 +127,4 @@ const App = (props) => {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    loading: state.user.loading
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    saveUser: user => dispatch(saveUser(user))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

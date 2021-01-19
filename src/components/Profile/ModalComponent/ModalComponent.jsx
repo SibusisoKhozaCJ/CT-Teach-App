@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import {TextareaAutosize, TextField, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {withStyles} from "@material-ui/core/styles";
 import {HeaderProfileStyles} from "../Profile.styles";
 import {closeModal} from "../../../redux/actions/user-actions";
@@ -30,13 +30,15 @@ const ModalComponent = (
     classes,
     saveAbout,
     setTextareaValue,
-    setInputValue,
-    ...props
+    setInputValue
   }) => {
+  const {codeInIframe, emojiCode, openModal, isFindLinkOrImg} = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
   return (
     <Modal
-      isOpen={props.openModal}
-      onRequestClose={props.handleCloseModal}
+      isOpen={openModal}
+      onRequestClose={() => dispatch(closeModal())}
       className={classes.modalContent}
       style={modalStyles}
       contentLabel='Modal'
@@ -59,10 +61,10 @@ const ModalComponent = (
           rowsMax={20}
           className={classes.textArea}
           placeholder="Paste your code here. There is a max of 20 lines allowed."
-          defaultValue={props.code}
+          defaultValue={codeInIframe}
           onChange={event => setTextareaValue(event.target.value)}
         />
-        {props.isFindLinkOrImg && <p className={classes.textareaError}>Error</p>}
+        {isFindLinkOrImg && <p className={classes.textareaError}>Error</p>}
         <div className={classes.personalize}>
           <Typography variant="h6">AVATAR:</Typography>
           <Typography>
@@ -80,19 +82,19 @@ const ModalComponent = (
           id="emoji"
           className={classes.inputWrapper}
           variant="outlined"
-          defaultValue={props.emoji}
+          defaultValue={emojiCode}
           onChange={event => setInputValue(event.target.value)}
         />
         <Button
-          onClick={props.handleCloseModal}
+          onClick={() => dispatch(closeModal())}
           className={classes.btnModalCancel}
         >
           Cancel
         </Button>
         <Button
-          onClick={saveAbout}
+          type="submit"
           className={classes.btnModalSave}
-          disabled={props.isFindLinkOrImg}
+          disabled={isFindLinkOrImg}
         >
           Save
         </Button>
@@ -101,19 +103,4 @@ const ModalComponent = (
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    code: state.user.codeInIframe,
-    emoji: state.user.emojiCode,
-    openModal: state.user.openModal,
-    isFindLinkOrImg: state.user.isFindLinkOrImg
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    handleCloseModal: () => dispatch(closeModal())
-  }
-}
-
-export default withStyles(HeaderProfileStyles)(connect(mapStateToProps, mapDispatchToProps)(ModalComponent));
+export default withStyles(HeaderProfileStyles)(ModalComponent);

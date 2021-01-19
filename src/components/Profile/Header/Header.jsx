@@ -1,10 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import Modal from 'react-modal';
 import EditIcon from '../../../assets/icons/EditIcon'
-import { connect } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import {
-  findLinkOrImg,
   openModal,
   updateUserHeaderUserProfile
 } from "../../../redux/actions/user-actions";
@@ -34,11 +33,13 @@ function writeContentToIframe(iframe, content) {
   iframe.close();
 }
 
-const Header = ({ classes, ...props }) => {
+const Header = ({ classes }) => {
   const [textareaValue, setTextareaValue] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [iframe_code, setIframe_code] = useState();
   const [iframe_emoji, setIframe_emoji] = useState();
+  const {codeInIframe, emojiCode} = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     createIframe(
@@ -61,10 +62,10 @@ const Header = ({ classes, ...props }) => {
 
   useEffect(() => {
     if (iframe_code && iframe_emoji) {
-      writeContentToIframe(iframe_code, props.code);
-      writeContentToIframe(iframe_emoji, wrapperEmoji(props.emoji));
+      writeContentToIframe(iframe_code, codeInIframe);
+      writeContentToIframe(iframe_emoji, wrapperEmoji(emojiCode));
     }
-  }, [iframe_code, iframe_emoji, props.code, props.emoji]);
+  }, [iframe_code, iframe_emoji, codeInIframe, emojiCode]);
 
   const saveAbout = useCallback(async (event) => {
     event.preventDefault();
@@ -72,18 +73,18 @@ const Header = ({ classes, ...props }) => {
       codeInIframe: textareaValue,
       emojiCode: inputValue,
     }
-    props.updateUserHeaderUserProfile(data);
+    dispatch(updateUserHeaderUserProfile(data));
 
-    writeContentToIframe(iframe_code, props.code);
-    writeContentToIframe(iframe_emoji, wrapperEmoji(props.emoji));
-  }, [props, iframe_code, iframe_emoji, inputValue, textareaValue]);
+    writeContentToIframe(iframe_code, codeInIframe);
+    writeContentToIframe(iframe_emoji, wrapperEmoji(emojiCode));
+  }, [iframe_code, iframe_emoji, inputValue, textareaValue, codeInIframe, emojiCode, dispatch]);
 
   return (
     <div id="profile" className={classes.profileHeader}>
       <div className={classes.containerIcon}>
         <div className={classes.circleHome}>
           <div className={classes.editIcon}>
-            <EditIcon onClick={props.handleOpenModal} />
+            <EditIcon onClick={() => dispatch(openModal())} />
           </div>
           <div id="wrapperEmojiIframe" className={classes.circleHomeIcon} />
         </div>
@@ -97,20 +98,4 @@ const Header = ({ classes, ...props }) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    code: state.user.codeInIframe,
-    emoji: state.user.emojiCode,
-    isLoading: state.user.isLoading
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    updateUserHeaderUserProfile: data => dispatch(updateUserHeaderUserProfile(data)),
-    handleOpenModal: () => dispatch(openModal()),
-    handleFindLinkOrImg: code => dispatch(findLinkOrImg(code))
-  }
-}
-
-export default withStyles(HeaderProfileStyles)(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default withStyles(HeaderProfileStyles)(Header);

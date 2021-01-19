@@ -95,7 +95,7 @@ export function findLinkOrImg(text) {
   }
 }
 
-export function updatePublicUserInfo(data) {
+export function updateUserInfo(data) {
   return async (dispatch, getState) => {
     const user = getState().user;
     try {
@@ -103,21 +103,39 @@ export function updatePublicUserInfo(data) {
     } catch (error) {
       console.warn('Error update user', error)
     }
-    dispatch(finishEditUserInfo());
+    if (getState().user.editPublicUserInfo) {
+      dispatch(finishEditPublicUserInfo());
+    } else {
+      dispatch(finishEditPrivateUserInfo());
+    }
 
   }
 }
 
-export function startEditUserInfo() {
+export function startEditPublicUserInfo() {
   return {
-    type: Types.EDIT_USER_INFO,
+    type: Types.EDIT_PUBLIC_USER_INFO,
     payload: true
   }
 }
 
-export function finishEditUserInfo() {
+export function finishEditPublicUserInfo() {
   return {
-    type: Types.EDIT_USER_INFO,
+    type: Types.EDIT_PUBLIC_USER_INFO,
+    payload: false
+  }
+}
+
+export function startEditPrivateUserInfo() {
+  return {
+    type: Types.EDIT_PRIVATE_USER_INFO,
+    payload: true
+  }
+}
+
+export function finishEditPrivateUserInfo() {
+  return {
+    type: Types.EDIT_PRIVATE_USER_INFO,
     payload: false
   }
 }
