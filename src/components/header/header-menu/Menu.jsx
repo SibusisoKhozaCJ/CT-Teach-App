@@ -51,11 +51,9 @@ const Menu = () => {
                     <ThemedDivider />
                     <List>
                         <ListItem button key="contact-us" to={routes.CONTACT_US} component={NavLink}>
-                            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
                             <ListItemText disableTypography primary={<Typography variant="h4">Contact Us</Typography>} />
                         </ListItem>
                         <ListItem button key="log-out" onClick={logOut}>
-                            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
                             <ListItemText disableTypography primary={<Typography variant="h4">Log Out</Typography>} />
                         </ListItem>
                     </List>
