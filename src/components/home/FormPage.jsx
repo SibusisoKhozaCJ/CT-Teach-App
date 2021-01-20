@@ -17,8 +17,7 @@ import history from '../../shared/lib/history';
 const FormPage = ({ location }) => {
 
     const { state: { src } = {}, search } = location;
-
-    if (!search && !src) history.push(ROUTES.HOME)
+         if (!search && !src) history.push(ROUTES.HOME)
 
     return (
         <Grid item xs={12}>

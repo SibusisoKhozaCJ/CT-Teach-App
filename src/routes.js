@@ -6,6 +6,7 @@ export default {
     NEW_ACCOUNT: '/new-account',
     FORM: '/form',
     RESET: '/reset',
+    TRIBE: '/tribe',
     PROFILE: '/profile'
 };
 
