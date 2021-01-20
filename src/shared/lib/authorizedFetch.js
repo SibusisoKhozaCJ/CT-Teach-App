@@ -22,8 +22,9 @@ export function firebaseInsert(state, data) {
 }
 
 export async function firebaseUpdate(state, data) {
-    await firebase.database().ref(state).update(data);
+    await firebase.database().ref(state).child(data.code).update(data);
 }
+
 export function firebaseGet(state, callback) {
     let data;
     if (callback)

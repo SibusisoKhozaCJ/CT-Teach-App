@@ -22,10 +22,15 @@ const CreateNewAccountPage = () => {
     const { setTokens } = useContext(AuthContext);
     const [userTribeCode, setTribeCode] = useState('')
     const handleTeacherSubmit = async e => {
-        const { schoolAlreadySigned, joincode } = form
+
         e.preventDefault();
         updateLoading(true);
         updateError('');
+        handleFormSubmit();
+    };
+
+    const handleFormSubmit = async () => {
+        const { schoolAlreadySigned, joincode } = form
         if (schoolAlreadySigned) {
             const isCodeExist = await CheckIfTribeCodeExist(joincode);
             if (!isCodeExist) {
@@ -33,55 +38,38 @@ const CreateNewAccountPage = () => {
                 updateLoading(false);
                 setCurrentStep(2)
             } else {
-                createUser()
+                createUser(isCodeExist)
             }
         } else {
             createUser()
         }
-    };
+    }
 
-    const createUser = () => {
+    const createUser = (tribeData) => {
         const { email, password, firstname, lastname, city, day, month, year, isTeacher, phone, schoolname, schoolAlreadySigned, joincode } = form
         Auth.createUser(email, password)
             .then(async (res) => {
-                if (isTeacher) {
-                    if (schoolAlreadySigned) {
-                        firebaseInsert('Teachers/' + res.user.uid, {
-                            email: email,
-                            firstname: firstname,
-                            lastname: lastname,
-                            city: city,
-                            dob: day + "-" + month + "-" + year,
-                            phone: phone,
-                            schoolName: schoolname,
-                            tribe_joned: [joincode]
-                        });
-                        Auth.setCookies(email, firstname);
-                        setTokens({ isAuthenticate: true })
-                        setTribeCode(joincode)
-                        setCurrentStep(4)
-                    } else {
-                        JoinTribeAndRegister(res)
-                    }
+                if (schoolAlreadySigned) {
+                    let tribeInfo = tribeData;
+                    tribeInfo.users.push(res.user.uid);
+                    await Auth.updateTribe(tribeInfo)
+                    firebaseInsert('Users/' + res.user.uid, {
+                        email: email,
+                        firstname: firstname,
+                        lastname: lastname,
+                        city: city,
+                        is_teacher: isTeacher,
+                        dob: day + "-" + month + "-" + year,
+                        phone: phone,
+                        schoolName: schoolname,
+                        tribe_joned: [joincode]
+                    });
+                    Auth.setCookies(email, firstname);
+                    setTokens({ isAuthenticate: true })
+                    setTribeCode(joincode)
+                    setCurrentStep(4)
                 } else {
-                    if (schoolAlreadySigned) {
-                        firebaseInsert('Users/' + res.user.uid, {
-                            email: email,
-                            firstname: firstname,
-                            lastname: lastname,
-                            city: city,
-                            dob: day + "-" + month + "-" + year,
-                            phone: phone,
-                            schoolName: schoolname,
-                            tribe_joned: [joincode]
-                        });
-                        Auth.setCookies(email, firstname);
-                        setTokens({ isAuthenticate: true })
-                        setTribeCode(joincode)
-                        setCurrentStep(4)
-                    } else {
-                        JoinTribeAsUser(res)
-                    }
+                    CreateTribeAndRegister(res)
                 }
 
             })
@@ -92,8 +80,8 @@ const CreateNewAccountPage = () => {
             });
     }
 
-    const JoinTribeAsUser = async (res) => {
-        const { email, firstname, lastname, city, day, month, year, phone, schoolname } = form
+    const CreateTribeAndRegister = async (res) => {
+        const { email, firstname, lastname, city, day, month, year, type, phone, isTeacher, schoolname } = form
         const tribeCode = referralCodeGenerator.alphaNumeric('uppercase', 2, 3);
         const isCodeExist = await CheckIfTribeCodeExist(tribeCode);
         if (isCodeExist) {
@@ -108,35 +96,7 @@ const CreateNewAccountPage = () => {
                 firstname: firstname,
                 lastname: lastname,
                 city: city,
-                dob: day + "-" + month + "-" + year,
-                phone: phone,
-                schoolName: schoolname,
-                tribe_code: tribeCode,
-            });
-            Auth.setCookies(email, firstname);
-            setTokens({ isAuthenticate: true })
-            updateLoading(false);
-            setTribeCode(tribeCode)
-            setCurrentStep(4)
-        }
-    }
-
-    const JoinTribeAndRegister = async (res) => {
-        const { email, firstname, lastname, city, day, month, year, type, phone, schoolname } = form
-        const tribeCode = referralCodeGenerator.alphaNumeric('uppercase', 2, 3);
-        const isCodeExist = await CheckIfTribeCodeExist(tribeCode);
-        if (isCodeExist) {
-            alert("Error while creting a tribe.")
-        } else {
-            firebaseInsert('Tribes/' + tribeCode, {
-                code: tribeCode,
-                users: [res.user.uid]
-            });
-            firebaseInsert('Teachers/' + res.user.uid, {
-                email: email,
-                firstname: firstname,
-                lastname: lastname,
-                city: city,
+                is_teacher: isTeacher,
                 dob: day + "-" + month + "-" + year,
                 phone: phone,
                 schoolName: schoolname,
@@ -154,10 +114,10 @@ const CreateNewAccountPage = () => {
 
     const CheckIfTribeCodeExist = async (code) => {
         return await Auth.checkIfTribeExist(code).then((tribe) => {
-            return tribe ? true : false
+            return tribe
         })
             .catch((err) => {
-                return false
+                return null
             })
     }
 
@@ -168,9 +128,15 @@ const CreateNewAccountPage = () => {
     };
 
     const handleSubmitSecondForm = async e => {
+        const { schoolAlreadySigned } = form
         e.preventDefault();
         updateError('');
-        setCurrentStep(3)
+        if (schoolAlreadySigned) {
+            handleFormSubmit()
+        } else {
+            setCurrentStep(3)
+        }
+
     };
 
     const sendTribeCode = async e => {

@@ -37,11 +37,8 @@ const LoginPage = () => {
         const { email, password } = form;
         event.preventDefault();
         updateLoading(true);
-
         Auth.signIn(email, password)
             .then(res => {
-
-
                 Auth.getProfile()
                     .then((user) => {
                         Auth.setCookies(email, user.firstname);
