@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -7,7 +7,6 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import {
-  Menu as MenuIcon,
   Person as AccountIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
@@ -20,8 +19,6 @@ import useStyles from "./styles";
 import Typography from '@material-ui/core/Typography';
 import {toggleSideBar} from "../../redux/actions/side-actions"
 import { useDispatch, useSelector } from "react-redux";
-import sideBarReducer from "../../redux/reducers/sidebar-reducer";
-
 
 export default function Header(props) {
   var classes = useStyles();
@@ -31,6 +28,7 @@ export default function Header(props) {
   const toggleMenuItem = () =>{
     dispatch(toggleSideBar());
   };
+
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>

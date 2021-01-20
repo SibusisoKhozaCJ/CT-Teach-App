@@ -1,6 +1,6 @@
 /**
  * This is the most important lib file. It includes the authorization cookies and formats
- * the endpoints correctly depending on the environment. This must be used for authorized 
+ * the endpoints correctly depending on the environment. This must be used for authorized
  * access the backend API.
  */
 
@@ -26,7 +26,7 @@ export function firebaseUpdate(state, data) {
 }
 
 export function firebaseGet(state, callback) {
-    var data;
+    let data;
     if (callback)
         firebase.database().ref(state).once('value', function (snapshot) {
             data = snapshot.val();
