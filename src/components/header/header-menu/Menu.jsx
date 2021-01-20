@@ -33,9 +33,9 @@ const Menu = () => {
     };
 
     return (
-        <React.Fragment key="right">
+        <React.Fragment key="left">
             <MenuButton onClick={toggleMenu(!isOpen)}/>
-            <Drawer anchor="right" open={isOpen} onClose={toggleMenu(false)}>
+            <Drawer anchor="left" open={isOpen} onClose={toggleMenu(false)}>
                 <div
                     onClick={toggleMenu(false)}
                     onKeyDown={toggleMenu(false)}

@@ -17,7 +17,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Header from './components/header/Header';
 import LoginPage from './components/login/LoginPage';
-import CreateNewAccountPage from './components/register-teacher/create-new-account';
+ import CreateNewAccountPage from './components/register-teacher/create-new-account';
 import ContactUs from './components/contact-us/ContactUs';
 import FormPage from './components/home/FormPage';
 import routes from './routes';
@@ -27,7 +27,10 @@ import { isAuthenticated, getCookies } from './shared/lib/authentication';
 import ResetPage from './components/reset-password/ResetPage';
 import Welcome from './components/welcome/Welcome';
 import Home from './components/home/HomePage';
+import HeaderNew from './components/header-new/Header';
 import "./index.scss"
+import Sidebar from './components/Sidebar/Sidebar';
+import Tribes from "./components/tribes/tribe"
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
   return (
@@ -75,8 +78,10 @@ const App = () => {
   return (
     <Router history={history}>
       <AuthContext.Provider value={authProviderValue}>
-        <Header />
-        <Paper>
+      <div className="main">
+        <HeaderNew />
+        <Sidebar/>     
+        <Paper >
           <Box m={1}>
             <Container>
               <Grid container>
@@ -101,12 +106,14 @@ const App = () => {
                   <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                   <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
                   <ProtectedRoute path={routes.FORM} component={FormPage} />
+                  <ProtectedRoute path={routes.TRIBE} component={Tribes} />
                   <Redirect to="/" />
                 </Switch>
               </Grid>
             </Container>
           </Box>
         </Paper>
+        </div>
       </AuthContext.Provider>
     </Router>
   );

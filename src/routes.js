@@ -5,6 +5,7 @@ export default {
     LOGIN: '/login',
     NEW_ACCOUNT: '/new-account',   
     FORM: '/form',
-    RESET: '/reset'
+    RESET: '/reset',
+    TRIBE: '/tribe'
 };
 

@@ -16,12 +16,12 @@ const Header = () => {
     return (
         <Box mb={2}>
             <AppBar position="sticky" style={{ margin: 0, maxHeight: headerHeight }}>
-                <Toolbar>
+                {/* <Toolbar>
                     <HeaderLogo />
                     <IconButton edge="end" aria-label="menu" style={{ marginLeft: 'auto' }}>
                         <Menu />
                     </IconButton>
-                </Toolbar>
+                </Toolbar> */}
             </AppBar>
         </Box>
     );

@@ -36,11 +36,11 @@ const LoginPage = () => {
     const submitForm = async event => {
         const { email, password } = form;
         event.preventDefault();
-        updateLoading(true);
+        updateLoading(true);       
         Auth.signIn(email, password)
-            .then(res => {
+            .then(res => {             
                 Auth.getProfile()
-                    .then((user) => {
+                    .then((user) => {                       
                         Auth.setCookies(email, user.firstname);
                         setTokens({ isAuthenticate: true })
                         updateLoading(false);
