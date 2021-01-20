@@ -48,7 +48,7 @@ export function updateUserHeaderUserProfile(data) {
       emojiCode: data.emojiCode || getState().user.emojiCode,
     }
     try {
-      await firebaseUpdate(`Teachers/${user.userId}`, dataUpdate);
+      await firebaseUpdate(`Users/${user.userId}`, dataUpdate);
     } catch (error) {
       console.warn('Error update user', error)
     }
@@ -99,7 +99,7 @@ export function updateUserInfo(data) {
   return async (dispatch, getState) => {
     const user = getState().user;
     try {
-      await firebaseUpdate(`Teachers/${user.userId}`, data);
+      await firebaseUpdate(`Users/${user.userId}`, data);
     } catch (error) {
       console.warn('Error update user', error)
     }

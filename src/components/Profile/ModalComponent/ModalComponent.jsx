@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {TextareaAutosize, TextField, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
 import {useDispatch, useSelector} from "react-redux";
 import {withStyles} from "@material-ui/core/styles";
 import {HeaderProfileStyles} from "../Profile.styles";
-import {closeModal} from "../../../redux/actions/user-actions";
+import {closeModal, findLinkOrImg} from "../../../redux/actions/user-actions";
 
 const modalStyles = {
   overlay: {
@@ -35,6 +35,12 @@ const ModalComponent = (
   const {codeInIframe, emojiCode, openModal, isFindLinkOrImg} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  const textAreaHandler = useCallback(event => {
+    const value = event.target.value;
+    setTextareaValue(value);
+    dispatch(findLinkOrImg(value));
+  }, []);
+
   return (
     <Modal
       isOpen={openModal}
@@ -62,7 +68,7 @@ const ModalComponent = (
           className={classes.textArea}
           placeholder="Paste your code here. There is a max of 20 lines allowed."
           defaultValue={codeInIframe}
-          onChange={event => setTextareaValue(event.target.value)}
+          onChange={textAreaHandler}
         />
         {isFindLinkOrImg && <p className={classes.textareaError}>Error</p>}
         <div className={classes.personalize}>
