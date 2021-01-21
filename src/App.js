@@ -31,8 +31,7 @@ import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
 import Profile from "./components/Profile/Profile";
 import { saveUser } from "./redux/actions/user-actions";
-import {useDispatch, useSelector} from "react-redux";
-import Loading from "./shared/components/loader/Loading";
+import {useDispatch} from "react-redux";
 import "./index.scss"
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -71,7 +70,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(saveUser(user));
-  }, []);
+  });
 
   const authProviderValue = useMemo(() => ({
     user,

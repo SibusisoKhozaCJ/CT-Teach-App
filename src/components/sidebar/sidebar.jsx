@@ -1,9 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
-import { TribeSVG, ProgressSvg, MissionSvg, NotificationSvg, ShareSvg, InviteSvg, ProfileSvg, GallerySvg, SkillsSvg, FeedbackSvg } from '../../shared/svgs/menu-items'
 import {
-  ArrowBack as ArrowBackIcon,
-} from "@material-ui/icons";
+  TribeSVG,
+  ProgressSvg,
+  MissionSvg,
+  NotificationSvg,
+  ShareSvg,
+  InviteSvg,
+  ProfileSvg,
+  GallerySvg,
+  SkillsSvg,
+  FeedbackSvg,
+} from "../../shared/svgs/menu-items";
+import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -18,9 +27,7 @@ const structure = [
     id: 1,
     label: "Tribes",
     link: "/tribe",
-    icon: <TribeSVG />
-
-    ,
+    icon: <TribeSVG />,
   },
   { id: 2, label: "Goals", link: "/", icon: <MissionSvg /> },
   { id: 5, type: "divider" },
@@ -42,14 +49,12 @@ const structure = [
   { id: 8, label: "Gallery", link: "/", icon: <GallerySvg /> },
   { id: 8, label: "Skills", link: "/", icon: <SkillsSvg /> },
   { id: 8, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
-  { id: 9, type: "divider" },
-
 ];
 
 function Sidebar({ location }) {
   var classes = useStyles();
   var theme = useTheme();
-  const { isSidebarOpened } = useSelector(state => state.sidebar);
+  const { isSidebarOpened } = useSelector((state) => state.sidebar);
   var [isPermanent, setPermanent] = useState(true);
   useEffect(function () {
     window.addEventListener("resize", handleWindowWidthChange);
@@ -84,13 +89,16 @@ function Sidebar({ location }) {
           <IconButton onClick={() => toggleMenuItem()}>
             <ArrowBackIcon
               classes={{
-                root: classNames(classes.headerIcon, classes.headerIconCollapse),
+                root: classNames(
+                  classes.headerIcon,
+                  classes.headerIconCollapse
+                ),
               }}
             />
           </IconButton>
         </div>
         <List className={classes.sidebarList}>
-          {structure.map(link => (
+          {structure.map((link) => (
             <SidebarLink
               key={link.id}
               location={location}
@@ -100,10 +108,8 @@ function Sidebar({ location }) {
           ))}
         </List>
       </Drawer>
-
     </div>
   );
-
 
   function handleWindowWidthChange() {
     var windowWidth = window.innerWidth;

@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {withStyles} from "@material-ui/core/styles";
 import {HeaderProfileStyles} from "../Profile.styles";
 import {closeModal, findLinkOrImg} from "../../../redux/actions/user-actions";
+import { Link } from 'react-router-dom';
 
 const modalStyles = {
   overlay: {
@@ -39,7 +40,7 @@ const ModalComponent = (
     const value = event.target.value;
     setTextareaValue(value);
     dispatch(findLinkOrImg(value));
-  }, []);
+  }, [dispatch,setTextareaValue]);
 
   return (
     <Modal
@@ -57,7 +58,7 @@ const ModalComponent = (
             Add your own mini-website to your header.
             <br />
             <div className={classes.tipNote}>
-              TIP: Not sure what I mean? Do the <a href="#">5-Minute-Website</a> and paste it in here.
+              TIP: Not sure what I mean? Do the <Link href="/">5-Minute-Website</Link> and paste it in here.
             </div>
           </Typography>
         </div>
@@ -79,7 +80,7 @@ const ModalComponent = (
             <div className={classes.tipNote}>
               TIP: For example #128512; is a big smile emoji.
               <br />
-              Lear more <a href="#">here</a>.
+              Lear more <Link href="/">here</Link>.
             </div>
           </Typography>
         </div>

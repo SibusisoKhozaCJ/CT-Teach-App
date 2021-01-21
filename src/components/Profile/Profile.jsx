@@ -13,6 +13,7 @@ const Profile = () => {
 
   return (
     <div className={classesProfile.root}>
+      <div className="commonheight"></div>
       <Header />
       <Grid container>
         <EditPublicInfo />

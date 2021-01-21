@@ -3,14 +3,17 @@
     //     background: #FBDD3F;
     // }
     .MuiButtonBase-root{
-        margin-bottom: 5px;
+        margin-bottom: 0px;
         padding: 5px 16px;
        
     }
+    svg{
+        color: black;
+    }
     .MuiListItemText-root{      
         span{
-            font-weight: 700 !important;
-            font-size: 22px !important;
+            font-weight: 600 !important;
+            font-size: 20px !important;
             line-height: 30px;
         }
     }
