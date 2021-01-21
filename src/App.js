@@ -3,7 +3,7 @@
  * the routing from page to page, and the google analytics pageview sends.
  */
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   Router,
   Switch,
@@ -15,18 +15,25 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import Header from './components/Header';
-import LoginPage from './components/LoginPage';
-import NewAccountPage from './components/NewAccountPage';
-import ContactUs from './components/ContactUs';
-import FormPage from './components/FormPage';
-import routes from './constants/routes';
-import history from './lib/history';
-import { AuthContext } from './contexts/authContext';
-import { isAuthenticated, getCookies } from './lib/authentication';
-import ResetPage from './components/ResetPage';
-import Welcome from './components/Welcome';
-import Home from './components/HomePage'
+import Header from './components/header/header';
+import LoginPage from './components/login/LoginPage';
+import CreateNewAccountPage from './components/register-teacher/create-new-account';
+import ContactUs from './components/contact-us/ContactUs';
+import FormPage from './components/home/FormPage';
+import routes from './routes';
+import history from './shared/lib/history';
+import { AuthContext } from './shared/contexts/authContext';
+import { isAuthenticated, getCookies } from './shared/lib/authentication';
+import ResetPage from './components/reset-password/ResetPage';
+import Welcome from './components/welcome/Welcome';
+import Home from './components/home/HomePage';
+import Sidebar from './components/sidebar/sidebar';
+import Tribes from "./components/tribes/tribe"
+import Profile from "./components/Profile/Profile";
+import { saveUser } from "./redux/actions/user-actions";
+import {useDispatch} from "react-redux";
+import "./index.scss"
+
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
   return (
@@ -59,6 +66,11 @@ const App = () => {
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(saveUser(user));
+  });
 
   const authProviderValue = useMemo(() => ({
     user,
@@ -74,38 +86,45 @@ const App = () => {
   return (
     <Router history={history}>
       <AuthContext.Provider value={authProviderValue}>
-        <Header />
-        <Paper>
-          <Box m={1}>
-            <Container>
-              <Grid container>
-                <Switch>
-                  <ProtectedRoute
-                    exact
-                    path="/"
-                    component={FormPage}
-                  />
+        <div className="main">
+          {isAuthenticate && <Header />}
+          {isAuthenticate && <Sidebar />}
+          {!isAuthenticate && <Redirect path="/login"></Redirect>}
+          <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
+          <Paper >
+            <Box m={1}>
+              <Container>
+                <Grid container>
+                  <Switch>
+                    <ProtectedRoute
+                      exact
+                      path="/"
+                      component={FormPage}
+                    />
 
-                  <Route path={routes.LOGIN}>
-                    <LoginPage />
-                  </Route>
-                  <Route path={routes.NEW_ACCOUNT}>
-                    <NewAccountPage />
-                  </Route>              
-                  <Route path={routes.RESET}>
-                    <ResetPage />
-                  </Route>
-
-                  <ProtectedRoute path={routes.HOME} component={Home} />
-                  <ProtectedRoute path={routes.WELCOME} component={Welcome} />
-                  <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
-                  <ProtectedRoute path={routes.FORM} component={FormPage} />
-                  <Redirect to="/" />
-                </Switch>
-              </Grid>
-            </Container>
-          </Box>
-        </Paper>
+                    <Route path={routes.LOGIN}>
+                      <LoginPage />
+                    </Route>
+                    <Route path={routes.NEW_ACCOUNT}>
+                      <CreateNewAccountPage />
+                    </Route>
+                    <Route path={routes.RESET}>
+                      <ResetPage />
+                    </Route>
+                    <ProtectedRoute path={routes.HOME} component={Home} />
+                    <ProtectedRoute path={routes.WELCOME} component={Welcome} />
+                    <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
+                    <ProtectedRoute path={routes.FORM} component={FormPage} />
+                    <ProtectedRoute path={routes.TRIBE} component={Tribes} />
+                    <ProtectedRoute path={routes.PROFILE} component={Profile} />
+                    <Redirect to="/" />
+                  </Switch>
+                </Grid>
+              </Container>
+            </Box>
+          </Paper>
+          </div>
+        </div>
       </AuthContext.Provider>
     </Router>
   );
