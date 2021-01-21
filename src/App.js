@@ -67,7 +67,6 @@ const App = () => {
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
-  const { loading } = useSelector(state => state.user)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -85,17 +84,14 @@ const App = () => {
     setUserEmail
   }), [user, setUser, tokens, setTokens, firstname, setFirstName, email, setUserEmail]);
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <Router history={history}>
       <AuthContext.Provider value={authProviderValue}>
         <div className="main">
           {isAuthenticate && <Header />}
           {isAuthenticate && <Sidebar />}
-          <div className={!isAuthenticate ? "center-align-div" : ""}>
+          {!isAuthenticate && <Redirect path="/login"></Redirect>}
+          <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
           <Paper >
             <Box m={1}>
               <Container>
@@ -116,7 +112,6 @@ const App = () => {
                     <Route path={routes.RESET}>
                       <ResetPage />
                     </Route>
-
                     <ProtectedRoute path={routes.HOME} component={Home} />
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />

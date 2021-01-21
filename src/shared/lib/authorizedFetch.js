@@ -22,6 +22,10 @@ export function firebaseInsert(state, data) {
 }
 
 export async function firebaseUpdate(state, data) {
+    await firebase.database().ref(state).update(data);
+}
+
+export async function firebaseUpdateChild(state, data) {
     await firebase.database().ref(state).child(data.code).update(data);
 }
 

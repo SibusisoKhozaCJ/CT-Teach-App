@@ -54,7 +54,7 @@ export function checkIfTribeExist(code) {
 }
 
 export function updateTribe(tribe) {
-    return authFetch.firebaseUpdate('Tribes/' , tribe)
+    return authFetch.firebaseUpdateChild('Tribes/' , tribe)
 }
 
 export function getAllTeachers() {

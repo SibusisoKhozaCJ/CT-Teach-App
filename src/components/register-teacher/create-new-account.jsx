@@ -22,7 +22,6 @@ const CreateNewAccountPage = () => {
     const { setTokens } = useContext(AuthContext);
     const [userTribeCode, setTribeCode] = useState('')
     const handleTeacherSubmit = async e => {
-
         e.preventDefault();
         updateLoading(true);
         updateError('');

@@ -3,13 +3,15 @@
     //     background: #FBDD3F;
     // }
     .MuiButtonBase-root{
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        padding: 5px 16px;
+       
     }
     .MuiListItemText-root{      
         span{
             font-weight: 700 !important;
-            font-size: 27px !important;
-            line-height: 32px;
+            font-size: 22px !important;
+            line-height: 30px;
         }
     }
     .MuiListItemIcon-root{
@@ -185,4 +187,14 @@ header{
 
 .center-align-div{
     margin: 0 auto;
+}
+
+.default-layout{
+    width: 100%;
+}
+.loader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

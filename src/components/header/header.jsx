@@ -19,15 +19,27 @@ import useStyles from "./styles";
 import Typography from '@material-ui/core/Typography';
 import {toggleSideBar} from "../../redux/actions/side-actions"
 import { useDispatch, useSelector } from "react-redux";
-
+import { useHistory, useLocation } from "react-router-dom";
+import { AuthContext } from '../../shared/contexts/authContext';
+import { removeCookies } from "../../shared/lib/authentication";
 export default function Header(props) {
+  const location = useLocation();
+  const history = useHistory();
   var classes = useStyles();
   var [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
+  const {user} = useSelector(state => state.user);
+  const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
   const toggleMenuItem = () =>{
     dispatch(toggleSideBar());
   };
+
+  const logOut = () => {      
+    setUser();
+    setTokens();
+    removeCookies();
+};
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -58,7 +70,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className="headerlogotext">
-              CodeTribe
+              {location.pathname === "/tribe" ? "Code Tribe" : ""}
         </Typography>
         <div className={classes.grow} />
         <IconButton
@@ -96,7 +108,7 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              John Smith
+              {user && user.firstname ? user.firstname : ""}
             </Typography>           
           </div>
           <MenuItem
@@ -104,6 +116,7 @@ export default function Header(props) {
               classes.profileMenuItem,
               classes.headerMenuItem,
             )}
+            onClick={(evt)=> history.push("/profile")}
           >
             <AccountIcon className={classes.profileMenuIcon} /> Profile
           </MenuItem>
@@ -127,7 +140,7 @@ export default function Header(props) {
             <Typography
               className={classes.profileMenuLink}
            
-              // onClick={() => signOut(userDispatch, props.history)}
+              onClick={() => logOut()}
             >
               Sign Out
             </Typography>
