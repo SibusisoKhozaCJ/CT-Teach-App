@@ -1,0 +1,107 @@
+import React, { useState } from "react";
+import Modal from '@material-ui/core/Modal';
+import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+       
+      },
+      paper: {    
+       
+        padding: theme.spacing(2, 4, 3),
+      
+      },
+  }),
+);
+
+const JoinTribeModal =({openModal,handleModalClose,checked,handleJoinLinkChange }) => {
+    
+    var theme = useTheme();
+    const classes = useStyles(theme);
+    return (
+        <div>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={openModal}
+                onClose={handleModalClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={openModal}>
+                    <div className={classes.paper}>
+                    <section className="send-code joinTribe">
+                            <div className="send-code_main">
+                                <Box my={2} className="send-code_title">
+                                    <h1>ENTER “JOIN” LINK/CODE</h1>
+                                    
+                                </Box>
+                                <Grid container spacing={3}>
+                                        <Grid item xs={12}>
+                                            <Box my={1}>
+                                                <TextField
+                                                    fullWidth
+                                                    variant="outlined"
+                                                    // value={code}
+                                                />
+                                            </Box>                                            
+                                        </Grid>
+                                  
+
+                                    </Grid>
+                                    <Grid container spacing={3} className="reg-checkbox">
+                                        <Grid item xs={12}>
+                                            <Box my={1}>
+                                                <FormControlLabel
+                                                    className={checked ? "active" : ""}
+                                                    control={<Checkbox  checked={checked}
+                                                    onChange={handleJoinLinkChange}  />}
+                                                    label="JOIN IWTH LINK"
+                                                    labelPlacement="end"
+                                                />
+                                            </Box>
+
+                                        </Grid>
+                                    </Grid>
+                                 
+                                <Box my={2}>
+                                    {/* <ShareTribe
+                                        loading={loading}
+                                        code={code}
+                                    /> */}
+                                    <Button
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        // onClick={sendTribeCode}
+                                    >
+                                        <p className="reg-happy">OK, JOIN IT.</p>
+
+                                    </Button>
+                                </Box>
+                            </div>
+                        </section>
+                    </div>
+                </Fade>
+            </Modal>
+        </div>
+
+    )
+}
+
+export default JoinTribeModal
