@@ -11,6 +11,7 @@ import {
   GallerySvg,
   SkillsSvg,
   FeedbackSvg,
+  NewSVG,
 } from "../../shared/svgs/menu-items";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
@@ -20,8 +21,15 @@ import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSideBar } from "../../redux/actions/side-actions";
-
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import JoinTribeModal from "./modals/join-tribe"
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 const structure = [
+  
   { id: 0, label: "Progress", link: "/", icon: <ProgressSvg /> },
   {
     id: 1,
@@ -56,6 +64,17 @@ function Sidebar({ location }) {
   var theme = useTheme();
   const { isSidebarOpened } = useSelector((state) => state.sidebar);
   var [isPermanent, setPermanent] = useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+ const [openModal,setOpenModal] = useState(false);
+ const [checked, setChecked] = useState(false);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   useEffect(function () {
     window.addEventListener("resize", handleWindowWidthChange);
     handleWindowWidthChange();
@@ -67,9 +86,20 @@ function Sidebar({ location }) {
   const toggleMenuItem = () => {
     dispatch(toggleSideBar());
   };
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
+  const handleModalClose = () => {
+    setOpenModal(false);
+};
+
+  const handleJoinLinkChange = () => {
+      setChecked(!checked);
+  };
+  
   return (
     <div className="sidebar">
+      <JoinTribeModal checked={checked} handleJoinLinkChange={handleJoinLinkChange} openModal={openModal} handleModalClose={handleModalClose} />
       <Drawer
         variant={isPermanent ? "permanent" : "temporary"}
         className={classNames(classes.drawer, {
@@ -97,16 +127,44 @@ function Sidebar({ location }) {
             />
           </IconButton>
         </div>
+        
         <List className={classes.sidebarList}>
+                  <div className="newpopupdiv">
+                  
+                <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+                  <NewSVG/>
+                  <span className="new-tagsidebar">New</span>
+                </Button>
+                <Popover
+                className="newpopover"
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                  }}
+                >
+                  <Typography className="poprtext"><button onClick={(evt)=>setOpenModal(true)}>Join Tribe</button></Typography>
+                  
+                  
+                </Popover>
+  
+          </div>
           {structure.map((link) => (
-            <SidebarLink
+            <SidebarLink 
               key={link.id}
               location={location}
               isSidebarOpened={isSidebarOpened}
               {...link}
             />
           ))}
-        </List>
+        </List>      
       </Drawer>
     </div>
   );

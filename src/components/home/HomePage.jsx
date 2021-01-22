@@ -12,6 +12,7 @@ const Welcome = () => {
       });
     return (
         <div>
+               <div className="commonheight"></div>
             <Box pb={1}>
                 <Typography variant="h1">Home Page</Typography>
             </Box>
