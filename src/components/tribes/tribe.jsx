@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Icon1 from "../../assets/icons/tribe/icon1.svg";
 import Icon2 from "../../assets/icons/tribe/icon2.svg";
 import Icon3 from "../../assets/icons/tribe/icon3.svg";
 import Icon4 from "../../assets/icons/tribe/icon4.svg";

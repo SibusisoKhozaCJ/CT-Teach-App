@@ -25,9 +25,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import JoinTribeModal from "./modals/join-tribe"
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+
 const structure = [
   
   { id: 0, label: "Progress", link: "/", icon: <ProgressSvg /> },
@@ -131,7 +129,7 @@ function Sidebar({ location }) {
         <List className={classes.sidebarList}>
                   <div className="newpopupdiv">
                   
-                <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+                <Button className={isSidebarOpened ? "open": "close"} aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
                   <NewSVG/>
                   <span className="new-tagsidebar">New</span>
                 </Button>

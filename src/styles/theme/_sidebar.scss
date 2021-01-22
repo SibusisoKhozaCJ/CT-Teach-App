@@ -234,26 +234,25 @@ header{
     align-items: center;
     justify-content: center;
 }
-.makeStyles-drawerOpen-35{
+.open{
     .new-tagsidebar{
         display: block;
     }
 }
-.makeStyles-drawerClose-36{
+.close{
+    min-width: 33px !important;
+    border-radius: 50% !important;
+    height: 42px !important;
+    width: 42px !important;
+    box-shadow: none !important;
+    padding: 4px !important;
+    margin-left: 18px !important;
     .new-tagsidebar{
         display: none;
     }
-    .newpopupdiv button {       
-        min-width: 33px;
-        border-radius: 50%;
-        height: 42px;
-        width: 42px;
-        box-shadow: none;
-        padding: 4px;
-        margin-left: 18px;
-    }
-    .newpopupdiv button span {       
-        margin-left: 0px;
+    
+    span {       
+        margin-left: 0px !important;
     }
 }
 
@@ -299,4 +298,7 @@ header{
 button:focus {
     outline: none;
    
+}
+:focus {
+    outline: none;
 }

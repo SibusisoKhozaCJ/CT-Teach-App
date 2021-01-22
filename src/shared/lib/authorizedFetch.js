@@ -1,9 +1,3 @@
-/**
- * This is the most important lib file. It includes the authorization cookies and formats
- * the endpoints correctly depending on the environment. This must be used for authorized
- * access the backend API.
- */
-
 import formatUrl from './formatUrl';
 import { getCookies } from './authentication';
 import firebase from 'firebase';

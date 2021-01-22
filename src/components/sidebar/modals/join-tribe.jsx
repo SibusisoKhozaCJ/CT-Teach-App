@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from '@material-ui/core/Modal';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) =>
         justifyContent: 'center',
        
       },
-      paper: {    
-       
+      paper1: { 
+          border:'none',
         padding: theme.spacing(2, 4, 3),
       
       },
@@ -44,7 +44,7 @@ const JoinTribeModal =({openModal,handleModalClose,checked,handleJoinLinkChange 
                 }}
             >
                 <Fade in={openModal}>
-                    <div className={classes.paper}>
+                    <div className={classes.paper1}>
                     <section className="send-code joinTribe">
                             <div className="send-code_main">
                                 <Box my={2} className="send-code_title">
