@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from '@material-ui/core/Modal';
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -9,6 +9,11 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+import * as Auth from '../../../shared/lib/authentication';
+import { useDispatch } from "react-redux";
+import { addUserToTribe } from "../../../redux/actions/user-actions";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -25,10 +30,44 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
+const CheckIfTribeCodeExist = async (code) => {
+    return await Auth.checkIfTribeExist(code).then((tribe) => {
+        return tribe
+    })
+        .catch((err) => {
+            return null
+        })
+}
+
 const JoinTribeModal =({openModal,handleModalClose,checked,handleJoinLinkChange }) => {
-    
     var theme = useTheme();
     const classes = useStyles(theme);
+    const dispatch = useDispatch();
+    const [joinLinkOrCodeValue, setJoinLinkOrCodeValue] = useState('');
+    const [joinTribeResponse,setJoinTribeResponse] = useState({
+       status:'',
+       message:''    
+    })
+    const handleTribeJoin = async()=> {
+        if(!checked){ 
+            const isCodeExist = await CheckIfTribeCodeExist(joinLinkOrCodeValue);
+            if(isCodeExist){
+                dispatch(addUserToTribe(joinLinkOrCodeValue, isCodeExist)).then(res=>{
+                    setJoinTribeResponse({
+                        status:'green',
+                        message:'Succesfully Added To The Tribe'
+                    })
+                })              
+            }
+            else{
+                setJoinTribeResponse({
+                    status:'red',
+                    message:'The Entered Tribe is Not Found'
+                })
+            }        
+
+        }
+    }
     return (
         <div>
             <Modal
@@ -57,7 +96,8 @@ const JoinTribeModal =({openModal,handleModalClose,checked,handleJoinLinkChange 
                                                 <TextField
                                                     fullWidth
                                                     variant="outlined"
-                                                    // value={code}
+                                                    value={joinLinkOrCodeValue}
+                                                    onChange={(e) =>setJoinLinkOrCodeValue(e.target.value)}
                                                 />
                                             </Box>                                            
                                         </Grid>
@@ -71,7 +111,7 @@ const JoinTribeModal =({openModal,handleModalClose,checked,handleJoinLinkChange 
                                                     className={checked ? "active" : ""}
                                                     control={<Checkbox  checked={checked}
                                                     onChange={handleJoinLinkChange}  />}
-                                                    label="JOIN IWTH LINK"
+                                                    label="JOIN WITH LINK"
                                                     labelPlacement="end"
                                                 />
                                             </Box>
@@ -84,11 +124,13 @@ const JoinTribeModal =({openModal,handleModalClose,checked,handleJoinLinkChange 
                                         loading={loading}
                                         code={code}
                                     /> */}
+                                    {joinTribeResponse.message && <p style={{ color:`${joinTribeResponse.status}`  }}>{joinTribeResponse.message}</p>}
+                                    {/*{joinTribeResponse.status}*/}
                                     <Button
                                         fullWidth
                                         variant="contained"
                                         color="primary"
-                                        // onClick={sendTribeCode}
+                                        onClick={handleTribeJoin}
                                     >
                                         <p className="reg-happy">OK, JOIN IT.</p>
 

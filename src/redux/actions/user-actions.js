@@ -112,6 +112,44 @@ export function updateUserInfo(data) {
   }
 }
 
+export function addUserToTribe(data, tribeData) {
+  return async (dispatch, getState) => {
+    const user = getState().user;
+    try {
+      let userDetails = user.user;
+      if(userDetails.tribe_joined && userDetails.tribe_joined.length){
+        if(!userDetails.tribe_joined.includes(data)){
+        userDetails.tribe_joined.push(data)
+        
+        let tribeInfo = tribeData;
+        tribeInfo.users.push(user.userId);
+
+        await firebaseUpdate(`Users/${user.userId}`, userDetails)
+        await firebaseUpdate(`Tribes/${tribeInfo.code}`, tribeInfo)
+      }
+      else{
+        console.log("User Already in Tribe")
+      }
+      }
+      else{
+        userDetails.tribe_joined = [data]
+        let tribeInfo = tribeData;
+        tribeInfo.users.push(user.userId);
+
+        await firebaseUpdate(`Users/${user.userId}`, userDetails);
+        await firebaseUpdate(`Tribes/${tribeInfo.code}`, tribeInfo)
+      }
+    } catch (error) {
+      console.warn('Error update user', error)
+    }
+    if (getState().user.editPublicUserInfo) {
+      dispatch(finishEditPublicUserInfo());
+    } else {
+      dispatch(finishEditPrivateUserInfo());
+    }
+  }
+}
+
 export function startEditPublicUserInfo() {
   return {
     type: Types.EDIT_PUBLIC_USER_INFO,
