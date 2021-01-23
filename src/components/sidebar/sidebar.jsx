@@ -65,6 +65,7 @@ function Sidebar({ location }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
  const [openModal,setOpenModal] = useState(false);
  const [checked, setChecked] = useState(false);
+ const [tribeCode, setTribeChange ] = useState("")
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -94,10 +95,14 @@ function Sidebar({ location }) {
   const handleJoinLinkChange = () => {
       setChecked(!checked);
   };
+
+  const joinTribeCode = () =>{
+    debugger
+  }
   
   return (
     <div className="sidebar">
-      <JoinTribeModal checked={checked} handleJoinLinkChange={handleJoinLinkChange} openModal={openModal} handleModalClose={handleModalClose} />
+      <JoinTribeModal tribeCode={tribeCode} setTribeChange={setTribeChange} joinTribeCode={joinTribeCode} checked={checked} handleJoinLinkChange={handleJoinLinkChange} openModal={openModal} handleModalClose={handleModalClose} />
       <Drawer
         variant={isPermanent ? "permanent" : "temporary"}
         className={classNames(classes.drawer, {
