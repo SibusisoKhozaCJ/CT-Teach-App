@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Icon1 from "../../assets/icons/tribe/icon1.svg";
 import Icon2 from "../../assets/icons/tribe/icon2.svg";
 import Icon3 from "../../assets/icons/tribe/icon3.svg";
 import Icon4 from "../../assets/icons/tribe/icon4.svg";
-import Icon5 from "../../assets/icons/tribe/icon5.svg";
-import Icon6 from "../../assets/icons/tribe/icon6.svg";
+import Icon9 from "../../assets/icons/tribe/icon9.svg";
+
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
+import Icon8 from "../../assets/icons/tribe/icon8.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
@@ -35,21 +35,21 @@ const Tribes = () => {
   return (
     <div className="tribe-page">
       <div className="commonheight"></div>
+      <div className="page-divid">
+    <Grid  xs={6} >
+    <div className="pgeBG">
+    <h1 className="tribe-mainheading">My Tribe</h1>
       {userTribes &&
         userTribes.length > 0 &&
         userTribes.map((tribe, index) => (
           <div className="nav-slide">
-            <Grid container spacing={1} className="main-manu" xs={6}>
+            <Grid container spacing={1} className="main-manu" xs={12}>
               <Grid item xs={12}>
                 <Typography variant="h1" className="title">
                   {tribe.code}
                 </Typography>
               </Grid>
-              <Grid item xs={3}>
-                <div className="tribe-icon">
-                  <img src={Icon1} className="coverage" alt=""/>
-                </div>
-              </Grid>
+             
               <Grid item xs={3}>
                 <div className="tribe-icon">
                   <img src={Icon2} className="coverage" alt=""/>
@@ -63,6 +63,11 @@ const Tribes = () => {
               <Grid item xs={3}>
                 <div className="tribe-icon">
                   <img src={Icon4} className="coverage" alt=""/>
+                </div>
+              </Grid>
+              <Grid item xs={3}>
+                <div className="tribe-icon">
+                  <img src={Icon9} className="coverage" alt=""/>
                 </div>
               </Grid>
               {expand === "tribe" + index && (
@@ -83,18 +88,16 @@ const Tribes = () => {
                   >
                     <Grid item xs={3}>
                       <div className="tribe-icon">
-                        <img src={Icon5} className="coverage" alt=""/>
+                        <img src={Icon8} className="coverage" alt=""/>
                       </div>
                     </Grid>
                     <Grid item xs={3}>
-                      <div className="tribe-icon">
-                        <img src={Icon6} className="coverage" alt=""/>
-                      </div>
+                    
                     </Grid>
                     <Grid item xs={6}>
                       <div className="tribe-button">
                         <Button variant="contained" color="secondary">
-                          OPEN
+                        PROFILE
                           <img src={Icon7} alt=""/>
                         </Button>
                       </div>
@@ -149,6 +152,46 @@ const Tribes = () => {
             </div>
           </div>
         ))}
+
+        <h1 className="tribe-mainheading">Joined  Tribes</h1>
+        {user &&
+        user.tribe_joined && user.tribe_joined.length &&
+        user.tribe_joined.map((tribe, index) => (
+          <div className="nav-slide">
+            
+            <Grid container spacing={1} className="main-manu" xs={12}>
+              <Grid item xs={12}>
+                <Typography variant="h1" className="title">
+                  {tribe}
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <div className="tribe-icon">
+                  <img src={Icon9} className="coverage" alt=""/>
+                </div>
+              </Grid>
+              <Grid item xs={3}>
+                <div className="tribe-icon">
+                  <img src={Icon2} className="coverage" alt=""/>
+                </div>
+              </Grid>
+              <Grid item xs={3}>
+                <div className="tribe-icon">
+                  <img src={Icon3} className="coverage" alt=""/>
+                </div>
+              </Grid>
+              <Grid item xs={3}>
+                <div className="tribe-icon">
+                  <img src={Icon4} className="coverage" alt=""/>
+                </div>
+              </Grid>
+            </Grid>
+          </div>
+          
+        ))}
+        </div>
+        </Grid>
+    </div>
     </div>
   );
 };
