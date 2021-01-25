@@ -54,6 +54,10 @@ export function checkIfTribeExist(code) {
     return authFetch.firebaseGet('Tribes/' + code)
 }
 
+export function getJoinedTribes(data) {
+    return authFetch.firebaseGet('Tribes/',data)
+}
+
 export function updateTribe(tribe) {
     return authFetch.firebaseUpdateChild('Tribes/' , tribe)
 }

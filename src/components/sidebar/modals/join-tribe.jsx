@@ -12,7 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 import * as Auth from "../../../shared/lib/authentication";
 import { useDispatch } from "react-redux";
-import { addUserToTribe } from "../../../redux/actions/user-actions";
+import { addUserToTribe } from "../../../redux/actions/tribe-actions";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

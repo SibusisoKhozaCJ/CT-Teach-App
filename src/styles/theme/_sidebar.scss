@@ -93,11 +93,14 @@ header{
         font-size: 41px;
         line-height: 51px;
         color: #000000;
-        margin-left: 40px;
+        left: 110px;
+        position: fixed;
     }
     .headermenubutton{
         width: 48px;
         height: 48px;
+        position: fixed;
+        left: 40px;
     }
     .MuiToolbar-regular {
         min-height: 74px;
@@ -301,4 +304,8 @@ button:focus {
 }
 :focus {
     outline: none;
+}
+
+.default-layout{
+    width:100%;
 }

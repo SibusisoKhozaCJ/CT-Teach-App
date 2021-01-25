@@ -96,13 +96,9 @@ function Sidebar({ location }) {
       setChecked(!checked);
   };
 
-  const joinTribeCode = () =>{
-    debugger
-  }
-
   return (
     <div className="sidebar">
-      <JoinTribeModal tribeCode={tribeCode} setTribeChange={setTribeChange} joinTribeCode={joinTribeCode} checked={checked} handleJoinLinkChange={handleJoinLinkChange} openModal={openModal} handleModalClose={handleModalClose} />
+      <JoinTribeModal tribeCode={tribeCode} setTribeChange={setTribeChange} checked={checked} handleJoinLinkChange={handleJoinLinkChange} openModal={openModal} handleModalClose={handleModalClose} />
       <Drawer
         variant={isPermanent ? "permanent" : "temporary"}
         className={classNames(classes.drawer, {
