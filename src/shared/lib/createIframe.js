@@ -1,4 +1,5 @@
 export function createIframe(name, src, debug, parentSelector, styles) {
+  src = src || 'javascript:false';
   if (parentSelector) {
     const $parent = document.querySelector(parentSelector);
     const tmpElem = document.createElement('div');

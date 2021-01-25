@@ -3,15 +3,15 @@ import {textWithImg, textWithLinks} from "../../shared/lib/regExp";
 import {firebaseUpdate} from "../../shared/lib/authorizedFetch";
 import * as Auth from "../../shared/lib/authentication";
 
-export function saveUser() {
+export function saveUser(userId) {
   return async (dispatch, getState) => {
+    dispatch(loadingHandler(true));
     try {
-      const user = await Auth.getProfile();
+      const user = await Auth.getProfile(userId);
       dispatch(setUser(user));
-      dispatch(setUserId());
       dispatch(codeToIframe(user.codeInIframe || getState().user.codeInIframe));
       dispatch(emojiCode(user.emojiCode || getState().user.emojiCode));
-      dispatch(loadingHandler());
+      dispatch(loadingHandler(false));
     } catch (error) {
       console.warn('Error save user', error)
     }
@@ -34,27 +34,31 @@ export function setUserId() {
   }
 }
 
-export function loadingHandler() {
+export function loadingHandler(val) {
   return {
-    type: Types.LOADING
+    type: Types.LOADING,
+    payload: val
   }
 }
 
 export function updateUserHeaderUserProfile(data) {
   return async (dispatch, getState) => {
+    dispatch(findLinkOrImg(data.codeInIframe));
     const user = getState().user;
-    const dataUpdate = {
-      codeInIframe: data.codeInIframe || getState().user.codeInIframe,
-      emojiCode: data.emojiCode || getState().user.emojiCode,
+    if (!getState().user.isFindLinkOrImg) {
+      const dataUpdate = {
+        codeInIframe: data.codeInIframe || getState().user.codeInIframe,
+        emojiCode: data.emojiCode || getState().user.emojiCode,
+      }
+      try {
+        await firebaseUpdate(`Users/${user.userId}`, dataUpdate);
+      } catch (error) {
+        console.warn('Error update user', error)
+      }
+      dispatch(codeToIframe(dataUpdate.codeInIframe));
+      dispatch(emojiCode(dataUpdate.emojiCode));
+      dispatch(closeModal());
     }
-    try {
-      await firebaseUpdate(`Users/${user.userId}`, dataUpdate);
-    } catch (error) {
-      console.warn('Error update user', error)
-    }
-    dispatch(codeToIframe(dataUpdate.codeInIframe));
-    dispatch(emojiCode(dataUpdate.emojiCode));
-    dispatch(closeModal());
   }
 }
 
@@ -92,6 +96,13 @@ export function findLinkOrImg(text) {
   return {
     type: Types.IS_FIND_LINK_OR_IMG,
     payload: matchAll.length
+  }
+}
+
+export function closeModalWarning() {
+  return {
+    type: Types.IS_FIND_LINK_OR_IMG,
+    payload: false
   }
 }
 
@@ -140,6 +151,9 @@ export function finishEditPrivateUserInfo() {
   }
 }
 
-export function logout() {
-
+export function isCurrentUser(userId, userIdFromUrl) {
+  return {
+    type: Types.IS_CURRENT_USER,
+    payload: userId === userIdFromUrl
+  }
 }

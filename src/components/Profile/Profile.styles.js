@@ -162,6 +162,12 @@ export const HeaderProfileStyles = theme => ({
     color: '#ff0000',
     fontSize: 12,
     margin: 0
+  },
+  warning: {
+    margin: 15,
+    marginBottom: 0,
+    textAlign: 'center',
+    color: 'red'
   }
 });
 

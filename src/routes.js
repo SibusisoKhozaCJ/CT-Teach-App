@@ -7,6 +7,7 @@ export default {
     FORM: '/form',
     RESET: '/reset',
     TRIBE: '/tribe',
-    PROFILE: '/profile'
+    PROFILE: '/profile',
+    PROFILE_ID: '/profile/:id'
 };
 

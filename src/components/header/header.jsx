@@ -1,4 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState
+} from "react";
 import {
   AppBar,
   Toolbar,
@@ -19,23 +23,37 @@ import useStyles from "./styles";
 import Typography from '@material-ui/core/Typography';
 import {toggleSideBar} from "../../redux/actions/side-actions"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import { AuthContext } from '../../shared/contexts/authContext';
 import { removeCookies } from "../../shared/lib/authentication";
+import routes from "../../routes";
+import {isCurrentUser, setUserId} from "../../redux/actions/user-actions";
+
 export default function Header(props) {
   const location = useLocation();
-  const history = useHistory();
-  var classes = useStyles();
-  var [profileMenu, setProfileMenu] = useState(null);
+  const classes = useStyles();
+  const [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
-  const {user} = useSelector(state => state.user);
+  const {user, userId} = useSelector(state => state.user);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
+  const [idFromUrl, setIdFromUrl] = useState('');
+
+  useEffect(() => {
+    dispatch(setUserId());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const arr = location.pathname.split('/');
+    setIdFromUrl(arr[arr.length - 1]);
+    dispatch(isCurrentUser(userId, idFromUrl));
+  }, [location, idFromUrl, dispatch, userId ]);
+
   const toggleMenuItem = () =>{
     dispatch(toggleSideBar());
   };
 
-  const logOut = () => {      
+  const logOut = () => {
     setUser();
     setTokens();
     removeCookies();
@@ -45,7 +63,7 @@ export default function Header(props) {
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <IconButton
-          color="inherit"         
+          color="inherit"
           onClick={() => toggleMenuItem()}
           className="headermenubutton"
         >
@@ -76,7 +94,7 @@ export default function Header(props) {
         <IconButton
           aria-haspopup="true"
           color="inherit"
-          className="header-chat"     
+          className="header-chat"
         >
           <ChatSvg classes={{ root: classes.headerIcon }} />
         </IconButton>
@@ -96,7 +114,7 @@ export default function Header(props) {
         >
           <AccountSvg classes={{ root: classes.headerIcon }} />
         </IconButton>
-        
+
         <Menu
           id="profile-menu"
           open={Boolean(profileMenu)}
@@ -109,17 +127,19 @@ export default function Header(props) {
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
               {user && user.firstname ? user.firstname : ""}
-            </Typography>           
+            </Typography>
           </div>
-          <MenuItem
+          <Link
             className={classNames(
               classes.profileMenuItem,
               classes.headerMenuItem,
             )}
-            onClick={(evt)=> history.push("/profile")}
+            to={`${routes.PROFILE}/${userId}`}
           >
-            <AccountIcon className={classes.profileMenuIcon} /> Profile
-          </MenuItem>
+            <MenuItem>
+                <AccountIcon className={classes.profileMenuIcon} /> Profile
+            </MenuItem>
+          </Link>
           <MenuItem
             className={classNames(
               classes.profileMenuItem,
@@ -139,14 +159,12 @@ export default function Header(props) {
           <div className={classes.profileMenuUser}>
             <Typography
               className={classes.profileMenuLink}
-           
               onClick={() => logOut()}
             >
               Sign Out
             </Typography>
           </div>
         </Menu>
-        
       </Toolbar>
     </AppBar>
   );

@@ -100,7 +100,7 @@ function Sidebar({ location }) {
         <List className={classes.sidebarList}>
           {structure.map((link) => (
             <SidebarLink
-              key={link.id}
+              key={link.label + link.id}
               location={location}
               isSidebarOpened={isSidebarOpened}
               {...link}

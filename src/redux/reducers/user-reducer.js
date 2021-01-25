@@ -9,6 +9,7 @@ const initialState = {
   isFindLinkOrImg: false,
   editPublicUserInfo: false,
   editPrivateUserInfo: false,
+  isCurrentUser: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -18,7 +19,7 @@ export default function userReducer(state = initialState, action) {
     case Types.SET_USER_ID:
       return { ...state, userId: action.payload }
     case Types.LOADING:
-      return { ...state, loading: false }
+      return { ...state, loading: action.payload }
     case Types.SET_CODE_IN_IFRAME:
       return { ...state, codeInIframe: action.payload };
     case Types.SET_EMOJI_CODE:
@@ -37,6 +38,8 @@ export default function userReducer(state = initialState, action) {
       return { ...state, editPublicUserInfo: action.payload };
     case Types.EDIT_PRIVATE_USER_INFO:
       return { ...state, editPrivateUserInfo: action.payload };
+    case Types.IS_CURRENT_USER:
+      return { ...state, isCurrentUser: action.payload };
     default:
       return state;
   }
