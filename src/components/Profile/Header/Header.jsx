@@ -4,14 +4,40 @@ import EditIcon from '../../../assets/icons/EditIcon'
 import {useDispatch, useSelector} from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import {
+  closeModal,
   openModal,
+  closeModalWarning,
   updateUserHeaderUserProfile
 } from "../../../redux/actions/user-actions";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import { HeaderProfileStyles } from "../Profile.styles";
 import {createIframe} from "../../../shared/lib/createIframe";
+import {Button} from "@material-ui/core";
 
 Modal.setAppElement('#modalInProfile');
+
+const modalStyles = {
+  overlay: {
+    background: 'rgba(0, 0, 0, 0.58)',
+    zIndex: 11
+  },
+  content: {
+    position: 'relative',
+    top: '30%',
+    left: 'auto',
+    right: 'auto',
+    bottom: 'auto',
+    width: '30%',
+    height: 150,
+    margin: '70px auto',
+    padding: 0,
+    border: 0,
+    zIndex: 9999,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+};
 
 function wrapperEmoji(emoji) {
   return `
@@ -38,7 +64,7 @@ const Header = ({ classes }) => {
   const [inputValue, setInputValue] = useState('');
   const [iframe_code, setIframe_code] = useState();
   const [iframe_emoji, setIframe_emoji] = useState();
-  const {codeInIframe, emojiCode} = useSelector(state => state.user);
+  const {codeInIframe, emojiCode, isCurrentUser, isFindLinkOrImg} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -70,9 +96,10 @@ const Header = ({ classes }) => {
   const saveAbout = useCallback(async (event) => {
     event.preventDefault();
     const data = {
-      codeInIframe: textareaValue,
-      emojiCode: inputValue,
+      codeInIframe: textareaValue || codeInIframe,
+      emojiCode: inputValue || emojiCode,
     }
+
     dispatch(updateUserHeaderUserProfile(data));
 
     writeContentToIframe(iframe_code, codeInIframe);
@@ -84,7 +111,7 @@ const Header = ({ classes }) => {
       <div className={classes.containerIcon}>
         <div className={classes.circleHome}>
           <div className={classes.editIcon}>
-            <EditIcon onClick={() => dispatch(openModal())} />
+            {isCurrentUser && <EditIcon onClick={() => dispatch(openModal())}/>}
           </div>
           <div id="wrapperEmojiIframe" className={classes.circleHomeIcon} />
         </div>
@@ -94,6 +121,14 @@ const Header = ({ classes }) => {
         setTextareaValue={setTextareaValue}
         setInputValue={setInputValue}
       />
+      <Modal
+        isOpen={isFindLinkOrImg}
+        onRequestClose={() => dispatch(closeModal())}
+        style={modalStyles}
+      >
+        <p className={classes.warning}>No images or hyperlinks are allowed in the profile. Please remove all src=, img or url tags before saving." [button]</p>
+        <Button className={classes.btnModalSave} onClick={() => dispatch(closeModalWarning())}>OK</Button>
+      </Modal>
     </div>
   );
 };

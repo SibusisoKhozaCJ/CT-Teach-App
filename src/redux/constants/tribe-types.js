@@ -1,4 +1,5 @@
 export const Types = {
     SAVE_USER_TRIBES: "SAVE_USER_TRIBES",
+    SAVE_USER_JOINED_TRIBES:"SAVE_USER_JOINED_TRIBES"
   };
   

@@ -12,7 +12,7 @@ import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import {isEmpty} from "lodash";
 
-const EditFormProfile = ({settingsForm, handleStartEditForm}) => {
+const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   const dispatch = useDispatch();
   const {
     formControls,
@@ -20,8 +20,11 @@ const EditFormProfile = ({settingsForm, handleStartEditForm}) => {
     validateResolver,
     isEditForm,
     classes,
+    startEdit,
     finishEdit
   } = settingsForm;
+
+  const isRenderButton = !isEditForm && !settingsForm.privateForm && isCurrentUser;
 
   const {handleSubmit, control, errors, reset} = useForm({
     defaultValues,
@@ -95,10 +98,10 @@ const EditFormProfile = ({settingsForm, handleStartEditForm}) => {
           <div className={classes.header}>
             <div className={classes.wrapperIcon}><LockIcon /></div>
             <p>This part is private. It is NOT public.</p>
-            { !isEditForm && <EditIcon onClick={handleStartEditForm}/>}
+            { !isEditForm && <EditIcon onClick={startEdit}/>}
           </div>
         )}
-        { !isEditForm && !settingsForm.privateForm && <EditIcon onClick={handleStartEditForm}/>}
+        { isRenderButton && <EditIcon onClick={startEdit}/>}
         {renderInputs(formPublicControlsProfilePage)}
         {renderButtons()}
       </form>

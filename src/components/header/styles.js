@@ -124,6 +124,10 @@ export default makeStyles(theme => ({
   },
   profileMenuItem: {
     color: theme.palette.text.hint,
+    "&:hover, &:focus": {
+      color: theme.palette.text.hint,
+      textDecoration: 'none',
+    },
   },
   profileMenuIcon: {
     marginRight: theme.spacing(2),

@@ -3,7 +3,7 @@
  * the routing from page to page, and the google analytics pageview sends.
  */
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {useMemo, useState} from 'react';
 import {
   Router,
   Switch,
@@ -30,9 +30,7 @@ import Home from './components/home/HomePage';
 import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
 import Profile from "./components/Profile/Profile";
-import { saveUser } from "./redux/actions/user-actions";
-import {useDispatch} from "react-redux";
-import "./index.scss"
+import "./index.scss";
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -66,11 +64,6 @@ const App = () => {
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(saveUser(user));
-  });
 
   const authProviderValue = useMemo(() => ({
     user,
@@ -116,7 +109,7 @@ const App = () => {
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
                     <ProtectedRoute path={routes.FORM} component={FormPage} />
                     <ProtectedRoute path={routes.TRIBE} component={Tribes} />
-                    <ProtectedRoute path={routes.PROFILE} component={Profile} />
+                    <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>

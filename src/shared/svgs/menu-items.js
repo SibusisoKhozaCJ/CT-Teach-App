@@ -13,9 +13,15 @@ import Gridicon from "../../assets/images/grid.svg";
 import Accounticon from "../../assets/images/account.svg";
 import Chaticon from "../../assets/images/chat.svg";
 import Menuicon from "../../assets/images/menuicon.svg";
+import Newicon from "../../assets/images/pls.svg";
+
 
 export const TribeSVG = () => {
   return <img src={Tribesicon} alt="" />;
+};
+
+export const NewSVG = () => {
+  return <img src={Newicon} alt="" />;
 };
 
 export const ProgressSvg = () => {

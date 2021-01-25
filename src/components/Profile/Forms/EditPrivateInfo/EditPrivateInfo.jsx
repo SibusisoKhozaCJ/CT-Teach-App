@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {FormProfileStyles} from "../../Profile.styles";
@@ -31,18 +31,17 @@ const EditPublicInfo = () => {
     },
     validateResolver: privateFormProfile,
     isEditForm: editPrivateUserInfo,
+    startEdit: () => {
+      dispatch(startEditPrivateUserInfo());
+      dispatch(finishEditPublicUserInfo());
+    },
     finishEdit: finishEditPrivateUserInfo,
     privateForm: true,
     classes
   };
 
-  const handleStartEditForm = useCallback(() => {
-    dispatch(startEditPrivateUserInfo());
-    dispatch(finishEditPublicUserInfo());
-  }, [dispatch])
-
   return (
-    <EditFormProfile settingsForm={settingsForm} handleStartEditForm={handleStartEditForm} />
+    <EditFormProfile settingsForm={settingsForm} />
   );
 };
 

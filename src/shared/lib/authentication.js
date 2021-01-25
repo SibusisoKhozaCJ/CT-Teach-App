@@ -45,12 +45,17 @@ export function currentUserId() {
     }
 }
 
-export function getProfile() {
-    return authFetch.firebaseGet('Users/' + currentUserId())
+export function getProfile(userId) {
+    const id = userId ? userId : currentUserId();
+    return authFetch.firebaseGet(`Users/${id}`);
 }
 
 export function checkIfTribeExist(code) {
     return authFetch.firebaseGet('Tribes/' + code)
+}
+
+export function getJoinedTribes(data) {
+    return authFetch.firebaseGet('Tribes/',data)
 }
 
 export function updateTribe(tribe) {
