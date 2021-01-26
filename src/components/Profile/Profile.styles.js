@@ -203,7 +203,7 @@ export const FormProfileStyles = theme => ({
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-    background: 'rgba(240, 238, 238, 0.5)',
+    background: ({ background }) => background,
     paddingTop: ({paddingTop}) => paddingTop,
     boxSizing: 'border-box',
     '& .MuiFormControl-root': {

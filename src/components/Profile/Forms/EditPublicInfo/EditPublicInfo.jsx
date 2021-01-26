@@ -14,7 +14,7 @@ import {
 const useStyles = makeStyles(FormProfileStyles);
 
 const EditPublicInfo = () => {
-  const classes = useStyles({borderColor: '#43D4DD', paddingTop: 23});
+  const classes = useStyles({borderColor: '#43D4DD', paddingTop: 23, background: 'rgba(240, 238, 238, 0.5)'});
   const {editPublicUserInfo, user, isCurrentUser} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
