@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 const modalStyles = {
   overlay: {
     background: 'rgba(0, 0, 0, 0.58)',
-    zIndex: 10
+    zIndex: 1301,
+    overflow: 'auto'
   },
   content: {
     position: 'relative',
@@ -20,7 +21,7 @@ const modalStyles = {
     right: 'auto',
     bottom: 'auto',
     width: '30%',
-    margin: '70px auto',
+    margin: '0 auto',
     padding: 0,
     border: 0,
     zIndex: 9999,
@@ -60,7 +61,7 @@ const ModalComponent = (
         <TextareaAutosize
           name='about_me'
           rowsMin={10}
-          rowsMax={20}
+          rowsMax={19}
           className={classes.textArea}
           placeholder="Paste your code here. There is a max of 20 lines allowed."
           defaultValue={codeInIframe}
