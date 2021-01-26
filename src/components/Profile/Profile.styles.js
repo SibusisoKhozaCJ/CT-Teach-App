@@ -51,8 +51,11 @@ export const ProfileStyles = () => ({
 
 export const HeaderProfileStyles = theme => ({
   profileHeader: {
-    height: 140,
-    width: '100%'
+    height: 188,
+    width: '100%',
+    [theme.breakpoints.down("sm")]: {
+      height: 180,
+    }
   },
   containerIcon: {
     height: 0,
@@ -61,11 +64,12 @@ export const HeaderProfileStyles = theme => ({
   circleHome: {
     width: '100%',
     position: 'relative',
-    top: -65,
+    top: -120,
     justifyContent: 'left',
-    paddingLeft: 30,
+    paddingLeft: 73,
     display: 'flex',
     [theme.breakpoints.down("sm")]: {
+      top: -65,
       padding: 0,
       justifyContent: 'center'
     }
@@ -74,8 +78,8 @@ export const HeaderProfileStyles = theme => ({
     position: 'absolute',
     width: 28,
     height: 28,
-    bottom: 58,
-    right: 84,
+    bottom: 80,
+    right: 58,
     [theme.breakpoints.down("sm")]: {
       bottom: 62,
       right: 23,
@@ -85,13 +89,16 @@ export const HeaderProfileStyles = theme => ({
     background: '#ffffff',
     border: '5px solid #fbdd3f',
     boxSizing: 'border-box',
-    borderRadius: 50,
+    borderRadius: '50%',
     alignItems: 'center',
-    width: 101,
-    height: 98,
+    width: 180,
+    height: 175,
     justifyContent: 'center',
     display: 'flex',
-    zIndex: 10
+    [theme.breakpoints.down("sm")]: {
+      width: 101,
+      height: 98,
+    }
   },
   textArea: {
     border: '1px solid #eaeaeb',
@@ -125,6 +132,7 @@ export const HeaderProfileStyles = theme => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     [theme.breakpoints.down("sm")]: {
       width: '100% !important',
+      margin: '0 !important'
     }
   },
   modalPrivate: {

@@ -29,13 +29,16 @@ const modalStyles = {
     bottom: 'auto',
     width: '30%',
     height: 150,
-    margin: '70px auto',
+    margin: '75px auto',
     padding: 0,
     border: 0,
     zIndex: 9999,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media screen and (min-width: 576px)': {
+      color: 'red'
+    }
   }
 };
 
@@ -45,9 +48,26 @@ function wrapperEmoji(emoji) {
         <head>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <title>Profile emoji</title>
+            <style type="text/css">
+                body {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                }
+                .fa {
+                  font-size: 120px;
+                  line-height: 148px;
+                }
+                @media screen and (max-device-width: 959px) {
+                    .fa {
+                        font-size: 60px;
+                        line-height: 70px;
+                    }
+                }
+            </style>
         </head>
-        <body style="display: flex; justify-content: center; align-items: center;">
-            <i class="fa" style="font-size:60px;">${emoji}</i>
+        <body>
+            <i class="fa">${emoji}</i>
         </body>
     </html>
   `
@@ -72,7 +92,7 @@ const Header = ({ classes }) => {
       'profileHeaderIframe',
       null, null,
       '#profile',
-      { width: '100%' }
+      { width: '100%', height: '100%' }
     );
     createIframe(
       'emojiIframe',
