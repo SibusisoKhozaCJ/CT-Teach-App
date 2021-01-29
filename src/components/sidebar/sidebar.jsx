@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   TribeSVG,
-  ProgressSvg,
+  HomeSVG,
   MissionSvg,
   NotificationSvg,
   ShareSvg,
@@ -28,7 +28,7 @@ import JoinTribeModal from "./modals/join-tribe"
 
 const structure = [
 
-  { id: 0, label: "Progress", link: "/", icon: <ProgressSvg /> },
+  { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
   {
     id: 1,
     label: "Tribes",

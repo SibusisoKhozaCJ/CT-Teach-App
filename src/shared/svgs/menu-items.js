@@ -14,7 +14,11 @@ import Accounticon from "../../assets/images/account.svg";
 import Chaticon from "../../assets/images/chat.svg";
 import Menuicon from "../../assets/images/menuicon.svg";
 import Newicon from "../../assets/images/pls.svg";
+import Homeicon from "../../assets/images/home.svg"
 
+export const HomeSVG = () => {
+  return <img src={Homeicon} alt="" />;
+};
 
 export const TribeSVG = () => {
   return <img src={Tribesicon} alt="" />;
