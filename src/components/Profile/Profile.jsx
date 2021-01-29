@@ -36,7 +36,7 @@ const Profile = () => {
 
   return (
     <div className={classesProfile.root}>
-      <div className="commonheight" />
+      <div className="commonheightProfile" />
       <Header />
       <Grid container>
         <EditPublicInfo />

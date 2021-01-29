@@ -30,6 +30,7 @@ import Home from './components/home/HomePage';
 import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
 import Profile from "./components/Profile/Profile";
+import Layout from './hoc/Layout/Layout';
 import "./index.scss";
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -43,7 +44,11 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
           window.ga('set', 'page', path);
           window.ga('send', 'pageview');
           console.log('just sent a pageview for: ', path);
-          return (<Component {...props} />);
+          return (
+            <Layout pathname={pathname}>
+              <Component {...props} />
+            < /Layout>
+          );
         }
 
         const redirectPath = (search || pathname !== "/") ? `${routes.LOGIN}?redirect=${encodeURIComponent(`${pathname}${search}`)}` :
@@ -84,38 +89,34 @@ const App = () => {
           {isAuthenticate && <Sidebar />}
           {!isAuthenticate && <Redirect path="/login"></Redirect>}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
-          <Paper >
-            <Box m={1}>
-              <Container>
-                <Grid container>
-                  <Switch>
-                    <ProtectedRoute
-                      exact
-                      path="/"
-                      component={FormPage}
-                    />
+            <Paper>
+              <Grid container>
+                <Switch>
+                  <ProtectedRoute
+                    exact
+                    path="/"
+                    component={FormPage}
+                  />
 
-                    <Route path={routes.LOGIN}>
-                      <LoginPage />
-                    </Route>
-                    <Route path={routes.NEW_ACCOUNT}>
-                      <CreateNewAccountPage />
-                    </Route>
-                    <Route path={routes.RESET}>
-                      <ResetPage />
-                    </Route>
-                    <ProtectedRoute path={routes.HOME} component={Home} />
-                    <ProtectedRoute path={routes.WELCOME} component={Welcome} />
-                    <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
-                    <ProtectedRoute path={routes.FORM} component={FormPage} />
-                    <ProtectedRoute path={routes.TRIBE} component={Tribes} />
-                    <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
-                    <Redirect to="/" />
-                  </Switch>
-                </Grid>
-              </Container>
-            </Box>
-          </Paper>
+                  <Route path={routes.LOGIN}>
+                    <LoginPage/>
+                  </Route>
+                  <Route path={routes.NEW_ACCOUNT}>
+                    <CreateNewAccountPage/>
+                  </Route>
+                  <Route path={routes.RESET}>
+                    <ResetPage/>
+                  </Route>
+                  <ProtectedRoute path={routes.HOME} component={Home}/>
+                  <ProtectedRoute path={routes.WELCOME} component={Welcome}/>
+                  <ProtectedRoute path={routes.CONTACT_US} component={ContactUs}/>
+                  <ProtectedRoute path={routes.FORM} component={FormPage}/>
+                  <ProtectedRoute path={routes.TRIBE} component={Tribes}/>
+                  <ProtectedRoute path={routes.PROFILE_ID} component={Profile}/>
+                  <Redirect to="/"/>
+                </Switch>
+              </Grid>
+            </Paper>
           </div>
         </div>
       </AuthContext.Provider>

@@ -187,14 +187,16 @@ export const FormProfileStyles = theme => ({
     background: '#FFFFFF',
     border: ({borderColor}) => `5px solid ${borderColor}`,
     boxSizing: 'border-box',
-    margin: '0 auto',
+    margin: '0 auto 24px',
     height: 850,
     [theme.breakpoints.down("sm")]: {
       width: '100%',
       border: 'none !important',
-      marginTop: 14,
-      padding: 0,
-      height: '100%'
+      marginTop: 18,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      padding: '0 24px 24px 24px',
+      height: '100%',
     }
   },
   form: {
