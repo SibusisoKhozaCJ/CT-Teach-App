@@ -24,7 +24,6 @@ const EditPublicInfo = () => {
       firstname: user.firstname || '',
       lastname: user.lastname || '',
       email: user.email || '',
-      country: user.country || '',
       phone: user.phone || '',
       schoolName: user.schoolName || '',
       city: user.city || '',

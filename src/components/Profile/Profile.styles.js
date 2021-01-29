@@ -352,6 +352,25 @@ export const FormProfileStyles = theme => ({
       fontSize: 15
     }
   },
+  controlInputPublicForm: {
+    display: 'block',
+    width: '100%',
+    height: 32,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontSize: 18,
+    lineHeight: '32px',
+    paddingLeft: 6,
+    paddingRight: 6,
+    boxSizing: 'border-box',
+    paddingTop: 0,
+    border: '1px solid #cccccc',
+    borderRadius: 5,
+    [theme.breakpoints.down("sm")]: {
+      height: 27,
+      lineHeight: '27px',
+      fontSize: 15
+    }
+  },
   header: {
     position: 'relative',
     display: 'flex',
