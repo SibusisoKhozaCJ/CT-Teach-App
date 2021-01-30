@@ -131,8 +131,9 @@ function Sidebar({ location }) {
                   <div className="newpopupdiv">
 
                 <Button className={isSidebarOpened ? "open": "close"} aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-                  <NewSVG/>
+                 
                   <span className="new-tagsidebar">New</span>
+                   <NewSVG/>
                 </Button>
                 <Popover
                 className="newpopover"

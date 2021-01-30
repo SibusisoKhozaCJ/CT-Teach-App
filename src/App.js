@@ -30,6 +30,7 @@ import Home from './components/home/HomePage';
 import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
 import Profile from "./components/Profile/Profile";
+import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -110,6 +111,7 @@ const App = () => {
                     <ProtectedRoute path={routes.FORM} component={FormPage} />
                     <ProtectedRoute path={routes.TRIBE} component={Tribes} />
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
+                    <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>

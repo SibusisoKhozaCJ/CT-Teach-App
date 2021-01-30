@@ -38,7 +38,7 @@ const Tribes = () => {
     <div className="tribe-page">
       <div className="commonheight"></div>
       <div className="page-divid">
-    <Grid  xs={6} >
+    <Grid md={6} xs={12} >
     <div className="pgeBG">
     <h1 className="tribe-mainheading">My Tribe</h1>
       {userTribes &&
@@ -46,7 +46,7 @@ const Tribes = () => {
         userTribes.map((tribe, index) => (
           <div className="nav-slide">
             <Grid container spacing={1} className="main-manu" xs={12}>
-              <Grid item xs={12}>
+              <Grid item xs={12} className="tribe-header">
                 <Typography variant="h1" className="title">
                   {tribe.code}
                 </Typography>
