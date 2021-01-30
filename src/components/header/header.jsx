@@ -24,30 +24,31 @@ import Typography from '@material-ui/core/Typography';
 import {toggleSideBar} from "../../redux/actions/side-actions"
 import { useDispatch, useSelector } from "react-redux";
 import {Link, useLocation} from "react-router-dom";
+import Cookies from 'js-cookie';
 import { AuthContext } from '../../shared/contexts/authContext';
 import { removeCookies } from "../../shared/lib/authentication";
 import routes from "../../routes";
-import {isCurrentUser, setUserId} from "../../redux/actions/user-actions";
+import { isCurrentUser, saveUser, setUserId } from "../../redux/actions/user-actions";
 
-export default function Header(props) {
+export default function Header() {
   const location = useLocation();
   const classes = useStyles();
   const [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
   const {user, userId} = useSelector(state => state.user);
+  const currentUserInfo = useSelector(state => state.user.user);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const [idFromUrl, setIdFromUrl] = useState('');
+  const userIdFromCookies = Cookies.get('userid');
 
   useEffect(() => {
     dispatch(setUserId());
-  }, [dispatch]);
+    dispatch(saveUser(userIdFromCookies));
+  }, [dispatch, userIdFromCookies]);
 
   useEffect(() => {
-    const arr = location.pathname.split('/');
-    setIdFromUrl(arr[arr.length - 1]);
-    dispatch(isCurrentUser(userId, idFromUrl));
-  }, [location, idFromUrl, dispatch, userId ]);
+    dispatch(isCurrentUser(userId, userIdFromCookies));
+  }, [location, userIdFromCookies, dispatch, userId ]);
 
   const toggleMenuItem = () =>{
     dispatch(toggleSideBar());
@@ -134,7 +135,7 @@ export default function Header(props) {
               classes.profileMenuItem,
               classes.headerMenuItem,
             )}
-            to={`${routes.PROFILE}/${userId}`}
+            to={`${routes.PROFILE}/${currentUserInfo?.userName}`}
           >
             <MenuItem>
                 <AccountIcon className={classes.profileMenuIcon} /> Profile

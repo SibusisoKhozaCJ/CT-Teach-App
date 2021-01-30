@@ -1,46 +1,36 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import { useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+
 import Header from "./Header/Header";
-import {makeStyles} from "@material-ui/core/styles";
-import {ProfileStyles} from "./Profile.styles";
 import EditPublicInfo from "./Forms/EditPublicInfo/EditPublicInfo";
-import {Grid} from "@material-ui/core";
 import EditPrivateInfo from "./Forms/EditPrivateInfo/EditPrivateInfo";
 import Loading from "../../shared/components/loader/Loading";
-import {useDispatch, useSelector} from "react-redux";
-import {isCurrentUser, saveUser} from "../../redux/actions/user-actions";
-import {useParams} from "react-router-dom";
+
+import { ProfileStyles } from "./Profile.styles";
 
 const useStylesProfile = makeStyles(ProfileStyles);
 
 const Profile = () => {
-  const { id } = useParams();
   const classesProfile = useStylesProfile();
-  const { loading, userId, isCurrentUser: isRenderForm } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-      dispatch(saveUser(id));
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    dispatch(isCurrentUser(userId, id));
-  }, [dispatch, loading, userId, id]);
+  const {loading, isCurrentUser: isRenderForm} = useSelector((state) => state.user);
 
   if (loading) {
     return (
       <div className="loader">
-        <Loading />
+        <Loading/>
       </div>
     );
   }
 
   return (
     <div className={classesProfile.root}>
-      <div className="commonheightProfile" />
-      <Header />
+      <div className="commonheightProfile"/>
+      <Header/>
       <Grid container>
-        <EditPublicInfo />
-        {isRenderForm && <EditPrivateInfo />}
+        <EditPublicInfo/>
+        {isRenderForm && <EditPrivateInfo/>}
       </Grid>
     </div>
   );

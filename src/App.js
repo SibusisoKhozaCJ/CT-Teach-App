@@ -13,8 +13,6 @@ import {
 } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import Header from './components/header/header';
 import LoginPage from './components/login/LoginPage';
 import CreateNewAccountPage from './components/register-teacher/create-new-account';
@@ -87,7 +85,7 @@ const App = () => {
         <div className="main">
           {isAuthenticate && <Header />}
           {isAuthenticate && <Sidebar />}
-          {!isAuthenticate && <Redirect path="/login"></Redirect>}
+          {!isAuthenticate && <Redirect path="/login"/>}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
             <Paper>
               <Grid container>
