@@ -13,11 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import {saveUser} from "../../redux/actions/user-actions";
+import { useHistory } from "react-router-dom";
 const Tribes = () => {
   const [expand, setExpand] = useState("");
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.user);
+  const history = useHistory();
   const { userTribes,userJoinedTribes } = useSelector((state) => state.tribe);
   useEffect(() => {
     if (user !== null) {
@@ -48,7 +50,7 @@ const Tribes = () => {
             <Grid container spacing={1} className="main-manu" xs={12}>
               <Grid item xs={12} className="tribe-header">
                 <Typography variant="h1" className="title">
-                  {tribe.code}
+                  {tribe.name || tribe.code}
                 </Typography>
               </Grid>
              
@@ -98,7 +100,7 @@ const Tribes = () => {
                     </Grid>
                     <Grid item xs={6}>
                       <div className="tribe-button">
-                        <Button variant="contained" color="secondary">
+                        <Button variant="contained" color="secondary" onClick={()=>history.push(`/tribe-profile/${tribe.code}`)}>
                         PROFILE
                           <img src={Icon7} alt=""/>
                         </Button>
@@ -164,7 +166,7 @@ const Tribes = () => {
             <Grid container spacing={1} className="main-manu" xs={12}>
               <Grid item xs={12}>
                 <Typography variant="h1" className="title">
-                  {tribe.code}
+                {tribe.name || tribe.code}
                 </Typography>
               </Grid>
               <Grid item xs={3}>
@@ -213,7 +215,7 @@ const Tribes = () => {
                     </Grid>
                     <Grid item xs={6}>
                       <div className="tribe-button">
-                        <Button variant="contained" color="secondary">
+                        <Button variant="contained" color="secondary" onClick={()=>history.push(`/tribe-profile/${tribe.code}`)}>
                         PROFILE
                           <img src={Icon7} alt=""/>
                         </Button>

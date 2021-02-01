@@ -95,6 +95,9 @@ export function updateTribeInfo(data) {
        joinMessage: data.joinTribe || '',
        question:data.question || '',  
     }
+    if(data.tribe !== undefined && data.tribe !== null && data.tribe !==''){
+      newData.name=data.tribe;
+    }
     try {
       await firebaseUpdate(`Tribes/${data.code}`, newData);
     } catch (error) {

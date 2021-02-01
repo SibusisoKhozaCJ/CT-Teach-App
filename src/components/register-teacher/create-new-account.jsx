@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { parse } from 'qs';
 import routes from '../../routes';
@@ -18,9 +18,29 @@ const CreateNewAccountPage = () => {
     const params = parse(search, { ignoreQueryPrefix: true });
     const [form, updateForm] = useState({ email: params.email, password: fromSignInData && fromSignInData.password, firstname: "", lastname: "", type: "", schoolname: "", day: "", month: "", year: "", city: "", isTeacher: false, phone: "", schoolAlreadySigned: false });
     const [loading, updateLoading] = useState(false);
+    const [isInitialized, setIsInitialized] = useState(true);
     const [error, updateError] = useState();
     const { setTokens } = useContext(AuthContext);
     const [userTribeCode, setTribeCode] = useState('')
+
+    useEffect(()=>{
+        if(params && params.redirect){
+            let paramsString = params.redirect;
+            if(paramsString.includes('/join/')){
+                paramsString = paramsString.replace('/join/','')
+                paramsString = paramsString.split('-')[0];
+                if(paramsString){
+                    updateForm({
+                        ...form,
+                        schoolAlreadySigned:true,
+                        schoolAlreadySignedForced:true,
+                        joincode:paramsString
+                    })    
+                }
+            }
+        }
+        setIsInitialized(false)    
+    },[])
     const handleTeacherSubmit = async e => {
         e.preventDefault();
         updateLoading(true);
@@ -152,10 +172,10 @@ const CreateNewAccountPage = () => {
 
     return (
         <>
-            {currentStep === 1 && <BasicInfo form={form} search={search} error={error} loading={loading} handleSubmitFirstForm={handleSubmitFirstForm} updateForm={updateForm} />}
-            {currentStep === 2 && <TypeAndEmailForm form={form} search={search} error={error} loading={loading} handleSubmitSecondForm={handleSubmitSecondForm} updateForm={updateForm} />}
-            {currentStep === 3 && <SchoolDetailForm form={form} search={search} error={error} loading={loading} handleSubmit={handleTeacherSubmit} updateForm={updateForm} />}
-            {currentStep === 4 && <InviteToTribeForm sendTribeCode={sendTribeCode} code={userTribeCode} loading={loading} />}
+            {isInitialized === false && currentStep === 1 && <BasicInfo form={form} search={search} error={error} loading={loading} handleSubmitFirstForm={handleSubmitFirstForm} updateForm={updateForm} />}
+            {isInitialized === false && currentStep === 2 && <TypeAndEmailForm form={form} search={search} error={error} loading={loading} handleSubmitSecondForm={handleSubmitSecondForm} updateForm={updateForm} />}
+            {isInitialized === false && currentStep === 3 && <SchoolDetailForm form={form} search={search} error={error} loading={loading} handleSubmit={handleTeacherSubmit} updateForm={updateForm} />}
+            {isInitialized === false && currentStep === 4 && <InviteToTribeForm sendTribeCode={sendTribeCode} code={userTribeCode} loading={loading} />}
         </>
     );
 }

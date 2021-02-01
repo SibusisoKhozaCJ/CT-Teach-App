@@ -8,6 +8,9 @@ export function saveUser(userId) {
     dispatch(loadingHandler(true));
     try {
       const user = await Auth.getProfile(userId);
+      if(!userId){
+        dispatch(setUserId())
+      }
       dispatch(setUser(user));
       dispatch(codeToIframe(user.codeInIframe || getState().user.codeInIframe));
       dispatch(emojiCode(user.emojiCode || getState().user.emojiCode));

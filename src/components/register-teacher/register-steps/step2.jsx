@@ -97,6 +97,7 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                                 value="end"
                                 className={checked ? "active" : ""}
                                 control={<Checkbox name="schoolAlreadySigned" checked={checked}
+                                disabled={form.schoolAlreadySignedForced}
                                     onChange={handleCheckChange} color="primary" />}
                                 label="  My school is already signed up.."
                                 labelPlacement="end"

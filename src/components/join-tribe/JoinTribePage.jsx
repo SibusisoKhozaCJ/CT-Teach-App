@@ -21,10 +21,13 @@ const JoinTribePage = ({isAuthenticated}) => {
 
   const [loading,setLoading] = useState(true)
   const [joinResponse,setJoinRepsonse] = useState('');
+  const [enteredCode,setEnteredCode] = useState('')
   const [joinTribeResponse, setJoinTribeResponse] = useState({
     status: "",
     message: "",
   });
+  const [tribeInfo,setTribeInfo] = useState({});
+  const [tribeOwnerInfo,setTribeOwnerInfo] = useState({});
 const CheckIfTribeCodeExist = async (code) => {
     return await Auth.checkIfTribeExist(code)
       .then((tribe) => { 
@@ -60,12 +63,23 @@ const CheckifUserExist = async (userId) =>{
     const isCodeExist = await CheckIfTribeCodeExist(id.split('-')[0]);
     const tribeOwner = await getTribeOwnerInfo(id.split('-')[0]);
     const isUserExist = await CheckifUserExist(id.split('-')[1])
-
     if(isCodeExist && tribeOwner && isUserExist){
+        setTribeInfo({
+          ...isCodeExist
+        });
+        setTribeOwnerInfo({
+          ...tribeOwner
+        })
         setLoading(false);
         return setJoinRepsonse('JOIN BY USER');    
     }
     if(isCodeExist && tribeOwner){
+        setTribeInfo({
+          ...isCodeExist
+        });
+        setTribeOwnerInfo({
+          ...tribeOwner
+        })
         setLoading(false);
         return setJoinRepsonse('JOIN BY ADMIN')
     }
@@ -110,10 +124,7 @@ const CheckifUserExist = async (userId) =>{
       if (isCodeExist) {
         dispatch(addUserToTribe(id.split('-')[0], isCodeExist)).then(
         (res) => {
-          setJoinTribeResponse({
-            status: "green",
-            message: "Succesfully Added To The Tribe",
-          });
+          handleReject(true);
         }
         );
         } else {
@@ -123,10 +134,53 @@ const CheckifUserExist = async (userId) =>{
           });
         }
   }
+  
+  const handleJoinByCode =async ()=>{
+    if(!enteredCode){
+      setJoinTribeResponse({
+        status: "red",
+        message: "The Entered Tribe is Not Found",
+      });
+      return;  
+    }
+    else{
+    if(user.tribe_joined && user.tribe_joined.length){
+        for(let i=0;i<user.tribe_joined.length;i++){
+          if(user.tribe_joined[i] === enteredCode){
+            setJoinTribeResponse({
+              status: "red",
+              message: "You Have already been added to the tribe",
+              });
+              return;
+          }  
+        }
+    }
 
-  const handleReject = ()=>{
-    history.push(`/`);
-    window.location.reload()
+    const isCodeExist = await CheckIfTribeCodeExist(enteredCode);
+      if (isCodeExist) {
+        dispatch(addUserToTribe(enteredCode, isCodeExist)).then(
+        (res) => {
+          handleReject(true);
+        }
+        );
+        } else {
+          setJoinTribeResponse({
+            status: "red",
+            message: "The Entered Tribe is Not Found",
+          });
+        }
+  }
+  }
+
+  const handleReject = (success)=>{
+    if(success){
+      history.push(`/tribe`);
+      window.location.reload()
+    }
+    else{
+      history.push(`/`);
+      window.location.reload()  
+    }
   }
   if (loading) {
     return (
@@ -140,24 +194,8 @@ const CheckifUserExist = async (userId) =>{
     <>
     <div className="commonheight" />
     <div className="invite-link" >     
-      {/* {joinResponse && ( 
-          <Grid container>    
-          <h1>{joinResponse}</h1>
-          <h1></h1>
-          {!isAuthenticated && <Button color="primary" variant="outlined" onClick={handleSignUpJoin}>Sign Up</Button>}
-          {!isAuthenticated && <Button color="primary" variant="outlined" onClick={handleLogInJoin}>Log in</Button>}
-          {isAuthenticated && <Button color="primary" variant="outlined" onClick={handleInvite}>Accept Invite</Button>}
-          {isAuthenticated && <Button color="primary" variant="outlined" onClick={handleReject}>Reject</Button>}
-          {joinTribeResponse.message && (
-                    <p style={{ color: `${joinTribeResponse.status}` }}>
-                      {joinTribeResponse.message}
-                    </p>
-          )}
-          </Grid>)
-      }     */}
-
     
-         <Grid >  
+      {joinResponse !== 'Invalid Join Code' &&<Grid >  
            <h1 className="link-heading">OH MY GOSH</h1>  
           <Grid>
                     <Grid item xs={12} className="top-section">
@@ -172,17 +210,17 @@ const CheckifUserExist = async (userId) =>{
                    
                      <Grid item xs={12} className="link-user">
                       <p>
-                        By user: <span> Denis Rodman</span>
+                        By user: <span> {tribeOwnerInfo.userName}</span>
                       </p>                       
                     </Grid>
                      <Grid item xs={12} className="link-add">
                        <p>
-                       At:  <span> Paris High, France</span>
+                       At:  <span> {tribeOwnerInfo.city}, {tribeOwnerInfo.country}</span>
                       </p>                                            
                     </Grid>
                      <Grid item xs={12} className="link-tribleClass">
                        <p>
-                          Tribe or Class Name:  <br/><span> 20 3rd Term Grade 8 D</span>
+                          Tribe or Class Name:  <br/><span>{tribeInfo.name || tribeInfo.code}</span>
                       </p>                                            
                     </Grid>
                     <Grid  item xs={12} className="invt">
@@ -196,15 +234,25 @@ const CheckifUserExist = async (userId) =>{
                          </h2>
                        </Grid>
                         <Grid  item xs={12}>
-                          <Button color="primary" variant="outlined" className="linkbtn">I’M NEW, LET’S GO!</Button>
-                          <Button color="primary" variant="outlined"  className="linkbtn1">I ALREADY HAVE AN ACCOUNT</Button>                          
+                        {isAuthenticated && !joinTribeResponse.message && <Button color="primary" variant="outlined" className="linkbtn" onClick={handleInvite}>Accept Invite</Button>}
+                        {isAuthenticated && !joinTribeResponse.message && <Button color="primary" variant="outlined" className="linkbtn" onClick={()=>handleReject()}>Decline Invite</Button>}
+                         {joinTribeResponse.message && (
+                            <>
+                            <p style={{ color: `${joinTribeResponse.status}` }}>
+                            {joinTribeResponse.message}
+                            </p>
+                            <Button color="primary" variant="outlined" className="linkbtn" onClick={()=>handleReject()}>Back To HomeScreen</Button>
+                            </>
+                        )}  
+                        {!isAuthenticated && <Button color="primary" variant="outlined" className="linkbtn" onClick={handleSignUpJoin}>I’M NEW, LET’S GO!</Button>}
+                        {!isAuthenticated && <Button color="primary" variant="outlined"  className="linkbtn1" onClick={handleLogInJoin} >I ALREADY HAVE AN ACCOUNT</Button>}                          
                         </Grid>
                          </Grid>
                  
          </Grid>   
-         </Grid>  
+         </Grid>}  
 
-          <Grid >  
+          {joinResponse === 'Invalid Join Code' && <Grid >  
            <h1 className="link-heading">YAAAY!!!</h1>  
           <Grid>
                     <Grid item xs={12} className="top-section">
@@ -222,28 +270,38 @@ const CheckifUserExist = async (userId) =>{
                             <TextField
                                 fullWidth                              
                                 label="ENTER CODE"
-                                variant="outlined"  
+                                variant="outlined"
+                                value={enteredCode || ''}
+                                onChange={(e)=>setEnteredCode(e.target.value)}  
                             />
                         </Box>
                     </Grid>
                      <Grid item xs={3}>
-                         <Button  variant="outlined" className="GOlinkbtn"> GO</Button>
+                         <Button  variant="outlined" className="GOlinkbtn" onClick={handleJoinByCode}> GO</Button>
                     </Grid>
                     </Grid>
                      <Grid item xs={12} className="link-add">
-                        <h3>I DON’T HAVE A CODE.</h3> 
+                       {joinTribeResponse.message && (
+                            <>
+                            <p style={{ color: `${joinTribeResponse.status}` }}>
+                            {joinTribeResponse.message}
+                            </p>
+                            <Button color="primary" variant="outlined" className="linkbtn" onClick={()=>handleReject()}>Back To HomeScreen</Button>
+                            </>
+                        )}
+                        {!joinTribeResponse.message && <h3>I DON’T HAVE A CODE.</h3> } 
                         <p>No worries. You can code anyway and once you’re done Project 1 you can start your OWN Tribe.</p>                                         
                     </Grid>
                   
                       
                           <Grid  item xs={12}>
-                          <Button  variant="outlined" className="linkbtn">I’M NEW, LET’S GO!</Button>
-                          <Button  variant="outlined"  className="linkbtn1">I ALREADY HAVE AN ACCOUNT</Button>                          
+                          {!isAuthenticated && <Button  variant="outlined" className="linkbtn">I’M NEW, LET’S GO!</Button>}
+                          {!isAuthenticated && <Button  variant="outlined"  className="linkbtn1">I ALREADY HAVE AN ACCOUNT</Button>}                          
                           </Grid>
                          </Grid>
                  
          </Grid>   
-         </Grid>  
+         </Grid>}  
 
 </div>
 </>
