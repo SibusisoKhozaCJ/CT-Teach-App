@@ -60,3 +60,34 @@ export function firebaseGet(state, dataValue, callback) {
     })
 }
 
+export function firebaseGetByChild(state, dataValue, callback) {
+    let data;
+    if (callback)
+        firebase.database().ref(state).once('value', function (snapshot) {
+            data = snapshot.val();
+            callback(data);
+        });
+    else if(dataValue)
+        return new Promise((res) => {
+        firebase.database().ref(state).once('value', function (snapshot) {
+            data = snapshot.val();
+            let filetedData = [];
+            if (typeof data === "object" && dataValue.key && dataValue.value) {
+                Object.entries(data).forEach(([key, value]) => {
+                    if(value[`${dataValue.key}`] && value[`${dataValue.key}`] === dataValue.value)
+                        filetedData.push(value)
+                })
+                res(filetedData);
+            }else{
+                res(data);
+            }
+        });
+    })
+    else
+    return new Promise((res) => {
+        firebase.database().ref(state).once('value', function (snapshot) {
+            data = snapshot.val();
+            res(data);
+        });
+    })
+}

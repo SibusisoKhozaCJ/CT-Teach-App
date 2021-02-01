@@ -1,48 +1,75 @@
 export const tribeFormPrivateControlsProfilePage = {
-  firstname: {
-    label: 'First Name',
+  joinCode: {
+    label: '',
     className: 'controlInputPrivateForm',
+    placeHolder:'JOIN CODE',
     inputActiveClassName: 'activeControlInput',
     type: 'input'
   },
-  lastname: {
-    label: 'Last Name',
+  Admin1Fname: {
+    label: 'Admin 1',
     className: 'controlInputPrivateForm',
+    placeHolder:'First Name',
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
   },
-  email: {
-    label: 'Email',
-    optional: true,
+  Admin1Lname: {
+    label: '',
     className: 'controlInputPrivateForm',
+    placeHolder:'Last Name',
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
   },
-  country: {
-    label: 'Country',
+  Admin1Email: {
+    label: '',
     className: 'controlInputPrivateForm',
+    placeHolder:'Email',
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
   },
-  phone: {
-    label: 'Phone',
-    optional: true,
+  Admin1Phone: {
+    label: '',
     className: 'controlInputPrivateForm',
+    placeHolder:'Phone (Optional)',
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
   },
-  schoolName: {
-    label: 'School Name',
+
+  Admin2Fname: {
+    label: 'Admin 2',
     className: 'controlInputPrivateForm',
+    placeHolder:'First Name',
+    inputActiveClassName: 'activeControlTextarea',
+    type: 'input'
+  },
+  Admin2Lname: {
+    label: '',
+    className: 'controlInputPrivateForm',
+    placeHolder:'Last Name',
+    inputActiveClassName: 'activeControlTextarea',
+    type: 'input'
+  },
+  Admin2Email: {
+    label: '',
+    className: 'controlInputPrivateForm',
+    placeHolder:'Email',
+    inputActiveClassName: 'activeControlTextarea',
+    type: 'input'
+  },
+  Admin2Phone: {
+    label: '',
+    className: 'controlInputPrivateForm',
+    placeHolder:'Phone (Optional)',
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
   },
   city: {
-    label: 'City',
+    label: 'OTHER',
     className: 'controlInputPrivateForm',
+    placeHolder:'City',
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
-  }
+  },
 };
 
 export const tribeFormPublicControlsProfilePage = {

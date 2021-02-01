@@ -50,6 +50,10 @@ export function getProfile(userId) {
     return authFetch.firebaseGet(`Users/${id}`);
 }
 
+export function getTribeOwner(tribeCode) {
+    return authFetch.firebaseGetByChild(`Users/`,{key:"tribe_code",value:tribeCode});
+}
+
 export function checkIfTribeExist(code) {
     return authFetch.firebaseGet('Tribes/' + code)
 }

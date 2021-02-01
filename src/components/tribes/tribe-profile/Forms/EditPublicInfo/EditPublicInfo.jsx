@@ -6,40 +6,42 @@ import {tribeFormPublicControlsProfilePage} from "../../../../../shared/lib/form
 import EditFormProfile from "../EditFormProfile";
 import {publicFormProfile} from "../../../../../shared/lib/forms/validation";
 import {
-  finishEditPrivateUserInfo,
-  finishEditPublicUserInfo,
-  startEditPublicUserInfo
-} from "../../../../../redux/actions/user-actions";
+  finishEditPrivateTribeInfo,
+  finishEditPublicTribeInfo,
+  startEditPublicTribeInfo
+} from "../../../../../redux/actions/tribe-actions";
 
 const useStyles = makeStyles(FormProfileStyles);
 
-const EditPublicInfo = () => {
+const EditPublicInfo = ({isEditable, tribeData, tribeOwner}) => {
   const classes = useStyles({borderColor: '#43D4DD', paddingTop: 23, background: 'rgba(240, 238, 238, 0.5)'});
-  const {editPublicUserInfo, user, isCurrentUser} = useSelector(state => state.user);
+  // const {editPublicUserInfo, user } = useSelector(state => state.user);
+  const {editPublicTribeInfo} = useSelector(state => state.tribe);
   const dispatch = useDispatch();
-
+  
   const settingsForm = {
     formControls: tribeFormPublicControlsProfilePage,
     defaultValues: {
-      tribe: user.userName || '',
-      points: user.points || '',
-      joined: user.joined || '',
-      aboutMe: user.aboutMe || '',
-      country: user.country || '',
-      question: user.question || '',
+      tribe: tribeData.name || '',
+      tribeHandle: tribeOwner.userName || '',
+      founded: tribeData.joined || '',
+      aboutTribe: tribeData.desc || '',
+      country: tribeOwner.country || '',
+      ourJourney: tribeData.journey || '',
+      schoolOrg: tribeOwner.schoolName || '',
     },
     validateResolver: publicFormProfile,
-    isEditForm: editPublicUserInfo,
+    isEditForm: editPublicTribeInfo,
     startEdit: () => {
-      dispatch(startEditPublicUserInfo());
-      dispatch(finishEditPrivateUserInfo())
+      dispatch(startEditPublicTribeInfo());
+      dispatch(finishEditPrivateTribeInfo())
     },
-    finishEdit: finishEditPublicUserInfo,
+    finishEdit: finishEditPublicTribeInfo,
     classes
   }
 
   return (
-    <EditFormProfile settingsForm={settingsForm} isCurrentUser={true} />
+    <EditFormProfile settingsForm={settingsForm} isCurrentUser={isEditable} />
   );
 };
 

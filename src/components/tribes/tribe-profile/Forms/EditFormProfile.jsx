@@ -4,7 +4,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {useDispatch} from "react-redux";
 import LockIcon from '@material-ui/icons/Lock';
 import {Grid} from "@material-ui/core";
-import {updateUserInfo} from "../../../../redux/actions/user-actions";
+import {updateTribeInfo} from "../../../../redux/actions/tribe-actions";
 import EditIcon from "../../../../assets/icons/EditIcon";
 import {tribeFormPublicControlsProfilePage} from "../../../../shared/lib/forms/tribeProfileFormControls";
 import Input from "./Input/Input";
@@ -38,8 +38,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
     dispatch(finishEdit());
   }, [dispatch, reset, defaultValues, finishEdit]);
 
-  const handleSaveAbout = useCallback((data) => {
-    dispatch(updateUserInfo(data));
+  const handleSaveAbout = useCallback((data) => { 
+   dispatch(updateTribeInfo(data));
   }, [dispatch]);
 
   const renderInputs = () => {

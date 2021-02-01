@@ -3,7 +3,7 @@
  * the routing from page to page, and the google analytics pageview sends.
  */
 
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
   Router,
   Switch,
@@ -30,6 +30,7 @@ import Home from './components/home/HomePage';
 import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
 import Profile from "./components/Profile/Profile";
+import JoinTribe from "./components/join-tribe/JoinTribePage"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
 
@@ -58,14 +59,27 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
     />
   );
 };
+const shouldLayoutRender = (pathname)=>{
+  if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+    return false;
+  return true;  
+}
 
 const App = () => {
+  const { pathname } = useLocation();
   const { userId, isAuthenticate, userFirstName, userEmail } = getCookies();
   const [user, setUser] = useState(userId);
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
+  const [isLayoutRender,setIsLayoutRender] = useState(false);
+  const [isLoading,setIsLoading] = useState(true);
 
+  useEffect(()=>{
+    setIsLoading(true)
+    setIsLayoutRender(shouldLayoutRender(pathname));
+    setIsLoading(false)
+  },[])
   const authProviderValue = useMemo(() => ({
     user,
     setUser,
@@ -78,12 +92,12 @@ const App = () => {
   }), [user, setUser, tokens, setTokens, firstname, setFirstName, email, setUserEmail]);
 
   return (
-    <Router history={history}>
+    (isLoading === false) && (<Router history={history}>
       <AuthContext.Provider value={authProviderValue}>
         <div className="main">
-          {isAuthenticate && <Header />}
-          {isAuthenticate && <Sidebar />}
-          {!isAuthenticate && <Redirect path="/login"></Redirect>}
+          {isAuthenticate && isLayoutRender && <Header />}
+          {isAuthenticate && isLayoutRender && <Sidebar />}
+          {/* {!isAuthenticate &&  <Redirect path="/login"></Redirect>} */}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
           <Paper >
             <Box m={1}>
@@ -105,6 +119,9 @@ const App = () => {
                     <Route path={routes.RESET}>
                       <ResetPage />
                     </Route>
+                    <Route path={routes.JOIN_TRIBE_ID}>
+                      <JoinTribe isAuthenticated={isAuthenticate}/>
+                    </Route>
                     <ProtectedRoute path={routes.HOME} component={Home} />
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
@@ -121,7 +138,7 @@ const App = () => {
           </div>
         </div>
       </AuthContext.Provider>
-    </Router>
+    </Router>)
   );
 }
 

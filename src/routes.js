@@ -9,6 +9,7 @@ export default {
     TRIBE: '/tribe',
     PROFILE: '/profile',
     PROFILE_ID: '/profile/:id',
-    TRIBE_PROFILE: '/tribe-profile'
+    JOIN_TRIBE_ID:'/join/:id',
+    TRIBE_PROFILE: '/tribe-profile/:id'
 };
 

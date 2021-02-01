@@ -29,7 +29,8 @@ const TeacherRegisterStep3 = ({ onUpdate, form }) => {
                         <Box my={1}>
                             <TextField
                                 fullWidth
-                                label="City (Optional)"
+                                required
+                                label="City"
                                 variant="outlined"
                                 type="text" 
                                 value={form.city}
