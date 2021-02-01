@@ -1,17 +1,18 @@
 import React, { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
 import LockIcon from '@material-ui/icons/Lock';
 import { Grid } from "@material-ui/core";
-import { updateUserInfo } from "../../../redux/actions/user-actions";
-import EditIcon from "../../../assets/icons/EditIcon";
-import { formPublicControlsProfilePage } from "../../../shared/lib/forms/formControls";
-import Input from "./Input/Input";
-import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import { isEmpty } from "lodash";
 import Modal from 'react-modal';
+
+import { updateUserInfo } from "../../../redux/actions/user-actions";
+import EditIcon from "../../../assets/icons/EditIcon";
+import { formPublicControlsProfilePage } from "../../../shared/lib/forms/formControls";
+import Input from "./input/Input";
+import classNames from "classnames";
 import { customModalStyles, useStylesModalBtn } from '../Profile.styles';
 
 

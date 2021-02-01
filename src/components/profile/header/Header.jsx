@@ -9,7 +9,7 @@ import {
   closeModalWarning,
   updateUserHeaderUserProfile
 } from "../../../redux/actions/user-actions";
-import ModalComponent from "../ModalComponent/ModalComponent";
+import ModalComponent from "../modal-component/ModalComponent";
 import { HeaderProfileStyles } from "../Profile.styles";
 import {createIframe} from "../../../shared/lib/createIframe";
 import {Button} from "@material-ui/core";

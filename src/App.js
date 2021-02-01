@@ -27,7 +27,7 @@ import Welcome from './components/welcome/Welcome';
 import Home from './components/home/HomePage';
 import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
-import Profile from "./components/Profile/Profile";
+import Profile from "./components/profile/Profile";
 import Layout from './hoc/Layout/Layout';
 import "./index.scss";
 

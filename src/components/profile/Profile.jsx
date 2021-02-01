@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 
-import Header from "./Header/Header";
-import EditPublicInfo from "./Forms/EditPublicInfo/EditPublicInfo";
-import EditPrivateInfo from "./Forms/EditPrivateInfo/EditPrivateInfo";
+import Header from "./header/Header";
+import EditPublicInfo from "./forms/edit-public-info/EditPublicInfo";
+import EditPrivateInfo from "./forms/edit-private-info/EditPrivateInfo";
 import Loading from "../../shared/components/loader/Loading";
 
 import { ProfileStyles } from "./Profile.styles";
