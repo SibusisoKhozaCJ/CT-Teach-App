@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import Header from "./Header/Header";
+import Header from "./header-tribe/header";
 import {makeStyles} from "@material-ui/core/styles";
 import {ProfileStyles} from "./Profile.styles";
-import EditPublicInfo from "./Forms/EditPublicInfo/EditPublicInfo";
+import EditPublicInfo from "./tribe-edit-forms/edit-public-info/edit-public-info";
 import {Grid} from "@material-ui/core";
-import EditPrivateInfo from "./Forms/EditPrivateInfo/EditPrivateInfo";
+import EditPrivateInfo from "./tribe-edit-forms/edit-private-info/edit-private-info";
 import Loading from "../../../shared/components/loader/Loading";
 import {useDispatch, useSelector} from "react-redux";
 import * as Auth from "../../../shared/lib/authentication";
-import {isCurrentUser, saveUser} from "../../../redux/actions/user-actions";
+import {saveUser} from "../../../redux/actions/user-actions";
 import {useHistory, useParams} from "react-router-dom";
 
 const useStylesProfile = makeStyles(ProfileStyles);
@@ -20,7 +20,7 @@ const TribeProfile = () => {
   const [tribeData, setTribeData] = useState({});
   const [tribeOwner, setTribeOwner] = useState({});
 
-  const { loading, user, userId } = useSelector((state) => state.user);
+  const { loading, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   
   const CheckIfTribeCodeExist = async (code) => {
@@ -62,14 +62,7 @@ const TribeProfile = () => {
   useEffect(() => {
     dispatch(saveUser());
     initialize(id);
-  }, []);
-
-  // useEffect(() => {
-  //     console.log("2222222222222222222222222222222222222222222222")
-  //     console.log(user)
-  //     console.log(userId)
-  //     console.log("2222222222222222222222222222222222222222222222")
-  // }, [dispatch, loading, user ,userId ]);
+  }, [dispatch]);
 
   if (loading || Object.keys(tribeData).length === 0 || Object.keys(tribeOwner).length === 0) {
     return (

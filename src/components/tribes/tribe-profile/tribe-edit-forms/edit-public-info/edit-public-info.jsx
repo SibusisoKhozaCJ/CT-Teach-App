@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {FormProfileStyles} from "../../Profile.styles";
 import {tribeFormPublicControlsProfilePage} from "../../../../../shared/lib/forms/tribeProfileFormControls";
-import EditFormProfile from "../EditFormProfile";
+import EditFormProfile from "../edit-tribe-form";
 import {publicFormProfile} from "../../../../../shared/lib/forms/validation";
 import {
   finishEditPrivateTribeInfo,

@@ -21,13 +21,12 @@ import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSideBar } from "../../redux/actions/side-actions";
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import JoinTribeModal from "./modals/join-tribe"
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import JoinTribeModal from "./modals/join-tribe";
 
 const structure = [
-
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
   {
     id: 1,
@@ -63,9 +62,9 @@ function Sidebar({ location }) {
   const { isSidebarOpened } = useSelector((state) => state.sidebar);
   var [isPermanent, setPermanent] = useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
- const [openModal,setOpenModal] = useState(false);
- const [checked, setChecked] = useState(false);
- const [tribeCode, setTribeChange ] = useState("")
+  const [openModal, setOpenModal] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [tribeCode, setTribeChange] = useState("");
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -86,19 +85,26 @@ function Sidebar({ location }) {
     dispatch(toggleSideBar());
   };
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const id = open ? "simple-popover" : undefined;
 
   const handleModalClose = () => {
     setOpenModal(false);
-};
+  };
 
   const handleJoinLinkChange = () => {
-      setChecked(!checked);
+    setChecked(!checked);
   };
 
   return (
     <div className="sidebar">
-      <JoinTribeModal tribeCode={tribeCode} setTribeChange={setTribeChange} checked={checked} handleJoinLinkChange={handleJoinLinkChange} openModal={openModal} handleModalClose={handleModalClose} />
+      <JoinTribeModal
+        tribeCode={tribeCode}
+        setTribeChange={setTribeChange}
+        checked={checked}
+        handleJoinLinkChange={handleJoinLinkChange}
+        openModal={openModal}
+        handleModalClose={handleModalClose}
+      />
       <Drawer
         variant={isPermanent ? "permanent" : "temporary"}
         className={classNames(classes.drawer, {
@@ -128,33 +134,38 @@ function Sidebar({ location }) {
         </div>
 
         <List className={classes.sidebarList}>
-                  <div className="newpopupdiv">
-
-                <Button className={isSidebarOpened ? "open": "close"} aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
-                 
-                  <span className="new-tagsidebar">New</span>
-                   <NewSVG/>
-                </Button>
-                <Popover
-                className="newpopover"
-                  id={id}
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                  }}
-                >
-                  <Typography className="poprtext"><button onClick={(evt)=>setOpenModal(true)}>Join Tribe</button></Typography>
-
-
-                </Popover>
-
+          <div className="newpopupdiv">
+            <Button
+              className={isSidebarOpened ? "open" : "close"}
+              aria-describedby={id}
+              variant="contained"
+              color="primary"
+              onClick={handleClick}
+            >
+              <span className="new-tagsidebar">New</span>
+              <NewSVG />
+            </Button>
+            <Popover
+              className="newpopover"
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <Typography className="poprtext">
+                <button onClick={(evt) => setOpenModal(true)}>
+                  Join Tribe
+                </button>
+              </Typography>
+            </Popover>
           </div>
           {structure.map((link) => (
             <SidebarLink

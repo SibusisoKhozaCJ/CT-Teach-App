@@ -10,7 +10,7 @@ import {
 } from "../../../../../redux/actions/user-actions";
 import {privateFormProfile} from "../../../../../shared/lib/forms/validation";
 import {tribeFormPrivateControlsProfilePage} from "../../../../../shared/lib/forms/tribeProfileFormControls";
-import EditFormProfile from "../EditFormProfile";
+import EditFormProfile from "../edit-tribe-form";
 
 const useStyles = makeStyles(FormProfileStyles);
 

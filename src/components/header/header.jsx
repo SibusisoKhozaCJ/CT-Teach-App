@@ -1,55 +1,50 @@
-import React, {
-  useContext,
-  useEffect,
-  useState
-} from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Menu,
-  MenuItem,
-} from "@material-ui/core";
+import React, { useContext, useEffect, useState } from "react";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
 import {
   Person as AccountIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import classNames from "classnames";
-import { GridSvg, AccountSvg, ChatSvg, MenuSvg} from '../../shared/svgs/menu-items'
+import {
+  GridSvg,
+  AccountSvg,
+  ChatSvg,
+  MenuSvg,
+} from "../../shared/svgs/menu-items";
 // styles
 import useStyles from "./styles";
 
 // components
-import Typography from '@material-ui/core/Typography';
-import {toggleSideBar} from "../../redux/actions/side-actions"
+import Typography from "@material-ui/core/Typography";
+import { toggleSideBar } from "../../redux/actions/side-actions";
 import { useDispatch, useSelector } from "react-redux";
-import {Link, useLocation} from "react-router-dom";
-import { AuthContext } from '../../shared/contexts/authContext';
+import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../../shared/contexts/authContext";
 import { removeCookies } from "../../shared/lib/authentication";
 import routes from "../../routes";
-import {isCurrentUser, setUserId} from "../../redux/actions/user-actions";
+import { isCurrentUser, setUserId } from "../../redux/actions/user-actions";
 
 export default function Header(props) {
   const location = useLocation();
   const classes = useStyles();
   const [profileMenu, setProfileMenu] = useState(null);
-  const {isSidebarOpened} = useSelector(state => state.sidebar);
-  const {user, userId} = useSelector(state => state.user);
+  const { isSidebarOpened } = useSelector((state) => state.sidebar);
+  const { user, userId } = useSelector((state) => state.user);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const [idFromUrl, setIdFromUrl] = useState('');
+  const [idFromUrl, setIdFromUrl] = useState("");
 
   useEffect(() => {
     dispatch(setUserId());
   }, [dispatch]);
 
   useEffect(() => {
-    const arr = location.pathname.split('/');
+    const arr = location.pathname.split("/");
     setIdFromUrl(arr[arr.length - 1]);
     dispatch(isCurrentUser(userId, idFromUrl));
-  }, [location, idFromUrl, dispatch, userId ]);
+  }, [location, idFromUrl, dispatch, userId]);
 
-  const toggleMenuItem = () =>{
+  const toggleMenuItem = () => {
     dispatch(toggleSideBar());
   };
 
@@ -57,7 +52,7 @@ export default function Header(props) {
     setUser();
     setTokens();
     removeCookies();
-};
+  };
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -72,7 +67,7 @@ export default function Header(props) {
               classes={{
                 root: classNames(
                   classes.headerIcon,
-                  classes.headerIconCollapse,
+                  classes.headerIconCollapse
                 ),
               }}
             />
@@ -81,14 +76,14 @@ export default function Header(props) {
               classes={{
                 root: classNames(
                   classes.headerIcon,
-                  classes.headerIconCollapse,
+                  classes.headerIconCollapse
                 ),
               }}
             />
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className="headerlogotext">
-              {location.pathname === "/tribe" ? "Code Tribe" : ""}
+          {location.pathname === "/tribe" ? "Tribes" : ""}
         </Typography>
         <div className={classes.grow} />
         <IconButton
@@ -110,7 +105,7 @@ export default function Header(props) {
           color="inherit"
           className="header-accont"
           aria-controls="profile-menu"
-          onClick={e => setProfileMenu(e.currentTarget)}
+          onClick={(e) => setProfileMenu(e.currentTarget)}
         >
           <AccountSvg classes={{ root: classes.headerIcon }} />
         </IconButton>
@@ -132,18 +127,18 @@ export default function Header(props) {
           <Link
             className={classNames(
               classes.profileMenuItem,
-              classes.headerMenuItem,
+              classes.headerMenuItem
             )}
             to={`${routes.PROFILE}/${userId}`}
           >
             <MenuItem>
-                <AccountIcon className={classes.profileMenuIcon} /> Profile
+              <AccountIcon className={classes.profileMenuIcon} /> Profile
             </MenuItem>
           </Link>
           <MenuItem
             className={classNames(
               classes.profileMenuItem,
-              classes.headerMenuItem,
+              classes.headerMenuItem
             )}
           >
             <AccountIcon className={classes.profileMenuIcon} /> Tasks
@@ -151,7 +146,7 @@ export default function Header(props) {
           <MenuItem
             className={classNames(
               classes.profileMenuItem,
-              classes.headerMenuItem,
+              classes.headerMenuItem
             )}
           >
             <AccountIcon className={classes.profileMenuIcon} /> Messages

@@ -16,21 +16,21 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Header from './components/header/header';
-import LoginPage from './components/login/LoginPage';
+import LoginPage from './components/login/login-page';
 import CreateNewAccountPage from './components/register-teacher/create-new-account';
 import ContactUs from './components/contact-us/ContactUs';
-import FormPage from './components/home/FormPage';
+import FormPage from './components/home/form-page';
 import routes from './routes';
 import history from './shared/lib/history';
 import { AuthContext } from './shared/contexts/authContext';
 import { isAuthenticated, getCookies } from './shared/lib/authentication';
 import ResetPage from './components/reset-password/ResetPage';
 import Welcome from './components/welcome/Welcome';
-import Home from './components/home/HomePage';
+import Home from './components/home/home';
 import Sidebar from './components/sidebar/sidebar';
 import Tribes from "./components/tribes/tribe"
 import Profile from "./components/Profile/Profile";
-import JoinTribe from "./components/join-tribe/JoinTribePage"
+import JoinTribe from "./components/join-tribe/join-tribe-page"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
 import Footer from './components/footer/footer';

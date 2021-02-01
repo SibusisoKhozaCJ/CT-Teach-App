@@ -7,7 +7,7 @@ import {Grid} from "@material-ui/core";
 import {updateTribeInfo} from "../../../../redux/actions/tribe-actions";
 import EditIcon from "../../../../assets/icons/EditIcon";
 import {tribeFormPublicControlsProfilePage} from "../../../../shared/lib/forms/tribeProfileFormControls";
-import Input from "./Input/Input";
+import Input from "./input/input";
 import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import {isEmpty} from "lodash";
@@ -29,8 +29,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
   const {handleSubmit, control, errors, reset} = useForm({
     defaultValues,
     mode: 'onChange',
-    //reValidateMode: 'onChange',
-    //resolver: yupResolver(validateResolver),
+    // reValidateMode: 'onChange',
+    // resolver: yupResolver(validateResolver),
   });
 
   const handleCloseEdit = useCallback(() => {
