@@ -79,7 +79,7 @@ const JoinTribeModal = ({
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={openModal}
-        onClose={handleModalClose}
+        onClose={()=>{handleModalClose();setJoinTribeResponse({status: "",message: ""});}}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{

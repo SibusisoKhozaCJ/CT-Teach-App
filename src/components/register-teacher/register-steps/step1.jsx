@@ -71,6 +71,7 @@ const TeacherRegisterStep1 = ({ onUpdate, form }) => {
                             <Box my={1}>
                                 <TextField
                                     fullWidth
+                                    required
                                     label="Year"
                                     variant="outlined"
                                     value={form.year}

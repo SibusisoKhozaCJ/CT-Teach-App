@@ -5,7 +5,7 @@ import routes from '../../routes';
 import { firebaseInsert } from '../../shared/lib/authorizedFetch';
 import * as Auth from '../../shared/lib/authentication';
 import { AuthContext } from '../../shared/contexts/authContext';
-import referralCodeGenerator from 'referral-code-generator'
+import randomize  from 'randomatic'
 import BasicInfo from './components/basic-info';
 import TypeAndEmailForm from './components/type-email';
 import SchoolDetailForm from './components/school-detail';
@@ -81,13 +81,15 @@ const CreateNewAccountPage = () => {
 
     const CreateTribeAndRegister = async (res) => {
         const { email, firstname, lastname, city, day, month, year, type, phone, isTeacher, schoolname } = form
-        const tribeCode = referralCodeGenerator.alphaNumeric('uppercase', 2, 3);
+        const tribeCode = `${randomize('A', 2)}${randomize('0', 3)}`
         const isCodeExist = await CheckIfTribeCodeExist(tribeCode);
         if (isCodeExist) {
             alert("Error while creting a tribe.")
         } else {
+            const tribeName= `${firstname.substring(0,3)}-${schoolname.substring(0,3)}-${city}-${year}`
             firebaseInsert('Tribes/' + tribeCode, {
                 code: tribeCode,
+                name: tribeName,
                 users: [res.user.uid]
             });
             firebaseInsert('Users/' + res.user.uid, {

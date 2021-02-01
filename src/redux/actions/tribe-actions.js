@@ -59,6 +59,52 @@ export function addUserToTribe(data, tribeData) {
   }
 }
 
+export function startEditPublicTribeInfo() {
+  return {
+    type: Types.EDIT_PUBLIC_TRIBE_INFO,
+    payload: true
+  }
+}
 
+export function finishEditPublicTribeInfo() {
+  return {
+    type: Types.EDIT_PUBLIC_TRIBE_INFO,
+    payload: false
+  }
+}
+
+export function startEditPrivateTribeInfo() {
+  return {
+    type: Types.EDIT_PRIVATE_TRIBE_INFO,
+    payload: true
+  }
+}
+
+export function finishEditPrivateTribeInfo() {
+  return {
+    type: Types.EDIT_PRIVATE_TRIBE_INFO,
+    payload: false
+  }
+}
+
+export function updateTribeInfo(data) {
+  return async (dispatch, getState) => {
+    console.log("33333333333333333333333333333333333")
+    console.log(data)
+    console.log("3333333333333333333333333333333333")
+    // const user = getState().user;
+    // try {
+    //   await firebaseUpdate(`Users/${user.userId}`, data);
+    // } catch (error) {
+    //   console.warn('Error update user', error)
+    // }
+    if (getState().tribe.editPublicTribeInfo) {
+      dispatch(finishEditPublicTribeInfo());
+    } else {
+      dispatch(finishEditPrivateTribeInfo());
+    }
+
+  }
+}
 
 
