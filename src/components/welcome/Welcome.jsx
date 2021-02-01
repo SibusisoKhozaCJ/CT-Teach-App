@@ -6,7 +6,7 @@ const Welcome = () => {
 
     return (
         <div>
-            <Box pb={1}>
+            <Box mt={10} pb={1}>
                 <Typography variant="h1">Welcome</Typography>
             </Box>
             <Typography>

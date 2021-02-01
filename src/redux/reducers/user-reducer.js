@@ -34,9 +34,13 @@ export default function userReducer(state = initialState, action) {
       } else {
         return { ...state, isFindLinkOrImg: false };
       }
-    case Types.EDIT_PUBLIC_USER_INFO:
+    case Types.START_EDIT_PUBLIC_USER_INFO:
       return { ...state, editPublicUserInfo: action.payload };
-    case Types.EDIT_PRIVATE_USER_INFO:
+    case Types.FINISH_EDIT_PUBLIC_USER_INFO:
+      return { ...state, editPublicUserInfo: action.payload };
+    case Types.START_EDIT_PRIVATE_USER_INFO:
+      return { ...state, editPrivateUserInfo: action.payload };
+    case Types.FINISH_EDIT_PRIVATE_USER_INFO:
       return { ...state, editPrivateUserInfo: action.payload };
     case Types.IS_CURRENT_USER:
       return { ...state, isCurrentUser: action.payload };

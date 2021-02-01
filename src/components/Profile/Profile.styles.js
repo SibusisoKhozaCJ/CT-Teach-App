@@ -1,3 +1,5 @@
+import { makeStyles } from '@material-ui/core/styles';
+
 const buttonStyles = {
   marginTop: 15,
   marginRight: '5%',
@@ -417,3 +419,25 @@ export const FormProfileStyles = theme => ({
     }
   }
 })
+
+export const customModalStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, .5)'
+  }
+};
+
+export const useStylesModalBtn = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));

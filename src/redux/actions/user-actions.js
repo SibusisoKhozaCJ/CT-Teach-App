@@ -123,32 +123,30 @@ export function updateUserInfo(data) {
   }
 }
 
-
-
 export function startEditPublicUserInfo() {
   return {
-    type: Types.EDIT_PUBLIC_USER_INFO,
+    type: Types.START_EDIT_PUBLIC_USER_INFO,
     payload: true
   }
 }
 
 export function finishEditPublicUserInfo() {
   return {
-    type: Types.EDIT_PUBLIC_USER_INFO,
+    type: Types.FINISH_EDIT_PUBLIC_USER_INFO,
     payload: false
   }
 }
 
 export function startEditPrivateUserInfo() {
   return {
-    type: Types.EDIT_PRIVATE_USER_INFO,
+    type: Types.START_EDIT_PRIVATE_USER_INFO,
     payload: true
   }
 }
 
 export function finishEditPrivateUserInfo() {
   return {
-    type: Types.EDIT_PRIVATE_USER_INFO,
+    type: Types.FINISH_EDIT_PRIVATE_USER_INFO,
     payload: false
   }
 }
