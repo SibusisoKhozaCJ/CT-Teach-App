@@ -13,6 +13,7 @@ import InviteToTribeForm from "./components/invite-code";
 
 const CreateNewAccountPage = () => {
   const history = useHistory();
+  debugger
   const [currentStep, setCurrentStep] = useState(1);
   const { search, state: fromSignInData } = useLocation();
   const params = parse(search, { ignoreQueryPrefix: true });
@@ -113,6 +114,12 @@ const CreateNewAccountPage = () => {
           });
           Auth.setCookies(email, firstname);
           setTokens({ isAuthenticate: true });
+          // if(history.location && history.location.search.indexOf("redirect=/join") >= 0){
+          //   history.push(routes.TRIBE);
+          // }else{
+          //   setTribeCode(joincode);
+          //   setCurrentStep(4);
+          // }
           setTribeCode(joincode);
           setCurrentStep(4);
         } else {

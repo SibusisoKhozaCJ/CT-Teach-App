@@ -31,7 +31,7 @@ const JoinTribePage = ({ isAuthenticated }) => {
   });
   const [tribeInfo, setTribeInfo] = useState({});
   const [tribeOwnerInfo, setTribeOwnerInfo] = useState({});
-  const [tribeInviter, setTribeInviter] = useState("");
+  const [tribeInviter, setTribeInviter] = useState(undefined);
   const CheckIfTribeCodeExist = async (code) => {
     return await Auth.checkIfTribeExist(code)
       .then((tribe) => {
@@ -72,7 +72,7 @@ const JoinTribePage = ({ isAuthenticated }) => {
       setTribeOwnerInfo({
         ...tribeOwner,
       });
-      setTribeInviter(isUserExist.userName);
+      setTribeInviter(isUserExist);
       setLoading(false);
       return setJoinRepsonse("JOIN BY USER");
     } else if (isCodeExist && tribeOwner) {
@@ -201,13 +201,22 @@ const JoinTribePage = ({ isAuthenticated }) => {
               </Grid>
               <Grid className="main-link-section">
                 <Grid item xs={12} className="link-user">
-                  <p>
-                    By user:{" "}
-                    <span> {tribeInviter || tribeOwnerInfo.userName}</span>
-                  </p>
                   {tribeInviter && (
                     <p>
-                      Tribe Handle: <span> {tribeOwnerInfo.userName}</span>
+                    By user:{" "}
+                    <span className="lbl-name"> {tribeInviter.firstname + " "+ tribeInviter.lastname}</span>
+                  </p>
+                  )}
+                  {!tribeInviter && (
+                    <p>
+                    By user:{" "}
+                    <span className="lbl-name"> {tribeOwnerInfo.firstname + " "+ tribeOwnerInfo.lastname}</span>
+                  </p>
+                    )}
+                  
+                  {tribeInviter && (
+                    <p>
+                      Tribe Handle: <span className="lbl-name"> {tribeOwnerInfo.firstname + " "+ tribeOwnerInfo.lastname}</span>
                     </p>
                   )}
                 </Grid>
