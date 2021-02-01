@@ -29,6 +29,8 @@ const EditPublicInfo = ({isEditable, tribeData, tribeOwner}) => {
       country: tribeOwner.country || '',
       ourJourney: tribeData.journey || '',
       schoolOrg: tribeOwner.schoolName || '',
+      joinTribe: tribeData.joinMessage || '',
+      question: tribeData.question || ''
     },
     validateResolver: publicFormProfile,
     isEditForm: editPublicTribeInfo,
@@ -41,7 +43,7 @@ const EditPublicInfo = ({isEditable, tribeData, tribeOwner}) => {
   }
 
   return (
-    <EditFormProfile settingsForm={settingsForm} isCurrentUser={isEditable} />
+    <EditFormProfile settingsForm={settingsForm} isCurrentUser={isEditable} tribeCode={tribeData.code}/>
   );
 };
 
