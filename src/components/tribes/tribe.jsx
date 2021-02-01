@@ -104,7 +104,7 @@ const Tribes = () => {
                     </Grid>
                     <Grid item xs={6} md={6}>
                       <div className="tribe-button">
-                        <Button variant="contained" color="secondary">
+                        <Button variant="contained" color="secondary" onClick={()=>history.replace(`/tribe-profile/${tribe.code}`)}>
                              Open
                           <img src={Icon7} alt=""/>
                         </Button>
@@ -221,7 +221,7 @@ const Tribes = () => {
                     </Grid>
                     <Grid item xs={6} md={6}>
                       <div className="tribe-button">
-                        <Button variant="contained" color="secondary">
+                        <Button variant="contained" color="secondary" onClick={()=>history.replace(`/tribe-profile/${tribe.code}`)}>
                         Open
                           <img src={Icon7} alt=""/>
                         </Button>
