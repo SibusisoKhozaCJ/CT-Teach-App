@@ -45,6 +45,16 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
   const renderInputs = () => {
     return Object.keys(formControls).map((controlName, index) => {
       const item = formControls[controlName];
+      if(item.type === 'button'){
+        return (
+           <Button
+              className="sumbtCodebtn"
+          >
+            {item.label}
+          </Button>  
+        )
+      }
+      else{
       return (
         <Controller
           key={controlName + index}
@@ -66,13 +76,14 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
             }}
         />
       )
+      }
     });
   };
 
   const renderButtons = () => {
     if (isEditForm) {
       return  (
-        <Grid container className={classNames(isEditForm && !settingsForm.privateForm && classes.btnButtons)}>
+        <Grid container className={classNames(isEditForm && !settingsForm.privateForm && classes.btnButtons)} className="codeupdate">
           <Button
             onClick={handleCloseEdit}
             className={classes.btnCancel}

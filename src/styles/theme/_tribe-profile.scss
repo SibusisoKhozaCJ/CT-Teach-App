@@ -34,8 +34,33 @@ border: 5px solid #FBDD3F;
     align-items: baseline;
     justify-content: end;
     margin-right: 20px;
-    margin-top: 50px;
-       
+    margin-top: 50px;       
+}
+}
+.sumbtCodebtn{
+margin: 0 30px 35px 30px !important;
+background: #75CF6D !important;
+border: 1px solid #EAEAEB !important;
+box-sizing: border-box !important;
+color: #fff !important;
+font-size: 18px !important;
+line-height: 26px;
+text-align: center;
+font-weight: 700 !important;
 }
 
+.TribeP{
+#content {
+   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
+   form{
+       padding: 23px 23px;
+   }
+}
+}
+.codeupdate{   
+    padding: 30px;
+    margin-bottom: 20px;
+    button{
+        height: 50px;
+    }
 }

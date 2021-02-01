@@ -74,12 +74,12 @@ export const tribeFormPrivateControlsProfilePage = {
 
 export const tribeFormPublicControlsProfilePage = {
   tribe: {
-    label: 'tribe',
+    label: 'tribe ',
     className: 'Tribe',
     inputActiveClassName: 'activeControlInput',
     hiddenClass: 'controlLabelHidden',
     errorMessage: 'Can\'t be empty.',
-    type: 'input',
+    type:  'input',
   },
   tribeHandle: {
     label: 'Tribe Handle',
@@ -126,11 +126,21 @@ export const tribeFormPublicControlsProfilePage = {
     inputActiveClassName: 'activeControlTextarea',
     errorMessage: 'Can\'t be empty.',
   },
+  RequestToJoin: {
+      type:'button',
+      label: 'REQUEST TO JOIN',
+      className: 'internalButtons',
+  },
   question: {
     label: 'Message Tribe Admin',
     type: 'textarea',
     className: 'controlTextarea',
     inputActiveClassName: 'activeControlTextarea',
     errorMessage: 'Can\'t be empty.',
+  },
+  SendMessage: {
+      type:'button',
+      label: 'Message TRIBE ADMIN',
+      className: 'internalButtons',
   }
 };

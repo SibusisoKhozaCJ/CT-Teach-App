@@ -185,7 +185,7 @@ export const FormProfileStyles = theme => ({
     padding: 25,
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     background: '#FFFFFF',
-    border: ({borderColor}) => `5px solid ${borderColor}`,
+    // border: ({borderColor}) => `5px solid ${borderColor}`,
     boxSizing: 'border-box',
     margin: '0 auto',
  
@@ -215,8 +215,8 @@ export const FormProfileStyles = theme => ({
       right: 29,
       cursor: 'pointer',
       [theme.breakpoints.down("sm")]: {
-        top: 50,
-        right: 23
+        top: 12,
+        right: 10
       }
     },
     [theme.breakpoints.down("sm")]: {
@@ -252,12 +252,11 @@ export const FormProfileStyles = theme => ({
   },
   controlLabelHidden: {
     [theme.breakpoints.down("sm")]: {
-      display: 'none !important'
+     
     }
   },
-  userName: {
-    ...controlStyles,
-    color: '#D40073',
+  Tribe: {
+    ...controlStyles,   
     marginLeft: 20,
     width: 200,
     [theme.breakpoints.down("sm")]: {
@@ -273,7 +272,7 @@ export const FormProfileStyles = theme => ({
       fontSize: 18
     }
   },
-  userInfo: {
+  tribeHandle: {
     fontSize: 16,
     fontWeight: 'bold',
     marginLeft: 20,
