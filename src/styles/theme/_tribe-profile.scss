@@ -1,0 +1,70 @@
+.tribe-profile {
+	width: 100%;
+	.tribe-header {
+		background: linear-gradient(90deg, #ea7fb8 50%, #76dc37 50%);
+		min-height: 200px;
+		position: relative;
+		&::before {
+			content: "";
+			background: red;
+			width: 120px;
+			height: 120px;
+			position: absolute;
+			z-index: 9;
+			top: 56%;
+			left: 46%;
+			border-radius: 50%;
+			background: url(../../assets/icons/tribe/phome.png) top no-repeat;
+			padding: 6px;
+			background-color: #fff;
+			border: 5px solid #FBDD3F;
+		}
+		h1 {
+			text-align: center;
+			font-weight: bold;
+			font-size: 45px;
+			line-height: 53px;
+			text-align: center;
+			color: #FFFFFF;
+			padding-top: 2%;
+		}
+	}
+	.edit-icon {
+		float: right;
+		margin-right: 16px;
+		display: flex;
+		align-items: baseline;
+		justify-content: end;
+		margin-right: 20px;
+		margin-top: 50px;
+	}
+}
+
+.sumbtCodebtn {
+	margin: 0 30px 35px 30px !important;
+	background: #75CF6D !important;
+	border: 1px solid #EAEAEB !important;
+	box-sizing: border-box !important;
+	color: #fff !important;
+	font-size: 18px !important;
+	line-height: 26px;
+	text-align: center;
+	font-weight: 700 !important;
+}
+
+.TribeP {
+	#content {
+		box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
+		form {
+			padding: 23px 23px;
+		}
+	}
+}
+
+.codeupdate {
+	padding: 30px;
+	margin-bottom: 20px;
+	button {
+		height: 50px;
+	}
+}

@@ -1,6 +1,6 @@
 import { Types } from "../constants/user-types";
-import {textWithImg, textWithLinks} from "../../shared/lib/regExp";
-import {firebaseUpdate} from "../../shared/lib/authorizedFetch";
+import { textWithImg, textWithLinks } from "../../shared/lib/regExp";
+import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
 import * as Auth from "../../shared/lib/authentication";
 
 export function saveUser(userId) {
@@ -8,37 +8,41 @@ export function saveUser(userId) {
     dispatch(loadingHandler(true));
     try {
       const user = await Auth.getProfile(userId);
+      if (!userId) {
+        dispatch(setUserId());
+      }
       dispatch(setUser(user));
       dispatch(codeToIframe(user.codeInIframe || getState().user.codeInIframe));
       dispatch(emojiCode(user.emojiCode || getState().user.emojiCode));
       dispatch(loadingHandler(false));
     } catch (error) {
-      console.warn('Error save user', error)
+      console.warn("Error save user", error);
     }
   };
 }
 
 export function setUser(user) {
   return {
-    type: Types.SAVE_USER, payload: user
-  }
+    type: Types.SAVE_USER,
+    payload: user,
+  };
 }
 
 export function setUserId() {
-  return async dispatch => {
+  return async (dispatch) => {
     const id = await Auth.currentUserId();
     dispatch({
       type: Types.SET_USER_ID,
-      payload: id
-    })
-  }
+      payload: id,
+    });
+  };
 }
 
 export function loadingHandler(val) {
   return {
     type: Types.LOADING,
-    payload: val
-  }
+    payload: val,
+  };
 }
 
 export function updateUserHeaderUserProfile(data) {
@@ -49,43 +53,43 @@ export function updateUserHeaderUserProfile(data) {
       const dataUpdate = {
         codeInIframe: data.codeInIframe || getState().user.codeInIframe,
         emojiCode: data.emojiCode || getState().user.emojiCode,
-      }
+      };
       try {
         await firebaseUpdate(`Users/${user.userId}`, dataUpdate);
       } catch (error) {
-        console.warn('Error update user', error)
+        console.warn("Error update user", error);
       }
       dispatch(codeToIframe(dataUpdate.codeInIframe));
       dispatch(emojiCode(dataUpdate.emojiCode));
       dispatch(closeModal());
     }
-  }
+  };
 }
 
 export function codeToIframe(code) {
   return {
     type: Types.SET_CODE_IN_IFRAME,
-    payload: code
-  }
+    payload: code,
+  };
 }
 
 export function emojiCode(code) {
   return {
     type: Types.SET_EMOJI_CODE,
-    payload: code
-  }
+    payload: code,
+  };
 }
 
 export function openModal() {
   return {
-    type: Types.OPEN_MODAL
-  }
+    type: Types.OPEN_MODAL,
+  };
 }
 
 export function closeModal() {
   return {
-    type: Types.CLOSE_MODAL
-  }
+    type: Types.CLOSE_MODAL,
+  };
 }
 
 export function findLinkOrImg(text) {
@@ -95,15 +99,15 @@ export function findLinkOrImg(text) {
 
   return {
     type: Types.IS_FIND_LINK_OR_IMG,
-    payload: matchAll.length
-  }
+    payload: matchAll.length,
+  };
 }
 
 export function closeModalWarning() {
   return {
     type: Types.IS_FIND_LINK_OR_IMG,
-    payload: false
-  }
+    payload: false,
+  };
 }
 
 export function updateUserInfo(data) {
@@ -112,50 +116,47 @@ export function updateUserInfo(data) {
     try {
       await firebaseUpdate(`Users/${user.userId}`, data);
     } catch (error) {
-      console.warn('Error update user', error)
+      console.warn("Error update user", error);
     }
     if (getState().user.editPublicUserInfo) {
       dispatch(finishEditPublicUserInfo());
     } else {
       dispatch(finishEditPrivateUserInfo());
     }
-
-  }
+  };
 }
-
-
 
 export function startEditPublicUserInfo() {
   return {
     type: Types.EDIT_PUBLIC_USER_INFO,
-    payload: true
-  }
+    payload: true,
+  };
 }
 
 export function finishEditPublicUserInfo() {
   return {
     type: Types.EDIT_PUBLIC_USER_INFO,
-    payload: false
-  }
+    payload: false,
+  };
 }
 
 export function startEditPrivateUserInfo() {
   return {
     type: Types.EDIT_PRIVATE_USER_INFO,
-    payload: true
-  }
+    payload: true,
+  };
 }
 
 export function finishEditPrivateUserInfo() {
   return {
     type: Types.EDIT_PRIVATE_USER_INFO,
-    payload: false
-  }
+    payload: false,
+  };
 }
 
 export function isCurrentUser(userId, userIdFromUrl) {
   return {
     type: Types.IS_CURRENT_USER,
-    payload: userId === userIdFromUrl
-  }
+    payload: userId === userIdFromUrl,
+  };
 }
