@@ -120,7 +120,7 @@ header{
             box-sizing: border-box;
             border-radius: 25px;        
         position: relative;  
-        min-height: 200px;
+       
         &::before {
             content: "";
             background: red;
@@ -145,7 +145,8 @@ header{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: 20px;       
+        margin-left: 20px;   
+        margin-bottom: 30px;    
     }
     .coverage {
     max-width: 40px;
@@ -157,6 +158,7 @@ header{
         line-height: 34px;
         color: #000000;
         margin-left: 20px;
+        margin-bottom: 20px;
 
     }
    .read-more {       
@@ -197,6 +199,7 @@ header{
         margin-bottom: 40px;
         .tribe-icon{
             margin-left: 30px;
+            
         }
         button{
             min-width: 210px;

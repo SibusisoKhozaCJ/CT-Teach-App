@@ -191,7 +191,7 @@ const CheckifUserExist = async (userId) =>{
   }
 
   return (
-    <>
+    <div className="mainCodediv">
     <div className="commonheight" />
     <div className="invite-link" >     
     
@@ -280,6 +280,7 @@ const CheckifUserExist = async (userId) =>{
                          <Button  variant="outlined" className="GOlinkbtn" onClick={handleJoinByCode}> GO</Button>
                     </Grid>
                     </Grid>
+                    <Grid className="codeB">
                      <Grid item xs={12} className="link-add">
                        {joinTribeResponse.message && (
                             <>
@@ -299,12 +300,13 @@ const CheckifUserExist = async (userId) =>{
                           {!isAuthenticated && <Button  variant="outlined"  className="linkbtn1">I ALREADY HAVE AN ACCOUNT</Button>}                          
                           </Grid>
                          </Grid>
+                         </Grid>
                  
          </Grid>   
          </Grid>}  
 
 </div>
-</>
+</div>
   );
 };
 

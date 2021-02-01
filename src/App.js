@@ -33,6 +33,7 @@ import Profile from "./components/Profile/Profile";
 import JoinTribe from "./components/join-tribe/JoinTribePage"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
+import Footer from './components/footer/footer';
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -135,8 +136,11 @@ const App = () => {
               </Container>
             </Box>
           </Paper>
+          
           </div>
+        
         </div>
+          {isAuthenticate && isLayoutRender && <Footer />}
       </AuthContext.Provider>
     </Router>)
   );

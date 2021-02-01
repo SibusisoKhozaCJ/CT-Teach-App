@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Icon2 from "../../assets/icons/tribe/icon2.svg";
-import Icon3 from "../../assets/icons/tribe/icon3.svg";
-import Icon4 from "../../assets/icons/tribe/icon4.svg";
-import Icon9 from "../../assets/icons/tribe/icon9.svg";
+import Icon2 from "../../assets/icons/tribe/icon1.svg";
+import Icon3 from "../../assets/icons/tribe/icon2.svg";
+import Icon4 from "../../assets/icons/tribe/icon3.svg";
+import Icon9 from "../../assets/icons/tribe/icon4.svg";
+import Icon8 from "../../assets/icons/tribe/usericon.png";
+import Icon1 from "../../assets/icons/tribe/mission.png";
 
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
-import Icon8 from "../../assets/icons/tribe/icon8.svg";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
@@ -90,18 +92,20 @@ const Tribes = () => {
                     xs={12}
                     className="expand-icontext"
                   >
-                    <Grid item xs={3}>
+                    <Grid item xs={3} md={3}>
                       <div className="tribe-icon">
                         <img src={Icon8} className="coverage" alt=""/>
                       </div>
                     </Grid>
-                    <Grid item xs={3}>
-                    
+                    <Grid item xs={3} md={3}>
+                     <div className="tribe-icon">
+                        <img src={Icon1} className="coverage" alt=""/>
+                      </div>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} md={6}>
                       <div className="tribe-button">
-                        <Button variant="contained" color="secondary" onClick={()=>history.push(`/tribe-profile/${tribe.code}`)}>
-                        PROFILE
+                        <Button variant="contained" color="secondary">
+                             Open
                           <img src={Icon7} alt=""/>
                         </Button>
                       </div>
@@ -171,11 +175,6 @@ const Tribes = () => {
               </Grid>
               <Grid item xs={3}>
                 <div className="tribe-icon">
-                  <img src={Icon9} className="coverage" alt=""/>
-                </div>
-              </Grid>
-              <Grid item xs={3}>
-                <div className="tribe-icon">
                   <img src={Icon2} className="coverage" alt=""/>
                 </div>
               </Grid>
@@ -187,6 +186,11 @@ const Tribes = () => {
               <Grid item xs={3}>
                 <div className="tribe-icon">
                   <img src={Icon4} className="coverage" alt=""/>
+                </div>
+              </Grid>
+              <Grid item xs={3}>
+                <div className="tribe-icon">
+                  <img src={Icon9} className="coverage" alt=""/>
                 </div>
               </Grid>
               {expand === "joined" + index && (
@@ -205,18 +209,20 @@ const Tribes = () => {
                     xs={12}
                     className="expand-icontext"
                   >
-                    <Grid item xs={3}>
+                    <Grid item xs={3} md={3}>
                       <div className="tribe-icon">
                         <img src={Icon8} className="coverage" alt=""/>
                       </div>
                     </Grid>
-                    <Grid item xs={3}>
-                    
+                    <Grid item xs={3} md={3}>
+                     <div className="tribe-icon">
+                        <img src={Icon1} className="coverage" alt=""/>
+                      </div>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} md={6}>
                       <div className="tribe-button">
-                        <Button variant="contained" color="secondary" onClick={()=>history.push(`/tribe-profile/${tribe.code}`)}>
-                        PROFILE
+                        <Button variant="contained" color="secondary">
+                        Open
                           <img src={Icon7} alt=""/>
                         </Button>
                       </div>
@@ -273,6 +279,8 @@ const Tribes = () => {
         </div>
         </Grid>
     </div>
+
+  
     </div>
   );
 };

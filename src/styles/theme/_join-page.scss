@@ -1,10 +1,17 @@
+.mainCodediv {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
 .invite-link{
     max-width: 500px;
     margin: 0 auto;
-    padding: 10px 10px;
-border: 4px solid #43D4DD;
-border-radius: 25px;
+    padding: 30px 10px;
+border-radius: 10px;
 width: 100%;
+box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
     .link-heading{
         font-weight: bold;
         font-size: 63px;
@@ -106,6 +113,7 @@ width: 100%;
                 display: flex;
                 align-items: center;
                 padding: 0 30px;
+                margin-bottom: 25px;
             }
             h3{
                 font-size: 25px;
@@ -115,6 +123,21 @@ width: 100%;
                 font-weight: 700;
                 margin-bottom: 20px;
             }
+        }
+     
+            input{
+                font-size: 20px;
+                font-weight: 700;
+            }
+      
+        fieldset{
+            border-color:#75CF6D;
+            background:rgba(240, 238, 238, 0.5);
+        }
+        .codeB{
+            background:rgba(240, 238, 238, 0.5);;
+            margin: -10px;
+            padding: 20px;
         }
 }
 

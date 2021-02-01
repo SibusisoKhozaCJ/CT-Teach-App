@@ -15,7 +15,7 @@ import EditFormProfile from "../EditFormProfile";
 const useStyles = makeStyles(FormProfileStyles);
 
 const EditPublicInfo = ({tribeData, tribeOwner}) => {
-  const classes = useStyles({borderColor: '#D50073', paddingTop: 0, background: 'rgba(240, 238, 238, 1)'});
+  const classes = useStyles({borderColor: '#D50073',    paddingTop: 0, background: 'rgba(240, 238, 238, 1)'});
   const {editPrivateUserInfo, user} = useSelector(state => state.user);
   const dispatch = useDispatch();
 

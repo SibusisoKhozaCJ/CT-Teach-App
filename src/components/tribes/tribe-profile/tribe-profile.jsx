@@ -83,7 +83,7 @@ const TribeProfile = () => {
     <div className={classesProfile.root}>
       <div className="commonheight" />
       <Header />
-      <Grid container>
+      <Grid container className="TribeP">
         <EditPublicInfo
           tribeData={tribeData}
           tribeOwner={tribeOwner} 
