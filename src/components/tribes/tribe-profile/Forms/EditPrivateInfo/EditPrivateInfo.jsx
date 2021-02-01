@@ -14,7 +14,7 @@ import EditFormProfile from "../EditFormProfile";
 
 const useStyles = makeStyles(FormProfileStyles);
 
-const EditPublicInfo = () => {
+const EditPublicInfo = ({tribeData, tribeOwner}) => {
   const classes = useStyles({borderColor: '#D50073', paddingTop: 0, background: 'rgba(240, 238, 238, 1)'});
   const {editPrivateUserInfo, user} = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -22,12 +22,7 @@ const EditPublicInfo = () => {
   const settingsForm = {
     formControls: tribeFormPrivateControlsProfilePage,
     defaultValues: {
-      firstname: user && user.firstname ? user.firstname :'',
-      lastname: user && user.lastname ? user.lastname :'',
-      email: user && user.email ? user.email :'',
-      country: user && user.country ?user.country :'',
-      phone: user && user.phone ? user.phone : '',
-      schoolName: user && user.schoolName ? user.schoolName : '',
+      joinCode: tribeData.code || '',
       city: user && user.city ? user.city : '',
     },
     validateResolver: privateFormProfile,

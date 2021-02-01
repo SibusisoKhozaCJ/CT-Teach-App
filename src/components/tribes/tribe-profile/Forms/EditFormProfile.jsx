@@ -12,7 +12,7 @@ import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import {isEmpty} from "lodash";
 
-const EditFormProfile = ({settingsForm, isCurrentUser}) => {
+const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
   const dispatch = useDispatch();
   const {
     formControls,
@@ -29,8 +29,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   const {handleSubmit, control, errors, reset} = useForm({
     defaultValues,
     mode: 'onChange',
-    reValidateMode: 'onChange',
-    resolver: yupResolver(validateResolver),
+    //reValidateMode: 'onChange',
+    //resolver: yupResolver(validateResolver),
   });
 
   const handleCloseEdit = useCallback(() => {
@@ -38,8 +38,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
     dispatch(finishEdit());
   }, [dispatch, reset, defaultValues, finishEdit]);
 
-  const handleSaveAbout = useCallback((data) => { 
-   dispatch(updateTribeInfo(data));
+  const handleSaveAbout = useCallback((data) => {
+   dispatch(updateTribeInfo({...data,code:tribeCode}));
   }, [dispatch]);
 
   const renderInputs = () => {

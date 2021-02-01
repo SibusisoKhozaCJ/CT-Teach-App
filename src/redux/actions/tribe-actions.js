@@ -89,15 +89,17 @@ export function finishEditPrivateTribeInfo() {
 
 export function updateTribeInfo(data) {
   return async (dispatch, getState) => {
-    console.log("33333333333333333333333333333333333")
-    console.log(data)
-    console.log("3333333333333333333333333333333333")
-    // const user = getState().user;
-    // try {
-    //   await firebaseUpdate(`Users/${user.userId}`, data);
-    // } catch (error) {
-    //   console.warn('Error update user', error)
-    // }
+    let newData={
+       desc:data.aboutTribe || '',
+       journey: data.ourJourney || '',
+       joinMessage: data.joinTribe || '',
+       question:data.question || '',  
+    }
+    try {
+      await firebaseUpdate(`Tribes/${data.code}`, newData);
+    } catch (error) {
+      console.warn('Error update user', error)
+    }
     if (getState().tribe.editPublicTribeInfo) {
       dispatch(finishEditPublicTribeInfo());
     } else {

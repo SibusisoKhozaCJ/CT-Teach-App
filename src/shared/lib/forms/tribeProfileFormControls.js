@@ -4,7 +4,7 @@ export const tribeFormPrivateControlsProfilePage = {
     className: 'controlInputPrivateForm',
     placeHolder:'JOIN CODE',
     inputActiveClassName: 'activeControlInput',
-    type: 'input'
+    type: 'div'
   },
   Admin1Fname: {
     label: 'Admin 1',
