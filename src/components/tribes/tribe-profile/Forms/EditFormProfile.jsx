@@ -84,7 +84,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
             disabled={!isEmpty(errors)}
             type="submit"
           >
-            Save
+           UPDATE
           </Button>
         </Grid>
       )

@@ -5,7 +5,10 @@ import {useDispatch, useSelector} from "react-redux";
 import { saveUser } from "../../redux/actions/user-actions";
 import {useHistory, useLocation, useParams} from "react-router-dom";
 import * as Auth from "../../shared/lib/authentication";
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
 import { addUserToTribe, getUserTribes } from '../../redux/actions/tribe-actions';
+import Celebrate from "../../assets/images/celebrate.svg"
 
 const JoinTribePage = ({isAuthenticated}) => {
   const { id } = useParams();
@@ -134,9 +137,10 @@ const CheckifUserExist = async (userId) =>{
   }
 
   return (
-    <div >
-      <div className="commonheight" />
-      {joinResponse && ( 
+    <>
+    <div className="commonheight" />
+    <div className="invite-link" >     
+      {/* {joinResponse && ( 
           <Grid container>    
           <h1>{joinResponse}</h1>
           <h1></h1>
@@ -150,8 +154,99 @@ const CheckifUserExist = async (userId) =>{
                     </p>
           )}
           </Grid>)
-      }    
-    </div>
+      }     */}
+
+    
+         <Grid >  
+           <h1 className="link-heading">OH MY GOSH</h1>  
+          <Grid>
+                    <Grid item xs={12} className="top-section">
+                     
+                        <img src={Celebrate}/>
+                         <p>
+                        YOU’VE BEEN INVITED TO A TRIBE!
+                      </p>                       
+                    </Grid>
+                    <Grid className="main-link-section">
+
+                   
+                     <Grid item xs={12} className="link-user">
+                      <p>
+                        By user: <span> Denis Rodman</span>
+                      </p>                       
+                    </Grid>
+                     <Grid item xs={12} className="link-add">
+                       <p>
+                       At:  <span> Paris High, France</span>
+                      </p>                                            
+                    </Grid>
+                     <Grid item xs={12} className="link-tribleClass">
+                       <p>
+                          Tribe or Class Name:  <br/><span> 20 3rd Term Grade 8 D</span>
+                      </p>                                            
+                    </Grid>
+                    <Grid  item xs={12} className="invt">
+                      <p>
+                        DO YOU ACCEPT THE INVITE?
+                      </p>
+                    </Grid>
+                       <Grid  item xs={12}>
+                         <h2>
+                           YAAASSSS!!!
+                         </h2>
+                       </Grid>
+                        <Grid  item xs={12}>
+                          <Button color="primary" variant="outlined" className="linkbtn">I’M NEW, LET’S GO!</Button>
+                          <Button color="primary" variant="outlined"  className="linkbtn1">I ALREADY HAVE AN ACCOUNT</Button>                          
+                        </Grid>
+                         </Grid>
+                 
+         </Grid>   
+         </Grid>  
+
+          <Grid >  
+           <h1 className="link-heading">YAAAY!!!</h1>  
+          <Grid>
+                    <Grid item xs={12} className="top-section">
+                     
+                        <img src={Celebrate}/>
+                         <p>
+                        I GOT A JOIN CODE.
+                      </p>                       
+                    </Grid>
+                    <Grid className="main-joincode-section">
+
+                    <Grid container  spacing={2} className="invite-code">    
+                    <Grid item xs={9}>
+                        <Box my={1}>
+                            <TextField
+                                fullWidth                              
+                                label="ENTER CODE"
+                                variant="outlined"  
+                            />
+                        </Box>
+                    </Grid>
+                     <Grid item xs={3}>
+                         <Button  variant="outlined" className="GOlinkbtn"> GO</Button>
+                    </Grid>
+                    </Grid>
+                     <Grid item xs={12} className="link-add">
+                        <h3>I DON’T HAVE A CODE.</h3> 
+                        <p>No worries. You can code anyway and once you’re done Project 1 you can start your OWN Tribe.</p>                                         
+                    </Grid>
+                  
+                      
+                          <Grid  item xs={12}>
+                          <Button  variant="outlined" className="linkbtn">I’M NEW, LET’S GO!</Button>
+                          <Button  variant="outlined"  className="linkbtn1">I ALREADY HAVE AN ACCOUNT</Button>                          
+                          </Grid>
+                         </Grid>
+                 
+         </Grid>   
+         </Grid>  
+
+</div>
+</>
   );
 };
 
