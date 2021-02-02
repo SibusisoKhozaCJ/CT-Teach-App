@@ -25,6 +25,7 @@ import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
+import routes from "../../routes";
 
 const structure = [
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
@@ -65,6 +66,12 @@ function Sidebar({ location }) {
   const [openModal, setOpenModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const [tribeCode, setTribeChange] = useState("");
+  const [isLayoutRender,setIsLayoutRender] = useState(false);
+  const shouldLayoutRender = (pathname)=>{
+    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+      return false;
+    return true;  
+  }
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -73,13 +80,14 @@ function Sidebar({ location }) {
     setAnchorEl(null);
   };
 
-  useEffect(function () {
+  useEffect(() => {
+    setIsLayoutRender(shouldLayoutRender(location.pathname));
     window.addEventListener("resize", handleWindowWidthChange);
     handleWindowWidthChange();
     return function cleanup() {
       window.removeEventListener("resize", handleWindowWidthChange);
     };
-  });
+  },[location]);
   const dispatch = useDispatch();
   const toggleMenuItem = () => {
     dispatch(toggleSideBar());
@@ -96,7 +104,7 @@ function Sidebar({ location }) {
   };
 
   return (
-    <div className="sidebar">
+    (isLayoutRender && <div className="sidebar">
       <JoinTribeModal
         tribeCode={tribeCode}
         setTribeChange={setTribeChange}
@@ -177,7 +185,7 @@ function Sidebar({ location }) {
           ))}
         </List>
       </Drawer>
-    </div>
+    </div>)
   );
 
   function handleWindowWidthChange() {

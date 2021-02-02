@@ -173,10 +173,8 @@ const JoinTribePage = ({ isAuthenticated }) => {
   const handleReject = (success) => {
     if (success) {
       history.push(`/tribe`);
-      window.location.reload();
     } else {
       history.push(`/`);
-      window.location.reload();
     }
   };
   if (loading) {
