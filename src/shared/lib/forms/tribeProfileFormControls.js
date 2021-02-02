@@ -116,7 +116,7 @@ export const tribeFormPublicControlsProfilePage = {
   schoolOrg: {
     label: 'School/Org',
     type: 'div',
-    className: 'userInfo',
+    className: 'schoolOrg',
     errorMessage: 'Can\'t be empty.',
   },
   joinTribe: {

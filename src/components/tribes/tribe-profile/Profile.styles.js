@@ -272,6 +272,10 @@ export const FormProfileStyles = theme => ({
       
     }
   },
+    schoolOrg: {
+    ...controlStyles,   
+    marginLeft: 20,        
+  },
   tribeHandle: {
     fontSize: 16,
     fontWeight: 'bold',

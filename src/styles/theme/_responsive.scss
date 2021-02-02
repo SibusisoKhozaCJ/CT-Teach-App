@@ -13,6 +13,12 @@
 			color: #000000;
 			left: 47px;
 			position: fixed;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 100px;
 		}
 		.headermenubutton {
 			left: 0;
