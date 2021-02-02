@@ -44,10 +44,12 @@ const Tribes = () => {
       <div className="page-divid">
         <Grid md={6} xs={12}>
           <div className="pgeBG">
-            <h1 className="tribe-mainheading">My Tribe</h1>
-            {userTribes &&
+              {userTribes &&
               userTribes.length > 0 &&
-              userTribes.map((tribe, index) => (
+              <>
+              <h1 className="tribe-mainheading">My Tribe</h1>
+              
+              {userTribes.map((tribe, index) => (
                 <div className="nav-slide">
                   <Grid container spacing={1} className="main-manu" xs={12}>
                     <Grid item xs={12} className="tribe-header">
@@ -169,11 +171,13 @@ const Tribes = () => {
                   </div>
                 </div>
               ))}
-
-            <h1 className="tribe-mainheading">Joined Tribes</h1>
-            {userJoinedTribes &&
+              </>}
+              {userJoinedTribes &&
               userJoinedTribes.length &&
-              userJoinedTribes.map((tribe, index) => (
+              <>
+            <h1 className="tribe-mainheading">Joined Tribes</h1>
+            
+              {userJoinedTribes.map((tribe, index) => (
                 <div className="nav-slide">
                   <Grid container spacing={1} className="main-manu" xs={12}>
                     <Grid item xs={12}>
@@ -294,6 +298,7 @@ const Tribes = () => {
                   </div>
                 </div>
               ))}
+              </>}
           </div>
         </Grid>
       </div>
