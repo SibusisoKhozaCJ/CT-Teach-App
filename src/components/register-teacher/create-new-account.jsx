@@ -12,8 +12,7 @@ import SchoolDetailForm from "./components/school-detail";
 import InviteToTribeForm from "./components/invite-code";
 
 const CreateNewAccountPage = () => {
-  const history = useHistory();
-  debugger
+  const history = useHistory();  
   const [currentStep, setCurrentStep] = useState(1);
   const { search, state: fromSignInData } = useLocation();
   const params = parse(search, { ignoreQueryPrefix: true });
