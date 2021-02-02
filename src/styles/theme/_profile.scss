@@ -53,6 +53,14 @@ $query-lg: 1280px;
 
 .profileStylesRoot {
   width: 100%;
+
+  .MuiGrid-root.MuiGrid-container {
+    margin-top: 90px;
+
+    @media (max-width: $query-sm) {
+      margin-top: 40px;
+    }
+  }
 }
 
 .profileHeader {
@@ -131,15 +139,13 @@ $query-lg: 1280px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   background: #FFFFFF;
   box-sizing: border-box;
-  margin: 0 auto 24px;
+  margin: 0 auto;
   height: 850px;
   @media (max-width: $query-sm) {
     width: 100%;
     border: none !important;
-    margin-top: 18px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 24px 24px 24px;
+    margin-top: 14px;
+    padding: 0;
     height: 100%;
   }
 
@@ -151,11 +157,11 @@ $query-lg: 1280px;
     height: 100%;
     box-sizing: border-box;
 
-    .MuiFormControl-root {
+    & .MuiFormControl-root {
       width: 100%;
     }
 
-    svg {
+    & svg {
       position: absolute;
       top: 15px;
       right: 29px;
@@ -168,7 +174,8 @@ $query-lg: 1280px;
 
     @media (max-width: $query-sm) {
       background: none;
-      padding-top: 11px !important
+      padding-top: 11px !important;
+      padding: 0 5px;
     }
 
     .btnButtons {
@@ -176,7 +183,7 @@ $query-lg: 1280px;
       bottom: 0;
       @media (max-width: $query-sm) {
         position: absolute;
-        bottom: -71vh
+        bottom: -10vh
       }
     }
 
@@ -253,7 +260,8 @@ $query-lg: 1280px;
   }
 
   @media (max-width: $query-sm) {
-    margin: 0 0 8px;
+    margin: 0;
+    margin-bottom: 8px;
   }
 
   .controlLabel {
@@ -261,13 +269,15 @@ $query-lg: 1280px;
     text-transform: uppercase;
     color: #0198ED;
     margin-bottom: 10px;
+    margin-right: 5px;
 
-    > span {
-      text-transform: none
+    & > span {
+      text-transform: none;
     }
 
     @media (max-width: $query-sm) {
-      margin: 0 0 8px;
+      font-size: 18px;
+      margin-bottom: 7px;
     }
   }
 

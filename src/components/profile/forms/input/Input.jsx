@@ -14,7 +14,7 @@ const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) =
 
   return (
     <div className='controlProfile'>
-      <div className={classNames('controlLabel', 'controlLabelHidden')}>
+      <div className="controlLabel">
         {item.label}
         {item.optional && <span> (Optional)</span>}
       </div>

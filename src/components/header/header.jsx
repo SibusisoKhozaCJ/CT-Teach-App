@@ -137,7 +137,7 @@ export default function Header(props) {
               classes.profileMenuItem,
               classes.headerMenuItem
             )}
-            to={`${routes.PROFILE}/${currentUserInfo?.userName}`}
+            to={`${routes.PROFILE}/${currentUserInfo?.userName ? currentUserInfo.userName : 'dummy-userName'}`}
           >
             <MenuItem>
               <AccountIcon className={classes.profileMenuIcon} /> Profile
