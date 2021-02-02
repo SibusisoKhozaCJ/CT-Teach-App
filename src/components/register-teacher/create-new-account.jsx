@@ -109,18 +109,16 @@ const CreateNewAccountPage = () => {
             dob: day + "-" + month + "-" + year,
             phone: phone,
             schoolName: schoolname,
-            tribe_joned: [joincode],
+            tribe_joined: [joincode],
           });
           Auth.setCookies(email, firstname);
           setTokens({ isAuthenticate: true });
-          // if(history.location && history.location.search.indexOf("redirect=/join") >= 0){
-          //   history.push(routes.TRIBE);
-          // }else{
-          //   setTribeCode(joincode);
-          //   setCurrentStep(4);
-          // }
+          if(history.location && history.location.search.indexOf("redirect=/join") >= 0){
+            history.push(routes.TRIBE);
+          }else{
           setTribeCode(joincode);
           setCurrentStep(4);
+          }
         } else {
           CreateTribeAndRegister(res);
         }
