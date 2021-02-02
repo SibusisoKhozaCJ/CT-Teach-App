@@ -32,9 +32,7 @@ export default function SidebarLink({
 
   // local
   var [isOpen, setIsOpen] = useState(false);
-  var isLinkActive =
-    link &&
-    (location.pathname === link || location.pathname.indexOf(link) !== -1);
+  var isLinkActive = link && location.pathname === link ? true : false ;
 
   if (type === "title")
     return (
@@ -55,7 +53,7 @@ export default function SidebarLink({
         button
         component={link && Link}
         to={link}
-        className={classes.link}
+        className={isLinkActive ? (classes.link + " active-menu-item") : classes.link}
         classes={{
           root: classnames(classes.linkRoot, {
             [classes.linkActive]: isLinkActive && !nested,

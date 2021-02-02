@@ -124,70 +124,66 @@
 		margin-left: 20px;
 		max-width: 20px;
 	}
-	.TribeP{
-	margin-top: 10px;
-}
-.tribe-profile .edit-icon{
-margin-right: 12px;
-margin-top: 34px;
-img{
-	max-width: 100%;
-width: 28px;
-}
-}
-
-.TribeP #content{
-	box-shadow: none;
-}
-.invite-link .main-link-section h2 {   
-    font-size: 40px;   
-}
-.invite-link .link-heading{
-	font-size: 40px;   
-}
-.invite-link .top-section p{
-	font-size: 16px;
-}
-.invite-link .linkbtn1 span{
-	font-size: 16px;
-}
-.invite-link .main-link-section p{
-	font-size: 20px;
-}
-.newpopupdiv span{
-	margin-right: 20px;
-font-weight: 700;
-font-size: 24px;
-color: #000000;
-}
-.MuiListItemText-root span{
-	font-weight: 700 !important;
-font-size: 22px !important;
-line-height: 30px;
-}
-.MuiListItemIcon-root img{
-	width: 30px;
-
-}
-.mt-ft-icon {      
-    padding: 4px;     
-    margin-top: -40px;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 40px;
-	border-radius: 50%;
-	display: flex;
-	background: #fff;
-	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-align-items: center;
-justify-content: center;
-	 img {
-    width: 100%;
-	max-width: 50px !important;
-	margin-bottom: 2px;
-margin-left: 2px;
-}
-}
-
+	.TribeP {
+		margin-top: 10px;
+	}
+	.tribe-profile .edit-icon {
+		margin-right: 12px;
+		margin-top: 34px;
+		img {
+			max-width: 100%;
+			width: 28px;
+		}
+	}
+	.TribeP #content {
+		box-shadow: none;
+	}
+	.invite-link .main-link-section h2 {
+		font-size: 40px;
+	}
+	.invite-link .link-heading {
+		font-size: 40px;
+	}
+	.invite-link .top-section p {
+		font-size: 16px;
+	}
+	.invite-link .linkbtn1 span {
+		font-size: 16px;
+	}
+	.invite-link .main-link-section p {
+		font-size: 20px;
+	}
+	.newpopupdiv span {
+		margin-right: 20px;
+		font-weight: 700;
+		font-size: 24px;
+		color: #000000;
+	}
+	.MuiListItemText-root span {
+		font-weight: 700 !important;
+		font-size: 22px !important;
+		line-height: 30px;
+	}
+	.MuiListItemIcon-root img {
+		width: 30px;
+	}
+	.mt-ft-icon {
+		padding: 4px;
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 50%;
+		display: flex;
+		background: #fff;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		align-items: center;
+		justify-content: center;
+		img {
+			width: 100%;
+			max-width: 50px !important;
+			margin-bottom: 2px;
+			margin-left: 2px;
+		}
+	}
 }
