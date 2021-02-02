@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 
 import Header from "./header/Header";
@@ -8,12 +7,8 @@ import EditPublicInfo from "./forms/edit-public-info/EditPublicInfo";
 import EditPrivateInfo from "./forms/edit-private-info/EditPrivateInfo";
 import Loading from "../../shared/components/loader/Loading";
 
-import { ProfileStyles } from "./Profile.styles";
-
-const useStylesProfile = makeStyles(ProfileStyles);
 
 const Profile = () => {
-  const classesProfile = useStylesProfile();
   const {loading, isCurrentUser: isRenderForm} = useSelector((state) => state.user);
 
   if (loading) {
@@ -25,7 +20,7 @@ const Profile = () => {
   }
 
   return (
-    <div className={classesProfile.root}>
+    <div className="profileStylesRoot">
       <div className="commonheightProfile"/>
       <Header/>
       <Grid container>

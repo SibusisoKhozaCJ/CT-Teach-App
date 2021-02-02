@@ -3,8 +3,6 @@ import {TextareaAutosize, TextField, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
 import {useDispatch, useSelector} from "react-redux";
-import {withStyles} from "@material-ui/core/styles";
-import {HeaderProfileStyles} from "../Profile.styles";
 import {closeModal} from "../../../redux/actions/user-actions";
 import { Link } from 'react-router-dom';
 
@@ -30,7 +28,6 @@ const modalStyles = {
 
 const ModalComponent = (
   {
-    classes,
     saveAbout,
     setTextareaValue,
     setInputValue
@@ -42,18 +39,18 @@ const ModalComponent = (
     <Modal
       isOpen={openModal}
       onRequestClose={() => dispatch(closeModal())}
-      className={classes.modalContent}
+      className='modalContentEditProfile'
       style={modalStyles}
       contentLabel='Modal'
     >
-      <form onSubmit={saveAbout} className={classes.modalPrivate}>
-        <div className={classes.personalize}>
+      <form onSubmit={saveAbout} className='modalPrivate'>
+        <div className='personalize'>
           <Typography variant="h5">PERSONALIZE</Typography>
           <Typography variant="h6">HEADER:</Typography>
           <Typography>
             Add your own mini-website to your header.
             <br />
-            <div className={classes.tipNote}>
+            <div className="tipNote">
               TIP: Not sure what I mean? Do the <Link to="/">5-Minute-Website</Link> and paste it in here.
             </div>
           </Typography>
@@ -62,17 +59,17 @@ const ModalComponent = (
           name='about_me'
           rowsMin={10}
           rowsMax={19}
-          className={classes.textArea}
+          className='textArea'
           placeholder="Paste your code here. There is a max of 20 lines allowed."
           defaultValue={codeInIframe}
           onChange={event => setTextareaValue(event.target.value)}
         />
-        <div className={classes.personalize}>
+        <div className="personalize">
           <Typography variant="h6">AVATAR:</Typography>
           <Typography>
             Add an emoji or character by adding the code.
             <br />
-            <div className={classes.tipNote}>
+            <div className="tipNote">
               TIP: For example #128512; is a big smile emoji.
               <br />
               Lear more <Link to="/">here</Link>.
@@ -82,20 +79,20 @@ const ModalComponent = (
         <TextField
           name='emoji'
           id="emoji"
-          className={classes.inputWrapper}
+          className='inputWrapper'
           variant="outlined"
           defaultValue={emojiCode}
           onChange={event => setInputValue(event.target.value)}
         />
         <Button
           onClick={() => dispatch(closeModal())}
-          className={classes.btnModalCancel}
+          className="btnModalCancel"
         >
           Cancel
         </Button>
         <Button
           type="submit"
-          className={classes.btnModalSave}
+          className="btnModalSave"
           disabled={isFindLinkOrImg}
         >
           Save
@@ -105,4 +102,4 @@ const ModalComponent = (
   );
 };
 
-export default withStyles(HeaderProfileStyles)(ModalComponent);
+export default ModalComponent;

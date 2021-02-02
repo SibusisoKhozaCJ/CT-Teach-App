@@ -98,7 +98,6 @@ const App = () => {
                     path="/"
                     component={FormPage}
                   />
-
                     <Route path={routes.LOGIN}>
                       <LoginPage />
                     </Route>
@@ -122,9 +121,7 @@ const App = () => {
                   </Switch>
                 </Grid>
           </Paper>
-
           </div>
-
         </div>
           {isAuthenticate && <Footer />}
       </AuthContext.Provider>

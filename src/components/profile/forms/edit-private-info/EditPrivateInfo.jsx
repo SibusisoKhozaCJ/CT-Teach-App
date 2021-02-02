@@ -1,7 +1,5 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {FormProfileStyles} from "../../Profile.styles";
 import {
   finishEditPrivateUserInfo,
   finishEditPublicUserInfo,
@@ -11,10 +9,8 @@ import {privateFormProfile} from "../../../../shared/lib/forms/validation";
 import {formPrivateControlsProfilePage} from "../../../../shared/lib/forms/formControls";
 import EditFormProfile from "../EditFormProfile";
 
-const useStyles = makeStyles(FormProfileStyles);
 
 const EditPrivateInfo = () => {
-  const classes = useStyles({borderColor: '#D50073', paddingTop: 0, background: 'rgba(240, 238, 238, 1)'});
   const {editPrivateUserInfo, user} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
@@ -36,7 +32,8 @@ const EditPrivateInfo = () => {
     },
     finishEdit: finishEditPrivateUserInfo,
     privateForm: true,
-    classes
+    classesWrapper: { border: '5px solid #D50073'},
+    classesForm: { background: 'rgba(240, 238, 238, 1)', paddingTop: 0},
   };
 
   return (

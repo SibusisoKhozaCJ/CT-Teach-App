@@ -13,19 +13,32 @@ import EditIcon from "../../../assets/icons/EditIcon";
 import { formPublicControlsProfilePage } from "../../../shared/lib/forms/formControls";
 import Input from "./input/Input";
 import classNames from "classnames";
-import { customModalStyles, useStylesModalBtn } from '../Profile.styles';
+
+export const customModalStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, .5)'
+  }
+};
 
 
 const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   const [modalIsOpen,setIsOpen] = useState(false);
-  const classesBtn = useStylesModalBtn();
   const dispatch = useDispatch();
   const {
     formControls,
     defaultValues,
     validateResolver,
     isEditForm,
-    classes,
+    classesWrapper,
+    classesForm,
     startEdit,
     finishEdit
   } = settingsForm;
@@ -97,15 +110,15 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   const renderButtons = () => {
     if (isEditForm) {
       return (
-        <Grid container className={classNames(isEditForm && !settingsForm.privateForm && classes.btnButtons)}>
+        <Grid container className={classNames(isEditForm && "btnButtons")}>
           <Button
             onClick={handleCloseEdit}
-            className={classes.btnCancel}
+            className="btnCancel"
           >
             Cancel
           </Button>
           <Button
-            className={classes.btnSave}
+            className="btnSave"
             disabled={!isEmpty(errors)}
             type="submit"
           >
@@ -117,32 +130,32 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   };
 
   return (
-    <Grid id='content' item md={5} sm={12} className={classes.wrapperForm}>
-      <form onSubmit={handleSubmit(handleSaveAbout)} className={classes.form}>
-        {settingsForm.privateForm && (
-          <div className={classes.header}>
-            <div className={classes.wrapperIcon}><LockIcon /></div>
-            <p>This part is private. It is NOT public.</p>
-            {!isEditForm && <EditIcon onClick={handleEdit} />}
-          </div>
-        )}
-        {isRenderButton && <EditIcon onClick={handleEdit} />}
-        {renderInputs(formPublicControlsProfilePage)}
-        {renderButtons()}
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          style={customModalStyles}
-          contentLabel="Edit Modal"
-        >
-          <p>Are you sure you want to close this section without saving changes?</p>
-          <div className={classesBtn.root}>
-            <Button variant="contained" onClick={() => closeModal('no')}>No</Button>
-            <Button variant="contained" color="primary" onClick={() => closeModal('yes')}>Yes</Button>
-          </div>
-        </Modal>
-      </form>
-    </Grid>
+      <Grid id='content' item md={5} sm={12} style={classesWrapper} className={'wrapperFormEditProfile'}>
+        <form onSubmit={handleSubmit(handleSaveAbout)} style={classesForm} className="form">
+          {settingsForm.privateForm && (
+            <div className="header">
+              <div className="wrapperIcon"><LockIcon /></div>
+              <p>This part is private. It is NOT public.</p>
+              {!isEditForm && <EditIcon onClick={handleEdit} />}
+            </div>
+          )}
+          {isRenderButton && <EditIcon onClick={handleEdit} />}
+          {renderInputs(formPublicControlsProfilePage)}
+          {renderButtons()}
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customModalStyles}
+            contentLabel="Edit Modal"
+          >
+            <p>Are you sure you want to close this section without saving changes?</p>
+            <div className='modalProfileEditCheck'>
+              <Button className='btnCancel' onClick={() => closeModal('no')}>No</Button>
+              <Button className='btnSave' onClick={() => closeModal('yes')}>Yes</Button>
+            </div>
+          </Modal>
+        </form>
+      </Grid>
   );
 };
 

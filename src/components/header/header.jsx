@@ -34,7 +34,6 @@ export default function Header(props) {
   const currentUserInfo = useSelector(state => state.user.user);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const [idFromUrl, setIdFromUrl] = useState("");
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   const shouldLayoutRender = (pathname)=>{
     if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
