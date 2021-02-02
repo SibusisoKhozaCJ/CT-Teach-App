@@ -33,7 +33,12 @@ export default function Header(props) {
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
   const [idFromUrl, setIdFromUrl] = useState("");
-
+  const [isLayoutRender,setIsLayoutRender] = useState(false);
+  const shouldLayoutRender = (pathname)=>{
+    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+      return false;
+    return true;  
+  }
   useEffect(() => {
     dispatch(setUserId());
   }, [dispatch]);
@@ -42,6 +47,7 @@ export default function Header(props) {
     const arr = location.pathname.split("/");
     setIdFromUrl(arr[arr.length - 1]);
     dispatch(isCurrentUser(userId, idFromUrl));
+    setIsLayoutRender(shouldLayoutRender(location.pathname));
   }, [location, idFromUrl, dispatch, userId]);
 
   const toggleMenuItem = () => {
@@ -55,7 +61,7 @@ export default function Header(props) {
   };
 
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    (isLayoutRender && <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <IconButton
           color="inherit"
@@ -161,6 +167,6 @@ export default function Header(props) {
           </div>
         </Menu>
       </Toolbar>
-    </AppBar>
+    </AppBar>)
   );
 }

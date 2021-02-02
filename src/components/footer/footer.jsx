@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Icon1 from "../../assets/icons/footer-icon/icon1.svg";
 import Icon3 from "../../assets/icons/footer-icon/icon3.svg";
 import Icon2 from "../../assets/icons/footer-icon/icon2.svg";
 import Icon4 from "../../assets/icons/footer-icon/chat.svg";
 import Icon5 from "../../assets/icons/footer-icon/gallery.svg";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import routes from "../../routes";
 
 const Footer = () => {
   const history = useHistory();
+  const location = useLocation();
+  const [isLayoutRender,setIsLayoutRender] = useState(false);
+  const shouldLayoutRender = (pathname)=>{
+    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+      return false;
+    return true;  
+  }
+
+  useEffect(() => {
+    setIsLayoutRender(shouldLayoutRender(location.pathname));
+  }, [location]);
   return (
-    <footer>
+    (isLayoutRender && <footer>
       <div className="footer-icon">
         <img onClick={(evt)=>history.push("/tribe")} src={Icon1} className="coverage" alt="" />
       </div>
@@ -29,7 +41,7 @@ const Footer = () => {
       <div className="footer-icon">
         <img onClick={(evt)=>history.push("/tribe")} src={Icon5} className="coverage" alt="" />
       </div>
-    </footer>
+    </footer>)
   );
 };
 

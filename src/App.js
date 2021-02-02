@@ -60,27 +60,15 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
     />
   );
 };
-const shouldLayoutRender = (pathname)=>{
-  if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
-    return false;
-  return true;  
-}
+
 
 const App = () => {
-  const { pathname } = useLocation();
+  const location = useLocation();
   const { userId, isAuthenticate, userFirstName, userEmail } = getCookies();
   const [user, setUser] = useState(userId);
   const [tokens, setTokens] = useState({ isAuthenticate });
   const [firstname, setFirstName] = useState(userFirstName);
   const [email, setUserEmail] = useState(userEmail);
-  const [isLayoutRender,setIsLayoutRender] = useState(false);
-  const [isLoading,setIsLoading] = useState(true);
-
-  useEffect(()=>{
-    setIsLoading(true)
-    setIsLayoutRender(shouldLayoutRender(pathname));
-    setIsLoading(false)
-  },[])
   const authProviderValue = useMemo(() => ({
     user,
     setUser,
@@ -93,12 +81,11 @@ const App = () => {
   }), [user, setUser, tokens, setTokens, firstname, setFirstName, email, setUserEmail]);
 
   return (
-    (isLoading === false) && (<Router history={history}>
+    <Router history={history}>
       <AuthContext.Provider value={authProviderValue}>
         <div className="main">
-          {isAuthenticate && isLayoutRender && <Header />}
-          {isAuthenticate && isLayoutRender && <Sidebar />}
-          {/* {!isAuthenticate &&  <Redirect path="/login"></Redirect>} */}
+          {isAuthenticate && <Header />}
+          {isAuthenticate && <Sidebar location={location} />}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
           <Paper >
             <Box m={1}>
@@ -140,9 +127,9 @@ const App = () => {
           </div>
         
         </div>
-          {isAuthenticate && isLayoutRender && <Footer />}
+          {isAuthenticate && <Footer />}
       </AuthContext.Provider>
-    </Router>)
+    </Router>
   );
 }
 
