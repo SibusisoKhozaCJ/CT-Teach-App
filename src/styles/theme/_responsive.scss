@@ -1,0 +1,157 @@
+@media only screen and (max-width: 600px) {
+	header {
+		background: red;
+		.MuiIconButton-label img {
+			width: 20px;
+			width: 100%;
+		}
+		.headerlogotext {
+			font-style: normal;
+			font-weight: normal;
+			font-size: 26px;
+			line-height: 48px;
+			color: #000000;
+			left: 47px;
+			position: fixed;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: 100px;
+		}
+		.headermenubutton {
+			left: 0;
+		}
+	}
+	.page-divid .pgeBG {
+		background: transparent;
+		border-radius: 35px;
+		padding: 0;
+	}
+	.commonheight {
+		min-height: 75px;
+	}
+	.tribe-mainheading {
+		margin-bottom: 25px;
+	}
+	.tribe-page .main-manu::before {
+		top: -15px;
+	}
+	.tribe-page .title {
+		margin-bottom: 0;
+		margin-top: 10px;
+		font-size: 24px;
+	}
+	.tribe-page .main-manu {
+		min-height: 150px;
+	}
+	.tribe-page .tribe-icon {
+		margin-left: 0;
+		margin-bottom: 25px;
+	}
+	.tribe-page .tribe-expandtext .expand-icontext button {
+		min-width: 120px;
+		font-size: 18px;
+		height: 35px;
+	}
+	.tribe-page .tribe-expandtext .expand-icontext .tribe-icon {
+		margin-left: 11px;
+	}
+	footer {
+		display: flex !important;
+	}
+	.tribe-page .tribe-icon {
+		max-width: 50px;
+		height: 35px;
+	}
+	.tribe-page .coverage {
+		max-width: 25px;
+		width: 100%;
+	}
+	.tribe-page .read-more {
+		width: 40px;
+		height: 40px;
+	}
+	.nav-slide {
+		margin-bottom: 15px;
+	}
+	.tribe-page .tribe-expandtext p {
+		font-size: 18px;
+		line-height: 23px;
+		margin-left: 10px;
+		margin-top: 0px;
+	}
+	.main {
+		margin-bottom: 80px;
+	}
+	.tribe-profile .tribe-header::before {
+		max-width: 80px;
+		height: 80px;
+		width: 100%;
+		top: 67%;
+		left: 42%;
+		background: url(../../assets/icons/tribe/mobphome.png) top no-repeat;
+		background-color: #fff;
+		padding: 20px !important;
+	}
+	.sumbtCodebtn {
+		font-size: 16px !important;
+	}
+	.TribeP #content {
+		margin-top: 20px;
+	}
+	.MuiContainer-root {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+	.tribe-profile .tribe-header h1 {
+		font-size: 32px;
+	}
+	.tribe-profile .tribe-header {
+		min-height: 160px;
+	}
+	.newpopupdiv button {
+		background: #43D4DD;
+		border-radius: 35px;
+		min-width: 197px;
+		margin-bottom: 20px;
+		.new-tagsidebar {
+			margin-right: 20px;
+		}
+	}
+	.tribe-page .tribe-expandtext .expand-icontext button img {
+		margin-left: 20px;
+		max-width: 20px;
+	}
+	.TribeP{
+	margin-top: 10px;
+}
+.tribe-profile .edit-icon{
+margin-right: 12px;
+margin-top: 34px;
+img{
+	max-width: 100%;
+width: 28px;
+}
+}
+
+.TribeP #content{
+	box-shadow: none;
+}
+.invite-link .main-link-section h2 {   
+    font-size: 40px;   
+}
+.invite-link .link-heading{
+	font-size: 40px;   
+}
+.invite-link .top-section p{
+	font-size: 16px;
+}
+.invite-link .linkbtn1 span{
+	font-size: 16px;
+}
+.invite-link .main-link-section p{
+	font-size: 20px;
+}
+}

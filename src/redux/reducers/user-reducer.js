@@ -3,8 +3,8 @@ const initialState = {
   user: null,
   userId: null,
   loading: true,
-  codeInIframe: '',
-  emojiCode: '&#128512;',
+  codeInIframe: "",
+  emojiCode: "&#128512;",
   openModal: false,
   isFindLinkOrImg: false,
   editPublicUserInfo: false,
@@ -17,9 +17,9 @@ export default function userReducer(state = initialState, action) {
     case Types.SAVE_USER:
       return { ...state, user: action.payload };
     case Types.SET_USER_ID:
-      return { ...state, userId: action.payload }
+      return { ...state, userId: action.payload };
     case Types.LOADING:
-      return { ...state, loading: action.payload }
+      return { ...state, loading: action.payload };
     case Types.SET_CODE_IN_IFRAME:
       return { ...state, codeInIframe: action.payload };
     case Types.SET_EMOJI_CODE:
