@@ -13,6 +13,7 @@ import history from "../../shared/lib/history";
 import HeaderLogo from "../../assets/icons/Header";
 import { AuthContext } from "../../shared/contexts/authContext";
 import * as Auth from "../../shared/lib/authentication";
+import routes from "../../routes";
 const LoginPage = () => {
   const [loading, updateLoading] = useState(false);
   const [error, updateError] = useState();
@@ -42,7 +43,11 @@ const LoginPage = () => {
             updateLoading(false);
             if (params && params.redirect) {
               const { redirect } = params;
-              history.push(redirect);
+              if(history.location && history.location.search.indexOf("redirect=/join") >= 0){
+                history.push(routes.TRIBE);
+              }
+              else
+                history.push(redirect);
             } else {
               history.push(ROUTES.WELCOME);
             }

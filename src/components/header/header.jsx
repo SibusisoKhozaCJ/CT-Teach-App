@@ -99,13 +99,13 @@ export default function Header(props) {
         >
           <ChatSvg classes={{ root: classes.headerIcon }} />
         </IconButton>
-        <IconButton
+        {/* <IconButton
           aria-haspopup="true"
           color="inherit"
           className="header-grid"
         >
           <GridSvg classes={{ root: classes.headerIcon }} />
-        </IconButton>
+        </IconButton> */}
         <IconButton
           aria-haspopup="true"
           color="inherit"
