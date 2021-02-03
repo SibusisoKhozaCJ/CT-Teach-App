@@ -8,7 +8,7 @@ export default {
     RESET: '/reset',
     TRIBE: '/tribe',
     PROFILE: '/profile',
-    PROFILE_ID: '/profile/:userName',
+    PROFILE_ID: '/profile/:id',
     JOIN_TRIBE_ID:'/join/:id',
     TRIBE_PROFILE: '/tribe-profile/:id'
 };
