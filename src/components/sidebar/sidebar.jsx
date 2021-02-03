@@ -15,7 +15,7 @@ import {
 } from "../../shared/svgs/menu-items";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
-import { withRouter } from "react-router-dom";
+import { useLocation, withRouter } from "react-router-dom";
 import classNames from "classnames";
 import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
@@ -27,7 +27,7 @@ import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
 import routes from "../../routes";
 
-const structure = [
+let sidebarStructure = [
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
   {
     id: 1,
@@ -57,6 +57,10 @@ const structure = [
   { id: 8, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
 ];
 
+let protectedSidebarStructure = [
+  { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
+];
+
 function Sidebar({ location }) {
   var classes = useStyles();
   var theme = useTheme();
@@ -72,6 +76,20 @@ function Sidebar({ location }) {
       return false;
     return true;  
   }
+
+  let structure;
+  let isShowJoinTribeIcon;
+  const { isCurrentUser } = useSelector((state) => state.user);
+  const isProfileURL = useLocation().pathname.includes('/profile');
+
+  if (!isCurrentUser && isProfileURL) {
+    isShowJoinTribeIcon = false;
+    structure = protectedSidebarStructure;
+  } else {
+    isShowJoinTribeIcon = true;
+    structure = sidebarStructure;
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -142,7 +160,7 @@ function Sidebar({ location }) {
         </div>
 
         <List className={classes.sidebarList}>
-          <div className="newpopupdiv">
+          {isShowJoinTribeIcon && <div className="newpopupdiv">
             <Button
               className={isSidebarOpened ? "open" : "close"}
               aria-describedby={id}
@@ -174,7 +192,7 @@ function Sidebar({ location }) {
                 </button>
               </Typography>
             </Popover>
-          </div>
+          </div>}
           {structure.map((link) => (
             <SidebarLink
               key={link.label + link.id}

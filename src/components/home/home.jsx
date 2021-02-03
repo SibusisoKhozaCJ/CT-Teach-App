@@ -2,7 +2,21 @@ import React, { useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import * as Auth from '../../shared/lib/authentication'
-const Welcome = () => {   
+import { saveUser } from '../../redux/actions/user-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'js-cookie';
+
+const Welcome = () => {
+  const userIdFromCookies = Cookies.get('userid');
+  const dispatch = useDispatch();
+  const {isCurrentUser} = useSelector(state => state.user);
+
+  useEffect(() => {
+    if (!isCurrentUser) {
+      dispatch(saveUser(userIdFromCookies));
+    }
+  }, [dispatch]);
+
     useEffect(() => {
         Auth.getProfile().then((teachers)=>{
             console.log("Teachers " + JSON.stringify(teachers))
