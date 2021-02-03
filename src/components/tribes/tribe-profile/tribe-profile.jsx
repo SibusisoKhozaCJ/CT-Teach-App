@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import * as Auth from "../../../shared/lib/authentication";
 import {saveUser} from "../../../redux/actions/user-actions";
 import {useHistory, useParams} from "react-router-dom";
+import { tribeCodeToIframe, tribeEmojiCode } from '../../../redux/actions/tribe-actions';
 
 const useStylesProfile = makeStyles(ProfileStyles);
 
@@ -50,7 +51,10 @@ const TribeProfile = () => {
     const isCodeExist = await CheckIfTribeCodeExist(id);    
     if(!isCodeExist)
       return history.replace(`/tribe`)
-
+    if(isCodeExist.codeInIframe)
+      dispatch(tribeCodeToIframe(isCodeExist.codeInIframe))
+    if(isCodeExist.emojiCode)
+      dispatch(tribeEmojiCode(isCodeExist.emojiCode))
     const tribeOwner = await getTribeOwnerInfo(id);
     setTribeData({...isCodeExist})
     if(!tribeOwner)
@@ -75,7 +79,10 @@ const TribeProfile = () => {
   return (
     <div className={classesProfile.root}>
       <div className="commonheight" />
-      <Header />
+      <Header 
+        isEditable={user && user.tribe_code === id}
+        tribeCode={id}
+      />
       <Grid container className="TribeP">
         <EditPublicInfo
           tribeData={tribeData}

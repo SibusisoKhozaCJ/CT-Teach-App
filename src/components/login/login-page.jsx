@@ -12,9 +12,14 @@ import ROUTES from "../../routes";
 import history from "../../shared/lib/history";
 import HeaderLogo from "../../assets/icons/Header";
 import { AuthContext } from "../../shared/contexts/authContext";
+import {
+  addUserToTribe
+} from "../../redux/actions/tribe-actions";
 import * as Auth from "../../shared/lib/authentication";
 import routes from "../../routes";
+import { useDispatch } from "react-redux";
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const [loading, updateLoading] = useState(false);
   const [error, updateError] = useState();
   const { setTokens } = useContext(AuthContext);
@@ -29,6 +34,16 @@ const LoginPage = () => {
     } = event;
     updateForm({ ...form, [key]: value });
   };
+  
+  const CheckIfTribeCodeExist = async (code) => {
+    return await Auth.checkIfTribeExist(code)
+      .then((tribe) => {
+        return tribe;
+      })
+      .catch((err) => {
+        return null;
+      });
+  };
 
   const submitForm = async (event) => {
     const { email, password } = form;
@@ -37,14 +52,29 @@ const LoginPage = () => {
     Auth.signIn(email, password)
       .then((res) => {
         Auth.getProfile()
-          .then((user) => {
+          .then(async (user) => {
             Auth.setCookies(email, user.firstname);
             setTokens({ isAuthenticate: true });
             updateLoading(false);
             if (params && params.redirect) {
               const { redirect } = params;
               if(history.location && history.location.search.indexOf("redirect=/join") >= 0){
-                history.push(routes.TRIBE);
+                let paramsString = redirect.replace("/join/", "");
+                paramsString = paramsString.split("-")[0];
+                if(user.tribe_joined.includes(paramsString)){
+                  history.push(routes.TRIBE);
+                }
+                else{
+                  const isCodeExist = await CheckIfTribeCodeExist(paramsString);
+                  if (isCodeExist) {
+                    dispatch(addUserToTribe(paramsString, isCodeExist,user)).then((res) => {
+                      history.push(routes.TRIBE);  
+                    });
+                  }
+                  else{
+                    history.push(routes.TRIBE);  
+                  }
+                } 
               }
               else
                 history.push(redirect);

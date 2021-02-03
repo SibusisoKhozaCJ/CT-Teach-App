@@ -1,4 +1,5 @@
 import * as authFetch from "../../shared/lib/authorizedFetch";
+import { textWithImg, textWithLinks } from "../../shared/lib/regExp";
 import { Types } from "../constants/tribe-types";
 import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
 export function getUserTribes(user) {
@@ -24,11 +25,76 @@ export function getUserTribes(user) {
   };
 }
 
-export function addUserToTribe(data, tribeData) {
+export function tribeCodeToIframe(code) {
+  return {
+    type: Types.SET_TRIBE_CODE_IN_IFRAME,
+    payload: code,
+  };
+}
+
+export function tribeEmojiCode(code) {
+  return {
+    type: Types.SET_TRIBE_EMOJI_CODE,
+    payload: code,
+  };
+}
+
+export function openTribeModalAction() {
+  return {
+    type: Types.OPEN_TRIBE_MODAL,
+  };
+}
+
+export function closeTribeModalAction() {
+  return {
+    type: Types.CLOSE_TRIBE_MODAL,
+  };
+}
+
+export function closeTribeModalWarning() {
+  return {
+    type: Types.IS_FIND_TRIBE_LINK_OR_IMG,
+    payload: 0,
+  };
+}
+
+export function findLinkOrImg(text) {
+  const matchAllLinks = Array.from(text.matchAll(textWithLinks));
+  const matchAllImages = Array.from(text.matchAll(textWithImg));
+  const matchAll = matchAllLinks.concat(matchAllImages);
+
+  return {
+    type: Types.IS_FIND_TRIBE_LINK_OR_IMG,
+    payload: matchAll.length,
+  };
+}
+
+export function updateTribeHeader(data,tribeCode) {
+  return async (dispatch, getState) => {
+    dispatch(findLinkOrImg(data.codeInIframe));
+    const tribe = getState().tribe;
+    if (!tribe.isFindLinkOrImg) {
+      const dataUpdate = {
+        codeInIframe: data.codeInIframe || tribe.codeInIframe,
+        emojiCode: data.emojiCode || tribe.emojiCode,
+      };
+      try {
+        await firebaseUpdate(`Tribes/${tribeCode}`, dataUpdate);
+      } catch (error) {
+        console.warn("Error update Tribe", error);
+      }
+      dispatch(tribeCodeToIframe(dataUpdate.codeInIframe));
+      dispatch(tribeEmojiCode(dataUpdate.emojiCode));
+      dispatch(closeTribeModalAction());
+    }
+  };
+}
+
+export function addUserToTribe(data, tribeData, userEntered) {
   return async (dispatch, getState) => {
     const user = getState().user;
     try {
-      let userDetails = user.user;
+      let userDetails = user.user || userEntered;
       if (userDetails.tribe_joined && userDetails.tribe_joined.length) {
         if (!userDetails.tribe_joined.includes(data)) {
           userDetails.tribe_joined.push(data);
