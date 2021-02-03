@@ -236,9 +236,11 @@ header button svg {
 .commonheight {
 	min-height: 100px;
 }
-
-.nav-slide {
-	margin-bottom: 40px;
+.commonheightProfile {
+    min-height: 74px;
+}
+.nav-slide{
+    margin-bottom: 40px;
 }
 
 .center-align-div {
@@ -333,6 +335,7 @@ button:focus {
 .default-layout {
 	width: 100%;
 }
+
 
 .close-icon {
 	display: flex;

@@ -18,12 +18,6 @@ export const formPrivateControlsProfilePage = {
     inputActiveClassName: 'activeControlTextarea',
     type: 'input'
   },
-  country: {
-    label: 'Country',
-    className: 'controlInputPrivateForm',
-    inputActiveClassName: 'activeControlTextarea',
-    type: 'input'
-  },
   phone: {
     label: 'Phone',
     optional: true,
@@ -75,8 +69,9 @@ export const formPublicControlsProfilePage = {
   },
   country: {
     label: 'Country',
-    type: 'div',
-    className: 'userInfo',
+    type: 'input',
+    className: 'controlInputPublicForm',
+    inputActiveClassName: 'activeControlTextarea',
     errorMessage: 'Can\'t be empty.',
   },
   question: {

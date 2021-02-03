@@ -1,7 +1,5 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
-import {FormProfileStyles} from "../../Profile.styles";
 import {
   finishEditPrivateUserInfo,
   finishEditPublicUserInfo,
@@ -11,10 +9,8 @@ import {privateFormProfile} from "../../../../shared/lib/forms/validation";
 import {formPrivateControlsProfilePage} from "../../../../shared/lib/forms/formControls";
 import EditFormProfile from "../EditFormProfile";
 
-const useStyles = makeStyles(FormProfileStyles);
 
-const EditPublicInfo = () => {
-  const classes = useStyles({borderColor: '#D50073', paddingTop: 0, background: 'rgba(240, 238, 238, 1)'});
+const EditPrivateInfo = () => {
   const {editPrivateUserInfo, user} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
@@ -24,7 +20,6 @@ const EditPublicInfo = () => {
       firstname: user.firstname || '',
       lastname: user.lastname || '',
       email: user.email || '',
-      country: user.country || '',
       phone: user.phone || '',
       schoolName: user.schoolName || '',
       city: user.city || '',
@@ -37,7 +32,8 @@ const EditPublicInfo = () => {
     },
     finishEdit: finishEditPrivateUserInfo,
     privateForm: true,
-    classes
+    classesWrapper: { border: '5px solid #D50073'},
+    classesForm: { background: 'rgba(240, 238, 238, 1)', paddingTop: 0},
   };
 
   return (
@@ -45,4 +41,4 @@ const EditPublicInfo = () => {
   );
 };
 
-export default EditPublicInfo;
+export default EditPrivateInfo;

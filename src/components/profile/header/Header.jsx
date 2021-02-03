@@ -2,15 +2,13 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Modal from 'react-modal';
 import EditIcon from '../../../assets/icons/EditIcon'
 import {useDispatch, useSelector} from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
 import {
   closeModal,
   openModal,
   closeModalWarning,
   updateUserHeaderUserProfile
 } from "../../../redux/actions/user-actions";
-import ModalComponent from "../ModalComponent/ModalComponent";
-import { HeaderProfileStyles } from "../Profile.styles";
+import ModalComponent from "../modal-component/ModalComponent";
 import {createIframe} from "../../../shared/lib/createIframe";
 import {Button} from "@material-ui/core";
 
@@ -79,7 +77,7 @@ function writeContentToIframe(iframe, content) {
   iframe.close();
 }
 
-const Header = ({ classes }) => {
+const Header = () => {
   const [textareaValue, setTextareaValue] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [iframe_code, setIframe_code] = useState();
@@ -92,7 +90,7 @@ const Header = ({ classes }) => {
       'profileHeaderIframe',
       null, null,
       '#profile',
-      { width: '100%', height: '100%' }
+      { width: '100%', height: '100%', border: 'none' }
     );
     createIframe(
       'emojiIframe',
@@ -127,13 +125,13 @@ const Header = ({ classes }) => {
   }, [iframe_code, iframe_emoji, inputValue, textareaValue, codeInIframe, emojiCode, dispatch]);
 
   return (
-    <div id="profile" className={classes.profileHeader}>
-      <div className={classes.containerIcon}>
-        <div className={classes.circleHome}>
-          <div className={classes.editIcon}>
+    <div id="profile" className="profileHeader">
+      <div className="containerIcon">
+        <div className="circleHome">
+          <div className="editIcon">
             {isCurrentUser && <EditIcon onClick={() => dispatch(openModal())}/>}
           </div>
-          <div id="wrapperEmojiIframe" className={classes.circleHomeIcon} />
+          <div id="wrapperEmojiIframe" className="circleHomeIcon" />
         </div>
       </div>
       <ModalComponent
@@ -146,11 +144,11 @@ const Header = ({ classes }) => {
         onRequestClose={() => dispatch(closeModal())}
         style={modalStyles}
       >
-        <p className={classes.warning}>No images or hyperlinks are allowed in the profile. Please remove all src=, img or url tags before saving." [button]</p>
-        <Button className={classes.btnModalSave} onClick={() => dispatch(closeModalWarning())}>OK</Button>
+        <p className="warning">No images or hyperlinks are allowed in the profile. Please remove all src=, img or url tags before saving." [button]</p>
+        <Button className="btnModalSave" onClick={() => dispatch(closeModalWarning())}>OK</Button>
       </Modal>
     </div>
   );
 };
 
-export default withStyles(HeaderProfileStyles)(Header);
+export default Header;

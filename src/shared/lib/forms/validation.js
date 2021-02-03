@@ -14,7 +14,6 @@ export const privateFormProfile = yup.object().shape({
   firstname: yup.string().required("Field first name can't be empty"),
   lastname: yup.string().required("Field last name can't be empty"),
   email: yup.string(),
-  country: yup.string().required("Field country me can't be empty"),
   phone: yup.string().matches(phoneRegexp, 'Phone number is not valid. +(123) - 456-78-90'),
   schoolName: yup.string().required("Field school name can't be empty"),
   city: yup.string().required("Field city can't be empty"),

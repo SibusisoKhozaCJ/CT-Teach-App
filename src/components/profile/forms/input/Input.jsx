@@ -1,24 +1,20 @@
 import React from 'react';
-import {makeStyles} from "@material-ui/core/styles";
-import {FormProfileStyles} from "../../Profile.styles";
 import classNames from "classnames";
 import {isEmpty} from "lodash";
 
-const useStyles = makeStyles(FormProfileStyles);
 
 const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) => {
-  const classes = useStyles();
   const isError = !isEmpty(errors) && errors[name];
 
   const inputClasses = classNames(
-    classes[item.className],
-    (isEdit) && classes[item.inputActiveClassName],
-    isError && classes.invalid
+    item.className,
+    (isEdit) && item.inputActiveClassName,
+    isError && 'invalid'
   );
 
   return (
-    <div className={classes.control}>
-      <div className={classNames(classes.controlLabel, classes[item.hiddenClass])}>
+    <div className='controlProfile'>
+      <div className="controlLabel">
         {item.label}
         {item.optional && <span> (Optional)</span>}
       </div>
@@ -40,12 +36,12 @@ const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) =
             disabled={!isEdit}
           />
         ) : (
-          <div className={classes[item.className]}>{props.value}</div>
+          <div className={item.className}>{props.value}</div>
         )
       }
       {
         isError
-          ? <div className={classes.errorMessage}>{errors[name]?.message}</div>
+          ? <div className='errorMessage'>{errors[name]?.message}</div>
         : null
       }
     </div>

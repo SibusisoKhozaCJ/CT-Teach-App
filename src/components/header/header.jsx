@@ -18,37 +18,39 @@ import useStyles from "./styles";
 import Typography from "@material-ui/core/Typography";
 import { toggleSideBar } from "../../redux/actions/side-actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { AuthContext } from "../../shared/contexts/authContext";
+import {Link, useLocation} from "react-router-dom";
+import Cookies from 'js-cookie';
+import { AuthContext } from '../../shared/contexts/authContext';
 import { removeCookies } from "../../shared/lib/authentication";
 import routes from "../../routes";
-import { isCurrentUser, setUserId } from "../../redux/actions/user-actions";
+import { isCurrentUser, saveUser, setUserId } from "../../redux/actions/user-actions";
 
 export default function Header(props) {
   const location = useLocation();
   const classes = useStyles();
   const [profileMenu, setProfileMenu] = useState(null);
-  const { isSidebarOpened } = useSelector((state) => state.sidebar);
-  const { user, userId } = useSelector((state) => state.user);
+  const {isSidebarOpened} = useSelector(state => state.sidebar);
+  const {user, userId} = useSelector(state => state.user);
+  const currentUserInfo = useSelector(state => state.user.user);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const [idFromUrl, setIdFromUrl] = useState("");
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   const shouldLayoutRender = (pathname)=>{
     if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
       return false;
-    return true;  
+    return true;
   }
-  useEffect(() => {
-    dispatch(setUserId());
-  }, [dispatch]);
+  const userIdFromCookies = Cookies.get('userid');
 
   useEffect(() => {
-    const arr = location.pathname.split("/");
-    setIdFromUrl(arr[arr.length - 1]);
-    dispatch(isCurrentUser(userId, idFromUrl));
+    dispatch(setUserId());
+    dispatch(saveUser(userIdFromCookies));
+  }, [dispatch, userIdFromCookies]);
+
+  useEffect(() => {
+    dispatch(isCurrentUser(userId, userIdFromCookies));
     setIsLayoutRender(shouldLayoutRender(location.pathname));
-  }, [location, idFromUrl, dispatch, userId]);
+  }, [location, userIdFromCookies, dispatch, userId ]);
 
   const toggleMenuItem = () => {
     dispatch(toggleSideBar());
@@ -135,7 +137,7 @@ export default function Header(props) {
               classes.profileMenuItem,
               classes.headerMenuItem
             )}
-            to={`${routes.PROFILE}/${userId}`}
+            to={`${routes.PROFILE}/${currentUserInfo?.userName ? currentUserInfo.userName : 'dummy-userName'}`}
           >
             <MenuItem>
               <AccountIcon className={classes.profileMenuIcon} /> Profile

@@ -1,0 +1,516 @@
+$query-sm: 600px;
+$query-md: 960px;
+$query-lg: 1280px;
+
+%buttonStyles {
+  margin-top: 15px;
+  margin-right: 5%;
+  margin-left: 5%;
+  width: 40%;
+  height: 30%;
+  color: #ffffff;
+
+  &:hover {
+    opacity: 0.8
+  }
+}
+
+%btnModalCancel {
+  @extend %buttonStyles;
+  background: gray;
+
+  &:hover {
+    background: gray;
+  }
+}
+
+%btnModalSave {
+  @extend %buttonStyles;
+  background: #75cf6d;
+
+  &.Mui-disabled {
+    background: gray;
+    color: #ffffff;
+  }
+
+  &:hover {
+    background: #75cf6d;
+  }
+}
+
+%controlStyles {
+  font-weight: bold;
+  font-size: 21px
+}
+
+%activeControl {
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 1px 15px 1px 5px;
+  box-sizing: border-box
+}
+
+.profileStylesRoot {
+  width: 100%;
+
+  .MuiGrid-root.MuiGrid-container {
+    margin-top: 90px;
+
+    @media (max-width: $query-sm) {
+      margin-top: 40px;
+    }
+  }
+}
+
+.profileHeader {
+  height: 188px;
+  width: 100%;
+  @media (max-width: $query-sm) {
+    height: 180px
+  }
+
+  .btnModalCancel {
+    @extend %btnModalCancel;
+  }
+
+  .btnModalSave {
+    @extend %btnModalSave;
+  }
+
+  .containerIcon {
+    height: 0;
+    background: #ffffff;
+  }
+
+  .circleHome {
+    width: 100%;
+    position: relative;
+    top: -120px;
+    justify-content: left;
+    padding-left: 73px;
+    display: flex;
+    @media (max-width: $query-sm) {
+      top: -65px;
+      padding: 0;
+      justify-content: center
+    }
+  }
+
+  .editIcon {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    bottom: 80px;
+    right: 58px;
+    @media (max-width: $query-sm) {
+      bottom: 62px;
+      right: 23px
+    }
+  }
+
+  .circleHomeIcon {
+    background: #ffffff;
+    border: 5px solid #fbdd3f;
+    box-sizing: border-box;
+    border-radius: 50%;
+    align-items: center;
+    width: 180px;
+    height: 175px;
+    justify-content: center;
+    display: flex;
+    @media (max-width: $query-sm) {
+      width: 101px;
+      height: 98px
+    }
+  }
+
+  .warning {
+    margin: 15px;
+    margin-bottom: 0;
+    text-align: center;
+    color: red
+  }
+}
+
+.MuiGrid-root.MuiGrid-item.wrapperFormEditProfile {
+  margin-top: 93px;
+  padding: 25px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 850px;
+  @media (max-width: $query-sm) {
+    width: 100%;
+    border: none !important;
+    margin-top: 14px;
+    padding: 0;
+    height: 100%;
+  }
+
+  .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    & .MuiFormControl-root {
+      width: 100%;
+    }
+
+    & svg {
+      position: absolute;
+      top: 15px;
+      right: 29px;
+      cursor: pointer;
+      @media (max-width: $query-sm) {
+        top: 50px;
+        right: 23px;
+      }
+    }
+
+    @media (max-width: $query-sm) {
+      background: none;
+      padding-top: 11px !important;
+      padding: 0 5px;
+    }
+
+    .btnButtons {
+      position: absolute;
+      bottom: 0;
+      @media (max-width: $query-sm) {
+        position: absolute;
+        bottom: -10vh
+      }
+    }
+
+    .btnCancel {
+      @extend %btnModalCancel;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .btnSave {
+      @extend %btnModalSave;
+      margin-top: 0;
+      margin-bottom: 15px
+    }
+  }
+
+  .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    flex-direction: column;
+    width: 100%;
+    height: 64px;
+    background: #c4c4c4;
+    box-sizing: border-box;
+
+    > p {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: #364954;
+    }
+
+    svg {
+      position: absolute;
+      top: 14px;
+      right: 22px;
+      cursor: pointer;
+    }
+  }
+
+  .wrapperIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 40px;
+    width: 44px;
+    height: 44px;
+    border: 5px solid #a6a6a6;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: #ffffff;
+
+    svg {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.controlProfile {
+  display: inline-block;
+  margin-left: 26px;
+  margin-right: 29px;
+  margin-bottom: 23px;
+
+  div {
+    display: inline-block;
+  }
+
+  @media (max-width: $query-sm) {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .controlLabel {
+    @extend %controlStyles;
+    text-transform: uppercase;
+    color: #0198ED;
+    margin-bottom: 10px;
+    margin-right: 5px;
+
+    & > span {
+      text-transform: none;
+    }
+
+    @media (max-width: $query-sm) {
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+  }
+
+  .controlLabelHidden {
+    @media (max-width: $query-sm) {
+      display: none !important
+    }
+  }
+
+  .userName {
+    @extend %controlStyles;
+    color: #D40073;
+    marginLeft: 20px;
+    width: 200px;
+    @media (max-width: $query-sm) {
+      width: 140px;
+      text-align: end;
+      border: none !important;
+      margin-top: 14px;
+      padding: 0;
+      background: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 18px
+    }
+  }
+
+  .userInfo {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+    @media (max-width: $query-sm) {
+      font-size: 13px;
+    }
+  }
+
+  .controlTextarea {
+    display: block !important;
+    width: 100%;
+    height: 100px;
+    background: #ffffff;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 14px
+  }
+
+  .activeControlInput {
+    @extend %activeControl;
+    min-width: 170px;
+    @media (max-width: $query-sm) {
+      min-width: 140px;
+      padding: 0
+    }
+  }
+
+  .activeControlInput {
+    @extend %activeControl;
+    min-width: 170px;
+    @media (max-width: $query-sm) {
+      min-width: 140px;
+      padding: 0
+    }
+  }
+
+  .activeControlTextarea {
+    @extend %activeControl;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .invalid {
+    border-color: #ff0000;
+    border-radius: 5px;
+
+    :focus {
+      outline: none
+    }
+  }
+
+  .errorMessage {
+    color: #ff0000;
+    font-size: 12px;
+  }
+
+  .controlInputPrivateForm {
+    display: block;
+    width: 100%;
+    height: 32px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+    padding-left: 6px;
+    padding-right: 6px;
+    box-sizing: border-box;
+    padding-top: 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    @media (max-width: $query-sm) {
+      height: 27px;
+      line-height: 27px;
+      font-size: 15px
+    }
+  }
+
+  .controlInputPublicForm {
+    display: block;
+    width: 100%;
+    height: 32px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+    padding-left: 6px;
+    padding-right: 6px;
+    box-sizing: border-box;
+    padding-top: 0;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    @media (max-width: $query-sm) {
+      height: 27px;
+      line-height: 27px;
+      font-size: 15px;
+    }
+  }
+}
+
+.modalProfileEditCheck {
+  .btnCancel {
+    @extend %btnModalCancel;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .btnSave {
+    @extend %btnModalSave;
+    margin-top: 0;
+    margin-bottom: 15px
+  }
+}
+
+.modalContentEditProfile {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  @media (max-width: $query-sm) {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .textArea {
+    border: 1px solid #eaeaeb;
+    background: #364954;
+    color: #ffffff;
+    font-size: 17px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 17px;
+    resize: none;
+
+    &::placeholder {
+      color: #ffffff;
+      font-size: 17px;
+    }
+  }
+
+  .btnModalCancel {
+    @extend %btnModalCancel;
+  }
+
+  .btnModalSave {
+    @extend %btnModalSave;
+  }
+
+  .inputWrapper {
+    background: #364954;
+    width: 100%;
+    font-size: 12px;
+    box-sizing: border-box;
+
+    input {
+      height: 44px;
+      padding: 0 10px;
+      font-size: 17px;
+      color: #ffffff;
+    }
+  }
+
+  .modalPrivate {
+    background-color: #ffffff;
+    padding: 30px;
+  }
+
+  .personalize {
+    > h5 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28px;
+      margin-bottom: 25px;
+    }
+
+    > h6 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 21px;
+    }
+
+    > p {
+      font-size: 18px;
+      line-height: 1;
+    }
+  }
+
+  .tipNote {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    margin: 20px auto;
+
+    > a {
+      font-weight: 700;
+      color: #0198ED;
+    }
+  }
+
+  .textareaError {
+    color: #ff0000;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .warning {
+    margin: 15px;
+    margin-bottom: 0;
+    text-align: center;
+    color: red
+  }
+}

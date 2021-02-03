@@ -16,7 +16,7 @@ const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) =
     (isEdit) && classes[item.inputActiveClassName],
     isError && classes.invalid
   );
-
+  console.log(item.hiddenClass);
   return (
     <div className={classes.control}>
       <div className={classNames(classes.controlLabel, classes[item.hiddenClass])}>
