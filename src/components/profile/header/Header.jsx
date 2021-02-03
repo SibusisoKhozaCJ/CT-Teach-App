@@ -3,21 +3,22 @@ import Modal from 'react-modal';
 import EditIcon from '../../../assets/icons/EditIcon'
 import {useDispatch, useSelector} from "react-redux";
 import {
-  closeModal,
-  openModal,
+  closeModalAction,
+  openModalAction,
   closeModalWarning,
   updateUserHeaderUserProfile
 } from "../../../redux/actions/user-actions";
-import ModalComponent from "../modal-component/ModalComponent";
+import ModalComponent from "../../../shared/components/profile-header-modal";
 import {createIframe} from "../../../shared/lib/createIframe";
 import {Button} from "@material-ui/core";
+import { wrapperEmojiInHtmlString, writeContentToIframe } from '../../../shared/lib/contentRender';
 
 Modal.setAppElement('#modalInProfile');
 
 const modalStyles = {
   overlay: {
     background: 'rgba(0, 0, 0, 0.58)',
-    zIndex: 11
+    zIndex: 1302
   },
   content: {
     position: 'relative',
@@ -40,49 +41,12 @@ const modalStyles = {
   }
 };
 
-function wrapperEmoji(emoji) {
-  return `
-    <html lang="en">
-        <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <title>Profile emoji</title>
-            <style type="text/css">
-                body {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                }
-                .fa {
-                  font-size: 120px;
-                  line-height: 148px;
-                }
-                @media screen and (max-device-width: 959px) {
-                    .fa {
-                        font-size: 60px;
-                        line-height: 70px;
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <i class="fa">${emoji}</i>
-        </body>
-    </html>
-  `
-}
-
-function writeContentToIframe(iframe, content) {
-  iframe.open();
-  iframe.write(content);
-  iframe.close();
-}
-
 const Header = () => {
   const [textareaValue, setTextareaValue] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [iframe_code, setIframe_code] = useState();
   const [iframe_emoji, setIframe_emoji] = useState();
-  const {codeInIframe, emojiCode, isCurrentUser, isFindLinkOrImg} = useSelector(state => state.user);
+  const {codeInIframe, emojiCode, isCurrentUser, isFindLinkOrImg, openModal} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -107,7 +71,7 @@ const Header = () => {
   useEffect(() => {
     if (iframe_code && iframe_emoji) {
       writeContentToIframe(iframe_code, codeInIframe);
-      writeContentToIframe(iframe_emoji, wrapperEmoji(emojiCode));
+      writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
     }
   }, [iframe_code, iframe_emoji, codeInIframe, emojiCode]);
 
@@ -121,7 +85,7 @@ const Header = () => {
     dispatch(updateUserHeaderUserProfile(data));
 
     writeContentToIframe(iframe_code, codeInIframe);
-    writeContentToIframe(iframe_emoji, wrapperEmoji(emojiCode));
+    writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
   }, [iframe_code, iframe_emoji, inputValue, textareaValue, codeInIframe, emojiCode, dispatch]);
 
   return (
@@ -129,7 +93,7 @@ const Header = () => {
       <div className="containerIcon">
         <div className="circleHome">
           <div className="editIcon">
-            {isCurrentUser && <EditIcon onClick={() => dispatch(openModal())}/>}
+            {isCurrentUser && <EditIcon onClick={() => dispatch(openModalAction())}/>}
           </div>
           <div id="wrapperEmojiIframe" className="circleHomeIcon" />
         </div>
@@ -138,10 +102,15 @@ const Header = () => {
         saveAbout={saveAbout}
         setTextareaValue={setTextareaValue}
         setInputValue={setInputValue}
+        codeInIframe={codeInIframe}
+        emojiCode={emojiCode}
+        openModal={openModal}
+        isFindLinkOrImg={isFindLinkOrImg}
+        closeModal={()=>{dispatch(closeModalWarning());dispatch(closeModalAction())}}
       />
       <Modal
         isOpen={isFindLinkOrImg}
-        onRequestClose={() => dispatch(closeModal())}
+        onRequestClose={() => {dispatch(closeModalWarning())}}
         style={modalStyles}
       >
         <p className="warning">No images or hyperlinks are allowed in the profile. Please remove all src=, img or url tags before saving." [button]</p>

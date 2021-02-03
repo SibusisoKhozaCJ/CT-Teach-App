@@ -2,8 +2,6 @@ import React from 'react';
 import {TextareaAutosize, TextField, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
-import {useDispatch, useSelector} from "react-redux";
-import {closeModal} from "../../../redux/actions/user-actions";
 import { Link } from 'react-router-dom';
 
 const modalStyles = {
@@ -26,19 +24,22 @@ const modalStyles = {
   }
 };
 
-const ModalComponent = (
+const ProfileHeaderModalComponent = (
   {
     saveAbout,
     setTextareaValue,
-    setInputValue
+    setInputValue,
+    closeModal,
+    codeInIframe,
+    emojiCode,
+    openModal, 
+    isFindLinkOrImg
   }) => {
-  const {codeInIframe, emojiCode, openModal, isFindLinkOrImg} = useSelector(state => state.user);
-  const dispatch = useDispatch();
 
   return (
     <Modal
       isOpen={openModal}
-      onRequestClose={() => dispatch(closeModal())}
+      onRequestClose={() => closeModal()}
       className='modalContentEditProfile'
       style={modalStyles}
       contentLabel='Modal'
@@ -85,7 +86,7 @@ const ModalComponent = (
           onChange={event => setInputValue(event.target.value)}
         />
         <Button
-          onClick={() => dispatch(closeModal())}
+          onClick={() => closeModal()}
           className="btnModalCancel"
         >
           Cancel
@@ -102,4 +103,5 @@ const ModalComponent = (
   );
 };
 
-export default ModalComponent;
+export default ProfileHeaderModalComponent;
+

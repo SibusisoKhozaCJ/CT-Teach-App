@@ -61,7 +61,7 @@ export function updateUserHeaderUserProfile(data) {
       }
       dispatch(codeToIframe(dataUpdate.codeInIframe));
       dispatch(emojiCode(dataUpdate.emojiCode));
-      dispatch(closeModal());
+      dispatch(closeModalAction());
     }
   };
 }
@@ -80,13 +80,13 @@ export function emojiCode(code) {
   };
 }
 
-export function openModal() {
+export function openModalAction() {
   return {
     type: Types.OPEN_MODAL,
   };
 }
 
-export function closeModal() {
+export function closeModalAction() {
   return {
     type: Types.CLOSE_MODAL,
   };
@@ -106,7 +106,7 @@ export function findLinkOrImg(text) {
 export function closeModalWarning() {
   return {
     type: Types.IS_FIND_LINK_OR_IMG,
-    payload: false,
+    payload: 0,
   };
 }
 
