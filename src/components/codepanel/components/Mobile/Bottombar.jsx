@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,6 +16,11 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import CropOriginalIcon from "@material-ui/icons/CropOriginal";
 import PublishIcon from "@material-ui/icons/Publish";
 import SaveIcon from "@material-ui/icons/Save";
+
+import {
+  codepanelIncFontsize,
+  codepanelDecFontsize
+} from '../../../../redux/actions/codepanel-actions'
 
 const useStyles = makeStyles((theme) => ({
   mobileBottomBar: {
@@ -42,6 +47,8 @@ const Bottombar = () => {
   const editor = useSelector(state => state.codepanel.editor);
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const insertCharacter = (location, character) => {
     editor.executeEdits("", [
@@ -138,10 +145,10 @@ const Bottombar = () => {
                     <MenuItem onClick={() => setIsMenuOpen(false)}>
                       <VisibilityOffIcon />
                     </MenuItem>
-                    <MenuItem onClick={() => {}}>
+                    <MenuItem onClick={() => dispatch(codepanelDecFontsize())}>
                       <span style={{ fontSize: "20px" }}>T</span>
                     </MenuItem>
-                    <MenuItem onClick={() => {}}>
+                    <MenuItem onClick={() => dispatch(codepanelIncFontsize())}>
                       <span style={{ fontSize: "30px" }}>T</span>
                     </MenuItem>
                   </div>

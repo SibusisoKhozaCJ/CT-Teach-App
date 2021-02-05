@@ -15,6 +15,19 @@ export const codepanelSetProgress = progress => ({
   payload: progress
 });
 
+export const codepanelSetFontsize = fontSize => ({
+  type: Types.LESSON_SET_FONTSIZE,
+  payload: fontSize
+});
+
+export const codepanelIncFontsize = () => ({
+  type: Types.LESSON_INC_FONTSIZE,
+});
+
+export const codepanelDecFontsize = () => ({
+  type: Types.LESSON_DEC_FONTSIZE,
+});
+
 export const codepanelSetCode = code => ({
   type: Types.LESSON_SET_CODE,
   payload: code

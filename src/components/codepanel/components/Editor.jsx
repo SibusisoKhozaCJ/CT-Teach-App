@@ -11,6 +11,7 @@ const Editor = () => {
   const storedCode = useSelector(state => state.codepanel.code)
   const [code, setCode] = useState(storedCode)
   const [timer, setTimer] = useState(null);
+  const fontSize = useSelector(state => state.codepanel.fontSize)
 
   const dispatch = useDispatch();
 
@@ -34,7 +35,8 @@ const Editor = () => {
 
   const options = {
     selectOnLineNumbers: true,
-    automaticLayout: true
+    automaticLayout: true,
+    fontSize
   };
 
   return (

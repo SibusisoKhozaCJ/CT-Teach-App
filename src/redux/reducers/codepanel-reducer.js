@@ -12,7 +12,8 @@ const initialState = {
   isValid: false,
   checkpoints: {},
   progress: 0,
-  checkpointsCount: 0
+  checkpointsCount: 0,
+  fontSize: 14
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -46,6 +47,15 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_SLIDES: {
       return { ...state, slides: action.payload };
+    }
+    case Types.LESSON_SET_FONTSIZE: {
+      return { ...state, fontSize: action.payload };
+    }
+    case Types.LESSON_INC_FONTSIZE: {
+      return { ...state, fontSize: state.fontSize + 1};
+    }
+    case Types.LESSON_DEC_FONTSIZE: {
+      return { ...state, fontSize: state.fontSize - 1};
     }
     case Types.LESSON_SET_PREVIEW: {
       return { ...state, preview: action.payload };
