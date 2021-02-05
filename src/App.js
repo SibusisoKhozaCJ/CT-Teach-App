@@ -33,6 +33,7 @@ import JoinTribe from "./components/join-tribe/join-tribe-page"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
 import Footer from './components/footer/footer';
+import Codepanel from './components/codepanel/Codepanel'
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -110,6 +111,7 @@ const App = () => {
                     <Route path={routes.JOIN_TRIBE_ID}>
                       <JoinTribe isAuthenticated={isAuthenticate}/>
                     </Route>
+                    <Route path={routes.CODE_PANEL} component={Codepanel} />
                     <ProtectedRoute path={routes.HOME} component={Home} />
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />

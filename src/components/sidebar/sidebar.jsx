@@ -72,7 +72,12 @@ function Sidebar({ location }) {
   const [tribeCode, setTribeChange] = useState("");
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   const shouldLayoutRender = (pathname)=>{
-    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+    if (
+        pathname === routes.LOGIN ||
+        pathname === routes.NEW_ACCOUNT ||
+        pathname.includes('/join') ||
+        pathname.includes('/codepanel')
+      )
       return false;
     return true;  
   }

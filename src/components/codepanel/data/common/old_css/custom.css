@@ -1,0 +1,26 @@
+@import "./learn.css";
+@import "./lessons.css";
+
+#lesson-page .btn-main,
+#lesson-page .btn-primary,
+#lesson-page .btn-primary-alt,
+#lesson-page .btn-action,
+#lesson-page .btn-success {
+    width: auto;
+}
+
+.bounce-arrow {
+    position: relative !important;
+}
+
+.m-4 {
+    margin: 1.5rem !important;
+}
+
+.button-unlocked {
+    display: none;
+}
+
+.button-locked {
+    display: block;
+}
