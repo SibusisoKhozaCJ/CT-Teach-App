@@ -15,7 +15,6 @@ const Editor = () => {
   const dispatch = useDispatch();
 
   const editorDidMount = editor => {
-    console.log('editor mountd')
     dispatch(codepanelSetEditor(editor));
     // editor.focus();
   };

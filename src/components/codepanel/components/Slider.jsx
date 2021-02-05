@@ -65,7 +65,6 @@ const Slider = () => {
         e.target.closest(".swiper-editor") &&
         e.target.closest(".validated"))
     ) {
-      console.log('next slide click')
       dispatch(codepanelSetSlideNumber(currentSlideNumber + 1));
       // setCurrentSlide(currentSlide + 1);
     }

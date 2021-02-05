@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Topbar from "./Topbar";
 import Bottombar from "./Bottombar";
 import { codepanelSetTab } from "../../../../redux/actions/codepanel-actions";
-// import { Tutorial } from "./Tutorial";
+import Tutorial from "./Tutorial";
 
 const MobileLayout = ({ editor, slider, preview }) => {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ const MobileLayout = ({ editor, slider, preview }) => {
           {preview}
         </div>
       </SwipeableViews>
-      {/* {index === 1 && <Tutorial />} */}
+      {index === 1 && <Tutorial />}
       <div />
       <Bottombar />
     </div>
