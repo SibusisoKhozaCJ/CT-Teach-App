@@ -1,0 +1,201 @@
+.chat-container {
+  position: absolute;
+  width: 340px;
+  //height: 520px;
+  top: 100px;
+  background: mediumturquoise;
+  z-index: 999;
+  right: 0;
+  border: 2px solid black;
+
+  .chat-header {
+    background: pink;
+  }
+
+  .text-message {
+    //height: 40px;
+    //font-size: 16px;
+    //min-width: 90%;
+    //padding-left: 15px;
+    //background-color: #fff;
+    //border-radius: 15px;
+    //border: none;
+
+    height: 25px;
+    width: 100%;
+    border-radius: 24px;
+    border: none;
+    outline: none;
+    background: lightgray;
+    padding: 24px;
+  }
+
+  button[type="submit"] {
+    position: absolute;
+    right: 10px;
+    //top: 4px;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 2px;
+    background: green;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .ChatFooter {
+    //position: fixed;
+    //bottom: 0;
+    //left: 0;
+    //width: 100%;
+    //padding: 10px;
+    //background-color: #ffffff;
+    //border-top: solid 1px #efefef;
+    position: initial;
+    padding: 10px;
+    border-top: solid 1px #efefef;
+    display: block;
+  }
+}
+
+header {
+  width: 100%;
+  background: pink;
+}
+
+.Container {
+  display: flex;
+  padding: 10px;
+}
+
+.UsersCard {
+  margin: 5px 20px;
+}
+
+.MessageForm {
+  position: relative;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.MessageBox {
+  float: left;
+  width: 98%;
+  margin: 5px 0 0 2%;
+}
+
+.MessageBox .ChatMessage {
+  width: 80%;
+  min-height: 40px;
+}
+
+.MessageBox .ChatMessage .RightBubble {
+  position: relative;
+  background: #FFFFFF;
+  border-top-left-radius: .4em;
+  border-bottom-left-radius: .4em;
+  border-bottom-right-radius: .4em;
+  padding: 5px 10px 10px;
+  left: 15%;
+  border: 3px solid #D50073;
+}
+
+.MessageBox .ChatMessage .RightBubble span.MsgName {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+}
+
+.MessageBox .ChatMessage .RightBubble span.MsgDate {
+  font-size: 10px;
+}
+
+.MessageBox .ChatMessage .RightBubble:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 13px;
+  width: 0;
+  height: 0;
+  border: 27px solid transparent;
+  border-left-color: #FFFFFF;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -13.5px;
+  margin-right: -27px;
+}
+
+.MessageBox .ChatMessage .LeftBubble {
+  position: relative;
+  background: #FFFFFF;
+  border-top-right-radius: .4em;
+  border-bottom-left-radius: .4em;
+  border-bottom-right-radius: .4em;
+  padding: 5px 10px 10px;
+  left: 5%;
+  border: 3px solid #35BDAD;
+}
+
+.MessageBox .ChatMessage .LeftBubble span.MsgName {
+  font-size: 12px;
+  font-weight: bold;
+  color: blue;
+}
+
+.MessageBox .ChatMessage .LeftBubble span.MsgDate {
+  font-size: 10px;
+}
+
+.MessageBox .ChatMessage .LeftBubble:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 0;
+  height: 0;
+  border: 27px solid transparent;
+  border-right-color: #FFFFFF;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -13.5px;
+  margin-left: -27px;
+}
+
+.MessageBox .ChatStatus {
+  min-height: 49px;
+}
+
+.MessageBox .ChatStatus .ChatDate {
+  display: block;
+  font-size: 10px;
+  font-style: italic;
+  color: #777;
+  height: 15px;
+  left: 10%;
+  right: 10%;
+}
+
+.MessageBox .ChatStatus .ChatContentCenter {
+  padding: 5px 10px;
+  background-color: #e1e1f7;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #555;
+  height: 34px;
+  left: 10%;
+  right: 10%;
+}
+
+.ChatContent {
+  //overflow-y: scroll;
+  //height: 600px;
+
+  //overflow-y: scroll;
+  height: 400px;
+  //width: 30%;
+  background: rgba(21, 82, 117, 0.25);
+}
