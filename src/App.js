@@ -89,8 +89,8 @@ const App = () => {
       <AuthContext.Provider value={authProviderValue}>
         <div className="main">
           {isAuthenticate && <Header />}
-          {isAuthenticate && <Chat />}
           {isAuthenticate && <Sidebar location={location} />}
+          {isAuthenticate && <Chat />}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
             <Paper>
               <Grid container>

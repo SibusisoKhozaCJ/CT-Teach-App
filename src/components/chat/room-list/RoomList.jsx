@@ -1,40 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { makeStyles } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 import Moment from 'moment';
-import firebase from "firebase";
+import classNames from 'classnames';
+import firebase from 'firebase';
 
-import { setChatRoom } from '../../../redux/actions/chat-action';
+import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
 import FooterRoomList from './FooterRoomList';
 import HeaderRoomList from './HeaderRoomList';
+import SearchRoomList from './SearchRoomList';
 
 const useStyles = makeStyles(theme => ({
-  listItem: {
-    borderBottom: '1px solid blue',
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    height: '440px',
+    overflow: 'auto',
+    backgroundColor: theme.palette.background.paper,
+    '& span': {
+      fontWeight: 'bold',
+    },
+  },
+  spinner: {
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%)',
+  },
+  avatar: {
+    background: '#43D4DD',
+    border: '2px solid #e83e8c',
+  },
+  dots: {
+    color: '#43D4DD',
   },
 }));
 
 function RoomList() {
   const classes = useStyles();
+  const chatStatus = useSelector(state => state.chat.chatStatus);
   const [firstname, setFirstName] = useState('');
   const [room, setRoom] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const dispatch = useDispatch();
+  const { userId, userFirstName } = getCookies();
+  const userTribes = [];
 
   useEffect(() => {
-    const { userId, userFirstName } = getCookies();
     setFirstName(userFirstName);
-    const userTribes = [];
     const fetchData = async () => {
       firebase
         .database()
         .ref('Users/' + userId)
-        .once('value', snapshot => {
+        .on('value', snapshot => {
           const item = snapshot.val();
           if (item.tribe_code) {
             userTribes.push(item.tribe_code);
@@ -97,33 +124,54 @@ function RoomList() {
         }
       });
 
-    dispatch(setChatRoom(roomname));
+    dispatch(actions.setChatRoom(roomname));
+    dispatch(actions.setCurrentRoomRoom(roomname));
   };
 
+  const roomListBody = (
+    <List dense className={classes.root}>
+      {room.map(value => {
+        const labelId = `checkbox-list-secondary-label-${value}`;
+        return (
+          <ListItem
+            key={value}
+            button
+            onClick={() => {
+              enterChatRoom(value);
+            }}
+          >
+            <ListItemAvatar>
+              <Avatar
+                alt={`Avatar n°${value + 1}`}
+                src={`/static/images/avatar/${value + 1}.jpg`}
+                className={classes.avatar}
+              />
+            </ListItemAvatar>
+            <ListItemText id={labelId} primary={`Room name: ${value + 1}`} className={classes.textItem} />
+            <ListItemSecondaryAction>
+              <MoreVertIcon className={classes.dots} />
+            </ListItemSecondaryAction>
+          </ListItem>
+        );
+      })}
+    </List>
+  );
+
+  const spinner = (
+    <div className={classes.spinner}>
+      <CircularProgress />
+    </div>
+  );
+
+  const bodyRoomList = showLoading ? spinner : roomListBody;
+
   return (
-    <>
-      {showLoading && <CircularProgress />}
-      <FooterRoomList />
-      <List dense component="div" role="list">
-        {room.map((item, idx) => {
-          return (
-            <ListItem
-              key={idx}
-              role="listitem"
-              button
-              className={classes.listItem}
-              onClick={() => {
-                enterChatRoom(item);
-              }}
-            >
-              {item}
-              <MoreVertIcon />
-            </ListItem>
-          );
-        })}
-      </List>
+    <div className={classNames('room-list-wrapper', { hidden: chatStatus !== 'roomlist' })}>
       <HeaderRoomList />
-    </>
+      <SearchRoomList />
+      {bodyRoomList}
+      <FooterRoomList />
+    </div>
   );
 }
 

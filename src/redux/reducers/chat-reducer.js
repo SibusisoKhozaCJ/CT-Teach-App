@@ -1,22 +1,44 @@
-import { SET_ROOMLIST, SET_CHATROOM } from '../constants/chat-types';
+import * as actionTypes from '../constants/chat-types';
 
 const initialState = {
   chatStatus: 'roomlist',
   room: '',
+  currentRoom: '',
+  isVisibleChat: true,
 };
 
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_ROOMLIST:
+    case actionTypes.SET_ROOM_LIST:
       return {
         ...state,
         chatStatus: action.chatStatus,
       };
-    case SET_CHATROOM:
+    case actionTypes.SET_CHAT_ROOM:
       return {
         ...state,
         chatStatus: action.chatStatus,
         room: action.room,
+      };
+    case actionTypes.SET_CURRENT_ROOM:
+      return {
+        ...state,
+        currentRoom: action.currentRoom,
+      };
+    case actionTypes.CLEAR_CURRENT_ROOM:
+      return {
+        ...state,
+        currentRoom: '',
+      };
+    case actionTypes.SHOW_CHAT:
+      return {
+        ...state,
+        isVisibleChat: true,
+      };
+    case actionTypes.HIDE_CHAT:
+      return {
+        ...state,
+        isVisibleChat: false,
       };
     default:
       return state;

@@ -2,23 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'moment';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import firebase from "firebase";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core';
+import classNames from 'classnames';
+import firebase from 'firebase';
 
-import { setRoomLIst } from '../../../redux/actions/chat-action';
+import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
 import HeaderChat from './HeaderChatRoom';
 import FooterChatRoom from './FooterChatRoom';
 
-// import SendIcon from '@material-ui/icons/Send';
+const useStyles = makeStyles(theme => ({
+  spinner: {
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%,-50%)',
+  },
+}));
 
 function ChatRoom() {
+  const classes = useStyles();
   const [chats, setChats] = useState([]);
   const [firstname, setFirstName] = useState('');
   const [roomname, setRoomname] = useState('');
   const [newchat, setNewchat] = useState({ roomname: '', firstname: '', message: '', date: '', type: '' });
   const dispatch = useDispatch();
-  const room = useSelector(state => state.chat.room);
+  const { room, chatStatus } = useSelector(state => state.chat);
   const { userFirstName } = getCookies();
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,11 +45,12 @@ function ChatRoom() {
         .on('value', snapshot => {
           setChats([]);
           setChats(snapshotToArray(snapshot));
+          setShowLoading(false);
         });
     };
 
     fetchData();
-  }, [room, roomname]);
+  }, [room, roomname, userFirstName]);
 
   const snapshotToArray = snapshot => {
     const returnArr = [];
@@ -68,7 +81,7 @@ function ChatRoom() {
     setNewchat({ ...newchat, [e.target.name]: e.target.value });
   };
 
-  const exitChat = e => {
+  const exitChat = () => {
     const chat = { roomname: '', firstname: '', message: '', date: '', type: '' };
     chat.roomname = roomname;
     chat.firstname = firstname;
@@ -93,38 +106,51 @@ function ChatRoom() {
         }
       });
 
-    dispatch(setRoomLIst());
+    dispatch(actions.setRoomLIst());
+    dispatch(actions.clearCurrentRoom());
   };
 
+  const bodyChatRoom = (
+    <ScrollToBottom className="ChatContent">
+      {chats.map((item, idx) => (
+        <div key={idx} className="MessageBox">
+          {item.type === 'join' || item.type === 'exit' ? (
+            <div className="ChatStatus">
+              <span className="ChatDate">{item.date}</span>
+              <span className="ChatContentCenter">{item.message}</span>
+            </div>
+          ) : (
+            <div className="ChatMessage">
+              <div className={`${item.firstname === firstname ? 'RightBubble' : 'LeftBubble'}`}>
+                {item.firstname === firstname ? (
+                  <span className="MsgName">Me</span>
+                ) : (
+                  <span className="MsgName">{item.firstname}</span>
+                )}
+                <span className="MsgDate"> at {item.date}</span>
+                <p>{item.message}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </ScrollToBottom>
+  );
+
+  const spinner = (
+    <div className={classes.spinner}>
+      <CircularProgress />
+    </div>
+  );
+
+  const bodyChatRoomList = showLoading ? spinner : bodyChatRoom;
+
   return (
-    <>
+    <div className={classNames({ hidden: chatStatus !== 'chatroom' })}>
       <HeaderChat exitChat={exitChat} />
-      <ScrollToBottom className="ChatContent">
-        {chats.map((item, idx) => (
-          <div key={idx} className="MessageBox">
-            {item.type === 'join' || item.type === 'exit' ? (
-              <div className="ChatStatus">
-                <span className="ChatDate">{item.date}</span>
-                <span className="ChatContentCenter">{item.message}</span>
-              </div>
-            ) : (
-              <div className="ChatMessage">
-                <div className={`${item.firstname === firstname ? 'RightBubble' : 'LeftBubble'}`}>
-                  {item.firstname === firstname ? (
-                    <span className="MsgName">Me</span>
-                  ) : (
-                    <span className="MsgName">{item.firstname}</span>
-                  )}
-                  <span className="MsgDate"> at {item.date}</span>
-                  <p>{item.message}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
-      </ScrollToBottom>
+      {bodyChatRoomList}
       <FooterChatRoom submitMessage={submitMessage} onChange={onChange} value={newchat.message} />
-    </>
+    </div>
   );
 }
 

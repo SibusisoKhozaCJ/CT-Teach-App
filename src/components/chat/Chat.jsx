@@ -4,19 +4,14 @@ import { useSelector } from 'react-redux';
 import RoomList from './room-list/RoomList';
 import ChatRoom from './chat-room/ChatRoom';
 
-
 const Chat = () => {
-  const chatStatus = useSelector(state => state.chat.chatStatus);
-  let chat;
-
-  if (chatStatus === 'roomlist') {
-    chat = <RoomList />;
-  } else if (chatStatus === 'chatroom') {
-    chat = <ChatRoom />;
-  }
+  const { isVisibleChat } = useSelector(state => state.chat);
 
   return (
-      <div className="chat-container">{chat}</div>
+    <div className={`chat-container ${isVisibleChat ? 'openChat' : 'closeChat'}`}>
+      <RoomList />
+      <ChatRoom />
+    </div>
   );
 };
 
