@@ -23,6 +23,7 @@ import { AuthContext } from '../../shared/contexts/authContext';
 import { removeCookies } from "../../shared/lib/authentication";
 import routes from "../../routes";
 import { isCurrentUser, setUserId } from "../../redux/actions/user-actions";
+import * as actions from "../../redux/actions/chat-action";
 
 export default function Header() {
   const location = useLocation();
@@ -61,6 +62,10 @@ export default function Header() {
     removeCookies();
   };
 
+  const handleClickShowChat = () => {
+    dispatch(actions.showChat());
+  }
+
   return (
     (isLayoutRender && <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
@@ -97,6 +102,7 @@ export default function Header() {
           aria-haspopup="true"
           color="inherit"
           className="header-chat"
+          onClick={handleClickShowChat}
         >
           <ChatSvg classes={{ root: classes.headerIcon }} />
         </IconButton>

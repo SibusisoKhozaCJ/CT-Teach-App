@@ -33,6 +33,7 @@ import JoinTribe from "./components/join-tribe/join-tribe-page"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
 import Footer from './components/footer/footer';
+import Chat from './components/chat/chat';
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -89,6 +90,7 @@ const App = () => {
         <div className="main">
           {isAuthenticate && <Header />}
           {isAuthenticate && <Sidebar location={location} />}
+          {isAuthenticate && <Chat />}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
             <Paper>
               <Grid container>
