@@ -9,8 +9,8 @@ import firebase from 'firebase';
 
 import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
-import HeaderChat from './HeaderChatRoom';
-import FooterChatRoom from './FooterChatRoom';
+import HeaderChat from './header-chat-room';
+import FooterChatRoom from './footer-chat-room';
 
 const useStyles = makeStyles(theme => ({
   spinner: {

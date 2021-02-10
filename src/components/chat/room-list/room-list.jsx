@@ -15,9 +15,9 @@ import firebase from 'firebase';
 
 import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
-import FooterRoomList from './FooterRoomList';
-import HeaderRoomList from './HeaderRoomList';
-import SearchRoomList from './SearchRoomList';
+import FooterRoomList from './footer-room-list';
+import HeaderRoomList from './header-room-list';
+import SearchRoomList from './search-room-list';
 
 const useStyles = makeStyles(theme => ({
   root: {
