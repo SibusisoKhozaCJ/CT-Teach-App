@@ -7,7 +7,11 @@
   overflow: hidden;
   min-height: 600px;
   background: #FFFFFF;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 
   z-index: 9999;
 
@@ -31,9 +35,8 @@
 .room-list-wrapper {
   .room-list-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 100%;
     height: 50px;
     border-bottom: 1px solid grey;
 
@@ -49,10 +52,6 @@
     .room-list-content {
       height: 540px;
     }
-
-    .close-btn {
-      color: black;
-    }
   }
 
   .search {
@@ -60,19 +59,5 @@
     height: 50px;
     align-items: center;
     border-bottom: 1px solid grey;
-  }
-
-  .footer {
-    position: absolute;
-    display: flex;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    background: #43D4DD;
-    align-items: center;
-
-    .MuiBottomNavigationAction-root.MuiBottomNavigationAction-iconOnly {
-      padding-top: 0;
-    }
   }
 }

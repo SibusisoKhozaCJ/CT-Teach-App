@@ -15,17 +15,13 @@ import firebase from 'firebase';
 
 import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
-import FooterRoomList from './footer-room-list';
 import HeaderRoomList from './header-room-list';
 import SearchRoomList from './search-room-list';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
-    height: '440px',
+    height: '490px',
     overflow: 'auto',
-    backgroundColor: theme.palette.background.paper,
     '& span': {
       fontWeight: 'bold',
     },
@@ -61,7 +57,7 @@ function RoomList() {
       firebase
         .database()
         .ref('Users/' + userId)
-        .on('value', snapshot => {
+        .once('value', snapshot => {
           const item = snapshot.val();
           if (item.tribe_code) {
             userTribes.push(item.tribe_code);
@@ -170,7 +166,6 @@ function RoomList() {
       <HeaderRoomList />
       <SearchRoomList />
       {bodyRoomList}
-      <FooterRoomList />
     </div>
   );
 }
