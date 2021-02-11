@@ -17,6 +17,22 @@
 .manage-frnd .top-friend-btn button span {
     margin-right: 0px !important;
 }
+.manage-frnd .tribe-expandtext ul li{
+	font-size: 15px;
+}
+.manage-frnd .title-text {
+    font-size: 14px;
+}
+.manage-frnd .tribe-expandtext ul li span {   
+    font-size: 16px;
+   
+}
+.manage-frnd .tribe-expandtext ul li strong {
+    margin-right: 2px !important;
+}
+.manage-frnd .tribe-expandtext ul {
+    padding: 0 10px !important;   
+}
 }
 
 @media only screen and (max-width: 600px) {
@@ -44,6 +60,9 @@
 		.headermenubutton {
 			left: 0;
 		}
+	}
+	.tribe-page{
+		width: 100%;
 	}
 	.page-divid .pgeBG {
 		background: transparent;

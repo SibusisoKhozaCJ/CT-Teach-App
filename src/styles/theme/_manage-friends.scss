@@ -32,11 +32,11 @@
         margin-top: 5px;
 	}
    .manage-frnd-btn button {
-				min-width: 210px;
-				height: 58px;				
+				min-width: 195px;
+				height: 46px;				
 				border-radius: 40px;
 				font-weight: 700;
-				font-size: 24px;
+				font-size: 20px;
 				line-height: 33px;
 				text-align: center;
 				color: #FFFFFF;
@@ -55,7 +55,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: -30px;
+		margin-top: -34px;
 		margin-left: 50%;
 		z-index: 9;
 		background: #FFFFFF;
@@ -81,6 +81,7 @@
 				strong {
 					margin-right: 20px;
 				}
+
 			}
 		}
 		.expand-icontext {
@@ -103,6 +104,7 @@ right: 0;
 left: 90%;
 color: #fff;
 border-radius: 40px;
+cursor: pointer;
         }
     }
 .top-friend-btn {
@@ -126,6 +128,12 @@ border-radius: 40px;
     border: none ;
     font-size: 30px ;
 }
+}
+.friend-tag span {
+    background: #fbdd3f;
+    border-radius: 40px;
+    padding: 2px 12px;
+    font-size: 17px;
 }
 
 

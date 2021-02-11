@@ -26,6 +26,7 @@ const FriendsPage = () => {
   useEffect(() => {
     if (user !== null) {
       if (user.friends && user.friends.length > 0) {
+          debugger
         dispatch(setUserFriends(user));
       }
     } else {
@@ -123,7 +124,7 @@ const FriendsPage = () => {
                                     : ""}
                                 </span>
                               </li>
-                              <li>
+                              <li className="friend-tag">
                                 <strong> TAGS : </strong>{" "}
                                 <span>
                                   {friend.info.tags
@@ -240,7 +241,7 @@ const FriendsPage = () => {
                                     : ""}
                                 </span>
                               </li>
-                              <li>
+                              <li className="friend-tag">
                                 <strong> TAGS : </strong>{" "}
                                 <span>
                                   {friend.info.tags
@@ -270,12 +271,22 @@ const FriendsPage = () => {
 
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
-                        <div
+                          {friend.sender !== user.uid ? (
+                            <div
                           className="accept-btn"
                           onClick={() => handleAcceptRequest(friend.info.uid)}
                         >
                           <span>Accept</span>
                         </div>
+                          ):(
+<div
+                          className="accept-btn"
+                          onClick={() => handleremoveFriend(friend.info.uid)}
+                        >
+                          <span>Remove</span>
+                        </div>
+                          )}
+                        
                         {expand === "" || expand !== "pending" + index ? (
                           <button
                             style={{ cursor: "pointer", textAlign: "center" }}
