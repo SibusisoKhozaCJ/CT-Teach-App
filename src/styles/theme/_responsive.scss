@@ -1,3 +1,24 @@
+@media  only screen and (min-width: 1200px) and (max-width: 1600px) { 
+    .manage-frnd .accept-btn span {
+    padding: 12px 60px !important;
+    background: #43d4dd;
+    z-index: 9;
+    position: relative;
+    font-size: 20px;
+    top: -21px;
+    right: 0;
+    left: 40% !important;
+    color: #fff;
+    border-radius: 40px;
+}
+.manage-frnd .read-more{
+	margin-left: 25% !important;
+}
+.manage-frnd .top-friend-btn button span {
+    margin-right: 0px !important;
+}
+}
+
 @media only screen and (max-width: 600px) {
 	header {
 		background: red;
