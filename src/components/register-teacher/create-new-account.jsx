@@ -101,6 +101,7 @@ const CreateNewAccountPage = () => {
           tribeInfo.users.push(res.user.uid);
           await Auth.updateTribe(tribeInfo);
           firebaseInsert("Users/" + res.user.uid, {
+            uid:res.user.uid,
             email: email,
             firstname: firstname,
             lastname: lastname,
@@ -159,6 +160,7 @@ const CreateNewAccountPage = () => {
         users: [res.user.uid],
       });
       firebaseInsert("Users/" + res.user.uid, {
+        uid:res.user.uid,
         email: email,
         firstname: firstname,
         lastname: lastname,

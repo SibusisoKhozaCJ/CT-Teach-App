@@ -56,6 +56,13 @@ export function getTribeOwner(tribeCode) {
   });
 }
 
+export function getUserWithEmail(email) {
+  return authFetch.firebaseGetByChild(`Users/`, {
+    key: "email",
+    value: email,
+  });
+}
+
 export function checkIfTribeExist(code) {
   return authFetch.firebaseGet("Tribes/" + code);
 }
