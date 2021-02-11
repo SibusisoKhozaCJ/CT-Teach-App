@@ -66,6 +66,11 @@ function ChatRoom() {
 
   const submitMessage = e => {
     e.preventDefault();
+
+    if (!newchat.message) {
+      return;
+    }
+
     const chat = newchat;
     chat.roomname = roomname;
     chat.firstname = firstname;

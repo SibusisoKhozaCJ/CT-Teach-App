@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     '& span': {
       fontWeight: 'bold',
     },
+    [theme.breakpoints.down('xs')]: {
+      height: '570px',
+    },
   },
   spinner: {
     position: 'absolute',

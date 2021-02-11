@@ -1,3 +1,5 @@
+$query-sm: 600px;
+
 .chat-room-header {
   display: flex;
   justify-content: space-around;
@@ -159,7 +161,10 @@
 }
 
 .ChatContent {
-  //overflow-y: scroll;
   height: 490px;
   background: rgba(21, 82, 117, 0.25);
+
+  @media (max-width: $query-sm) {
+    height: 560px;
+  }
 }

@@ -1,3 +1,5 @@
+$query-sm: 600px;
+
 .chat-container {
   position: fixed;
   right: 0;
@@ -12,11 +14,19 @@
   -o-transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
-
   z-index: 9999;
 
   .hidden {
     display: none;
+  }
+
+  @media (max-width: $query-sm) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 91vh;
+    border: none;
+    width: 100%;
   }
 }
 
