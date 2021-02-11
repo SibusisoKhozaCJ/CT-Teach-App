@@ -26,7 +26,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
 import routes from "../../routes";
-
+import ContactsIcon from '@material-ui/icons/Contacts';
 let sidebarStructure = [
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
   {
@@ -35,6 +35,7 @@ let sidebarStructure = [
     link: "/tribe",
     icon: <TribeSVG />,
   },
+{ id: 11, label: "Friends", link: "/friends", icon: <ContactsIcon />},
   { id: 2, label: "Goals", link: "/", icon: <MissionSvg /> },
   { id: 5, type: "divider" },
   {
@@ -53,8 +54,8 @@ let sidebarStructure = [
   { id: 6, label: "Invite", link: "/", icon: <InviteSvg /> },
   { id: 7, label: "Profile", link: "/", icon: <ProfileSvg /> },
   { id: 8, label: "Gallery", link: "/", icon: <GallerySvg /> },
-  { id: 8, label: "Skills", link: "/", icon: <SkillsSvg /> },
-  { id: 8, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
+  { id: 9, label: "Skills", link: "/", icon: <SkillsSvg /> },
+  { id: 10, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
 ];
 
 let protectedSidebarStructure = [

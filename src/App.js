@@ -30,7 +30,8 @@ import Tribes from "./components/tribes/tribe"
 import Profile from "./components/profile/Profile";
 import Layout from './hoc/Layout/Layout';
 import JoinTribe from "./components/join-tribe/join-tribe-page"
-import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
+import TribeProfile from "./components/tribes/tribe-profile/tribe-profile";
+import FriendsPage from "./components/friends/friends.jsx"
 import "./index.scss";
 import Footer from './components/footer/footer';
 import Chat from './components/chat/chat';
@@ -49,7 +50,7 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
           return (
             <Layout pathname={pathname}>
               <Component {...props} />
-            < /Layout>
+            </Layout>
           );
         }
 
@@ -119,6 +120,7 @@ const App = () => {
                     <ProtectedRoute path={routes.TRIBE} component={Tribes} />
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
+                    <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>
