@@ -17,6 +17,8 @@ export function sendFriendRequest(friendEmail) {
             status: "pending",
             sender: user.userId,
             idRoom: roomCode,
+            firstname:friendData[0].firstname,
+            lastname:friendData[0].lastname
           };
           //Add friend to current user
           if (userData && userData.friends && userData.friends.length > 0) {
@@ -36,6 +38,8 @@ export function sendFriendRequest(friendEmail) {
           //Add friend to friend user data
           if (!isFriendExist) {
             friendObject.friendId = user.userId;
+            friendObject.firstname = userData.firstname;
+            friendObject.lastname = userData.lastname;
             if (
               friendData[0] &&
               friendData[0].friends &&
