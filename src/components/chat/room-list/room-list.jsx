@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import _ from 'lodash';
 import Avatar from '@material-ui/core/Avatar';
 import Moment from 'moment';
 import classNames from 'classnames';
@@ -48,11 +49,11 @@ function RoomList() {
   const classes = useStyles();
   const chatStatus = useSelector(state => state.chat.chatStatus);
   const [firstname, setFirstName] = useState('');
-  const [room, setRoom] = useState([]);
+  const [rooms, setRooms] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const dispatch = useDispatch();
   const { userId, userFirstName } = getCookies();
-  const userTribes = [];
+  const refContainer = useRef([]);
 
   useEffect(() => {
     setFirstName(userFirstName);
@@ -63,15 +64,52 @@ function RoomList() {
         .once('value', snapshot => {
           const item = snapshot.val();
           if (item.tribe_code) {
-            userTribes.push(item.tribe_code);
+            refContainer.current.push({
+              name: item.tribe_code,
+              idRoom: item.tribe_code,
+            });
           }
 
           if (item.tribe_joined) {
-            item.tribe_joined.forEach(item => userTribes.push(item));
+            item.tribe_joined.forEach(item => {
+              refContainer.current.push({
+                name: item,
+                idRoom: item,
+              });
+            });
           }
 
-          setRoom([]);
-          setRoom(userTribes);
+          setRooms([]);
+          setRooms(refContainer.current);
+          setShowLoading(false);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      firebase
+        .database()
+        .ref('Users/' + userId + '/friends')
+        .orderByChild('status')
+        .equalTo('accepted')
+        .on('value', snapshot => {
+          const item = snapshot.val();
+
+          if (item) {
+            item.forEach(item => {
+              refContainer.current.push({
+                name: item.friendId,
+                idRoom: item.idRoom,
+              });
+            });
+          }
+
+          const currentUserPrivateRooms = _.uniqBy(refContainer.current, 'idRoom');
+          setRooms([currentUserPrivateRooms]);
+          setRooms(refContainer.current);
           setShowLoading(false);
         });
     };
@@ -129,24 +167,24 @@ function RoomList() {
 
   const roomListBody = (
     <List dense className={classes.root}>
-      {room.map(value => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
+      {rooms.map(room => {
+        const labelId = `checkbox-list-secondary-label-${room.name}`;
         return (
           <ListItem
-            key={value}
+            key={room.idRoom}
             button
             onClick={() => {
-              enterChatRoom(value);
+              enterChatRoom(room.idRoom);
             }}
           >
             <ListItemAvatar>
               <Avatar
-                alt={`Avatar n°${value + 1}`}
-                src={`/static/images/avatar/${value + 1}.jpg`}
+                alt={`Avatar n°${room.name + 1}`}
+                src={`/static/images/avatar/${room.name + 1}.jpg`}
                 className={classes.avatar}
               />
             </ListItemAvatar>
-            <ListItemText id={labelId} primary={`Room name: ${value + 1}`} className={classes.textItem} />
+            <ListItemText id={labelId} primary={`${room.name}`} className={classes.textItem} />
             <ListItemSecondaryAction>
               <MoreVertIcon className={classes.dots} />
             </ListItemSecondaryAction>
