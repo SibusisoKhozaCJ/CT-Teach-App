@@ -25,8 +25,7 @@ const FriendsPage = () => {
   );
   useEffect(() => {
     if (user !== null) {
-      if (user.friends && user.friends.length > 0) {
-          debugger
+      if (user.friends && user.friends.length > 0) {         
         dispatch(setUserFriends(user));
       }
     } else {
