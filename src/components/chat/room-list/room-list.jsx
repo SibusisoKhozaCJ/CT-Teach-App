@@ -67,6 +67,7 @@ function RoomList() {
             refContainer.current.push({
               name: item.tribe_code,
               idRoom: item.tribe_code,
+              isPrivateRoom: false,
             });
           }
 
@@ -75,6 +76,7 @@ function RoomList() {
               refContainer.current.push({
                 name: item,
                 idRoom: item,
+                isPrivateRoom: false,
               });
             });
           }
@@ -101,8 +103,9 @@ function RoomList() {
           if (item) {
             item.forEach(item => {
               refContainer.current.push({
-                name: item.friendId,
+                name: `${item.firstname} ${item.lastname}`,
                 idRoom: item.idRoom,
+                isPrivateRoom: true,
               });
             });
           }
@@ -129,7 +132,7 @@ function RoomList() {
     return returnArr;
   };
 
-  const enterChatRoom = roomname => {
+  const enterChatRoom = (roomname, personalData, isPrivateRoom) => {
     const chat = { roomname: '', firstname: '', message: '', date: '', type: '' };
     chat.roomname = roomname;
     chat.firstname = firstname;
@@ -162,7 +165,12 @@ function RoomList() {
       });
 
     dispatch(actions.setChatRoom(roomname));
-    dispatch(actions.setCurrentRoomRoom(roomname));
+
+    if (isPrivateRoom) {
+      dispatch(actions.setCurrentRoomRoom(personalData));
+    } else {
+      dispatch(actions.setCurrentRoomRoom(roomname));
+    }
   };
 
   const roomListBody = (
@@ -174,7 +182,7 @@ function RoomList() {
             key={room.idRoom}
             button
             onClick={() => {
-              enterChatRoom(room.idRoom);
+              enterChatRoom(room.idRoom, room.name, room.isPrivateRoom);
             }}
           >
             <ListItemAvatar>
