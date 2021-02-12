@@ -24,9 +24,13 @@ $query-sm: 600px;
     position: absolute;
     top: 0;
     left: 0;
-    height: 91vh;
-    border: none;
+    height: 100%;
     width: 100%;
+    border: none;
+  }
+
+  @media (max-width: 330px) {
+    min-height: auto;
   }
 }
 

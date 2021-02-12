@@ -33,7 +33,7 @@ const FooterChatRoom = ({ submitMessage, onChange, value }) => {
   };
 
   return (
-    <div className="chat-room-footer">
+    <footer className="chat-room-footer">
       <InputBase
         className={classes.input}
         placeholder="Type a message here"
@@ -46,7 +46,7 @@ const FooterChatRoom = ({ submitMessage, onChange, value }) => {
       <IconButton type="submit" className={classes.iconButton} aria-label="search" onClick={submitMessage}>
         <SendIcon />
       </IconButton>
-    </div>
+    </footer>
   );
 };
 
