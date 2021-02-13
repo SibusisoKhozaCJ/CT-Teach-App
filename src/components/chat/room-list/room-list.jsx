@@ -72,10 +72,10 @@ function RoomList() {
           }
 
           if (item.tribe_joined) {
-            item.tribe_joined.forEach(item => {
+            item.tribe_joined.forEach(el => {
               refContainer.current.push({
-                name: item,
-                idRoom: item,
+                name: el,
+                idRoom: el,
                 isPrivateRoom: false,
               });
             });
@@ -101,18 +101,18 @@ function RoomList() {
           const item = snapshot.val();
 
           if (item) {
-            item.forEach(item => {
+            item.forEach(el => {
               refContainer.current.push({
-                name: `${item.firstname} ${item.lastname}`,
-                idRoom: item.idRoom,
+                name: `${el.firstname} ${el.lastname}`,
+                idRoom: el.idRoom,
                 isPrivateRoom: true,
               });
             });
           }
 
           const currentUserPrivateRooms = _.uniqBy(refContainer.current, 'idRoom');
-          setRooms([currentUserPrivateRooms]);
-          setRooms(refContainer.current);
+          setRooms([]);
+          setRooms(currentUserPrivateRooms);
           setShowLoading(false);
         });
     };
@@ -133,7 +133,13 @@ function RoomList() {
   };
 
   const enterChatRoom = (roomname, personalData, isPrivateRoom) => {
-    const chat = { roomname: '', firstname: '', message: '', date: '', type: '' };
+    const chat = {
+      roomname: '',
+      firstname: '',
+      message: '',
+      date: '',
+      type: '',
+    };
     chat.roomname = roomname;
     chat.firstname = firstname;
     chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');

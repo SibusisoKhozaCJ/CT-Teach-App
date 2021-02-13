@@ -2,12 +2,11 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 
-export const IOSSwitch = withStyles(theme => ({
+const IOSSwitch = withStyles(theme => ({
   root: {
     width: 42,
     height: 26,
     padding: 0,
-    // margin: theme.spacing(1),
     margin: '0 5px 0 auto',
   },
   switchBase: {
@@ -55,3 +54,5 @@ export const IOSSwitch = withStyles(theme => ({
     />
   );
 });
+
+export default IOSSwitch;

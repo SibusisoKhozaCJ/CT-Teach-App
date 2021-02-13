@@ -5,6 +5,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
+import randomize from 'randomatic';
 import firebase from 'firebase';
 
 import * as actions from '../../../redux/actions/chat-action';
@@ -12,7 +13,7 @@ import { getCookies } from '../../../shared/lib/authentication';
 import HeaderChat from './header-chat-room';
 import FooterChatRoom from './footer-chat-room';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   spinner: {
     position: 'absolute',
     left: '50%',
@@ -26,11 +27,29 @@ function ChatRoom() {
   const [chats, setChats] = useState([]);
   const [firstname, setFirstName] = useState('');
   const [roomname, setRoomname] = useState('');
-  const [newchat, setNewchat] = useState({ roomname: '', firstname: '', message: '', date: '', type: '' });
+  const [newchat, setNewchat] = useState({
+    roomname: '',
+    firstname: '',
+    message: '',
+    date: '',
+    type: '',
+  });
   const dispatch = useDispatch();
   const { room, chatStatus } = useSelector(state => state.chat);
   const { userFirstName } = getCookies();
   const [showLoading, setShowLoading] = useState(true);
+
+  const snapshotToArray = snapshot => {
+    const returnArr = [];
+
+    snapshot.forEach(childSnapshot => {
+      const item = childSnapshot.val();
+      item.key = childSnapshot.key;
+      returnArr.push(item);
+    });
+
+    return returnArr;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,18 +71,6 @@ function ChatRoom() {
     fetchData();
   }, [room, roomname, userFirstName]);
 
-  const snapshotToArray = snapshot => {
-    const returnArr = [];
-
-    snapshot.forEach(childSnapshot => {
-      const item = childSnapshot.val();
-      item.key = childSnapshot.key;
-      returnArr.push(item);
-    });
-
-    return returnArr;
-  };
-
   const submitMessage = e => {
     e.preventDefault();
 
@@ -78,7 +85,13 @@ function ChatRoom() {
     chat.type = 'message';
     const newMessage = firebase.database().ref('chats/').push();
     newMessage.set(chat);
-    setNewchat({ roomname: '', firstname: '', message: '', date: '', type: '' });
+    setNewchat({
+      roomname: '',
+      firstname: '',
+      message: '',
+      date: '',
+      type: '',
+    });
   };
 
   const onChange = e => {
@@ -87,7 +100,13 @@ function ChatRoom() {
   };
 
   const exitChat = () => {
-    const chat = { roomname: '', firstname: '', message: '', date: '', type: '' };
+    const chat = {
+      roomname: '',
+      firstname: '',
+      message: '',
+      date: '',
+      type: '',
+    };
     chat.roomname = roomname;
     chat.firstname = firstname;
     chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
@@ -117,8 +136,8 @@ function ChatRoom() {
 
   const bodyChatRoom = (
     <ScrollToBottom className="ChatContent">
-      {chats.map((item, idx) => (
-        <div key={idx} className="MessageBox">
+      {chats.map(item => (
+        <div key={randomize('A', 4)} className="MessageBox">
           {item.type === 'join' || item.type === 'exit' ? (
             <div className="ChatStatus">
               <span className="ChatDate">{item.date}</span>

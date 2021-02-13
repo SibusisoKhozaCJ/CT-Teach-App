@@ -5,7 +5,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { IOSSwitch } from './switch';
+import IOSSwitch from './switch';
 
 const useStyles = makeStyles(theme => ({
   root: {
