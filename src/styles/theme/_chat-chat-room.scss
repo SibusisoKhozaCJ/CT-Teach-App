@@ -1,3 +1,5 @@
+$query-sm: 600px;
+
 .chat-room-header {
   display: flex;
   justify-content: space-around;
@@ -52,8 +54,8 @@
 
 .MessageBox {
   float: left;
-  width: 98%;
-  margin: 5px 0 0 2%;
+  width: 96%;
+  margin: 5px 0 0 4%;
 }
 
 .MessageBox .ChatMessage {
@@ -159,7 +161,14 @@
 }
 
 .ChatContent {
-  //overflow-y: scroll;
   height: 490px;
   background: rgba(21, 82, 117, 0.25);
+
+  @media (max-width: $query-sm) {
+    height: 84vh;
+  }
+
+  @media (max-width: 330px) {
+    height: 82vh;
+  }
 }

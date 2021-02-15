@@ -1,5 +1,5 @@
-footer {
-	display: flex;
+.footer-mobile {
+	display: none;
 	align-items: center;
 	justify-content: space-between;
 	background: #fff;
@@ -7,11 +7,11 @@ footer {
 	width: 100%;
 	bottom: 0;
 	padding: 10px 10px 5px 10px;
-	z-index: 9999999;
+	z-index: 2000;
 	left: 0;
 	right: 0;
 	box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.81), 0px 3px 14px 2px rgba(0, 0, 0, 0.25);
-	display: none;
+
 	.footer-icon img {
 		width: 100%;
 		max-width: 30px;

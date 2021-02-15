@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import _ from 'lodash';
 import Avatar from '@material-ui/core/Avatar';
 import Moment from 'moment';
 import classNames from 'classnames';
@@ -15,19 +16,18 @@ import firebase from 'firebase';
 
 import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
-import FooterRoomList from './footer-room-list';
 import HeaderRoomList from './header-room-list';
 import SearchRoomList from './search-room-list';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
-    height: '440px',
+    height: '490px',
     overflow: 'auto',
-    backgroundColor: theme.palette.background.paper,
     '& span': {
       fontWeight: 'bold',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '570px',
     },
   },
   spinner: {
@@ -49,11 +49,11 @@ function RoomList() {
   const classes = useStyles();
   const chatStatus = useSelector(state => state.chat.chatStatus);
   const [firstname, setFirstName] = useState('');
-  const [room, setRoom] = useState([]);
+  const [rooms, setRooms] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const dispatch = useDispatch();
   const { userId, userFirstName } = getCookies();
-  const userTribes = [];
+  const refContainer = useRef([]);
 
   useEffect(() => {
     setFirstName(userFirstName);
@@ -61,18 +61,58 @@ function RoomList() {
       firebase
         .database()
         .ref('Users/' + userId)
-        .on('value', snapshot => {
+        .once('value', snapshot => {
           const item = snapshot.val();
           if (item.tribe_code) {
-            userTribes.push(item.tribe_code);
+            refContainer.current.push({
+              name: item.tribe_code,
+              idRoom: item.tribe_code,
+              isPrivateRoom: false,
+            });
           }
 
           if (item.tribe_joined) {
-            item.tribe_joined.forEach(item => userTribes.push(item));
+            item.tribe_joined.forEach(el => {
+              refContainer.current.push({
+                name: el,
+                idRoom: el,
+                isPrivateRoom: false,
+              });
+            });
           }
 
-          setRoom([]);
-          setRoom(userTribes);
+          setRooms([]);
+          setRooms(refContainer.current);
+          setShowLoading(false);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      firebase
+        .database()
+        .ref('Users/' + userId + '/friends')
+        .orderByChild('status')
+        .equalTo('accepted')
+        .on('value', snapshot => {
+          const item = snapshot.val();
+
+          if (item) {
+            item.forEach(el => {
+              refContainer.current.push({
+                name: `${el.firstname} ${el.lastname}`,
+                idRoom: el.idRoom,
+                isPrivateRoom: true,
+              });
+            });
+          }
+
+          const currentUserPrivateRooms = _.uniqBy(refContainer.current, 'idRoom');
+          setRooms([]);
+          setRooms(currentUserPrivateRooms);
           setShowLoading(false);
         });
     };
@@ -92,8 +132,14 @@ function RoomList() {
     return returnArr;
   };
 
-  const enterChatRoom = roomname => {
-    const chat = { roomname: '', firstname: '', message: '', date: '', type: '' };
+  const enterChatRoom = (roomname, personalData, isPrivateRoom) => {
+    const chat = {
+      roomname: '',
+      firstname: '',
+      message: '',
+      date: '',
+      type: '',
+    };
     chat.roomname = roomname;
     chat.firstname = firstname;
     chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
@@ -125,29 +171,34 @@ function RoomList() {
       });
 
     dispatch(actions.setChatRoom(roomname));
-    dispatch(actions.setCurrentRoomRoom(roomname));
+
+    if (isPrivateRoom) {
+      dispatch(actions.setCurrentRoomRoom(personalData));
+    } else {
+      dispatch(actions.setCurrentRoomRoom(roomname));
+    }
   };
 
   const roomListBody = (
     <List dense className={classes.root}>
-      {room.map(value => {
-        const labelId = `checkbox-list-secondary-label-${value}`;
+      {rooms.map(room => {
+        const labelId = `checkbox-list-secondary-label-${room.name}`;
         return (
           <ListItem
-            key={value}
+            key={room.idRoom}
             button
             onClick={() => {
-              enterChatRoom(value);
+              enterChatRoom(room.idRoom, room.name, room.isPrivateRoom);
             }}
           >
             <ListItemAvatar>
               <Avatar
-                alt={`Avatar n°${value + 1}`}
-                src={`/static/images/avatar/${value + 1}.jpg`}
+                alt={`Avatar n°${room.name + 1}`}
+                src={`/static/images/avatar/${room.name + 1}.jpg`}
                 className={classes.avatar}
               />
             </ListItemAvatar>
-            <ListItemText id={labelId} primary={`Room name: ${value + 1}`} className={classes.textItem} />
+            <ListItemText id={labelId} primary={`${room.name}`} className={classes.textItem} />
             <ListItemSecondaryAction>
               <MoreVertIcon className={classes.dots} />
             </ListItemSecondaryAction>
@@ -170,7 +221,6 @@ function RoomList() {
       <HeaderRoomList />
       <SearchRoomList />
       {bodyRoomList}
-      <FooterRoomList />
     </div>
   );
 }

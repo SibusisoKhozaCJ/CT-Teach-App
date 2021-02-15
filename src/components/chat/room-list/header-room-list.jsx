@@ -1,13 +1,22 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import TitleIcon from '@material-ui/icons/Title';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 import * as action from '../../../redux/actions/chat-action';
 import { ChatSvg } from '../../../shared/svgs/menu-items';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    position: 'absolute',
+    right: 0,
+    color: 'black',
+  },
+}));
+
 const HeaderRoomList = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleClickHideChat = () => {
@@ -16,13 +25,12 @@ const HeaderRoomList = () => {
 
   return (
     <div className="room-list-header">
-      <TitleIcon style={{ color: '#FBDD3F' }} />
       <div className="chat-icon-header">
         <ChatSvg />
         <p>CHAT</p>
       </div>
-      <IconButton color="primary" aria-label="upload picture" component="span">
-        <CloseIcon className="close-btn" fontSize="large" onClick={handleClickHideChat} />
+      <IconButton color="primary" aria-label="upload picture" component="span" className={classes.root}>
+        <CloseIcon fontSize="large" onClick={handleClickHideChat} />
       </IconButton>
     </div>
   );

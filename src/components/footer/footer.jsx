@@ -21,7 +21,7 @@ const Footer = () => {
     setIsLayoutRender(shouldLayoutRender(location.pathname));
   }, [location]);
   return (
-    (isLayoutRender && <footer>
+    (isLayoutRender && <footer className='footer-mobile'>
       <div className="footer-icon">
         <img onClick={(evt)=>history.push("/tribe")} src={Icon1} className="coverage" alt="" />
       </div>
