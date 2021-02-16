@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Moment from 'moment';
 import ScrollToBottom from 'react-scroll-to-bottom';
@@ -33,6 +33,7 @@ function ChatRoom() {
     message: '',
     date: '',
     type: '',
+    code: false,
   });
   const dispatch = useDispatch();
   const { room, chatStatus } = useSelector(state => state.chat);
@@ -71,7 +72,7 @@ function ChatRoom() {
     fetchData();
   }, [room, roomname, userFirstName]);
 
-  const submitMessage = e => {
+  const submitMessage = (e, code) => {
     e.preventDefault();
 
     if (!newchat.message) {
@@ -83,6 +84,7 @@ function ChatRoom() {
     chat.firstname = firstname;
     chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
     chat.type = 'message';
+    chat.code = !!code;
     const newMessage = firebase.database().ref('chats/').push();
     newMessage.set(chat);
     setNewchat({
@@ -91,6 +93,7 @@ function ChatRoom() {
       message: '',
       date: '',
       type: '',
+      code: false,
     });
   };
 
@@ -106,6 +109,7 @@ function ChatRoom() {
       message: '',
       date: '',
       type: '',
+      code: false,
     };
     chat.roomname = roomname;
     chat.firstname = firstname;
@@ -115,28 +119,13 @@ function ChatRoom() {
     const newMessage = firebase.database().ref('chats/').push();
     newMessage.set(chat);
 
-    firebase
-      .database()
-      .ref('roomusers/')
-      .orderByChild('roomname')
-      .equalTo(roomname)
-      .once('value', snapshot => {
-        let roomuser = [];
-        roomuser = snapshotToArray(snapshot);
-        const user = roomuser.find(x => x.firstname === firstname);
-        if (user !== undefined) {
-          const userRef = firebase.database().ref('roomusers/' + user.key);
-          userRef.update({ status: 'offline' });
-        }
-      });
-
     dispatch(actions.setRoomLIst());
     dispatch(actions.clearCurrentRoom());
   };
 
-  const bodyChatRoom = (
-    <ScrollToBottom className="ChatContent">
-      {chats.map(item => (
+  const memoizedChats = useMemo(
+    () =>
+      chats.map(item => (
         <div key={randomize('A', 4)} className="MessageBox">
           {item.type === 'join' || item.type === 'exit' ? (
             <div className="ChatStatus">
@@ -145,7 +134,15 @@ function ChatRoom() {
             </div>
           ) : (
             <div className="ChatMessage">
-              <div className={`${item.firstname === firstname ? 'RightBubble' : 'LeftBubble'}`}>
+              <div
+                className={classNames({
+                  RightBubble: !item.code && item.firstname === firstname,
+                  LeftBubble: !item.code && item.firstname !== firstname,
+                  RightBubbleBlack: item.code && item.firstname === firstname,
+                  LeftBubbleBack: item.code && item.firstname !== firstname,
+                  codeBlack: item.code,
+                })}
+              >
                 {item.firstname === firstname ? (
                   <span className="MsgName">Me</span>
                 ) : (
@@ -157,9 +154,11 @@ function ChatRoom() {
             </div>
           )}
         </div>
-      ))}
-    </ScrollToBottom>
+      )),
+    [chats, firstname],
   );
+
+  const bodyChatRoom = <ScrollToBottom className="ChatContent">{memoizedChats}</ScrollToBottom>;
 
   const spinner = (
     <div className={classes.spinner}>

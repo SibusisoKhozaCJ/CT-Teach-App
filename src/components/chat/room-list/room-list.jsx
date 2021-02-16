@@ -139,6 +139,7 @@ function RoomList() {
       message: '',
       date: '',
       type: '',
+      code: false,
     };
     chat.roomname = roomname;
     chat.firstname = firstname;
