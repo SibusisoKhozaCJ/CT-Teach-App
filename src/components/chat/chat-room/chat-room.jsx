@@ -124,41 +124,42 @@ function ChatRoom() {
   };
 
   const memoizedChats = useMemo(
-    () =>
-      chats.map(item => (
-        <div key={randomize('A', 4)} className="MessageBox">
-          {item.type === 'join' || item.type === 'exit' ? (
-            <div className="ChatStatus">
-              <span className="ChatDate">{item.date}</span>
-              <span className="ChatContentCenter">{item.message}</span>
-            </div>
-          ) : (
-            <div className="ChatMessage">
-              <div
-                className={classNames({
-                  RightBubble: !item.code && item.firstname === firstname,
-                  LeftBubble: !item.code && item.firstname !== firstname,
-                  RightBubbleBlack: item.code && item.firstname === firstname,
-                  LeftBubbleBack: item.code && item.firstname !== firstname,
-                  codeBlack: item.code,
-                })}
-              >
-                {item.firstname === firstname ? (
-                  <span className="MsgName">Me</span>
-                ) : (
-                  <span className="MsgName">{item.firstname}</span>
-                )}
-                <span className="MsgDate"> at {item.date}</span>
-                <p>{item.message}</p>
+    () => (
+      <ScrollToBottom className="ChatContent">
+        {chats.map(item => (
+          <div key={randomize('A', 4)} className="MessageBox">
+            {item.type === 'join' || item.type === 'exit' ? (
+              <div className="ChatStatus">
+                <span className="ChatDate">{item.date}</span>
+                <span className="ChatContentCenter">{item.message}</span>
               </div>
-            </div>
-          )}
-        </div>
-      )),
+            ) : (
+              <div className="ChatMessage">
+                <div
+                  className={classNames({
+                    RightBubble: !item.code && item.firstname === firstname,
+                    LeftBubble: !item.code && item.firstname !== firstname,
+                    RightBubbleBlack: item.code && item.firstname === firstname,
+                    LeftBubbleBack: item.code && item.firstname !== firstname,
+                    codeBlack: item.code,
+                  })}
+                >
+                  {item.firstname === firstname ? (
+                    <span className="MsgName">Me</span>
+                  ) : (
+                    <span className="MsgName">{item.firstname}</span>
+                  )}
+                  <span className="MsgDate"> at {item.date}</span>
+                  <p>{item.message}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </ScrollToBottom>
+    ),
     [chats, firstname],
   );
-
-  const bodyChatRoom = <ScrollToBottom className="ChatContent">{memoizedChats}</ScrollToBottom>;
 
   const spinner = (
     <div className={classes.spinner}>
@@ -166,12 +167,10 @@ function ChatRoom() {
     </div>
   );
 
-  const bodyChatRoomList = showLoading ? spinner : bodyChatRoom;
-
   return (
     <div className={classNames({ hidden: chatStatus !== 'chatroom' })}>
       <HeaderChat exitChat={exitChat} />
-      {bodyChatRoomList}
+      {showLoading ? spinner : memoizedChats}
       <FooterChatRoom submitMessage={submitMessage} onChange={onChange} value={newchat.message} />
     </div>
   );
