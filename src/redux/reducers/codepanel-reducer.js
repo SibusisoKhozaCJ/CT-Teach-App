@@ -10,7 +10,7 @@ const initialState = {
   monaco: null,
   tab: 0,
   isValid: false,
-  checkpoints: {},
+  checkpoints: null,
   progress: 0,
   checkpointsCount: 0,
   fontSize: 14

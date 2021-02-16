@@ -29,7 +29,12 @@ export const lesson_data = {
       checkpoint: true,
       js_function: "",
       checkpoint_id: 1,
-      reg: ["<h1(.*)>"],
+      reg: [
+        {
+          description: "add <h1> tag",
+          rule: "<h1(.*)>"
+        }
+    ],
       css_class: "challenge cp-peach snap1 hide-help",
       html_content: `
     <div>
@@ -50,8 +55,9 @@ export const lesson_data = {
         </div>
     </div>
     <div class='white'>
-      <p class=" pt-3 mb-1">Not sure what to do?</p>
-      <p class="pt-0X underlineX take-tour pointer bg-aqua2 white">Take the Tour</p>
+      <div class='button-locked'>
+        <a class='swiper-next skip' style=''>Skip this step</a>
+      </div>
     </div>
 
     `,
@@ -171,7 +177,12 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Swipe left to start.
       </div>
       `,
-      reg: ["<h1>[\\s\\r\\n]*(.*)[\\s\\r\\n]*<\\/h1>"],
+      reg: [
+        {
+          description: "type your name inside <h1> tag",
+          rule: "<h1>[\\s\\r\\n]*(.*)[\\s\\r\\n]*<\\/h1>"
+        }
+      ],
       sort_order: 15,
       updated_at: "2017-09-28T16:09:40.256Z"
     },
@@ -236,7 +247,12 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Add the &lt;body&gt; tag as the first line.
       </div>
       `,
-      reg: ["<body(.*)>"],
+      reg: [
+        {
+          description: "add <body> tag",
+          rule: "<body(.*)>"
+        }
+      ],
       sort_order: 19,
       updated_at: "2017-09-28T16:09:40.256Z"
     },
@@ -283,7 +299,10 @@ export const lesson_data = {
       </div>
       `,
       reg: [
-        '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[s\0-9a-z:;#]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)'
+        {
+          description: "add style to body tag",
+          rule: '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[s\0-9a-z:;#]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)'
+        }
       ],
       sort_order: 21,
       updated_at: "2017-09-28T16:09:40.256Z"
@@ -331,7 +350,10 @@ export const lesson_data = {
       </div>
       `,
       reg: [
-        '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[\\s\\r\\n]*background[\\s\\r\\n]*:[\\s\\r\\n]*(pink|red)[\\s\\r\\n]*;[\\s\\r\\n]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)'
+        {
+          description: "add pink color to body background",
+          rule: '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[\\s\\r\\n]*background[\\s\\r\\n]*:[\\s\\r\\n]*(pink|red)[\\s\\r\\n]*;[\\s\\r\\n]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)'
+        }
       ],
       sort_order: 23,
       updated_at: "2017-09-28T16:09:40.256Z"
@@ -405,7 +427,12 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Notice <strong>:</strong> and <strong>;</strong>
       </div>
       `,
-      reg: ["body(.*)background:[s\r\n]*(?!pink;)[a-z]"],
+      reg: [
+        {
+          description: "change body background color",
+          rule: "body(.*)background:[s\r\n]*(?!pink;)[a-z]"
+        }
+      ],
       sort_order: 28,
       updated_at: "2017-09-28T16:09:40.256Z"
     },

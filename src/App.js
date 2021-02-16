@@ -33,7 +33,7 @@ import JoinTribe from "./components/join-tribe/join-tribe-page"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile"
 import "./index.scss";
 import Footer from './components/footer/footer';
-import Codepanel from './components/codepanel/Codepanel'
+import Codepanel from './components/codepanel/codepanel'
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -49,7 +49,7 @@ const ProtectedRoute = ({ component: Component, path, ...rest }) => {
           return (
             <Layout pathname={pathname}>
               <Component {...props} />
-            < /Layout>
+            </Layout>
           );
         }
 
