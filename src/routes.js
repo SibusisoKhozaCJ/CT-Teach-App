@@ -11,6 +11,7 @@ export default {
     PROFILE_ID: '/profile/:id',
     JOIN_TRIBE_ID:'/join/:id',
     TRIBE_PROFILE: '/tribe-profile/:id',
-    CODE_PANEL: '/codepanel/:id'
+    CODE_PANEL: '/codepanel/:id',
+    FRIENDS_LIST: '/friends'
 };
 

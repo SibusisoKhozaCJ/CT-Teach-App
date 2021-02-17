@@ -1,0 +1,77 @@
+$query-sm: 600px;
+
+.chat-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 375px;
+  border: 2px solid grey;
+  overflow: hidden;
+  min-height: 600px;
+  background: #FFFFFF;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  z-index: 9999;
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: $query-sm) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+
+  @media (max-width: 330px) {
+    min-height: auto;
+  }
+}
+
+.chat-container.openChat {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.chat-container.closeChat {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.room-list-wrapper {
+  .room-list-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid grey;
+
+    .chat-icon-header {
+      display: flex;
+
+      p {
+        margin: 0 0 0 10px;
+        font-weight: bold;
+      }
+    }
+
+    .room-list-content {
+      height: 540px;
+    }
+  }
+
+  .search {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    border-bottom: 1px solid grey;
+  }
+}
