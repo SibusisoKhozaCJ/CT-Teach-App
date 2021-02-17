@@ -16,12 +16,8 @@ $query-sm: 600px;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
   z-index: 9999;
 
-  .hidden {
-    display: none;
-  }
-
   @media (max-width: $query-sm) {
-    position: absolute;
+    min-height: auto;
     top: 0;
     left: 0;
     height: 100%;
@@ -29,32 +25,40 @@ $query-sm: 600px;
     border: none;
   }
 
-  @media (max-width: 330px) {
-    min-height: auto;
+  .hidden {
+    display: none;
   }
-}
 
-.chat-container.openChat {
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-}
+  &.openChat {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
 
-.chat-container.closeChat {
-  -webkit-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  transform: translateX(100%);
+  &.closeChat {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
 }
 
 .room-list-wrapper {
   .room-list-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     height: 50px;
     border-bottom: 1px solid grey;
 
     .chat-icon-header {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
 
       p {
@@ -69,8 +73,12 @@ $query-sm: 600px;
   }
 
   .search {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     height: 50px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     border-bottom: 1px solid grey;
   }
