@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 14,
     backgroundColor: "#fff",
     border: "2px solid #43D4DD",
+    fontSize: 13,
 
     "&::before": {
       zIndex: 1,
@@ -31,6 +32,14 @@ const useStyles = makeStyles(() => ({
       backgroundColor: "#43D4DD",
       borderRadius: 10
     }
+  },
+
+  title: {
+    fontSize: 14,
+    color: "#43D4DD",
+    fontWeight: 700,
+    textTransform: "uppercase",
+    marginLeft: 12
   },
 
   item: {
@@ -55,6 +64,7 @@ const Checker = ({ challenges }) => {
     <ul className={classes.list}>
       <li className={classes.item} onClick={() => setCollapsed(!collapsed)}>
         {collapsed ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        {collapsed || <h3 className={classes.title}>Checker:</h3>}
       </li>
       {challenges.map(challenge => (
         <li key={challenge.description} className={classes.item}>
