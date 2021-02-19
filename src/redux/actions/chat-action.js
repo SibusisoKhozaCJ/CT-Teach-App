@@ -5,19 +5,19 @@ export const setRoomLIst = () => ({
   chatStatus: 'roomlist',
 });
 
-export const setChatRoom = rooname => ({
+export const setChatRoom = idRoom => ({
   type: actionTypes.SET_CHAT_ROOM,
   chatStatus: 'chatroom',
-  room: rooname,
+  idRoom,
 });
 
-export const setCurrentRoomRoom = currentRoom => ({
-  type: actionTypes.SET_CURRENT_ROOM,
-  currentRoom,
+export const setCurrentRoomName = currentRoomName => ({
+  type: actionTypes.SET_CURRENT_ROOM_NAME,
+  currentRoomName,
 });
 
-export const clearCurrentRoom = () => ({
-  type: actionTypes.CLEAR_CURRENT_ROOM,
+export const clearCurrentRoomName = () => ({
+  type: actionTypes.CLEAR_CURRENT_ROOM_NAME,
 });
 
 export const showChat = () => ({

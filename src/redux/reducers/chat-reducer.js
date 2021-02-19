@@ -2,8 +2,8 @@ import * as actionTypes from '../constants/chat-types';
 
 const initialState = {
   chatStatus: 'roomlist',
-  room: '',
-  currentRoom: '',
+  idRoom: '',
+  currentRoomName: '',
   isVisibleChat: true,
 };
 
@@ -18,17 +18,17 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         chatStatus: action.chatStatus,
-        room: action.room,
+        idRoom: action.idRoom,
       };
-    case actionTypes.SET_CURRENT_ROOM:
+    case actionTypes.SET_CURRENT_ROOM_NAME:
       return {
         ...state,
-        currentRoom: action.currentRoom,
+        currentRoomName: action.currentRoomName,
       };
-    case actionTypes.CLEAR_CURRENT_ROOM:
+    case actionTypes.CLEAR_CURRENT_ROOM_NAME:
       return {
         ...state,
-        currentRoom: '',
+        currentRoomName: '',
       };
     case actionTypes.SHOW_CHAT:
       return {

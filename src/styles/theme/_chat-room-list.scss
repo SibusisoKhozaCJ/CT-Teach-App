@@ -7,17 +7,19 @@ $query-sm: 600px;
   width: 375px;
   border: 2px solid grey;
   overflow: hidden;
-  min-height: 600px;
+  height: 600px;
+  max-height: 600px;
+  top: 74px;
   background: #FFFFFF;
   -webkit-transition: -webkit-transform 0.3s ease-out;
   transition: -webkit-transform 0.3s ease-out;
   -o-transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
-  z-index: 9999;
+  z-index: 1202;
 
   @media (max-width: $query-sm) {
-    min-height: auto;
+    max-height: none;
     top: 0;
     left: 0;
     height: 100%;

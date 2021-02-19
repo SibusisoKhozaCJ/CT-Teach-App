@@ -11,7 +11,10 @@ const useStyles = makeStyles(() => ({
   root: {
     position: 'absolute',
     right: 0,
-    color: 'black',
+    color: 'grey',
+  },
+  svgCloseIcon: {
+    fontSize: '2.5rem',
   },
 }));
 
@@ -30,7 +33,7 @@ const HeaderRoomList = () => {
         <p>CHAT</p>
       </div>
       <IconButton color="primary" aria-label="upload picture" component="span" className={classes.root}>
-        <CloseIcon fontSize="large" onClick={handleClickHideChat} />
+        <CloseIcon className={classes.svgCloseIcon} onClick={handleClickHideChat} />
       </IconButton>
     </div>
   );

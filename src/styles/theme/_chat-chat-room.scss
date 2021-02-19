@@ -5,7 +5,8 @@ $query-sm: 600px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
-  justify-content: space-around;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -26,38 +27,61 @@ $query-sm: 600px;
   -ms-flex-align: center;
   align-items: center;
 
-  input[type="text"]::-webkit-input-placeholder {
-    padding-left: 10px;
-  }
-
-  input[type="text"]::-moz-placeholder {
-    padding-left: 10px;
-  }
-
-  input[type="text"]:-ms-input-placeholder {
-    padding-left: 10px;
-  }
-
-  input[type="text"]::-ms-input-placeholder {
-    padding-left: 10px;
-  }
-
-  input[type="text"]::placeholder {
-    padding-left: 10px;
-  }
-
   input[type="text"] {
     padding-left: 10px;
     padding-right: 34px;
   }
-}
 
-.footer-extend {
-  height: 84px;
+  @media (max-width: $query-sm) {
+    input[type="text"]::-webkit-input-placeholder {
+      font-size: 14px;
+    }
+
+    input[type="text"]::-moz-placeholder {
+      font-size: 14px;
+    }
+
+    input[type="text"]:-ms-input-placeholder {
+      font-size: 14px;
+    }
+
+    input[type="text"]::-ms-input-placeholder {
+      font-size: 14px;
+    }
+
+    input[type="text"]::placeholder {
+      font-size: 14px;
+    }
+  }
+
+  textarea::-webkit-input-placeholder {
+    font-size: 16px;
+    color: #c4c4c4;
+  }
+
+  textarea::-moz-placeholder {
+    font-size: 16px;
+    color: #c4c4c4;
+  }
+
+  textarea:-ms-input-placeholder {
+    font-size: 16px;
+    color: #c4c4c4;
+  }
+
+  textarea::-ms-input-placeholder {
+    font-size: 16px;
+    color: #c4c4c4;
+  }
+
+  textarea::placeholder {
+    font-size: 16px;
+    color: #c4c4c4;
+  }
 }
 
 .ChatContent {
-  height: 490px;
+  height: 492px;
   background: rgba(21, 82, 117, 0.25);
 
   @media (max-width: $query-sm) {
@@ -84,22 +108,18 @@ $query-sm: 600px;
       .RightBubble {
         position: relative;
         background: #FFFFFF;
-        border-top-left-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-radius: .4em;
         padding: 5px 10px 10px;
-        left: 15%;
+        left: 20%;
         border: 3px solid #D50073;
       }
 
       .RightBubbleBlack {
         position: relative;
         background: #FFFFFF;
-        border-top-left-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-radius: .4em;
         padding: 5px 10px 10px;
-        left: 15%;
+        left: 20%;
         border: 3px solid #D50073;
       }
 
@@ -123,55 +143,19 @@ $query-sm: 600px;
         font-size: 10px;
       }
 
-      .RightBubble:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-left-color: #FFFFFF;
-        border-right: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-right: -27px;
-      }
-
-      .RightBubbleBlack:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-left-color: #000000;
-        border-right: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-right: -27px;
-      }
-
       .LeftBubble {
         position: relative;
         background: #FFFFFF;
-        border-top-right-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-radius: .4em;
         padding: 5px 10px 10px;
-        left: 5%;
         border: 3px solid #35BDAD;
       }
 
       .LeftBubbleBack {
         position: relative;
         background: #FFFFFF;
-        border-top-right-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-radius: .4em;
         padding: 5px 10px 10px;
-        left: 5%;
         border: 3px solid #35BDAD;
       }
 
@@ -180,7 +164,6 @@ $query-sm: 600px;
         font-weight: bold;
         color: blue;
       }
-
 
       .LeftBubble span.MsgDate {
         font-size: 10px;
@@ -194,36 +177,6 @@ $query-sm: 600px;
 
       .LeftBubbleBack span.MsgDate {
         font-size: 10px;
-      }
-
-      .LeftBubble:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-right-color: #FFFFFF;
-        border-left: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-left: -27px;
-      }
-
-      .LeftBubbleBack:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-right-color: #000000;
-        border-left: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-left: -27px;
       }
 
       .codeBlack {
