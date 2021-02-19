@@ -8,10 +8,10 @@ import classNames from 'classnames';
 import randomize from 'randomatic';
 import firebase from 'firebase';
 
-import * as actions from '../../../redux/actions/chat-action';
 import { getCookies } from '../../../shared/lib/authentication';
 import HeaderChat from './header-chat-room';
 import FooterChatRoom from './footer-chat-room';
+import * as actions from '../../../redux/actions/chat-action';
 
 const useStyles = makeStyles(() => ({
   spinner: {
@@ -25,9 +25,8 @@ const useStyles = makeStyles(() => ({
 function ChatRoom() {
   const classes = useStyles();
   const [chats, setChats] = useState([]);
-  const [firstname, setFirstName] = useState('');
-  const [roomname, setRoomname] = useState('');
   const [newchat, setNewchat] = useState({
+    idRoom: '',
     roomname: '',
     firstname: '',
     message: '',
@@ -36,7 +35,7 @@ function ChatRoom() {
     code: false,
   });
   const dispatch = useDispatch();
-  const { room, chatStatus } = useSelector(state => state.chat);
+  const { idRoom, currentRoomName, chatStatus } = useSelector(state => state.chat);
   const { userFirstName } = getCookies();
   const [showLoading, setShowLoading] = useState(true);
 
@@ -53,24 +52,18 @@ function ChatRoom() {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setFirstName(userFirstName);
-      setRoomname(room);
-      firebase
-        .database()
-        .ref('chats/')
-        .limitToLast(20)
-        .orderByChild('roomname')
-        .equalTo(roomname)
-        .on('value', snapshot => {
-          setChats([]);
-          setChats(snapshotToArray(snapshot));
-          setShowLoading(false);
-        });
-    };
-
-    fetchData();
-  }, [room, roomname, userFirstName]);
+    firebase
+      .database()
+      .ref('chats/')
+      .limitToLast(20)
+      .orderByChild('idRoom')
+      .equalTo(idRoom)
+      .on('value', snapshot => {
+        setChats([]);
+        setChats(snapshotToArray(snapshot));
+        setShowLoading(false);
+      });
+  }, [idRoom, userFirstName]);
 
   const submitMessage = (e, code) => {
     e.preventDefault();
@@ -80,14 +73,16 @@ function ChatRoom() {
     }
 
     const chat = newchat;
-    chat.roomname = roomname;
-    chat.firstname = firstname;
+    chat.idRoom = idRoom;
+    chat.roomname = currentRoomName;
+    chat.firstname = userFirstName;
     chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
     chat.type = 'message';
     chat.code = !!code;
     const newMessage = firebase.database().ref('chats/').push();
     newMessage.set(chat);
     setNewchat({
+      idRoom: '',
       roomname: '',
       firstname: '',
       message: '',
@@ -102,25 +97,9 @@ function ChatRoom() {
     setNewchat({ ...newchat, [e.target.name]: e.target.value });
   };
 
-  const exitChat = () => {
-    const chat = {
-      roomname: '',
-      firstname: '',
-      message: '',
-      date: '',
-      type: '',
-      code: false,
-    };
-    chat.roomname = roomname;
-    chat.firstname = firstname;
-    chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
-    chat.message = `${firstname} leave the room`;
-    chat.type = 'exit';
-    const newMessage = firebase.database().ref('chats/').push();
-    newMessage.set(chat);
-
+  const exitChatHandler = () => {
     dispatch(actions.setRoomLIst());
-    dispatch(actions.clearCurrentRoom());
+    dispatch(actions.clearCurrentRoomName());
   };
 
   const memoizedChats = useMemo(
@@ -137,14 +116,14 @@ function ChatRoom() {
               <div className="ChatMessage">
                 <div
                   className={classNames({
-                    RightBubble: !item.code && item.firstname === firstname,
-                    LeftBubble: !item.code && item.firstname !== firstname,
-                    RightBubbleBlack: item.code && item.firstname === firstname,
-                    LeftBubbleBack: item.code && item.firstname !== firstname,
+                    RightBubble: !item.code && item.firstname === userFirstName,
+                    LeftBubble: !item.code && item.firstname !== userFirstName,
+                    RightBubbleBlack: item.code && item.firstname === userFirstName,
+                    LeftBubbleBack: item.code && item.firstname !== userFirstName,
                     codeBlack: item.code,
                   })}
                 >
-                  {item.firstname === firstname ? (
+                  {item.firstname === userFirstName ? (
                     <span className="MsgName">Me</span>
                   ) : (
                     <span className="MsgName">{item.firstname}</span>
@@ -158,7 +137,7 @@ function ChatRoom() {
         ))}
       </ScrollToBottom>
     ),
-    [chats, firstname],
+    [chats, userFirstName],
   );
 
   const spinner = (
@@ -169,7 +148,7 @@ function ChatRoom() {
 
   return (
     <div className={classNames({ hidden: chatStatus !== 'chatroom' })}>
-      <HeaderChat exitChat={exitChat} />
+      <HeaderChat exitChat={exitChatHandler} />
       {showLoading ? spinner : memoizedChats}
       <FooterChatRoom submitMessage={submitMessage} onChange={onChange} value={newchat.message} />
     </div>
