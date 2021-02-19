@@ -12,6 +12,9 @@ import ROUTES from "../../routes";
 import history from "../../shared/lib/history";
 import HeaderLogo from "../../assets/icons/Header";
 import { AuthContext } from "../../shared/contexts/authContext";
+import Bicon from "../../assets/images/b-icon.svg"
+import MailIcon from "../../assets/images/mail.svg"
+import Grid from "@material-ui/core/Grid";
 import {
   addUserToTribe
 } from "../../redux/actions/tribe-actions";
@@ -94,6 +97,8 @@ const LoginPage = () => {
   };
 
   return (
+    <>
+    {/* old login form */}
     <Box
       textAlign="center"
       display="flex"
@@ -172,6 +177,167 @@ const LoginPage = () => {
         </Box>
       </Card>
     </Box>
+
+    {/* new LoginPage */}
+    <div className="login_main-page">
+    <div className="login_main">
+      <div className="login_header">
+          <h1>YAAAAAYYYY! :)</h1>
+          <p>Choose your login method.</p>
+        </div>
+        <div className="login-frm">
+           <Grid container  spacing={1}> 
+               <Grid item xs={6}>
+                    <Button className="login-active" >                      
+                      <img src={Bicon} /> BIRTHDAY
+                    </Button>
+               </Grid>
+                  <Grid item xs={6} className="sure-btn">
+                    <Button>
+                       <img src={MailIcon} />
+                        EMAIL
+                    </Button>
+               </Grid>
+          </Grid>
+      <p>
+        If you forget your password you can use your birthday.
+      </p>
+
+      {/* loging by DOB */}
+
+      <div className="login-form">
+        <div>
+        <Grid container spacing={3}>
+          <Grid item xs={6}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="First Name"
+                variant="outlined"
+              
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Last Name"
+                variant="outlined"
+               
+              />
+            </Box>
+          </Grid>
+        </Grid>
+       
+        <div className="Dob-section">
+          <h2 className="Dob_title">Date of Birth</h2>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <Box my={1}>
+                <TextField
+                  fullWidth
+                  label="Day"
+                  variant="outlined"
+                
+                 
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box my={1}>
+                <TextField
+                  fullWidth
+                  label="Month"
+                  variant="outlined"
+                
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={4}>
+              <Box my={1}>
+                <TextField
+                  fullWidth
+                  required
+                  label="Year"
+                  variant="outlined"
+              
+                />
+              </Box>
+            </Grid>
+          </Grid>
+        </div>
+        </div>
+         {/* log end DOB */}
+          {/* Email login */}
+        <div className="">
+         <Grid container spacing={1} className="emaillogin">
+          <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Email"
+                variant="outlined"
+              
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Password"
+                variant="outlined"
+               
+              />
+            </Box>
+          </Grid>
+        </Grid>
+        </div>
+          <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+             className="tech-btn"          
+            >
+              <p className="reg-happy">I’M BACK</p>
+              <p className="reg">LOGIN</p>
+            </Button>
+
+             <div className="letlogin">
+          <Box
+            pb={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            fullWidth
+          >
+            I’m new here. 
+            <Button
+              color="primary"
+              style={{ textTransform: "none", textDecoration: "underline" }}
+              variant="text"
+              to={`${routes.LOGIN}${search}`}
+              component={NavLink}
+            >
+             Let me register.
+            </Button>
+          </Box>
+        </div>
+       
+      </div>
+
+     
+       
+
+        </div>
+      </div>
+</div>
+    </>
   );
 };
 

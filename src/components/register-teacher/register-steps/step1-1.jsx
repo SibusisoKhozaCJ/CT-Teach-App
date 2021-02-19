@@ -4,129 +4,148 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-
 import Button from "@material-ui/core/Button";
 
-const TeacherRegisterStep2 = ({ onUpdate, form }) => {
+const TeachRegisterStep1 = ({ onUpdate, form }) => {
   const handleFormEdit = (key) => (event) =>
     onUpdate({ ...form, [key]: event.target.value });
-  const [teacherType, setTeacherTypee] = useState(form.type);
-  const [checked, setChecked] = useState(form.schoolAlreadySigned);
+  const [checked, setChecked] = useState(form.isTeacher);
 
-  const handleCheckChange = (event) => {
+  const handleChange = (event) => {
     setChecked(event.target.checked);
     onUpdate({ ...form, [event.target.name]: event.target.checked });
   };
-  const handleChange = (event) => {
-    setTeacherTypee(event.target.value);
-    onUpdate({ ...form, [event.target.name]: event.target.value });
-  };
   return (
     <>
-    <div className="reg-pd">
-      <div className="registration-form ">
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box my={1}>
-              {!checked && (
-                <FormControl variant="filled">
-                  <InputLabel id="demo-simple-select-filled-label">
-                    TYPE
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-filled-label"
-                    id="demo-simple-select-filled"
-                    value={teacherType}
-                    name="type"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={"school"}>SCHOOL</MenuItem>
-                    <MenuItem value={"org"}>ORGANIZATION</MenuItem>
-                    <MenuItem value={"individual"}>INDIVIDUAL</MenuItem>
-                    <MenuItem value={"distric"}>DISTRICT</MenuItem>
-                  </Select>
-                </FormControl>
-              )}
-              {checked && (
-                <TextField
-                  fullWidth
-                  required
-                  label="Enter JOIN Code"
-                  variant="outlined"
-                  value={form.joincode}
-                  onChange={handleFormEdit("joincode")}
-                />
-              )}
-            </Box>
-            <span className="btm-lbl">
-              CHOOSE: SCHOOL, ORG, INDIVIDUAL OR DISTRICT.
-            </span>
-          </Grid>
-        </Grid>
-         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box my={1}>
-              <TextField
-                fullWidth
-                required
-                label="City"
-                variant="outlined"
-                type="text"
-                value={form.city}
-                onChange={handleFormEdit("city")}
-              />
-            </Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Box my={1}>
-              <TextField
-                fullWidth
-                required
-                label="School Name"
-                variant="outlined"
-                type="text"
-                value={form.schoolname}
-                onChange={handleFormEdit("schoolname")}
-              />
-            </Box>
-          </Grid>
-        </Grid>      
-
+      {/* <div className="registration-form">
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Name"
+                variant="outlined"              
+              />
+            </Box>
+          </Grid>
+            <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Email"
+                variant="outlined"               
+              />
+            </Box>
+          </Grid>
+            <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Password"
+                variant="outlined"              
+              />
+            </Box>
+          </Grid>
+        
+        </Grid>
+      </div> */}
+
+      {/* EMAIL FORM */}
+{/*       
+      <div className="registration-form">
+            <h2>
+             WANNA ADD AN <br />
+      EMAIL?
+          </h2>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Name"
+                variant="outlined"              
+              />
+            </Box>
+          </Grid>
+            <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Email"
+                variant="outlined"               
+              />
+            </Box>
+          </Grid>
+            <Grid item xs={12}>
+            <Box my={1}>
+              <TextField
+                fullWidth
+                required
+                label="Password"
+                variant="outlined"              
+              />
+            </Box>
+          </Grid>
+        <Grid className="reg-checkbox" item xs={12}>
+          <Grid  xs={12}>
+            <Box my={1}>
               <FormControlLabel
-                value="end"
                 className={checked ? "active" : ""}
                 control={
                   <Checkbox
-                    name="schoolAlreadySigned"
+                    name="isTeacher"
                     checked={checked}
-                    disabled={form.schoolAlreadySignedForced}
-                    onChange={handleCheckChange}                   
+                    onChange={handleChange}
                   />
                 }
-                label="  My school is already signed up.."
+                label=" My school is already signed up"
                 labelPlacement="end"
               />
             </Box>
           </Grid>
         </Grid>
-      </div>
-      </div>
-                 <div className="codpage techer-code">
+          <Grid container  className="skp-sur-btn" spacing={1}> 
+               <Grid item xs={4}>
+                    <Button className="skip-btn">
+                        SKIP
+                    </Button>
+               </Grid>
+                  <Grid item xs={8} className="sure-btn">
+                    <Button>
+                        SURE
+                    </Button>
+               </Grid>
+          </Grid>
+          <div className="newprive">
+          <Box
+            pb={2}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            fullWidth
+          >
+           BY CLICKING I AGREE TO THE 
+          
+             TERMS AND CONDITIONS
+          
+          </Box>
+        </div>
+        
+        </Grid>
+      </div> */}
+
+      {/* CODE PAGE */}
+      {/* <div className="codpage">
           <h1>AWESOME. </h1>
           <h2>SOMEONE WANTS YOU ON-BOARD.</h2>
           <Grid item xs={12}>
           <div id="wrapper">        
             <div id="codeform">
-            <span className="techer-name">S-</span>
             <input type="text"  maxLength="1"/>
             <input type="text"  maxLength="1"/>
             <input type="text" maxLength="1"/>
@@ -175,10 +194,14 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
           
           </Box>
         </div>      
-            </div> 
+            </div>   */}
+
+    {/* tech1 */}
+    
+      
       
     </>
   );
 };
 
-export default TeacherRegisterStep2;
+export default TeachRegisterStep1;

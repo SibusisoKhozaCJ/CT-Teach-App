@@ -16,7 +16,12 @@ const Progress = () => {
           <div class="table">
             <div class="theader">
               <div class="table_header">
-                <input type="checkbox" />
+               <div class="new-checkbox">
+                    <div class="form-group">
+                      <input type="checkbox" id="maincheck" />
+                      <label for="maincheck"></label>
+                    </div>
+                  </div>
               </div>
               <div class="table_header">
                 FIRST{" "}
