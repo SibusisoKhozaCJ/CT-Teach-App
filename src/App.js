@@ -34,6 +34,7 @@ import TribeProfile from "./components/tribes/tribe-profile/tribe-profile";
 import FriendsPage from "./components/friends/friends.jsx"
 import "./index.scss";
 import Footer from './components/footer/footer';
+import Codepanel from './components/codepanel/codepanel';
 import Chat from './components/chat/chat';
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -112,6 +113,7 @@ const App = () => {
                     <Route path={routes.JOIN_TRIBE_ID}>
                       <JoinTribe isAuthenticated={isAuthenticate}/>
                     </Route>
+                    <Route path={routes.CODE_PANEL} component={Codepanel} />
                     <ProtectedRoute path={routes.HOME} component={Home} />
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
