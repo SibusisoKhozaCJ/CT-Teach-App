@@ -13,6 +13,7 @@ const TypeAndEmailForm = ({
   search,
 }) => {
   return (
+    <div className="reg-pd">
     <section className="registration">
       <div className="registration_main">
         <Box my={2} className="registration_title">
@@ -35,7 +36,7 @@ const TypeAndEmailForm = ({
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              className="ylw-tech"
               disabled={loading}
             >
               <p className="reg-happy">LET’S DO IT.</p>
@@ -44,6 +45,7 @@ const TypeAndEmailForm = ({
         </Box>
       </div>
     </section>
+    </div>
   );
 };
 

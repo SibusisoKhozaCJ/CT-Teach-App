@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Gridicon from "../../../../assets/images/tgrid.svg";
 import Colspicon from "../../../../assets/images/prnext.svg";
 import Pradd from "../../../../assets/images/prad.svg";
-
 import Progressicon from "../../../../assets/icons/tribe/icon4.svg";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
