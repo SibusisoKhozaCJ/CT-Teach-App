@@ -8,6 +8,7 @@ import { lessonsGetList } from "../../redux/actions/lessons-actions";
 import { projectsGetById } from "../../redux/actions/projects-actions";
 import Loading from "../../shared/components/loader/Loading";
 import LessonItem from "./components/lesson-item";
+import Card from "../../shared/components/card/card";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -107,7 +108,16 @@ const Lessons = (params) => {
   return (
     <div className={classes.root}>
       <div className="commonheight" />
-      <div className={classes.container}>
+      <Card
+        button={{
+          classes: "bottom-left",
+          content: (
+            <Link to={`/projects`}>
+              <KeyboardArrowLeftIcon />
+            </Link>
+          )
+        }}
+      >
         <h1 className={classes.title}>{project.title}</h1>
         <h2 className={classes.title}>Objective</h2>
         <p className={classes.objective}>{project.objective}</p>
@@ -123,10 +133,7 @@ const Lessons = (params) => {
           )}
         </ul>
         <Link to={"/projects"} className={classes.back}>Back</Link>
-        <Link className={classes.backRound} to={`/projects`}>
-          <KeyboardArrowLeftIcon />
-        </Link>
-      </div>
+      </Card>
     </div>
 
   )

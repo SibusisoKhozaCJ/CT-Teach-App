@@ -14,7 +14,8 @@ import Accounticon from "../../assets/images/account.svg";
 import Chaticon from "../../assets/images/chat.svg";
 import Menuicon from "../../assets/images/menuicon.svg";
 import Newicon from "../../assets/images/pls.svg";
-import Homeicon from "../../assets/images/home.svg"
+import Homeicon from "../../assets/images/home.svg";
+import ProjectsIcon from "../../assets/icons/footer-icon/icon1.svg";
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
@@ -73,4 +74,8 @@ export const ChatSvg = () => {
 };
 export const MenuSvg = () => {
   return <img src={Menuicon} alt="" />;
+};
+
+export const ProjectsSvg = () => {
+  return <img src={ProjectsIcon} alt="" />;
 };

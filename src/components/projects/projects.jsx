@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 import Icon1 from "../../assets/icons/footer-icon/icon1.svg";
 import Loading from "../../shared/components/loader/Loading";
@@ -11,7 +14,9 @@ const useStyles = makeStyles(() => ({
   root: {
     // flexGrow: 1,
     minHeight: "100vh",
-    width: "100%",
+    paddingRight: 20,
+    width: "100vw",
+    maxWidth: 600,
     overflowX: "hidden"
   },
 
@@ -25,6 +30,10 @@ const useStyles = makeStyles(() => ({
   icon: {
     width: 45,
     marginRight: 22
+  },
+
+  projects: {
+    width: "100%"
   }
 }));
 
@@ -56,7 +65,7 @@ const Projects = () => {
           <img src={Icon1} className={`${classes.icon} coverage`} alt="" />
           Projects
         </h1>
-        <div>
+        <div className={classes.projects}>
           {projects.map(project => <ProjectItem project={project} />)}
         </div>
       </div>

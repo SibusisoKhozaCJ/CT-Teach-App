@@ -1,0 +1,30 @@
+.content-card__container {
+  margin: 20px;
+  padding: 20px 36px 56px 36px;
+  border: 5px solid #43d4dd;
+  border-radius: 25px;
+  position: relative;
+}
+
+.content-card__btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #43d4dd;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.content-card__btn.content-card__btn--bottom-left {
+  position: absolute;
+  bottom: -22px;
+  left: 35px;
+}
+
+.content-card__btn.content-card__btn--bottom-right {
+  position: absolute;
+  bottom: -22px;
+  right: 35px;
+}

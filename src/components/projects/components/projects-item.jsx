@@ -5,11 +5,15 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+import ShareIcon from "../../../assets/icons/footer-icon/share.png";
+import Card from "../../../shared/components/card/card";
+
 const useStyles = makeStyles(() => ({
   item: {
     border: "5px solid #43D4DD",
+    borderRadius: 25,
     margin: "40px 0",
-    padding: "20px 36px 0 36px",
+    padding: "20px 36px 56px 36px",
     // overflowY: "hidden",
     width: "100%",
     maxWidth: 600,
@@ -17,49 +21,56 @@ const useStyles = makeStyles(() => ({
   },
 
   header: {
-    fontSize: 25,
+    fontSize: 29,
     fontWeight: "bold"
   },
 
   description: {
-    fontSize: 15
+    fontSize: 21
   },
 
   list: {
     margin: "12px 0 0 20px",
     padding: 0,
-    fontSize: 13,
-    fontWeight: "bold",
 
     "& li": {
-      listStyle: "none"
+      margin: "10px 0",
+      listStyle: "none",
+      fontSize: 19,
+      fontWeight: "bold",
     },
 
     "& span": {
-      fontWeight: 400
+      marginLeft: 20,
+      fontWeight: 400,
+      padding: "0 19px",
+      backgroundColor: "#FBDD3F",
+      borderRadius: 15
     }
   },
 
   buttons: {
     marginTop: 22,
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
+    alignItems: "center"
   },
 
   btnStart: {
-    flexGrow: 1,
-    marginLeft: 39,
+    order: 0,
+    borderRadius: 40,
     textAlign: "center",
     display: "inline-flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#D40073",
+    backgroundColor: "#43D4DD",
+    border: "4px solid #fff",
     color: "#fff",
     fontSize: 22,
     fontWeight: "bold",
     textTransform: "uppercase",
     padding: "11px 26px",
-    borderRadius: 10,
+    zIndex: 10,
 
     "&:hover": {
       color: "#fff",
@@ -68,22 +79,39 @@ const useStyles = makeStyles(() => ({
   },
 
   btnMore: {
-    flexGrow: 1,
+    zIndex: 1,
+    display: "flex",
+    order: 1,
+    margin: 0,
+    marginLeft: -45,
     textAlign: "center",
     justifyContent: "center",
-    display: "inline-block",
-    backgroundColor: "#43D4DD",
+    alignItems: "center",
+    lineHeight: 1,
+    backgroundColor: "#000",
+    border: "4px solid #fff",
     color: "#fff",
     fontSize: 22,
     fontWeight: "bold",
     textTransform: "uppercase",
-    padding: "11px 26px",
-    borderRadius: 10,
+    padding: "16px 32px 16px 58px",
+    borderRadius: 40,
 
     "&:hover": {
       color: "#fff",
       textDecoration: "none"
     }
+  },
+
+  btnShare: {
+    order: 2,
+    marginLeft: "auto",
+    backgroundColor: "#c4c4c4",
+    borderRadius: 50,
+    width: 60,
+    height: 60,
+    border: "none",
+    opacity: ".45",
   },
 
   btnIcon: {
@@ -92,6 +120,7 @@ const useStyles = makeStyles(() => ({
   },
 
   progress: {
+    order: 1,
     fontSize: 11,
     marginTop: 14,
     width: "100%",
@@ -114,18 +143,31 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
   const classes = useStyles();
   const [isListEmpty, setIsListEmpty] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const completed = 0;
+  // const completed = 0;
 
   useEffect(() => {
     setIsListEmpty(!(level || fun || time || outline))
   }, [level, fun, time, outline])
 
   return (
-    <div className={classes.item}>
+    <Card button={{
+      classes: "bottom-right",
+      content: isCollapsed ? (
+            <KeyboardArrowDownIcon
+              style={{ color: "#D40073" }}
+              onClick={() => {setIsCollapsed(!isCollapsed)}}
+            />) : (
+            <KeyboardArrowUpIcon
+              style={{ color: "#A6A6A6" }}
+              onClick={() => {setIsCollapsed(!isCollapsed)}}
+            />)
+      }
+    }>
+    {/* <div className={classes.item}> */}
       <h3 className={classes.header}>{title}</h3>
-      <p className={classes.description}>{description}</p>
       {isCollapsed ? null : (
         <>
+          <p className={classes.description}>{description}</p>
           {isListEmpty || (
             <ul className={classes.list}>
               {level ? <li>LEVEL: <span>{level}</span></li> : null}
@@ -134,27 +176,22 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
               {outline ? <li>OUTLINE: <span>{outline}</span></li> : null}
             </ul>
           )}
-          <div className={classes.buttons}>
-            <Link to={`/lesson/${key}`} className={classes.btnMore}>
-              More
-            </Link>
-            <Link to={`/codepanel/${lessons[0]}`} className={classes.btnStart}>
-              <span style={{ marginLeft: "auto" }}>
-                Start
-              </span>
-                <PlayArrowIcon className={classes.btnIcon}/>
-            </Link>
-          </div>
-          <p className={classes.progress}>Training Completed: {completed} of {lessons.length}</p>
+          {/* <p className={classes.progress}>Training Completed: {completed} of {lessons.length}</p> */}
         </>
       )}
-      <button
-        onClick={() => {setIsCollapsed(!isCollapsed)}}
-        role="button" className={classes.collapse}
-      >
-        {isCollapsed ? <KeyboardArrowDownIcon style={{ color: "#D40073" }}/> : <KeyboardArrowUpIcon style={{ color: "#A6A6A6" }}/>}
-      </button>
-    </div>
+          <div className={classes.buttons}>
+            <Link to={`/lesson/${key}`} className={classes.btnMore}>
+              Trainings
+            </Link>
+            <Link to={`/codepanel/${lessons[0]}`} className={classes.btnStart}>
+              <PlayArrowIcon className={classes.btnIcon}/>
+            </Link>
+            <button role="button" className={classes.btnShare}>
+              <img onClick={()=>{}} src={ShareIcon} className="coverage" alt="" />
+            </button>
+          </div>
+    {/* </div> */}
+    </Card>
   )
 }
 
