@@ -167,7 +167,8 @@ const Editor = () => {
         height: "100%",
         width: "100%",
         overflow: "hidden",
-        backgroundColor: "#1E1E1E"
+        backgroundColor: "#1E1E1E",
+        position: "relative"
       }}
     >
       <Suspense fallback={<div>loading</div>}>

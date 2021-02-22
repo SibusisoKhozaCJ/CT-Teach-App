@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   mobieleBottomBarWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    width: "100%"
+    width: "100vw"
   }
 }));
 

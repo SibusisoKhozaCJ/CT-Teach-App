@@ -9,17 +9,6 @@ import ShareIcon from "../../../assets/icons/footer-icon/share.png";
 import Card from "../../../shared/components/card/card";
 
 const useStyles = makeStyles(() => ({
-  item: {
-    border: "5px solid #43D4DD",
-    borderRadius: 25,
-    margin: "40px 0",
-    padding: "20px 36px 56px 36px",
-    // overflowY: "hidden",
-    width: "100%",
-    maxWidth: 600,
-    position: "relative"
-  },
-
   header: {
     fontSize: 29,
     fontWeight: "bold"
@@ -163,7 +152,6 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
             />)
       }
     }>
-    {/* <div className={classes.item}> */}
       <h3 className={classes.header}>{title}</h3>
       {isCollapsed ? null : (
         <>
@@ -190,7 +178,6 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
               <img onClick={()=>{}} src={ShareIcon} className="coverage" alt="" />
             </button>
           </div>
-    {/* </div> */}
     </Card>
   )
 }
