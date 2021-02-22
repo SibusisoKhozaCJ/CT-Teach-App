@@ -34,7 +34,7 @@ export const lesson_data = {
           description: "add <h1> tag",
           rule: "<h1(.*)>"
         }
-    ],
+      ],
       css_class: "challenge cp-peach snap1 hide-help",
       html_content: `
     <div>

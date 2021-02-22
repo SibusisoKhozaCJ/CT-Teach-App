@@ -31,11 +31,14 @@ import Profile from "./components/profile/Profile";
 import Layout from './hoc/Layout/Layout';
 import JoinTribe from "./components/join-tribe/join-tribe-page"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile";
-import FriendsPage from "./components/friends/friends.jsx"
+import FriendsPage from "./components/friends/friends.jsx";
 import "./index.scss";
 import Footer from './components/footer/footer';
-import Codepanel from './components/codepanel/codepanel';
 import Chat from './components/chat/chat';
+import Codepanel from './components/codepanel/codepanel';
+import Projects from './components/projects/projects';
+import Lessons from './components/lessons/lessons';
+
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -122,6 +125,8 @@ const App = () => {
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
                     <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
+                    <ProtectedRoute path={routes.PROJECTS} component={Projects} />
+                    <ProtectedRoute path={routes.LESSON_ID} component={Lessons} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>

@@ -37,7 +37,7 @@ const Footer = () => {
 
       <div className="footer-icon centr-Ficon">
         <div className="mt-ft-icon">
-        <img onClick={(evt)=>history.push("/tribe")} src={Icon4} className="coverage" alt="" />
+        <img onClick={(evt)=>history.push("/codepanel/5-min-website")} src={Icon4} className="coverage" alt="" />
         </div>
       </div>
 

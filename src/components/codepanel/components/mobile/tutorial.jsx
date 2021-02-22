@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   popup: {
     position: "fixed",
-    width: "80%",
-    padding: 20,
+    width: "250px",
+    padding: "9px 9px",
     zIndex: "10",
-    background: theme.palette.primary.contrastText,
-    color: theme.palette.secondary.contrastText,
+    background: "#fff",
+    // color: "#000",
     textAlign: "center",
+    color: "#fff",
+    backgroundColor: "#00D2AA",
+    borderRadius: 12,
+    border: "3px white solid",
 
     "&::after": {
       content: '""',
@@ -23,8 +26,14 @@ const useStyles = makeStyles((theme) => ({
       height: 1
     },
 
+    "& h3": {
+      fontSize: "14px",
+      fontWeight: "bold"
+    },
+
     "& p": {
-      fontSize: 20
+      fontSize: 22,
+      lineHeight: 1
     },
 
     '&[data-tutorial-position^="left-top"]': {
@@ -48,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     '&[data-tutorial-arrow^="bottom"]::after': {
       display: "block",
       left: "50%",
-      borderTop: `16px solid ${theme.palette.primary.contrastText}`,
+      borderTop: "16px solid #fff",
       top: "100%",
       transform: "translateX(-50%)"
     },
@@ -57,23 +66,29 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
       right: "100%",
       top: 16,
-      borderRight: `16px solid ${theme.palette.primary.contrastText}`
+      borderRight: "16px solid #fff"
     }
   },
 
   button: {
     margin: "auto",
     textTransform: "uppercase",
-    padding: "8px 16px",
-    background: theme.palette.primary.main,
-    border: "none"
+    // padding: "8px 16px",
+    color: "#fff",
+    fontFamily: "'Rajdhani', sans-serif",
+    fontWeight: 400,
+    background: "#e42761",
+    fontSize: 22,
+    border: "1px solid transparent",
+    borderRadius: ".25rem",
+    padding: "0 10px"
   }
 }));
 
 const tutorialData = [
   {
     title: "tip 1 of 3",
-    text: <p>To help you, we have added the &lt; {"&"} &gt; keys here.</p>,
+    text: <p>To help you, we added the &lt; {"&"} &gt; keys here.</p>,
     button: "Thanks >",
     arrow: "bottom",
     position: "bottom"
@@ -88,10 +103,10 @@ const tutorialData = [
   {
     title: "tip 3 of 3",
     text: (
-      <Typography>
-        When done swipe right <ArrowRightAltIcon /> or click <AssignmentIcon />{" "}
+      <p>
+        When done swipe right <ArrowRightAltIcon /> or click the <AssignmentIcon />{" "}
         button to return to the slides.
-      </Typography>
+      </p>
     ),
     button: "Got it.",
     arrow: "none",
