@@ -4,7 +4,9 @@ const initialState = {
   chatStatus: 'roomlist',
   idRoom: '',
   currentRoomName: '',
-  isVisibleChat: true,
+  isVisibleChat: false,
+  messages: [],
+  unreadMessages: 0,
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -30,6 +32,11 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         currentRoomName: '',
       };
+    case actionTypes.CLEAR_ID_ROOM:
+      return {
+        ...state,
+        idRoom: '',
+      };
     case actionTypes.SHOW_CHAT:
       return {
         ...state,
@@ -39,6 +46,21 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         isVisibleChat: false,
+      };
+    case actionTypes.SET_MESSAGES:
+      return {
+        ...state,
+        messages: action.payload,
+      };
+    case actionTypes.CLEAR_MESSAGES:
+      return {
+        ...state,
+        messages: null,
+      };
+    case actionTypes.SET_UNREAD_MESSAGES_COUNT:
+      return {
+        ...state,
+        unreadMessages: action.payload,
       };
     default:
       return state;

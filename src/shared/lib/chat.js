@@ -1,8 +1,7 @@
-import Moment from 'moment';
 import firebase from 'firebase';
 import * as actions from '../../redux/actions/chat-action';
 
-const snapshotToArray = snapshot => {
+export const snapshotToArray = snapshot => {
   const returnArr = [];
 
   snapshot.forEach(childSnapshot => {
@@ -20,17 +19,18 @@ const sendJoinMessage = (dispatch, firstname, idRoom, roomname) => {
     roomname: '',
     firstname: '',
     message: '',
-    date: '',
+    createdAt: '',
     type: '',
     code: false,
+    status: 'unread',
   };
   chat.idRoom = idRoom;
   chat.roomname = roomname;
   chat.firstname = firstname;
-  chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
+  chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
   chat.message = `${firstname} enter the room`;
   chat.type = 'join';
-  const newMessage = firebase.database().ref('chats/').push();
+  const newMessage = firebase.database().ref('messages/').push();
   newMessage.set(chat);
 };
 
@@ -49,7 +49,12 @@ export const enterChatRoom = ({ dispatch, firstname, idRoom, roomname }) => {
         userRef.update({ status: 'online' });
       } else {
         sendJoinMessage(dispatch, firstname, idRoom, roomname);
-        const newroomuser = { idRoom: '', roomname: '', firstname: '', status: '' };
+        const newroomuser = {
+          idRoom: '',
+          roomname: '',
+          firstname: '',
+          status: '',
+        };
         newroomuser.idRoom = idRoom;
         newroomuser.roomname = roomname;
         newroomuser.firstname = firstname;

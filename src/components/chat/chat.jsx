@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import RoomList from './room-list/room-list';
+import RoomBox from './room-list/room-box';
 import ChatRoom from './chat-room/chat-room';
 
 const Chat = () => {
@@ -9,7 +9,7 @@ const Chat = () => {
 
   return (
     <div className={`chat-container ${isVisibleChat ? 'openChat' : 'closeChat'}`}>
-      <RoomList />
+      <RoomBox />
       <ChatRoom />
     </div>
   );
