@@ -160,6 +160,15 @@
 			margin-right: 20px;
 		}
 	}
+	.tocodepupupdiv button {
+		background: #43D4DD;
+		border-radius: 35px;
+		min-width: 197px;
+		margin-bottom: 20px;
+		.tocode-tagsidebar {
+			margin-right: 20px;
+		}
+	}
 	.tribe-page .tribe-expandtext .expand-icontext button img {
 		margin-left: 20px;
 		max-width: 20px;
@@ -198,6 +207,12 @@
 		font-weight: 700;
 		font-size: 24px;
 		color: #000000;
+	}
+	.tocodepopupdiv span {
+		margin-right: 20px;
+		font-weight: 700;
+		font-size: 24px;
+		color: #fff;
 	}
 	.MuiListItemText-root span {
 		font-weight: 700 !important;
