@@ -12,7 +12,7 @@ import {
   codepanelSetTab
 } from '../../../redux/actions/codepanel-actions'
 
-import "../data/INTRO-5MIN-M-V007/custom.css"
+// import "../data/INTRO-5MIN-M-V007/custom.css"
 
 const useStyles = makeStyles(theme => ({
   pageLesson: {
