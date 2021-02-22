@@ -5,6 +5,8 @@ import ErrorIcon from '@material-ui/icons/Error';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+import TickIcon from "../../../../assets/images/tick-icon.png";
+import TestTubeIcon from "../../../../assets/images/testtube-icon.png";
 import Tick from "../tick/tick";
 
 const useStyles = makeStyles(() => ({
@@ -68,7 +70,8 @@ const Checker = ({ challenges }) => {
       </li>
       {challenges.map(challenge => (
         <li key={challenge.description} className={classes.item}>
-          {challenge.status ? <Tick size="24" /> : <ErrorIcon />}
+          <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
+          {/* {challenge.status ? <Tick size="24" /> : <ErrorIcon />} */}
           {collapsed || <span className={classes.text}>{challenge.description}</span>}
         </li>
       ))}
