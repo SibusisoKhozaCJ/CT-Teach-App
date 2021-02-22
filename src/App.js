@@ -39,6 +39,7 @@ import Codepanel from './components/codepanel/codepanel';
 import Projects from './components/projects/projects';
 import Lessons from './components/lessons/lessons';
 
+
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
   return (

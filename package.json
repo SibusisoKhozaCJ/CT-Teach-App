@@ -37,6 +37,7 @@
     "react-scripts": "3.4.1",
     "react-scroll-to-bottom": "^4.1.0",
     "react-swipeable-views": "^0.13.9",
+    "react-scroll-to-bottom": "^4.1.0",
     "react-text-mask": "^5.4.3",
     "redux": "^4.0.5",
     "redux-saga": "^1.1.3",
