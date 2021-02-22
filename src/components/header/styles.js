@@ -175,5 +175,9 @@ export default makeStyles(theme => ({
       display: 'none'
     },
     marginRight: theme.spacing(3)
+  },
+  customBadge: {
+    backgroundColor: "#76dc37",
+    color: "white"
   }
 }));

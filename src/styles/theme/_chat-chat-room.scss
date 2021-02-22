@@ -1,64 +1,101 @@
 $query-sm: 600px;
 
-.chat-room-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  border-bottom: 1px solid grey;
-}
+.chat-room {
+  background: rgba(21, 82, 117, 0.25);
 
-.chat-room-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 54px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-
-  input[type="text"]::-webkit-input-placeholder {
-    padding-left: 10px;
+  .no-message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 14px;
   }
 
-  input[type="text"]::-moz-placeholder {
-    padding-left: 10px;
+  .chat-room-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
   }
 
-  input[type="text"]:-ms-input-placeholder {
-    padding-left: 10px;
-  }
+  .chat-room-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 54px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 
-  input[type="text"]::-ms-input-placeholder {
-    padding-left: 10px;
-  }
+    input[type="text"] {
+      padding-left: 10px;
+      padding-right: 34px;
+    }
 
-  input[type="text"]::placeholder {
-    padding-left: 10px;
-  }
+    @media (max-width: $query-sm) {
+      input[type="text"]::-webkit-input-placeholder {
+        font-size: 14px;
+      }
 
-  input[type="text"] {
-    padding-left: 10px;
-    padding-right: 34px;
-  }
-}
+      input[type="text"]::-moz-placeholder {
+        font-size: 14px;
+      }
 
-.footer-extend {
-  height: 84px;
+      input[type="text"]:-ms-input-placeholder {
+        font-size: 14px;
+      }
+
+      input[type="text"]::-ms-input-placeholder {
+        font-size: 14px;
+      }
+
+      input[type="text"]::placeholder {
+        font-size: 14px;
+      }
+    }
+
+    textarea::-webkit-input-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
+
+    textarea::-moz-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
+
+    textarea:-ms-input-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
+
+    textarea::-ms-input-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
+
+    textarea::placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
+  }
 }
 
 .ChatContent {
-  height: 490px;
-  background: rgba(21, 82, 117, 0.25);
+  height: 492px;
 
   @media (max-width: $query-sm) {
     height: 84vh;
@@ -110,6 +147,10 @@ $query-sm: 600px;
       }
 
       .RightBubble span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
         font-size: 10px;
       }
 
@@ -120,6 +161,10 @@ $query-sm: 600px;
       }
 
       .RightBubbleBlack span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
         font-size: 10px;
       }
 
@@ -181,8 +226,11 @@ $query-sm: 600px;
         color: blue;
       }
 
-
       .LeftBubble span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
         font-size: 10px;
       }
 
@@ -193,6 +241,10 @@ $query-sm: 600px;
       }
 
       .LeftBubbleBack span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
         font-size: 10px;
       }
 

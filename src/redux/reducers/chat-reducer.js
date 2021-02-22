@@ -2,9 +2,11 @@ import * as actionTypes from '../constants/chat-types';
 
 const initialState = {
   chatStatus: 'roomlist',
-  room: '',
-  currentRoom: '',
-  isVisibleChat: true,
+  idRoom: '',
+  currentRoomName: '',
+  isVisibleChat: false,
+  messages: [],
+  unreadMessages: 0,
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -18,17 +20,22 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         chatStatus: action.chatStatus,
-        room: action.room,
+        idRoom: action.idRoom,
       };
-    case actionTypes.SET_CURRENT_ROOM:
+    case actionTypes.SET_CURRENT_ROOM_NAME:
       return {
         ...state,
-        currentRoom: action.currentRoom,
+        currentRoomName: action.currentRoomName,
       };
-    case actionTypes.CLEAR_CURRENT_ROOM:
+    case actionTypes.CLEAR_CURRENT_ROOM_NAME:
       return {
         ...state,
-        currentRoom: '',
+        currentRoomName: '',
+      };
+    case actionTypes.CLEAR_ID_ROOM:
+      return {
+        ...state,
+        idRoom: '',
       };
     case actionTypes.SHOW_CHAT:
       return {
@@ -39,6 +46,21 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         isVisibleChat: false,
+      };
+    case actionTypes.SET_MESSAGES:
+      return {
+        ...state,
+        messages: action.payload,
+      };
+    case actionTypes.CLEAR_MESSAGES:
+      return {
+        ...state,
+        messages: null,
+      };
+    case actionTypes.SET_UNREAD_MESSAGES_COUNT:
+      return {
+        ...state,
+        unreadMessages: action.payload,
       };
     default:
       return state;
