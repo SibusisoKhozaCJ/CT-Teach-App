@@ -73,6 +73,8 @@
 		border-radius: 0;
 		margin-top: 20px;
 		position: relative;
+		box-shadow: none !important;
+		border-radius: 5px;
 	&::before {
     content: "";
     width: 40px;
@@ -259,10 +261,10 @@
 }
  .ent-code {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 700 !important;
     margin-top: 15px;
-    margin-bottom: 0;
-	color: #364954;
+    margin-bottom: 5px;
+	color: #364954 !important;
 }
   button {
         width: 100%;
@@ -316,4 +318,59 @@ color: #fff;
     font-size: 26px !important;
     font-weight: 700;
 	color: #A6A6A6;
+}
+
+.Mui-selected.tech-tab{
+	span{
+		color: #FFDA1B;
+	}
+}
+.tech-btn.MuiButton-fullWidth:hover {
+    background: #FFDA1B;
+}
+.reg-pd1{
+	width: 100%;
+		form{
+		padding: 20px;
+	}
+	.registration_main {
+    margin: 0 auto;
+}
+.MuiFormLabel-root{
+	font-weight: 700;
+	font-size: 18px;
+line-height: 21px;
+color: #364954;
+}
+ button{
+	 margin-top: 0;
+ }
+ .chck-bx{
+	 padding-left: 10px;
+ }
+ .codpage .active .MuiTypography-body1 {
+    background: #FBDD3F;
+}
+.MuiTypography-colorError {
+    color: #f44336;
+    text-align: center;
+}
+}
+.sure-btn button{
+	background: #43D4DD;
+border-radius: 5px;
+&:hover{
+		background: #43D4DD;
+}
+}
+.reg-checkbox.user-chck{
+	padding: 0 0 0 15px;
+	.active .MuiTypography-body1 {
+    background: #43D4DD !important;
+}
+}
+.reg-checkbox.usr-check{
+.active .MuiTypography-body1 {
+    background: #43D4DD !important;
+}
 }

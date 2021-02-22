@@ -15,7 +15,7 @@ const TypeAndEmailForm = ({
   registerType
 }) => {
   return (
-    <div className="reg-pd">
+    <div className="reg-pd1">
     <section className="registration">
       <div className="registration_main">
         

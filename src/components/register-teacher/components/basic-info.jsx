@@ -36,7 +36,7 @@ const BasicInfo = ({
         <AppBar position="static">
           <TabList onChange={handleChange} value={value} aria-label="simple tabs example">
             <Tab label="BUILD" value="1"/>
-            <Tab label="TEACh" value="2" />
+            <Tab label="TEACh" value="2"  className="tech-tab"/>
            
           </TabList>
         </AppBar>

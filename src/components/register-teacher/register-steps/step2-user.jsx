@@ -18,12 +18,13 @@ const UserRegisterStep2 = ({ onUpdate, form }) => {
   return (
     <>
       <div className="registration-form">
-        <h2>
+      
+        {!checked && (
+          <>
+            <h2>
           WANNA ADD AN <br />
           EMAIL?
         </h2>
-        {!checked && (
-          <>
             <Grid container spacing={1}>
               <Grid item xs={12}>
                 <Box my={1}>
@@ -43,6 +44,7 @@ const UserRegisterStep2 = ({ onUpdate, form }) => {
                     fullWidth
                     required
                     label="Password"
+                     type="password"
                     variant="outlined"
                     value={form.password}
                     onChange={handleFormEdit("password")}
@@ -61,7 +63,7 @@ const UserRegisterStep2 = ({ onUpdate, form }) => {
                   />
                 </Box>
               </Grid>
-              <Grid className="reg-checkbox" item xs={12}>
+              <Grid className="reg-checkbox user-chck" item xs={12}>
                 <Grid xs={12}>
                   <Box my={1}>
                     <FormControlLabel
@@ -121,7 +123,7 @@ const UserRegisterStep2 = ({ onUpdate, form }) => {
               <p>If you don’t have this you can add it later.</p>
             </div>
           </Grid>
-          <Grid className="reg-checkbox" item xs={12}>
+          <Grid className="reg-checkbox usr-check" item xs={12}>
             <Grid xs={12}>
               <FormControlLabel
                 className={checked ? "active" : ""}

@@ -48,7 +48,7 @@ padding-left: 10px;
     .login-form{
         button {		
 		max-height: 61px;			
-		margin-top: 20px;
+		margin-top: 0px;
         background: #D50073;
         border-radius: 5px;
         border: none;
@@ -88,9 +88,11 @@ fieldset{
 }
 .MuiOutlinedInput-input{
     border-radius: 4px;
+	z-index: 9;
 }
 .Dob-section {
 		margin-top: 12px;
+		margin-bottom: 20px;
 		.Dob_title {
 			font-weight: 700;
 			font-size: 18px;
@@ -125,7 +127,29 @@ padding-left: 5px;
     }
 	}
     
-	
-
+	.forget-psw{
+	padding-left: 15px !important;
+	padding: 0;
+	color: #A6A6A6;
+}
+.forgetpswp{
+	.login-form button {
+    max-height: 61px;
+    margin-top: 0px;
+    background: #000;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    color: #fff;
+    position: relative;
+}
+.forget-psw {    
+    margin-bottom: -18px !important;
+	.MuiTypography-root{
+		color: #D50073;
+		font-weight: 700;
+	}
+}
+}
     
 	

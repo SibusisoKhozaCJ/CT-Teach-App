@@ -60,7 +60,7 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                 </Grid>
               </Grid>
               
-              <Grid container spacing={3}>
+              <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Box my={1}>
                     <TextField
@@ -75,7 +75,7 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                   </Box>
                 </Grid>
               </Grid>
-              <Grid container spacing={3}>
+              <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Box my={1}>
                     <TextField
@@ -90,7 +90,7 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                   </Box>
                 </Grid>
               </Grid>
-              <Grid container spacing={1}>
+              <Grid container spacing={1} className="chck-bx">
                 <Grid item xs={12}>
                   <Box my={1}>
                     <FormControlLabel
@@ -123,8 +123,8 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                     <input type="text" maxLength="1" />
                     <input type="text" maxLength="1" />
                   </div>
-                  <p className="ent-code">Enter JOIN code.</p>
-                  <p>If you don’t have this you can add it later.</p>
+                  <p className="ent-code">Enter Teacher JOIN code.</p>
+                  <p>TIP: Teacher JOIN codes start with an “S.”</p>
                 </div>
               </Grid>
               <Grid className="reg-checkbox" item xs={12}>

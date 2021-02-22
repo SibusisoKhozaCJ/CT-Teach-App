@@ -15,6 +15,8 @@ import { AuthContext } from "../../shared/contexts/authContext";
 import Bicon from "../../assets/images/b-icon.svg";
 import MailIcon from "../../assets/images/mail.svg";
 import Grid from "@material-ui/core/Grid";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { addUserToTribe } from "../../redux/actions/tribe-actions";
 import * as Auth from "../../shared/lib/authentication";
 import routes from "../../routes";
@@ -114,7 +116,7 @@ const LoginPage = () => {
                   <img src={Bicon} /> BIRTHDAY
                 </Button>
               </Grid>
-              <Grid item xs={6} className="sure-btn">
+              <Grid item xs={6} >
                 <Button
                   className={loginType === "email" ? "login-active" : ""}
                   onClick={() => setLoginType("email")}
@@ -224,11 +226,31 @@ const LoginPage = () => {
                             required
                             label="Password"
                             variant="outlined"
+                             type="password"
                             value={password}
                             onChange={handleChange("password")}
                           />
                         </Box>
                       </Grid>
+                     
+                        <Grid item xs={12}  spacing={1} className="forget-psw">
+                          <Box my={1}>
+                            <FormControlLabel
+                              value="end"
+                              // className={checked ? "active" : ""}
+                              control={
+                                <Checkbox
+                                  name="schoolAlreadySigned"
+                                  // checked={checked}
+                                  // onChange={handleCheckChange}
+                                />
+                              }
+                              label=" Forgot password"
+                              labelPlacement="end"
+                            />
+                          </Box>
+               
+              </Grid>
                     </Grid>
                   </div>
                 )}
@@ -236,8 +258,7 @@ const LoginPage = () => {
                 <Button
                   type="submit"
                   fullWidth
-                  variant="contained"
-                  className="tech-btn"
+                  variant="contained"                 
                 >
                   <p className="reg-happy">I’M BACK</p>
                   <p className="reg">LOGIN</p>

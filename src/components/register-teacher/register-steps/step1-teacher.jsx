@@ -18,7 +18,7 @@ const TeachRegisterStep1 = ({ onUpdate, form }) => {
   return (
     <>
       <div className="registration-form">
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <Box my={1}>
               <TextField
@@ -49,6 +49,7 @@ const TeachRegisterStep1 = ({ onUpdate, form }) => {
                 fullWidth
                 required
                 label="Password"
+                 type="password"
                 variant="outlined"
                 value={form.password}
                 onChange={handleFormEdit("password")}
@@ -59,64 +60,6 @@ const TeachRegisterStep1 = ({ onUpdate, form }) => {
       </div>
 
 
-      {/* CODE PAGE */}
-      {/* <div className="codpage">
-          <h1>AWESOME. </h1>
-          <h2>SOMEONE WANTS YOU ON-BOARD.</h2>
-          <Grid item xs={12}>
-          <div id="wrapper">        
-            <div id="codeform">
-            <input type="text"  maxLength="1"/>
-            <input type="text"  maxLength="1"/>
-            <input type="text" maxLength="1"/>
-            <input type="text" maxLength="1" />
-            <input type="text" maxLength="1"/>
-             </div>
-            <p className="ent-code">Enter JOIN code.</p>
-            <p>If you don’t have this you can add it later.</p>
-           
-            </div>
-          
-            </Grid>
-             <Grid className="reg-checkbox" item xs={12}>
-             <Grid  xs={12}>           
-              <FormControlLabel
-                className={checked ? "active" : ""}
-                control={
-                  <Checkbox
-                    name="isTeacher"
-                    checked={checked}
-                    onChange={handleChange}
-                  />
-                }
-                label=" My school is already signed up"
-                labelPlacement="end"
-                />
-            
-             </Grid>
-        </Grid>
-          <Grid item xs={12} className="sure-btn">
-                    <Button>
-                        LET’S DO IT.
-                    </Button>
-               </Grid>   
-                <div className="newprive">
-          <Box
-            pb={2}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            fullWidth
-          >
-           BY CLICKING I AGREE TO THE 
-          
-             TERMS AND CONDITIONS
-          
-          </Box>
-        </div>      
-            </div>   */}
-
-      {/* tech1 */}
     </>
   );
 };
