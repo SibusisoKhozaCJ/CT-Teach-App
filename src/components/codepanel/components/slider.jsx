@@ -72,6 +72,10 @@ const Slider = () => {
     dispatch(codepanelSetSlideNumber(e));
   };
 
+  if (!lesson) {
+    return <div>Loading</div>
+  }
+
   return (
     <ReflexContainer
       className={classes.pageLesson}

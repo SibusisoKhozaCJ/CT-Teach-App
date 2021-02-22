@@ -36,6 +36,8 @@ import "./index.scss";
 import Footer from './components/footer/footer';
 import Chat from './components/chat/chat';
 import Codepanel from './components/codepanel/codepanel';
+import Projects from './components/projects/projects';
+import Lessons from './components/lessons/lessons';
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -122,6 +124,8 @@ const App = () => {
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
                     <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
+                    <ProtectedRoute path={routes.PROJECTS} component={Projects} />
+                    <ProtectedRoute path={routes.LESSON_ID} component={Lessons} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>
