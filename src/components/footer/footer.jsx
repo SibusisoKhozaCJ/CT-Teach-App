@@ -12,7 +12,12 @@ const Footer = () => {
   const location = useLocation();
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   const shouldLayoutRender = (pathname)=>{
-    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+    if (
+        pathname === routes.LOGIN ||
+        pathname === routes.NEW_ACCOUNT ||
+        pathname.includes('/join') ||
+        pathname.includes('/codepanel')
+      )
       return false;
     return true;  
   }
@@ -21,7 +26,7 @@ const Footer = () => {
     setIsLayoutRender(shouldLayoutRender(location.pathname));
   }, [location]);
   return (
-    (isLayoutRender && <footer>
+    (isLayoutRender && <footer className='footer-mobile'>
       <div className="footer-icon">
         <img onClick={(evt)=>history.push("/tribe")} src={Icon1} className="coverage" alt="" />
       </div>
@@ -32,7 +37,7 @@ const Footer = () => {
 
       <div className="footer-icon centr-Ficon">
         <div className="mt-ft-icon">
-        <img onClick={(evt)=>history.push("/tribe")} src={Icon4} className="coverage" alt="" />
+        <img onClick={(evt)=>history.push("/codepanel/5-min-website")} src={Icon4} className="coverage" alt="" />
         </div>
       </div>
 

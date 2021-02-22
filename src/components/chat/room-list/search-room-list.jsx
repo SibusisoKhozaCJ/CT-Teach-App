@@ -5,7 +5,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { IOSSwitch } from './switch';
+import IOSSwitch from './switch';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     height: '32px',
-    width: '50vw',
+    width: '82%',
     border: '1px solid grey',
     marginLeft: theme.spacing(1),
   },

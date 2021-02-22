@@ -1,165 +1,312 @@
-.chat-room-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  border-bottom: 1px solid grey;
-}
+$query-sm: 600px;
 
-.chat-room-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 54px;
-  display: flex;
-  align-items: center;
+.chat-room {
+  background: rgba(21, 82, 117, 0.25);
 
-  input[type="text"]::placeholder {
-    padding-left: 10px;
+  .no-message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 14px;
   }
 
-  input[type="text"] {
-    padding-left: 10px;
-    padding-right: 34px;
+  .chat-room-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
   }
-}
 
-.text-message {
-  height: 25px;
-  width: 100%;
-  border-radius: 24px;
-  border: none;
-  outline: none;
-  background: lightgray;
-  padding: 24px;
-}
+  .chat-room-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 54px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 
-.Container {
-  display: flex;
-  padding: 10px;
-}
+    input[type="text"] {
+      padding-left: 10px;
+      padding-right: 34px;
+    }
 
-.UsersCard {
-  margin: 5px 20px;
-}
+    @media (max-width: $query-sm) {
+      input[type="text"]::-webkit-input-placeholder {
+        font-size: 14px;
+      }
 
-.MessageForm {
-  position: relative;
-  margin-bottom: 10px;
-  margin-left: 10px;
-}
+      input[type="text"]::-moz-placeholder {
+        font-size: 14px;
+      }
 
-.MessageBox {
-  float: left;
-  width: 98%;
-  margin: 5px 0 0 2%;
-}
+      input[type="text"]:-ms-input-placeholder {
+        font-size: 14px;
+      }
 
-.MessageBox .ChatMessage {
-  width: 80%;
-  min-height: 40px;
-}
+      input[type="text"]::-ms-input-placeholder {
+        font-size: 14px;
+      }
 
-.MessageBox .ChatMessage .RightBubble {
-  position: relative;
-  background: #FFFFFF;
-  border-top-left-radius: .4em;
-  border-bottom-left-radius: .4em;
-  border-bottom-right-radius: .4em;
-  padding: 5px 10px 10px;
-  left: 15%;
-  border: 3px solid #D50073;
-}
+      input[type="text"]::placeholder {
+        font-size: 14px;
+      }
+    }
 
-.MessageBox .ChatMessage .RightBubble span.MsgName {
-  font-size: 12px;
-  font-weight: bold;
-  color: green;
-}
+    textarea::-webkit-input-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
 
-.MessageBox .ChatMessage .RightBubble span.MsgDate {
-  font-size: 10px;
-}
+    textarea::-moz-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
 
-.MessageBox .ChatMessage .RightBubble:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 13px;
-  width: 0;
-  height: 0;
-  border: 27px solid transparent;
-  border-left-color: #FFFFFF;
-  border-right: 0;
-  border-top: 0;
-  margin-top: -13.5px;
-  margin-right: -27px;
-}
+    textarea:-ms-input-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
 
-.MessageBox .ChatMessage .LeftBubble {
-  position: relative;
-  background: #FFFFFF;
-  border-top-right-radius: .4em;
-  border-bottom-left-radius: .4em;
-  border-bottom-right-radius: .4em;
-  padding: 5px 10px 10px;
-  left: 5%;
-  border: 3px solid #35BDAD;
-}
+    textarea::-ms-input-placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
 
-.MessageBox .ChatMessage .LeftBubble span.MsgName {
-  font-size: 12px;
-  font-weight: bold;
-  color: blue;
-}
-
-.MessageBox .ChatMessage .LeftBubble span.MsgDate {
-  font-size: 10px;
-}
-
-.MessageBox .ChatMessage .LeftBubble:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 13px;
-  width: 0;
-  height: 0;
-  border: 27px solid transparent;
-  border-right-color: #FFFFFF;
-  border-left: 0;
-  border-top: 0;
-  margin-top: -13.5px;
-  margin-left: -27px;
-}
-
-.MessageBox .ChatStatus {
-  min-height: 49px;
-}
-
-.MessageBox .ChatStatus .ChatDate {
-  display: block;
-  font-size: 10px;
-  font-style: italic;
-  color: #777;
-  height: 15px;
-  left: 10%;
-  right: 10%;
-}
-
-.MessageBox .ChatStatus .ChatContentCenter {
-  padding: 5px 10px;
-  background-color: #e1e1f7;
-  border-radius: 6px;
-  font-size: 12px;
-  color: #555;
-  height: 34px;
-  left: 10%;
-  right: 10%;
+    textarea::placeholder {
+      font-size: 16px;
+      color: #c4c4c4;
+    }
+  }
 }
 
 .ChatContent {
-  //overflow-y: scroll;
-  height: 490px;
-  background: rgba(21, 82, 117, 0.25);
+  height: 492px;
+
+  @media (max-width: $query-sm) {
+    height: 84vh;
+  }
+
+  @media (max-width: 330px) {
+    height: 82vh;
+  }
+
+  .MessageBox {
+    float: left;
+    width: 96%;
+    margin: 5px 0 0 4%;
+
+    .ChatMessage {
+      width: 80%;
+      min-height: 40px;
+
+      p {
+        overflow: auto;
+      }
+
+      .RightBubble {
+        position: relative;
+        background: #FFFFFF;
+        border-top-left-radius: .4em;
+        border-bottom-left-radius: .4em;
+        border-bottom-right-radius: .4em;
+        padding: 5px 10px 10px;
+        left: 15%;
+        border: 3px solid #D50073;
+      }
+
+      .RightBubbleBlack {
+        position: relative;
+        background: #FFFFFF;
+        border-top-left-radius: .4em;
+        border-bottom-left-radius: .4em;
+        border-bottom-right-radius: .4em;
+        padding: 5px 10px 10px;
+        left: 15%;
+        border: 3px solid #D50073;
+      }
+
+      .RightBubble span.MsgName {
+        font-size: 12px;
+        font-weight: bold;
+        color: green;
+      }
+
+      .RightBubble span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
+        font-size: 10px;
+      }
+
+      .RightBubbleBlack span.MsgName {
+        font-size: 12px;
+        font-weight: bold;
+        color: green;
+      }
+
+      .RightBubbleBlack span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
+        font-size: 10px;
+      }
+
+      .RightBubble:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 13px;
+        width: 0;
+        height: 0;
+        border: 27px solid transparent;
+        border-left-color: #FFFFFF;
+        border-right: 0;
+        border-top: 0;
+        margin-top: -13.5px;
+        margin-right: -27px;
+      }
+
+      .RightBubbleBlack:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 13px;
+        width: 0;
+        height: 0;
+        border: 27px solid transparent;
+        border-left-color: #000000;
+        border-right: 0;
+        border-top: 0;
+        margin-top: -13.5px;
+        margin-right: -27px;
+      }
+
+      .LeftBubble {
+        position: relative;
+        background: #FFFFFF;
+        border-top-right-radius: .4em;
+        border-bottom-left-radius: .4em;
+        border-bottom-right-radius: .4em;
+        padding: 5px 10px 10px;
+        left: 5%;
+        border: 3px solid #35BDAD;
+      }
+
+      .LeftBubbleBack {
+        position: relative;
+        background: #FFFFFF;
+        border-top-right-radius: .4em;
+        border-bottom-left-radius: .4em;
+        border-bottom-right-radius: .4em;
+        padding: 5px 10px 10px;
+        left: 5%;
+        border: 3px solid #35BDAD;
+      }
+
+      .LeftBubble span.MsgName {
+        font-size: 12px;
+        font-weight: bold;
+        color: blue;
+      }
+
+      .LeftBubble span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
+        font-size: 10px;
+      }
+
+      .LeftBubbleBack span.MsgName {
+        font-size: 12px;
+        font-weight: bold;
+        color: blue;
+      }
+
+      .LeftBubbleBack span.MsgDate {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 1% 2% 1% 1%;
+        font-size: 10px;
+      }
+
+      .LeftBubble:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 13px;
+        width: 0;
+        height: 0;
+        border: 27px solid transparent;
+        border-right-color: #FFFFFF;
+        border-left: 0;
+        border-top: 0;
+        margin-top: -13.5px;
+        margin-left: -27px;
+      }
+
+      .LeftBubbleBack:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 13px;
+        width: 0;
+        height: 0;
+        border: 27px solid transparent;
+        border-right-color: #000000;
+        border-left: 0;
+        border-top: 0;
+        margin-top: -13.5px;
+        margin-left: -27px;
+      }
+
+      .codeBlack {
+        background: black;
+        color: #FFFFFF;
+      }
+    }
+
+    .ChatStatus {
+      min-height: 49px;
+
+      .ChatDate {
+        display: block;
+        font-size: 10px;
+        font-style: italic;
+        color: #777;
+        height: 15px;
+        left: 10%;
+        right: 10%;
+      }
+
+      .ChatContentCenter {
+        padding: 5px 10px;
+        background-color: #e1e1f7;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #555;
+        height: 34px;
+        left: 10%;
+        right: 10%;
+      }
+    }
+  }
 }

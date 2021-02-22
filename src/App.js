@@ -31,10 +31,14 @@ import Profile from "./components/profile/Profile";
 import Layout from './hoc/Layout/Layout';
 import JoinTribe from "./components/join-tribe/join-tribe-page"
 import TribeProfile from "./components/tribes/tribe-profile/tribe-profile";
-import FriendsPage from "./components/friends/friends.jsx"
+import FriendsPage from "./components/friends/friends.jsx";
 import "./index.scss";
 import Footer from './components/footer/footer';
 import Chat from './components/chat/chat';
+import Codepanel from './components/codepanel/codepanel';
+import Projects from './components/projects/projects';
+import Lessons from './components/lessons/lessons';
+
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -91,7 +95,6 @@ const App = () => {
         <div className="main">
           {isAuthenticate && <Header />}
           {isAuthenticate && <Sidebar location={location} />}
-          {isAuthenticate && <Chat />}
           <div className={!isAuthenticate ? "center-align-div" : "default-layout"}>
             <Paper>
               <Grid container>
@@ -113,6 +116,7 @@ const App = () => {
                     <Route path={routes.JOIN_TRIBE_ID}>
                       <JoinTribe isAuthenticated={isAuthenticate}/>
                     </Route>
+                    <Route path={routes.CODE_PANEL} component={Codepanel} />
                     <ProtectedRoute path={routes.HOME} component={Home} />
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
@@ -121,6 +125,8 @@ const App = () => {
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
                     <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
+                    <ProtectedRoute path={routes.PROJECTS} component={Projects} />
+                    <ProtectedRoute path={routes.LESSON_ID} component={Lessons} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>
@@ -128,6 +134,7 @@ const App = () => {
           </div>
         </div>
           {isAuthenticate && <Footer />}
+          {isAuthenticate && <Chat />}
       </AuthContext.Provider>
     </Router>
   );

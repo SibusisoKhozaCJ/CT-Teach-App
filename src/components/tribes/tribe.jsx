@@ -17,8 +17,13 @@ import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
 import { useHistory } from "react-router-dom";
+import * as actions from '../../redux/actions/chat-action';
+import { enterChatRoom } from '../../shared/lib/chat';
+import { getCookies } from '../../shared/lib/authentication';
+
 const Tribes = () => {
   const [expand, setExpand] = useState("");
+  const { userFirstName } = getCookies();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.user);

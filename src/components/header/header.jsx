@@ -16,6 +16,7 @@ import useStyles from "./styles";
 
 // components
 import Typography from "@material-ui/core/Typography";
+import Badge from '@material-ui/core/Badge';
 import { toggleSideBar } from "../../redux/actions/side-actions";
 import { useDispatch, useSelector } from "react-redux";
 import {Link, useLocation} from "react-router-dom";
@@ -31,12 +32,18 @@ export default function Header() {
   const [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
   const {user, userId} = useSelector(state => state.user);
+  const {unreadMessages} = useSelector(state => state.chat);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
   const [idFromUrl, setIdFromUrl] = useState('');
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   const shouldLayoutRender = (pathname)=>{
-    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+    if (
+        pathname === routes.LOGIN ||
+        pathname === routes.NEW_ACCOUNT ||
+        pathname.includes('/join') ||
+        pathname.includes('/codepanel')
+    )
       return false;
     return true;
   }
@@ -64,7 +71,7 @@ export default function Header() {
 
   const handleClickShowChat = () => {
     dispatch(actions.showChat());
-  }
+  };
 
   return (
     (isLayoutRender && <AppBar position="fixed" className={classes.appBar}>
@@ -104,7 +111,14 @@ export default function Header() {
           className="header-chat"
           onClick={handleClickShowChat}
         >
-          <ChatSvg classes={{ root: classes.headerIcon }} />
+          <Badge
+            badgeContent={unreadMessages === 0 ? null : unreadMessages}
+            color="secondary"
+            invisible={false}
+            classes={{ badge: classes.customBadge }}
+          >
+            <ChatSvg classes={{ root: classes.headerIcon }} />
+          </Badge>
         </IconButton>
         {/* <IconButton
           aria-haspopup="true"

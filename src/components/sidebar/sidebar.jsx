@@ -12,11 +12,14 @@ import {
   SkillsSvg,
   FeedbackSvg,
   NewSVG,
+  ProjectsSvg,
+  ToCodeSvg
 } from "../../shared/svgs/menu-items";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { useLocation, withRouter } from "react-router-dom";
 import classNames from "classnames";
+import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +32,7 @@ import routes from "../../routes";
 import ContactsIcon from '@material-ui/icons/Contacts';
 let sidebarStructure = [
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
+  { id: 12, label: "Projects", link: "/projects", icon: <ProjectsSvg /> },
   {
     id: 1,
     label: "Tribes",
@@ -72,8 +76,14 @@ function Sidebar({ location }) {
   const [checked, setChecked] = useState(false);
   const [tribeCode, setTribeChange] = useState("");
   const [isLayoutRender,setIsLayoutRender] = useState(false);
+  const history = useHistory();
   const shouldLayoutRender = (pathname)=>{
-    if(pathname === routes.LOGIN || pathname === routes.NEW_ACCOUNT || pathname.includes('/join') )
+    if (
+        pathname === routes.LOGIN ||
+        pathname === routes.NEW_ACCOUNT ||
+        pathname.includes('/join') ||
+        pathname.includes('/codepanel')
+      )
       return false;
     return true;  
   }
@@ -161,39 +171,51 @@ function Sidebar({ location }) {
         </div>
 
         <List className={classes.sidebarList}>
-          {isShowJoinTribeIcon && <div className="newpopupdiv">
+          <div className="tocodepupupdiv">
             <Button
               className={isSidebarOpened ? "open" : "close"}
               aria-describedby={id}
               variant="contained"
               color="primary"
-              onClick={handleClick}
+              onClick={() => {history.push("/codepanel/5-min-website")}}
             >
-              <span className="new-tagsidebar">New</span>
-              <NewSVG />
+              <span className="tocode-tagsidebar">It's GO time</span>
+              <ToCodeSvg />
             </Button>
-            <Popover
-              className="newpopover"
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-            >
-              <Typography className="poprtext">
-                <button onClick={(evt) => setOpenModal(true)}>
-                  Join Tribe
-                </button>
-              </Typography>
-            </Popover>
-          </div>}
+          </div>
+          {/* {isShowJoinTribeIcon && <div className="newpopupdiv"> */}
+          {/*   <Button */}
+          {/*     className={isSidebarOpened ? "open" : "close"} */}
+          {/*     aria-describedby={id} */}
+          {/*     variant="contained" */}
+          {/*     color="primary" */}
+          {/*     onClick={handleClick} */}
+          {/*   > */}
+          {/*     <span className="new-tagsidebar">New</span> */}
+          {/*     <NewSVG /> */}
+          {/*   </Button> */}
+          {/*   <Popover */}
+          {/*     className="newpopover" */}
+          {/*     id={id} */}
+          {/*     open={open} */}
+          {/*     anchorEl={anchorEl} */}
+          {/*     onClose={handleClose} */}
+          {/*     anchorOrigin={{ */}
+          {/*       vertical: "top", */}
+          {/*       horizontal: "left", */}
+          {/*     }} */}
+          {/*     transformOrigin={{ */}
+          {/*       vertical: "top", */}
+          {/*       horizontal: "center", */}
+          {/*     }} */}
+          {/*   > */}
+          {/*     <Typography className="poprtext"> */}
+          {/*       <button onClick={(evt) => setOpenModal(true)}> */}
+          {/*         Join Tribe */}
+          {/*       </button> */}
+          {/*     </Typography> */}
+          {/*   </Popover> */}
+          {/* </div>} */}
           {structure.map((link) => (
             <SidebarLink
               key={link.label + link.id}

@@ -40,6 +40,31 @@
 			}
 		}
 	}
+	.tocodepupupdiv {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		button {
+			background: #43D4DD;
+			border-radius: 35px;
+			min-width: 197px;
+			margin-bottom: 20px;
+			padding: 9px 26px;
+			span {
+				font-size: 33px;
+				line-height: 41px;
+				text-align: center;
+				color: rgba(#fff, .75);
+				text-transform: none;
+				font-family: "Righteous", sans-serif;
+			}
+			.tocode-tagsidebar {
+				margin-right: 20px;
+				font-weight: 700;
+				font-size: 24px;
+			}
+		}
+	}
 	.MuiDrawer-paperAnchorDockedLeft {
 		border: none;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -229,10 +254,6 @@ header {
 	overflow-x: hidden;
 }
 
-header button svg {
-	color: #2b2525 !important;
-}
-
 .commonheight {
 	min-height: 100px;
 }
@@ -258,6 +279,9 @@ header button svg {
 	.new-tagsidebar {
 		display: block;
 	}
+	.tocode-tagsidebar {
+		display: block;
+	}
 }
 
 .close {
@@ -269,6 +293,9 @@ header button svg {
 	padding: 20px !important;
 	margin-left: 18px !important;
 	.new-tagsidebar {
+		display: none;
+	}
+	.tocode-tagsidebar {
 		display: none;
 	}
 	.newpopupdiv {
