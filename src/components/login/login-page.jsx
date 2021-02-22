@@ -1,16 +1,12 @@
 import React, { useState, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { isMobile } from "react-device-detect";
 import { parse } from "qs";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Loading from "../../shared/components/loader/Loading";
 import ROUTES from "../../routes";
 import history from "../../shared/lib/history";
-import HeaderLogo from "../../assets/icons/Header";
 import { AuthContext } from "../../shared/contexts/authContext";
 import Bicon from "../../assets/images/b-icon.svg";
 import MailIcon from "../../assets/images/mail.svg";
@@ -49,11 +45,10 @@ const LoginPage = () => {
       });
   };
 
-  const submitForm = async (event) => {
-    const { email, password } = form;
-    event.preventDefault();
-    updateLoading(true);
-    Auth.signIn(email, password)
+  const login = async () => {
+    const { email, password, firstname, lastname, day, month, year } = form;
+    if(loginType === "email"){
+      Auth.signIn(email, password)
       .then((res) => {
         Auth.getProfile()
           .then(async (user) => {
@@ -96,6 +91,73 @@ const LoginPage = () => {
         updateError(err.message);
         updateLoading(false);
       });
+    }else{
+      const emailAddress = (
+        firstname +
+        lastname +
+        day +
+        month +
+        year +
+        "@codejika.com"
+      ).toLowerCase();
+      const userPassword = (
+        firstname +
+        lastname +
+        day +
+        month +
+        year
+      ).toLowerCase();
+      Auth.signIn(emailAddress, userPassword)
+      .then((res) => {
+        Auth.getProfile()
+          .then(async (user) => {
+            Auth.setCookies(emailAddress, user.firstname);
+            setTokens({ isAuthenticate: true });
+            updateLoading(false);
+            if (params && params.redirect) {
+              const { redirect } = params;
+              if (
+                history.location &&
+                history.location.search.indexOf("redirect=/join") >= 0
+              ) {
+                let paramsString = redirect.replace("/join/", "");
+                paramsString = paramsString.split("-")[0];
+                if (user.tribe_joined.includes(paramsString)) {
+                  history.push(routes.TRIBE);
+                } else {
+                  const isCodeExist = await CheckIfTribeCodeExist(paramsString);
+                  if (isCodeExist) {
+                    dispatch(
+                      addUserToTribe(paramsString, isCodeExist, user)
+                    ).then((res) => {
+                      history.push(routes.TRIBE);
+                    });
+                  } else {
+                    history.push(routes.TRIBE);
+                  }
+                }
+              } else history.push(redirect);
+            } else {
+              history.push(ROUTES.WELCOME);
+            }
+          })
+          .catch((err) => {
+            updateError(err.message);
+            updateLoading(false);
+          });
+      })
+      .catch((err) => {
+        updateError(err.message);
+        updateLoading(false);
+      });
+    }
+    
+  }
+
+  const submitForm = async (event) => {
+    event.preventDefault();
+    updateLoading(true);
+    login();
   };
 
   return (

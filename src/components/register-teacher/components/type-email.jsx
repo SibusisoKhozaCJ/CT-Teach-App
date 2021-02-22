@@ -9,10 +9,12 @@ const TypeAndEmailForm = ({
   updateForm,
   form,
   loading,
-  handleSubmitSecondForm,
+  handleSubmitTeacherSecondForm,
   error,
-  search,
-  registerType
+  handleEmailSkip,
+  registerType,
+  handleSubmitUserSecondForm,
+  handleSubmitWithJoinCode
 }) => {
   return (
     <div className="reg-pd1">
@@ -25,7 +27,7 @@ const TypeAndEmailForm = ({
               <Typography color="error">{error}</Typography>
             </Box>
           )}
-          {registerType === "2" && <form autocomplete="off" onSubmit={handleSubmitSecondForm}>
+          {registerType === "2" && <form autocomplete="off" onSubmit={handleSubmitTeacherSecondForm}>
             <TeacherRegisterStep2
               onUpdate={updateForm}
               form={form}
@@ -41,11 +43,13 @@ const TypeAndEmailForm = ({
               <p className="reg-happy">LET’S DO IT.</p>
             </Button>
           </form>}
-          {registerType === "1" && <form autocomplete="off" onSubmit={handleSubmitSecondForm}>
+          {registerType === "1" && <form autocomplete="off" onSubmit={handleSubmitUserSecondForm}>
             <UserRegisterStep2
               onUpdate={updateForm}
               form={form}
               loading={loading}
+              handleEmailSkip={handleEmailSkip}
+              handleSubmitWithJoinCode={handleSubmitWithJoinCode}
             />
           </form>}
         </Box>

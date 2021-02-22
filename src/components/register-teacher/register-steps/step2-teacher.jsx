@@ -8,6 +8,7 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
+import OtpInput from "react-otp-input";
 
 const TeacherRegisterStep2 = ({ onUpdate, form }) => {
   const handleFormEdit = (key) => (event) =>
@@ -22,6 +23,9 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
   const handleChange = (event) => {
     setTeacherTypee(event.target.value);
     onUpdate({ ...form, [event.target.name]: event.target.value });
+  };
+  const handleJoinCodeChange = (code) => {
+    onUpdate({ ...form, ["joincode"]: code });
   };
   return (
     <>
@@ -117,11 +121,11 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
                 <div id="wrapper">
                   <div id="codeform">
                     <span className="techer-name">S-</span>
-                    <input type="text" maxLength="1" />
-                    <input type="text" maxLength="1" />
-                    <input type="text" maxLength="1" />
-                    <input type="text" maxLength="1" />
-                    <input type="text" maxLength="1" />
+                    <OtpInput
+                      value={form.joincode}
+                      onChange={handleJoinCodeChange}
+                      numInputs={5}
+                    />
                   </div>
                   <p className="ent-code">Enter Teacher JOIN code.</p>
                   <p>TIP: Teacher JOIN codes start with an “S.”</p>
