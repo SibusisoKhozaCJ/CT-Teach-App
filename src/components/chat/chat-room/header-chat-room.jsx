@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,9 +33,13 @@ const useStyles = makeStyles(theme => ({
   arrowAvatarWrapper: {
     display: 'flex',
   },
+  cloudDownloadIcon: {
+    color: '#43D4DD',
+    fontSize: '1.7rem',
+  },
 }));
 
-const Header = ({ exitChat }) => {
+const HeaderChatRoom = ({ exitChat, fetchChats }) => {
   const classes = useStyles();
   const { currentRoomName } = useSelector(state => state.chat);
 
@@ -57,14 +62,18 @@ const Header = ({ exitChat }) => {
         </IconButton>
         <Avatar alt={`Avatar n°${1}`} src={`/static/images/avatar/${1}.jpg`} className={classes.avatar} />
       </div>
+      <IconButton type="button" onClick={fetchChats}>
+        <CloudDownloadIcon className={classes.cloudDownloadIcon} />
+      </IconButton>
       <p className={classes.roomName}>{currentRoomName}</p>
       <MoreVertIcon className={classes.dots} />
     </header>
   );
 };
 
-Header.propTypes = {
+HeaderChatRoom.propTypes = {
   exitChat: PropTypes.func.isRequired,
+  fetchChats: PropTypes.func.isRequired,
 };
 
-export default Header;
+export default HeaderChatRoom;

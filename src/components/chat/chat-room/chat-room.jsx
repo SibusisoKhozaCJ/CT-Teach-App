@@ -1,69 +1,85 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Moment from 'moment';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles } from '@material-ui/core';
 import classNames from 'classnames';
-import randomize from 'randomatic';
 import firebase from 'firebase';
+import { makeStyles } from '@material-ui/core';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { getCookies } from '../../../shared/lib/authentication';
-import HeaderChat from './header-chat-room';
 import FooterChatRoom from './footer-chat-room';
 import * as actions from '../../../redux/actions/chat-action';
+import { snapshotToArray } from '../../../shared/lib/chat';
+import HeaderChatRoom from './header-chat-room';
+import MessageList from './message-list';
 
 const useStyles = makeStyles(() => ({
-  spinner: {
+  root: {
     position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%,-50%)',
+    top: '50px',
+    width: '100%',
   },
 }));
 
 function ChatRoom() {
   const classes = useStyles();
-  const [chats, setChats] = useState([]);
+  const { idRoom, currentRoomName, chatStatus, messages } = useSelector(state => state.chat);
+  const dispatch = useDispatch();
+  const { userFirstName } = getCookies();
+  const [showLoading, setShowLoading] = useState(true);
+  const [limit, setLimit] = useState(20);
   const [newchat, setNewchat] = useState({
     idRoom: '',
     roomname: '',
     firstname: '',
     message: '',
-    date: '',
+    createdAt: '',
     type: '',
     code: false,
+    status: 'unread',
   });
-  const dispatch = useDispatch();
-  const { idRoom, currentRoomName, chatStatus } = useSelector(state => state.chat);
-  const { userFirstName } = getCookies();
-  const [showLoading, setShowLoading] = useState(true);
 
-  const snapshotToArray = snapshot => {
-    const returnArr = [];
-
-    snapshot.forEach(childSnapshot => {
-      const item = childSnapshot.val();
-      item.key = childSnapshot.key;
-      returnArr.push(item);
-    });
-
-    return returnArr;
-  };
-
-  useEffect(() => {
+  const fetchChats = () => {
+    setShowLoading(true);
     firebase
       .database()
-      .ref('chats/')
-      .limitToLast(20)
+      .ref('messages/')
+      .limitToLast(limit)
       .orderByChild('idRoom')
       .equalTo(idRoom)
       .on('value', snapshot => {
-        setChats([]);
-        setChats(snapshotToArray(snapshot));
-        setShowLoading(false);
+        const messageArray = snapshotToArray(snapshot);
+
+        if (messageArray.length !== 0) {
+          setShowLoading(false);
+          dispatch(actions.setMessages(messageArray));
+        } else {
+          setShowLoading(false);
+          dispatch(actions.clearMessages());
+        }
       });
-  }, [idRoom, userFirstName]);
+  };
+
+  useEffect(() => {
+    fetchChats();
+  }, [idRoom, userFirstName, limit]);
+
+  const onFetchChats = () => setLimit(limit + 5);
+
+  const onChange = e => {
+    e.persist();
+    setNewchat({
+      ...newchat,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const exitChatHandler = () => {
+    dispatch(actions.clearIdRoom());
+    dispatch(actions.clearMessages());
+    dispatch(actions.setRoomLIst());
+    dispatch(actions.clearCurrentRoomName());
+  };
 
   const submitMessage = (e, code) => {
     e.preventDefault();
@@ -76,80 +92,41 @@ function ChatRoom() {
     chat.idRoom = idRoom;
     chat.roomname = currentRoomName;
     chat.firstname = userFirstName;
-    chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
+    chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
     chat.type = 'message';
     chat.code = !!code;
-    const newMessage = firebase.database().ref('chats/').push();
+    const newMessage = firebase.database().ref('messages/').push();
     newMessage.set(chat);
     setNewchat({
       idRoom: '',
       roomname: '',
       firstname: '',
       message: '',
-      date: '',
+      createdAt: '',
       type: '',
       code: false,
+      status: 'unread',
     });
   };
 
-  const onChange = e => {
-    e.persist();
-    setNewchat({ ...newchat, [e.target.name]: e.target.value });
-  };
-
-  const exitChatHandler = () => {
-    dispatch(actions.setRoomLIst());
-    dispatch(actions.clearCurrentRoomName());
-  };
-
-  const memoizedChats = useMemo(
+  const memoizedMessage = useMemo(
     () => (
-      <ScrollToBottom className="ChatContent">
-        {chats.map(item => (
-          <div key={randomize('A', 4)} className="MessageBox">
-            {item.type === 'join' || item.type === 'exit' ? (
-              <div className="ChatStatus">
-                <span className="ChatDate">{item.date}</span>
-                <span className="ChatContentCenter">{item.message}</span>
-              </div>
-            ) : (
-              <div className="ChatMessage">
-                <div
-                  className={classNames({
-                    RightBubble: !item.code && item.firstname === userFirstName,
-                    LeftBubble: !item.code && item.firstname !== userFirstName,
-                    RightBubbleBlack: item.code && item.firstname === userFirstName,
-                    LeftBubbleBack: item.code && item.firstname !== userFirstName,
-                    codeBlack: item.code,
-                  })}
-                >
-                  {item.firstname === userFirstName ? (
-                    <span className="MsgName">Me</span>
-                  ) : (
-                    <span className="MsgName">{item.firstname}</span>
-                  )}
-                  <span className="MsgDate"> at {item.date}</span>
-                  <p>{item.message}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+      <ScrollToBottom className="ChatContent" debounce={300}>
+        {messages ? (
+          <MessageList messages={messages} userFirstName={userFirstName} />
+        ) : (
+          <div className="no-message">There are no messages ...</div>
+        )}
       </ScrollToBottom>
     ),
-    [chats, userFirstName],
-  );
-
-  const spinner = (
-    <div className={classes.spinner}>
-      <CircularProgress />
-    </div>
+    [messages, userFirstName],
   );
 
   return (
-    <div className={classNames({ hidden: chatStatus !== 'chatroom' })}>
-      <HeaderChat exitChat={exitChatHandler} />
-      {showLoading ? spinner : memoizedChats}
+    <div className={classNames('chat-room', { hidden: chatStatus !== 'chatroom' })}>
+      <HeaderChatRoom exitChat={exitChatHandler} fetchChats={onFetchChats} />
+      {showLoading && <LinearProgress className={classes.root} />}
+      {memoizedMessage}
       <FooterChatRoom submitMessage={submitMessage} onChange={onChange} value={newchat.message} />
     </div>
   );
