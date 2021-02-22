@@ -17,49 +17,7 @@ const TeachRegisterStep1 = ({ onUpdate, form }) => {
   };
   return (
     <>
-      {/* <div className="registration-form">
-        <Grid container spacing={1}>
-          <Grid item xs={12}>
-            <Box my={1}>
-              <TextField
-                fullWidth
-                required
-                label="Name"
-                variant="outlined"              
-              />
-            </Box>
-          </Grid>
-            <Grid item xs={12}>
-            <Box my={1}>
-              <TextField
-                fullWidth
-                required
-                label="Email"
-                variant="outlined"               
-              />
-            </Box>
-          </Grid>
-            <Grid item xs={12}>
-            <Box my={1}>
-              <TextField
-                fullWidth
-                required
-                label="Password"
-                variant="outlined"              
-              />
-            </Box>
-          </Grid>
-        
-        </Grid>
-      </div> */}
-
-      {/* EMAIL FORM */}
-{/*       
       <div className="registration-form">
-            <h2>
-             WANNA ADD AN <br />
-      EMAIL?
-          </h2>
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <Box my={1}>
@@ -67,77 +25,39 @@ const TeachRegisterStep1 = ({ onUpdate, form }) => {
                 fullWidth
                 required
                 label="Name"
-                variant="outlined"              
+                variant="outlined"
+                value={form.name}
+                onChange={handleFormEdit("name")}
               />
             </Box>
           </Grid>
-            <Grid item xs={12}>
+          <Grid item xs={12}>
             <Box my={1}>
               <TextField
                 fullWidth
                 required
                 label="Email"
-                variant="outlined"               
+                variant="outlined"
+                value={form.email}
+                onChange={handleFormEdit("email")}
               />
             </Box>
           </Grid>
-            <Grid item xs={12}>
+          <Grid item xs={12}>
             <Box my={1}>
               <TextField
                 fullWidth
                 required
                 label="Password"
-                variant="outlined"              
-              />
-            </Box>
-          </Grid>
-        <Grid className="reg-checkbox" item xs={12}>
-          <Grid  xs={12}>
-            <Box my={1}>
-              <FormControlLabel
-                className={checked ? "active" : ""}
-                control={
-                  <Checkbox
-                    name="isTeacher"
-                    checked={checked}
-                    onChange={handleChange}
-                  />
-                }
-                label=" My school is already signed up"
-                labelPlacement="end"
+                variant="outlined"
+                value={form.password}
+                onChange={handleFormEdit("password")}
               />
             </Box>
           </Grid>
         </Grid>
-          <Grid container  className="skp-sur-btn" spacing={1}> 
-               <Grid item xs={4}>
-                    <Button className="skip-btn">
-                        SKIP
-                    </Button>
-               </Grid>
-                  <Grid item xs={8} className="sure-btn">
-                    <Button>
-                        SURE
-                    </Button>
-               </Grid>
-          </Grid>
-          <div className="newprive">
-          <Box
-            pb={2}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            fullWidth
-          >
-           BY CLICKING I AGREE TO THE 
-          
-             TERMS AND CONDITIONS
-          
-          </Box>
-        </div>
-        
-        </Grid>
-      </div> */}
+      </div>
+
 
       {/* CODE PAGE */}
       {/* <div className="codpage">
@@ -196,10 +116,7 @@ const TeachRegisterStep1 = ({ onUpdate, form }) => {
         </div>      
             </div>   */}
 
-    {/* tech1 */}
-    
-      
-      
+      {/* tech1 */}
     </>
   );
 };

@@ -8,12 +8,12 @@ import { AuthContext } from "../../shared/contexts/authContext";
 import randomize from "randomatic";
 import BasicInfo from "./components/basic-info";
 import TypeAndEmailForm from "./components/type-email";
-import SchoolDetailForm from "./components/school-detail";
 import InviteToTribeForm from "./components/invite-code";
 
 const CreateNewAccountPage = () => {
   const history = useHistory();  
   const [currentStep, setCurrentStep] = useState(1);
+  const [registerType, setRegisterType] = useState("1");
   const { search, state: fromSignInData } = useLocation();
   const params = parse(search, { ignoreQueryPrefix: true });
   const [form, updateForm] = useState({
@@ -191,7 +191,13 @@ const CreateNewAccountPage = () => {
       });
   };
 
-  const handleSubmitFirstForm = async (e) => {
+  const handleSubmitStudentFirstForm = async (e) => {
+    e.preventDefault();
+    updateError("");
+    setCurrentStep(2);
+  };
+
+  const handleSubmitTeacherFirstForm = async (e) => {
     e.preventDefault();
     updateError("");
     setCurrentStep(2);
@@ -218,6 +224,10 @@ const CreateNewAccountPage = () => {
     }
   };
 
+  const setTypeOfUser = (evt)=>{
+    setRegisterType(evt)
+  }
+
   return (
     <>
       {isInitialized === false && currentStep === 1 && (
@@ -226,8 +236,11 @@ const CreateNewAccountPage = () => {
           search={search}
           error={error}
           loading={loading}
-          handleSubmitFirstForm={handleSubmitFirstForm}
+          handleSubmitTeacherFirstForm={handleSubmitTeacherFirstForm}
           updateForm={updateForm}
+          registerType={registerType}
+          setRegisterType={(evt)=>setTypeOfUser(evt)}
+          handleSubmitStudentFirstForm={handleSubmitStudentFirstForm}
         />
       )}
       {isInitialized === false && currentStep === 2 && (
@@ -238,16 +251,7 @@ const CreateNewAccountPage = () => {
           loading={loading}
           handleSubmitSecondForm={handleSubmitSecondForm}
           updateForm={updateForm}
-        />
-      )}
-      {isInitialized === false && currentStep === 3 && (
-        <SchoolDetailForm
-          form={form}
-          search={search}
-          error={error}
-          loading={loading}
-          handleSubmit={handleTeacherSubmit}
-          updateForm={updateForm}
+          registerType={registerType}
         />
       )}
       {isInitialized === false && currentStep === 4 && (

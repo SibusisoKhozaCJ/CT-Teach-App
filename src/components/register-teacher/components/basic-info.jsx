@@ -4,8 +4,8 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import routes from "../../../routes";
-import TeacherRegisterStep1 from "../register-steps/step1";
-import TeachRegisterStep1 from "../register-steps/step1-1";
+import StudentRegisterStep1 from "../register-steps/step1-user";
+import TeachRegisterStep1 from "../register-steps/step1-teacher";
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
@@ -17,21 +17,24 @@ const BasicInfo = ({
   updateForm,
   form,
   loading,
-  handleSubmitFirstForm,
+  handleSubmitStudentFirstForm,
+  handleSubmitTeacherFirstForm,
   error,
   search,
+  setRegisterType,
 }) => {
 
-  const[value,setValue]=useState(1);
+  const[value,setValue]=useState("1");
     const handleChange = (event,string) => {     
     setValue(string);
+    setRegisterType(string)
   };
   return (
     <section className="registration">
       <div className="registration_main">
         <TabContext value={value}>
         <AppBar position="static">
-          <TabList onChange={handleChange} aria-label="simple tabs example">
+          <TabList onChange={handleChange} value={value} aria-label="simple tabs example">
             <Tab label="BUILD" value="1"/>
             <Tab label="TEACh" value="2" />
            
@@ -50,8 +53,8 @@ const BasicInfo = ({
               <Typography color="error">{error}</Typography>
             </Box>
           )}
-          <form autocomplete="off" onSubmit={handleSubmitFirstForm}>
-            <TeacherRegisterStep1
+          <form autocomplete="off" onSubmit={handleSubmitStudentFirstForm}>
+            <StudentRegisterStep1
               onUpdate={updateForm}
               form={form}
               loading={loading}
@@ -102,7 +105,7 @@ const BasicInfo = ({
               <Typography color="error">{error}</Typography>
             </Box>
           )}
-          <form autocomplete="off" onSubmit={handleSubmitFirstForm}>
+          <form autocomplete="off" onSubmit={handleSubmitTeacherFirstForm}>
             <TeachRegisterStep1
               onUpdate={updateForm}
               form={form}
