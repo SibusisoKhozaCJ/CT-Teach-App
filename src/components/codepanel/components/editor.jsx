@@ -52,7 +52,6 @@ const Editor = () => {
 
   if (rules) {
     const currentCheckpoint = checkpoints[lesson.slides[currentSlide].checkpoint_id]
-    console.log(currentCheckpoint)
     if (currentCheckpoint.challenges) {
       challengesPrepared = rules.map((rule, index) => ({
         description: rule.description,
@@ -142,7 +141,7 @@ const Editor = () => {
       }
 
       if (userId) {
-        authFetch.firebaseInsert(
+        authFetch.firebaseUpdate(
           `user_profile/${userId}/lesson_progress/${lessonId}`,
           data
         );
@@ -162,7 +161,11 @@ const Editor = () => {
   };
 
   return (
-    <div
+    <form
+      autocomplete="off"
+      autoCorrect="off"
+      autoCapitalize="off"
+      spellcheck="false"
       style={{
         height: "100%",
         width: "100%",
@@ -199,7 +202,7 @@ const Editor = () => {
         </div>
       ) : null}
       {challengesPrepared && <Checker challenges={challengesPrepared} />}
-    </div>
+    </form>
   );
 }
 

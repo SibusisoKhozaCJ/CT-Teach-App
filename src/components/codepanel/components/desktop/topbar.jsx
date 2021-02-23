@@ -16,6 +16,7 @@ import Split2Icon from "../../../../assets/images/split-2-icon.svg";
 import Split3Icon from "../../../../assets/images/split-3-icon.svg";
 
 import MainMenu from "../menu/main-menu";
+import SideMenu from "../side-menu";
 
 const useStyles = makeStyles(theme => ({
   topBarRight: {
@@ -48,6 +49,7 @@ const TopBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setIsMenuOpen] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const isPreviewVisible = useSelector(state => state.codepanel.isPreviewVisible);
   const dispatch = useDispatch();
 
@@ -55,11 +57,18 @@ const TopBar = () => {
     setIsMenuOpen(false);
   };
 
+  const sideMenuCloseHandler = () => {
+    setIsSideMenuOpen(false);
+  }
+
   return (
     <div className={classes.topBar}>
       <AppBar position="static">
         <Toolbar>
-          <div className={classes.logo}>
+          <div className={classes.logo} onClick={() => {
+            setIsSideMenuOpen(true)
+            console.log("ckick")
+          }}>
             <IconButton className={classes.logoContainer}>
               <img src={CodepanelLogoIcon} className="coverage" alt="" />
             </IconButton>
@@ -107,6 +116,9 @@ const TopBar = () => {
         </Toolbar>
       </AppBar>
       <MainMenu anchorEl={anchorEl} closeHandler={closeHandler} open={open} />
+      {isSideMenuOpen ? (
+        <SideMenu closeHandler={sideMenuCloseHandler} />
+      ) : null}
     </div>
   );
 };
