@@ -20,14 +20,10 @@ export const setRoomLIst = () => ({
   chatStatus: 'roomlist',
 });
 
-export const setRoom = idRoom => ({
-  type: actionTypes.SET_ROOM,
+export const setRoomInfo = (idRoom, currentRoomName) => ({
+  type: actionTypes.SET_ROOM_INFO,
   chatStatus: 'chatroom',
   idRoom,
-});
-
-export const setCurrentRoomName = currentRoomName => ({
-  type: actionTypes.SET_CURRENT_ROOM_NAME,
   currentRoomName,
 });
 
@@ -49,11 +45,6 @@ export const hideChat = () => ({
 
 export const clearMessages = () => ({
   type: actionTypes.CLEAR_MESSAGES,
-});
-
-export const setUnreadMessageCount = count => ({
-  type: actionTypes.SET_UNREAD_MESSAGES_COUNT,
-  payload: count,
 });
 
 export const increaseLimit = () => ({
@@ -147,8 +138,7 @@ export const enterChatRoom = (idRoom, name) => {
         }
       });
 
-    dispatch(setRoom(idRoom));
-    dispatch(setCurrentRoomName(roomname));
+    dispatch(setRoomInfo(idRoom, roomname));
   };
 };
 
@@ -249,6 +239,6 @@ export const fetchRooms = () => dispatch => {
       dispatch(fetchRoomsSuccess(flattedRooms));
     })
     .catch(err => {
-      dispatch(fetchRoomsFail());
+      dispatch(fetchRoomsFail(err.message));
     });
 };

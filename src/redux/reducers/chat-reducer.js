@@ -12,7 +12,6 @@ const initialState = {
   currentRoomName: '',
   isVisibleChat: false,
   messages: [],
-  unreadMessages: 0,
   loadingMessages: true,
   loadingRooms: true,
   rooms: [],
@@ -26,15 +25,11 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         chatStatus: action.chatStatus,
       };
-    case actionTypes.SET_ROOM:
+    case actionTypes.SET_ROOM_INFO:
       return {
         ...state,
         chatStatus: action.chatStatus,
         idRoom: action.idRoom,
-      };
-    case actionTypes.SET_CURRENT_ROOM_NAME:
-      return {
-        ...state,
         currentRoomName: action.currentRoomName,
       };
     case actionTypes.CLEAR_CURRENT_ROOM_NAME:
@@ -61,11 +56,6 @@ const chatReducer = (state = initialState, action) => {
       return {
         ...state,
         messages: null,
-      };
-    case actionTypes.SET_UNREAD_MESSAGES_COUNT:
-      return {
-        ...state,
-        unreadMessages: action.payload,
       };
     case actionTypes.INCREASE_LIMIT:
       return {

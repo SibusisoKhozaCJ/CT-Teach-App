@@ -32,7 +32,6 @@ export default function Header() {
   const [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
   const {user, userId} = useSelector(state => state.user);
-  const {unreadMessages} = useSelector(state => state.chat);
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
   const [idFromUrl, setIdFromUrl] = useState('');
@@ -112,7 +111,7 @@ export default function Header() {
           onClick={handleClickShowChat}
         >
           <Badge
-            badgeContent={unreadMessages === 0 ? null : unreadMessages}
+            badgeContent={5}
             color="secondary"
             invisible={false}
             classes={{ badge: classes.customBadge }}

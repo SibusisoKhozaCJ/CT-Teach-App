@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Badge from '@material-ui/core/Badge';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../../redux/actions/chat-action';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,15 +39,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const RoomList = ({ rooms, onEnter }) => {
+const RoomList = ({ rooms }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const onEnterHandler = (idRoom, name) => dispatch(actions.enterChatRoom(idRoom, name));
 
   return (
     <List dense className={classNames('list-of-messages', classes.root)}>
       {rooms.map(room => {
         const labelId = `checkbox-list-secondary-label-${room.name}`;
         return (
-          <ListItem key={room.idRoom} button divider onClick={() => onEnter(room.idRoom, room.name)}>
+          <ListItem key={room.idRoom} button divider onClick={() => onEnterHandler(room.idRoom, room.name)}>
             <ListItemAvatar>
               <Avatar
                 alt={`Avatar n°${room.name + 1}`}
@@ -55,11 +59,7 @@ const RoomList = ({ rooms, onEnter }) => {
             </ListItemAvatar>
             <ListItemText id={labelId} primary={`${room.name}`} />
             <ListItemSecondaryAction>
-              <Badge
-                badgeContent={room.unreadMessages === 0 ? null : room.unreadMessages}
-                classes={{ badge: classes.customBadge }}
-                invisible={false}
-              />
+              <Badge badgeContent={5} classes={{ badge: classes.customBadge }} invisible={false} />
             </ListItemSecondaryAction>
           </ListItem>
         );
@@ -70,7 +70,6 @@ const RoomList = ({ rooms, onEnter }) => {
 
 RoomList.propTypes = {
   rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onEnter: PropTypes.func.isRequired,
 };
 
 export default RoomList;
