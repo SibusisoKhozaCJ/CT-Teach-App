@@ -2,18 +2,11 @@ import React, { useState } from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const TeacherRegisterStep1 = ({ onUpdate, form }) => {
+const UserRegisterStep1 = ({ onUpdate, form }) => {
   const handleFormEdit = (key) => (event) =>
     onUpdate({ ...form, [key]: event.target.value });
-  const [checked, setChecked] = useState(form.isTeacher);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-    onUpdate({ ...form, [event.target.name]: event.target.checked });
-  };
   return (
     <>
       <div className="registration-form">
@@ -82,28 +75,9 @@ const TeacherRegisterStep1 = ({ onUpdate, form }) => {
             </Grid>
           </Grid>
         </div>
-
-        <Grid container spacing={3} className="reg-checkbox">
-          <Grid item xs={12}>
-            <Box my={1}>
-              <FormControlLabel
-                className={checked ? "active" : ""}
-                control={
-                  <Checkbox
-                    name="isTeacher"
-                    checked={checked}
-                    onChange={handleChange}
-                  />
-                }
-                label="  I’m a Teacher or Trainer."
-                labelPlacement="end"
-              />
-            </Box>
-          </Grid>
-        </Grid>
       </div>
     </>
   );
 };
 
-export default TeacherRegisterStep1;
+export default UserRegisterStep1;
