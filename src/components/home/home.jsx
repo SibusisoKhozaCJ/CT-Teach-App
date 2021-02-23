@@ -39,7 +39,7 @@ const Welcome = () => {
                 to explore. {"\n\n"} It means a lot to us that you are here, so we hope that we have helped make life just that much
                 easier and better for you.
             </Typography>
-         
+
         </div>
     );
 };

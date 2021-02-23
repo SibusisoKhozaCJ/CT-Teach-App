@@ -1,4 +1,10 @@
+import _ from 'lodash';
 import * as actionTypes from '../constants/chat-types';
+
+const filterChats = (state, action) => {
+  const roomsJoined = [...state.rooms, ...action.rooms];
+  return _.uniqBy(roomsJoined, 'idRoom');
+};
 
 const initialState = {
   chatStatus: 'roomlist',
@@ -7,6 +13,10 @@ const initialState = {
   isVisibleChat: false,
   messages: [],
   unreadMessages: 0,
+  loadingMessages: true,
+  loadingRooms: true,
+  rooms: [],
+  limit: 20,
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -16,7 +26,7 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         chatStatus: action.chatStatus,
       };
-    case actionTypes.SET_CHAT_ROOM:
+    case actionTypes.SET_ROOM:
       return {
         ...state,
         chatStatus: action.chatStatus,
@@ -47,11 +57,6 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         isVisibleChat: false,
       };
-    case actionTypes.SET_MESSAGES:
-      return {
-        ...state,
-        messages: action.payload,
-      };
     case actionTypes.CLEAR_MESSAGES:
       return {
         ...state,
@@ -62,6 +67,51 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         unreadMessages: action.payload,
       };
+    case actionTypes.INCREASE_LIMIT:
+      return {
+        ...state,
+        limit: state.limit + 5,
+      };
+    case actionTypes.SET_INITIAL_LIMIT:
+      return {
+        ...state,
+        limit: 20,
+      };
+    case actionTypes.FETCH_MESSAGES_START:
+      return {
+        ...state,
+        loadingMessages: true,
+      };
+    case actionTypes.FETCH_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        loadingMessages: false,
+        messages: action.payload,
+      };
+    case actionTypes.UPDATE_PRIVATE_CHATS:
+      return {
+        ...state,
+        rooms: filterChats(state, action),
+      };
+    case actionTypes.UPDATE_JOINED_TRIBE_CHATS: {
+      return {
+        ...state,
+        rooms: filterChats(state, action),
+      };
+    }
+    case actionTypes.CLEAR_ROOMS: {
+      return {
+        ...state,
+        rooms: [],
+      };
+    }
+    case actionTypes.FETCH_ROOMS_SUCCESS: {
+      return {
+        ...state,
+        rooms: filterChats(state, action),
+        loadingRooms: false,
+      };
+    }
     default:
       return state;
   }

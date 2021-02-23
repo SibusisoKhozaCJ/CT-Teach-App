@@ -18,7 +18,6 @@ import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
 import { useHistory } from "react-router-dom";
 import * as actions from '../../redux/actions/chat-action';
-import { enterChatRoom } from '../../shared/lib/chat';
 import { getCookies } from '../../shared/lib/authentication';
 
 const Tribes = () => {

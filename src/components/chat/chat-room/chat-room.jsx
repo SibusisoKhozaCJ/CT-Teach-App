@@ -9,9 +9,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { getCookies } from '../../../shared/lib/authentication';
 import FooterChatRoom from './footer-chat-room';
 import * as actions from '../../../redux/actions/chat-action';
-import { snapshotToArray } from '../../../shared/lib/chat';
 import HeaderChatRoom from './header-chat-room';
 import MessageList from './message-list';
+import { sendMessage } from '../../../shared/lib/chat';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,11 +23,10 @@ const useStyles = makeStyles(() => ({
 
 function ChatRoom() {
   const classes = useStyles();
-  const { idRoom, currentRoomName, chatStatus, messages } = useSelector(state => state.chat);
   const dispatch = useDispatch();
+  const { idRoom, currentRoomName, chatStatus, messages, loadingMessages, limit } = useSelector(state => state.chat);
+
   const { userFirstName } = getCookies();
-  const [showLoading, setShowLoading] = useState(true);
-  const [limit, setLimit] = useState(20);
   const [newchat, setNewchat] = useState({
     idRoom: '',
     roomname: '',
@@ -39,32 +38,9 @@ function ChatRoom() {
     status: 'unread',
   });
 
-  const fetchChats = () => {
-    setShowLoading(true);
-    firebase
-      .database()
-      .ref('messages/')
-      .limitToLast(limit)
-      .orderByChild('idRoom')
-      .equalTo(idRoom)
-      .on('value', snapshot => {
-        const messageArray = snapshotToArray(snapshot);
-
-        if (messageArray.length !== 0) {
-          setShowLoading(false);
-          dispatch(actions.setMessages(messageArray));
-        } else {
-          setShowLoading(false);
-          dispatch(actions.clearMessages());
-        }
-      });
-  };
-
   useEffect(() => {
-    fetchChats();
+    dispatch(actions.fetchMessages());
   }, [idRoom, userFirstName, limit]);
-
-  const onFetchChats = () => setLimit(limit + 5);
 
   const onChange = e => {
     e.persist();
@@ -79,6 +55,7 @@ function ChatRoom() {
     dispatch(actions.clearMessages());
     dispatch(actions.setRoomLIst());
     dispatch(actions.clearCurrentRoomName());
+    dispatch(actions.setInitialLimit());
   };
 
   const submitMessage = (e, code) => {
@@ -95,8 +72,7 @@ function ChatRoom() {
     chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
     chat.type = 'message';
     chat.code = !!code;
-    const newMessage = firebase.database().ref('messages/').push();
-    newMessage.set(chat);
+    sendMessage(chat);
     setNewchat({
       idRoom: '',
       roomname: '',
@@ -124,8 +100,8 @@ function ChatRoom() {
 
   return (
     <div className={classNames('chat-room', { hidden: chatStatus !== 'chatroom' })}>
-      <HeaderChatRoom exitChat={exitChatHandler} fetchChats={onFetchChats} />
-      {showLoading && <LinearProgress className={classes.root} />}
+      <HeaderChatRoom exitChat={exitChatHandler} />
+      {loadingMessages && <LinearProgress className={classes.root} />}
       {memoizedMessage}
       <FooterChatRoom submitMessage={submitMessage} onChange={onChange} value={newchat.message} />
     </div>
