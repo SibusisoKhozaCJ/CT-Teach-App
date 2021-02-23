@@ -1,11 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import * as actions from '../../../redux/actions/chat-action';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,9 +40,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const HeaderChatRoom = ({ exitChat, fetchChats }) => {
+const HeaderChatRoom = ({ exitChat }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { currentRoomName } = useSelector(state => state.chat);
+  const fetchMoreMessages = () => dispatch(actions.increaseLimit());
 
   return (
     <header className="chat-room-header">
@@ -62,7 +65,7 @@ const HeaderChatRoom = ({ exitChat, fetchChats }) => {
         </IconButton>
         <Avatar alt={`Avatar n°${1}`} src={`/static/images/avatar/${1}.jpg`} className={classes.avatar} />
       </div>
-      <IconButton type="button" onClick={fetchChats}>
+      <IconButton type="button" onClick={fetchMoreMessages}>
         <CloudDownloadIcon className={classes.cloudDownloadIcon} />
       </IconButton>
       <p className={classes.roomName}>{currentRoomName}</p>
@@ -73,7 +76,6 @@ const HeaderChatRoom = ({ exitChat, fetchChats }) => {
 
 HeaderChatRoom.propTypes = {
   exitChat: PropTypes.func.isRequired,
-  fetchChats: PropTypes.func.isRequired,
 };
 
 export default HeaderChatRoom;

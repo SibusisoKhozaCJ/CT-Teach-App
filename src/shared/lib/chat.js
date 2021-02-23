@@ -1,69 +1,107 @@
 import firebase from 'firebase';
-import * as actions from '../../redux/actions/chat-action';
+import { getCookies } from './authentication';
 
-export const snapshotToArray = snapshot => {
-  const returnArr = [];
+export const getTribeInfo = tribeCode =>
+  firebase
+    .database()
+    .ref(`Tribes/${tribeCode}`)
+    .once('value', snapshot => snapshot);
 
-  snapshot.forEach(childSnapshot => {
-    const item = childSnapshot.val();
-    item.key = childSnapshot.key;
-    returnArr.push(item);
+export const getTribeInfoAsync = tribeCode =>
+  new Promise(res => {
+    firebase
+      .database()
+      .ref(`Tribes/${tribeCode}`)
+      .once('value', snapshot => res(snapshot.val()));
   });
 
-  return returnArr;
-};
-
-const sendJoinMessage = (dispatch, firstname, idRoom, roomname) => {
-  const chat = {
-    idRoom: '',
-    roomname: '',
-    firstname: '',
-    message: '',
-    createdAt: '',
-    type: '',
-    code: false,
-    status: 'unread',
-  };
-  chat.idRoom = idRoom;
-  chat.roomname = roomname;
-  chat.firstname = firstname;
-  chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
-  chat.message = `${firstname} enter the room`;
-  chat.type = 'join';
+export const sendMessage = chat => {
   const newMessage = firebase.database().ref('messages/').push();
   newMessage.set(chat);
 };
 
-export const enterChatRoom = ({ dispatch, firstname, idRoom, roomname }) => {
-  firebase
-    .database()
-    .ref('roomusers/')
-    .orderByChild('idRoom')
-    .equalTo(idRoom)
-    .on('value', snapshot => {
-      let roomuser = [];
-      roomuser = snapshotToArray(snapshot);
-      const user = roomuser.find(x => x.firstname === firstname);
-      if (user) {
-        const userRef = firebase.database().ref(`roomusers/${user.key}`);
-        userRef.update({ status: 'online' });
-      } else {
-        sendJoinMessage(dispatch, firstname, idRoom, roomname);
-        const newroomuser = {
-          idRoom: '',
-          roomname: '',
-          firstname: '',
-          status: '',
-        };
-        newroomuser.idRoom = idRoom;
-        newroomuser.roomname = roomname;
-        newroomuser.firstname = firstname;
-        newroomuser.status = 'online';
-        const newRoomUser = firebase.database().ref('roomusers/').push();
-        newRoomUser.set(newroomuser);
-      }
-    });
+export const fetchPrivateChats = () => {
+  const { userId } = getCookies();
+  return new Promise(resolve => {
+    firebase
+      .database()
+      .ref(`Users/${userId}/friends`)
+      .orderByChild('status')
+      .equalTo('accepted')
+      .once('value', snapshot => {
+        const userFriends = snapshot.val();
+        const privateChats = [];
+        if (userFriends) {
+          userFriends.forEach(friend => {
+            privateChats.push({
+              name: `${friend.firstname} ${friend.lastname}`,
+              idRoom: friend.idRoom,
+              isPrivateRoom: true,
+              unreadMessages: 0,
+            });
+          });
+          resolve(privateChats);
+        } else {
+          resolve([]);
+        }
+      });
+  });
+};
 
-  dispatch(actions.setChatRoom(idRoom));
-  dispatch(actions.setCurrentRoomName(roomname));
+export const fetchOwnTribeChat = () => {
+  const { userId } = getCookies();
+  return new Promise(resolve => {
+    firebase
+      .database()
+      .ref(`Users/${userId}/tribe_code`)
+      .once('value', async snapshot => {
+        const userTribe = snapshot.val();
+        const tribesChats = [];
+        if (userTribe) {
+          const tribe = (await getTribeInfo(userTribe)).val();
+          tribesChats.push({
+            name: tribe.name,
+            idRoom: tribe.code,
+            isPrivateRoom: false,
+            unreadMessages: 0,
+          });
+          resolve(tribesChats);
+        } else {
+          resolve([]);
+        }
+      });
+  });
+};
+
+export const fetchJoinedTribeChats = () => {
+  const { userId } = getCookies();
+  return new Promise(resolve => {
+    firebase
+      .database()
+      .ref(`Users/${userId}/tribe_joined`)
+      .once('value', snapshot => {
+        const tribesJoined = snapshot.val();
+        if (tribesJoined) {
+          const actionsPromises = tribesJoined.map(getTribeInfoAsync);
+          const tribesJoinedChats = [];
+          Promise.all(actionsPromises)
+            .then(tribes => {
+              tribes.forEach(tribe => {
+                tribesJoinedChats.push({
+                  name: tribe.name,
+                  idRoom: tribe.code,
+                  isPrivateRoom: false,
+                  unreadMessages: 0,
+                });
+              });
+              resolve(tribesJoinedChats);
+            })
+            .catch(error => {
+              console.error('Failed get tribe info', error.message);
+            });
+        } else {
+          resolve([]);
+        }
+      });
+  });
 };
