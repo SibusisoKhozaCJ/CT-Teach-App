@@ -119,7 +119,7 @@ const TeacherRegisterStep2 = ({ onUpdate, form }) => {
             <div className="codpage techer-code">
               <Grid item xs={12}>
                 <div id="wrapper">
-                  <div id="codeform">
+                  <div id="codeform" className="d-flex">
                     <span className="techer-name">S-</span>
                     <OtpInput
                       value={form.joincode}
