@@ -13,7 +13,8 @@ const initialState = {
   checkpoints: null,
   progress: 0,
   checkpointsCount: 0,
-  fontSize: 14
+  fontSize: 14,
+  isPreviewVisible: true,
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -86,6 +87,9 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_MONACO: {
       return { ...state, monaco: action.payload };
+    }
+    case Types.LESSON_SET_PREVIEW_VISIBLE: {
+      return { ...state, isPreviewVisible: action.payload };
     }
     default:
       return state;

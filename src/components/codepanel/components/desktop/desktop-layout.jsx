@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { ReflexContainer, ReflexSplitter, ReflexElement } from "react-reflex";
 import "react-reflex/styles.css";
 
@@ -6,6 +7,8 @@ import Topbar from './topbar'
 import Bottombar from './bottombar'
 
 const DesktopLayout = ({ editor, preview, slider }) => {
+  const isPreviewVisible = useSelector(state => state.codepanel.isPreviewVisible);
+
   return (
     <div
       style={{
@@ -27,8 +30,12 @@ const DesktopLayout = ({ editor, preview, slider }) => {
         <ReflexElement flex={1}>{slider}</ReflexElement>
         <ReflexSplitter />
         <ReflexElement flex={1}>{editor}</ReflexElement>
-        <ReflexSplitter />
-        <ReflexElement flex={1}>{preview}</ReflexElement>
+        {isPreviewVisible ? (
+          <>
+            <ReflexSplitter />
+            <ReflexElement flex={1}>{preview}</ReflexElement>
+          </>
+        ) : null}
       </ReflexContainer>
       <Bottombar />
     </div>

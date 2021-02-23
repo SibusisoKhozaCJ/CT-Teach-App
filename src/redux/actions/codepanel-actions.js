@@ -83,3 +83,8 @@ export const codepanelDecSlideNumber = () => ({
 export const codepanelUnsetSlidesLoader = () => ({
   type: Types.LESSON_UNSET_SLIDES_LOADER
 });
+
+export const codepanelSetPreviewVisible = isVisible => ({
+  type: Types.LESSON_SET_PREVIEW_VISIBLE,
+  payload: isVisible
+});
