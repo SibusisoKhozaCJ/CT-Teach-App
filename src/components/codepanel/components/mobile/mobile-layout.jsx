@@ -1,11 +1,18 @@
 import React, { useRef, useEffect } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { useSelector, useDispatch } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
 
 import Topbar from "./topbar";
 import Bottombar from "./bottombar";
 import { codepanelSetTab } from "../../../../redux/actions/codepanel-actions";
 import Tutorial from "./tutorial";
+
+const useStyles = makeStyles((theme) => ({
+  swipeableContainer: {
+    height: "100%"
+  }
+}));
 
 const MobileLayout = ({ editor, slider, preview }) => {
   const dispatch = useDispatch();
@@ -13,6 +20,7 @@ const MobileLayout = ({ editor, slider, preview }) => {
   const slidesRef = useRef(null);
   const editorRef = useRef(null);
   const previewRef = useRef(null);
+  const classes = useStyles();
 
   useEffect(() => {
     let vh = window.innerHeight * 0.01;
@@ -37,10 +45,11 @@ const MobileLayout = ({ editor, slider, preview }) => {
       }}
     >
       <Topbar />
-      <div style={{ width: "100%", height: 56 }} />
+      {/* <div style={{ width: "100%", height: 50 }} /> */}
       <SwipeableViews
         index={index}
-        style={{ flexGrow: 1, width: "100%", height: '100%'}}
+        className={classes.swipeableContainer}
+        // style={{ flexGrow: 1, width: "100%", height: '100%'}}
         onChangeIndex={i => {
           // meditor.blur();
           switch (i) {

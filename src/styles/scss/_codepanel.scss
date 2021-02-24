@@ -1919,16 +1919,16 @@ stroke-width:1;
 	margin: 2px 0px 2px 0px!important;
 }
 
-#lesson-page .aqua {color: #009688!important;}
-#lesson-page .green {color: #00b050!important;}
-#lesson-page .yellow {color: #fcef2e!important;}
-#lesson-page .pink {color: #f5e!important;}
-#lesson-page .blue {color: #03A9F4!important;}
- #lesson-page .red {color: #ff6a00!important;}
- #lesson-page .encouraging{color: #5fd3aa !important }
- #lesson-page .mission{color: #35abe6 !important; }
- #lesson-page .text-black{color: #000000 !important; }
- #lesson-page .think {color:#e44860 !important}
+#lesson-page .aqua {color: #009688!important; background-color: transparent;}
+#lesson-page .green {color: #00b050!important; background-color: transparent;}
+#lesson-page .yellow {color: #fcef2e!important; background-color: transparent;}
+#lesson-page .pink {color: #f5e!important; background-color: transparent;}
+#lesson-page .blue {color: #03A9F4!important; background-color: transparent;}
+ #lesson-page .red {color: #ff6a00!important; background-color: transparent;}
+ #lesson-page .encouraging{color: #5fd3aa !important;  background-color: transparent;}
+ #lesson-page .mission{color: #35abe6 !important;  background-color: transparent;}
+ #lesson-page .text-black{color: #000000 !important;  background-color: transparent;}
+ #lesson-page .think {color:#e44860 !important; background-color: transparent;}
 
  #lesson-page .briefing {color: #bfbfb7 !important }
  .nobr {white-space: nowrap}
@@ -6603,4 +6603,8 @@ h6 {
 
 #lesson-page .btn-main, #lesson-page .btn-primary, #lesson-page .btn-primary-alt, #lesson-page .btn-action, #lesson-page .btn-success {
     width: 100%;
+}
+
+.react-swipeable-view-container {
+  height: 100%;
 }

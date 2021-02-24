@@ -27,10 +27,12 @@ import SideMenu from "../side-menu";
 const useStyles = makeStyles((theme) => ({
   mobileBottomBar: {
     "&.MuiAppBar-colorPrimary": {
+      // position: "static",
       position: "fixed",
+      top: "auto",
       bottom: 0,
       color: theme.palette.secondary.contrastText,
-      top: "auto"
+      // top: "auto"
     },
     '& .MuiToolbar-regular': {
       minHeight: 50
@@ -92,8 +94,9 @@ const Bottombar = () => {
   }
 
   const insertCharacter = (character) => {
-    console.log("textarea", textareaRef.current)
-    insertAtCarret(textareaRef.current, character)
+    insertAtCarret(textareaRef.current, character);
+    const ev = new Event('input', { bubbles: true});
+    textareaRef.current.dispatchEvent(ev);
     // const doc = editor.getDoc();
     // const cursor = doc.getCursor();
     // doc.replaceRange(character, cursor);

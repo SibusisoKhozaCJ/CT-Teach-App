@@ -118,6 +118,7 @@ const Editor = () => {
   }, [dispatch, textareaRef])
 
   useEffect(() => {
+    console.log("checker")
     const isCheckpoint = lesson.slides[currentSlide].checkpoint;
 
     if (!isCheckpoint) {
@@ -176,6 +177,8 @@ const Editor = () => {
         );
       }
 
+    } else {
+      dispatch(codepanelSetIsValid(true));
     }
 
   }, [currentSlide, storedCode])
