@@ -232,7 +232,7 @@ const Editor = () => {
         <div style={{ width: "100%", height: "100%", display: "flex" }}>
           <div style={{
             marginTop: 2,
-            width: 20,
+            width: 50,
             height: "100%",
             backgroundColor: "#333",
             display: "flex",
