@@ -1,9 +1,9 @@
 import React from "react";
 
-const Card = ({ children, button }) => {
+const Card = ({ children, button, ...params }) => {
 
   return (
-    <div className="content-card__container">
+    <div className="content-card__container" {...params}>
       {children}
       {button ? (
         <div className={`content-card__btn content-card__btn--${button.classes}`}>

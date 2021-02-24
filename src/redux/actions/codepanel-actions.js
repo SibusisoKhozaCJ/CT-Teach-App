@@ -88,3 +88,8 @@ export const codepanelSetPreviewVisible = isVisible => ({
   type: Types.LESSON_SET_PREVIEW_VISIBLE,
   payload: isVisible
 });
+
+export const codepanelSetTextareaRef = ref => ({
+  type: Types.LESSON_SET_TEXTAREA_REF,
+  payload: ref
+});

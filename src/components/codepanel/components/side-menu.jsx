@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -13,6 +13,8 @@ import InviteIcon from "../../../assets/images/invite-icon.png";
 import ScreenshotIcon from "../../../assets/images/screenshot-icon.png";
 import FeedbackIcon from "../../../assets/images/feedback.svg";
 import LockIcon from "../../../assets/images/lock-icon.png";
+
+import ProjectsModal from "./projects/projects-modal";
 
 const  useStyles = makeStyles(theme => ({
   container: {
@@ -56,6 +58,13 @@ const  useStyles = makeStyles(theme => ({
       flexDirection: "column",
     },
 
+    ["@media (max-width:767px)"]: {
+      "& img": {
+        width: "18px !important",
+        marginBottom: 6
+      }
+    },
+
     "& img": {
       width: 36,
       marginBottom: 6
@@ -66,14 +75,17 @@ const  useStyles = makeStyles(theme => ({
     position: "absolute",
     top: 6,
     right: 16,
-    width: "16px !important"
+    width: "16px !important",
   }
 }));
 
 const SideMenu = ({ closeHandler }) => {
   const classes = useStyles();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("side loaded");
+  const closeModalHandler = () => {
+    setIsModalOpen(false);
+  }
 
   return (
     <div className={classes.container}>
@@ -81,7 +93,7 @@ const SideMenu = ({ closeHandler }) => {
         <img src={CodepanelLogoIcon} className="coverage" alt="" />
       </IconButton>
       <div className={classes.divider} />
-      <IconButton onClick={() => {}} className={classes.icon}>
+      <IconButton onClick={() => {setIsModalOpen(!isModalOpen)}} className={classes.icon}>
         <img src={ProjectsIcon} className="coverage" alt="" />
         <span>Projects</span>
       </IconButton>
@@ -122,6 +134,7 @@ const SideMenu = ({ closeHandler }) => {
       <IconButton onClick={closeHandler} style={{ justifySelf: "flex-end" }}>
         <img src={CloseIcon} className="coverage" alt="" />
       </IconButton>
+      {isModalOpen ? <ProjectsModal closeHandler={closeModalHandler} closeSidebar={closeHandler}/> : null}
     </div>
   )
 }

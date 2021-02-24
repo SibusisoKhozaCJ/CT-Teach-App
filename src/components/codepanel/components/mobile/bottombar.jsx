@@ -19,8 +19,10 @@ import SaveIcon from "@material-ui/icons/Save";
 
 import {
   codepanelIncFontsize,
-  codepanelDecFontsize
-} from '../../../../redux/actions/codepanel-actions'
+  codepanelDecFontsize,
+} from '../../../../redux/actions/codepanel-actions';
+import CodepanelLogoIcon from "../../../../assets/images/codepanel-logo.png";
+import SideMenu from "../side-menu";
 
 const useStyles = makeStyles((theme) => ({
   mobileBottomBar: {
@@ -38,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     width: "100vw"
+  },
+  logo: {
+    width: 18,
+    marginRight: 12,
+
+    "& img": {
+      width: "100%"
+    }
   }
 }));
 
@@ -47,14 +57,47 @@ const Bottombar = () => {
   const editor = useSelector(state => state.codepanel.editor);
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const textareaRef = useSelector(state => state.codepanel.textareaRef);
 
   const dispatch = useDispatch();
 
+  const sideMenuCloseHandler = () => {
+    setIsSideMenuOpen(false);
+  }
+
+  const insertAtCarret = (element, text) => {
+    if (document.selection) {
+      console.log('Hello');
+      element.focus();
+      var sel = document.selection.createRange();
+      sel.text = text;
+      element.focus();
+    } else if (element.selectionStart || element.selectionStart === 0) {
+      var startPos = element.selectionStart;
+      var endPos = element.selectionEnd;
+      var scrollTop = element.scrollTop;
+      element.value =
+        element.value.substring(0, startPos) +
+        text +
+        element.value.substring(endPos, element.value.length);
+      element.focus();
+      element.selectionStart = startPos + text.length;
+      element.selectionEnd = startPos + text.length;
+      element.scrollTop = scrollTop;
+    } else {
+      element.value += text;
+      element.focus();
+    }
+  }
+
   const insertCharacter = (character) => {
-    const doc = editor.getDoc();
-    const cursor = doc.getCursor();
-    doc.replaceRange(character, cursor);
-    editor.focus();
+    console.log("textarea", textareaRef.current)
+    insertAtCarret(textareaRef.current, character)
+    // const doc = editor.getDoc();
+    // const cursor = doc.getCursor();
+    // doc.replaceRange(character, cursor);
+    // editor.focus();
   };
 
   const handleClick = char => {
@@ -66,7 +109,14 @@ const Bottombar = () => {
       <Toolbar className={classes.mobieleBottomBarWrapper}>
         {index === 0 && (
           <>
-            <Typography>Lesson Breadcrumbs</Typography>
+            <div style={{ display: "flex", alignItems: "center"}}>
+              {/* <IconButton className={classes.logo}> */}
+              <div className={classes.logo} onClick={() => {setIsSideMenuOpen(true)}}>
+                <img src={CodepanelLogoIcon} className="coverage" alt="" />
+              </div>
+              {/* </IconButton> */}
+              <Typography>Lesson Breadcrumbs</Typography>
+            </div>
             <IconButton
               aria-label="Full Screen"
               onClick={() => {}}
@@ -173,6 +223,9 @@ const Bottombar = () => {
           </>
         )}
       </Toolbar>
+      {isSideMenuOpen ? (
+        <SideMenu closeHandler={sideMenuCloseHandler} />
+      ) : null}
     </AppBar>
   );
 };

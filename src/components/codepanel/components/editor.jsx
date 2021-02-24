@@ -1,4 +1,5 @@
-import React, { useState, Suspense, useEffect } from 'react';
+import React, { useState, Suspense, useEffect, useRef } from 'react';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 // import Monaco from '@monaco-editor/react'
 import { useDispatch, useSelector } from "react-redux";
 import CodeMirror from "@uiw/react-codemirror";
@@ -13,7 +14,8 @@ import {
   codepanelSetEditor,
   codepanelSetIsValid,
   codepanelSetCheckpoints,
-  codepanelSetProgress
+  codepanelSetProgress,
+  codepanelSetTextareaRef
 } from "../../../redux/actions/codepanel-actions";
 import { saveCodeToLocal } from "../utils/localStorage";
 import Tick from "./tick/tick";
@@ -41,6 +43,8 @@ const Editor = () => {
   const lessonId = "5-min-website";
   const checkpoints = useSelector(state => state.codepanel.checkpoints);
   const checkpointsCount = useSelector(state => state.codepanel.checkpointsCount);
+  const isDesktop = useMediaQuery("(min-width:768px)");
+  const textareaRef = useRef(null);
 
   let challengesPrepared = null
 
@@ -61,6 +65,27 @@ const Editor = () => {
   }
 
   const dispatch = useDispatch();
+
+  const lines = code.split("\n").length;
+
+  const linesRendered = []
+  for (let i = 0; i < lines; i++) {
+    linesRendered.push(
+      <div
+        key={i}
+        style={{
+          width: "100%",
+          display: "block",
+          textAlign: "right",
+          lineHeight: "1.5",
+          fontSize: 20,
+          color: "#6c757d"
+        }}
+      >
+        {i + 1}
+      </div>
+    )
+  }
 
   const onUpdate = editor => {
     dispatch(codepanelSetEditor(editor));
@@ -87,6 +112,10 @@ const Editor = () => {
 
     return { progress, challenges }
   }
+
+  useEffect(() => {
+    dispatch(codepanelSetTextareaRef(textareaRef))
+  }, [dispatch, textareaRef])
 
   useEffect(() => {
     const isCheckpoint = lesson.slides[currentSlide].checkpoint;
@@ -160,6 +189,15 @@ const Editor = () => {
     }, 1000);
   };
 
+  const textareaInputHandler = (e) => {
+    const newValue = e.target.value;
+    setCode(newValue);
+    debounce(() => {
+      dispatch(codepanelSetCode(newValue));
+      saveCodeToLocal(newValue);
+    }, 1000);
+  }
+
   return (
     <form
       autocomplete="off"
@@ -174,21 +212,53 @@ const Editor = () => {
         position: "relative"
       }}
     >
-      <Suspense fallback={<div>loading</div>}>
-          <CodeMirror
-            onChange={onChange}
-            onUpdate={onUpdate}
-            options={{
-              theme: "monokai",
-              tabSize: 2,
-              // keyMap: "sublime",
-              mode: "jsx"
+      {isDesktop ? (
+        <Suspense fallback={<div>loading</div>}>
+            <CodeMirror
+              onChange={onChange}
+              onUpdate={onUpdate}
+              options={{
+                theme: "monokai",
+                tabSize: 2,
+                // keyMap: "sublime",
+                mode: "jsx"
+              }}
+              spellcheck="false"
+              styles={{ fontSize }}
+              value={code}
+            />
+        </Suspense>
+      ) : (
+        <div style={{ width: "100%", height: "100%", display: "flex" }}>
+          <div style={{
+            marginTop: 2,
+            width: 20,
+            height: "100%",
+            backgroundColor: "#333",
+            display: "flex",
+            flexDirection: "column"
             }}
+          >
+            {linesRendered}
+          </div>
+          <textarea
+            ref={textareaRef}
+            autocomplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
             spellcheck="false"
-            styles={{ fontSize }}
             value={code}
+            style={{
+              flexGrow: 1,
+              backgroundColor: "#1e1e1e",
+              color: "#fff",
+              width: "100%",
+              height: "100%"
+            }}
+            onInput={e => textareaInputHandler(e)}
           />
-      </Suspense>
+        </div>
+      )}
       {isAnimation ? (
         <div
           style={{

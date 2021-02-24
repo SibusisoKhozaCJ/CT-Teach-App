@@ -15,6 +15,7 @@ const initialState = {
   checkpointsCount: 0,
   fontSize: 14,
   isPreviewVisible: true,
+  textareaRef: null
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -90,6 +91,9 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_PREVIEW_VISIBLE: {
       return { ...state, isPreviewVisible: action.payload };
+    }
+    case Types.LESSON_SET_TEXTAREA_REF: {
+      return { ...state, textareaRef: action.payload };
     }
     default:
       return state;
