@@ -5,13 +5,14 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import ShareIcon from "../../../assets/icons/footer-icon/share.png";
-import Card from "../../../shared/components/card/card";
+import ShareIcon from "../../../../../assets/icons/footer-icon/share.png";
+import Card from "../../../../../shared/components/card/card";
 
 const useStyles = makeStyles(() => ({
   cardContainer: {
     display: "flex",
     alignItems: "stretch",
+    backgroundColor: "#fff",
 
     "&>div": {
       display: "flex",
@@ -24,11 +25,15 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column"
   },
   cardRight: {
-    width: 120,
+    width: 50,
     marginLeft: "auto",
     flexShrink: 0,
     display: "flex",
     flexDirection: "column",
+
+    "&>img": {
+      marginBottom: 8
+    },
 
     "& img": {
       width: "100%"
@@ -36,33 +41,50 @@ const useStyles = makeStyles(() => ({
 
     "& button": {
       marginTop: "auto"
+    },
+
+    ["@media (min-width:768px)"]: {
+      width: 100
     }
   },
   header: {
-    fontSize: 29,
-    fontWeight: "bold"
+    fontSize: 18,
+    fontWeight: "bold",
+
+    ["@media (min-width:768px)"]: {
+      fontSize: 26
+    }
   },
 
   description: {
-    fontSize: 21
+    fontSize: 13,
+
+    ["@media (min-width:768px)"]: {
+      fontSize: 18
+    }
   },
 
   list: {
-    margin: "12px 0 0 20px",
     padding: 0,
-    marginBottom: 30,
+    marginBottom: 20,
+    fontSize: 12,
+
+    ["@media (min-width:768px)"]: {
+      "& li": {
+        fontSize: 18
+      }
+    },
 
     "& li": {
-      margin: "10px 0",
+      margin: 6,
       listStyle: "none",
-      fontSize: 19,
       fontWeight: "bold",
     },
 
     "& span": {
-      marginLeft: 20,
+      marginLeft: 8,
       fontWeight: 400,
-      padding: "0 19px",
+      padding: "0 8px",
       backgroundColor: "#FBDD3F",
       borderRadius: 15
     }
@@ -86,10 +108,10 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#43D4DD",
     border: "4px solid #fff",
     color: "#fff",
-    fontSize: 22,
+    fontSize: 14,
     fontWeight: "bold",
     textTransform: "uppercase",
-    padding: "11px 26px",
+    padding: "6px 16px",
     zIndex: 10,
     display: "flex",
     alignItems: "center",
@@ -109,10 +131,10 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#c4c4c4",
     border: "4px solid #fff",
     color: "#fff",
-    fontSize: 22,
+    fontSize: 14,
     fontWeight: "bold",
     textTransform: "uppercase",
-    padding: "11px 26px",
+    padding: "6px 15px",
     zIndex: 10,
     display: "flex",
     alignItems: "center",
@@ -146,17 +168,18 @@ const useStyles = makeStyles(() => ({
   btnShare: {
     order: 2,
     marginLeft: "auto",
+    marginBottom: 4,
     backgroundColor: "#c4c4c4",
     borderRadius: 50,
-    width: 60,
-    height: 60,
+    width: 35,
+    height: 35,
     border: "none",
     opacity: ".45",
   },
 
   btnIcon: {
     marginLeft: "auto",
-    fontSize: 36
+    fontSize: 16
   },
 
   progress: {
@@ -179,7 +202,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const ProectItem = ({ project: {title, description, level, fun, time, outline, key, lessons, img}}) => {
+const ProectItem = ({ project: {title, description, level, fun, time, outline, key, lessons, img}, closeSidebar}) => {
   const classes = useStyles();
   const [isListEmpty, setIsListEmpty] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -203,13 +226,14 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
             />)
         }
       }
+      style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 16  }}
     >
       <div className={classes.cardContainer}>
       <div className={classes.cardLeft}>
         <h3 className={classes.header}>{title}</h3>
+        <p className={classes.description}>{description}</p>
         {isCollapsed ? null : (
           <>
-            <p className={classes.description}>{description}</p>
             {isListEmpty || (
               <ul className={classes.list}>
                 {level ? <li>LEVEL: <span>{level}</span></li> : null}
@@ -234,15 +258,13 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
                   </Link>
                 </>
               ) : (
-                <Link to={`/codepanel/${lessons[0]}`} className={classes.btnStart}>
+                <button className={classes.btnStart} role="button" onClick={() => {
+                  closeSidebar()
+                }}>
                   <span>Rock This!</span>
                   <PlayArrowIcon className={classes.btnIcon}/>
-                </Link>
-
+                </button>
               )}
-              {/* <button role="button" className={classes.btnShare}> */}
-              {/*   <img onClick={()=>{}} src={ShareIcon} className="coverage" alt="" /> */}
-              {/* </button> */}
             </>
           ) : (
             <button role="button" className={classes.btnSoon} disabled>
