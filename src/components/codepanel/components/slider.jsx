@@ -12,7 +12,7 @@ import {
   codepanelSetTab
 } from '../../../redux/actions/codepanel-actions'
 
-import "../data/INTRO-5MIN-M-V007/custom.css"
+// import "../data/INTRO-5MIN-M-V007/custom.css"
 
 const useStyles = makeStyles(theme => ({
   pageLesson: {
@@ -71,6 +71,10 @@ const Slider = () => {
   const pageChangeHandler = e => {
     dispatch(codepanelSetSlideNumber(e));
   };
+
+  if (!lesson) {
+    return <div>Loading</div>
+  }
 
   return (
     <ReflexContainer

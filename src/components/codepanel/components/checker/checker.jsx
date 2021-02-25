@@ -5,6 +5,8 @@ import ErrorIcon from '@material-ui/icons/Error';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
+import TickIcon from "../../../../assets/images/tick-icon.png";
+import TestTubeIcon from "../../../../assets/images/testtube-icon.png";
 import Tick from "../tick/tick";
 
 const useStyles = makeStyles(() => ({
@@ -18,6 +20,7 @@ const useStyles = makeStyles(() => ({
     borderRadius: 14,
     backgroundColor: "#fff",
     border: "2px solid #43D4DD",
+    fontSize: 13,
 
     "&::before": {
       zIndex: 1,
@@ -31,6 +34,14 @@ const useStyles = makeStyles(() => ({
       backgroundColor: "#43D4DD",
       borderRadius: 10
     }
+  },
+
+  title: {
+    fontSize: 14,
+    color: "#43D4DD",
+    fontWeight: 700,
+    textTransform: "uppercase",
+    marginLeft: 12
   },
 
   item: {
@@ -55,10 +66,12 @@ const Checker = ({ challenges }) => {
     <ul className={classes.list}>
       <li className={classes.item} onClick={() => setCollapsed(!collapsed)}>
         {collapsed ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        {collapsed || <h3 className={classes.title}>Checker:</h3>}
       </li>
       {challenges.map(challenge => (
         <li key={challenge.description} className={classes.item}>
-          {challenge.status ? <Tick size="24" /> : <ErrorIcon />}
+          <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
+          {/* {challenge.status ? <Tick size="24" /> : <ErrorIcon />} */}
           {collapsed || <span className={classes.text}>{challenge.description}</span>}
         </li>
       ))}

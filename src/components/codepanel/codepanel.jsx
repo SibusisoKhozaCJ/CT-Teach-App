@@ -33,6 +33,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
   }
 
   useEffect(() => {
+    console.log("lesson",lesson)
     dispatch(codepanelSetSlides(lesson));
 
     if (typeof localStorage !== "undefined") {
@@ -77,7 +78,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
     }
 
 
-  });
+  }, [id]);
 
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,

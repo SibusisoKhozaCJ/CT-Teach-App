@@ -34,6 +34,31 @@
     padding: 0 10px !important;   
 }
 }
+@media only screen and (max-width: 1024px) {
+.newpopupdiv button {
+		background: #43D4DD;
+		border-radius: 35px;
+		min-width: 197px;
+		margin-bottom: 20px;
+		.new-tagsidebar {
+			margin-right: 20px;
+		}
+	}
+	.newpopupdiv span {
+    margin-right: 20px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #000;
+}
+.MuiListItemText-root span {
+    font-weight: 700 !important;
+    font-size: 22px !important;
+    line-height: 30px;
+}.MuiListItemIcon-root img {
+    width: 30px;
+}
+
+}
 
 @media only screen and (max-width: 600px) {
 	header {
@@ -160,6 +185,15 @@
 			margin-right: 20px;
 		}
 	}
+	.tocodepupupdiv button {
+		background: #43D4DD;
+		border-radius: 35px;
+		min-width: 197px;
+		margin-bottom: 20px;
+		.tocode-tagsidebar {
+			margin-right: 20px;
+		}
+	}
 	.tribe-page .tribe-expandtext .expand-icontext button img {
 		margin-left: 20px;
 		max-width: 20px;
@@ -198,6 +232,12 @@
 		font-weight: 700;
 		font-size: 24px;
 		color: #000000;
+	}
+	.tocodepopupdiv span {
+		margin-right: 20px;
+		font-weight: 700;
+		font-size: 24px;
+		color: #fff;
 	}
 	.MuiListItemText-root span {
 		font-weight: 700 !important;
