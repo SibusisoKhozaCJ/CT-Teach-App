@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import SendIcon from '@material-ui/icons/Send';
 import CodeIcon from '@material-ui/icons/Code';
@@ -20,13 +20,13 @@ const FooterChatRoom = ({ submitMessage, onChange, value }) => {
     }
   };
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     if (messageType === 'text') {
       setMessageType('code');
     } else {
       setMessageType('text');
     }
-  }, []);
+  };
 
   return (
     <footer className="chat-room-footer">
