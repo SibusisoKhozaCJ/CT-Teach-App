@@ -1,25 +1,23 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import classNames from 'classnames';
 import firebase from 'firebase';
-import { makeStyles } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import { getCookies } from '../../../shared/lib/authentication';
-import FooterChatRoom from './footer-chat-room';
-import * as actions from '../../../redux/actions/chat-action';
-import HeaderChatRoom from './header-chat-room';
-import MessageList from './message-list';
-import { sendMessage } from '../../../shared/lib/chat';
-
-const useStyles = makeStyles(() => ({
-  root: {
-    position: 'absolute',
-    top: '50px',
-    width: '100%',
-  },
-}));
+import { getCookies } from '../../../../shared/lib/authentication';
+import FooterChatRoom from '../footer-chat-room/footer-chat-room';
+import {
+  fetchMessages,
+  clearIdRoom,
+  clearMessages,
+  setRoomLIst,
+  clearCurrentRoomName,
+  setInitialLimit,
+} from '../../../../redux/actions/chat-action';
+import HeaderChatRoom from '../header-chat-room/header-chat-room';
+import MessageList from '../message-list/message-list';
+import useStyles from './styles';
 
 function ChatRoom() {
   const classes = useStyles();
@@ -39,24 +37,24 @@ function ChatRoom() {
   });
 
   useEffect(() => {
-    dispatch(actions.fetchMessages());
+    dispatch(fetchMessages());
   }, [idRoom, userFirstName, limit]);
 
-  const onChange = e => {
+  const onChange = useCallback(e => {
     e.persist();
     setNewchat({
       ...newchat,
       [e.target.name]: e.target.value,
     });
-  };
+  }, []);
 
-  const exitChatHandler = () => {
-    dispatch(actions.clearIdRoom());
-    dispatch(actions.clearMessages());
-    dispatch(actions.setRoomLIst());
-    dispatch(actions.clearCurrentRoomName());
-    dispatch(actions.setInitialLimit());
-  };
+  const exitChatHandler = useCallback(() => {
+    dispatch(clearIdRoom());
+    dispatch(clearMessages());
+    dispatch(setRoomLIst());
+    dispatch(clearCurrentRoomName());
+    dispatch(setInitialLimit());
+  }, []);
 
   const submitMessage = (e, code) => {
     e.preventDefault();
@@ -72,7 +70,8 @@ function ChatRoom() {
     chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
     chat.type = 'message';
     chat.code = !!code;
-    sendMessage(chat);
+    const newMessage = firebase.database().ref('messages/').push();
+    newMessage.set(chat);
     setNewchat({
       idRoom: '',
       roomname: '',
@@ -87,8 +86,8 @@ function ChatRoom() {
 
   const memoizedMessage = useMemo(
     () => (
-      <ScrollToBottom className="ChatContent" debounce={300}>
-        {messages ? (
+      <ScrollToBottom className="ChatContent">
+        {messages.length !== 0 ? (
           <MessageList messages={messages} userFirstName={userFirstName} />
         ) : (
           <div className="no-message">There are no messages ...</div>

@@ -4,10 +4,12 @@ import Switch from '@material-ui/core/Switch';
 
 const IOSSwitch = withStyles(theme => ({
   root: {
-    width: 42,
-    height: 26,
+    width: 44,
+    height: 28,
     padding: 0,
     margin: '0 5px 0 auto',
+    border: '2px solid black',
+    borderRadius: '14px',
   },
   switchBase: {
     padding: 1,

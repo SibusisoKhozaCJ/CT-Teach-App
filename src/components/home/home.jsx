@@ -19,7 +19,7 @@ const Welcome = () => {
 
     useEffect(() => {
         Auth.getProfile().then((teachers)=>{
-            console.log("Teachers " + JSON.stringify(teachers))
+            // console.log("Teachers " + JSON.stringify(teachers))
         }).catch((err) => {
             alert('errr')
         })
