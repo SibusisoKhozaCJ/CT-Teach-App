@@ -3,13 +3,6 @@ import { Menu, MenuItem } from '@material-ui/core';
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
-import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
-import CardMembershipIcon from '@material-ui/icons/CardMembership';
-import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -21,11 +14,12 @@ import { useHistory } from "react-router-dom";
 import { saveUser } from '../../../../redux/actions/user-actions';
 import { removeCookies } from "../../../../shared/lib/authentication";
 import { AuthContext } from '../../../../shared/contexts/authContext';
+import { codepanelSetProjectsIsActive } from "../../../../redux/actions/codepanel-actions";
 
-import ProjectsIcon from "../../../../assets/images/projects-icon.svg";
+import ProjectsIcon from "../../../../assets/images/rocket-icon.png";
 import DashboardIcon from "../../../../assets/images/dashboard-icon.png";
 import ProfileIcon from "../../../../assets/images/profile.svg";
-import GalleryIcon from "../../../../assets/images/gallery.svg";
+import GalleryIcon from "../../../../assets/images/gallery-icon.png";
 import LogoutIcon from "../../../../assets/images/logout-icon.png";
 import HugIcon from "../../../../assets/images/hug-icon.png";
 import FriendsIcon from "../../../../assets/images/friends-icon.png";
@@ -130,7 +124,10 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
                 Hello, {name ? name : 'Joe'}
               </Typography>
             </MenuItem>
-            <MenuItem onClick={() => {}}>
+            <MenuItem onClick={() => {
+              closeHandler();
+              dispatch(codepanelSetProjectsIsActive(true));
+              }}>
               <ListItemIcon>
                 {/* <ExploreOutlinedIcon className={classes.icon} /> */}
                 <img width="26" height="29" src={ProjectsIcon} className="coverage" alt="" />

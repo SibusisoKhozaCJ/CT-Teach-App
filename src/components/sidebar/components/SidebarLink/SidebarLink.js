@@ -27,6 +27,7 @@ export default function SidebarLink({
   isSidebarOpened,
   nested,
   type,
+  callback
 }) {
   var classes = useStyles();
 
@@ -53,6 +54,7 @@ export default function SidebarLink({
         button
         component={link && Link}
         to={link}
+        onClick={() => { callback && callback() }}
         className={isLinkActive ? (classes.link + " active-menu-item") : classes.link}
         classes={{
           root: classnames(classes.linkRoot, {
@@ -86,7 +88,10 @@ export default function SidebarLink({
       <ListItem
         button
         component={link && Link}
-        onClick={toggleCollapse}
+        onClick={() => {
+          toggleCollapse();
+          callback && callback();
+        }}
         className={classes.link}
         to={link}
         disableRipple

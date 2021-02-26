@@ -103,3 +103,8 @@ export const codepanelSetCheckerActive = isActive => ({
   type: Types.LESSON_SET_CHECKER_ACTIVE,
   payload: isActive
 });
+
+export const codepanelSetProjectsIsActive = isActive => ({
+  type: Types.LESSON_SET_PROJECTS_ACTIVE,
+  payload: isActive
+});

@@ -17,7 +17,8 @@ const initialState = {
   isPreviewVisible: true,
   textareaRef: null,
   isCheckerOpen: false,
-  isCheckerActive: true
+  isCheckerActive: true,
+  isProjectsActive: false
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -102,6 +103,9 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_CHECKER_ACTIVE: {
       return { ...state, isCheckerActive: action.payload };
+    }
+    case Types.LESSON_SET_PROJECTS_ACTIVE: {
+      return { ...state, isProjectsActive: action.payload };
     }
     default:
       return state;

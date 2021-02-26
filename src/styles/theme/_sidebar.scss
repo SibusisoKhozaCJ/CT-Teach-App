@@ -50,6 +50,9 @@
 			min-width: 197px;
 			margin-bottom: 20px;
 			padding: 9px 26px;
+			img {
+				width: 20px,
+			}
 			span {
 				font-size: 33px;
 				line-height: 41px;
@@ -59,7 +62,7 @@
 				font-family: "Righteous", sans-serif;
 			}
 			.tocode-tagsidebar {
-				margin-right: 20px;
+				margin-left: 20px;
 				font-weight: 700;
 				font-size: 24px;
 			}

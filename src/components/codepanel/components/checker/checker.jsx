@@ -13,24 +13,29 @@ import Tick from "../../../../assets/images/tick.png";
 const useStyles = makeStyles(() => ({
   chart: {
     position: "absolute",
-    right: 20,
-    top: 20,
-    width: 24,
-    height: 24,
-    border: "3px solide transparent",
+    right: 23,
+    top: 23,
+    width: 18,
+    height: 18,
+    // border: "3px solide transparent",
     borderRadius: "50%",
     backgroundColor: "rgba(255,255,255,.25)",
   },
 
+  closeExpand: {
+    marginLeft: "auto"
+  },
+
   svg: {
     position: "absolute",
-    top: 0,
-    left: 0
+    top: -3,
+    left: -3
   },
 
   circle: {
     transform: "rotate(-90deg)",
     transformOrigin: "center",
+    transition: "all .3s"
   },
 
   completed: {
@@ -48,6 +53,34 @@ const useStyles = makeStyles(() => ({
 
   list: {
     position: "absolute",
+    right: 20,
+    top: 20,
+    maxWidth: "70%",
+    margin: 0,
+    padding: "8px 4px",
+    borderRadius: 14,
+    // backgroundColor: "#fff",
+    backgroundColor: "rgba(255,255,255,0.75)",
+    border: "2px solid #43D4DD",
+    fontSize: 13,
+
+    "&::before": {
+      zIndex: 1,
+      display: "block",
+      position: "absolute",
+      content: "''",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      width: 32,
+      // backgroundColor: "rgba(255,255,255,0.75)",
+      // backgroundColor: "#43D4DD",
+      borderRadius: 10
+    }
+  },
+  listExpand: {
+    position: "absolute",
+    width: "90%",
     right: 20,
     top: 20,
     maxWidth: "70%",
@@ -77,7 +110,8 @@ const useStyles = makeStyles(() => ({
     color: "#43D4DD",
     fontWeight: 700,
     textTransform: "uppercase",
-    marginLeft: 12
+    margin: 0,
+    marginLeft: 4
   },
 
   item: {
@@ -102,29 +136,40 @@ const Checker = ({ challenges, percent }) => {
   const curveLength = percent * 2 * Math.PI / 10;
 
   return isOpen ? (
-    <ul className={classes.list}>
-      <img
-        src={CloseIcon}
-        width="18"
-        className={`${classes.close} coverage`}
-        alt=""
-        onClick={() => {setIsOpen(false)}}
-      />
+    <ul className={collapsed ? classes.list : classes.listExpand}>
       {collapsed ? (
-        <div onClick={() => {setCollapsed(false)}}>
+        <div>
           <li className={classes.item}>
+            <img
+              src={CloseIcon}
+              width="18"
+              className={`${classes.close} coverage`}
+              alt=""
+              onClick={() => {setIsOpen(false)}}
+            />
           </li>
-          {challenges.map(challenge => (
-            <li key={challenge.description} className={classes.item}>
-              <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
-            </li>
-          ))}
+          <div onClick={() => {setCollapsed(false)}}>
+            {challenges.map(challenge => (
+              <li key={challenge.description} className={classes.item}>
+                <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
+              </li>
+            ))}
+          </div>
         </div>
       ) : (
         <>
-          <li className={classes.item} onClick={() => setCollapsed(!collapsed)}>
-            <img onClick={()=>{}} src={ChevronRightIcon} className="coverage" alt="" />
+          <li className={classes.item}>
+            <img onClick={()=>{setCollapsed(!collapsed)}} src={ChevronRightIcon} className="coverage" alt="" style={{ marginLeft: -7 }}/>
             <h3 className={classes.title}>Checker:</h3>
+            <div className={classes.closeExpand}>
+              <img
+                src={CloseIcon}
+                width="18"
+                className={`${classes.close} coverage`}
+                alt=""
+                onClick={() => {setIsOpen(false)}}
+              />
+            </div>
           </li>
           {challenges.map(challenge => (
             <li key={challenge.description} className={classes.item}>

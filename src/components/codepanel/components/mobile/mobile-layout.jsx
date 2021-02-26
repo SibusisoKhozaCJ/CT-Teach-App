@@ -45,10 +45,11 @@ const MobileLayout = ({ editor, slider, preview }) => {
       }}
     >
       <Topbar />
-      {/* <div style={{ width: "100%", height: 50 }} /> */}
+      <div style={{ width: "100%", height: 50 }} />
       <SwipeableViews
         index={index}
         className={classes.swipeableContainer}
+        style={{ height: "calc(100vh - 100px)", overflowY: "hidden", transition: "all .4s"}}
         // style={{ flexGrow: 1, width: "100%", height: '100%'}}
         onChangeIndex={i => {
           // meditor.blur();

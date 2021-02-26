@@ -30,9 +30,11 @@ import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
 import routes from "../../routes";
 import ContactsIcon from '@material-ui/icons/Contacts';
+import { codepanelSetProjectsIsActive } from "../../redux/actions/codepanel-actions";
+
+
 let sidebarStructure = [
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
-  // { id: 12, label: "Projects", link: "/projects", icon: <ProjectsSvg /> },
   {
     id: 1,
     label: "Tribes",
@@ -179,10 +181,19 @@ function Sidebar({ location }) {
               color="primary"
               onClick={() => {history.push("/codepanel/5-min-website")}}
             >
+              <ToCodeSvg/>
               <span className="tocode-tagsidebar">It's GO time</span>
-              <ToCodeSvg />
             </Button>
           </div>
+          <SidebarLink
+            location={location}
+            isSidebarOpened={isSidebarOpened}
+            id="12"
+            link={"/codepanel/5-min-website"}
+            label="Projects"
+            icon={<ProjectsSvg />}
+            callback={() => {dispatch(codepanelSetProjectsIsActive(true))}}
+          />
           {/* {isShowJoinTribeIcon && <div className="newpopupdiv"> */}
           {/*   <Button */}
           {/*     className={isSidebarOpened ? "open" : "close"} */}
