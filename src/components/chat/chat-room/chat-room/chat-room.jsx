@@ -59,7 +59,7 @@ function ChatRoom() {
   const submitMessage = (e, code) => {
     e.preventDefault();
 
-    if (!newchat.message) {
+    if (!newchat.message.trim()) {
       return;
     }
 
