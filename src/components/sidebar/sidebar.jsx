@@ -32,7 +32,7 @@ import routes from "../../routes";
 import ContactsIcon from '@material-ui/icons/Contacts';
 let sidebarStructure = [
   { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
-  { id: 12, label: "Projects", link: "/projects", icon: <ProjectsSvg /> },
+  // { id: 12, label: "Projects", link: "/projects", icon: <ProjectsSvg /> },
   {
     id: 1,
     label: "Tribes",

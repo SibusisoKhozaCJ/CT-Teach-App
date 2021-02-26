@@ -112,7 +112,7 @@ export default makeStyles(theme => ({
     color: "rgba(255, 255, 255, 0.35)",
   },
   headerIconCollapse: {
-    color: "white",
+    color: "#2b2525",
   },
   profileMenu: {
     minWidth: 265,

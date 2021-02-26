@@ -1,33 +1,47 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
-import FolderOpenIcon from "@material-ui/icons/FolderOpen";
-import FaceIcon from "@material-ui/icons/Face";
-import TimerIcon from "@material-ui/icons/Timer";
+
+import { codepanelSetPreviewVisible } from "../../../../redux/actions/codepanel-actions";
+import CodepanelLogoIcon from "../../../../assets/images/codepanel-logo.png";
+import TeacherIcon from "../../../../assets/images/teacher-icon.png";
+import TimerIcon from "../../../../assets/images/timer-icon.png";
+import DarkModeIcon from "../../../../assets/images/dark-mode-icon.png";
+import Split2Icon from "../../../../assets/images/split-2-icon.svg";
+import Split3Icon from "../../../../assets/images/split-3-icon.svg";
 
 import MainMenu from "../menu/main-menu";
+import SideMenu from "../side-menu";
 
 const useStyles = makeStyles(theme => ({
-  topBar: {
+  topBarRight: {
+    marginLeft: "auto",
+    display: "flex"
   },
   logo: {
-    // marginRight: "auto",
-    color: theme.palette.secondary.contrastText
-  },
-  topBarWrapper: {
     display: "flex",
-    width: "100%"
-  },
-  topBarField: {
-    flex: 1,
-    display: "flex",
-    justifyContent: "space-between",
     alignItems: "center"
+  },
+  logoContainer: {
+    width: 28,
+  },
+  logoText: {
+    marginLeft: 38,
+    fontSize: 39,
+    color: "#000",
+    fontFamily: "'Righteous', cursive"
+  },
+  yellow: {
+    margin: "0 30px",
+    padding: "0 12px",
+    display: "flex",
+    borderRadius: 50,
+    backgroundColor: "#FBDD3F"
   }
 }));
 
@@ -35,20 +49,51 @@ const TopBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setIsMenuOpen] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const isPreviewVisible = useSelector(state => state.codepanel.isPreviewVisible);
+  const dispatch = useDispatch();
 
   const closeHandler = () => {
     setIsMenuOpen(false);
   };
 
+  const sideMenuCloseHandler = () => {
+    setIsSideMenuOpen(false);
+  }
+
   return (
     <div className={classes.topBar}>
       <AppBar position="static">
         <Toolbar>
-          <div className={classes.topBarWrapper}>
-            <div className={classes.topBarField}>
-              <Typography className={classes.logo} color="inherit" variant="h6">
-                CodeJika
-              </Typography>
+          <div className={classes.logo} onClick={() => {
+            setIsSideMenuOpen(true)
+            console.log("ckick")
+          }}>
+            <IconButton className={classes.logoContainer}>
+              <img src={CodepanelLogoIcon} className="coverage" alt="" />
+            </IconButton>
+            <span className={classes.logoText}>
+              CodeTribe.com
+            </span>
+          </div>
+          <div className={classes.topBarRight}>
+            <IconButton>
+              <img src={TeacherIcon} className="coverage" alt="" />
+            </IconButton>
+            <IconButton>
+              <img src={TimerIcon} className="coverage" alt="" />
+            </IconButton>
+            <div className={classes.yellow}>
+              <IconButton>
+                <img src={DarkModeIcon} className="coverage" alt="" />
+              </IconButton>
+              <IconButton onClick={() => {dispatch(codepanelSetPreviewVisible(!isPreviewVisible))}}>
+                {isPreviewVisible ? (
+                  <img src={Split2Icon} className="coverage" alt="" />
+                ) : (
+                  <img src={Split3Icon} className="coverage" alt="" />
+                )}
+              </IconButton>
               <IconButton
                 aria-label="Full Screen"
                 onClick={() => {}}
@@ -57,28 +102,6 @@ const TopBar = () => {
                 <FullscreenIcon className={classes.button} />
               </IconButton>
             </div>
-
-            <div className={classes.topBarField}>
-              <IconButton
-                aria-label="Open Folder"
-                onClick={() => {}}
-                title="Open Folder"
-              >
-                <FolderOpenIcon className={classes.button} />
-              </IconButton>
-              <IconButton
-                aria-label="Call Teacher"
-                onClick={() => {}}
-                title="Call Teacher"
-              >
-                <FaceIcon className={classes.button} />
-              </IconButton>
-            </div>
-
-            <div className={classes.topBarField}>
-              <IconButton aria-label="Timer" onClick={() => {}} title="Timer">
-                <TimerIcon className={classes.button} />
-              </IconButton>
               <IconButton
                 aria-label="Menu"
                 onClick={(e) => {
@@ -89,11 +112,13 @@ const TopBar = () => {
               >
                 <MenuIcon className={classes.button} />
               </IconButton>
-            </div>
           </div>
         </Toolbar>
       </AppBar>
       <MainMenu anchorEl={anchorEl} closeHandler={closeHandler} open={open} />
+      {isSideMenuOpen ? (
+        <SideMenu closeHandler={sideMenuCloseHandler} />
+      ) : null}
     </div>
   );
 };

@@ -9,15 +9,16 @@ import ReactPageScroller from "../../../utils/react-page-scroller";
 
 import {
   codepanelSetSlideNumber,
-  codepanelSetTab
+  codepanelSetTab,
+  codepanelSetIsValid
 } from '../../../redux/actions/codepanel-actions'
 
 // import "../data/INTRO-5MIN-M-V007/custom.css"
 
 const useStyles = makeStyles(theme => ({
   pageLesson: {
-    height: "calc(100% - 128px)",
-    // height: "100%",
+    // height: "calc(100% - 128px)",
+    height: "100%",
     overflowY: "auto",
     padding: 0,
     margin: 0
@@ -72,6 +73,13 @@ const Slider = () => {
     dispatch(codepanelSetSlideNumber(e));
   };
 
+  const beforeScrollHandler = e => {
+    if (e !== currentSlideNumber) {
+      dispatch(codepanelSetIsValid(false))
+      // dispatch(codepanelSetSlideNumber(e));
+    }
+  }
+
   if (!lesson) {
     return <div>Loading</div>
   }
@@ -81,12 +89,13 @@ const Slider = () => {
       className={classes.pageLesson}
       orientation="horizontal"
       role="complementary"
+      style={{ height: isDesktop ? "calc(100vh - 148px)"  : "calc(var(--vh, 1vh) * 100)" }}
       // style={{ height: `calc(100vh - ${isDesktop ? "128" : "112"}px)` }}
-      style={{
-        height: `calc(calc(var(--vh, 1vh) * 100) - ${
-          isDesktop ? "148" : "100"
-        }px)`
-      }}
+      // style={{
+      //   height: `calc(calc(var(--vh, 1vh) * 100) - ${
+      //     isDesktop ? "148" : "100"
+      //   }px)`
+      // }}
     >
       <ReactPageScroller
         animationTimer={300}
@@ -94,6 +103,8 @@ const Slider = () => {
         containerWidth="100%"
         customPageNumber={currentSlideNumber}
         pageOnChange={e => pageChangeHandler(e)}
+        style={{ height: "100%" }}
+        onBeforePageScroll={e => beforeScrollHandler(e)}
       >
         {lesson.slides.map((slide, slideNumber) => {
           return (
@@ -118,6 +129,7 @@ const Slider = () => {
                       : ""
                   }`}
                   id={`slide${slideNumber}`}
+                  style={isDesktop ? null : { paddingBottom: 50, paddingTop: 50 }}
                   onClick={e => clickHandler(e)}
                 >
                   {ReactHtmlParser(slide.html_content)}
