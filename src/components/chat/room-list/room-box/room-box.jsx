@@ -8,6 +8,7 @@ import HeaderRoomList from '../header-room-list/header-room-list';
 import SearchRoomList from '../search-room-list/search-room-list';
 import RoomList from '../room-list/room-list';
 import useStyles from './styles';
+import { CHAT_STATUS } from '../../../../redux/constants/chat-types';
 
 function RoomBox() {
   const classes = useStyles();
@@ -19,7 +20,7 @@ function RoomBox() {
   }, []);
 
   return (
-    <div className={classNames('room-list-wrapper', { hidden: chatStatus !== 'roomlist' })}>
+    <div className={classNames('room-list-wrapper', { hidden: chatStatus !== CHAT_STATUS.roomlist })}>
       <HeaderRoomList />
       <SearchRoomList />
       {errorLoadingRooms && <p>Error: Failed to load chats</p>}

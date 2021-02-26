@@ -15,6 +15,7 @@ import {
   CLEAR_ROOMS,
   FETCH_ROOMS_SUCCESS,
   FETCH_ROOMS_FAIL,
+  CHAT_STATUS,
 } from '../constants/chat-types';
 
 const filterChats = (state, action) => {
@@ -23,7 +24,7 @@ const filterChats = (state, action) => {
 };
 
 const initialState = {
-  chatStatus: 'roomlist',
+  chatStatus: CHAT_STATUS.roomlist,
   idRoom: '',
   selectedRoom: '',
   isVisibleChat: false,

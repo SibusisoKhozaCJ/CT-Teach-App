@@ -18,6 +18,7 @@ import {
 import HeaderChatRoom from '../header-chat-room/header-chat-room';
 import MessageList from '../message-list/message-list';
 import useStyles from './styles';
+import { CHAT_STATUS } from '../../../../redux/constants/chat-types';
 
 function ChatRoom() {
   const classes = useStyles();
@@ -98,7 +99,7 @@ function ChatRoom() {
   );
 
   return (
-    <div className={classNames('chat-room', { hidden: chatStatus !== 'chatroom' })}>
+    <div className={classNames('chat-room', { hidden: chatStatus !== CHAT_STATUS.chatroom })}>
       <HeaderChatRoom exitChat={exitChatHandler} />
       {loadingMessages && <LinearProgress className={classes.root} />}
       {memoizedMessage}

@@ -14,3 +14,7 @@ export const CLEAR_ROOMS = 'CLEAR_ROOMS';
 export const INCREASE_LIMIT = 'INCREASE_LIMIT';
 export const SET_INITIAL_LIMIT = 'SET_INITIAL_LIMIT';
 export const UPDATE_CHATS = 'UPDATE_CHATS';
+export const CHAT_STATUS = {
+  roomlist: 'roomlist',
+  chatroom: 'chatroom',
+};

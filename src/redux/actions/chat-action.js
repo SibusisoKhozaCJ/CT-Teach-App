@@ -16,6 +16,7 @@ import {
   FETCH_ROOMS_SUCCESS,
   FETCH_ROOMS_FAIL,
   UPDATE_CHATS,
+  CHAT_STATUS,
 } from '../constants/chat-types';
 import { getCookies } from '../../shared/lib/authentication';
 
@@ -47,7 +48,7 @@ const getTribeInfoAsync = tribeCode =>
 
 export const setRoomLIst = () => ({
   type: SET_ROOM_LIST,
-  chatStatus: 'roomlist',
+  chatStatus: CHAT_STATUS.roomlist,
 });
 
 export const clearCurrentRoomName = () => ({ type: CLEAR_CURRENT_ROOM_NAME });
@@ -132,7 +133,7 @@ export const enterChatRoom = (idRoom, roomname) => {
       });
     dispatch({
       type: SET_ROOM_INFO,
-      chatStatus: 'chatroom',
+      chatStatus: CHAT_STATUS.chatroom,
       idRoom,
       selectedRoom: roomname,
     });
