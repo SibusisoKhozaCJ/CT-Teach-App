@@ -134,7 +134,7 @@ export const enterChatRoom = (idRoom, roomname) => {
       type: SET_ROOM_INFO,
       chatStatus: 'chatroom',
       idRoom,
-      currentRoomName: roomname,
+      selectedRoom: roomname,
     });
   };
 };

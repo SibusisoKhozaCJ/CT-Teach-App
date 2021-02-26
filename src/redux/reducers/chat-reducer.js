@@ -25,7 +25,7 @@ const filterChats = (state, action) => {
 const initialState = {
   chatStatus: 'roomlist',
   idRoom: '',
-  currentRoomName: '',
+  selectedRoom: '',
   isVisibleChat: false,
   messages: [],
   loadingMessages: true,
@@ -42,17 +42,19 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         chatStatus: action.chatStatus,
       };
-    case SET_ROOM_INFO:
+    case SET_ROOM_INFO: {
+      const { chatStatus, idRoom, selectedRoom } = action;
       return {
         ...state,
-        chatStatus: action.chatStatus,
-        idRoom: action.idRoom,
-        currentRoomName: action.currentRoomName,
+        chatStatus,
+        idRoom,
+        selectedRoom,
       };
+    }
     case CLEAR_CURRENT_ROOM_NAME:
       return {
         ...state,
-        currentRoomName: '',
+        selectedRoom: '',
       };
     case CLEAR_ID_ROOM:
       return {

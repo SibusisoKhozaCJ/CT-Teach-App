@@ -43,7 +43,7 @@ const Tribes = () => {
     );
   }
 
-  const onEnterHandler = (idRoom, name) => {
+  const selectRoomHandler = (idRoom, name) => {
     dispatch(enterChatRoom(idRoom, name));
     dispatch(showChat());
   };
@@ -98,7 +98,7 @@ const Tribes = () => {
                             </div>
                           </Grid>
                           <Grid item xs={3}>
-                            <div className="tribe-icon" onClick={() => onEnterHandler(tribe.code, tribe.name)}>
+                            <div className="tribe-icon" onClick={() => selectRoomHandler(tribe.code, tribe.name)}>
                               <img src={Icon4} className="coverage" alt="" />
                             </div>
                           </Grid>
@@ -244,7 +244,7 @@ const Tribes = () => {
                               <img src={Icon3} className="coverage" alt="" />
                             </div>
                           </Grid>
-                          <Grid item xs={3} onClick={() => onEnterHandler(tribe.code, tribe.name)}>
+                          <Grid item xs={3} onClick={() => selectRoomHandler(tribe.code, tribe.name)}>
                             <div className="tribe-icon">
                               <img src={Icon4} className="coverage" alt="" />
                             </div>

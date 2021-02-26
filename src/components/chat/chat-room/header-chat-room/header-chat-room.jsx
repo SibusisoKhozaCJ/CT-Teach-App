@@ -12,7 +12,7 @@ import useStyles from './styles';
 const HeaderChatRoom = ({ exitChat }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { currentRoomName } = useSelector(state => state.chat);
+  const { selectedRoom } = useSelector(state => state.chat);
 
   const fetchMoreMessages = useCallback(() => {
     dispatch(increaseLimit());
@@ -36,7 +36,7 @@ const HeaderChatRoom = ({ exitChat }) => {
           </svg>
         </IconButton>
         <Avatar alt={`Avatar n°${1}`} src={`/static/images/avatar/${1}.jpg`} className={classes.avatar} />
-        <p className={classes.roomName}>{currentRoomName}</p>
+        <p className={classes.roomName}>{selectedRoom}</p>
       </div>
       <div className={classes.wrapper}>
         <IconButton type="button" onClick={fetchMoreMessages}>

@@ -22,7 +22,7 @@ import useStyles from './styles';
 function ChatRoom() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { idRoom, currentRoomName, chatStatus, messages, loadingMessages, limit } = useSelector(state => state.chat);
+  const { idRoom, selectedRoom, chatStatus, messages, loadingMessages, limit } = useSelector(state => state.chat);
 
   const { userFirstName } = getCookies();
   const [newchat, setNewchat] = useState({
@@ -65,7 +65,7 @@ function ChatRoom() {
 
     const chat = newchat;
     chat.idRoom = idRoom;
-    chat.roomname = currentRoomName;
+    chat.roomname = selectedRoom;
     chat.firstname = userFirstName;
     chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
     chat.type = 'message';
