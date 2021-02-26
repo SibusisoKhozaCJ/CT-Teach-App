@@ -9,11 +9,12 @@ import SearchRoomList from '../search-room-list/search-room-list';
 import RoomList from '../room-list/room-list';
 import useStyles from './styles';
 import { CHAT_STATUS } from '../../../../redux/constants/chat-types';
+import { selectedChat } from '../../../../redux/selectors/selectors';
 
 function RoomBox() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { chatStatus, rooms, loadingRooms, errorLoadingRooms } = useSelector(state => state.chat);
+  const { chatStatus, rooms, loadingRooms, errorLoadingRooms } = useSelector(selectedChat);
 
   useEffect(() => {
     dispatch(fetchRooms());

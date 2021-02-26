@@ -19,11 +19,12 @@ import HeaderChatRoom from '../header-chat-room/header-chat-room';
 import MessageList from '../message-list/message-list';
 import useStyles from './styles';
 import { CHAT_STATUS } from '../../../../redux/constants/chat-types';
+import { selectedChat } from '../../../../redux/selectors/selectors';
 
 function ChatRoom() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { idRoom, selectedRoom, chatStatus, messages, loadingMessages, limit } = useSelector(state => state.chat);
+  const { idRoom, selectedRoom, chatStatus, messages, loadingMessages, limit } = useSelector(selectedChat);
 
   const { userFirstName } = getCookies();
   const [newchat, setNewchat] = useState({

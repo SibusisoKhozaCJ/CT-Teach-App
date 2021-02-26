@@ -8,11 +8,12 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import { increaseLimit } from '../../../../redux/actions/chat-action';
 import useStyles from './styles';
+import { selectedChat } from '../../../../redux/selectors/selectors';
 
 const HeaderChatRoom = ({ exitChat }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { selectedRoom } = useSelector(state => state.chat);
+  const { selectedRoom } = useSelector(selectedChat);
 
   const fetchMoreMessages = useCallback(() => {
     dispatch(increaseLimit());
