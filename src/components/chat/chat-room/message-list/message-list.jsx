@@ -2,8 +2,8 @@ import React from 'react';
 import Moment from 'moment';
 import classNames from 'classnames';
 
-const MessageList = ({ messages, userFirstName }) => {
-  return messages.map(item => (
+const MessageList = ({ messages, userFirstName }) =>
+  messages.map(item => (
     <div key={item.key} className="MessageBox">
       {item.type === 'join' || item.type === 'exit' ? (
         <div className="ChatStatus">
@@ -33,6 +33,5 @@ const MessageList = ({ messages, userFirstName }) => {
       )}
     </div>
   ));
-};
 
 export default MessageList;

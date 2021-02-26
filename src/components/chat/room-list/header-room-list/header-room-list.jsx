@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+
 import { hideChat } from '../../../../redux/actions/chat-action';
 import { ChatSvg } from '../../../../shared/svgs/menu-items';
 import useStyles from './styles';
-
 
 const HeaderRoomList = () => {
   const classes = useStyles();

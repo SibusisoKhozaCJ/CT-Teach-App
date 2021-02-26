@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import SendIcon from '@material-ui/icons/Send';
 import CodeIcon from '@material-ui/icons/Code';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
@@ -7,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import useStyles from './styles';
 
 const FooterChatRoom = ({ submitMessage, onChange, value }) => {

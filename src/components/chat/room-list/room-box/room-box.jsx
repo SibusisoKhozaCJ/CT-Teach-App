@@ -11,8 +11,8 @@ import useStyles from './styles';
 
 function RoomBox() {
   const classes = useStyles();
-  const { chatStatus, rooms, loadingRooms, errorLoadingRooms } = useSelector(state => state.chat);
   const dispatch = useDispatch();
+  const { chatStatus, rooms, loadingRooms, errorLoadingRooms } = useSelector(state => state.chat);
 
   useEffect(() => {
     dispatch(fetchRooms());

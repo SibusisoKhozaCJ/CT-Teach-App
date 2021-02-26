@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 import useStyles from './styles';
-import IOSSwitch from '../switch';
+import IOSSwitch from '../switch/switch';
 
 const SearchRoomList = () => {
   const classes = useStyles();
