@@ -1,4 +1,6 @@
 import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -7,8 +9,6 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import PropTypes from 'prop-types';
 import Badge from '@material-ui/core/Badge';
-import classNames from 'classnames';
-import { useDispatch } from 'react-redux';
 
 import { enterChatRoom } from '../../../../redux/actions/chat-action';
 import useStyles from './styles';

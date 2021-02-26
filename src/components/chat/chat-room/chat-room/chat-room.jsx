@@ -25,9 +25,7 @@ function ChatRoom() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { idRoom, selectedRoom, chatStatus, messages, loadingMessages, limit } = useSelector(selectedChat);
-
-  const { userFirstName } = getCookies();
-  const [newchat, setNewchat] = useState({
+  const initialChat = {
     idRoom: '',
     roomname: '',
     firstname: '',
@@ -36,7 +34,10 @@ function ChatRoom() {
     type: '',
     code: false,
     status: 'unread',
-  });
+  };
+
+  const { userFirstName } = getCookies();
+  const [newchat, setNewchat] = useState(initialChat);
 
   useEffect(() => {
     dispatch(fetchMessages());
@@ -74,16 +75,7 @@ function ChatRoom() {
     chat.code = !!code;
     const newMessage = firebase.database().ref('messages/').push();
     newMessage.set(chat);
-    setNewchat({
-      idRoom: '',
-      roomname: '',
-      firstname: '',
-      message: '',
-      createdAt: '',
-      type: '',
-      code: false,
-      status: 'unread',
-    });
+    setNewchat(initialChat);
   };
 
   const memoizedMessage = useMemo(

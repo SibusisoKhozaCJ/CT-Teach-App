@@ -81,21 +81,15 @@ export const fetchMessages = () => (dispatch, getState) => {
 
 const sendJoinMessage = (dispatch, firstname, idRoom, roomname) => {
   const chat = {
-    idRoom: '',
-    roomname: '',
-    firstname: '',
-    message: '',
-    createdAt: '',
-    type: '',
+    idRoom,
+    roomname,
+    firstname,
+    message: `${firstname} enter the room`,
+    createdAt: firebase.database.ServerValue.TIMESTAMP,
+    type: 'join',
     code: false,
     status: 'unread',
   };
-  chat.idRoom = idRoom;
-  chat.roomname = roomname;
-  chat.firstname = firstname;
-  chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
-  chat.message = `${firstname} enter the room`;
-  chat.type = 'join';
   const newMessage = firebase.database().ref('messages/').push();
   newMessage.set(chat);
 };
@@ -118,15 +112,11 @@ export const enterChatRoom = (idRoom, roomname) => {
         } else {
           sendJoinMessage(dispatch, userFirstName, idRoom, roomname);
           const newroomuser = {
-            idRoom: '',
-            roomname: '',
-            firstname: '',
-            status: '',
+            idRoom,
+            roomname,
+            firstname: userFirstName,
+            status: 'online',
           };
-          newroomuser.idRoom = idRoom;
-          newroomuser.roomname = roomname;
-          newroomuser.firstname = userFirstName;
-          newroomuser.status = 'online';
           const newRoomUser = firebase.database().ref('roomusers/').push();
           newRoomUser.set(newroomuser);
         }
