@@ -17,9 +17,12 @@ const RoomList = ({ rooms }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const selectRoomHandler = useCallback((idRoom, name) => {
-    dispatch(enterChatRoom(idRoom, name));
-  }, []);
+  const selectRoomHandler = useCallback(
+    (idRoom, name) => () => {
+      dispatch(enterChatRoom(idRoom, name));
+    },
+    [],
+  );
 
   return (
     <div className="room-list-rooms">
@@ -27,7 +30,7 @@ const RoomList = ({ rooms }) => {
         {rooms.map(room => {
           const labelId = `checkbox-list-secondary-label-${room.name}`;
           return (
-            <ListItem key={room.idRoom} button divider onClick={() => selectRoomHandler(room.idRoom, room.name)}>
+            <ListItem key={room.idRoom} button divider onClick={selectRoomHandler(room.idRoom, room.name)}>
               <ListItemAvatar>
                 <Avatar
                   alt={`Avatar n°${room.name + 1}`}
