@@ -13,7 +13,7 @@ import Badge from '@material-ui/core/Badge';
 import { enterChatRoom } from '../../../../redux/actions/chat-action';
 import useStyles from './styles';
 
-const RoomList = ({ rooms }) => {
+const RoomList = React.memo(({ rooms }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ const RoomList = ({ rooms }) => {
       </List>
     </div>
   );
-};
+});
 
 RoomList.propTypes = {
   rooms: PropTypes.arrayOf(PropTypes.object).isRequired,
