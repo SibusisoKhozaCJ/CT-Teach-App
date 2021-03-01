@@ -13,7 +13,7 @@ const  useStyles = makeStyles(theme => ({
   },
 
   projects: {
-    maxWidth: "40%",
+    width: "45%",
     height: "100%",
     overflowY: "scroll",
     backgroundColor: "rgba(255, 255, 255, .45)",

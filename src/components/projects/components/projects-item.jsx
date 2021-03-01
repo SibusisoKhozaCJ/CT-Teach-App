@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import ShareIcon from "../../../assets/icons/footer-icon/share.png";
 import Card from "../../../shared/components/card/card";
+// import BackIcon from "../../../assets/images/chevron-left-pink.png";
+import ExpandIcon from "../../../assets/images/chevron-down-pink.png";
+import CollapseIcon from "../../../assets/images/chevron-up-gray.png";
 
 const useStyles = makeStyles(() => ({
   cardContainer: {
@@ -193,16 +194,11 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
     <Card button={{
       classes: "bottom-right",
       content: isCollapsed ? (
-            <KeyboardArrowDownIcon
-              style={{ color: "#D40073" }}
-              onClick={() => {setIsCollapsed(!isCollapsed)}}
-            />) : (
-            <KeyboardArrowUpIcon
-              style={{ color: "#A6A6A6" }}
-              onClick={() => {setIsCollapsed(!isCollapsed)}}
-            />)
-        }
-      }
+          <img src={ExpandIcon} alt="" className="coverage" onClick={() => {setIsCollapsed(!isCollapsed)}}/>
+        ) : (
+          <img src={CollapseIcon} alt="" className="coverage" onClick={() => {setIsCollapsed(!isCollapsed)}}/>
+        )
+      }}
     >
       <div className={classes.cardContainer}>
       <div className={classes.cardLeft}>

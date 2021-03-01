@@ -89,13 +89,7 @@ const Slider = () => {
       className={classes.pageLesson}
       orientation="horizontal"
       role="complementary"
-      style={{ height: isDesktop ? "calc(100vh - 148px)"  : "calc(var(--vh, 1vh) * 100)" }}
-      // style={{ height: `calc(100vh - ${isDesktop ? "128" : "112"}px)` }}
-      // style={{
-      //   height: `calc(calc(var(--vh, 1vh) * 100) - ${
-      //     isDesktop ? "148" : "100"
-      //   }px)`
-      // }}
+      style={{ height: isDesktop ? "calc(100vh - 148px)"  : "100%" }}
     >
       <ReactPageScroller
         animationTimer={300}
@@ -129,7 +123,7 @@ const Slider = () => {
                       : ""
                   }`}
                   id={`slide${slideNumber}`}
-                  style={isDesktop ? null : { paddingBottom: 50, paddingTop: 50 }}
+                  // style={isDesktop ? null : { paddingBottom: 50, paddingTop: 50 }}
                   onClick={e => clickHandler(e)}
                 >
                   {ReactHtmlParser(slide.html_content)}

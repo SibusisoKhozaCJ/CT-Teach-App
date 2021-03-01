@@ -18,6 +18,7 @@ import {
 } from '../../redux/actions/codepanel-actions'
 import { getCodeFromLocal } from "./utils/localStorage"
 import * as authFetch from "../../shared/lib/authorizedFetch";
+import ProjectsModal from "./components/projects/projects-modal";
 
 
 const Codepanel = ({ match: { params: { id } } }) => {
@@ -25,6 +26,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
   const lesson = getLesson(id);
   const userId = useSelector(state => state.user.userId);
   const lessonId = "5-min-website";
+  const isProjectsActive = useSelector(state => state.codepanel.isProjectsActive);
 
   const getProgressData = async (userId, lessonId) => {
     return await authFetch.firebaseGet(
@@ -71,14 +73,36 @@ const Codepanel = ({ match: { params: { id } } }) => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
     if (typeof window !== "undefined") {
-      window.addEventListener("resize", () => {
-        let ivh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty("--vh", `${ivh}px`);
-      });
+      window.addEventListener("resize", resizeListener);
+      return () => {
+        window.removeEventListener('resize', resizeListener);
+      }
     }
-
-
   }, [id]);
+
+  const resizeListener = () => {
+    let ivh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${ivh}px`);
+  }
+
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', alertUser);
+  //   window.addEventListener('unload', handleEndConcert);
+  //   return () => {
+  //     window.removeEventListener('beforeunload', alertUser);
+  //     window.removeEventListener('unload', handleEndConcert);
+  //     handleEndConcert();
+  //   }
+  // }, [])
+
+  // const handleEndConcert = async () => {
+  //   console.log("leave");
+  // }
+
+  // const alertUser = e => {
+  //   e.preventDefault()
+  //   e.returnValue = ''
+  // }
 
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,
@@ -87,6 +111,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
   }
 
   return (
+    <>
     <Media
       queries={{
         mobile: "(max-width: 767px)",
@@ -104,7 +129,8 @@ const Codepanel = ({ match: { params: { id } } }) => {
         </>
       )}
     </Media>
-
+    {isProjectsActive && <ProjectsModal />}
+    </>
   )
 };
 

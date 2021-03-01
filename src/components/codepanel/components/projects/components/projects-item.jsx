@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import ShareIcon from "../../../../../assets/icons/footer-icon/share.png";
 import Card from "../../../../../shared/components/card/card";
+import ExpandIcon from "../../../../../assets/images/chevron-down-pink.png";
+import CollapseIcon from "../../../../../assets/images/chevron-up-gray.png";
 
 const useStyles = makeStyles(() => ({
   cardContainer: {
@@ -32,7 +32,8 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
 
     "&>img": {
-      marginBottom: 8
+      marginBottom: 8,
+      borderRadius: 10
     },
 
     "& img": {
@@ -119,6 +120,11 @@ const useStyles = makeStyles(() => ({
     "&:hover": {
       color: "#fff",
       textDecoration: "none"
+    },
+
+    ["@media (min-width:768px)"]: {
+      fontSize: 25,
+      padding: "11px 45px"
     }
   },
 
@@ -138,6 +144,11 @@ const useStyles = makeStyles(() => ({
     zIndex: 10,
     display: "flex",
     alignItems: "center",
+
+    ["@media (min-width:768px)"]: {
+      fontSize: 25,
+      padding: "11px 45px"
+    }
   },
 
   btnMore: {
@@ -175,11 +186,25 @@ const useStyles = makeStyles(() => ({
     height: 35,
     border: "none",
     opacity: ".45",
+
+    "& img": {
+      width: "100%"
+    },
+
+    ["@media (min-width:768px)"]: {
+      width: 60,
+      height: 60
+    }
+
   },
 
   btnIcon: {
     marginLeft: "auto",
-    fontSize: 16
+    fontSize: 16,
+
+    ["@media (min-width:768px)"]: {
+      fontSize: 25,
+    }
   },
 
   progress: {
@@ -216,17 +241,12 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
     <Card button={{
       classes: "bottom-right",
       content: isCollapsed ? (
-            <KeyboardArrowDownIcon
-              style={{ color: "#D40073" }}
-              onClick={() => {setIsCollapsed(!isCollapsed)}}
-            />) : (
-            <KeyboardArrowUpIcon
-              style={{ color: "#A6A6A6" }}
-              onClick={() => {setIsCollapsed(!isCollapsed)}}
-            />)
-        }
-      }
-      style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 16  }}
+          <img src={ExpandIcon} alt="" className="coverage" onClick={() => {setIsCollapsed(!isCollapsed)}}/>
+        ) : (
+          <img src={CollapseIcon} alt="" className="coverage" onClick={() => {setIsCollapsed(!isCollapsed)}}/>
+        )
+      }}
+      style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 24  }}
     >
       <div className={classes.cardContainer}>
       <div className={classes.cardLeft}>

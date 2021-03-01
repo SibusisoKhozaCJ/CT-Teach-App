@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 
-import { codepanelSetPreviewVisible } from "../../../../redux/actions/codepanel-actions";
+import { codepanelSetPreviewVisible, codepanelSetCheckerActive } from "../../../../redux/actions/codepanel-actions";
 import CodepanelLogoIcon from "../../../../assets/images/codepanel-logo.png";
 import TeacherIcon from "../../../../assets/images/teacher-icon.png";
 import TimerIcon from "../../../../assets/images/timer-icon.png";
@@ -51,6 +51,7 @@ const TopBar = () => {
   const [open, setIsMenuOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const isPreviewVisible = useSelector(state => state.codepanel.isPreviewVisible);
+  const isCheckerActive = useSelector(state => state.codepanel.isCheckerActive);
   const dispatch = useDispatch();
 
   const closeHandler = () => {
@@ -77,7 +78,7 @@ const TopBar = () => {
             </span>
           </div>
           <div className={classes.topBarRight}>
-            <IconButton>
+            <IconButton onClick={() => {dispatch(codepanelSetCheckerActive(!isCheckerActive))}}>
               <img src={TeacherIcon} className="coverage" alt="" />
             </IconButton>
             <IconButton>

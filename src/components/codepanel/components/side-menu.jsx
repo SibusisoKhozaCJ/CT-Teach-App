@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import IconButton from "@material-ui/core/IconButton";
 
 import CodepanelLogoIcon from "../../../assets/images/codepanel-logo.png";
 import CloseIcon from "../../../assets/images/close-icon.png";
-import ProjectsIcon from "../../../assets/images/projects-icon.svg";
+import ProjectsIcon from "../../../assets/images/rocket-icon.png";
 import SkillsIcon from "../../../assets/images/skills.svg";
 import ScriptsIcon from "../../../assets/images/scripts-icon.png";
 import CheatsheetIcon from "../../../assets/images/cheatsheet-icon.png";
@@ -15,8 +16,18 @@ import FeedbackIcon from "../../../assets/images/feedback.svg";
 import LockIcon from "../../../assets/images/lock-icon.png";
 
 import ProjectsModal from "./projects/projects-modal";
+import { codepanelSetProjectsIsActive } from "../../../redux/actions/codepanel-actions";
 
 const  useStyles = makeStyles(theme => ({
+  overlay: {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    position: "fixed",
+    backgroundColor: "rgba(0,0,0,0.2)",
+    zIndex: 100
+  },
   container: {
     padding: "0 8px",
     position: "fixed",
@@ -82,60 +93,67 @@ const  useStyles = makeStyles(theme => ({
 const SideMenu = ({ closeHandler }) => {
   const classes = useStyles();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const closeModalHandler = () => {
-    setIsModalOpen(false);
-  }
+  const dispatch = useDispatch();
 
   return (
-    <div className={classes.container}>
-      <IconButton onClick={closeHandler} className={classes.icon}>
-        <img src={CodepanelLogoIcon} className="coverage" alt="" />
-      </IconButton>
-      <div className={classes.divider} />
-      <IconButton onClick={() => {setIsModalOpen(!isModalOpen)}} className={classes.icon}>
-        <img src={ProjectsIcon} className="coverage" alt="" />
-        <span>Projects</span>
-      </IconButton>
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={SkillsIcon} className="coverage" alt="" />
-        <span>Skills</span>
-        <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
-      </IconButton>
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={ScriptsIcon} className="coverage" alt="" />
-        <span>Scripts</span>
-        <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
-      </IconButton>
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={CheatsheetIcon} className="coverage" alt="" />
-        <span>Cheatsheet</span>
-        <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
-      </IconButton>
-      <div className={classes.divider} />
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={ShareIcon} className="coverage" alt="" />
-        <span>Share</span>
-      </IconButton>
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={InviteIcon} className="coverage" alt="" />
-        <span>Invite</span>
-      </IconButton>
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={ScreenshotIcon} className="coverage" alt="" />
-        <span>Screenshot</span>
-        <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
-      </IconButton>
-      <div className={classes.divider} />
-      <IconButton onClick={() => {}} className={classes.icon}>
-        <img src={FeedbackIcon} className="coverage" alt="" />
-        <span>Feedback</span>
-      </IconButton>
-      <IconButton onClick={closeHandler} style={{ justifySelf: "flex-end" }}>
-        <img src={CloseIcon} className="coverage" alt="" />
-      </IconButton>
-      {isModalOpen ? <ProjectsModal closeHandler={closeModalHandler} closeSidebar={closeHandler}/> : null}
-    </div>
+    <>
+      <div className={classes.overlay} onClick={closeHandler}/>
+
+      <div className={classes.container}>
+        <IconButton onClick={closeHandler} className={classes.icon}>
+          <img src={CodepanelLogoIcon} className="coverage" alt="" style={{ maxWidth: 30 }}/>
+        </IconButton>
+        <div className={classes.divider} />
+        <IconButton
+          onClick={() => {
+            closeHandler();
+            dispatch(codepanelSetProjectsIsActive(true));
+          }}
+          className={classes.icon}
+        >
+          <img src={ProjectsIcon} className="coverage" alt="" />
+          <span>Projects</span>
+        </IconButton>
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={SkillsIcon} className="coverage" alt="" />
+          <span>Skills</span>
+          <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+        </IconButton>
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={ScriptsIcon} className="coverage" alt="" />
+          <span>Scripts</span>
+          <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+        </IconButton>
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={CheatsheetIcon} className="coverage" alt="" />
+          <span>Cheatsheet</span>
+          <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+        </IconButton>
+        <div className={classes.divider} />
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={ShareIcon} className="coverage" alt="" />
+          <span>Share</span>
+        </IconButton>
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={InviteIcon} className="coverage" alt="" />
+          <span>Invite</span>
+        </IconButton>
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={ScreenshotIcon} className="coverage" alt="" />
+          <span>Screenshot</span>
+          <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+        </IconButton>
+        <div className={classes.divider} />
+        <IconButton onClick={() => {}} className={classes.icon}>
+          <img src={FeedbackIcon} className="coverage" alt="" />
+          <span>Feedback</span>
+        </IconButton>
+        <IconButton onClick={closeHandler} style={{ justifySelf: "flex-end" }}>
+          <img src={CloseIcon} className="coverage" alt="" />
+        </IconButton>
+        {/* {isModalOpen ? <ProjectsModal closeHandler={closeModalHandler} closeSidebar={closeHandler}/> : null} */}
+      </div>
+    </>
   )
 }
 

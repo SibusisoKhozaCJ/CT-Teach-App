@@ -15,8 +15,8 @@ import Chaticon from "../../assets/images/chat.svg";
 import Menuicon from "../../assets/images/menuicon.svg";
 import Newicon from "../../assets/images/pls.svg";
 import Homeicon from "../../assets/images/home.svg";
-import ProjectsIcon from "../../assets/icons/footer-icon/icon1.svg";
-import ToCodeIcon from "../../assets/images/toCode.svg"
+import ProjectsIcon from "../../assets/images/rocket-icon.png";
+import ToCodeIcon from "../../assets/images/toCode.png";
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;

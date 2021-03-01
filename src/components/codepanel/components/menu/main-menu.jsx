@@ -3,13 +3,6 @@ import { Menu, MenuItem } from '@material-ui/core';
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
-import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
-import CardMembershipIcon from '@material-ui/icons/CardMembership';
-import PhotoLibraryOutlinedIcon from '@material-ui/icons/PhotoLibraryOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import MonetizationOnOutlinedIcon from '@material-ui/icons/MonetizationOnOutlined';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -21,6 +14,16 @@ import { useHistory } from "react-router-dom";
 import { saveUser } from '../../../../redux/actions/user-actions';
 import { removeCookies } from "../../../../shared/lib/authentication";
 import { AuthContext } from '../../../../shared/contexts/authContext';
+import { codepanelSetProjectsIsActive } from "../../../../redux/actions/codepanel-actions";
+
+import ProjectsIcon from "../../../../assets/images/rocket-icon.png";
+import DashboardIcon from "../../../../assets/images/dashboard-icon.png";
+import ProfileIcon from "../../../../assets/images/profile.svg";
+import GalleryIcon from "../../../../assets/images/gallery-icon.png";
+import LogoutIcon from "../../../../assets/images/logout-icon.png";
+import HugIcon from "../../../../assets/images/hug-icon.png";
+import FriendsIcon from "../../../../assets/images/friends-icon.png";
+
 
 const useStyles = makeStyles(() => ({
   modal: {
@@ -121,17 +124,30 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
                 Hello, {name ? name : 'Joe'}
               </Typography>
             </MenuItem>
-            <MenuItem onClick={() => {}}>
+            <MenuItem onClick={() => {
+              closeHandler();
+              dispatch(codepanelSetProjectsIsActive(true));
+              }}>
               <ListItemIcon>
-                <ExploreOutlinedIcon className={classes.icon} />
+                {/* <ExploreOutlinedIcon className={classes.icon} /> */}
+                <img width="26" height="29" src={ProjectsIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
                   What’s poppin’ ?<span>PROJECTS PAGE</span>
                 </Typography>
               </ListItemIcon>
             </MenuItem>
+            <MenuItem onClick={() => history.push("/home")}>
+              <ListItemIcon>
+                <img width="30" height="30" src={DashboardIcon} className="coverage" alt="" />
+                <Typography className={classes.itemText}>
+                  Overview
+                  <span>Home</span>
+                </Typography>
+              </ListItemIcon>
+            </MenuItem>
             <MenuItem onClick={() => history.push(`/profile/${userId}`)}>
               <ListItemIcon>
-                <EmojiPeopleIcon className={classes.icon} />
+                <img width="28" height="28" src={ProfileIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
                   Me, me, me
                   <span>Profile</span>
@@ -140,37 +156,11 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
             </MenuItem>
             <MenuItem onClick={() => {}}>
               <ListItemIcon>
-                <CardMembershipIcon className={classes.icon} />
-                <Typography className={classes.itemText}>
-                  To get framed
-                  <span>Certificates</span>
-                </Typography>
-              </ListItemIcon>
-            </MenuItem>
-            <MenuItem onClick={() => {}}>
-              <ListItemIcon>
-                <PhotoLibraryOutlinedIcon className={classes.icon} />
+                {/* <PhotoLibraryOutlinedIcon className={classes.icon} /> */}
+                <img width="31" height="32" src={GalleryIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
                   Fun Stuff
                   <span>Gallery</span>
-                </Typography>
-              </ListItemIcon>
-            </MenuItem>
-            <MenuItem onClick={() => {}}>
-              <ListItemIcon>
-                <SettingsOutlinedIcon className={classes.icon} />
-                <Typography className={classes.itemText}>
-                  Stuff, stuff
-                  <span>Settings</span>
-                </Typography>
-              </ListItemIcon>
-            </MenuItem>
-            <MenuItem onClick={() => {}}>
-              <ListItemIcon>
-                <MonetizationOnOutlinedIcon className={classes.icon} />
-                <Typography className={classes.itemText}>
-                  Money, money
-                  <span>Billing</span>
                 </Typography>
               </ListItemIcon>
             </MenuItem>
@@ -178,7 +168,7 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
               onClick={logout}
             >
               <ListItemIcon>
-                <ExitToAppIcon className={classes.icon} />
+                <img width="29" height="29" src={LogoutIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
                   Get me out of here
                   <span>Log out</span>
@@ -187,7 +177,7 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
             </MenuItem>
             <MenuItem onClick={() => {}}>
               <ListItemIcon>
-                <FavoriteBorderOutlinedIcon className={classes.icon} />
+                <img width="32" height="32" src={HugIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
                   Need a hug?
                 </Typography>
@@ -195,7 +185,7 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
             </MenuItem>
             <MenuItem onClick={() => {}}>
               <ListItemIcon>
-                <GroupAddOutlinedIcon className={classes.icon} />
+                <img width="30" height="30" src={FriendsIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
                   Invite Friends
                 </Typography>

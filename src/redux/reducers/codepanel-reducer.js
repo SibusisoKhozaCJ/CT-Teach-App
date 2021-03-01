@@ -15,7 +15,10 @@ const initialState = {
   checkpointsCount: 0,
   fontSize: 14,
   isPreviewVisible: true,
-  textareaRef: null
+  textareaRef: null,
+  isCheckerOpen: false,
+  isCheckerActive: true,
+  isProjectsActive: false
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -94,6 +97,15 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_TEXTAREA_REF: {
       return { ...state, textareaRef: action.payload };
+    }
+    case Types.LESSON_SET_CHECKER_OPEN: {
+      return { ...state, isCheckerOpen: action.payload };
+    }
+    case Types.LESSON_SET_CHECKER_ACTIVE: {
+      return { ...state, isCheckerActive: action.payload };
+    }
+    case Types.LESSON_SET_PROJECTS_ACTIVE: {
+      return { ...state, isProjectsActive: action.payload };
     }
     default:
       return state;

@@ -2,10 +2,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import IconButton from "@material-ui/core/IconButton";
+import { useDispatch } from "react-redux";
 
 import CloseIcon from "../../../../assets/images/close-icon.png";
 import ModalMobile from "./components/modal-mobile";
 import ModalDesktop from "./components/modal-desktop";
+import { codepanelSetProjectsIsActive } from "../../../../redux/actions/codepanel-actions";
 
 const  useStyles = makeStyles(theme => ({
   modal: {
@@ -17,7 +19,16 @@ const  useStyles = makeStyles(theme => ({
     bottom: 20,
     borderRadius: 20,
     backgroundColor: "#ccc",
-    zIndex: 1000
+    zIndex: 2000,
+
+    ["@media (max-width:767px)"]: {
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      padding: 10,
+      backgroundColor: "#fff",
+    }
   },
 
   close: {
@@ -29,13 +40,18 @@ const  useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProjectsModal = ({ closeHandler, closeSidebar }) => {
+const ProjectsModal = () => {
   const classes = useStyles();
   const isDesktop = useMediaQuery("(min-width:768px)");
+  const dispatch = useDispatch();
+
+  const closeHandler = () => {
+    dispatch(codepanelSetProjectsIsActive(false));
+  }
 
   return (
     <div className={classes.modal}>
-      {isDesktop ? <ModalDesktop closeSidebar={closeSidebar}/> : <ModalMobile closeSidebar={closeSidebar} />}
+      {isDesktop ? <ModalDesktop closeSidebar={closeHandler}/> : <ModalMobile closeSidebar={closeHandler} />}
       <IconButton onClick={closeHandler} className={classes.close}>
         <img src={CloseIcon} className="coverage" alt="" />
       </IconButton>

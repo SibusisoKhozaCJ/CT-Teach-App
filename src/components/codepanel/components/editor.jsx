@@ -45,6 +45,8 @@ const Editor = () => {
   const checkpointsCount = useSelector(state => state.codepanel.checkpointsCount);
   const isDesktop = useMediaQuery("(min-width:768px)");
   const textareaRef = useRef(null);
+  const isCheckerActive = useSelector(state => state.codepanel.isCheckerActive);
+  const [percent, setPercent] = useState(0);
 
   let challengesPrepared = null
 
@@ -63,6 +65,7 @@ const Editor = () => {
       }))
     }
   }
+
 
   const dispatch = useDispatch();
 
@@ -142,6 +145,7 @@ const Editor = () => {
 
     if (checkpoints[checkpoint_id].progress !== 100) {
       const validated = validate(storedCode)
+      setPercent(validated.progress);
       if ((validated.progress === 100) && !isValid) {
         setIsAnimation(true);
         setTimeout(() => setIsAnimation(false), 1400);
@@ -274,7 +278,7 @@ const Editor = () => {
           <Tick size="96px" />
         </div>
       ) : null}
-      {challengesPrepared && <Checker challenges={challengesPrepared} />}
+      {challengesPrepared && isCheckerActive && <Checker challenges={challengesPrepared} percent={percent}/>}
     </form>
   );
 }

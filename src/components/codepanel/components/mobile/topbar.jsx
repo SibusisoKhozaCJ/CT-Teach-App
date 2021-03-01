@@ -15,7 +15,7 @@ import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import FaceIcon from "@material-ui/icons/Face";
 
 import MainMenu from "../menu/main-menu";
-import { codepanelSetTab } from '../../../../redux/actions/codepanel-actions';
+import { codepanelSetTab, codepanelSetCheckerActive } from '../../../../redux/actions/codepanel-actions';
 
 const useStyles = makeStyles(() => ({
   mobileTopBar: {
@@ -44,6 +44,7 @@ const MobileTopBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const index = useSelector(state => state.codepanel.tab);
+  const isCheckerActive = useSelector(state => state.codepanel.isCheckerActive);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setIsMenuOpen] = useState(false);
@@ -90,7 +91,15 @@ const MobileTopBar = () => {
         </Tabs>
 
         {index === 1 ? (
-          <IconButton aria-label="Teacher" onClick={() => {}} title="Teacher">
+          <IconButton
+            aria-label="Teacher"
+            onClick={() => {
+              console.log("click")
+              console.log(isCheckerActive)
+              dispatch(codepanelSetCheckerActive(!isCheckerActive))
+            }}
+            title="Teacher"
+          >
             <FaceIcon />
           </IconButton>
         ) : (
