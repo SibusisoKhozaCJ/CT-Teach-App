@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -17,12 +17,10 @@ import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
 import { useHistory } from "react-router-dom";
-import * as actions from '../../redux/actions/chat-action';
-import { getCookies } from '../../shared/lib/authentication';
+import { enterChatRoom, showChat } from '../../redux/actions/chat-action';
 
 const Tribes = () => {
   const [expand, setExpand] = useState("");
-  const { userFirstName } = getCookies();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.user);
@@ -44,7 +42,12 @@ const Tribes = () => {
       </div>
     );
   }
-  
+
+  const selectRoomHandler = (idRoom, name) => {
+    dispatch(enterChatRoom(idRoom, name));
+    dispatch(showChat());
+  };
+
   return (
     <>
       <div className="commonheighttribe"></div>
@@ -95,7 +98,7 @@ const Tribes = () => {
                             </div>
                           </Grid>
                           <Grid item xs={3}>
-                            <div className="tribe-icon">
+                            <div className="tribe-icon" onClick={() => selectRoomHandler(tribe.code, tribe.name)}>
                               <img src={Icon4} className="coverage" alt="" />
                             </div>
                           </Grid>
@@ -241,7 +244,7 @@ const Tribes = () => {
                               <img src={Icon3} className="coverage" alt="" />
                             </div>
                           </Grid>
-                          <Grid item xs={3}>
+                          <Grid item xs={3} onClick={() => selectRoomHandler(tribe.code, tribe.name)}>
                             <div className="tribe-icon">
                               <img src={Icon4} className="coverage" alt="" />
                             </div>

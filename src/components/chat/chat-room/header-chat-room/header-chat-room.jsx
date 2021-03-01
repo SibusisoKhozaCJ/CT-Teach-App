@@ -1,54 +1,27 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
-import { makeStyles } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import * as actions from '../../../redux/actions/chat-action';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    '& span': {
-      fontWeight: 'bold',
-    },
-  },
-  avatar: {
-    background: '#43D4DD',
-    border: '2px solid #e83e8c',
-  },
-  dots: {
-    color: '#43D4DD',
-  },
-  backBtn: {
-    transform: 'rotate(-90deg);',
-  },
-  roomName: {
-    fontWeight: 'bold',
-    margin: 0,
-    fontSize: '18px',
-  },
-  arrowAvatarWrapper: {
-    display: 'flex',
-  },
-  cloudDownloadIcon: {
-    color: '#43D4DD',
-    fontSize: '1.7rem',
-  },
-}));
+import { increaseLimit } from '../../../../redux/actions/chat-action';
+import useStyles from './styles';
+import { selectedChat } from '../../../../redux/selectors/selectors';
 
 const HeaderChatRoom = ({ exitChat }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { currentRoomName } = useSelector(state => state.chat);
-  const fetchMoreMessages = () => dispatch(actions.increaseLimit());
+  const { selectedRoom } = useSelector(selectedChat);
+
+  const fetchMoreMessages = useCallback(() => {
+    dispatch(increaseLimit());
+  }, []);
 
   return (
     <header className="chat-room-header">
-      <div className={classes.arrowAvatarWrapper}>
+      <div className={classes.wrapper}>
         <IconButton
           onClick={exitChat}
           color="primary"
@@ -64,12 +37,14 @@ const HeaderChatRoom = ({ exitChat }) => {
           </svg>
         </IconButton>
         <Avatar alt={`Avatar n°${1}`} src={`/static/images/avatar/${1}.jpg`} className={classes.avatar} />
+        <p className={classes.roomName}>{selectedRoom}</p>
       </div>
-      <IconButton type="button" onClick={fetchMoreMessages}>
-        <CloudDownloadIcon className={classes.cloudDownloadIcon} />
-      </IconButton>
-      <p className={classes.roomName}>{currentRoomName}</p>
-      <MoreVertIcon className={classes.dots} />
+      <div className={classes.wrapper}>
+        <IconButton type="button" onClick={fetchMoreMessages}>
+          <CloudDownloadIcon className={classes.cloudDownloadIcon} />
+        </IconButton>
+        <MoreVertIcon className={classes.dots} />
+      </div>
     </header>
   );
 };

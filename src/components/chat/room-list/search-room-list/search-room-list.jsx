@@ -1,30 +1,11 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useCallback, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import IOSSwitch from './switch';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
-    height: '32px',
-    width: '82%',
-    border: '1px solid grey',
-    marginLeft: theme.spacing(1),
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-}));
+import useStyles from './styles';
+import IOSSwitch from '../switch/switch';
 
 const SearchRoomList = () => {
   const classes = useStyles();
@@ -32,9 +13,12 @@ const SearchRoomList = () => {
     checkedA: true,
   });
 
-  const handleChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  const handleChange = useCallback(event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  }, []);
 
   return (
     <div className="search">

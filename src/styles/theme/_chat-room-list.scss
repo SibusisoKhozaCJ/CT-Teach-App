@@ -2,14 +2,12 @@ $query-sm: 600px;
 
 .chat-container {
   position: fixed;
+  top: 74px;
   right: 0;
   bottom: 0;
   width: 375px;
   border: 2px solid grey;
   overflow: hidden;
-  height: 600px;
-  max-height: 600px;
-  top: 74px;
   background: #FFFFFF;
   -webkit-transition: -webkit-transform 0.3s ease-out;
   transition: -webkit-transform 0.3s ease-out;
@@ -45,6 +43,11 @@ $query-sm: 600px;
 }
 
 .room-list-wrapper {
+  .room-list-rooms {
+    position: relative;
+    height: calc(100vh - 178px);
+  }
+
   .room-list-header {
     display: -webkit-box;
     display: -ms-flexbox;

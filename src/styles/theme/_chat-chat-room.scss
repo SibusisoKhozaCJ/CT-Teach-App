@@ -95,7 +95,7 @@ $query-sm: 600px;
 }
 
 .ChatContent {
-  height: 492px;
+  height: calc(100vh - 184px);
 
   @media (max-width: $query-sm) {
     height: 84vh;
