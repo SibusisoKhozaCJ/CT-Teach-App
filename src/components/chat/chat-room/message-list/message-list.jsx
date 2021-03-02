@@ -27,7 +27,7 @@ const MessageList = ({ messages, userFirstName }) =>
               <span className="MsgName">{item.firstname}</span>
             )}
             <span className="MsgDate">{Moment(new Date(item.createdAt)).format('DD/MM/YY HH:mm')}</span>
-            <p>{item.message}</p>
+            {item.code ? <pre>{item.message}</pre> : <p>{item.message}</p>}
           </div>
         </div>
       )}
