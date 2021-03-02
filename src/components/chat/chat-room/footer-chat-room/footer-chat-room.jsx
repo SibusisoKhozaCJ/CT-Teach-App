@@ -36,7 +36,7 @@ const FooterChatRoom = ({ submitMessage, onChange, value }) => {
         aria-label="search"
         onClick={handleClick}
       >
-        {messageType === 'text' ? <TextFieldsIcon /> : <CodeIcon />}
+        {messageType === 'text' ? <CodeIcon /> : <TextFieldsIcon />}
       </IconButton>
       {messageType === 'text' ? (
         <InputBase
