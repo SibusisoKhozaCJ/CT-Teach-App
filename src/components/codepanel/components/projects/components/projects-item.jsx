@@ -186,9 +186,12 @@ const useStyles = makeStyles(() => ({
     height: 35,
     border: "none",
     opacity: ".45",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
 
     "& img": {
-      width: "100%"
+      width: 20
     },
 
     ["@media (min-width:768px)"]: {
@@ -299,7 +302,7 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
         <div className={classes.cardRight}>
           <img src={img} />
           <button role="button" className={classes.btnShare}>
-            <img onClick={()=>{}} src={ShareIcon} className="coverage" alt="" />
+            <img onClick={()=>{}} src={ShareIcon} alt="" />
           </button>
         </div>
       ) : null}

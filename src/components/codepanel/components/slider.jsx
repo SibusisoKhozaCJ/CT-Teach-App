@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ReflexContainer, ReflexElement } from "react-reflex";
 import ReactHtmlParser from "react-html-parser";
@@ -49,6 +49,7 @@ const Slider = () => {
   const isDesktop = useMediaQuery("(min-width:768px)");
   const currentSlideNumber = useSelector(state => state.codepanel.currentSlide);
   const dispatch = useDispatch();
+  const lessonRef = useRef(null);
 
 
   const clickHandler = e => {
@@ -69,13 +70,28 @@ const Slider = () => {
     }
   };
 
+  const topClickHandler = (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    const height = lessonRef.current.offsetHeight;
+    const width = lessonRef.current.offsetWidth;
+
+    if (y < height * 0.6) {
+      if (x < width / 2) {
+        dispatch(codepanelSetSlideNumber(currentSlideNumber - 1));
+      } else {
+        isValid && dispatch(codepanelSetSlideNumber(currentSlideNumber + 1));
+      }
+    }
+  }
+
   const pageChangeHandler = e => {
     dispatch(codepanelSetSlideNumber(e));
   };
 
   const beforeScrollHandler = e => {
     if (e !== currentSlideNumber) {
-      dispatch(codepanelSetIsValid(false))
+      dispatch(codepanelSetIsValid(false));
       // dispatch(codepanelSetSlideNumber(e));
     }
   }
@@ -106,6 +122,8 @@ const Slider = () => {
               id="lesson-page"
               key={`${lesson.slug}_${slideNumber}`}
               style={{ height: "100%" }}
+              onClick={topClickHandler}
+              ref={lessonRef}
             >
               <ReflexElement
                 className={`${
@@ -123,7 +141,7 @@ const Slider = () => {
                       : ""
                   }`}
                   id={`slide${slideNumber}`}
-                  // style={isDesktop ? null : { paddingBottom: 50, paddingTop: 50 }}
+                  style={isDesktop ? null : { paddingBottom: 20, paddingTop: 20 }}
                   onClick={e => clickHandler(e)}
                 >
                   {ReactHtmlParser(slide.html_content)}

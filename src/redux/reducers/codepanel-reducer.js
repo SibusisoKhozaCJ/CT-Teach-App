@@ -18,7 +18,9 @@ const initialState = {
   textareaRef: null,
   isCheckerOpen: false,
   isCheckerActive: true,
-  isProjectsActive: false
+  isProjectsActive: false,
+  isLeaveActive: false,
+  leaveNext: null
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -106,6 +108,12 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_PROJECTS_ACTIVE: {
       return { ...state, isProjectsActive: action.payload };
+    }
+    case Types.LESSON_SET_LEAVE_MODAL_ACTIVE: {
+      return { ...state, isLeaveActive: action.payload };
+    }
+    case Types.LESSON_SET_LEAVE_MODAL_NEXT: {
+      return { ...state, leaveNext: action.payload };
     }
     default:
       return state;

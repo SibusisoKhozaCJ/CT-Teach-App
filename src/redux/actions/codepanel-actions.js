@@ -108,3 +108,13 @@ export const codepanelSetProjectsIsActive = isActive => ({
   type: Types.LESSON_SET_PROJECTS_ACTIVE,
   payload: isActive
 });
+
+export const codepanelSetLeaveIsActive = isActive => ({
+  type: Types.LESSON_SET_LEAVE_MODAL_ACTIVE,
+  payload: isActive
+});
+
+export const codepanelSetLeaveNext = next => ({
+  type: Types.LESSON_SET_LEAVE_MODAL_NEXT,
+  payload: next
+});

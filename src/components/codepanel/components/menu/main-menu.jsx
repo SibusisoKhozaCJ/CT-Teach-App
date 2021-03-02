@@ -14,7 +14,11 @@ import { useHistory } from "react-router-dom";
 import { saveUser } from '../../../../redux/actions/user-actions';
 import { removeCookies } from "../../../../shared/lib/authentication";
 import { AuthContext } from '../../../../shared/contexts/authContext';
-import { codepanelSetProjectsIsActive } from "../../../../redux/actions/codepanel-actions";
+import {
+  codepanelSetProjectsIsActive,
+  codepanelSetLeaveNext,
+  codepanelSetLeaveIsActive
+} from "../../../../redux/actions/codepanel-actions";
 
 import ProjectsIcon from "../../../../assets/images/rocket-icon.png";
 import DashboardIcon from "../../../../assets/images/dashboard-icon.png";
@@ -98,6 +102,12 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
     dispatch(saveUser(userId))
   }, [dispatch, userId])
 
+  const leaveHandler = (to) => {
+    dispatch(codepanelSetLeaveNext(to));
+    dispatch(codepanelSetLeaveIsActive(true));
+    closeHandler();
+  }
+
   return (
     <>
       <Menu
@@ -136,7 +146,7 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
                 </Typography>
               </ListItemIcon>
             </MenuItem>
-            <MenuItem onClick={() => history.push("/home")}>
+            <MenuItem onClick={() => leaveHandler("/home")}>
               <ListItemIcon>
                 <img width="30" height="30" src={DashboardIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>
@@ -145,7 +155,7 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
                 </Typography>
               </ListItemIcon>
             </MenuItem>
-            <MenuItem onClick={() => history.push(`/profile/${userId}`)}>
+            <MenuItem onClick={() => leaveHandler(`/profile/${userId}`)}>
               <ListItemIcon>
                 <img width="28" height="28" src={ProfileIcon} className="coverage" alt="" />
                 <Typography className={classes.itemText}>

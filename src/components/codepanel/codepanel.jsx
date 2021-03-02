@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Media from "react-media";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
 import { getLesson } from "./data/getLesson";
 import MobileLayout from './components/mobile/mobile-layout'
@@ -19,6 +20,7 @@ import {
 import { getCodeFromLocal } from "./utils/localStorage"
 import * as authFetch from "../../shared/lib/authorizedFetch";
 import ProjectsModal from "./components/projects/projects-modal";
+import LeaveModal from "./components/leave-modal";
 
 
 const Codepanel = ({ match: { params: { id } } }) => {
@@ -27,6 +29,9 @@ const Codepanel = ({ match: { params: { id } } }) => {
   const userId = useSelector(state => state.user.userId);
   const lessonId = "5-min-website";
   const isProjectsActive = useSelector(state => state.codepanel.isProjectsActive);
+  const isLeaveActive = useSelector(state => state.codepanel.isLeaveActive);
+
+  const history = useHistory()
 
   const getProgressData = async (userId, lessonId) => {
     return await authFetch.firebaseGet(
@@ -70,39 +75,25 @@ const Codepanel = ({ match: { params: { id } } }) => {
 
     }
 
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", resizeListener);
-      return () => {
-        window.removeEventListener('resize', resizeListener);
-      }
-    }
   }, [id]);
 
-  const resizeListener = () => {
-    let ivh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${ivh}px`);
+  const navigateHandler = (e) => {
+    e.preventDefault();
+    window.history.go(1)
+    console.log("direction", e);
+    alert(e);
   }
 
-  // useEffect(() => {
-  //   window.addEventListener('beforeunload', alertUser);
-  //   window.addEventListener('unload', handleEndConcert);
-  //   return () => {
-  //     window.removeEventListener('beforeunload', alertUser);
-  //     window.removeEventListener('unload', handleEndConcert);
-  //     handleEndConcert();
-  //   }
-  // }, [])
-
-  // const handleEndConcert = async () => {
-  //   console.log("leave");
-  // }
-
-  // const alertUser = e => {
-  //   e.preventDefault()
-  //   e.returnValue = ''
-  // }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log("setup popstate listener")
+      // let newVh = window.innerHeight * 0.01;
+      window.addEventListener("popstate", navigateHandler);
+      return () => {
+        window.removeEventListener("popstate", navigateHandler);
+      }
+    }
+  });
 
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,
@@ -130,6 +121,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
       )}
     </Media>
     {isProjectsActive && <ProjectsModal />}
+    {isLeaveActive && <LeaveModal />}
     </>
   )
 };
