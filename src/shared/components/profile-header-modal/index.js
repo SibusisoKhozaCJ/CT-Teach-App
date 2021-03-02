@@ -3,6 +3,8 @@ import {TextareaAutosize, TextField, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
 import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const modalStyles = {
   overlay: {
@@ -45,6 +47,9 @@ const ProfileHeaderModalComponent = (
       contentLabel='Modal'
     >
       <form onSubmit={saveAbout} className='modalPrivate'>
+        <IconButton aria-label="upload picture" component="span" className="closeBtn">
+          <CloseIcon onClick={() => closeModal()} />
+        </IconButton>
         <div className='personalize'>
           <Typography variant="h5">PERSONALIZE</Typography>
           <Typography variant="h6">HEADER:</Typography>

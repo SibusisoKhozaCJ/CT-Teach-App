@@ -471,6 +471,12 @@ $query-lg: 1280px;
     padding: 30px;
   }
 
+  .closeBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   .personalize {
     > h5 {
       font-size: 24px;
