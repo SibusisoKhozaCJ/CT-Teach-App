@@ -323,7 +323,8 @@ $query-lg: 1280px;
     padding: 5px;
     box-sizing: border-box;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-size: 14px
+    font-size: 14px;
+    color: #000000;
   }
 
   .activeControlInput {
@@ -429,7 +430,8 @@ $query-lg: 1280px;
   .textArea {
     border: 1px solid #eaeaeb;
     background: #364954;
-    color: #ffffff;
+    //color: #ffffff;
+    color: red;
     font-size: 17px;
     box-sizing: border-box;
     width: 100%;
