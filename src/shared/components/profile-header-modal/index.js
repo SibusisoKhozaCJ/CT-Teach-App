@@ -58,8 +58,8 @@ const ProfileHeaderModalComponent = (
         </div>
         <TextareaAutosize
           name='about_me'
-          rowsMin={10}
-          rowsMax={19}
+          rowsMin={5}
+          rowsMax={5}
           className='textArea'
           placeholder="Type or paste your code here. There is a max of 20 lines allowed."
           defaultValue={codeInIframe}
@@ -73,7 +73,7 @@ const ProfileHeaderModalComponent = (
             <div className="tipNote">
               TIP: For example #128512; is a big smile emoji.
               <br />
-              Lear more <Link to="/">here</Link>.
+              Lear more <a href="https://www.w3schools.com/charsets/ref_emoji.asp" target="_blank">here</a>.
             </div>
           </Typography>
         </div>
