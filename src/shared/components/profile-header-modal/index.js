@@ -32,7 +32,7 @@ const ProfileHeaderModalComponent = (
     closeModal,
     codeInIframe,
     emojiCode,
-    openModal, 
+    openModal,
     isFindLinkOrImg
   }) => {
 
@@ -61,7 +61,7 @@ const ProfileHeaderModalComponent = (
           rowsMin={10}
           rowsMax={19}
           className='textArea'
-          placeholder="Paste your code here. There is a max of 20 lines allowed."
+          placeholder="Type or paste your code here. There is a max of 20 lines allowed."
           defaultValue={codeInIframe}
           onChange={event => setTextareaValue(event.target.value)}
         />
