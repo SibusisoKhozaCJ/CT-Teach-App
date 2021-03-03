@@ -117,6 +117,7 @@ const LeaveModal = () => {
   }
 
   const leaveHandler = () => {
+    dispatch(codepanelSetLeaveIsActive(false))
     history.push(next)
   }
 

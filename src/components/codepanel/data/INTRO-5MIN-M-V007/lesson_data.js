@@ -181,6 +181,14 @@ export const lesson_data = {
         {
           description: "type your name inside <h1> tag",
           rule: "<h1>[\\s\\r\\n]*(.*)[\\s\\r\\n]*<\\/h1>"
+        },
+        {
+          description: "create <p> tag",
+          rule: "<p(.*)>"
+        },
+        {
+          description: "create <b> tag",
+          rule: "<b(.*)>"
         }
       ],
       sort_order: 15,
@@ -430,7 +438,8 @@ export const lesson_data = {
       reg: [
         {
           description: "change body background color",
-          rule: "body(.*)background:[s\r\n]*(?!pink;)[a-z]"
+          // rule: "body(.*)background:[s\r\n]*(?!pink;)[a-z]"
+          rule: '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[\\s\\r\\n]*background[\\s\\r\\n]*:[\\s\\r\\n]*(red)[\\s\\r\\n]*;[\\s\\r\\n]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)'
         }
       ],
       sort_order: 28,
