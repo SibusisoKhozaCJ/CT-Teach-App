@@ -432,6 +432,14 @@ $query-lg: 1280px;
     margin: 0 !important;
   }
 
+  @media (min-width: $query-sm + 1) and (max-width: $query-md) {
+    width: 75% !important;
+  }
+
+  @media (min-width: $query-md + 1) and (max-width: $query-lg) {
+    width: 50% !important;
+  }
+
   .textArea {
     border: 1px solid #eaeaeb;
     background: #364954;
