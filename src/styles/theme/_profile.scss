@@ -66,6 +66,7 @@ $query-lg: 1280px;
 .profileHeader {
   height: 188px;
   width: 100%;
+  border-bottom: 5px solid #cccccc;
   @media (max-width: $query-sm) {
     height: 180px
   }

@@ -89,7 +89,6 @@ const Header = () => {
     }
 
     dispatch(updateUserHeaderUserProfile(data));
-    console.error(codeInIframe);
     writeContentToIframe(iframe_code, codeInIframe || defaultCodeInIframe);
     writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
   }, [iframe_code, iframe_emoji, inputValue, textareaValue, codeInIframe, emojiCode, dispatch]);
