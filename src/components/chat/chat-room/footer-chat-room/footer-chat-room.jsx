@@ -36,7 +36,7 @@ const FooterChatRoom = ({ submitMessage, onChange, value }) => {
         aria-label="search"
         onClick={handleClick}
       >
-        {messageType === 'text' ? <TextFieldsIcon /> : <CodeIcon />}
+        {messageType === 'text' ? <CodeIcon /> : <TextFieldsIcon />}
       </IconButton>
       {messageType === 'text' ? (
         <InputBase
@@ -55,7 +55,7 @@ const FooterChatRoom = ({ submitMessage, onChange, value }) => {
             value={value}
             onChange={onChange}
             className={classNames(classes.textArea, { [classes.textAreaExtend]: focus })}
-            placeholder="Type a code here"
+            placeholder="Type code here"
             onFocus={() => setFocus(true)}
             onBlur={() => setFocus(false)}
           />
