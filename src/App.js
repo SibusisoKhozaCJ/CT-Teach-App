@@ -26,7 +26,8 @@ import ResetPage from './components/reset-password/ResetPage';
 import Welcome from './components/welcome/Welcome';
 import Home from './components/home/home';
 import Sidebar from './components/sidebar/sidebar';
-import Tribes from "./components/tribes/tribe"
+import Tribes from "./components/tribes/tribe";
+import Progress from "./components/progress/progress";
 import Profile from "./components/profile/Profile";
 import Layout from './hoc/Layout/Layout';
 import JoinTribe from "./components/join-tribe/join-tribe-page"
@@ -121,12 +122,13 @@ const App = () => {
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
                     <ProtectedRoute path={routes.FORM} component={FormPage} />
-                    <ProtectedRoute path={routes.TRIBE} component={Tribes} />
+                    <ProtectedRoute path={routes.TRIBE} component={Tribes} />                
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
                     <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
                     <ProtectedRoute path={routes.PROJECTS} component={Projects} />
                     <ProtectedRoute path={routes.LESSON_ID} component={Lessons} />
+                    <ProtectedRoute path={routes.PROGRESS} component={Progress} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>
