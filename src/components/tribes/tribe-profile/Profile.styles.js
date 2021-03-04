@@ -188,7 +188,7 @@ export const FormProfileStyles = theme => ({
     border: ({borderColor}) => `5px solid ${borderColor}`,
     boxSizing: 'border-box',
     margin: '0 auto',
- 
+
     [theme.breakpoints.down("sm")]: {
       width: '100%',
       border: 'none !important',
@@ -252,11 +252,11 @@ export const FormProfileStyles = theme => ({
   },
   controlLabelHidden: {
     [theme.breakpoints.down("sm")]: {
-     
+
     }
   },
   Tribe: {
-    ...controlStyles,   
+    ...controlStyles,
     marginLeft: 20,
     width: 200,
     [theme.breakpoints.down("sm")]: {
@@ -265,16 +265,16 @@ export const FormProfileStyles = theme => ({
       border: 'none !important',
       marginTop: 14,
       padding: 10,
-      background: 'none',     
+      background: 'none',
       top: -20,
       right: 0,
       fontSize: 18
-      
+
     }
   },
     schoolOrg: {
-    ...controlStyles,   
-    marginLeft: 20,        
+    ...controlStyles,
+    marginLeft: 20,
   },
   tribeHandle: {
     fontSize: 16,
@@ -307,7 +307,7 @@ export const FormProfileStyles = theme => ({
     width: '100%',
     padding: 5,
   },
-  btnButtons: {   
+  btnButtons: {
     [theme.breakpoints.down("sm")]: {
       position: 'absolute',
       bottom: '-71vh'

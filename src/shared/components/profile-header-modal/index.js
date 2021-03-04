@@ -3,6 +3,8 @@ import {TextareaAutosize, TextField, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Modal from "react-modal";
 import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const modalStyles = {
   overlay: {
@@ -32,7 +34,7 @@ const ProfileHeaderModalComponent = (
     closeModal,
     codeInIframe,
     emojiCode,
-    openModal, 
+    openModal,
     isFindLinkOrImg
   }) => {
 
@@ -45,6 +47,9 @@ const ProfileHeaderModalComponent = (
       contentLabel='Modal'
     >
       <form onSubmit={saveAbout} className='modalPrivate'>
+        <IconButton aria-label="upload picture" component="span" className="closeBtn">
+          <CloseIcon onClick={() => closeModal()} />
+        </IconButton>
         <div className='personalize'>
           <Typography variant="h5">PERSONALIZE</Typography>
           <Typography variant="h6">HEADER:</Typography>
@@ -58,10 +63,10 @@ const ProfileHeaderModalComponent = (
         </div>
         <TextareaAutosize
           name='about_me'
-          rowsMin={10}
-          rowsMax={19}
+          rowsMin={5}
+          rowsMax={5}
           className='textArea'
-          placeholder="Paste your code here. There is a max of 20 lines allowed."
+          placeholder="Type or paste your code here. There is a max of 20 lines allowed."
           defaultValue={codeInIframe}
           onChange={event => setTextareaValue(event.target.value)}
         />
@@ -73,7 +78,7 @@ const ProfileHeaderModalComponent = (
             <div className="tipNote">
               TIP: For example #128512; is a big smile emoji.
               <br />
-              Lear more <Link to="/">here</Link>.
+              Lear more <a href="https://www.w3schools.com/charsets/ref_emoji.asp" target="_blank">here</a>.
             </div>
           </Typography>
         </div>

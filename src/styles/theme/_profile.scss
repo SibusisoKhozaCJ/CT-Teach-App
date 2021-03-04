@@ -330,7 +330,8 @@ $query-lg: 1280px;
     padding: 5px;
     box-sizing: border-box;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-size: 14px
+    font-size: 14px;
+    color: #000000;
   }
 
   .activeControlInput {
@@ -444,7 +445,8 @@ $query-lg: 1280px;
   .textArea {
     border: 1px solid #eaeaeb;
     background: #364954;
-    color: #ffffff;
+    //color: #ffffff;
+    color: red;
     font-size: 17px;
     box-sizing: border-box;
     width: 100%;
@@ -484,6 +486,12 @@ $query-lg: 1280px;
     padding: 30px;
   }
 
+  .closeBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   .personalize {
     > h5 {
       font-size: 24px;
@@ -496,6 +504,7 @@ $query-lg: 1280px;
       font-size: 18px;
       font-weight: 700;
       line-height: 21px;
+      margin-top: 10px;
     }
 
     > p {
