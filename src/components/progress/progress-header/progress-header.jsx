@@ -1,46 +1,74 @@
 import React, { useEffect } from "react";
+import Grid from "@material-ui/core/Grid";
 import Gridicon from "../../../assets/images/tgrid.svg";
 import Colspicon from "../../../assets/images/prnext.svg";
-import Pradd from "../../../assets/images/prad.svg";
-import Progressicon from "../../../assets/icons/tribe/icon4.svg";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import Compiocn from "../../../assets/images/proheadicon1.svg";
+import Moveicon from "../../../assets/images/pmove.svg";
+import Removeicon from "../../../assets/images/premove.svg";
+import Tribeicon from "../../../assets/images/tribes.svg";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+
+ const handleChange = (event) => {
+  
+    
+  };
 const ProgressHeader = ({ handleCollpaseClick }) => {
   return (
     <div className="tribe-menu">     
       <div className="header-left-menu">
         <div className="head-tribe">
           <div className="head-trb-main">
-            <img src={Progressicon} alt="" />
-            <span>PROGRESS</span>
-            <span className="head-tr-icon">
-              <svg
-                width="23"
-                height="16"
-                viewBox="0 0 23 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18.6895 0.806641L22.3569 4.69092L11.0293 15.585L0.550781 4.43799L4.56152 0.842773L11.2461 8.21387L18.6895 0.806641Z"
-                  fill="#A6A6A6"
-                />
-              </svg>
-            </span>
+            <div className="d-flex pro-head">
+            <img src={Tribeicon} alt="" />
+             
+                    <FormControl variant="filled">
+                      <InputLabel id="slect-filled-label">
+                        SELECT TRIBE
+                      </InputLabel>
+                      <Select
+                        labelId="slect-filled-label"
+                        id="demo-simple-select-filled"
+                        
+                        name="type"
+                        onChange={handleChange}
+                      >
+                        <MenuItem >tribe</MenuItem>
+                        <MenuItem>tribe1</MenuItem>
+                        <MenuItem >tribe2</MenuItem>
+                        <MenuItem>tribe3</MenuItem>
+                      </Select>
+                    </FormControl>
+                 </div>
+          
             <span className="tribe-grid">
-              <img src={Gridicon} alt="" />
+              <img src={Compiocn} alt="" />
             </span>
-          </div>
-          <div className="tribe-colsp">
-            <span>
-              <img src={Pradd} />
+            <div className="headPicon">
+              <span className="tribe-grid">
+              <img src={Moveicon} alt="" />              
             </span>
+            <p>MOVE</p>
+            </div>
+            <div  className="headPicon">
+              <span className="tribe-grid">
+              <img src={Removeicon} alt="" />
+            </span>
+            <p>REMOVE</p>
+            </div>
+             <div className="tribe-colsp">           
             <span>
               <img src={Colspicon} alt="" />
             </span>
+             
           </div>
+          </div>
+         
         </div>
-        <div className="head-progess"></div>
+        
       </div>
       <div className="header-right-menu">
         <div className="head-add"></div>

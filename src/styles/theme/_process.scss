@@ -9,6 +9,7 @@
   .progess-page {
       display: flex;
       align-items: center;
+      margin-top: 40px;
      
   }
   .project-head {
@@ -41,10 +42,12 @@
      
   }
   .project-div {
-      max-width: 700px;
+  max-width: 700px;
   width: 100%;
-  border: 2px solid #43D4DD;
-  box-sizing: border-box;
+ background: #FFFFFF;
+border: 2px solid #43D4DD;
+box-sizing: border-box;
+border-radius: 15px;
   padding: 10px;
   margin-top: 10px;
   }
@@ -82,7 +85,11 @@
       padding: 5px;
     }
     
-   
+   .MuiBox-root {
+    width: 100%;
+    overflow-x: auto !important;
+}
+
     
     .table_row > .table_small > .table_cell {
       padding-top: 3px;
@@ -162,16 +169,14 @@
      
   margin-right: 15px;
   margin-left: 15px;
-  .project-head{
-      margin-bottom: 26%;
-  }
+ 
       .project-heading {
       display: block;
     
   }
   .project-head span{
       position: relative;
-  top: -20px;
+  top: -15px;
   }
   }
   .progress-name{
@@ -179,10 +184,13 @@
       display: table;
       text-align: center;
       width: 100%;
-      margin: 30% auto 0;
+      margin: 10% auto 0;
       border-collapse: separate;
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
+    }
+    .name-head{
+      text-align: left;
     }
     
     .table_row {
@@ -264,3 +272,81 @@
   .header-new-row-close{
       display: none !important;
   }
+
+  .default-layout {  
+    overflow-x: auto;
+}
+.project-div-close{
+ h2{
+  font-size: 17px;
+line-height: 24px;
+font-weight: 700;
+color: #43D4DD;
+margin-bottom: 0;
+text-align: center;
+display: block;
+}
+.project-heading h2 {
+    display: none;
+}
+}
+.pcoloseheading{
+  display: none;
+}
+
+.project-slect{
+.select-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.slt-btn{
+  button {
+    background: transparent;
+   border: 2px solid #A6A6A6;
+box-sizing: border-box;
+border-radius: 6px;
+}
+}
+.projectslect{
+  .MuiFormControl-root{
+    width: 300px;
+  }
+}
+.nextpevselect{
+   button {
+    background: transparent;
+   border: 2px solid #A6A6A6;
+box-sizing: border-box;
+border-radius: 6px;
+padding: 12px;
+margin: 0 1px;
+}
+
+}
+.MuiFilledInput-root{
+     background: transparent;
+   border: 2px solid #A6A6A6;
+box-sizing: border-box;
+border-radius: 6px;
+}
+.MuiFilledInput-underline::before{
+  border-bottom: none;
+}
+.MuiSelect-selectMenu{
+  letter-spacing: 0.15px;
+color: #43D4DD;
+font-weight: bold;
+font-size: 17px;
+line-height: 24px;
+}
+}
+.main-project-div-close .project-slect {
+    display: none;
+}
+.table-close-row {
+    display: none !important;
+}
+.project-open {
+    margin-top: 24%;
+}

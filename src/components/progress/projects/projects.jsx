@@ -4,11 +4,17 @@ import ProjColsp from "../../../assets/images/project-collpse.svg";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import SelectProjects from "./user-row/projectslect"
 import UserRow from "./user-row/user-row.jsx";
 import ProjectHeader from "./project-header/project-header"
-const Projects = ({defaultClass}) => {
+const Projects = ({defaultClass, setProjectOpenClass}) => {
     const [projectClass, setProjectClass] = useState(defaultClass);
     const [lessionClass, setLessionClass] = useState("lession1");
+
+    const handleProjectOpen = (openClass)=>{
+        setProjectClass(openClass);
+        setProjectOpenClass(openClass)
+    }
   return (
     <div
       className=""
@@ -24,8 +30,8 @@ const Projects = ({defaultClass}) => {
           <button
             onClick={() =>
               projectClass !== "project1"
-                ? setProjectClass("project1")
-                : setProjectClass("")
+                ? handleProjectOpen("project1")
+                : handleProjectOpen("")
             }
           >
             <img src={ProjColsp} />
@@ -34,6 +40,7 @@ const Projects = ({defaultClass}) => {
 
         <span>!</span>
       </div>
+       <h2 className="pcoloseheading">PROJECT 1</h2>
       <div
         className={
           projectClass === "project1"
@@ -41,7 +48,9 @@ const Projects = ({defaultClass}) => {
             : " main-project-div main-project-div-close"
         }
       >
+         <SelectProjects/>
         <div className="table" id="results">
+         
           {/* Header */}
           <ProjectHeader
             lessionClass={lessionClass}
