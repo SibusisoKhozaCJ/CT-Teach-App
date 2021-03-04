@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import CrsArrow from "../../../../assets/images/crossarow.svg";
 const ProjectHeader = ({ lessionClass, setLessionClass }) => {
   return (

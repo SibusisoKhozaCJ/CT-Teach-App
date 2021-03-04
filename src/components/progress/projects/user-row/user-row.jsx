@@ -108,7 +108,7 @@ const UserRow = ({ lessionClass }) => {
         <div className="test-div"></div>
         <div className="test-div"></div>
       </div>
-      <div className="table_big table_small">
+      <div className="table_big table_small table-close-row">
         <LinearProgress variant="determinate" value={50} />
       </div>
     </div>
