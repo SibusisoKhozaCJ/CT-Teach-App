@@ -15,6 +15,12 @@ import { wrapperEmojiInHtmlString, writeContentToIframe } from '../../../shared/
 
 Modal.setAppElement('#modalInProfile');
 
+const defaultCodeInIframe = `<body style="background:grey; color: white; font-family: helvetica; text-align: center;" >
+<h2>
+ADD YOUR OWN CODE HERE TO PERSONALIZE YOUR HEADER.
+</h2>
+</body>`;
+
 const modalStyles = {
   overlay: {
     background: 'rgba(0, 0, 0, 0.58)',
@@ -70,7 +76,7 @@ const Header = () => {
 
   useEffect(() => {
     if (iframe_code && iframe_emoji) {
-      writeContentToIframe(iframe_code, codeInIframe);
+      writeContentToIframe(iframe_code, codeInIframe || defaultCodeInIframe);
       writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
     }
   }, [iframe_code, iframe_emoji, codeInIframe, emojiCode]);
@@ -78,13 +84,12 @@ const Header = () => {
   const saveAbout = useCallback(async (event) => {
     event.preventDefault();
     const data = {
-      codeInIframe: textareaValue || codeInIframe,
+      codeInIframe: textareaValue,
       emojiCode: inputValue || emojiCode,
     }
 
     dispatch(updateUserHeaderUserProfile(data));
-
-    writeContentToIframe(iframe_code, codeInIframe);
+    writeContentToIframe(iframe_code, codeInIframe || defaultCodeInIframe);
     writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
   }, [iframe_code, iframe_emoji, inputValue, textareaValue, codeInIframe, emojiCode, dispatch]);
 

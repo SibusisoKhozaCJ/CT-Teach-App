@@ -51,7 +51,7 @@ export function updateUserHeaderUserProfile(data) {
     const user = getState().user;
     if (!getState().user.isFindLinkOrImg) {
       const dataUpdate = {
-        codeInIframe: data.codeInIframe || getState().user.codeInIframe,
+        codeInIframe: data.codeInIframe,
         emojiCode: data.emojiCode || getState().user.emojiCode,
       };
       try {

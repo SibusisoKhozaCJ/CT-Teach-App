@@ -16,7 +16,7 @@ const modalStyles = {
     left: 'auto',
     right: 'auto',
     bottom: 'auto',
-    width: '30%',
+    width: '40%',
     margin: '0 auto',
     padding: 0,
     border: 0,
