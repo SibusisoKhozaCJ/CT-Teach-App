@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import ProgressHeader from "./progress-header/progress-header";
-import Projects from "./projects/projects";
-import ProjectsName from "./projects/name";
+import { getProgressListOfTribe } from "../../redux/actions/progress-actions";
+import Projects from "./projects/projects"
+import { saveUser } from "../../redux/actions/user-actions";
+import Cookies from 'js-cookie';
+import Loading from "../../shared/components/loader/Loading";
 const Progress = () => { 
-  const [isProjectOpen, setIsProjectOpen] = useState(false)
-  const setProjectOpenClass = (projectclass)=>{
-    if(projectclass !== ""){
-      setIsProjectOpen(true)
+  const userIdFromCookies = Cookies.get('userid');
+  const dispatch = useDispatch();
+  const {isLoading, progressList} = useSelector(state => state.progress);
+  const {user} = useSelector(state => state.user);
+  useEffect(()=>{
+    if (!user) {
+      dispatch(saveUser(userIdFromCookies));
     }else{
-      setIsProjectOpen(false)
+      dispatch(getProgressListOfTribe())
     }
+  },[dispatch,user])
+
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <Loading />
+      </div>
+    )
   }
+  
   return (
     <div className="main-pro-page">
         <div className="commonheight"></div>

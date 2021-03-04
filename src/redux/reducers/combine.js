@@ -7,7 +7,7 @@ import friendReducer from './friend-reducer';
 import codepanelReducer from './codepanel-reducer';
 import projectsReducer from './projects-reducer';
 import lessonsReducer from './lessons-reducer';
-
+import progressReducer from './progress-reducer';
 
 const reducers = combineReducers({
     user:userReducer,
@@ -17,7 +17,8 @@ const reducers = combineReducers({
     friend:friendReducer,
     codepanel: codepanelReducer,
     projects: projectsReducer,
-    lessons: lessonsReducer
+    lessons: lessonsReducer,
+    progress:progressReducer
 
 });
 

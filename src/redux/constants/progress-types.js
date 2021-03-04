@@ -1,0 +1,4 @@
+export const Types = {
+  SAVE_PROGRESS_LIST: "SAVE_PROGRESS_LIST",
+  SET_LOADING:"SET_LOADING"
+};
