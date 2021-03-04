@@ -21,8 +21,18 @@ export function getProgressListOfTribe(tribeCode) {
         const lessionProgressInfo = await getAllUsersProgressLessions(tribeUsers);
         const tribesInfo = await getAllTribesInfo(userAlltribes);
         const projectsData = await authFetch.firebaseGet("Projects/");
+        let projectList = []
+        if(projectsData){
+          Object.entries(projectsData).forEach(([key, value]) => {
+            const project = {
+              name:key,
+              data:value
+            }
+            projectList.push(project)
+          })
+        }
         dispatch({ type: Types.SAVE_PROGRESS_LIST, payload: lessionProgressInfo });
-        dispatch({ type: Types.SAVE_PROJECTS_LIST, payload: projectsData });
+        dispatch({ type: Types.SAVE_PROJECTS_LIST, payload: projectList });
       }
     }
     dispatch({ type: Types.SET_LOADING, payload: false });

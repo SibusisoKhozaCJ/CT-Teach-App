@@ -1,11 +1,11 @@
 import React from "react";
 import InfoRow from "./info-rows/info-rows";
 
-const TribeUsersInfo = ({isProjectOpen}) => {
+const TribeUsersInfo = ({progressList, isProjectOpen}) => {
   return (
        
         <div className="table">         
-          <InfoRow isProjectOpen={isProjectOpen}/>
+          <InfoRow progressList={progressList} isProjectOpen={isProjectOpen}/>
         </div>
      
   );

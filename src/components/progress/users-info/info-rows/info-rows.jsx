@@ -1,5 +1,6 @@
 import React from "react";
-const UserRow = ({ isProjectOpen }) => {
+import UserRecord from "./user-records/user-records";
+const UserRow = ({progressList, isProjectOpen }) => {
     return (
         <div className={isProjectOpen ? "table_row project-open" : "table_row"}>
             <div className="progress-name ">
@@ -44,44 +45,11 @@ const UserRow = ({ isProjectOpen }) => {
                             </svg>
                         </div>
                     </div>
-                    <div class="table_row">
-                        <div class="table_small">
-                            <div class="table_cell">
-                                <div class="new-checkbox">
-                                    <div class="form-group">
-                                        <input type="checkbox" id="check1" />
-                                        <label for="check1"></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table_small">
-                            <div class="table_cell">avinash</div>
-                        </div>
-                        <div class="table_small">
-                            <div class="table_cell">avinash</div>
-                        </div>
+                    {progressList.map((progress,index)=>(
+                        <UserRecord progress={progress}/>
+                    ))}
+                    
                     </div>
-
-                    <div class="table_row">
-                        <div class="table_small">
-                            <div class="table_cell">
-                                <div class="new-checkbox">
-                                    <div class="form-group">
-                                        <input type="checkbox" id="check2" />
-                                        <label for="check2"></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table_small">
-                            <div class="table_cell">avinash</div>
-                        </div>
-                        <div class="table_small">
-                            <div class="table_cell">avinash</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );
