@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 
 import { codepanelSetPreviewVisible, codepanelSetCheckerActive } from "../../../../redux/actions/codepanel-actions";
 import CodepanelLogoIcon from "../../../../assets/images/codepanel-logo.png";
@@ -17,6 +18,7 @@ import Split3Icon from "../../../../assets/images/split-3-icon.svg";
 
 import MainMenu from "../menu/main-menu";
 import SideMenu from "../side-menu";
+import { openFullscreen, closeFullscreen } from "../../utils/fullscreen";
 
 const useStyles = makeStyles(theme => ({
   topBarRight: {
@@ -53,6 +55,7 @@ const TopBar = () => {
   const isPreviewVisible = useSelector(state => state.codepanel.isPreviewVisible);
   const isCheckerActive = useSelector(state => state.codepanel.isCheckerActive);
   const dispatch = useDispatch();
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const closeHandler = () => {
     setIsMenuOpen(false);
@@ -97,10 +100,13 @@ const TopBar = () => {
               </IconButton>
               <IconButton
                 aria-label="Full Screen"
-                onClick={() => {}}
+                onClick={() => {
+                  isFullscreen ? closeFullscreen() : openFullscreen();
+                  setIsFullscreen(!isFullscreen);
+                }}
                 title="Full Screen"
               >
-                <FullscreenIcon className={classes.button} />
+                {isFullscreen ? <FullscreenExitIcon className={classes.button} />: <FullscreenIcon className={classes.button} />}
               </IconButton>
             </div>
               <IconButton

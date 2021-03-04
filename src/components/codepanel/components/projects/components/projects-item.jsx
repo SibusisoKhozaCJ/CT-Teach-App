@@ -186,9 +186,12 @@ const useStyles = makeStyles(() => ({
     height: 35,
     border: "none",
     opacity: ".45",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
 
     "& img": {
-      width: "100%"
+      width: 20
     },
 
     ["@media (min-width:768px)"]: {
@@ -227,7 +230,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const ProectItem = ({ project: {title, description, level, fun, time, outline, key, lessons, img}, closeSidebar}) => {
+const ProectItem = ({ project: {title, description, level, fun, time, outline, key, lessons, img}, closeSidebar, selectProject}) => {
   const classes = useStyles();
   const [isListEmpty, setIsListEmpty] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -279,7 +282,8 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
                 </>
               ) : (
                 <button className={classes.btnStart} role="button" onClick={() => {
-                  closeSidebar()
+                  selectProject(key);
+                  // closeSidebar()
                 }}>
                   <span>Rock This!</span>
                   <PlayArrowIcon className={classes.btnIcon}/>
@@ -299,7 +303,7 @@ const ProectItem = ({ project: {title, description, level, fun, time, outline, k
         <div className={classes.cardRight}>
           <img src={img} />
           <button role="button" className={classes.btnShare}>
-            <img onClick={()=>{}} src={ShareIcon} className="coverage" alt="" />
+            <img onClick={()=>{}} src={ShareIcon} alt="" />
           </button>
         </div>
       ) : null}

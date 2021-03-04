@@ -15,33 +15,34 @@ import ScreenshotIcon from "../../../assets/images/screenshot-icon.png";
 import FeedbackIcon from "../../../assets/images/feedback.svg";
 import LockIcon from "../../../assets/images/lock-icon.png";
 
-import ProjectsModal from "./projects/projects-modal";
 import { codepanelSetProjectsIsActive } from "../../../redux/actions/codepanel-actions";
 
 const  useStyles = makeStyles(theme => ({
-  overlay: {
+  container: {
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
     position: "fixed",
-    backgroundColor: "rgba(0,0,0,0.2)",
-    zIndex: 100
+    zIndex: 100,
+    display: "flex",
+    alignItems: "stretch",
+    overflowY: "scroll",
   },
-  container: {
+  overlay: {
+    flexGrow: 1,
+    height: "100vh",
+    backgroundColor: "rgba(0,0,0,0.2)",
+  },
+
+  menu: {
     padding: "0 8px",
-    position: "fixed",
     minHeight: "100vh",
-    top: 0,
-    left: 0,
-    bottom: 0,
     backgroundColor: "#fff",
     minWidth: 68,
-    overflowY: "scroll",
     display: "flex",
     flexDirection: "column",
     alignItems: "stretch",
-    zIndex: 100,
     justifyContent: "space-between",
     MsOverflowStyle: "none",
     scrollbarWidth: "none",
@@ -96,10 +97,8 @@ const SideMenu = ({ closeHandler }) => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <div className={classes.overlay} onClick={closeHandler}/>
-
-      <div className={classes.container}>
+    <div className={classes.container}>
+      <div className={classes.menu}>
         <IconButton onClick={closeHandler} className={classes.icon}>
           <img src={CodepanelLogoIcon} className="coverage" alt="" style={{ maxWidth: 30 }}/>
         </IconButton>
@@ -153,7 +152,9 @@ const SideMenu = ({ closeHandler }) => {
         </IconButton>
         {/* {isModalOpen ? <ProjectsModal closeHandler={closeModalHandler} closeSidebar={closeHandler}/> : null} */}
       </div>
-    </>
+
+      <div className={classes.overlay} onClick={closeHandler}/>
+    </div>
   )
 }
 
