@@ -24,6 +24,8 @@ const RoomList = React.memo(({ rooms }) => {
     [],
   );
 
+
+
   return (
     <div className="room-list-rooms">
       <List dense className={classNames('list-of-messages', classes.root)}>
@@ -34,9 +36,10 @@ const RoomList = React.memo(({ rooms }) => {
               <ListItemAvatar>
                 <Avatar
                   alt={`Avatar n°${room.name + 1}`}
-                  src={`/static/images/avatar/${room.name + 1}.jpg`}
                   className={classes.avatar}
-                />
+                >
+                  {String.fromCodePoint(parseInt(room.emojiCode.match(/\d+/i)))}
+                </Avatar>
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`${room.name}`} />
               <ListItemSecondaryAction>

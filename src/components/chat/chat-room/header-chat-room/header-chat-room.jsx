@@ -8,12 +8,12 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 
 import { increaseLimit } from '../../../../redux/actions/chat-action';
 import useStyles from './styles';
-import { selectedChat } from '../../../../redux/selectors/selectors';
+import { selectedChat, getAvatar } from '../../../../redux/selectors/selectors';
 
-const HeaderChatRoom = ({ exitChat }) => {
+const HeaderChatRoom = ({ exitChat, avatar }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { selectedRoom } = useSelector(selectedChat);
+  const { selectedRoom, rooms, idRoom } = useSelector(selectedChat);
 
   const fetchMoreMessages = useCallback(() => {
     dispatch(increaseLimit());
@@ -36,7 +36,12 @@ const HeaderChatRoom = ({ exitChat }) => {
             />
           </svg>
         </IconButton>
-        <Avatar alt={`Avatar n°${1}`} src={`/static/images/avatar/${1}.jpg`} className={classes.avatar} />
+        <Avatar
+          alt={`Avatar n°${1}`}
+          className={classes.avatar}
+        >
+          {rooms.length > 0 && selectedRoom ? String.fromCodePoint(parseInt(rooms.filter( room => room.idRoom === idRoom)[0].emojiCode.match(/\d+/i))) : null}
+        </Avatar>
         <p className={classes.roomName}>{selectedRoom}</p>
       </div>
       <div className={classes.wrapper}>

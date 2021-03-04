@@ -11,6 +11,10 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     background: '#43D4DD',
     border: '2px solid #e83e8c',
+    textAlign: 'center',
+    lineHeight: '44px',
+    fontSize: '25px',
+    display: 'block',
     marginRight: '8px',
   },
   dots: {
