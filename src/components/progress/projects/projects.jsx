@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import ProjColsp from "../../../assets/images/project-collpse.svg";
-
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import SelectProjects from "./user-row/projectslect"
-import UserRow from "./user-row/user-row.jsx";
+import SelectProjects from "./user-row/project-drop-down"
+import UserRow from "./user-row/user-record-row";
 import ProjectHeader from "./project-header/project-header"
 const Projects = ({defaultClass, setProjectOpenClass}) => {
     const [projectClass, setProjectClass] = useState(defaultClass);

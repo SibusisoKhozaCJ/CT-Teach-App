@@ -20,8 +20,9 @@ export function getProgressListOfTribe(tribeCode) {
         const tribeUsers = userTribeData.users;
         const lessionProgressInfo = await getAllUsersProgressLessions(tribeUsers);
         const tribesInfo = await getAllTribesInfo(userAlltribes);
-        debugger
+        const projectsData = await authFetch.firebaseGet("Projects/");
         dispatch({ type: Types.SAVE_PROGRESS_LIST, payload: lessionProgressInfo });
+        dispatch({ type: Types.SAVE_PROJECTS_LIST, payload: projectsData });
       }
     }
     dispatch({ type: Types.SET_LOADING, payload: false });
