@@ -13,7 +13,7 @@ import {
   codepanelSetCode,
   codepanelSetEditor,
   codepanelSetIsValid,
-  codepanelSetCheckpoints,
+  codepanelSetChallenges,
   codepanelSetProgress,
   codepanelSetTextareaRef
 } from "../../../redux/actions/codepanel-actions";
@@ -21,6 +21,7 @@ import { saveCodeToLocal } from "../utils/localStorage";
 import Tick from "./tick/tick";
 import * as authFetch from "../../../shared/lib/authorizedFetch";
 import Checker from "../components/checker/checker";
+import { currentUserId } from "../../../shared/lib/authentication";
 
 let timer = null;
 
@@ -39,14 +40,15 @@ const Editor = () => {
   const lesson = useSelector(state => state.codepanel.slides);
   const currentSlide = useSelector(state => state.codepanel.currentSlide);
   const isValid = useSelector(state => state.codepanel.isValid);
-  const userId = useSelector(state => state.user.userId);
+  const userId = currentUserId();
   const lessonId = "5-min-website";
-  const checkpoints = useSelector(state => state.codepanel.checkpoints);
-  const checkpointsCount = useSelector(state => state.codepanel.checkpointsCount);
+  const challenges = useSelector(state => state.codepanel.challenges);
+  const challengesCount = useSelector(state => state.codepanel.challengesCount);
   const isDesktop = useMediaQuery("(min-width:768px)");
   const textareaRef = useRef(null);
   const isCheckerActive = useSelector(state => state.codepanel.isCheckerActive);
   const [percent, setPercent] = useState(0);
+  const isBlocked = useSelector(state => state.codepanel.isBlocked);
 
   let challengesPrepared = null
 
@@ -57,15 +59,18 @@ const Editor = () => {
   }
 
   if (rules) {
-    const currentCheckpoint = checkpoints[lesson.slides[currentSlide].checkpoint_id]
-    if (currentCheckpoint.challenges) {
+    const currentChallenge = challenges[lesson.slides[currentSlide].checkpoint_id]
+    if (currentChallenge.validators) {
       challengesPrepared = rules.map((rule, index) => ({
         description: rule.description,
-        status: currentCheckpoint.challenges[index]
+        status: currentChallenge.validators[index]
       }))
     }
   }
 
+  useEffect(() => {
+    setCode(storedCode);
+  }, [storedCode, setCode])
 
   const dispatch = useDispatch();
 
@@ -103,7 +108,7 @@ const Editor = () => {
 
     const count = rules.length
     let completed = 0
-    const challenges = rules.map(rule => {
+    const validators = rules.map(rule => {
       if (!!code.match(rule.rule)) {
         completed++
         return true
@@ -113,7 +118,7 @@ const Editor = () => {
 
     const progress = Math.ceil((completed / count) * 100);
 
-    return { progress, challenges }
+    return { progress, validators }
   }
 
   useEffect(() => {
@@ -121,10 +126,12 @@ const Editor = () => {
   }, [dispatch, textareaRef])
 
   useEffect(() => {
-    console.log("checker")
-    const isCheckpoint = lesson.slides[currentSlide].checkpoint;
+    const isChallenge = lesson.slides[currentSlide].checkpoint;
+    if (isBlocked) {
+      return;
+    }
 
-    if (!isCheckpoint) {
+    if (!isChallenge) {
       dispatch(codepanelSetIsValid(true));
       if (userId) {
         const data = {
@@ -141,9 +148,9 @@ const Editor = () => {
       return;
     }
 
-    const checkpoint_id = lesson.slides[currentSlide].checkpoint_id || null;
+    const challenge_id = lesson.slides[currentSlide].checkpoint_id || null;
 
-    if (checkpoints[checkpoint_id].progress !== 100) {
+    if (challenges[challenge_id].progress !== 100) {
       const validated = validate(storedCode)
       setPercent(validated.progress);
       if ((validated.progress === 100) && !isValid) {
@@ -153,24 +160,24 @@ const Editor = () => {
         setIsAnimation(false);
       }
 
-      let newCheckpoints = {...checkpoints, [checkpoint_id]: validated};
-      let checkpoints_completed = 0
-      for (let i=1; i <= checkpointsCount; i++) {
-        if (checkpoints[i].progress === 100) {
-          checkpoints_completed++
+      let newChallenges = {...challenges, [challenge_id]: validated};
+      let challenges_completed = 0
+      for (let i=1; i <= challengesCount; i++) {
+        if (challenges[i].progress === 100) {
+          challenges_completed++
         }
       }
-      const progress = Math.ceil((checkpoints_completed / checkpointsCount) * 100);
+      const progress = Math.ceil((challenges_completed / challengesCount) * 100);
 
       dispatch(codepanelSetIsValid(validated.progress === 100));
-      dispatch(codepanelSetCheckpoints(newCheckpoints))
-      dispatch(codepanelSetProgress(progress))
+      dispatch(codepanelSetChallenges(newChallenges));
+      dispatch(codepanelSetProgress(progress));
 
       const data = {
         user_code: storedCode,
         current_slide: currentSlide,
         progress,
-        checkpoints: newCheckpoints,
+        challenges: newChallenges,
         last_updated: new Date().toISOString()
       }
 

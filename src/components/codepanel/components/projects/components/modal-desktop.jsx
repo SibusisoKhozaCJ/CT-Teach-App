@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 
 import ProjectsList from "./projects-list";
+import LessonsList from "./lessons-list";
 
 const  useStyles = makeStyles(theme => ({
   container: {
@@ -13,7 +14,7 @@ const  useStyles = makeStyles(theme => ({
   },
 
   projects: {
-    width: "45%",
+    width: "48%",
     height: "100%",
     overflowY: "scroll",
     backgroundColor: "rgba(255, 255, 255, .45)",
@@ -25,17 +26,34 @@ const  useStyles = makeStyles(theme => ({
     "&::-webkit-scrollbar": {
       display: "none"
     }
+  },
+  lessons: {
+    width: "48%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   }
 }));
 
 const ModalDesktop = ({ closeSidebar }) => {
   const classes = useStyles();
+  const [currentProjectId, setCurrentProjectId] = useState("5-min-website");
+
+  const selectProject = (id) => {
+    setCurrentProjectId(id);
+  }
 
   return (
     <div className={classes.container}>
       <div className={classes.projects}>
-      <ProjectsList closeSidebar={closeSidebar}/>
+        <ProjectsList closeSidebar={closeSidebar} selectProject={selectProject}/>
       </div>
+      {currentProjectId && (
+        <div className={classes.lessons}>
+          <LessonsList id={currentProjectId} isDesktop={true} closeSidebar={closeSidebar} />
+        </div>
+      )}
     </div>
   )
 }

@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 import { saveUser } from '../../../../redux/actions/user-actions';
 import { removeCookies } from "../../../../shared/lib/authentication";
@@ -17,7 +18,8 @@ import { AuthContext } from '../../../../shared/contexts/authContext';
 import {
   codepanelSetProjectsIsActive,
   codepanelSetLeaveNext,
-  codepanelSetLeaveIsActive
+  codepanelSetLeaveIsActive,
+  codepanelSetResetIsActive
 } from "../../../../redux/actions/codepanel-actions";
 
 import ProjectsIcon from "../../../../assets/images/rocket-icon.png";
@@ -152,6 +154,19 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
                 <Typography className={classes.itemText}>
                   Overview
                   <span>Home</span>
+                </Typography>
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem onClick={() => {
+                closeHandler();
+                dispatch(codepanelSetResetIsActive(true))
+              }}>
+              <ListItemIcon>
+                {/* <img width="30" height="30" src={DashboardIcon} className="coverage" alt="" /> */}
+                <RefreshIcon width="32" />
+                <Typography className={classes.itemText}>
+                  Reset
+                  <span>reset current lesson</span>
                 </Typography>
               </ListItemIcon>
             </MenuItem>

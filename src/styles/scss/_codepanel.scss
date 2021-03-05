@@ -5673,6 +5673,11 @@ a.menu-button.cross.close-tour .bar {
   width: 2.4em;
 }
 
+.close-tour:hover {
+  text-decoration: none;
+  color: #212529;
+}
+
 .is-userRegistered .register-CodeChallenge { display: none !important }
 .is-userRegistered .enter-CodeChallenge { display: block !important }
 

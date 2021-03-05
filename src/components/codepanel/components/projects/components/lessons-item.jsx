@@ -50,7 +50,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const LessonItem = ({ lesson, index, currentProgress }) => {
+const LessonItem = ({ lesson, index, currentProgress, closeSidebar }) => {
   const classes = useStyles();
 
   return (
@@ -61,7 +61,7 @@ const LessonItem = ({ lesson, index, currentProgress }) => {
       <span className={classes.title}>
         {lesson.title}
       </span>
-      <Link to={`/codepanel/${lesson.slug}`} className={classes.link}>
+      <Link onClick={closeSidebar} className={classes.link}>
         <PlayArrowIcon />
       </Link>
       <div className={classes.progress}>
