@@ -10,9 +10,9 @@ const initialState = {
   monaco: null,
   tab: 0,
   isValid: false,
-  checkpoints: null,
+  challenges: null,
   progress: 0,
-  checkpointsCount: 0,
+  challengesCount: 0,
   fontSize: 14,
   isPreviewVisible: true,
   textareaRef: null,
@@ -20,7 +20,10 @@ const initialState = {
   isCheckerActive: true,
   isProjectsActive: false,
   isLeaveActive: false,
-  leaveNext: null
+  leaveNext: null,
+  isTourActive: false,
+  isResetActive: false,
+  isBlocked: true,
 };
 
 const codepanelReducer = (state = initialState, action) => {
@@ -79,11 +82,11 @@ const codepanelReducer = (state = initialState, action) => {
     case Types.LESSON_SET_TAB: {
       return { ...state, tab: action.payload };
     }
-    case Types.LESSON_SET_CHECKPOINTS: {
-      return { ...state, checkpoints: action.payload };
+    case Types.LESSON_SET_CHALLENGES: {
+      return { ...state, challenges: action.payload };
     }
-    case Types.LESSON_SET_CHECKPOINTS_COUNT: {
-      return { ...state, checkpointsCount: action.payload };
+    case Types.LESSON_SET_CHALLENGES_COUNT: {
+      return { ...state, challengesCount: action.payload };
     }
     case Types.LESSON_SET_PROGRESS: {
       return { ...state, progress: action.payload };
@@ -114,6 +117,15 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_LEAVE_MODAL_NEXT: {
       return { ...state, leaveNext: action.payload };
+    }
+    case Types.LESSON_SET_TOUR_MODAL_ACTIVE: {
+      return { ...state, isTourActive: action.payload };
+    }
+    case Types.LESSON_SET_RESET_MODAL_ACTIVE: {
+      return { ...state, isResetActive: action.payload };
+    }
+    case Types.LESSON_SET_BLOCK_UPDATE: {
+      return { ...state, isBlocked: action.payload };
     }
     default:
       return state;

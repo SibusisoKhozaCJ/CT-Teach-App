@@ -1,9 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { codepanelSetLeaveIsActive } from "../../../redux/actions/codepanel-actions";
+import {
+  codepanelSetResetIsActive,
+  codepanelSetCode
+} from "../../../redux/actions/codepanel-actions";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -107,19 +109,17 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const LeaveModal = () => {
-  const history = useHistory();
+const ResetModal = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const next = useSelector(state => state.codepanel.leaveNext);
 
   const closeHandler = () => {
-    dispatch(codepanelSetLeaveIsActive(false));
+    dispatch(codepanelSetResetIsActive(false));
   }
 
-  const leaveHandler = () => {
-    dispatch(codepanelSetLeaveIsActive(false))
-    history.push(next)
+  const resetHandler = () => {
+    dispatch(codepanelSetCode(""));
+    dispatch(codepanelSetResetIsActive(false));
   }
 
   return (
@@ -130,16 +130,13 @@ const LeaveModal = () => {
       />
       <div className={classes.modal}>
         <h3 className={classes.header}>
-          Are you sure you want to leave the coding panel?
+          Are you sure you want to reset this lesson?
         </h3>
-        <p className={classes.text}>
-          Maybe you want to code 2 more mins.
-        </p>
         <div className={classes.buttons}>
           <button
             role="button"
             className={classes.btnYes}
-            onClick={leaveHandler}
+            onClick={resetHandler}
           >
             Yes
           </button>
@@ -148,7 +145,7 @@ const LeaveModal = () => {
             className={classes.btnLeave}
             onClick={closeHandler}
           >
-            Leave later
+            Hmmm, maybe not
           </button>
         </div>
       </div>
@@ -156,4 +153,4 @@ const LeaveModal = () => {
   )
 }
 
-export default LeaveModal;
+export default ResetModal;

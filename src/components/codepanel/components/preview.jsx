@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
 const useStyles = makeStyles(() => ({
@@ -60,6 +61,7 @@ const Preview = () => {
   const classes = useStyles();
   const preview = useSelector(state => state.codepanel.code);
   const [isLocked, setIsLoced] = useState(true);
+  const isDesktop = useMediaQuery("(min-width:758px)");
 
   return (
     <div className={classes.previewContainer}>
@@ -73,20 +75,22 @@ const Preview = () => {
       )}
       <iframe title="code preview" className={classes.previewIframe} srcDoc={preview} />
       {isLocked && (
-          <div className={classes.previewOverlay} />
+        <div className={classes.previewOverlay} />
       )}
-      <div
-        className={classes.lock}
-        onClick={() => setIsLoced(!isLocked)}
-      >
-        <svg className={classes.lockSvg} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-          {isLocked ? (
-            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
-          ) : (
-            <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
-          )}
-        </svg>
-      </div>
+      {!isDesktop && (
+        <div
+          className={classes.lock}
+          onClick={() => setIsLoced(!isLocked)}
+        >
+          <svg className={classes.lockSvg} focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+            {isLocked ? (
+              <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"></path>
+            ) : (
+              <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"></path>
+            )}
+          </svg>
+        </div>
+      )}
     </div>
   );
 };

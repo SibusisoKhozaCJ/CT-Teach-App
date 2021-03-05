@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { lessonsGetList } from "../../../../../redux/actions/lessons-actions";
 import { projectsGetById } from "../../../../../redux/actions/projects-actions";
@@ -14,7 +15,11 @@ const useStyles = makeStyles(() => ({
   root: {
     minHeight: "100%",
     width: "100%",
-    overflowX: "hidden"
+    overflowX: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   container: {
@@ -80,13 +85,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Lessons = ({id, backToProjects, closeSidebar}) => {
+const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const lessons = useSelector(state => state.lessons.lessonsList);
   const project = useSelector(state => state.projects.currentProject);
   const isLessonsLoading = useSelector(state => state.lessons.isLoading);
   const isProjectLoading = useSelector(state => state.projects.is);
+  const isDesktopQuery = useMediaQuery("(min-width:1275px)");
 
   useEffect(() => {
     if (isLessonsLoading === null) {
@@ -106,7 +112,7 @@ const Lessons = ({id, backToProjects, closeSidebar}) => {
   return (
     <div className={classes.root}>
       <Card
-        button={{
+        button={isDesktop ? null : {
           classes: "bottom-left",
           content: (
             <Link onClick={backToProjects}>
@@ -114,7 +120,8 @@ const Lessons = ({id, backToProjects, closeSidebar}) => {
             </Link>
           )
         }}
-        style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 24, margin: "20px 10px", minHeight: "80%"  }}
+        // style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 24, margin: "20px 10px", minHeight: "80%"  }}
+        style={{ backgroundColor: "#fff", padding: isDesktopQuery ? "31px 50px 48px 50px" : "11px 10px 18px 10px"}}
       >
         <h1 className={classes.title}>{project.title}</h1>
         <h2 className={classes.title}>Objective</h2>
@@ -127,10 +134,11 @@ const Lessons = ({id, backToProjects, closeSidebar}) => {
               key={index}
               lesson={lesson}
               currentProgress={87}
+              closeSidebar={closeSidebar}
             />)
           )}
         </ul>
-        <Link onClick={backToProjects} className={classes.back}>Back</Link>
+        {!isDesktop && <Link onClick={backToProjects} className={classes.back}>Back</Link>}
       </Card>
     </div>
 
