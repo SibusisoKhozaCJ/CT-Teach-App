@@ -17,7 +17,7 @@ import {
   codepanelSetProgress,
   codepanelSetSlideNumber,
   codepanelSetBlockUpdate
-} from '../../redux/actions/codepanel-actions'
+} from '../../redux/actions/codepanel-actions';
 import { getCodeFromLocal } from "./utils/localStorage"
 import * as authFetch from "../../shared/lib/authorizedFetch";
 import ProjectsModal from "./components/projects/projects-modal";
@@ -78,8 +78,8 @@ const Codepanel = ({ match: { params: { id } } }) => {
           current_slide && dispatch(codepanelSetSlideNumber(current_slide));
           challenges && dispatch(codepanelSetChallenges(challenges))
           user_code && dispatch(codepanelSetCode(user_code))
-          dispatch(codepanelSetBlockUpdate(false));
         }
+        dispatch(codepanelSetBlockUpdate(false));
       })
     }
 
