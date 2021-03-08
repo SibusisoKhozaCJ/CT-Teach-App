@@ -17,11 +17,15 @@ import Newicon from "../../assets/images/pls.svg";
 import Homeicon from "../../assets/images/home.svg";
 import ProjectsIcon from "../../assets/images/rocket-icon.png";
 import ToCodeIcon from "../../assets/images/toCode.png";
+import FriendIcon from "../../assets/images/friend.svg";
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
 };
-
+export const FriendSVG = () => {
+  return <img src={FriendIcon} alt="" />;
+};
+ 
 export const TribeSVG = () => {
   return <img src={Tribesicon} alt="" />;
 };
