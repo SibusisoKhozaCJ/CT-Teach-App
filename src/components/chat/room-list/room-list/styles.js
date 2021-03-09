@@ -15,12 +15,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
   avatar: {
+    fontFamily: 'Arial',
     background: '#43D4DD',
     border: '2px solid #e83e8c',
-    textAlign: 'center',
-    lineHeight: '44px',
-    fontSize: '25px',
-    display: 'block',
+    fontSize: '26px',
   },
   dots: {
     color: '#43D4DD',
