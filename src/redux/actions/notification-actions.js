@@ -1,4 +1,4 @@
-import { SET_NOTIFICATIONS, UPDATE_NOTIFICATIONS, DELETE_NOTIFICATIONS } from "../constants/notification-types";
+import { SET_NOTIFICATIONS, UPDATE_NOTIFICATIONS, DELETE_NOTIFICATIONS, SWITCH_NOTIFICATION_TYPE } from "../constants/notification-types";
 import { getCookies } from '../../shared/lib/authentication';
 import { snapshotToArray}  from './chat-action';
 import firebase from 'firebase';
@@ -73,4 +73,10 @@ export const deleteNotification = (messages, idRoom) => (dispatch) => {
     payload: idRoom,
   }
   )}
+}
+
+export const switchNotificationType = () => {
+  return {
+    type: SWITCH_NOTIFICATION_TYPE,
+  }
 }

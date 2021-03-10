@@ -17,7 +17,7 @@ import useStyles from './styles';
 const RoomList = React.memo(({ rooms }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { notificationByRooms } = useSelector(state => state.notification)
+  const { notificationByRooms, notificationWithNumber } = useSelector(state => state.notification)
 
   const selectRoomHandler = useCallback(
     (idRoom, name) => () => {
@@ -42,7 +42,7 @@ const RoomList = React.memo(({ rooms }) => {
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`${room.name}`} />
               <ListItemSecondaryAction>
-                <Badge badgeContent={notificationByRooms[room.idRoom]} classes={{ badge: classes.customBadge }} invisible={!notificationByRooms[room.idRoom]}/>
+                <Badge badgeContent={notificationWithNumber ? notificationByRooms[room.idRoom] : null} classes={{ badge: classes.customBadge }} invisible={!notificationByRooms[room.idRoom]}/>
               </ListItemSecondaryAction>
             </ListItem>
           );
