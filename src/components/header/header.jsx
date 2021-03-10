@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
+
 import {
   Person as AccountIcon,
   ArrowBack as ArrowBackIcon,
@@ -10,7 +11,9 @@ import {
   AccountSvg,
   ChatSvg,
   MenuSvg,
+  HomeSVG
 } from "../../shared/svgs/menu-items";
+
 // styles
 import useStyles from "./styles";
 
@@ -99,8 +102,11 @@ export default function Header() {
                 ),
               }}
             />
+           
           )}
+          
         </IconButton>
+         <div className="headhomeiocn"> < HomeSVG/></div>
         <Typography variant="h6" weight="medium" className="headerlogotext">
           {location.pathname === "/tribe" ? "Tribes" : ""}
         </Typography>
