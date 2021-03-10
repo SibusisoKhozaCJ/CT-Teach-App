@@ -19,8 +19,9 @@ import {
   CHAT_STATUS,
 } from '../constants/chat-types';
 import { getCookies } from '../../shared/lib/authentication';
+import {setNotifictation, updateNotification, deleteNotification} from '../actions/notification-actions';
 
-const snapshotToArray = snapshot => {
+export const snapshotToArray = snapshot => {
   const returnArr = [];
 
   snapshot.forEach(childSnapshot => {
@@ -66,22 +67,33 @@ export const increaseLimit = () => ({ type: INCREASE_LIMIT });
 export const setInitialLimit = () => ({ type: SET_INITIAL_LIMIT });
 
 export const fetchMessages = () => (dispatch, getState) => {
-  const { idRoom, limit } = getState().chat;
+  const { idRoom, limit, chatStatus} = getState().chat;
   dispatch({
     type: FETCH_MESSAGES_START,
   });
-  firebase
+  const listener = firebase
     .database()
-    .ref('messages/')
+    .ref('messages/');
+
+  listener
     .limitToLast(limit)
     .orderByChild('idRoom')
     .equalTo(idRoom)
     .on('value', snapshot => {
+
+      if (chatStatus === "roomlist") {
+        listener.off('value');
+      }
+
       const messages = snapshotToArray(snapshot);
+
+      dispatch(deleteNotification(messages, idRoom));
+
       dispatch({
         type: FETCH_MESSAGES_SUCCESS,
         payload: messages,
       });
+
     });
 };
 
@@ -168,6 +180,7 @@ const fetchPrivateChats = dispatch => {
               type: UPDATE_CHATS,
               rooms: privateChats,
             });
+            dispatch(setNotifictation());
           }
         } else {
           if (isInitialFetch) {
@@ -212,6 +225,7 @@ const fetchOwnTribeChat = dispatch => {
               type: UPDATE_CHATS,
               rooms: tribesChats,
             });
+            dispatch(setNotifictation());
           }
         } else {
           if (isInitialFetch) {
@@ -260,6 +274,7 @@ const fetchJoinedTribeChats = dispatch => {
                   type: UPDATE_CHATS,
                   rooms: tribesJoinedChats,
                 });
+                dispatch(setNotifictation());
               }
             })
             .catch(error => {
@@ -294,6 +309,8 @@ export const fetchRooms = () => dispatch => {
         type: FETCH_ROOMS_SUCCESS,
         rooms: flattedRooms,
       });
+      dispatch(setNotifictation());
+      dispatch(updateNotification());
     })
     .catch(() => {
       dispatch({

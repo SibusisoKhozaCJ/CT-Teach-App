@@ -1,12 +1,12 @@
 import { Types } from '../constants/codepanel-types';
 
-export const codepanelSetCheckpoints = checkpoints => ({
-  type: Types.LESSON_SET_CHECKPOINTS,
-  payload: checkpoints
+export const codepanelSetChallenges = challenges => ({
+  type: Types.LESSON_SET_CHALLENGES,
+  payload: challenges
 });
 
-export const codepanelSetCheckpointsCount = count => ({
-  type: Types.LESSON_SET_CHECKPOINTS_COUNT,
+export const codepanelSetChallengesCount = count => ({
+  type: Types.LESSON_SET_CHALLENGES_COUNT,
   payload: count
 });
 
@@ -107,4 +107,29 @@ export const codepanelSetCheckerActive = isActive => ({
 export const codepanelSetProjectsIsActive = isActive => ({
   type: Types.LESSON_SET_PROJECTS_ACTIVE,
   payload: isActive
+});
+
+export const codepanelSetLeaveIsActive = isActive => ({
+  type: Types.LESSON_SET_LEAVE_MODAL_ACTIVE,
+  payload: isActive
+});
+
+export const codepanelSetLeaveNext = next => ({
+  type: Types.LESSON_SET_LEAVE_MODAL_NEXT,
+  payload: next
+});
+
+export const codepanelSetTourIsActive = isActive => ({
+  type: Types.LESSON_SET_TOUR_MODAL_ACTIVE,
+  payload: isActive
+});
+
+export const codepanelSetResetIsActive = isActive => ({
+  type: Types.LESSON_SET_RESET_MODAL_ACTIVE,
+  payload: isActive
+});
+
+export const codepanelSetBlockUpdate = isBlock => ({
+  type: Types.LESSON_SET_BLOCK_UPDATE,
+  payload: isBlock
 });

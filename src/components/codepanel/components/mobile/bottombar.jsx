@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { Menu, MenuItem } from "@material-ui/core";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 import KeyboardTabIcon from "@material-ui/icons/KeyboardTab";
 import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
@@ -23,6 +24,7 @@ import {
 } from '../../../../redux/actions/codepanel-actions';
 import CodepanelLogoIcon from "../../../../assets/images/codepanel-logo.png";
 import SideMenu from "../side-menu";
+import { openFullscreen, closeFullscreen } from "../../utils/fullscreen";
 
 const useStyles = makeStyles((theme) => ({
   mobileBottomBar: {
@@ -61,6 +63,7 @@ const Bottombar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const textareaRef = useSelector(state => state.codepanel.textareaRef);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -122,10 +125,13 @@ const Bottombar = () => {
             </div>
             <IconButton
               aria-label="Full Screen"
-              onClick={() => {}}
+              onClick={() => {
+                isFullscreen ? closeFullscreen() : openFullscreen();
+                setIsFullscreen(!isFullscreen);
+              }}
               title="Full Screen"
             >
-              <FullscreenIcon />
+              {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
             </IconButton>
           </>
         )}

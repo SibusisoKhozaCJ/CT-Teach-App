@@ -9,6 +9,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import PropTypes from 'prop-types';
 import Badge from '@material-ui/core/Badge';
+import { useSelector } from 'react-redux';
 
 import { enterChatRoom } from '../../../../redux/actions/chat-action';
 import useStyles from './styles';
@@ -16,6 +17,7 @@ import useStyles from './styles';
 const RoomList = React.memo(({ rooms }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { notificationByRooms, notificationWithNumber } = useSelector(state => state.notification)
 
   const selectRoomHandler = useCallback(
     (idRoom, name) => () => {
@@ -43,7 +45,7 @@ const RoomList = React.memo(({ rooms }) => {
               </ListItemAvatar>
               <ListItemText id={labelId} primary={`${room.name}`} />
               <ListItemSecondaryAction>
-                <Badge badgeContent={5} classes={{ badge: classes.customBadge }} invisible={false} />
+                <Badge badgeContent={notificationWithNumber ? notificationByRooms[room.idRoom] : null} classes={{ badge: classes.customBadge }} invisible={!notificationByRooms[room.idRoom]}/>
               </ListItemSecondaryAction>
             </ListItem>
           );

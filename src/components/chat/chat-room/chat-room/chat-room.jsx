@@ -24,7 +24,7 @@ import { selectedChat } from '../../../../redux/selectors/selectors';
 function ChatRoom() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { idRoom, selectedRoom, chatStatus, messages, loadingMessages, limit } = useSelector(selectedChat);
+  const { idRoom, selectedRoom, chatStatus, messages, loadingMessages, limit, rooms } = useSelector(selectedChat);
   const initialChat = {
     idRoom: '',
     roomname: '',
@@ -33,10 +33,27 @@ function ChatRoom() {
     createdAt: '',
     type: '',
     code: false,
+    notificationTo: '',
     status: 'unread',
   };
 
-  const { userFirstName } = getCookies();
+  const notificationToFriend = () => {
+    return firebase
+      .database()
+      .ref(`Users/${userId}/friends`)
+      .get()
+      .then(data => [data.val().filter( friend => friend.idRoom === idRoom)[0].friendId]); 
+  }
+
+  const notificationToTribe = () => {
+    return firebase
+      .database()
+      .ref(`Tribes/${idRoom}/users`)
+      .get()
+      .then(data => data.val().filter( tribeUsers => tribeUsers !== userId))
+  }
+
+  const { userId, userFirstName } = getCookies();
   const [newchat, setNewchat] = useState(initialChat);
 
   useEffect(() => {
@@ -73,9 +90,15 @@ function ChatRoom() {
     chat.createdAt = firebase.database.ServerValue.TIMESTAMP;
     chat.type = 'message';
     chat.code = !!code;
-    const newMessage = firebase.database().ref('messages/').push();
-    newMessage.set(chat);
-    setNewchat(initialChat);
+    let response = rooms.find(elem => elem.idRoom === idRoom && elem.isPrivateRoom) ? notificationToFriend() : notificationToTribe();
+      response.then(data => {
+        chat.notificationTo = data;
+      })
+      .then(() => {
+        const newMessage = firebase.database().ref('messages/').push();
+        newMessage.set(chat);
+        setNewchat(initialChat)
+      }) 
   };
 
   const memoizedMessage = useMemo(

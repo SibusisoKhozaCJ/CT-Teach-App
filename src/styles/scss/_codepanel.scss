@@ -1573,6 +1573,12 @@ justify-content: center;
 -webkit-align-items: center;
 align-items: center;
 }
+.swiper-wrapper .swiper-slide {
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  height: 100%;
+}
 .is-desktop .swiper-slide {
 	Xheight: fit-content !important;
 }
@@ -5665,6 +5671,11 @@ a.menu-button.cross.close-tour {
 
 a.menu-button.cross.close-tour .bar {
   width: 2.4em;
+}
+
+.close-tour:hover {
+  text-decoration: none;
+  color: #212529;
 }
 
 .is-userRegistered .register-CodeChallenge { display: none !important }
