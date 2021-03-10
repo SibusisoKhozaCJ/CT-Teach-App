@@ -3,18 +3,14 @@ import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   TribeSVG,
   HomeSVG,
+  FriendSVG,
   MissionSvg,
-  NotificationSvg,
-  ShareSvg,
   InviteSvg,
-  ProfileSvg,
   GallerySvg,
-  SkillsSvg,
-  FeedbackSvg,
-  ProgressSvg,
-  NewSVG,
+  FeedbackSvg, 
   ProjectsSvg,
-  ToCodeSvg
+  ToCodeSvg,
+  ProgressSvg,
 } from "../../shared/svgs/menu-items";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
@@ -25,44 +21,31 @@ import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSideBar } from "../../redux/actions/side-actions";
-import Popover from "@material-ui/core/Popover";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
 import routes from "../../routes";
-import ContactsIcon from '@material-ui/icons/Contacts';
 import { codepanelSetProjectsIsActive } from "../../redux/actions/codepanel-actions";
 
 
 let sidebarStructure = [
-  { id: 0, label: "Home", link: "/home", icon: <HomeSVG /> },
+ {  type: "divider" },
   {
     id: 1,
     label: "Tribes",
     link: "/tribe",
     icon: <TribeSVG />,
   },
-{ id: 11, label: "Friends", link: "/friends", icon: <ContactsIcon />},
-{ id: 12, label: "PROGRESS", link: "/progress", icon: <ProgressSvg /> },
+  
+{ id: 11, label: "Friends", link: "/friends", icon: <FriendSVG />},
+ { id: 8, label: "Gallery", link: "/", icon: <GallerySvg /> },
+ {  type: "divider" },
   { id: 2, label: "Goals", link: "/", icon: <MissionSvg /> },
-  { id: 5, type: "divider" },
-  {
-    id: 3,
-    label: "Notifications",
-    link: "/",
-    icon: <NotificationSvg />,
-  },
-  {
-    id: 4,
-    label: "Share",
-    link: "/",
-    icon: <ShareSvg />,
-  },
+  { id: 12, label: "Progress", link: "/progress", icon: <ProgressSvg /> },
+  {  type: "divider" },
+ 
+  
 
   { id: 6, label: "Invite", link: "/", icon: <InviteSvg /> },
-  { id: 7, label: "Profile", link: "/", icon: <ProfileSvg /> },
-  { id: 8, label: "Gallery", link: "/", icon: <GallerySvg /> },
-  { id: 9, label: "Skills", link: "/", icon: <SkillsSvg /> },
   { id: 10, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
 ];
 

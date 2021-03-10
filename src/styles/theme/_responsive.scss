@@ -84,6 +84,7 @@
 		}
 		.headermenubutton {
 			left: 0;
+			z-index: 999;
 		}
 	}
 	.tribe-page{
@@ -192,6 +193,8 @@
 		margin-bottom: 20px;
 		.tocode-tagsidebar {
 			margin-right: 20px;
+			font-weight: 700;
+font-size: 20px;
 		}
 	}
 	.tribe-page .tribe-expandtext .expand-icontext button img {
