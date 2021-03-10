@@ -7,23 +7,21 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const SelectProjects = ({ defaultClass }) => {
-  const [projectClass, setProjectClass] = useState(defaultClass);
-  const [selectproject, setSelectedProject] = useState("Project1");
-  const handleChange = (event) => {
+const SelectProjects = ({traningData, selectedTraning,selectproject,setSelectedProject, setSelectedTraning, lessionClass, setLessionClass, projectList, setProjectOpenClass }) => {
+  const handleProjectChange = (event) => {
     setSelectedProject(event.target.value);
   };
+  const handleTraningChange = (event) => {
+    setSelectedTraning(event.target.value);
+  };
   return (
-
     <>
-    <div className="project-slect">
+    {lessionClass === "" && (
+      <div className="project-slect">
       <div className="select-header">
         <div className="slt-btn">
           <button
-            onClick={() =>
-              projectClass !== "project1"
-                ? setProjectClass("project1")
-                : setProjectClass("")
+            onClick={() => setProjectOpenClass("")
             }
           >
             <img src={ProjColsp} />
@@ -39,12 +37,11 @@ const SelectProjects = ({ defaultClass }) => {
               id="demo-simple-select-filled"
               value={selectproject}
               name="type"
-              onChange={handleChange}
+              onChange={handleProjectChange}
             >
-              <MenuItem value={"Project1"}>  Project1</MenuItem>
-              <MenuItem value={"Project2"}>  Project2</MenuItem>
-              <MenuItem value={"Project3"}>  Project3</MenuItem>
-              <MenuItem value={"Project4"}>  Project4</MenuItem>
+              {projectList.map((project,index)=>(
+                <MenuItem value={project.id}>{project.title}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
@@ -60,15 +57,13 @@ const SelectProjects = ({ defaultClass }) => {
       </div>
     </div>
 
+    )}
+    {lessionClass !== "" && (
     <div className="project-slect">
       <div className="select-header">
         <div className="slt-btn">
           <button
-            onClick={() =>
-              projectClass !== "project1"
-                ? setProjectClass("project1")
-                : setProjectClass("")
-            }
+            onClick={() => setLessionClass("")}
           >
             <img src={ProjColsp} />
           </button>
@@ -81,14 +76,13 @@ const SelectProjects = ({ defaultClass }) => {
             <Select
               labelId="slect-filled-label"
               id="demo-simple-select-filled"
-              value={selectproject}
+              value={selectedTraning}
               name="type"
-              onChange={handleChange}
+              onChange={handleTraningChange}
             >
-              <MenuItem value={"Project1"}> T1</MenuItem>
-              <MenuItem value={"Project2"}> T2</MenuItem>
-              <MenuItem value={"Project3"}>  T3</MenuItem>
-              <MenuItem value={"Project4"}> T4</MenuItem>
+              {traningData.map((training,index)=>(
+                <MenuItem value={training.id}>{training.id}</MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
@@ -103,8 +97,9 @@ const SelectProjects = ({ defaultClass }) => {
 
       </div>
     </div>
+    )}
 
-    </>
+    </> 
   );
 };
 
