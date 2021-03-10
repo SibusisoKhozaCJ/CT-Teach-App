@@ -32,6 +32,7 @@ export default function Header() {
   const [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
   const {user, userId} = useSelector(state => state.user);
+  const { sumNotifications, notificationWithNumber } = useSelector(state => state.notification)
   const { setUser, setTokens } = useContext(AuthContext);
   const dispatch = useDispatch();
   const [idFromUrl, setIdFromUrl] = useState('');
@@ -111,9 +112,9 @@ export default function Header() {
           onClick={handleClickShowChat}
         >
           <Badge
-            badgeContent={5}
+            badgeContent={notificationWithNumber ? sumNotifications : null}
             color="secondary"
-            invisible={false}
+            invisible={!sumNotifications}
             classes={{ badge: classes.customBadge }}
           >
             <ChatSvg classes={{ root: classes.headerIcon }} />
