@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
   overflowY: "scroll",
 }));
 
-const Projects = ({ closeSidebar }) => {
+const Projects = ({ closeSidebar, selectProject }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const projects = useSelector(state => state.projects.projectsList);
@@ -36,7 +36,7 @@ const Projects = ({ closeSidebar }) => {
 
   return (
     <div className={classes.root}>
-      {projects.map(project => <ProjectsItem project={project} closeSidebar={closeSidebar}/>)}
+      {projects.map(project => <ProjectsItem project={project} closeSidebar={closeSidebar} selectProject={selectProject}/>)}
     </div>
   )
 };

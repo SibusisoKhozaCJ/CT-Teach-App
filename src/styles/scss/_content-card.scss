@@ -7,8 +7,8 @@
 }
 
 .content-card__btn {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,4 +27,19 @@
   position: absolute;
   bottom: -22px;
   right: 35px;
+}
+
+@media (min-width:768px) {
+  .content-card__btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .content-card__btn.content-card__btn--bottom-left {
+    bottom: -17px;
+  }
+
+  .content-card__btn.content-card__btn--bottom-right {
+    bottom: -17px;
+  }
 }

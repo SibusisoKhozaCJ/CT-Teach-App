@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Media from "react-media";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
 import { getLesson } from "./data/getLesson";
 import MobileLayout from './components/mobile/mobile-layout'
@@ -10,23 +11,35 @@ import Preview from './components/preview'
 import Slider from './components/slider'
 import {
   codepanelSetSlides,
-  codepanelSetCheckpoints,
-  codepanelSetCheckpointsCount,
+  codepanelSetChallenges,
+  codepanelSetChallengesCount,
   codepanelSetCode,
   codepanelSetProgress,
-  codepanelSetSlideNumber
-} from '../../redux/actions/codepanel-actions'
+  codepanelSetSlideNumber,
+  codepanelSetBlockUpdate
+} from '../../redux/actions/codepanel-actions';
 import { getCodeFromLocal } from "./utils/localStorage"
 import * as authFetch from "../../shared/lib/authorizedFetch";
 import ProjectsModal from "./components/projects/projects-modal";
+import LeaveModal from "./components/leave-modal";
+import TakeTour from "./components/take-tour";
+import ResetModal from "./components/reset-modal";
+import { currentUserId } from "../../shared/lib/authentication";
 
 
 const Codepanel = ({ match: { params: { id } } }) => {
   const dispatch = useDispatch();
   const lesson = getLesson(id);
-  const userId = useSelector(state => state.user.userId);
+  // const userId = useSelector(state => state.user.userId);
+  const userId = currentUserId();
   const lessonId = "5-min-website";
   const isProjectsActive = useSelector(state => state.codepanel.isProjectsActive);
+  const isLeaveActive = useSelector(state => state.codepanel.isLeaveActive);
+  const isTourActive = useSelector(state => state.codepanel.isTourActive);
+  const isResetActive = useSelector(state => state.codepanel.isResetActive);
+  const [panel, setPanels] = useState(null)
+
+  const history = useHistory()
 
   const getProgressData = async (userId, lessonId) => {
     return await authFetch.firebaseGet(
@@ -35,74 +48,79 @@ const Codepanel = ({ match: { params: { id } } }) => {
   }
 
   useEffect(() => {
-    console.log("lesson",lesson)
+    dispatch(codepanelSetBlockUpdate(true));
     dispatch(codepanelSetSlides(lesson));
 
-    if (typeof localStorage !== "undefined") {
-      const code = getCodeFromLocal();
-      if (code) {
-        dispatch(codepanelSetCode(code));
-      }
+    // if (typeof localStorage !== "undefined") {
+    //   const code = getCodeFromLocal();
+    //   if (code) {
+    //     dispatch(codepanelSetCode(code));
+    //   }
+    // }
 
-      let count = 0;
-      let checkpoints = {};
-      for (let i = 0; i < lesson.slides.length; i++) {
-        if (lesson.slides[i].reg) {
-          const challenges = lesson.slides[i].reg.map(() => false);
-          checkpoints[count + 1] = { progress: 0, challenges };
-          count++;
+    let count = 0;
+    let challenges = {};
+    for (let i = 0; i < lesson.slides.length; i++) {
+      if (lesson.slides[i].reg) {
+        const validators = lesson.slides[i].reg.map(() => false);
+        challenges[count + 1] = { progress: 0, validators };
+        count++;
+      }
+    }
+    dispatch(codepanelSetChallengesCount(count));
+    dispatch(codepanelSetChallenges(challenges));
+
+    if (userId) {
+      getProgressData(userId, lessonId).then(data => {
+        if (data) {
+          const { challenges, progress, current_slide, user_code } = data
+          progress && dispatch(codepanelSetProgress(progress));
+          current_slide && dispatch(codepanelSetSlideNumber(current_slide));
+          challenges && dispatch(codepanelSetChallenges(challenges))
+          user_code && dispatch(codepanelSetCode(user_code))
         }
-      }
-      dispatch(codepanelSetCheckpointsCount(count));
-      dispatch(codepanelSetCheckpoints(checkpoints));
-
-      if (userId) {
-        getProgressData(userId, lessonId).then(data => {
-          if (data) {
-            const { checkpoints, progress, current_slide, user_code } = data
-            progress && dispatch(codepanelSetProgress(progress));
-            current_slide && dispatch(codepanelSetSlideNumber(current_slide));
-            checkpoints && dispatch(codepanelSetCheckpoints(checkpoints))
-            user_code && dispatch(codepanelSetCode(user_code))
-          }
-        })
-      }
-
+        dispatch(codepanelSetBlockUpdate(false));
+      })
     }
 
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", resizeListener);
-      return () => {
-        window.removeEventListener('resize', resizeListener);
-      }
-    }
-  }, [id]);
+  }, [id, userId, lessonId]);
 
-  const resizeListener = () => {
-    let ivh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${ivh}px`);
-  }
+  // const navigateHandler = (e) => {
+    // console.log("back")
+    // const r = confirm("You pressed a Back button! Are you sure?!");
+    // const r = false;
+    // if (r == true) {
+      // history.back();
+    // } else {
+      // history.pushState(null, null, window.location.pathname);
+    // }
+    // history.pushState(null, null, window.location.pathname);
+  // }
 
   // useEffect(() => {
-  //   window.addEventListener('beforeunload', alertUser);
-  //   window.addEventListener('unload', handleEndConcert);
-  //   return () => {
-  //     window.removeEventListener('beforeunload', alertUser);
-  //     window.removeEventListener('unload', handleEndConcert);
-  //     handleEndConcert();
+  //   if (typeof window !== "undefined") {
+  //     console.log("setup popstate listener")
+  //     window.addEventListener('popstate', function(event) {
+  //   // The popstate event is fired each time when the current history entry changes.
+
+  //   // var r = confirm("You pressed a Back button! Are you sure?!");
+  //   const r = false;
+
+  //   if (r == true) {
+  //       // Call Back button programmatically as per user confirmation.
+  //       history.back();
+  //       // Uncomment below line to redirect to the previous page instead.
+  //       // window.location = document.referrer // Note: IE11 is not supporting this.
+  //   } else {
+  //       // Stay on the current page.
+  //       history.pushState(null, null, window.location.pathname);
   //   }
-  // }, [])
 
-  // const handleEndConcert = async () => {
-  //   console.log("leave");
-  // }
+  //   history.pushState(null, null, window.location.pathname);
 
-  // const alertUser = e => {
-  //   e.preventDefault()
-  //   e.returnValue = ''
-  // }
+// }, false);
+  //   }
+  // });
 
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,
@@ -112,24 +130,29 @@ const Codepanel = ({ match: { params: { id } } }) => {
 
   return (
     <>
-    <Media
-      queries={{
-        mobile: "(max-width: 767px)",
-        desktop: "(min-width: 768px)"
-      }}
-    >
-      {matches => (
-        <>
-          {matches.desktop && (
-            <DesktopLayout {...panels}/>
-          )}
-          {matches.mobile && (
-            <MobileLayout {...panels}/>
-          )}
-        </>
+      {panels && (
+        <Media
+        queries={{
+          mobile: "(max-width: 767px)",
+          desktop: "(min-width: 768px)"
+        }}
+      >
+        {matches => (
+          <>
+            {matches.desktop && (
+              <DesktopLayout {...panels}/>
+            )}
+            {matches.mobile && (
+              <MobileLayout {...panels}/>
+            )}
+          </>
+        )}
+      </Media>
       )}
-    </Media>
     {isProjectsActive && <ProjectsModal />}
+    {isLeaveActive && <LeaveModal />}
+    {isTourActive && <TakeTour />}
+    {isResetActive && <ResetModal />}
     </>
   )
 };

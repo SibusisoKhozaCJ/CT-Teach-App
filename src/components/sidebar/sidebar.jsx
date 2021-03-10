@@ -11,6 +11,7 @@ import {
   GallerySvg,
   SkillsSvg,
   FeedbackSvg,
+  ProgressSvg,
   NewSVG,
   ProjectsSvg,
   ToCodeSvg
@@ -42,6 +43,7 @@ let sidebarStructure = [
     icon: <TribeSVG />,
   },
 { id: 11, label: "Friends", link: "/friends", icon: <ContactsIcon />},
+{ id: 12, label: "PROGRESS", link: "/progress", icon: <ProgressSvg /> },
   { id: 2, label: "Goals", link: "/", icon: <MissionSvg /> },
   { id: 5, type: "divider" },
   {
