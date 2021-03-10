@@ -14,6 +14,8 @@ const SelectProjects = ({ defaultClass }) => {
     setSelectedProject(event.target.value);
   };
   return (
+
+    <>
     <div className="project-slect">
       <div className="select-header">
         <div className="slt-btn">
@@ -57,6 +59,52 @@ const SelectProjects = ({ defaultClass }) => {
 
       </div>
     </div>
+
+    <div className="project-slect">
+      <div className="select-header">
+        <div className="slt-btn">
+          <button
+            onClick={() =>
+              projectClass !== "project1"
+                ? setProjectClass("project1")
+                : setProjectClass("")
+            }
+          >
+            <img src={ProjColsp} />
+          </button>
+        </div>
+        <div className="projectslect">
+          <FormControl variant="filled">
+            <InputLabel id="slect-filled-label">
+             Training 
+                      </InputLabel>
+            <Select
+              labelId="slect-filled-label"
+              id="demo-simple-select-filled"
+              value={selectproject}
+              name="type"
+              onChange={handleChange}
+            >
+              <MenuItem value={"Project1"}> T1</MenuItem>
+              <MenuItem value={"Project2"}> T2</MenuItem>
+              <MenuItem value={"Project3"}>  T3</MenuItem>
+              <MenuItem value={"Project4"}> T4</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div className="nextpevselect">
+          <button >
+            <img src={Arrowleft} />
+          </button>
+          <button >
+            <img src={Arrowright} />
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    </>
   );
 };
 

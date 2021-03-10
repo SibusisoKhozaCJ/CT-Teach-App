@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CrsArrow from "../../../../assets/images/crossarow.svg";
+import Training from "../../training/training"
 const ProjectHeader = ({ progress, projectData, lessionClass, setLessionClass }) => {
   const [checkpointList, setCheckpointList] = useState(0);
   useEffect(() => {
@@ -12,6 +13,7 @@ const ProjectHeader = ({ progress, projectData, lessionClass, setLessionClass })
     setCheckpointList(checjList)
   }, [])
   return (
+    <>
     <div className="theader">
       {/* Lession Checks(Task) */}
       {checkpointList && checkpointList.length > 0 && (
@@ -30,10 +32,10 @@ const ProjectHeader = ({ progress, projectData, lessionClass, setLessionClass })
                 <img src={CrsArrow} />
               </div>
             </div>
-            <div
+            {/* <div
               className={
                 lessionClass === "lession" + index
-                  ? "header-table"
+                  ? "header-table header-table-close"
                   : "header-table header-table-close"
               }
             >
@@ -42,13 +44,18 @@ const ProjectHeader = ({ progress, projectData, lessionClass, setLessionClass })
                     <div className="table_header">{index+1}</div>
                 ))
               )}
-            </div>
+            </div> */}
           </>
         ))
       )}
       {/* Lession Checks(Task) End */}
       <div className="table_header"></div>
+
+     
     </div>
+
+   <Training />
+     </>
   );
 };
 export default ProjectHeader;
