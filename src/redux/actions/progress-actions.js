@@ -68,3 +68,19 @@ async function getAllUsersProgressLessions(progessUsers) {
 }
 
 
+export function getCourseProjects(coursId) {
+  return async function (dispatch, getState) {
+    dispatch({ type: Types.SET_LOADING, payload: true });
+      const projectsData = await authFetch.firebaseGet("Project/" + coursId);
+      const TrainingDataData = await authFetch.firebaseGet("Training/" + coursId);
+      if(projectsData){
+        dispatch({ type: Types.SAVE_PROJECTS_LIST, payload: projectsData });
+      }
+      if(TrainingDataData){
+        dispatch({ type: Types.SAVE_TRANING_LIST, payload: TrainingDataData });
+      }
+      dispatch({ type: Types.SET_LOADING, payload: false });
+  };
+}
+
+

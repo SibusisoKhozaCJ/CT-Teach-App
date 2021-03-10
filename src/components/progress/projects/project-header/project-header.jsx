@@ -1,54 +1,38 @@
 import React, { useEffect, useState } from "react";
 import CrsArrow from "../../../../assets/images/crossarow.svg";
-const ProjectHeader = ({ progress, projectData, lessionClass, setLessionClass }) => {
-  const [checkpointList, setCheckpointList] = useState(0);
-  useEffect(() => {
-    const chkList = progress.progressInfo && progress.progressInfo[projectData.name] && progress.progressInfo[projectData.name].checkpoints ? progress.progressInfo[projectData.name].checkpoints : [];
-    let checjList = []
-    const refinedList = chkList.map((check, index) => {
-      if (check)
-        checjList.push(check);
-    })
-    setCheckpointList(checjList)
-  }, [])
+import Training from "../../training/training"
+const ProjectHeader = ({ traningData,selectproject, lessionClass, selectedTraning, setLessionClass, setSelectedTraning }) => {
   return (
-    <div className="theader">
-      {/* Lession Checks(Task) */}
-      {checkpointList && checkpointList.length > 0 && (
-        checkpointList.map((tasks, index) => (
+    <>
+    {selectedTraning === "" && (
+      <div className="theader">
+      {traningData && traningData.length > 0 && (
+        traningData.map((traning, index) => (
           <>
             <div className="table_header">
-              {"T" + index}
+              {traning.id}
               <div
                 className="crsarrow"
-                onClick={() =>
+                onClick={() => {
                   lessionClass !== "lession" + index
                     ? setLessionClass("lession" + index)
-                    : setLessionClass("")
+                    : setLessionClass("") ; setSelectedTraning(traning.id)}
                 }
               >
                 <img src={CrsArrow} />
               </div>
             </div>
-            <div
-              className={
-                lessionClass === "lession" + index
-                  ? "header-table"
-                  : "header-table header-table-close"
-              }
-            >
-              {tasks.challenges && tasks.challenges.length > 0 && (
-                tasks.challenges.map((challenge,index)=>(
-                    <div className="table_header">{index+1}</div>
-                ))
-              )}
-            </div>
+            
           </>
         ))
       )}
-      {/* Lession Checks(Task) End */}
       <div className="table_header"></div>
     </div>
+    )}
+    {selectedTraning !== "" && (
+     <Training selectproject={selectproject} traningData={traningData} selectedTraning={selectedTraning}  />
+    )}
+     </>
   );
 };
 export default ProjectHeader;

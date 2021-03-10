@@ -23,7 +23,7 @@ const UserRow = ({ progress, projectData, lessionClass }) => {
             <div className="table_small">
               <LinearProgress variant="determinate" value={tasks.progress} />
             </div>
-            <div
+            {/* <div
               className={
                 lessionClass === "lession"+index
                   ? "header-new-row "
@@ -35,7 +35,7 @@ const UserRow = ({ progress, projectData, lessionClass }) => {
                   <div className={challenge ? "test-div blue" : "test-div"}></div>
                 ))
               )}
-            </div>
+            </div> */}
           </>
         )))}
 
