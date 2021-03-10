@@ -47,6 +47,12 @@ const getTribeInfoAsync = tribeCode =>
       .once('value', snapshot => res(snapshot.val()));
   });
 
+const getFriendInfo = friendId => 
+    firebase
+      .database()
+      .ref(`Users/${friendId}`)
+      .once('value', snapshot => snapshot);
+
 export const setRoomLIst = () => ({
   type: SET_ROOM_LIST,
   chatStatus: CHAT_STATUS.roomlist,
@@ -156,11 +162,13 @@ const fetchPrivateChats = dispatch => {
         const userFriends = snapshot.val();
         const privateChats = [];
         if (userFriends) {
-          userFriends.forEach(friend => {
+          userFriends.forEach(async friend => {
+            const friendInfo = (await getFriendInfo(friend.friendId)).val();
             privateChats.push({
-              name: `${friend.firstname} ${friend.lastname}`,
+              name: `${friendInfo.firstname} ${friendInfo.lastname}`,
               idRoom: friend.idRoom,
               isPrivateRoom: true,
+              emojiCode: friendInfo.emojiCode || "&#128512", 
               unreadMessages: 0,
             });
           });
@@ -206,6 +214,7 @@ const fetchOwnTribeChat = dispatch => {
             name: tribe.name,
             idRoom: tribe.code,
             isPrivateRoom: false,
+            emojiCode: tribe.emojiCode || "&#128512", 
             unreadMessages: 0,
           });
           if (isInitialFetch) {
@@ -253,6 +262,7 @@ const fetchJoinedTribeChats = dispatch => {
                   name: tribe.name,
                   idRoom: tribe.code,
                   isPrivateRoom: false,
+                  emojiCode: tribe.emojiCode || "&#128512", 
                   unreadMessages: 0,
                 });
               });
