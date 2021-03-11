@@ -80,10 +80,11 @@ const useStyles = makeStyles(() => ({
   },
   listExpand: {
     position: "absolute",
-    width: "90%",
+    // width: "95%",
     right: 20,
+    left: 20,
     top: 20,
-    maxWidth: "70%",
+    // maxWidth: "70%",
     margin: 0,
     padding: "8px 4px",
     borderRadius: 14,
@@ -98,7 +99,7 @@ const useStyles = makeStyles(() => ({
       content: "''",
       top: 0,
       bottom: 0,
-      left: 0,
+      left: -2,
       width: 32,
       backgroundColor: "#43D4DD",
       borderRadius: 10
@@ -115,6 +116,7 @@ const useStyles = makeStyles(() => ({
   },
 
   item: {
+    margin: "10px 0",
     position: "relative",
     zIndex: 10,
     listStyle: "none",
@@ -172,7 +174,7 @@ const Checker = ({ challenges, percent }) => {
             </div>
           </li>
           {challenges.map(challenge => (
-            <li key={challenge.description} className={classes.item}>
+            <li key={challenge.description} className={classes.item} onClick={() => {setCollapsed(!collapsed)}}>
               <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
               <span className={classes.text}>{challenge.description}</span>
             </li>

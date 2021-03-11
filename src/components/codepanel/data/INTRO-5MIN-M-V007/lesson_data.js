@@ -26,9 +26,9 @@ export const lesson_data = {
     {
       slide_number: 1,
       action: true,
-      checkpoint: true,
+      challenge: true,
       js_function: "",
-      checkpoint_id: 1,
+      challenge_id: 0,
       reg: [
         {
           description: "add <h1> tag",
@@ -66,7 +66,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
     <div>
@@ -85,12 +85,13 @@ export const lesson_data = {
         <span>Tip:</span> Swipe up to view the next slide
       </div>
       `,
+      tip: "Swipe up to view the next slide",
       sort_order: 11,
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>  <h3 class='lesson-title font-weight-normal  mb-5'>You completed<br> the first step<br> of the famous…</h3> <img style='' class='w-50 swiper-lazy' src='/img/timer_circle.png'> <h1 class='h2 lesson-title font-weight-normal mt-1'>5-Minute <br>Website</h1>  </div>
@@ -100,7 +101,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>  <h2 class='lesson-title encouraging mb-4'>Awesome!</h2><img class='w-20 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png'></div>
@@ -109,7 +110,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class="container"><h3 class='lesson-title font-weight-normal mb-0' style='text-transform: none'>We are going to<br> learn how to code<br> your website using </h3><h2 class='lesson-title mb-5'>HTML</h2><h3 class='lesson-title font-weight-normal mt-5' style='text-transform: none'>What is that?</h3><div><img class='w-20 pr-1  swiper-lazy' src='/img/emoji/thinking-face_1f914.png' alt=''><img class='w-20 pl-1 swiper-lazy' src='/img/emoji/thinking-face_1f914.png' alt=''></div></div>
@@ -118,7 +119,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>  <h2 class='lesson-title blue'>HTML</h2><p class='lesson-instructions fs-16 mb-4'>HyperText Markup Language.</p> <img src='/img/lessons/P001-L00-M-V001-HTML-skeleton.jpg?00' class='swiper-lazy mb-4' style='max-height: 40vh;'><div class='swiper-lazy-preloader'></div><h3 class='lesson-title font-weight-normal mt-4'>HTML is the website <span class='yellow'>STRUCTURE</span><br><small>(SKELETON)</small></h3> </div>
@@ -127,7 +128,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
                           <div class='container'>  <h3 class='lesson-title font-weight-normal mb-5'>It works like this:</h3> <img src='/img/lessons/bold-tags.png' class='swiper-lazy mb-4'><div class='swiper-lazy-preloader'></div> </div>
@@ -136,7 +137,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>      <h2 class='lesson-title font-weight-normal  mb-5' style='text-transform: none'>Ready for a<br> “Challenge?”</h2>               <img class='w-30 swiper-lazy' src='/img/emoji/boxing-glove.png' alt=''><img src="https://code.org/api/hour/begin_codejika.png" alt="HoC tracking pixel"></div>
@@ -146,8 +147,8 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 2,
+      challenge: true,
+      challenge_id: 1,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp-peach black",
       html_content: `
@@ -177,6 +178,7 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Swipe left to start.
       </div>
       `,
+      tip: "Swipe left to start.",
       reg: [
         {
           description: "type your name inside <h1> tag",
@@ -195,7 +197,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'><h2 class='lesson-title encouraging  mb-5'>GOOD JOB!</h2><h3 class='lesson-title font-weight-normal mb-5'>Now we’ll add <br> some styling with <br><span class='pink' style='font-weight: bold'>CSS</span>.</h3><h3 class='lesson-title font-weight-normal mt-5'>Are you ready?</h3></div>
@@ -204,7 +206,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>                    <h2 class='lesson-title pink '>CSS</h2>                      <p class='lesson-instructions fs-16 mb-4'>Cascading Style Sheets</p>                     <div style='position: relative'>                         <p class='lesson-instructions pink' style='position:absolute;top: 53%;left: 10%'>style='...'</p>                         <img src='/img/lessons/css-girl.png' class='swiper-lazy mb-2' style='max-height: 50vh;'>                     </div>                     <div class='swiper-lazy-preloader'></div>                      <h3 class='lesson-title font-weight-normal mt-2'>                       <span class=' pink' style='margin-left: -25%'>CSS</span> is the <br>                        <span class='yellow' style='margin-left: 25%'>STYLE </span>                       <small> (BLING)</small></h3>                      </div>
@@ -213,7 +215,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>      <h3 class='lesson-title font-weight-normal mb-5'>This will add a beautiful background color to your website.</h3>     <h3 class='lesson-title font-weight-normal mt-5 mb-5'>It’s worth it.<br>I promise.</h3>     <p class='lesson-instructions mb-4'>         <img class='swiper-lazy w-20' src='/img/emoji/ok-hand-sign_1f44c.png'>         <img class='swiper-lazy w-20' src='/img/emoji/grinning-face-with-smiling-eyes_1f601.png'>         <img class='swiper-lazy w-20' src='/img/emoji/ok-hand-sign_1f44c.png'>     </p> </div>
@@ -223,8 +225,8 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 3,
+      challenge: true,
+      challenge_id: 2,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp-peach black",
       html_content: `
@@ -255,6 +257,7 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Add the &lt;body&gt; tag as the first line.
       </div>
       `,
+      tip: "Add the &lt;body&gt; tag as the first line.",
       reg: [
         {
           description: "add <body> tag",
@@ -265,7 +268,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'><h2 class='lesson-title encouraging  mb-5'>GOOD!</h2><p class='lesson-instructions mt-5'>Now let's add some<br> style into body.</p></div>
@@ -275,8 +278,8 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 4,
+      challenge: true,
+      challenge_id: 3,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp-peach black",
       html_content: `
@@ -306,6 +309,7 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Find “ on the quick-keys.
       </div>
       `,
+      tip: "Find “ on the quick-keys.",
       reg: [
         {
           description: "add style to body tag",
@@ -316,7 +320,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'><h2 class='lesson-title encouraging mb-5'>GREAT!</h2> <h3 class='lesson-title mt-5'>Now for the best part.</h3> <div> <img class='swiper-lazy w-20' src='/img/emoji/72/winking-face.png' alt=''> </div> <p class='lesson-instructions mt-5'>(This is where you<br> add your color.)</p> </div>
@@ -326,8 +330,8 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 5,
+      challenge: true,
+      challenge_id: 4,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp-peach black",
       html_content: `
@@ -357,6 +361,7 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Notice <strong>:</strong> and <strong>;</strong>
       </div>
       `,
+      tip: "Notice <strong>:</strong> and <strong>;</strong>",
       reg: [
         {
           description: "add pink color to body background",
@@ -367,7 +372,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
                     <div class='container'></div><div class='container'><h2 class='lesson-title encouraging'>Great!</h2><h3 class='lesson-title font-weight-normal  mb-5'>Now check it in <br> the PREVIEW tab.</h3><p class='lesson-instructions mt-5'>Then come back here.</p>   </div>   <div class='container'><p class='lesson-tip'><span>Tip:</span> Swipe left twice to see Preview tab.</p></div>
@@ -376,7 +381,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'> <h3 class='lesson-title encouraging mb-5 '>CONGRATULATIONS</h3> <div style='background-color: #6aa2c7;border-radius:50%; margin: 40px auto; width: 200px;height: 200px;'> <img class='w-75' style='padding-top:20px;' src='/img/congrats.png'> </div> <h3 class='lesson-title font-weight-normal  mt-5'>You’ve made <br>your first <br>website!</h2> </div>
@@ -385,7 +390,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'><h3 class='lesson-title font-weight-normal  mb-5 w-75'>Want to try a different color for the background?</h3>                 <div style='margin-top: 3rem'>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/grinning-face-with-star-eyes.png' alt=''>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/grinning-face-with-star-eyes.png' alt=''>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/grinning-face-with-star-eyes.png' alt=''>                   </div>                 </div>
@@ -394,7 +399,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'><h3 class='lesson-title font-weight-normal  mb-5'>Which color do you<br> want to try?</h3>                 <div style='margin-top: 1rem'><h3 class='lesson-title font-weight-normal  mb-5'><span style="color:teal">teal</span> <span style="color:violet">violet</span> <br> <span style="color:dodgerblue">dodgerblue</span> <br><span style="color:deeppink">deeppink</span> <br><span style="color:aquamarine">aquamarine</span> <span style="color:gold">gold</span> <br> <span style="color:green">green</span> <span style="color:yellow">yellow</span> </h3> </div> <div style='margin-top: mt-2'><img class='swiper-lazy' src='/img/emoji/72/rainbow.png' alt=''></div>                 </div>
@@ -404,8 +409,8 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 6,
+      challenge: true,
+      challenge_id: 5,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp-peach black",
       html_content: `
@@ -435,6 +440,7 @@ export const lesson_data = {
         <span class='red'>TIP:</span> Notice <strong>:</strong> and <strong>;</strong>
       </div>
       `,
+      tip: "Notice <strong>:</strong> and <strong>;</strong>",
       reg: [
         {
           description: "change body background color",
@@ -446,7 +452,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'> <h3 class='lesson-title font-weight-normal mb-5'>Did you check it in the PREVIEW tab?</h3> <div style='margin-top: 1rem'> <h3 class='lesson-title font-weight-normal mb-5'> Did it work? </h3> </div> <div style='margin-top: 3rem'> <h2 class='lesson-title encouraging aqua mb-2'>AWESOME!</h2> <img class='w-15 swiper-lazy' src='/img/emoji/fisted-hand-sign_1f44a.png' alt=''> </div> </div>
@@ -456,7 +462,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
       <div class='container'>                 <h3 class='lesson-title font-weight-normal'>Share your creative work with your friends.</h3>                 <div>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png' alt=''>                 </div>                 <div>                                      <div class='mt-5'>     <a class='btn btn-share check mt-3' id='whatsapp-code-link' href='' style='width: 80%;font-size: 20px;color: #fff;font-family: 'Rajdhani', sans-serif;'>Share with Friends</a>  <br><button class='btn btn-encouraging next check mt-3' style='width:80%' id='gallery' href=''>Share to CodeJika Gallery<i class='icon-arrow_forward'></i></button> <div class="mt-4"> <a class="swiper-next skip white " style="">Skip this step</a></div> </div>                 </div>               </div>
@@ -466,7 +472,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
      <div class='container '>
@@ -484,10 +490,22 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z"
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
-      <div class='container'>     <h3 class='lesson-title font-weight-normal'> Are you ready to start <br>Training 1? </h3>     <div> <img class='w-15 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png' alt=''> </div>     <div style=' /* display: flex; */'>         <div class='mt-2' style=' display: flex; flex-direction: column; justify-content: center; align-items: center;'>             <br><a class='btn btn-encouraging next check ' style='width: 80%;' href='P1Training1'>Start Now</a> <a class='btn btn-encouraging next check mt-4' style='width: 80%;' href='../learn/projects'>Projects Page</a> </div>     </div> </div>
+      <div class='container'>
+        <h3 class='lesson-title font-weight-normal'> Are you ready to start <br>Training 1? </h3>
+          <div>
+            <img class='w-15 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png' alt=''>
+          </div>
+          <div style=' /* display: flex; */'>
+            <div class='mt-2' style=' display: flex; flex-direction: column; justify-content: center; align-items: center;'>
+              <br>
+              <a class='btn btn-encouraging next check' data-click="gt:/codepanel/C002/P002/L001" style='width: 80%;' href='#'>Start Now</a>
+              <a class='btn btn-encouraging next check mt-4' data-click="o:projects" style='width: 80%;' href='#'>Projects Page</a>
+            </div>
+          </div>
+        </div>
       `,
       sort_order: 31,
       updated_at: "2017-09-28T16:09:40.256Z"

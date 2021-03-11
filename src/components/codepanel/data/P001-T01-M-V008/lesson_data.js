@@ -5,8 +5,6 @@ export const lesson_data = {
 
 
 `,
-  kbLayout: '', // not currently in use
-  loadJS: '', // not currently in use
   prevLessonID: '', // Lesson ID of previous lesson where to load user's code
   nextLessonSlug: '', // not currently in use
   pageDesc:
@@ -19,7 +17,7 @@ export const lesson_data = {
   slides: [
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       html_content: `
       <div class="container">
         <h1 class='yellow'>PROJECT 1</h1>
@@ -31,7 +29,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       html_content: `
       <div class="container"><h3 class="lesson-title font-weight-normal  mb-5">Ready to start a<br> new chapter of<br> your life?</h3><div class="mt-5"><img class="w-15 swiper-lazy" data-src="/img/emoji/tongue-and-winking-eye_1f61c.png" alt=""></div></div>
       `,
@@ -40,7 +38,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"><h2 class="lesson-title encouraging">SO EXCITED!</h2><div class="mt-5"><img class="w-15 swiper-lazy" data-src="/img/emoji/person-raising-both-hands-in-celebration_emoji-modifier-fitzpatrick-type-4_1f64c-1f3fd_1f3fd.png" alt=""></div></div>
@@ -50,7 +48,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class='container'> <h3 class='lesson-title font-weight-normal '>Let’s start with <br> the page<br> structure.</h3> <div class="mt-5"><img class="w-15 swiper-lazy" data-src="/img/emoji/building-construction_1f3d7.png" alt=""></div></div>
@@ -60,7 +58,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'bg-blue',
       html_content: `
@@ -71,7 +69,7 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <h3 class="lesson-title font-weight-normal text-left mr-auto">BRIEFING</h3><h3 class="lesson-title blue m-0 text-uppercase">my website<span class="font-weight-normal">:</span></h3><div class="container d-flex justify-content-around bg-editor " style="font-family: consolas;font-size: 22px;"> <div> <div class="d-flex flex-column justify-content-between" style="height: 34%;"> <span>&lt;<span class="blue">head</span>&gt;</span>   <span>&lt;/<span class="blue">head</span>&gt;</span> </div><div class="d-flex flex-column justify-content-between" style="height: 52%;"> <span>&lt;<span style="color:red;">body</span>&gt; </span><span>&lt;/<span style="color:red;">body</span>&gt; </span></div> </div><div> <img class="swiper-lazy swiper-lazy-loaded mb-5" style="max-height: 44vh;" src="/img/lessons/html_skeleton_sml.png"></div></div><div class="container">      <p class="lesson-tip">     <span>Tip:     </span> Remember this.</p>  </div>
@@ -80,7 +78,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <h2 class="lesson-title encouraging mb-5">GREAT!</h2> <h3 class="lesson-title font-weight-normal mt-5">Now add a <br> &lt;head&gt; section.</h3></div>
@@ -90,19 +88,23 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 1,
+      challenge: true,
+      challenge_id: 0,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'checkpoint cp_yellow',
       html_content: `
       <div class="container"> <h2>Challenge</h2> <div style="margin-top:1rem"> <ol style="list-style: none"> <li class="task-1"> Add: <br> <span class="consolas pl-3">&lt;head&gt;</span><br><span class=" consolas pl-3">&lt;/head&gt;</span> <br> In the code editor. </li> </ol> </div> <div style="text-align: left"> <p class="like-this">Like this:</p> </div> <div class="h1-content-area-3"> <p id="attr-type-value" class="m-4" style="color:#f1f1f1;font-size:18px;text-align: left;"> <span class="consolas"><span class="consolas"> &lt;</span>head<span class="consolas">&gt;</span> <br><span class="consolas"> &lt;</span>/head<span class="consolas">&gt;</span> </span> </p> </div> </div><div class="container"> <div class="button-locked"> <a class="btn btn-primary action check swiper-editor" style="">Let's get Coding <i class="icon-arrow_forward"></i></a> <br> <a class="swiper-next skip" style="">Skip this step</a> </div> <div class="button-unlocked"> <a class="btn btn-primary success check swiper-next" style="">I did it <i class="icon-sentiment_satisfied"></i></a> <br> </div> </div><div class="container"> <p class="lesson-tip"> <span>Tip: </span> Swipe left to start.</p> </div>
       `,
-      reg: ['<head(.*)>[\\s\\r\\n]*(.*)<\\/head>'],
+      reg: [
+        {
+          description: "add <head> tag",
+          rule: '<head(.*)>[\\s\\r\\n]*(.*)<\\/head>'
+        }],
       sort_order: 8,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <h2 class="lesson-title encouraging mb-5">AWESOME!</h2> <h3 class="lesson-title font-weight-normal mt-5">Next we’ll add a <br> &lt;body&gt; section.</h3></div>
@@ -112,19 +114,24 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 2,
+      challenge: true,
+      challenge_id: 1,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'checkpoint cp_yellow',
       html_content: `
       <div class="container"> <h2>Challenge</h2> <div style="margin-top:1rem"> <ol style="list-style: none"> <li class="task-1"> After the <span class="consolas">&lt;head&gt;</span> section. </li> <li class="task-1"> Add the <span class="consolas">&lt;body&gt;</span> .</li> </ol> </div> <div style="text-align: left"> <p class="like-this">Like this:</p> </div> <div class="h1-content-area-3"> <p id="attr-type-value" class="m-4" style="color:#f1f1f1;font-size:18px;text-align: left;"> <span class="consolas"><span class="consolas"> &lt;</span>body<span class="consolas">&gt;</span> <br><span class="consolas"> &lt;</span>/body<span class="consolas">&gt;</span> </span> </p> </div> </div> <div class="container"> <div class="button-locked"> <a class="btn btn-primary action check swiper-editor" style="">Let's get Coding <i class="icon-arrow_forward"></i></a> <br> <a class="swiper-next skip" style="">Skip this step</a> </div> <div class="button-unlocked"> <a class="btn btn-primary success check swiper-next" style="">I did it <i class="icon-sentiment_satisfied"></i></a> <br> </div> </div> <div class="container"> <p class="lesson-tip"> <span>Tip: </span> Swipe left to start.</p> </div>
       `,
-      reg: ['<body(.*)>[\\s\\r\\n]*(.*)</body>'],
+      reg: [
+        {
+          description: "add body tag",
+          rule: '<body(.*)>[\\s\\r\\n]*(.*)</body>'
+        }
+      ],
       sort_order: 10,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container mt-2"> <h2 class="lesson-title green">CHECKPOINT</h2> <p class="lesson-instructions ">Your code should look <br> something like this:</p> <p class="lesson-instructions text-left ml-4 font-weight-bold">CODE:</p> <div class="h1-content-area text-left pl-4"> <span class="consolas"> &lt;head&gt; </span> <br><br> <span class="consolas"> &lt;/head&gt; </span> <br><br> <span class="consolas"> &lt;body&gt; </span> <br><br> <span class="consolas"> &lt;/body&gt; </span> </div> </div>
@@ -133,7 +140,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <div ><h3 class="lesson-title text-left pl-3">BRIEFING</h3><p class="lesson-instructions text-left pl-5">h1 Tag</p></div> </div> <div class="container mt-5"> <h3 class="lesson-title" style="font-family: consolas !important">&lt;h1&gt; &lt;/h1&gt;</h3> <div > <ol> <li class="task-1"> Is used for the <strong>largest text</strong> on your page. </li> <li class="task-1"> Goes in the <span class="consolas">&lt;body&gt;</span> section. </li> </ol> </div> <div style="text-align: left" class="mt-5"> <p class="text-left pl-4 text-white">Like this:</p> </div> <div class="h1-content-area text-left pl-4"> <span class="consolas blue"> &lt;h1&gt; </span> <br> <span class="pl-3" > Your name</span> <br> <span class="consolas blue"> &lt;/h1&gt; </span> </div> </div>
@@ -152,28 +159,36 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 3,
+      challenge: true,
+      challenge_id: 2,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'checkpoint cp_yellow',
       html_content: `
       <div class="container"> <h2>Challenge</h2> <p class="lesson-instructions">STEP 1</p> <div style="margin-top:0"> <ol style="list-style: none" class="m-0"> <li class="task-1 m-0"><strong class="blue"> CODE:</strong> <br> Type an opening &amp; <br> closing <span class="consolas">&lt;h1&gt;</span> tag. </li><li class="task-1 m-0"><strong class="text-muted"> WHERE:</strong> <br> In the <span class="consolas">&lt;body&gt;</span> section </li> </ol> </div> <div style="text-align: left"> <p class="like-this">Like this:</p> </div> <div class="h1-content-area-3"> <p id="attr-type-value" class="m-4" style="color:#f1f1f1;font-size:18px;text-align: left;"> <span class="consolas">&lt;h1&gt; <br> &lt;/h1&gt;</span> </p> </div> </div><div class="container"> <div class="button-locked"> <a class="btn btn-primary action check swiper-editor" style="">Let's get Coding <i class="icon-arrow_forward"></i></a> <br> <a class="swiper-next skip" style="">Skip this step</a> </div> <div class="button-unlocked"> <a class="btn btn-primary success check swiper-next" style="">I did it <i class="icon-sentiment_satisfied"></i></a> <br> </div> </div>
       `,
-      reg: ['<body(.*)>((\\s|)*)<h1(.*)>[\\s\\r\\n]*(.*)</h1>((\\s|)*)</body>'],
+      reg: [
+        {
+          description: "add <h1> tag",
+          rule:'<body(.*)>((\\s|)*)<h1(.*)>[\\s\\r\\n]*(.*)</h1>((\\s|)*)</body>'
+        }
+      ],
       sort_order: 14,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 4,
+      challenge: true,
+      challenge_id: 3,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'checkpoint cp_yellow',
       html_content: `
       <div class="container"> <h2>Challenge</h2> <p class="lesson-instructions">STEP 2</p> <div style="margin-top:4rem"> <ol style="list-style: none"> <li class="task-1"><strong class="blue"> CODE:</strong> <br> Type your First & Last<br> name between the <br> <span class="consolas">&lt;h1&gt;</span> tags. </li> </ol> </div> </div> <div class="container"> <div class="button-locked"> <a class="btn btn-primary action check swiper-editor" style="">Let's get Coding <i class="icon-arrow_forward"></i></a> <br> <a class="swiper-next skip" style="">Skip this step</a> </div><div class="button-unlocked"> <a class="btn btn-primary success check swiper-next" style="">I did it <i class="icon-sentiment_satisfied"></i></a> <br> </div> </div> <div class="container"> <p class="lesson-tip"> <span>Tip: </span> Check the example in the <span class="consolas text-dark">&lt;h1&gt;</span> briefing.</p> </div>
       `,
       reg: [
-        '<body(.*)>((\\s|)*)<h1(.*)>[\\s\\r\\n\\w]*\\w[\\s\\r\\n]*<\\/h1>[\\s\\r\\n]*<\\/body>'
+        {
+          description: "type your name inside <h1> tag",
+          rule: '<body(.*)>((\\s|)*)<h1(.*)>[\\s\\r\\n\\w]*\\w[\\s\\r\\n]*<\\/h1>[\\s\\r\\n]*<\\/body>'
+        }
       ],
       sort_order: 15,
       updated_at: '2017-09-28T16:09:40.256Z'
@@ -187,7 +202,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <div style="display: flex;justify-content:space-between"> <h3 class="lesson-title blue">BRIEFING</h3> <p class="lesson-instructions">Tags</p> </div> </div> <div class="container"> <div class="container"><p class="lesson-instructions mb-3 pl-4 text-left">Think of tags as taps.</p><p class="lesson-instructions mb-2 pl-4 text-left">If you <strong>open</strong> a tap (tag) <strong>close</strong> it.</p><img class="swiper-lazy swiper-lazy-loaded" style="max-width: 70vw;" src="/img/lessons/P001-T01-M-V001-tags-taps.jpg"> </div> </div>
@@ -196,7 +211,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <div style="display:flex;justify-content:space-between"> <h3 class="lesson-title blue">BRIEFING</h3> <p class="lesson-instructions">Tags</p> </div> </div><div class="container"> <p class="lesson-instructions mb-5 text-left pl-4">A " / " ( backslash)<br> is used in the<br> closing tag.</p> <div style="text-align: left"> <p class="like-this">Like this:</p> </div> <div class="h1-content-area text-left pl-4"> <div class="d-flex justify-content-around align-items-center"> <div class="lesson-instructions blue" style="width: 50%;display: flex;justify-content: flex-start;"> <p class="lesson-instructions" style="">Open</p> </div> <div class="d-flex flex-column" style="width: 50%;align-items: center;"> <span class="consolas" style=" align-self: flex-start;"> &lt;h1&gt; </span> <div style=" align-self: flex-start;"> My name is... .</div> </div> </div> <div class="d-flex justify-content-around align-items-center"> <div class="lesson-instructions blue" style="width: 50%;display: flex;justify-content: flex-start;"> <p class="lesson-instructions">Close</p> </div> <div class="d-flex flex-column" style=" width: 50%; align-items: center;"> <span class="consolas" style=" align-self: flex-start;"> &lt;/h1&gt; </span> </div> </div> <div class="d-flex justify-content-around align-items-center"> <div class="lesson-instructions blue" style="width: 50%;display: flex;justify-content: flex-start;"> <p class="lesson-instructions">Open</p> </div> <div class="d-flex flex-column" style=" width: 50%; align-items: center;"> <span class="consolas" style=" align-self: flex-start;"> &lt;div&gt; </span> </div> </div> <div class="d-flex justify-content-around align-items-center"> <div class="lesson-instructions blue" style="width: 50%;display: flex;justify-content: start;"> <p class="lesson-instructions">Close</p> </div> <div class="d-flex flex-column" style="width: 50%;align-items: center;"> <span class="consolas" style=" align-self: flex-start;"> &lt;/div&gt; </span> </div> </div> </div> </div>
@@ -205,7 +220,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container">             <h2 class="lesson-title encouraging  mt-3">GOOD</h2>             <h3 class="lesson-title font-weight-normal mt-5">You learned about tags. </h3><p class="lesson-instructions mt-5">Now let’s move on.</p>         </div>
@@ -214,7 +229,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <div style="display: flex;justify-content:space-between"><h3 class="lesson-title blue">BRIEFING</h3><p class="lesson-instructions">h3 Tag</p></div> </div> <div class="container mt-1"> <h3 class="lesson-title consolas">&lt;h3&gt; &lt;/h3&gt;</h3> <div> <ol style="list-style-type: none"> <li class="task-1"> <span style="font-family: consolas">&lt;h3&gt;</span> is used mainly for subtitles.</li> </ol> </div> <div style="text-align: left" class="mt-1"> <p class="text-left pl-4 text-white">Like this:</p> </div> <div class="h1-content-area text-left pl-4"> <span class="consolas"> &lt;body&gt; </span> <br> <span class="consolas ml-3"> &lt;h1&gt;</span> <br> <span class="ml-5">My Name</span><br> <span class="consolas ml-3"> &lt;/h1&gt; </span> <br> <span class="consolas blue ml-3"> &lt;h3&gt; </span> <br> <span class="ml-5">Launching Soon...</span> <br> <span class="consolas blue ml-3"> &lt;/h3&gt; </span> <br> <span class="consolas"> &lt;/body&gt; </span> </div> </div>
@@ -224,7 +239,7 @@ export const lesson_data = {
     },
     {
       action: false,
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'bg-green',
       html_content: `
@@ -235,22 +250,25 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 5,
+      challenge: true,
+      challenge_id: 4,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'checkpoint cp_yellow',
       html_content: `
       <div class="container"> <h2>Challenge</h2> <div style="margin-top:2rem"> <ol style="list-style: none"> <li class="task-1"><strong class="blue"> CODE:</strong> <br> Write: <br> “Launching Soon...” <br>between the <span class="consolas">&lt;h3&gt;</span> tags. </li> </ol></div> <div class="h1-content-area text-left pl-4 text-white"><span class="consolas "> &lt;h3&gt; </span> <br> <span class="ml-4">Launching Soon...</span> <br><span class="consolas"> &lt;/h3&gt; </span> </div> </div> <div class="container"> <div class="button-locked"> <a class="btn btn-primary action check swiper-editor" style="">Let's get Coding <i class="icon-arrow_forward"></i></a> <br> <a class="swiper-next skip" style="">Skip this step</a> </div><div class="button-unlocked"> <a class="btn btn-primary success check swiper-next" style="">I did it <i class="icon-sentiment_satisfied"></i></a> <br> </div> </div> <div class="container"> <p class="lesson-tip"> <span class="text-dark">WHERE :</span> Below <span class="consolas text-dark">&lt;h1&gt;</span>.</p> </div>
       `,
       reg: [
-        '</h1(.*)>[\\s\\r\\n]*<h3(.*)>[\\s\\r\\n]*Launching soon\\.\\.\\.[\\s\\r\\n]*<\\/h3>[\\s\\r\\n]*<\\/body>'
+        {
+          description: "write 'comming soon in <h3> tag'",
+          rule: '</h1(.*)>[\\s\\r\\n]*<h3(.*)>[\\s\\r\\n]*Launching soon\\.\\.\\.[\\s\\r\\n]*<\\/h3>[\\s\\r\\n]*<\\/body>'
+        }
       ],
       sort_order: 22,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
       action: true,
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <div style="display: flex;justify-content:space-between"><h3 class="lesson-title blue">BRIEFING</h3><p class="lesson-instructions">p Tag</p></div> </div> <div class="container mt-1"> <h3 class="lesson-title consolas">&lt;p&gt; &lt;/p&gt;</h3> <div> <ol><li class="task-1"> Stands for “paragraph”. </li> <li class="task-1"> You can have lots of<br> <span style="font-family: consolas">&lt;p&gt;</span> tags in your site.</li> </ol> </div> <div style="text-align: left" class="mt-5"> <p class="text-left pl-4 text-white">Like this:</p> </div> <div class="h1-content-area text-left pl-4"> <span class="consolas"> &lt;body&gt; </span> <br> <span class="consolas blue ml-3"> &lt;p&gt; </span> <br> <span class="ml-5">My stuff...</span> <br> <span class="consolas blue ml-3"> &lt;/p&gt; </span> <br> <span class="consolas"> &lt;/body&gt; </span> </div> </div>
@@ -259,7 +277,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'bg-green',
       html_content: `
@@ -270,21 +288,24 @@ export const lesson_data = {
     },
     {
       action: true,
-      checkpoint: true,
-      checkpoint_id: 6,
+      challenge: true,
+      challenge_id: 5,
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'checkpoint cp_yellow',
       html_content: `
       <div class="container"> <h2>Challenge</h2> <div style="margin-top:2rem"> <ol style="list-style: none"> <li class="task-1"><strong class="blue"> CODE:</strong> <br> Write a <span class="consolas">&lt;p&gt;</span> with today’s date. </li> </ol> </div><div style="text-align: left"> <p class="like-this">Like this:</p> </div> <div class="h1-content-area text-left pl-4 text-white"> <span class="consolas "> &lt;p&gt; </span> <br> <span class="ml-4">10 May, 2021</span> <br><span class="consolas"> &lt;/p&gt; </span> </div> </div> <div class="container"> <div class="button-locked"> <a class="btn btn-primary action check swiper-editor" style="">Let's get Coding <i class="icon-arrow_forward"></i></a> <br> <a class="swiper-next skip" style="">Skip this step</a> </div><div class="button-unlocked"> <a class="btn btn-primary success check swiper-next" style="">I did it <i class="icon-sentiment_satisfied"></i></a> <br> </div> </div> <div class="container"> <p class="lesson-tip"> <span class="text-dark">WHERE :</span> Below <span class="consolas text-dark">&lt;/h3&gt;</span>.</p> </div>
       `,
       reg: [
-        '(<p>|<p [^>]*>)((.|\n)*)s*([1-9]|[0-9][0-9])((.|\n)*)s*([a-z][a-z][a-z])((.|\n)*)s*([0-9][0-9][0-9][0-9])(.|\n)*s*</p>'
+        {
+          description: "add <p> with todays date",
+          rule: '(<p>|<p [^>]*>)((.|\n)*)s*([1-9]|[0-9][0-9])((.|\n)*)s*([a-z][a-z][a-z])((.|\n)*)s*([0-9][0-9][0-9][0-9])(.|\n)*s*</p>'
+        }
       ],
       sort_order: 25,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"><h2 class="lesson-title consolas green mt-2">checkpoint</h2> <p class="lesson-instructions ">Your code should look <br> something like this:</p> </div> <div class="container mt-1"> <div style="text-align: left" class="mt-0"> <ol style="list-style: none" class="mb-0"> <li class="task-1 mb-0"><strong> CODE:</strong> </li> </ol> </div> <div class="h1-content-area text-left pl-4 pt-2 pb-2"  style="line-height:25px"><span class="consolas"> &lt;head&gt;</span><br><span class="consolas"> &lt;/head&gt;</span><br><br> <span class="consolas"> &lt;body&gt; </span> <br> <span class="consolas ml-3"> &lt;h1&gt;</span> <br> <span class="ml-5">My Name</span><br> <span class="consolas ml-3"> &lt;/h1&gt; </span> <br> <span class="consolas blue ml-3"> &lt;h3&gt; </span> <br> <span class="ml-5">Launching Soon...</span> <br> <span class="consolas blue ml-3"> &lt;/h3&gt; </span> <br><span class="consolas ml-3">&lt;p&gt;</span><span>10 May, 2021</span><span class="consolas">&lt;/p&gt; </span><br> <span class="consolas"> &lt;/body&gt; </span> </div> </div>
@@ -293,7 +314,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <h2 class="lesson-title consolas green mt-2">checkpoint</h2> <p class="lesson-instructions ">And your website, like this:</p> </div><div class="container"> <div style=" display: flex; flex-direction: column; align-items: flex-start;" class="ml-3"> <h4 class="blue text-left">PREVIEW:</h4> <img style="max-width: 265px ml-0;" src="/img/lessons/p1t1_check_view_sml.png" alt=""> </div> </div>
@@ -302,7 +323,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container"> <h2 class="lesson-title mb-5 encouraging">CONGRATS!</h2> <div style="background-color: #6aa2c7;border-radius:50%;margin: 40px auto;width: 200px;height: 200px;"> <div class="lesson-instructions "><img style="padding-top:20px;" class="w-75 swiper-lazy mb-3 swiper-lazy-loaded" src="/img/lessons/congrats_training_sml.png"></div></div> <h3 class="lesson-title font-weight-normal  mt-5">You’ve finished<br> Training 1.</h3> </div>
@@ -320,7 +341,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container">                 <h3 class="lesson-title font-weight-normal">Share your creative work with your friends.</h3>                 <div>                     <img class="w-15 swiper-lazy" data-src="/img/emoji/smiling-face-with-open-mouth.png" alt="">                 </div>                 <div>                                      <div class="mt-5">     <a class="btn btn-share check mt-3" id="whatsapp-code-link" href="" style="width: 80%;font-size: 20px;color: #fff;font-family: 'Rajdhani', sans-serif;">Share with Friends</a>  <br><button class="btn btn-encouraging next check mt-3" style="     width: 80%; " id="gallery" href="">Share to CodeJika Gallery<i class="icon-arrow_forward"></i></button> <div> <a class="swiper-next skip btn btn-primary light cancel mt-4" style="width: auto;font-size: 16px;padding: 3px 10px;color: #fff;font-family: 'Rajdhani', sans-serif;">Skip</a></div> </div>                 </div>               </div>
@@ -329,7 +350,7 @@ export const lesson_data = {
       updated_at: '2017-09-28T16:09:40.256Z'
     },
     {
-      checkpoint: false,
+      challenge: false,
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="container">     <h3 class="lesson-title font-weight-normal"> Ready to start <br>Training 2? </h3>     <div> <img class="w-15 swiper-lazy" data-src="/img/emoji/smiling-face-with-open-mouth.png" alt=""> </div>     <div style=" /* display: flex; */">         <div class="mt-2" style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">             <br><a class="btn btn-encouraging next check " style="width: 80%;" href="P1Training2">Start Now</a> <a class="btn btn-encouraging next check mt-4" style="width: 80%;" href="m-projects.htm">Projects Page</a><a class="btn btn-primary light cancel mt-4" style=" padding: 3px 10px; font-size: 16px;" href="https://www.codejika.com/">Home</a>  </div>     </div> </div>

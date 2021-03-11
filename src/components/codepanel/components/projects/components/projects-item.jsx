@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useHistory } from 'react-router-dom';
 
 import ShareIcon from "../../../../../assets/icons/footer-icon/share.png";
 import Card from "../../../../../shared/components/card/card";
@@ -179,11 +180,17 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#000",
     border: "4px solid #fff",
     color: "#fff",
-    fontSize: 22,
+    fontSize: 14,
     fontWeight: "bold",
     textTransform: "uppercase",
-    padding: "16px 32px 16px 58px",
+    // padding: "16px 32px 16px 58px",
+    padding: "6px 15px 6px 50px",
     borderRadius: 40,
+
+    ["@media (min-width:1275px)"]: {
+      fontSize: 25,
+      padding: "11px 45px 11px 65px"
+    },
 
     "&:hover": {
       color: "#fff",
@@ -246,11 +253,30 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const ProectItem = ({ project: {title, subtitle, description, level, fun, time, outline, key, lessons, img}, closeSidebar, selectProject}) => {
+const ProectItem = (
+  {
+    project:
+    {
+      title,
+      subtitle,
+      description,
+      level,
+      fun,
+      time,
+      outline,
+      key,
+      lessons,
+      img
+    },
+    closeSidebar,
+    selectProject
+  }
+) => {
   const classes = useStyles();
   const [isListEmpty, setIsListEmpty] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
   const isDesktop = useMediaQuery("(min-width:1275px)");
+  const history = useHistory()
   // const completed = 0;
 
   useEffect(() => {
@@ -304,17 +330,27 @@ const ProectItem = ({ project: {title, subtitle, description, level, fun, time, 
               <>
                 {lessons.length > 1 ? (
                   <>
-                    <Link to={`/lesson/${key}`} className={classes.btnMore}>
+                    <Link onClick={() => {
+                        console.log("trainings click")
+                        selectProject("P001");
+                      }} className={classes.btnMore}>
                       Trainings
                     </Link>
-                    <Link to={`/codepanel/${lessons[0]}`} className={classes.btnStart}>
+                    <Link
+                      onClick={() => {
+                        history.push(`/codepanel/C001/P001/${lessons[0]}`);
+                        closeSidebar();
+                      }}
+                      className={classes.btnStart}
+                    >
                       <PlayArrowIcon className={classes.btnIcon}/>
                     </Link>
                   </>
                 ) : (
                   <button className={classes.btnStart} role="button" onClick={() => {
                     // selectProject(key);
-                    closeSidebar()
+                    history.push(`/codepanel/C000/P000/L001`);
+                    closeSidebar();
                   }}>
                     <span>Rock This!</span>
                     <PlayArrowIcon className={classes.btnIcon}/>

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useHistory } from 'react-router-dom';
 
 import { lessonsGetList } from "../../../../../redux/actions/lessons-actions";
 import { projectsGetById } from "../../../../../redux/actions/projects-actions";
@@ -93,12 +94,13 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   const isLessonsLoading = useSelector(state => state.lessons.isLoading);
   const isProjectLoading = useSelector(state => state.projects.is);
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
+  const history = useHistory()
 
   useEffect(() => {
-    if (isLessonsLoading === null) {
+    // if (isLessonsLoading === null) {
       dispatch(lessonsGetList(id))
       dispatch(projectsGetById(id))
-    }
+    // }
   }, [dispatch, id])
 
   if (isLessonsLoading || isProjectLoading) {
@@ -134,7 +136,10 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
               key={index}
               lesson={lesson}
               currentProgress={87}
-              closeSidebar={closeSidebar}
+              closeSidebar={() => {
+                history.push(`/codepanel/C001/P001/${lesson.trainingId}`)
+                closeSidebar();
+              }}
             />)
           )}
         </ul>

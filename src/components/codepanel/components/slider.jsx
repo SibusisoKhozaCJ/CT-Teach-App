@@ -4,6 +4,7 @@ import { ReflexContainer, ReflexElement } from "react-reflex";
 import ReactHtmlParser from "react-html-parser";
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useHistory } from 'react-router-dom';
 
 import ReactPageScroller from "../../../utils/react-page-scroller";
 
@@ -11,7 +12,8 @@ import {
   codepanelSetSlideNumber,
   codepanelSetTab,
   codepanelSetIsValid,
-  codepanelSetTourIsActive
+  codepanelSetTourIsActive,
+  codepanelSetProjectsIsActive
 } from '../../../redux/actions/codepanel-actions'
 
 // import "../data/INTRO-5MIN-M-V007/custom.css"
@@ -62,10 +64,26 @@ const Slider = () => {
   const currentSlideNumber = useSelector(state => state.codepanel.currentSlide);
   const dispatch = useDispatch();
   const lessonRef = useRef(null);
+  const history = useHistory();
 
   const clickHandler = e => {
     e.persist();
 
+    if(e.target.closest(".btn.btn-encouraging.next.check")) {
+      const btn = e.target.closest(".btn.btn-encouraging.next.check");
+      const data = btn.dataset.click
+      if (data) {
+        const [action, value] = data.split(":");
+        if (action === "gt") {
+          history.push(value);
+        }
+        if (action === "o") {
+          if (value === "projects") {
+            dispatch(codepanelSetProjectsIsActive(true));
+          }
+        }
+      }
+    }
     if (
       e.target.closest(".swiper-next") ||
       (e.target.closest(`#slide${currentSlideNumber}`) &&
