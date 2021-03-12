@@ -19,7 +19,7 @@ const ProjectHeader = ({ traningData,selectproject, lessionClass, selectedTranin
                     : setLessionClass("") ; setSelectedTraning(traning.id)}
                 }
               >
-                <img src={CrsArrow} />
+                <img title={traning.title} src={CrsArrow} />
               </div>
             </div>
             

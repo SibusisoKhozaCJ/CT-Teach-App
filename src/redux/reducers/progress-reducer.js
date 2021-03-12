@@ -3,7 +3,8 @@ const initialState = {
   progressList: [],
   isLoading: true,
   projectList: [],
-  trainingList:[]
+  trainingList: [],
+  tribesList:[]
 };
 export default function progressReducer(state = initialState, action) {
   switch (action.type) {
@@ -15,6 +16,8 @@ export default function progressReducer(state = initialState, action) {
       return { ...state, projectList: action.payload };
     case Types.SAVE_TRANING_LIST:
       return { ...state, trainingList: action.payload };
+    case Types.USER_TRIBES_LIST:
+      return { ...state, tribesList: action.payload };
     default:
       return state;
   }

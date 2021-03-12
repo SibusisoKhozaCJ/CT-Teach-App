@@ -1,6 +1,6 @@
 import React from "react";
 import UserRecord from "./user-records/user-records";
-const UserRow = ({isProjectOpen }) => {
+const UserRow = ({isProjectOpen, usersProgressList }) => {
     return (
         <div className={isProjectOpen ? "table_row project-open" : "table_row"}>
             <div className="progress-name ">
@@ -45,9 +45,9 @@ const UserRow = ({isProjectOpen }) => {
                             </svg>
                         </div>
                     </div>
-                    {/* {progressList.map((progress,index)=>(
+                    {usersProgressList && usersProgressList.length > 0 && usersProgressList.map((progress,index)=>(
                         <UserRecord progress={progress}/>
-                    ))} */}
+                    ))}
                     
                     </div>
             </div>

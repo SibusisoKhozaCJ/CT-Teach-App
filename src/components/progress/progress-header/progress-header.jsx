@@ -12,63 +12,63 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 
- const handleChange = (event) => {
-  
-    
+
+const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
+  const handleChange = (event) => {
+    setSelectedTribe(event.target.value)
   };
-const ProgressHeader = ({ handleCollpaseClick }) => {
   return (
-    <div className="tribe-menu">     
+    <div className="tribe-menu">
       <div className="header-left-menu">
         <div className="head-tribe">
           <div className="head-trb-main">
             <div className="d-flex pro-head">
-            <img src={Tribeicon} alt="" />
-             
-                    <FormControl variant="filled">
-                      <InputLabel id="slect-filled-label">
-                        SELECT TRIBE
+              <img src={Tribeicon} alt="" />
+              <FormControl variant="filled">
+                <InputLabel id="slect-filled-label">
+                  SELECT TRIBE
                       </InputLabel>
-                      <Select
-                        labelId="slect-filled-label"
-                        id="demo-simple-select-filled"
-                        
-                        name="type"
-                        onChange={handleChange}
-                      >
-                        <MenuItem >tribe</MenuItem>
-                        <MenuItem>tribe1</MenuItem>
-                        <MenuItem >tribe2</MenuItem>
-                        <MenuItem>tribe3</MenuItem>
-                      </Select>
-                    </FormControl>
-                 </div>
-          
+                <Select
+                  labelId="slect-filled-label"
+                  id="demo-simple-select-filled"
+                  value={selectedTribe}
+                  name="type"
+                  onChange={handleChange}
+                >
+                  {tribesList && tribesList.length > 0 && (
+                    tribesList.map((tribe, index) => (
+                      <MenuItem value={tribe.code}>{tribe.name}</MenuItem>
+                    ))
+                  )}
+                </Select>
+              </FormControl>
+            </div>
+
             <span className="tribe-grid">
               <img src={Compiocn} alt="" />
             </span>
             <div className="headPicon">
               <span className="tribe-grid">
-              <img src={Moveicon} alt="" />              
-            </span>
-            <p>MOVE</p>
+                <img src={Moveicon} alt="" />
+              </span>
+              <p>MOVE</p>
             </div>
-            <div  className="headPicon">
+            <div className="headPicon">
               <span className="tribe-grid">
-              <img src={Removeicon} alt="" />
-            </span>
-            <p>REMOVE</p>
+                <img src={Removeicon} alt="" />
+              </span>
+              <p>REMOVE</p>
             </div>
-             <div className="tribe-colsp">           
-            <span>
-              <img src={Colspicon} alt="" />
-            </span>
-             
+            <div className="tribe-colsp">
+              <span>
+                <img src={Colspicon} alt="" />
+              </span>
+
+            </div>
           </div>
-          </div>
-         
+
         </div>
-        
+
       </div>
       <div className="header-right-menu">
         <div className="head-add"></div>

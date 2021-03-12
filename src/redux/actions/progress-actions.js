@@ -3,38 +3,12 @@ import { Types } from "../constants/progress-types";
 export function getProgressListOfTribe(tribeCode) {
   return async function (dispatch, getState) {
     dispatch({ type: Types.SET_LOADING, payload: true });
-    const user = getState();
-    const userDate = user.user.user;
-    const userTribe = userDate.tribe_code;
-    let userJoinedTribes = userDate.tribe_joined;
-    let userAlltribes = []
-    if(userJoinedTribes && userJoinedTribes.length > 0){
-      userJoinedTribes.push(userTribe);
-      userAlltribes = userJoinedTribes;
-    }else{
-      userAlltribes.push(userTribe)
-    }
-    if(userTribe){
-      const userTribeData = await authFetch.firebaseGet("Tribes/" + userTribe);
-      if(userTribeData){
-        const tribeUsers = userTribeData.users;
-        const lessionProgressInfo = await getAllUsersProgressLessions(tribeUsers);
-        const tribesInfo = await getAllTribesInfo(userAlltribes);
-        const projectsData = await authFetch.firebaseGet("Projects/");
-        let projectList = []
-        if(projectsData){
-          Object.entries(projectsData).forEach(([key, value]) => {
-            const project = {
-              name:key,
-              data:value
-            }
-            projectList.push(project)
-          })
-        }
-        dispatch({ type: Types.SAVE_PROGRESS_LIST, payload: lessionProgressInfo });
-        dispatch({ type: Types.SAVE_PROJECTS_LIST, payload: projectList });
+      const tribeData = await authFetch.firebaseGet("Tribes/" + tribeCode);
+      if(tribeData){
+        const tribeUsers = tribeData.users;
+        const progressData = await getAllUsersProgressLessions(tribeUsers);
+        dispatch({ type: Types.SAVE_PROGRESS_LIST, payload: progressData });
       }
-    }
     dispatch({ type: Types.SET_LOADING, payload: false });
   };
 }
@@ -55,11 +29,11 @@ async function getAllUsersProgressLessions(progessUsers) {
   let progressList = []
   await Promise.all(
     progessUsers.map(async (user, index) => {
-      const lessionData = await authFetch.firebaseGet("user_profile/" + user);
+      const lessionData = await authFetch.firebaseGet("User_profile/" + user);
       const userData = await authFetch.firebaseGet("Users/" + user);
       const progressObject = {
         userInfo:userData,
-        progressInfo:lessionData ? lessionData.lesson_progress : {}
+        progressInfo:lessionData
       }
       progressList.push(progressObject);
     })
@@ -80,6 +54,28 @@ export function getCourseProjects(coursId) {
         dispatch({ type: Types.SAVE_TRANING_LIST, payload: TrainingDataData });
       }
       dispatch({ type: Types.SET_LOADING, payload: false });
+  };
+}
+
+export function getUserTribes() {
+  return async function (dispatch, getState) {
+    dispatch({ type: Types.SET_LOADING, payload: true });
+    const user = getState();
+    const userData = user.user.user;
+    const userTribe = userData.tribe_code;
+    let userJoinedTribes = userData.tribe_joined;
+    let userAlltribes = []
+    if(userJoinedTribes && userJoinedTribes.length > 0){
+      userJoinedTribes.push(userTribe);
+      userAlltribes = userJoinedTribes;
+    }else{
+      userAlltribes.push(userTribe)
+    }
+    if(userAlltribes && userAlltribes.length > 0){
+      const tribesInfo = await getAllTribesInfo(userAlltribes);
+      dispatch({ type: Types.USER_TRIBES_LIST, payload: tribesInfo });
+    }
+    dispatch({ type: Types.SET_LOADING, payload: false });
   };
 }
 

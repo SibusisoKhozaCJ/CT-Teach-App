@@ -15,7 +15,7 @@ const Training = ({ selectedTraning,traningData,selectproject }) => {
       >
         {challengesData && challengesData.length > 0 && (
           challengesData.map((challnge,index)=>(
-            <div className="test-div"></div>
+            <div className="">{index+1}</div>
           ))
         )}
         {/* <div className="test-div"></div>

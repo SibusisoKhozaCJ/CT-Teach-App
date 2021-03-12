@@ -3,7 +3,7 @@ import ProjColsp from "../../../assets/images/project-collpse.svg";
 import SelectProjects from "./user-row/project-drop-down"
 import UserRow from "./user-row/user-record-row";
 import ProjectHeader from "./project-header/project-header"
-const Projects = ({ index, projectData, trainingList, projectList, setProjectOpenClass, projectClass }) => {
+const Projects = ({selectedCourse, index, projectData, trainingList, projectList,usersProgressList, setProjectOpenClass, projectClass }) => {
   const [lessionClass, setLessionClass] = useState("");
   const [selectedTraning, setSelectedTraning] = useState("")
   const [selectproject, setSelectedProject] = useState(projectData.id)
@@ -58,9 +58,9 @@ const Projects = ({ index, projectData, trainingList, projectList, setProjectOpe
               setLessionClass={(evt) => setLessionClass(evt)}
               setSelectedTraning={(evt)=>setSelectedTraning(evt)}
             />
-            {/* {progressList.map((progress,index)=>(
-            <UserRow projectData={projectData} progress={progress} lessionClass={lessionClass} />
-          ))} */}
+            {usersProgressList && usersProgressList.length > 0 && usersProgressList.map((progress,index)=>(
+              <UserRow selectedTraning={selectedTraning} selectproject={selectproject} selectedCourse={selectedCourse} projectData={projectData} progress={progress} lessionClass={lessionClass} />
+            ))}
           </div>
         )}
 
