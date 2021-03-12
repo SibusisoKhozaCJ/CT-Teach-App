@@ -25,7 +25,27 @@ const useStyles = makeStyles(theme => ({
     overflowY: "auto",
     padding: 0,
     margin: 0,
-    position: "relative"
+    position: "relative",
+
+    ["@media (min-width:767px)"]: {
+      "& .content-mobile-only": {
+        padding: 0,
+        margin: 0,
+        width: 0,
+        height: 0,
+        overflow: "hidden"
+      }
+    },
+
+    ["@media (max-width:768px)"]: {
+      "& .content-desktop-only": {
+        padding: 0,
+        margin: 0,
+        width: 0,
+        height: 0,
+        overflow: "hidden"
+      }
+    }
   },
   reflex: {
     height: "100%",
@@ -56,6 +76,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+let timer = null;
+
+export const debounce = (fn, time) => {
+  if (timer) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(fn, time);
+};
+
 const Slider = () => {
   const isValid = useSelector(state => state.codepanel.isValid);
   const lesson = useSelector(state => state.codepanel.slides);
@@ -65,10 +94,14 @@ const Slider = () => {
   const dispatch = useDispatch();
   const lessonRef = useRef(null);
   const history = useHistory();
+  const [scrollBlocked, setScrollBlocked] = useState(false);
 
   const clickHandler = e => {
     e.persist();
 
+    if(e.target.closest(".take-tour")) {
+      dispatch(codepanelSetTourIsActive(true));
+    }
     if(e.target.closest(".btn.btn-encouraging.next.check")) {
       const btn = e.target.closest(".btn.btn-encouraging.next.check");
       const data = btn.dataset.click
@@ -121,7 +154,6 @@ const Slider = () => {
   const beforeScrollHandler = e => {
     if (e !== currentSlideNumber) {
       dispatch(codepanelSetIsValid(false));
-      // dispatch(codepanelSetSlideNumber(e));
     }
   }
 
@@ -138,10 +170,11 @@ const Slider = () => {
     >
       <ReactPageScroller
         animationTimer={300}
-        blockScrollDown={!isValid}
+        blockScrollUp={scrollBlocked}
+        blockScrollDown={!isValid || scrollBlocked}
         containerWidth="100%"
         customPageNumber={currentSlideNumber}
-        pageOnChange={e => pageChangeHandler(e)}
+        pageOnChange={pageChangeHandler}
         style={{ height: "100%" }}
         onBeforePageScroll={e => beforeScrollHandler(e)}
       >

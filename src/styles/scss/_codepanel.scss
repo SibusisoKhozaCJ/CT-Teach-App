@@ -1189,12 +1189,25 @@ left: calc(50% - 25px);
 	opacity: 1;		
 }	
 }
+
 #lesson-page .skip {
 font-family: 'montserrat', sans-serif;
 font-size: 14px;
 color: #333;
 cursor: pointer;
 }
+
+#lesson-page .skip:hover {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  #lesson-page .skip {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
 .button-locked {
 display: block;
 }
@@ -2107,7 +2120,7 @@ text-transform: unset;
 	font-size: 20px;
 	}
 	#lesson-page .btn-primary.success {
-		background-color: #68c300!important;
+		background-color: #5fd3aa !important;
 	}
 	.success-animation { 
 	background:none;    top: calc(50% - 1.25em);

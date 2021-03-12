@@ -27,7 +27,6 @@ export const lesson_data = {
       slide_number: 1,
       action: true,
       challenge: true,
-      js_function: "",
       challenge_id: 0,
       reg: [
         {
@@ -47,19 +46,27 @@ export const lesson_data = {
 
         <div class="">
           <div class="button-locked">
-            <div class="btn btn-primary swiper-editor bg-dark-grey skip check" style="backgroXund-color: #29c1c4!important;">Start typing...</div>
+            <div class="content-mobile-only btn btn-primary swiper-editor bg-dark-grey skip check" style="backgroXund-color: #29c1c4!important;">Start typing...</div>
           </div>
           <div class="button-unlocked">
             <a class="btn btn-primary btn-success check swiper-next" style="bacXkground-color: #29c1c4!important;">I did it <i class="icon-sentiment_satisfied"></i></a>
            </div>
         </div>
     </div>
-    <div class='white'>
+    <div class='white content-mobile-only'>
+      <p class=" pt-3 mb-1">Not sure what to do?</p>
+      <p class="pt-0X underlineX take-tour pointer bg-aqua2 white" data->Take the Tour</p>
+    </div>
+    <div class='white content-mobile-only'>
       <div class='button-locked'>
         <a class='swiper-next skip' style=''>Skip this step</a>
       </div>
     </div>
-
+    <div class='white content-desktop-only'>
+      <div class='button-locked'>
+        <a class='swiper-next skip' style='font-size: 25px'>Skip this step</a>
+      </div>
+    </div>
     `,
       js_function: "console.log('I am a DB loaded function')",
       sort_order: 1,
@@ -501,7 +508,7 @@ export const lesson_data = {
           <div style=' /* display: flex; */'>
             <div class='mt-2' style=' display: flex; flex-direction: column; justify-content: center; align-items: center;'>
               <br>
-              <a class='btn btn-encouraging next check' data-click="gt:/codepanel/C002/P002/L001" style='width: 80%;' href='#'>Start Now</a>
+              <a class='btn btn-encouraging next check' data-click="gt:/codepanel/C001/P001/L002" style='width: 80%;' href='#'>Start Now</a>
               <a class='btn btn-encouraging next check mt-4' data-click="o:projects" style='width: 80%;' href='#'>Projects Page</a>
             </div>
           </div>

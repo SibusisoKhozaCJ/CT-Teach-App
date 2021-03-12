@@ -19,7 +19,7 @@ import {
   codepanelSetBlockUpdate,
   codepanelSetCurrentLesson
 } from '../../redux/actions/codepanel-actions';
-import { getCodeFromLocal } from "./utils/localStorage"
+// import { getCodeFromLocal } from "./utils/localStorage"
 import * as authFetch from "../../shared/lib/authorizedFetch";
 import ProjectsModal from "./components/projects/projects-modal";
 import LeaveModal from "./components/leave-modal";
@@ -43,7 +43,6 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
   const [panel, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`
-  console.log(lessonPath);
 
   const history = useHistory()
 
@@ -63,6 +62,10 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
     // uploadLesson();
     dispatch(codepanelSetBlockUpdate(true));
     if (currentLesson !== lessonPath) {
+      // const l = getLesson("5-min-website");
+      // dispatch(codepanelSetSlides(l));
+      // dispatch(codepanelSetCurrentLesson(lessonPath));
+      // setLesson(l);
       getLesson(trainingId).then(data => {
         if (data) {
           dispatch(codepanelSetSlides(data));
