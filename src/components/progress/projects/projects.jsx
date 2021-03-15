@@ -23,6 +23,7 @@ const Projects = ({selectedCourse, index, projectData, trainingList, projectList
           : projectClass === "project" + index ? "project-div" : "project-div hide"
       }
     >
+      
       <div className={projectClass === "" ? "project-head" : "project-head hide"}>
         <div className="project-heading">
           <button
@@ -46,7 +47,7 @@ const Projects = ({selectedCourse, index, projectData, trainingList, projectList
             : " main-project-div main-project-div-close"
         }
       >
-        <SelectProjects selectproject={selectproject} setSelectedProject={(evt)=>setSelectedProject(evt)} selectedTraning={selectedTraning} setSelectedTraning={(evt)=>setSelectedTraning(evt)} traningData={traningData} setLessionClass={(evt) => {setLessionClass(evt);setSelectedTraning(evt)}} lessionClass={lessionClass} setProjectOpenClass={()=>setProjectOpenClass("")} projectData={projectData} projectList={projectList} />
+        {/* <SelectProjects selectproject={selectproject} setSelectedProject={(evt)=>setSelectedProject(evt)} selectedTraning={selectedTraning} setSelectedTraning={(evt)=>setSelectedTraning(evt)} traningData={traningData} setLessionClass={(evt) => {setLessionClass(evt);setSelectedTraning(evt)}} lessionClass={lessionClass} setProjectOpenClass={()=>setProjectOpenClass("")} projectData={projectData} projectList={projectList} /> */}
         {traningData && traningData.length > 0 && (
           <div className="table">
             <ProjectHeader

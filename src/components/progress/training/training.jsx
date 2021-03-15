@@ -11,7 +11,7 @@ const Training = ({ selectedTraning,traningData,selectproject }) => {
   return (
     <div className="table_row">
       <div
-        className="header-new-row"
+        className="header-new-row training-head"
       >
         {challengesData && challengesData.length > 0 && (
           challengesData.map((challnge,index)=>(

@@ -1,20 +1,18 @@
 import React from "react";
 import UserRecord from "./user-records/user-records";
-const UserRow = ({isProjectOpen, usersProgressList }) => {
+import CrsArrow from "../../../../assets/images/crossarow.svg";
+import LinearProgress from "@material-ui/core/LinearProgress";
+const UserRow = ({isProjectOpen, usersProgressList, lessionClass, setLessionClass}) => {
     return (
         <div className={isProjectOpen ? "table_row project-open" : "table_row"}>
             <div className="progress-name ">
-                <div class="table">
-                    <div class="theader">
-                        <div class="table_header">
-                            <div class="new-checkbox">
-                                <div class="form-group">
-                                    <input type="checkbox" id="maincheck" />
-                                    <label for="maincheck"></label>
-                                </div>
-                            </div>
-                        </div>
+                <div class="table projecttable">
+                    <div class="theader name-header">
+                       
                         <div class="table_header name-head">
+                              <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
                             FIRST{" "}
                             <svg
                                 width="15"
@@ -30,6 +28,9 @@ const UserRow = ({isProjectOpen, usersProgressList }) => {
                             </svg>
                         </div>
                         <div class="table_header name-head">
+                              <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
                             LAST{" "}
                             <svg
                                 width="16"
@@ -44,12 +45,315 @@ const UserRow = ({isProjectOpen, usersProgressList }) => {
                                 />
                             </svg>
                         </div>
-                    </div>
+                             <div class="table_row">
+             
+              <div class="table_small">
+                <div class="table_cell">avinash</div>
+              </div>
+              <div class="table_small">
+                <div class="table_cell">avinash</div>
+              </div>
+            </div>
+                          <div class="table_row">
+             
+              <div class="table_small">
+                <div class="table_cell">avinash</div>
+              </div>
+              <div class="table_small">
+                <div class="table_cell">avinash</div>
+              </div>
+            </div>
+                        </div>
+                        
+                        {/* Project Headerr */}
+                        {/* Task Header */}
+                                      <div className="theader project-header">
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+        P1
+        
+       
+      </div>
+     
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+        P2
+      
+      </div>
+   
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+         P3
+       
+      </div>
+   
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+         P4
+       
+      </div>
+     
+      <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+        P5
+      
+      </div>
+   
+      <div className="table_header"></div>
+        <div class="table_row">
+             
+              <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+              <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+            </div>
+                <div class="table_row">
+             
+              <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+              <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><LinearProgress variant="determinate" value={100} /></div>
+              </div>
+            </div>
+    </div>
+
+                
+                       {/* Challenege Header */}
+
+                        {/* <div className="theader project-header">
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+       1
+        
+       
+      </div>
+     
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+        2
+      
+      </div>
+   
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+        3
+       
+      </div>
+   
+      <div className="table_header">
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+        4
+       
+      </div>
+     
+      <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+      5
+      
+      </div>
+       <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+     6
+      
+      </div>
+       <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+      7
+      
+      </div>
+       <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+     8
+      
+      </div>
+       <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+      9
+      
+      </div>
+       <div
+        className="table_header"
+        onClick={() =>
+          lessionClass !== "lession5"
+            ? setLessionClass("lession5")
+            : setLessionClass("")
+        }
+      >
+            <div className="crsarrow">
+          <img src={CrsArrow} />
+        </div>
+      10
+      
+      </div>
+   
+      <div className="table_header"></div>
+        <div class="table_row">
+            
+       
+              <div class="table_small">
+                <div class="table_cell"><div className="test-div"></div></div>
+              </div>
+              <div class="table_small">
+                <div class="table_cell">  <div className="test-div yellow"></div></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell">  <div className="test-div yellow"></div></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell">  <div className="test-div yellow"></div></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div"></div></div>
+              </div>
+            </div>
+              <div class="table_row">
+            
+       
+              <div class="table_small">
+                <div class="table_cell"><div className="test-div"></div></div>
+              </div>
+              <div class="table_small">
+                <div class="table_cell">  <div className="test-div yellow"></div></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell">  <div className="test-div yellow"></div></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell">  <div className="test-div yellow"></div></div>
+              </div>
+               <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div blue"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div"></div></div>
+              </div>
+                <div class="table_small">
+                <div class="table_cell"><div className="test-div"></div></div>
+              </div>
+            </div>
+    </div> */}
+              
                     {usersProgressList && usersProgressList.length > 0 && usersProgressList.map((progress,index)=>(
                         <UserRecord progress={progress}/>
                     ))}
                     
                     </div>
+                    
             </div>
         </div>
     );

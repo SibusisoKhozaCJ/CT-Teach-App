@@ -51,29 +51,26 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
               <span className="tribe-grid">
                 <img src={Moveicon} alt="" />
               </span>
-              <p>MOVE</p>
+        
             </div>
-            <div className="headPicon">
+            {/* <div className="headPicon">
               <span className="tribe-grid">
                 <img src={Removeicon} alt="" />
               </span>
               <p>REMOVE</p>
-            </div>
-            <div className="tribe-colsp">
+            </div> */}
+            {/* <div className="tribe-colsp">
               <span>
                 <img src={Colspicon} alt="" />
               </span>
 
-            </div>
+            </div> */}
           </div>
 
         </div>
 
       </div>
-      <div className="header-right-menu">
-        <div className="head-add"></div>
-        <div className="head-collaspe"></div>
-      </div>
+   
     </div>
   );
 };

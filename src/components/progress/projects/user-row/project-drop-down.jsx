@@ -16,7 +16,7 @@ const SelectProjects = ({traningData, selectedTraning,selectproject,setSelectedP
   };
   return (
     <>
-    {lessionClass === "" && (
+    {/* {lessionClass === "" && (
       <div className="project-slect">
       <div className="select-header">
         <div className="slt-btn">
@@ -97,8 +97,51 @@ const SelectProjects = ({traningData, selectedTraning,selectproject,setSelectedP
 
       </div>
     </div>
-    )}
+    )} */}
+<div className="project-slect">
+      <div className="select-header">
+        <div className="slt-btn">
+          <button        
+          >
+            C01
+          </button>
+          
+        </div>
+        <div className="projectslect">
+           <button        
+          >
+            P1
+          </button>
+          <FormControl variant="filled">
+           
+            <InputLabel id="slect-filled-label">
+              Project
+                      </InputLabel>
+            <Select
+              labelId="slect-filled-label"
+              id="demo-simple-select-filled"
+              value={selectproject}
+              name="type"
+              onChange={handleProjectChange}
+            >
+              <MenuItem value={"123"}>{"project.title"}</MenuItem>
+              <MenuItem value={"1432"}>{"project.title"}</MenuItem>
+              <MenuItem value={"122"}>{"project.title"}</MenuItem>
+              <MenuItem value={"1233"}>{"project.title"}</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div className="nextpevselect ">
+          <button className="nextslect">
+            <img src={Arrowleft} />
+          </button>
+          <button  className="prevslect">
+            <img src={Arrowright} />
+          </button>
+        </div>
 
+      </div>
+    </div>
     </> 
   );
 };

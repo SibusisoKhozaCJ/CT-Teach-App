@@ -14,10 +14,10 @@ const UserRecord = ({ progress}) => {
                 </div>
             </div>
             <div class="table_small">
-                <div class="table_cell">{progress.userInfo.firstname}</div>
+                <div class="table_cell tranee-firstName">{progress.userInfo.firstname}</div>
             </div>
             <div class="table_small">
-                <div class="table_cell">{progress.userInfo.lastname ? progress.userInfo.lastname : progress.userInfo.firstname}</div>
+                <div class="table_cell tranee-lastName">{progress.userInfo.lastname ? progress.userInfo.lastname : progress.userInfo.firstname}</div>
             </div>
         </div>
 
