@@ -14,6 +14,10 @@ const SelectProjects = ({traningData, selectedTraning,selectproject,setSelectedP
   const handleTraningChange = (event) => {
     setSelectedTraning(event.target.value);
   };
+
+  const handleCourseChange = (event) => {
+    // setSelectedCourse(event.target.value);
+  };
   return (
     <>
     {/* {lessionClass === "" && (

@@ -41,6 +41,16 @@ async function getAllUsersProgressLessions(progessUsers) {
   return progressList;
 }
 
+export function getAllCourses() {
+  return async function (dispatch, getState) {
+    dispatch({ type: Types.SET_LOADING, payload: true });
+      const coursesData = await authFetch.firebaseGet("Courses/");
+      if(coursesData){
+        dispatch({ type: Types.SAVE_COURSES_LIST, payload: coursesData });
+      }
+      dispatch({ type: Types.SET_LOADING, payload: false });
+  };
+}
 
 export function getCourseProjects(coursId) {
   return async function (dispatch, getState) {
