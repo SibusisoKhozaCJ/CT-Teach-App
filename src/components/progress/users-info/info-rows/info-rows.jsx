@@ -12,7 +12,8 @@ const UserRow = ({
   projectList,
   trainingList,
   setSelectedTraning,
-  selectedTraning
+  selectedTraning,
+  selectedCourse
 }) => {
   return (
     <div className="table_row">
@@ -64,12 +65,12 @@ const UserRow = ({
 
           {/* Projects Header */}
           {selectedProject === "" && (
-            <ProjectInfoRows setSelectedProject={(evt)=>{setSelectedProject(evt)}} projectList={projectList}/>
+            <ProjectInfoRows selectedCourse={selectedCourse} usersProgressList={usersProgressList} setSelectedProject={(evt)=>{setSelectedProject(evt)}} projectList={projectList}/>
           )}
           
           {/* Projects Header Ends*/}
           {selectedProject !== "" && selectedTraning === "" && (
-          <TaskInfoRows setSelectedTraning={(evt)=>setSelectedTraning(evt)} trainingList={trainingList} selectedProject={selectedProject}/>
+          <TaskInfoRows selectedCourse={selectedCourse} usersProgressList={usersProgressList} setSelectedTraning={(evt)=>setSelectedTraning(evt)} trainingList={trainingList} selectedProject={selectedProject}/>
           )}
           {/* Task Header */}
 

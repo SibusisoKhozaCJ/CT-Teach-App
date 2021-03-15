@@ -93,11 +93,12 @@ const Progress = () => {
       {selectedProject !== "" && selectedTraning === "" && (
         <SelectProjects projectList={projectList} setSelectedProject={(evt)=>setSelectedProject(evt)} selectedCourse={selectedCourse} selectedProject={selectedProject} />
       )}
-
+      {/* End Project Drop Down */}
+      {/* Show Task Drop Down */}
       {selectedTraning !== "" && (
         <SelectTaskDropDown trainingList={trainingList} selectedTraning={selectedTraning} setSelectedTraning={(evt)=>setSelectedTraning(evt)} selectedProject={selectedProject} />
       )}
-      {/* End Project Drop Down */}
+      {/* End Task Drop Down */}
       <div className="progess-page">
         {/* Users Info Section */}
         {projectList && projectList.length > 0 && (
@@ -108,17 +109,11 @@ const Progress = () => {
             selectedProject={selectedProject}
             trainingList={trainingList}
             selectedTraning={selectedTraning}
+            selectedCourse={selectedCourse}
             setSelectedTraning={(evt)=>setSelectedTraning(evt)}
           />
         )}
 
-        {/* Users Info Section end */}
-        {/* //Project 1 */}
-        {/* {projectList && projectList.length > 0 && (
-          projectList.map((project,index)=>(
-            <Projects selectedCourse={selectedCourse} usersProgressList={progressList} index={index} projectList={projectList} trainingList={trainingList} projectData={project} projectClass={projectClass} setProjectOpenClass={(projectclass) =>setProjectOpenClass(projectclass)}/>
-          ))
-        )} */}
       </div>
     </div>
   );

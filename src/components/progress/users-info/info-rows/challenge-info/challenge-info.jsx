@@ -19,9 +19,7 @@ const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject}) => {
       ))}
       
       <div className="table_header"></div>
-      {/* <div class="table_row">
-
-
+      <div class="table_row">
               <div class="table_small">
                 <div class="table_cell"><div className="test-div"></div></div>
               </div>
@@ -53,41 +51,7 @@ const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject}) => {
                 <div class="table_cell"><div className="test-div"></div></div>
               </div>
             </div>
-            <div class="table_row">
-
-
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell">  <div className="test-div yellow"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell">  <div className="test-div yellow"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell">  <div className="test-div yellow"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div"></div></div>
-              </div>
-            </div>
-           */}
+           
     </div>
   );
 };

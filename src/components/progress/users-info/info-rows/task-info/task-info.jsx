@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CrsArrow from "../../../../../assets/images/crossarow.svg";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import TaskProgressBar from "./task-progress";
 const TaskInfoRows = ({
   trainingList,
   selectedProject,
-  setSelectedTraning
+  setSelectedTraning,
+  usersProgressList,
+  selectedCourse
 }) => {
   const [traningList, setTraningList] = useState([])
   useEffect(() => {
@@ -25,6 +28,13 @@ const TaskInfoRows = ({
           </div>
         ))}
       <div className="table_header"></div>
+      <div class="table_row">
+      {usersProgressList &&
+          usersProgressList.length > 0 &&
+          usersProgressList.map((progress, index) => (
+            <TaskProgressBar traningList={traningList} selectedCourse={selectedCourse} selectproject={selectedProject} progress={progress}/>
+          ))}
+          </div>
     </div>
   );
 };
