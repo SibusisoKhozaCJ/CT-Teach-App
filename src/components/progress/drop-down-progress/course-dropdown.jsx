@@ -31,7 +31,6 @@ const SelectCourseDropDown = ({ selectedCourse, setSelectedCourse, coursesData }
 
           <div className="projectslect ">
             <FormControl variant="filled">
-              <InputLabel id="slect-filled-label">Courses</InputLabel>
               <Select
                 labelId="slect-filled-label"
                 id="demo-simple-select-filled"
@@ -42,7 +41,7 @@ const SelectCourseDropDown = ({ selectedCourse, setSelectedCourse, coursesData }
                 {coursesList &&
                   coursesList.length > 0 &&
                   coursesList.map((course, index) => (
-                    <MenuItem key={"course"+index} value={course.id}>{course.title}</MenuItem>
+                    <MenuItem key={"course"+index} value={course.id}>{course.id}<span className="seperator">|</span>{course.title}</MenuItem>
                   ))}
                   {coursesList &&
                   coursesList.length <= 0 && (

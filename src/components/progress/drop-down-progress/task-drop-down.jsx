@@ -39,7 +39,7 @@ const SelectTaskDropDown = ({ selectedTraning,setSelectedTraning, selectedProjec
                 {traningList &&
                   traningList.length > 0 &&
                   traningList.map((traning, index) => (
-                    <MenuItem key={"traning"+index} value={traning.id}>{traning.id + " | "+traning.title}</MenuItem>
+                    <MenuItem key={"traning"+index} value={traning.id}>{traning.id}<span className="seperator">|</span>{traning.title}</MenuItem>
                   ))}
               </Select>
             </FormControl>

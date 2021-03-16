@@ -33,7 +33,7 @@ const SelectProjects = ({
                 {projectList &&
                   projectList.length > 0 &&
                   projectList.map((project, index) => (
-                    <MenuItem key={"project"+index} value={project.id}>{project.id +" | "+project.title}</MenuItem>
+                    <MenuItem key={"project"+index} value={project.id}>{project.id}<span className="seperator">|</span>{project.title}</MenuItem>
                   ))}
               </Select>
             </FormControl>

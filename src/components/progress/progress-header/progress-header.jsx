@@ -21,9 +21,9 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
             <div className="d-flex pro-head">
               <img src={Tribeicon} alt="" />
               <FormControl variant="filled">
-                <InputLabel id="slect-filled-label">
+                {selectedTribe === "" && (<InputLabel id="slect-filled-label">
                   SELECT TRIBE
-                      </InputLabel>
+                      </InputLabel>)}
                 <Select
                   labelId="slect-filled-label"
                   id="demo-simple-select-filled"
