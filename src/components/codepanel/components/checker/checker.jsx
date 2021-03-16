@@ -62,7 +62,7 @@ const useStyles = makeStyles(() => ({
     // backgroundColor: "#fff",
     backgroundColor: "rgba(255,255,255,0.75)",
     border: "2px solid #43D4DD",
-    fontSize: 13,
+    fontSize: 18,
 
     "&::before": {
       zIndex: 1,
@@ -80,16 +80,17 @@ const useStyles = makeStyles(() => ({
   },
   listExpand: {
     position: "absolute",
-    width: "90%",
+    // width: "95%",
     right: 20,
+    left: 20,
     top: 20,
-    maxWidth: "70%",
+    // maxWidth: "70%",
     margin: 0,
     padding: "8px 4px",
     borderRadius: 14,
     backgroundColor: "#fff",
     border: "2px solid #43D4DD",
-    fontSize: 13,
+    fontSize: 18,
 
     "&::before": {
       zIndex: 1,
@@ -98,7 +99,7 @@ const useStyles = makeStyles(() => ({
       content: "''",
       top: 0,
       bottom: 0,
-      left: 0,
+      left: -2,
       width: 32,
       backgroundColor: "#43D4DD",
       borderRadius: 10
@@ -106,7 +107,7 @@ const useStyles = makeStyles(() => ({
   },
 
   title: {
-    fontSize: 14,
+    fontSize: 18,
     color: "#43D4DD",
     fontWeight: 700,
     textTransform: "uppercase",
@@ -115,6 +116,7 @@ const useStyles = makeStyles(() => ({
   },
 
   item: {
+    margin: "10px 0",
     position: "relative",
     zIndex: 10,
     listStyle: "none",
@@ -124,7 +126,8 @@ const useStyles = makeStyles(() => ({
   },
 
   text: {
-    marginLeft: 12
+    marginLeft: 12,
+    fontSize: 18
   },
 }));
 
@@ -142,7 +145,7 @@ const Checker = ({ challenges, percent }) => {
           <li className={classes.item}>
             <img
               src={CloseIcon}
-              width="18"
+              width="24"
               className={`${classes.close} coverage`}
               alt=""
               onClick={() => {setIsOpen(false)}}
@@ -160,11 +163,11 @@ const Checker = ({ challenges, percent }) => {
         <>
           <li className={classes.item}>
             <img onClick={()=>{setCollapsed(!collapsed)}} src={ChevronRightIcon} className="coverage" alt="" style={{ marginLeft: -7 }}/>
-            <h3 className={classes.title}>Checker:</h3>
+            <h3 className={classes.title}>Checker</h3>
             <div className={classes.closeExpand}>
               <img
                 src={CloseIcon}
-                width="18"
+                width="24"
                 className={`${classes.close} coverage`}
                 alt=""
                 onClick={() => {setIsOpen(false)}}
@@ -172,7 +175,7 @@ const Checker = ({ challenges, percent }) => {
             </div>
           </li>
           {challenges.map(challenge => (
-            <li key={challenge.description} className={classes.item}>
+            <li key={challenge.description} className={classes.item} onClick={() => {setCollapsed(!collapsed)}}>
               <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
               <span className={classes.text}>{challenge.description}</span>
             </li>

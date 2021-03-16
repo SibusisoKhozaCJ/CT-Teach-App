@@ -19,7 +19,7 @@ const DEFAULT_COMPONENTS_TO_RENDER_LENGTH = 0;
 const DEFAULT_ANIMATION_TIMER_BUFFER = 20;
 const KEY_UP = 38;
 const KEY_DOWN = 40;
-const MINIMAL_DELTA_Y_DIFFERENCE = 1;
+const MINIMAL_DELTA_Y_DIFFERENCE = 30;
 const DISABLED_CLASS_NAME = "rps-scroll--disabled";
 
 let previousTouchMove = null;
@@ -251,6 +251,7 @@ const ReactPageScroller = ({
           scrollWindowUp();
         }
       }
+      // event.remove();
     },
     [scrollWindowDown, scrollWindowUp],
   );

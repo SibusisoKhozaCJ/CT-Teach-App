@@ -164,7 +164,7 @@ function Sidebar({ location }) {
               aria-describedby={id}
               variant="contained"
               color="primary"
-              onClick={() => {history.push("/codepanel/5-min-website")}}
+              onClick={() => {history.push("/codepanel/C001/P001/L001")}}
             >
               <ToCodeSvg/>
               <span className="tocode-tagsidebar">It's GO time</span>
@@ -174,7 +174,7 @@ function Sidebar({ location }) {
             location={location}
             isSidebarOpened={isSidebarOpened}
             id="12"
-            link={"/codepanel/5-min-website"}
+            link={"/codepanel/C001/P001/L001"}
             label="Projects"
             icon={<ProjectsSvg />}
             callback={() => {dispatch(codepanelSetProjectsIsActive(true))}}

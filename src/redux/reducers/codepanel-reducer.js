@@ -1,6 +1,7 @@
 import { Types } from '../constants/codepanel-types'
 
 const initialState = {
+  currentLesson: null,
   slides: null,
   currentSlide: 0,
   preview: null,
@@ -126,6 +127,9 @@ const codepanelReducer = (state = initialState, action) => {
     }
     case Types.LESSON_SET_BLOCK_UPDATE: {
       return { ...state, isBlocked: action.payload };
+    }
+    case Types.LESSON_SET_CURRENT_LESSON: {
+      return { ...state, currentLesson: action.payload };
     }
     default:
       return state;
