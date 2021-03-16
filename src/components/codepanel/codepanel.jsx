@@ -3,7 +3,7 @@ import Media from "react-media";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
-import { getLesson } from "./data/getLesson";
+// import { getLesson } from "./data/getLesson";
 import MobileLayout from './components/mobile/mobile-layout'
 import DesktopLayout from './components/desktop/desktop-layout'
 import Editor from './components/editor'
@@ -16,9 +16,10 @@ import {
   codepanelSetCode,
   codepanelSetProgress,
   codepanelSetSlideNumber,
-  codepanelSetBlockUpdate
+  codepanelSetBlockUpdate,
+  codepanelSetCurrentLesson
 } from '../../redux/actions/codepanel-actions';
-import { getCodeFromLocal } from "./utils/localStorage"
+// import { getCodeFromLocal } from "./utils/localStorage"
 import * as authFetch from "../../shared/lib/authorizedFetch";
 import ProjectsModal from "./components/projects/projects-modal";
 import LeaveModal from "./components/leave-modal";
@@ -26,30 +27,53 @@ import TakeTour from "./components/take-tour";
 import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
 
+import { uploadLesson } from "./utils/upload-lesson";
 
-const Codepanel = ({ match: { params: { id } } }) => {
+const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) => {
   const dispatch = useDispatch();
-  const lesson = getLesson(id);
+  // const lesson = getLesson(trainingId);
   // const userId = useSelector(state => state.user.userId);
   const userId = currentUserId();
-  const lessonId = "5-min-website";
+  // const lessonId = "5-min-website";
   const isProjectsActive = useSelector(state => state.codepanel.isProjectsActive);
   const isLeaveActive = useSelector(state => state.codepanel.isLeaveActive);
   const isTourActive = useSelector(state => state.codepanel.isTourActive);
   const isResetActive = useSelector(state => state.codepanel.isResetActive);
-  const [panel, setPanels] = useState(null)
+  const currentLesson = useSelector(state => state.codepanel.currentLesson);
+  const [panel, setPanels] = useState(null);
+  const [lesson, setLesson] = useState(null);
+  const lessonPath = `${courseId}/${projectId}/${trainingId}`
 
   const history = useHistory()
 
-  const getProgressData = async (userId, lessonId) => {
+  const getProgressData = async (userId, trainingId) => {
     return await authFetch.firebaseGet(
-      `user_profile/${userId}/lesson_progress/${lessonId}`
+      `user_profile/${userId}/lesson_progress/${trainingId}`
+    );
+  }
+
+  const getLesson = async (id) => {
+    return await authFetch.firebaseGet(
+      `Lessons/${id}`
     );
   }
 
   useEffect(() => {
+    // uploadLesson();
     dispatch(codepanelSetBlockUpdate(true));
-    dispatch(codepanelSetSlides(lesson));
+    if (currentLesson !== lessonPath) {
+      // const l = getLesson("5-min-website");
+      // dispatch(codepanelSetSlides(l));
+      // dispatch(codepanelSetCurrentLesson(lessonPath));
+      // setLesson(l);
+      getLesson(trainingId).then(data => {
+        if (data) {
+          dispatch(codepanelSetSlides(data));
+          dispatch(codepanelSetCurrentLesson(lessonPath));
+          setLesson(data);
+        }
+      })
+    }
 
     // if (typeof localStorage !== "undefined") {
     //   const code = getCodeFromLocal();
@@ -57,13 +81,16 @@ const Codepanel = ({ match: { params: { id } } }) => {
     //     dispatch(codepanelSetCode(code));
     //   }
     // }
+    if (!lesson) {
+      return;
+    }
 
     let count = 0;
     let challenges = {};
     for (let i = 0; i < lesson.slides.length; i++) {
       if (lesson.slides[i].reg) {
         const validators = lesson.slides[i].reg.map(() => false);
-        challenges[count + 1] = { progress: 0, validators };
+        challenges[count] = { progress: 0, validators };
         count++;
       }
     }
@@ -71,7 +98,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
     dispatch(codepanelSetChallenges(challenges));
 
     if (userId) {
-      getProgressData(userId, lessonId).then(data => {
+      getProgressData(userId, lessonPath).then(data => {
         if (data) {
           const { challenges, progress, current_slide, user_code } = data
           progress && dispatch(codepanelSetProgress(progress));
@@ -83,44 +110,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
       })
     }
 
-  }, [id, userId, lessonId]);
-
-  // const navigateHandler = (e) => {
-    // console.log("back")
-    // const r = confirm("You pressed a Back button! Are you sure?!");
-    // const r = false;
-    // if (r == true) {
-      // history.back();
-    // } else {
-      // history.pushState(null, null, window.location.pathname);
-    // }
-    // history.pushState(null, null, window.location.pathname);
-  // }
-
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     console.log("setup popstate listener")
-  //     window.addEventListener('popstate', function(event) {
-  //   // The popstate event is fired each time when the current history entry changes.
-
-  //   // var r = confirm("You pressed a Back button! Are you sure?!");
-  //   const r = false;
-
-  //   if (r == true) {
-  //       // Call Back button programmatically as per user confirmation.
-  //       history.back();
-  //       // Uncomment below line to redirect to the previous page instead.
-  //       // window.location = document.referrer // Note: IE11 is not supporting this.
-  //   } else {
-  //       // Stay on the current page.
-  //       history.pushState(null, null, window.location.pathname);
-  //   }
-
-  //   history.pushState(null, null, window.location.pathname);
-
-// }, false);
-  //   }
-  // });
+  }, [userId, lessonPath, lesson]);
 
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,
@@ -130,7 +120,7 @@ const Codepanel = ({ match: { params: { id } } }) => {
 
   return (
     <>
-      {panels && (
+      {panels && lesson && (
         <Media
         queries={{
           mobile: "(max-width: 767px)",

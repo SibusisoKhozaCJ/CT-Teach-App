@@ -21,6 +21,7 @@ import { saveCodeToLocal } from "../utils/localStorage";
 import Tick from "./tick/tick";
 import * as authFetch from "../../../shared/lib/authorizedFetch";
 import Checker from "../components/checker/checker";
+import Tip from "../components/tip";
 import { currentUserId } from "../../../shared/lib/authentication";
 
 let timer = null;
@@ -41,7 +42,7 @@ const Editor = () => {
   const currentSlide = useSelector(state => state.codepanel.currentSlide);
   const isValid = useSelector(state => state.codepanel.isValid);
   const userId = currentUserId();
-  const lessonId = "5-min-website";
+  const lessonId = useSelector(state => state.codepanel.currentLesson);
   const challenges = useSelector(state => state.codepanel.challenges);
   const challengesCount = useSelector(state => state.codepanel.challengesCount);
   const isDesktop = useMediaQuery("(min-width:768px)");
@@ -59,7 +60,7 @@ const Editor = () => {
   }
 
   if (rules) {
-    const currentChallenge = challenges[lesson.slides[currentSlide].checkpoint_id]
+    const currentChallenge = challenges[lesson.slides[currentSlide].challenge_id]
     if (currentChallenge.validators) {
       challengesPrepared = rules.map((rule, index) => ({
         description: rule.description,
@@ -126,7 +127,7 @@ const Editor = () => {
   }, [dispatch, textareaRef])
 
   useEffect(() => {
-    const isChallenge = lesson.slides[currentSlide].checkpoint;
+    const isChallenge = lesson.slides[currentSlide].challenge;
     if (isBlocked) {
       return;
     }
@@ -148,7 +149,14 @@ const Editor = () => {
       return;
     }
 
-    const challenge_id = lesson.slides[currentSlide].checkpoint_id || null;
+    // const challenge_id = lesson.slides[currentSlide].challenge_id || null;
+    let challenge_id = null;
+    if (lesson.slides[currentSlide].challenge_id !== undefined) {
+      challenge_id = lesson.slides[currentSlide].challenge_id;
+    } else {
+      return;
+    }
+
 
     if (challenges[challenge_id].progress !== 100) {
       const validated = validate(storedCode)
@@ -162,7 +170,7 @@ const Editor = () => {
 
       let newChallenges = {...challenges, [challenge_id]: validated};
       let challenges_completed = 0
-      for (let i=1; i <= challengesCount; i++) {
+      for (let i=0; i <= challengesCount -1; i++) {
         if (challenges[i].progress === 100) {
           challenges_completed++
         }
@@ -192,7 +200,7 @@ const Editor = () => {
       dispatch(codepanelSetIsValid(true));
     }
 
-  }, [currentSlide, storedCode])
+  }, [currentSlide, storedCode, isBlocked])
 
   const onChange = (i) => {
     const newValue = i.getValue();
@@ -246,7 +254,8 @@ const Editor = () => {
         <div style={{ width: "100%", height: "100%", display: "flex" }}>
           <div style={{
             marginTop: 2,
-            width: 50,
+            width: 36,
+            padding: "13px 6px",
             height: "100%",
             backgroundColor: "#333",
             display: "flex",
@@ -267,7 +276,8 @@ const Editor = () => {
               backgroundColor: "#1e1e1e",
               color: "#fff",
               width: "100%",
-              height: "100%"
+              height: "100%",
+              padding: "15px 0",
             }}
             onInput={e => textareaInputHandler(e)}
           />
@@ -286,6 +296,7 @@ const Editor = () => {
         </div>
       ) : null}
       {challengesPrepared && isCheckerActive && <Checker challenges={challengesPrepared} percent={percent}/>}
+      {lesson.slides[currentSlide].tip && <Tip content={lesson.slides[currentSlide].tip} />}
     </form>
   );
 }

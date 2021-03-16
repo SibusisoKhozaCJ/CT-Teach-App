@@ -133,3 +133,8 @@ export const codepanelSetBlockUpdate = isBlock => ({
   type: Types.LESSON_SET_BLOCK_UPDATE,
   payload: isBlock
 });
+
+export const codepanelSetCurrentLesson = lessonId => ({
+  type: Types.LESSON_SET_CURRENT_LESSON,
+  payload: lessonId
+});
