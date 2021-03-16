@@ -9,11 +9,12 @@ import {
 } from "../../redux/actions/progress-actions";
 import { saveUser } from "../../redux/actions/user-actions";
 import Cookies from "js-cookie";
-import Loading from "../../shared/components/loader/Loading";
 import TribeUsersInfo from "./users-info/users-info";
 import SelectProjects from "./drop-down-progress/project-drop-down";
 import SelectCourseDropDown from "./drop-down-progress/course-dropdown";
 import SelectTaskDropDown from "./drop-down-progress/task-drop-down";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from '@material-ui/core/Box';
 const Progress = () => {
   const userIdFromCookies = Cookies.get("userid");
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const Progress = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedProject, setSelectedProject] = useState("");
   const [selectedTraning, setSelectedTraning] = useState("");
-  
+
   useEffect(() => {
     if (!user) {
       dispatch(saveUser(userIdFromCookies));
@@ -41,10 +42,10 @@ const Progress = () => {
   }, [dispatch, user]);
 
   useEffect(() => {
-    if(courseList){
+    if (courseList) {
       const defaultCourse = Object.entries(courseList)[0][0];
       setSelectedCourse(defaultCourse)
-    }else{
+    } else {
       dispatch(getAllCourses());
     }
   }, [courseList]);
@@ -61,13 +62,13 @@ const Progress = () => {
     }
   }, [selectedTribe]);
 
-  if (isLoading) {
-    return (
-      <div className="loader">
-        <Loading />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="loader">
+  //       <Loading />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="main-pro-page">
@@ -81,35 +82,43 @@ const Progress = () => {
       {/* Show Courses Dropdown */}
       {selectedProject === "" && (
         <SelectCourseDropDown
-        setSelectedCourse={(evt) => setSelectedCourse(evt)}
-        selectedCourse={selectedCourse}
-        coursesData={courseList}
-      />
+          setSelectedCourse={(evt) => setSelectedCourse(evt)}
+          selectedCourse={selectedCourse}
+          coursesData={courseList}
+        />
       )}
-      
+
       {/* End Courses Dropdown */}
       {/* Show Project Drop Down */}
       {selectedProject !== "" && selectedTraning === "" && (
-        <SelectProjects projectList={projectList} setSelectedProject={(evt)=>setSelectedProject(evt)} selectedCourse={selectedCourse} selectedProject={selectedProject} />
+        <SelectProjects projectList={projectList} setSelectedProject={(evt) => setSelectedProject(evt)} selectedCourse={selectedCourse} selectedProject={selectedProject} />
       )}
       {/* End Project Drop Down */}
       {/* Show Task Drop Down */}
       {selectedTraning !== "" && (
-        <SelectTaskDropDown trainingList={trainingList} selectedTraning={selectedTraning} setSelectedTraning={(evt)=>setSelectedTraning(evt)} selectedProject={selectedProject} />
+        <SelectTaskDropDown trainingList={trainingList} selectedTraning={selectedTraning} setSelectedTraning={(evt) => setSelectedTraning(evt)} selectedProject={selectedProject} />
       )}
       {/* End Task Drop Down */}
       <div className="progess-page">
         {/* Users Info Section */}
-        {projectList && projectList.length > 0 && (
+        {isLoading && (<Box
+          display="flex"
+          width="100%"
+          justifyContent="center"
+          alignItems="center"
+          my={5}>
+          <CircularProgress />
+        </Box>)}
+        {!isLoading && projectList && projectList.length > 0 && (
           <TribeUsersInfo
             usersProgressList={progressList}
             projectList={projectList}
-            setSelectedProject={(evt)=>{setSelectedProject(evt)}}
+            setSelectedProject={(evt) => { setSelectedProject(evt) }}
             selectedProject={selectedProject}
             trainingList={trainingList}
             selectedTraning={selectedTraning}
             selectedCourse={selectedCourse}
-            setSelectedTraning={(evt)=>setSelectedTraning(evt)}
+            setSelectedTraning={(evt) => setSelectedTraning(evt)}
           />
         )}
 

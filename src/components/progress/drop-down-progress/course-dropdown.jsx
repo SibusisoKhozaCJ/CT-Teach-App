@@ -30,14 +30,18 @@ const SelectCourseDropDown = ({ selectedCourse, setSelectedCourse, coursesData }
         const lastCourse = Object.entries(coursesData)[index][0];
         if(firstCourse === selectedCourse){
           setDisablePrevious(true)
+        }else{
+          setDisablePrevious(false)
         }
         if(lastCourse === selectedCourse){
           setDisableNext(true)
+        }else{
+          setDisableNext(false)
         }
         setCourseList(tempCourseList);
       }
 
-  },[coursesData])
+  },[coursesData,selectedCourse])
 
   const setPreviousCourse =()=>{
     const previousCourse = Object.entries(coursesData)[selectedIndex-1][0];

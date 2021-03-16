@@ -18,7 +18,7 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
       <div className="header-left-menu">
         <div className="head-tribe">
           <div className="head-trb-main">
-            <div className="d-flex pro-head">
+            <div className={selectedTribe === "" ? "d-flex pro-head" : "d-flex pro-head selected-tribe-overlay"}>
               <img src={Tribeicon} alt="" />
               <FormControl variant="filled">
                 {selectedTribe === "" && (<InputLabel id="slect-filled-label">

@@ -472,3 +472,14 @@ span{
 .btn-disabled{
   cursor: not-allowed;
 }
+
+.project-progress{
+  .MuiLinearProgress-barColorPrimary {
+    background-color: #43D4DD;
+}
+}
+.pro-head.selected-tribe-overlay{
+  border: 2px solid #A6A6A6;
+box-sizing: border-box;
+border-radius: 6px;
+}
