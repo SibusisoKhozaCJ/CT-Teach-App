@@ -1,20 +1,32 @@
 .tribe-menu{ 
     max-width: 800px;
     box-sizing: border-box;  
-    height: 60px;
+ 
 .head-trb-main {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center;    
+}
+.tribe-project{
+.MuiFilledInput-input {
+    padding: 11px 12px 4px;
+    text-transform: capitalize;
+}       
 }
 .MuiFormControl-root {
     width: 400px;
 }
 .pro-head {
-  max-width: 358px;
+  max-width: 430px;
 border: 4px solid #43D4DD;
 border-radius: 6px;
 padding: 0 5px;
+margin-right: 10px;
+min-height: 50px;
+img{
+    max-width: 100%;
+padding: 0px 8px;
+width: 40px;
+}
 }
 .MuiSvgIcon-root{
     display: none;
@@ -27,12 +39,15 @@ padding: 0 5px;
 }
 .MuiSelect-select:focus {
     background: transparent;
+    box-shadow: none;
+border: none !important;
 }
 #slect-filled-label{
     font-weight: bold;
 font-size: 25px;
 line-height: 29px;
 color: #C4C4C4;
+top: -10px;
 }
 .MuiFilledInput-root:hover {
    background: transparent;
@@ -52,13 +67,14 @@ box-sizing: border-box;
 border-radius: 6px;
 text-align: center;
 display: block;
+margin-left: 8px;
 img{
     margin-top: 6px;
 }
 
 }
 .MuiFilledInput-input {
-    padding: 36px 12px 4px;       
+    padding: 20px 12px 4px;       
 }
 .headPicon {
     width: 70px;
@@ -78,9 +94,7 @@ margin-top: 5px;
 .commonheighttribe{
     height: 65px;
 }
-.header-left-menu {
-    padding: 4px 15px;
-}
+
 
 .tribe-page-open {
     width: 700px;

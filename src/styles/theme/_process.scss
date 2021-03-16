@@ -3,15 +3,31 @@
   flex-grow: 1;
   min-height: 100vh;
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-  .progress-name{
-      width: 400px;
-    }
+  .header-new-row.training-head {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.projecttable {
+    display: flex !important;
+}
+.header-new-row {
+    margin-top: 8px;
+}
+  .test-div {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #000000;
+      margin: 0 auto;
+  }
   .progess-page {
       display: flex;
       align-items: center;
       margin-top: 40px;
-     
+     background: rgba(240, 238, 238, 0.88);
+border-radius: 35px;
+padding: 10px 20px;
   }
+ 
   .project-head {
       display: flex;
       align-items: center;
@@ -41,10 +57,24 @@
   }
      
   }
+  .name-header {
+    width: 260px;
+}
+  .project-div.project-div-close {
+    background: #fff;
+    border: 2px solid #43D4DD;
+}
+.tranee-firstName, .tranee-lastName{
+  text-align: left;
+  font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+padding-left: 12px;
+}
   .project-div {
   max-width: 700px;
   width: 100%;
- background: #FFFFFF;
+ background: #F1F0F0;
 border: 2px solid #43D4DD;
 box-sizing: border-box;
 border-radius: 15px;
@@ -76,9 +106,10 @@ border-radius: 15px;
       padding-top: 10px;
       padding-bottom: 0;
       font-weight: 700;
+  
     }
     
-   
+ 
     
     .table_small {
       display: table-cell;
@@ -118,11 +149,7 @@ border-radius: 15px;
       align-items: center;
       justify-content: space-between;
   }
-  .test-div {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #000000;
-  }
+ 
   .header-new-row {
       display: flex;
       align-items: center;
@@ -183,8 +210,7 @@ border-radius: 15px;
       .table {
       display: table;
       text-align: center;
-      width: 100%;
-      margin: 10% auto 0;
+      width: 100%;   
       border-collapse: separate;
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
@@ -204,9 +230,11 @@ border-radius: 15px;
     .table_header {
       display: table-cell;   
       color: #000;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding: 20px;
       font-weight: 700;
+          // border-bottom: 2px solid #d6d6d6;
+padding-bottom: 10px;
+text-align: center;
     }
     .table_small {
       display: table-cell;
@@ -214,10 +242,16 @@ border-radius: 15px;
     }
     .table_row > .table_small > .table_cell {
       color: #5b5b5b;
-       max-width:60px !important;
+       max-width:120px !important;
               text-overflow: ellipsis;
               overflow: hidden;
               white-space: nowrap;   
+              margin: 8px 0 0 5px;
+              font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+text-transform: capitalize;
+
       
     }
     .form-group {
@@ -285,6 +319,12 @@ color: #43D4DD;
 margin-bottom: 0;
 text-align: center;
 display: block;
+    max-width: 185px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+
 }
 .project-heading h2 {
     display: none;
@@ -295,9 +335,9 @@ display: block;
 }
 
 .project-slect{
+  margin-top: 20px;
 .select-header {
-    display: flex;
-    justify-content: space-between;
+    display: flex;    
     align-items: center;
 }
 .slt-btn{
@@ -306,11 +346,48 @@ display: block;
    border: 2px solid #A6A6A6;
 box-sizing: border-box;
 border-radius: 6px;
+padding: 10px 20px;
+color: #43D4DD;
+font-weight: bold;
+font-size: 22px;
+line-height: 24px;
+min-height: 50px;
+min-width: 90px;
 }
 }
 .projectslect{
+  margin: 0 10px;
+  display: flex;
+  background: transparent;
+border: 2px solid #A6A6A6;
+box-sizing: border-box;
+border-radius: 6px;
+width: 400px;
+min-height: 50px;
+.MuiInputLabel-formControl{
+  top: -9px;
+    font-weight: bold;
+font-size: 22px;
+line-height: 24px;
+color: #43D4DD;
+}
+.MuiSelect-select:focus {
+    border-radius: 0;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+}
+button{
+  background: transparent;
+  box-sizing: border-box;
+  border: none;
+  font-weight: bold;
+font-size: 22px;
+line-height: 24px;
+color: #43D4DD;
+}
   .MuiFormControl-root{
-    width: 300px;
+    width: 400px;
   }
 }
 .nextpevselect{
@@ -318,17 +395,25 @@ border-radius: 6px;
     background: transparent;
    border: 2px solid #A6A6A6;
 box-sizing: border-box;
-border-radius: 6px;
-padding: 12px;
-margin: 0 1px;
+padding: 10px 12px;
+margin: 0 -1px;
+}
+.nextslect {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.prevslect {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 }
 .MuiFilledInput-root{
      background: transparent;
-   border: 2px solid #A6A6A6;
+   border: none;
 box-sizing: border-box;
 border-radius: 6px;
+max-height: 46px;
 }
 .MuiFilledInput-underline::before{
   border-bottom: none;
@@ -348,5 +433,53 @@ line-height: 24px;
     display: none !important;
 }
 .project-open {
-    margin-top: 24%;
+    margin-top: 10%;
+}
+  .prj1{
+     .MuiFilledInput-input {
+    padding: 11px 12px 10px;       
+}
+   }
+   .tbscimg {
+    visibility: hidden;
+}
+.seperator {
+    color: #C4C4C4;
+    padding: 0 8px;    
+    font-weight: 400;
+}
+.course-drp{
+.MuiFilledInput-input {
+    padding: 11px 12px 10px;
+        padding-right: 12px;
+        text-transform: capitalize;
+}
+span{
+   text-transform: uppercase;
+}
+}
+.projectslect .MuiFilledInput-underline:hover::before {
+    border-bottom:none  !important;
+}
+.projectslect .MuiFilledInput-root:hover {
+    background-color: transparent !important;
+}
+
+.btn-move-back{
+  cursor: pointer;
+}
+
+.btn-disabled{
+  cursor: not-allowed;
+}
+
+.project-progress{
+  .MuiLinearProgress-barColorPrimary {
+    background-color: #43D4DD;
+}
+}
+.pro-head.selected-tribe-overlay{
+  border: 2px solid #A6A6A6;
+box-sizing: border-box;
+border-radius: 6px;
 }
