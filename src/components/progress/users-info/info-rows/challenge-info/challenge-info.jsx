@@ -13,6 +13,7 @@ const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject}) => {
       {challengeList.map((challange,index)=>(
         <div className="table_header">
         <div className="crsarrow">
+           <img src={CrsArrow} className="tbscimg"/>
         </div>
         {index+1}
       </div>

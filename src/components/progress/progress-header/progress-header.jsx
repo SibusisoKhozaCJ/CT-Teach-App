@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
-import Gridicon from "../../../assets/images/tgrid.svg";
-import Colspicon from "../../../assets/images/prnext.svg";
 import Compiocn from "../../../assets/images/proheadicon1.svg";
-import Moveicon from "../../../assets/images/pmove.svg";
-import Removeicon from "../../../assets/images/premove.svg";
 import Tribeicon from "../../../assets/images/tribes.svg";
+import Filter from "../../../assets/images/filter.svg";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 
@@ -49,7 +45,7 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
             </span>
             <div className="headPicon">
               <span className="tribe-grid">
-                <img src={Moveicon} alt="" />
+                <img src={Filter} alt="" />
               </span>
         
             </div>

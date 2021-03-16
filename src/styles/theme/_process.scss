@@ -17,6 +17,7 @@
       width: 20px;
       height: 20px;
       border: 1px solid #000000;
+      margin: 0 auto;
   }
   .progess-page {
       display: flex;
@@ -56,9 +57,9 @@ padding: 10px 20px;
   }
      
   }
-//   .name-header {
-//     width: 300px;
-// }
+  .name-header {
+    width: 260px;
+}
   .project-div.project-div-close {
     background: #fff;
     border: 2px solid #43D4DD;
@@ -107,7 +108,7 @@ border-radius: 15px;
   
     }
     
-   
+ 
     
     .table_small {
       display: table-cell;
@@ -230,7 +231,7 @@ border-radius: 15px;
       color: #000;
       padding: 20px;
       font-weight: 700;
-          border-bottom: 2px solid #d6d6d6;
+          // border-bottom: 2px solid #d6d6d6;
 padding-bottom: 10px;
 text-align: center;
     }
@@ -348,6 +349,8 @@ color: #43D4DD;
 font-weight: bold;
 font-size: 22px;
 line-height: 24px;
+min-height: 50px;
+min-width: 90px;
 }
 }
 .projectslect{
@@ -357,7 +360,7 @@ line-height: 24px;
 border: 2px solid #A6A6A6;
 box-sizing: border-box;
 border-radius: 6px;
-width: 360px;
+width: 400px;
 .MuiInputLabel-formControl{
   top: -9px;
     font-weight: bold;
@@ -375,7 +378,7 @@ line-height: 24px;
 color: #43D4DD;
 }
   .MuiFormControl-root{
-    width: 300px;
+    width: 400px;
   }
 }
 .nextpevselect{
@@ -422,4 +425,12 @@ line-height: 24px;
 }
 .project-open {
     margin-top: 10%;
+}
+  .prj1{
+     .MuiFilledInput-input {
+    padding: 11px 12px 10px;       
+}
+   }
+   .tbscimg {
+    visibility: hidden;
 }

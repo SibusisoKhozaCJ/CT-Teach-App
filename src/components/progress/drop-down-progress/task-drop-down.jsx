@@ -27,7 +27,7 @@ const SelectTaskDropDown = ({ selectedTraning,setSelectedTraning, selectedProjec
             <button>{selectedProject}</button>
           </div>
 
-          <div className="projectslect">
+          <div className="projectslect prj1">
             <FormControl variant="filled">
               <Select
                 labelId="slect-filled-label"

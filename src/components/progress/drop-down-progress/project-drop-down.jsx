@@ -21,7 +21,7 @@ const SelectProjects = ({
           <div className="slt-btn">
             <button>{selectedCourse}</button>
           </div>
-          <div className="projectslect">
+          <div className="projectslect prj1">
             <FormControl variant="filled">
               <Select
                 labelId="slect-filled-label"

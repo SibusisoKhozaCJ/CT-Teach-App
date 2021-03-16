@@ -29,7 +29,7 @@ const SelectCourseDropDown = ({ selectedCourse, setSelectedCourse, coursesData }
             <button></button>
           </div>
 
-          <div className="projectslect">
+          <div className="projectslect ">
             <FormControl variant="filled">
               <InputLabel id="slect-filled-label">Courses</InputLabel>
               <Select
