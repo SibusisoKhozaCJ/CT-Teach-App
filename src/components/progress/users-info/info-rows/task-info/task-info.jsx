@@ -33,7 +33,7 @@ const TaskInfoRows = ({
           usersProgressList.length > 0 &&
           usersProgressList.map((progress, index) => (
             <div class="table_row">
-            <TaskProgressBar traningList={traningList} selectedCourse={selectedCourse} selectproject={selectedProject} progress={progress}/>
+              <TaskProgressBar traningList={traningList} selectedCourse={selectedCourse} selectproject={selectedProject} progress={progress}/>
             </div>
           ))}
     </div>
