@@ -26,7 +26,7 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
                       </InputLabel>)}
                 <Select
                   labelId="slect-filled-label"
-                  id="demo-simple-select-filled"
+                  className="tribe-project"                 
                   value={selectedTribe}
                   name="type"
                   onChange={handleChange}

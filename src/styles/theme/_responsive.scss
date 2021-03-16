@@ -72,9 +72,7 @@
 			font-weight: normal;
 			font-size: 26px;
 			line-height: 48px;
-			color: #000000;
-			left: 47px;
-			position: fixed;
+			color: #000000;			
 			display: -webkit-box;
 			-webkit-line-clamp: 1;
 			-webkit-box-orient: vertical;
@@ -86,7 +84,12 @@
 			left: 0;
 			z-index: 999;
 		}
+	 .headhomeiocn {
+    padding-left: 0px;
+    margin-bottom: 5px;
+}
 	}
+	
 	.tribe-page{
 		width: 100%;
 	}
