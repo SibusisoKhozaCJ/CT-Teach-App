@@ -4,11 +4,12 @@ const ChallengeProgressBar = ({
   selectedCourse,
   selectproject,
   selectedTraning,
+  challengeList
 }) => {
   const [challengesList, setChallengesList] = useState([]);
   useEffect(() => {
     if (
-      progress.progressInfo[selectedCourse][selectproject][selectedTraning] &&
+      progress.progressInfo && progress.progressInfo[selectedCourse] && progress.progressInfo[selectedCourse][selectproject][selectedTraning] &&
       progress.progressInfo[selectedCourse][selectproject][selectedTraning]
         .challenges
     ) {
@@ -57,6 +58,16 @@ const ChallengeProgressBar = ({
             </div>
           </div>
         ))}
+        {challengesList && challengesList.length <= 0 && challengeList && (
+          challengeList.map((challenge, index) => (
+            <div key={"challenge" + index} class="table_small">
+              <div class="table_cell">
+                <div
+                  className="test-div"
+                ></div>
+              </div>
+            </div>
+          )))}
     </>
   );
 };

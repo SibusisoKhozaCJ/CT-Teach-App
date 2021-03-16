@@ -27,13 +27,15 @@ const ProjectInfoRows = ({
           </div>
         ))}
       <div className="table_header"></div>
-      <div class="table_row">
+      
         {usersProgressList &&
           usersProgressList.length > 0 &&
           usersProgressList.map((progress, index) => (
-            <ProjectProgressBar selectedCourse={selectedCourse} projectList={projectList} progress={progress}/>
+            <div class="table_row">
+              <ProjectProgressBar selectedCourse={selectedCourse} projectList={projectList} progress={progress}/>
+            </div>
           ))}
-      </div>
+      
     </div>
   );
 };
