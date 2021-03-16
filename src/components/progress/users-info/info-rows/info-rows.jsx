@@ -76,7 +76,7 @@ const UserRow = ({
 
           {/* Challenege Header */}
           {selectedTraning && selectedTraning !== "" && (
-            <ChallengeInfoRows selectedProject={selectedProject} selectedTraning={selectedTraning} trainingList={trainingList}/>
+            <ChallengeInfoRows selectedCourse={selectedCourse} usersProgressList={usersProgressList} selectedProject={selectedProject} selectedTraning={selectedTraning} trainingList={trainingList}/>
           )}
           
           {/* Challenege Header Ends */}

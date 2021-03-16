@@ -464,3 +464,11 @@ span{
 .projectslect .MuiFilledInput-root:hover {
     background-color: transparent !important;
 }
+
+.btn-move-back{
+  cursor: pointer;
+}
+
+.btn-disabled{
+  cursor: not-allowed;
+}

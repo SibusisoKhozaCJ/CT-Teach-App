@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Arrowleft from "../../../assets/images/arrowleft.svg";
 import Arrowright from "../../../assets/images/arrowright.svg";
 import Select from "@material-ui/core/Select";
@@ -11,15 +11,45 @@ const SelectProjects = ({
   selectedCourse,
   projectList
 }) => {
+  const [disablePrevious, setDisablePrevious] = useState(false);
+  const [disableNext, setDisableNext] = useState(false);
   const handleProjectChange = (event) => {
     setSelectedProject(event.target.value);
   };
+
+  useEffect(()=>{
+    if(projectList.length > 0){
+      const firstItem = projectList[0];
+      const lastItem = projectList[projectList.length-1];
+      if(firstItem.id === selectedProject){
+        setDisablePrevious(true)
+      }else{
+        setDisablePrevious(false)
+      }
+      if(lastItem.id === selectedProject){
+        setDisableNext(true)
+      }else{
+        setDisableNext(false)
+      }
+    }
+  },[selectedProject])
+
+  const setPreviousProject =()=>{
+    const selectProjectIndx = projectList.findIndex(x=>x.id===selectedProject);
+    const previousProject = projectList[selectProjectIndx-1];
+    setSelectedProject(previousProject.id)
+  }
+  const setNextProject =()=>{
+    const selectProjectIndx = projectList.findIndex(x=>x.id===selectedProject);
+    const nextProject = projectList[selectProjectIndx+1];
+    setSelectedProject(nextProject.id)
+  }
   return (
     <>
       <div className="project-slect">
         <div className="select-header">
           <div className="slt-btn">
-            <button>{selectedCourse}</button>
+            <button className="btn-move-back" title="Move back to courses" onClick={()=>setSelectedProject("")}>{selectedCourse}</button>
           </div>
           <div className="projectslect prj1">
             <FormControl variant="filled">
@@ -39,10 +69,10 @@ const SelectProjects = ({
             </FormControl>
           </div>
           <div className="nextpevselect ">
-            <button className="nextslect">
+            <button onClick={()=>setPreviousProject()} disabled={disablePrevious} className={disablePrevious ? "nextslect btn-move-back btn-disabled" :"nextslect btn-move-back"}>
               <img src={Arrowleft} />
             </button>
-            <button className="prevslect">
+            <button onClick={()=>setNextProject()} disabled={disableNext} className={disableNext ? "prevslect btn-move-back btn-disabled": "prevslect btn-move-back"}>
               <img src={Arrowright} />
             </button>
           </div>

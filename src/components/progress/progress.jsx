@@ -7,7 +7,6 @@ import {
   getProgressListOfTribe,
   getUserTribes,
 } from "../../redux/actions/progress-actions";
-import Projects from "./projects/projects";
 import { saveUser } from "../../redux/actions/user-actions";
 import Cookies from "js-cookie";
 import Loading from "../../shared/components/loader/Loading";

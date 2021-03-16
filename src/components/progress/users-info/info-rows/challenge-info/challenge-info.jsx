@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CrsArrow from "../../../../../assets/images/crossarow.svg";
-import LinearProgress from "@material-ui/core/LinearProgress";
-const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject}) => {
+import ChallengeProgressBar from "./challenge-progress";
+const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject,usersProgressList, selectedCourse}) => {
   const [challengeList, setChallengeList] = useState([])
   useEffect(()=>{
     const traningList = trainingList[selectedProject];
@@ -20,39 +20,13 @@ const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject}) => {
       ))}
       
       <div className="table_header"></div>
-      <div class="table_row">
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell">  <div className="test-div yellow"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell">  <div className="test-div yellow"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell">  <div className="test-div yellow"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div blue"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div"></div></div>
-              </div>
-              <div class="table_small">
-                <div class="table_cell"><div className="test-div"></div></div>
-              </div>
+      {usersProgressList &&
+          usersProgressList.length > 0 &&
+          usersProgressList.map((progress, index) => (
+            <div class="table_row">
+                <ChallengeProgressBar selectedTraning={selectedTraning} selectedCourse={selectedCourse} selectproject={selectedProject} progress={progress}/>
             </div>
-           
+          ))}
     </div>
   );
 };
