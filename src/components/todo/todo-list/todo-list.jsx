@@ -5,7 +5,7 @@ import { useStyles } from "./styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-const ToDoList = ({todo}) => {
+const ToDoList = ({todo, onDoneButtonClick}) => {
   const classes = useStyles({color: todo.color});
   return (
     <Grid item classes={{root: classes.ToDoGridHeight}}>
@@ -25,6 +25,7 @@ const ToDoList = ({todo}) => {
             }}
             variant="outlined"
             color="default"
+            onClick={() => onDoneButtonClick(todo.key)}
           >
             DONE
           </Button>

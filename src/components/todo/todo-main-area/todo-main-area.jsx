@@ -1,56 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
 import { useStyles } from "./styles";
 import ToDoList from "../todo-list/todo-list";
-
-const mockData = [
-    {
-      title: "Be cool.",
-      content: "",
-      contentType: "text",
-      done: false,
-      color: "#DA8E8E"
-    },
-    {
-      title: "Got some friends who like coding?",
-      content: "Invite them to your tribe.",
-      contentType: "text",
-      done: false,
-      color: "#1E2CAB",
-    },
-    {
-      title: "Start Project 1",
-      content: "Here",
-      contentType: "link",
-      done: false,
-      color: "#46D8B5",
-    },
-    {
-      title: "Share one of your Projects to the Gallery",
-      content:
-        "You do this by clicking publish in the “Preview” panel when coding.",
-      contentType: "text",
-      done: false,
-      color: "#C5206F",
-    },
-  ];
+import { useSelector, useDispatch } from "react-redux";
+import { selectedToDo } from "../../../redux/selectors/selectors";
+import { deleteTodo, getTodoList, setTodo } from "../../../redux/actions/todo-actions";
 
 const ToDoMainArea = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const { userToDoList } = useSelector(selectedToDo);
+  const {userId} = useSelector( state => state.user)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTodoList())
+  }, [])
+  
+  const onDoneButtonClick = (key) => {
+    dispatch(deleteTodo(key))
+  }
+
   return (
-    
-     <div style={{columns: "4 300px", columnGap: "10px", }}>
-        <Grid item style={{display: "inline-block", marginBottom: 10,}}>
-            <Button
-              classes={{ root: classes.root, outlined: classes.outlined }}
-              variant="outlined"
-            >
-              +
-            </Button>
-        </Grid>
-        {mockData.map((todo, i) => <ToDoList todo={todo} key={i}/>)}
-     </div>
+    <div style={{ columns: "4 300px", columnGap: "10px" }}>
+      <Grid item style={{ display: "inline-block", marginBottom: 10 }}>
+        <Button
+          classes={{ root: classes.root, outlined: classes.outlined }}
+          variant="outlined"
+          onClick={() => setTodo(
+            {
+              title: "Be strong. 2",
+              content: "",
+              contentType: "text",
+              done: false,
+              color: "#DA228E",
+              userId: userId,
+            },
+          )}
+        >
+          +
+        </Button>
+      </Grid>
+      {userToDoList.map((todo, i) => (
+        <ToDoList todo={todo} key={i} onDoneButtonClick={onDoneButtonClick}/>
+      ))}
+    </div>
   );
 };
 
