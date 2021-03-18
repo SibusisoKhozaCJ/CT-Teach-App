@@ -84,7 +84,7 @@ function Sidebar({ location }) {
         pathname === routes.LOGIN ||
         pathname === routes.NEW_ACCOUNT ||
         pathname.includes('/join') ||
-        pathname.includes('/codepanel')
+        pathname.includes('/rocket')
       )
       return false;
     return true;  
@@ -179,7 +179,7 @@ function Sidebar({ location }) {
               aria-describedby={id}
               variant="contained"
               color="primary"
-              onClick={() => {history.push("/codepanel/C001/P001/L001")}}
+              onClick={() => {history.push("/rocket/C1/P1/L001")}}
             >
               <ToCodeSvg/>
               <span className="tocode-tagsidebar">It's GO time</span>
@@ -189,7 +189,7 @@ function Sidebar({ location }) {
             location={location}
             isSidebarOpened={isSidebarOpened}
             id="12"
-            link={"/codepanel/C001/P001/L001"}
+            link={"/rocket/C1/P1/L001"}
             label="Projects"
             icon={<ProjectsSvg />}
             callback={() => {dispatch(codepanelSetProjectsIsActive(true))}}

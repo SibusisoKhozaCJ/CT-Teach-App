@@ -1,0 +1,131 @@
+.slide__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+
+.slide__mission {
+	background-color: #2196f3;
+}
+
+.slide__briefing {
+	background-color: #000;
+}
+
+.slide__challenge {
+	background-color: #ff8522;
+}
+
+.slide__text-color--red {
+  color: #f00;
+}
+
+.slide__title {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: "Rajdhani", sans-serif;
+  line-height: 1;
+  text-decoration: none;
+  font-size: 36px;
+  color: #fff;
+  text-align: center;
+  justify-self: start;
+}
+
+.slide__top {
+  margin-bottom: auto;
+}
+
+.slide__bottom {
+  margin-top: auto;
+}
+
+.slide__btn {
+  background: #5fd3aa;
+  color: #fff;
+  width: 100%;
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 0;
+  padding: 0.45em 0.75em;
+  margin: 1.5em auto 0 auto;
+  font-size: 24px;
+  letter-spacing: 0.75px;
+  line-height: 1;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.slide__btn.slide__btn--challenge {
+  background-color: #35abe6;
+}
+
+.slide__skip {
+}
+
+.slide__tour {
+}
+
+.slide__center {
+  margin: auto;
+}
+
+.slide__img {
+  max-width: 80%;
+  margin: auto;
+}
+
+.slide__emoji {
+  width: 50px;
+}
+
+.slide__text {
+  font-size: 32px;
+  line-height: 38px;
+  text-transform: none;
+  font-weight: 400;
+  font-family: "Rajdhani", sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+.slide__inline-code {
+  color: #666;
+  font-family: "Consolas", monospace;
+  word-break: break-word;
+  display: inline-block;
+}
+
+.slide__code {
+  text-align: left;
+  margin: 0;
+  background: #404040;
+  font-family: consolas;
+  color: #666;
+  padding: 5px 10px 5px 10px;
+  font-size: 18px;
+  line-height: 1.3;
+  position: relative;
+}
+
+.slide__code-color--white {
+  color: #fff;
+}
+
+.slide__challenge-list {
+}
+
+.slide__challenge-item {
+  font-family: "Rajdhani", sans-serif;
+  text-decoration: none;
+  list-style: none;
+  color: #fff;
+  font-size: 32px;
+  line-height: 38px;
+}

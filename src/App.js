@@ -38,6 +38,7 @@ import Chat from './components/chat/chat';
 import Codepanel from './components/codepanel/codepanel';
 import Projects from './components/projects/projects';
 import Lessons from './components/lessons/lessons';
+import UploadLesson from "./components/upload-lesson/upload-lesson";
 
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -127,6 +128,7 @@ const App = () => {
                     <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
                     <ProtectedRoute path={routes.PROJECTS} component={Projects} />
                     <ProtectedRoute path={routes.LESSON_ID} component={Lessons} />
+                    <ProtectedRoute path={routes.UPLOAD_LESSON} component={UploadLesson} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>

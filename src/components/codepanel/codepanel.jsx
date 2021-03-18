@@ -9,6 +9,7 @@ import DesktopLayout from './components/desktop/desktop-layout'
 import Editor from './components/editor'
 import Preview from './components/preview'
 import Slider from './components/slider'
+// import Slider from './components/slider-tmp';
 import {
   codepanelSetSlides,
   codepanelSetChallenges,
@@ -26,6 +27,8 @@ import LeaveModal from "./components/leave-modal";
 import TakeTour from "./components/take-tour";
 import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
+import NewTour from "./components/tour-new.jsx";
+import TeacherModal from "./components/teacher-modal";
 
 import { uploadLesson } from "./utils/upload-lesson";
 
@@ -40,9 +43,12 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
   const isTourActive = useSelector(state => state.codepanel.isTourActive);
   const isResetActive = useSelector(state => state.codepanel.isResetActive);
   const currentLesson = useSelector(state => state.codepanel.currentLesson);
-  const [panel, setPanels] = useState(null);
+  const oldLesson = useSelector(state => state.codepanel.slides);
+  const [panels, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`
+  const [isNewTour, setIsNewTour] = useState(true);
+
 
   const history = useHistory()
 
@@ -59,6 +65,11 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
   }
 
   useEffect(() => {
+    setPanels({
+      slider: <Slider style={{ overflowY: 'hidden' }} />,
+      editor: <Editor />,
+      preview: <Preview />
+    });
     // uploadLesson();
     dispatch(codepanelSetBlockUpdate(true));
     if (currentLesson !== lessonPath) {
@@ -73,14 +84,17 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
           setLesson(data);
         }
       })
+    } else {
+      setLesson(oldLesson);
     }
 
-    // if (typeof localStorage !== "undefined") {
-    //   const code = getCodeFromLocal();
-    //   if (code) {
-    //     dispatch(codepanelSetCode(code));
-    //   }
-    // }
+    if (typeof localStorage !== "undefined") {
+      const completed = localStorage.getItem("tutorial-finished");
+      if (!completed) {
+        setIsNewTour(true);
+      }
+    }
+
     if (!lesson) {
       return;
     }
@@ -112,12 +126,8 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
 
   }, [userId, lessonPath, lesson]);
 
-  const panels = {
-    slider: <Slider style={{ overflowY: 'hidden' }} />,
-    editor: <Editor />,
-    preview: <Preview />
-  }
-
+  console.log("panels", panels);
+  console.log("lesson", lesson);
   return (
     <>
       {panels && lesson && (
@@ -143,6 +153,7 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
     {isLeaveActive && <LeaveModal />}
     {isTourActive && <TakeTour />}
     {isResetActive && <ResetModal />}
+    {isNewTour && <NewTour />}
     </>
   )
 };

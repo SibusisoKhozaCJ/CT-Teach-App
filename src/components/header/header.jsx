@@ -42,7 +42,7 @@ export default function Header() {
         pathname === routes.LOGIN ||
         pathname === routes.NEW_ACCOUNT ||
         pathname.includes('/join') ||
-        pathname.includes('/codepanel')
+        pathname.includes('/rocket')
     )
       return false;
     return true;

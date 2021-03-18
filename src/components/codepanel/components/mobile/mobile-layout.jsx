@@ -27,6 +27,23 @@ const MobileLayout = ({ editor, slider, preview }) => {
     setVh(window.innerHeight * 0.001);
   }
 
+  const switchTab = (i) => {
+    switch (i) {
+      case 1: {
+        editorRef.current.focus();
+        break;
+      }
+      case 2: {
+        previewRef.current.focus();
+        break;
+      }
+      default: {
+        slidesRef.current.focus();
+      }
+    }
+    dispatch(codepanelSetTab(i));
+  }
+
   useEffect(() => {
     // document.documentElement.style.setProperty("--vh", `${vh}px`);
     if (typeof window !== "undefined") {
@@ -55,23 +72,7 @@ const MobileLayout = ({ editor, slider, preview }) => {
         index={index}
         className={classes.swipeableContainer}
         style={{ flexGrow: 1, width: "100%", height: 'calc(100% - 100px)', position: "fixed", top: 50}}
-        onChangeIndex={i => {
-          // meditor.blur();
-          switch (i) {
-            case 1: {
-              editorRef.current.focus();
-              break;
-            }
-            case 2: {
-              previewRef.current.focus();
-              break;
-            }
-            default: {
-              slidesRef.current.focus();
-            }
-          }
-          dispatch(codepanelSetTab(i));
-        }}
+        onChangeIndex={switchTab}
       >
         <div ref={slidesRef} style={{ height: "100%", width: "100%" }} tabIndex="0">
           {slider}

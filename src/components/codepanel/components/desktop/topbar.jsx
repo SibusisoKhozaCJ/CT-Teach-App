@@ -19,6 +19,7 @@ import Split3Icon from "../../../../assets/images/split-3-icon.svg";
 import MainMenu from "../menu/main-menu";
 import SideMenu from "../side-menu";
 import { openFullscreen, closeFullscreen } from "../../utils/fullscreen";
+import TeacherMenu from "../teacher-modal";
 
 const useStyles = makeStyles(theme => ({
   topBarRight: {
@@ -51,6 +52,7 @@ const TopBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setIsMenuOpen] = useState(false);
+  const [teacherOpen, setIsTeacherOpen] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const isPreviewVisible = useSelector(state => state.codepanel.isPreviewVisible);
   const isCheckerActive = useSelector(state => state.codepanel.isCheckerActive);
@@ -60,6 +62,10 @@ const TopBar = () => {
   const closeHandler = () => {
     setIsMenuOpen(false);
   };
+
+  const teacherCloseHanler = () => {
+    setIsTeacherOpen(false);
+  }
 
   const sideMenuCloseHandler = () => {
     setIsSideMenuOpen(false);
@@ -81,7 +87,11 @@ const TopBar = () => {
             </span>
           </div>
           <div className={classes.topBarRight}>
-            <IconButton onClick={() => {dispatch(codepanelSetCheckerActive(!isCheckerActive))}}>
+            <IconButton onClick={(e) => {
+              dispatch(codepanelSetCheckerActive(!isCheckerActive))
+                // setAnchorEl(e.currentTarget);
+                // setIsTeacherOpen(teacherOpen => !teacherOpen);
+              }}>
               <img src={TeacherIcon} className="coverage" alt="" />
             </IconButton>
             <IconButton>
@@ -123,6 +133,7 @@ const TopBar = () => {
         </Toolbar>
       </AppBar>
       <MainMenu anchorEl={anchorEl} closeHandler={closeHandler} open={open} />
+      <TeacherMenu anchorEl={anchorEl} closeHandler={teacherCloseHanler} open={teacherOpen} />
       {isSideMenuOpen ? (
         <SideMenu closeHandler={sideMenuCloseHandler} />
       ) : null}

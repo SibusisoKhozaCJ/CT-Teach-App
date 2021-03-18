@@ -16,7 +16,7 @@ const Footer = () => {
         pathname === routes.LOGIN ||
         pathname === routes.NEW_ACCOUNT ||
         pathname.includes('/join') ||
-        pathname.includes('/codepanel')
+        pathname.includes('/rocket')
       )
       return false;
     return true;  
@@ -37,7 +37,7 @@ const Footer = () => {
 
       <div className="footer-icon centr-Ficon">
         <div className="mt-ft-icon">
-        <img onClick={(evt)=>history.push("/codepanel/5-min-website")} src={Icon4} className="coverage" alt="" />
+        <img onClick={(evt)=>history.push("/rocket/C1/P1/L001")} src={Icon4} className="coverage" alt="" />
         </div>
       </div>
 

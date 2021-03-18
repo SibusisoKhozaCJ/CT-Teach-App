@@ -7,7 +7,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import TimerIcon from "@material-ui/icons/Timer";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+// import AssignmentIcon from "@material-ui/icons/Assignment";
+// import SliderIcon from "../../../../assets/images/slides-icon.png";
+import SliderIcon from "../../../../assets/images/slides-icon.svg";
 import CodeIcon from "@material-ui/icons/Code";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -79,7 +81,10 @@ const MobileTopBar = () => {
         >
           <Tab
             aria-label="Lesson"
-            icon={<AssignmentIcon />}
+            icon={
+              // {/* <img src={SliderIcon} width="24" className="coverage" alt="" /> */}
+              <SliderIcon width="24"/>
+            }
             {...a11yProps(0)}
           />
           <Tab aria-label="Code" icon={<CodeIcon />} {...a11yProps(1)} />
