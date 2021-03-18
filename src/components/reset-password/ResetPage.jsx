@@ -36,6 +36,7 @@ const LoginPage = () => {
     const {
       target: { value },
     } = event;
+    // console.log(value);
     updateForm({ ...form, [key]: value });
   };
 
@@ -221,7 +222,7 @@ const LoginPage = () => {
                       </Grid>
                    
                      
-                        <Grid item xs={12}  spacing={1} className="forget-psw">
+                        {/* <Grid item xs={12}  spacing={1} className="forget-psw">
                           <Box my={1}>
                             <FormControlLabel
                               value="end"
@@ -238,7 +239,7 @@ const LoginPage = () => {
                             />
                           </Box>
                
-              </Grid>
+              </Grid> */}
                     </Grid>
                   </div>
                 )}
@@ -246,7 +247,8 @@ const LoginPage = () => {
                 <Button
                   type="submit"
                   fullWidth
-                  variant="contained"                 
+                  variant="contained"     
+                  onClick={() => history.push(routes.RESET_LINK_CONFIRMATION)}
                 >
                   <p className="reg-happy">SEND EMAIL</p>
                   <p className="reg">CREATE NEW PASSWORD</p>
