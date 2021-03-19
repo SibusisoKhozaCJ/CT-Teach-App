@@ -9,6 +9,7 @@ import projectsReducer from './projects-reducer';
 import lessonsReducer from './lessons-reducer';
 import notificationReducer from './notification-reducer';
 import progressReducer from './progress-reducer';
+import ToDoReducer from './todo-reducer';
 
 const reducers = combineReducers({
     user:userReducer,
@@ -21,6 +22,7 @@ const reducers = combineReducers({
     lessons: lessonsReducer,
     notification: notificationReducer,
     progress:progressReducer,
+    todo: ToDoReducer,
 
 });
 
