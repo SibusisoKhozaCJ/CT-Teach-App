@@ -11,11 +11,8 @@ import { AuthContext } from "../../shared/contexts/authContext";
 import Bicon from "../../assets/images/b-icon.svg";
 import MailIcon from "../../assets/images/mail.svg";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { addUserToTribe } from "../../redux/actions/tribe-actions";
 import * as Auth from "../../shared/lib/authentication";
-import routes from "../../routes";
 import { useDispatch } from "react-redux";
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -64,22 +61,22 @@ const LoginPage = () => {
                 let paramsString = redirect.replace("/join/", "");
                 paramsString = paramsString.split("-")[0];
                 if (user.tribe_joined.includes(paramsString)) {
-                  history.push(routes.TRIBE);
+                  history.push(ROUTES.TRIBE);
                 } else {
                   const isCodeExist = await CheckIfTribeCodeExist(paramsString);
                   if (isCodeExist) {
                     dispatch(
                       addUserToTribe(paramsString, isCodeExist, user)
                     ).then((res) => {
-                      history.push(routes.TRIBE);
+                      history.push(ROUTES.TRIBE);
                     });
                   } else {
-                    history.push(routes.TRIBE);
+                    history.push(ROUTES.TRIBE);
                   }
                 }
               } else history.push(redirect);
             } else {
-              history.push(ROUTES.WELCOME);
+              history.push(ROUTES.HOME);
             }
           })
           .catch((err) => {
@@ -123,22 +120,22 @@ const LoginPage = () => {
                 let paramsString = redirect.replace("/join/", "");
                 paramsString = paramsString.split("-")[0];
                 if (user.tribe_joined.includes(paramsString)) {
-                  history.push(routes.TRIBE);
+                  history.push(ROUTES.TRIBE);
                 } else {
                   const isCodeExist = await CheckIfTribeCodeExist(paramsString);
                   if (isCodeExist) {
                     dispatch(
                       addUserToTribe(paramsString, isCodeExist, user)
                     ).then((res) => {
-                      history.push(routes.TRIBE);
+                      history.push(ROUTES.TRIBE);
                     });
                   } else {
-                    history.push(routes.TRIBE);
+                    history.push(ROUTES.TRIBE);
                   }
                 }
               } else history.push(redirect);
             } else {
-              history.push(ROUTES.WELCOME);
+              history.push(ROUTES.HOME);
             }
           })
           .catch((err) => {
