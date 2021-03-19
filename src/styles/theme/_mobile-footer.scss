@@ -10,10 +10,40 @@
 	z-index: 1201;
 	left: 0;
 	right: 0;
-	box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.81), 0px 3px 14px 2px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.81), 0px 3px 14px 2px rgba(216, 216, 216, 0.25);
 
 	.footer-icon img {
 		width: 100%;
-		max-width: 30px;
+		max-width: 45px;
+		cursor: pointer;
 	}
+		.footer-icon.select-footer{
+		border: 4px solid #43D4DD;
+		box-sizing: border-box;
+		filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.25));
+		border-radius: 15px;
+		padding: 5px;
+		}
 }
+	.footer-icon.centr-Ficon {
+    margin-top: -60px;
+}
+	.mt-ft-icon {
+		padding: 4px;
+		width: 60px;
+		height: 60px;
+		text-align: center;
+		line-height: 40px;
+		border-radius: 50%;
+		display: flex;
+		background: #fff;
+		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		align-items: center;
+		justify-content: center;
+		img {		
+			max-width: 75px !important;
+			margin-bottom: 2px;
+			margin-left: 2px;
+			width: 75px !important;
+		}
+	}

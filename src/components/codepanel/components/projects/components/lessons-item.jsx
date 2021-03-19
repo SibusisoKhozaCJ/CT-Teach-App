@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   item: {
@@ -52,6 +53,7 @@ const useStyles = makeStyles(() => ({
 
 const LessonItem = ({ lesson, index, currentProgress, closeSidebar }) => {
   const classes = useStyles();
+  const history = useHistory()
 
   return (
     <li className={classes.item}>
@@ -61,7 +63,13 @@ const LessonItem = ({ lesson, index, currentProgress, closeSidebar }) => {
       <span className={classes.title}>
         {lesson.title}
       </span>
-      <Link onClick={closeSidebar} className={classes.link}>
+      <Link
+        className={classes.link}
+        onClick={() => {
+          history.push(`/rocket/C1/P1/${lesson.trainingId}`);
+          closeSidebar();
+        }}
+      >
         <PlayArrowIcon />
       </Link>
       <div className={classes.progress}>

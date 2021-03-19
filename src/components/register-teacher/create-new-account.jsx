@@ -8,17 +8,19 @@ import { AuthContext } from "../../shared/contexts/authContext";
 import randomize from "randomatic";
 import BasicInfo from "./components/basic-info";
 import TypeAndEmailForm from "./components/type-email";
-import SchoolDetailForm from "./components/school-detail";
 import InviteToTribeForm from "./components/invite-code";
+import { insertDefaultTodo } from "../../redux/actions/todo-actions";
 
 const CreateNewAccountPage = () => {
-  const history = useHistory();  
+  const history = useHistory();
   const [currentStep, setCurrentStep] = useState(1);
+  const [registerType, setRegisterType] = useState("1");
   const { search, state: fromSignInData } = useLocation();
   const params = parse(search, { ignoreQueryPrefix: true });
   const [form, updateForm] = useState({
     email: params.email,
     password: fromSignInData && fromSignInData.password,
+    name: "",
     firstname: "",
     lastname: "",
     type: "",
@@ -28,6 +30,7 @@ const CreateNewAccountPage = () => {
     year: "",
     city: "",
     isTeacher: false,
+    hasEntered: false,
     phone: "",
     schoolAlreadySigned: false,
   });
@@ -55,14 +58,8 @@ const CreateNewAccountPage = () => {
     }
     setIsInitialized(false);
   }, []);
-  const handleTeacherSubmit = async (e) => {
-    e.preventDefault();
-    updateLoading(true);
-    updateError("");
-    handleFormSubmit();
-  };
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmitTeacher = async () => {
     const { schoolAlreadySigned, joincode } = form;
     if (schoolAlreadySigned) {
       const isCodeExist = await CheckIfTribeCodeExist(joincode);
@@ -82,17 +79,103 @@ const CreateNewAccountPage = () => {
     const {
       email,
       password,
-      firstname,
-      lastname,
+      name,
       city,
       day,
       month,
       year,
-      isTeacher,
       phone,
       schoolname,
       schoolAlreadySigned,
       joincode,
+    } = form;
+    if (registerType === "2") {
+      let tempName = name.split(" ");
+      let firstname = "";
+      let lastname = "";
+      if (tempName.length > 1) {
+        lastname = tempName[tempName.length - 1];
+        tempName.pop();
+        firstname = tempName.toString().replace(/,/g, " ");
+      } else {
+        firstname = tempName[0];
+      }
+      Auth.createUser(email, password)
+        .then(async (res) => {
+          if (schoolAlreadySigned) {
+            let tribeInfo = tribeData;
+            tribeInfo.users.push(res.user.uid);
+            await Auth.updateTribe(tribeInfo);
+            firebaseInsert("Users/" + res.user.uid, {
+              uid: res.user.uid,
+              email: email,
+              firstname: firstname,
+              lastname: lastname,
+              city: city,
+              is_teacher: true,
+              hasEntered: false,
+              phone: phone,
+              schoolName: schoolname,
+              tribe_joined: [joincode],
+            });
+            insertDefaultTodo(res.user.uid);
+            Auth.setCookies(email, firstname);
+            setTokens({ isAuthenticate: true });
+            if (
+              history.location &&
+              history.location.search.indexOf("redirect=/join") >= 0
+            ) {
+              history.push(routes.TRIBE);
+            } else {
+              setTribeCode(joincode);
+              setCurrentStep(4);
+            }
+          } else {
+            CreateTribeAndRegister(res);
+          }
+        })
+        .catch((err) => {
+          updateError(err.message);
+          updateLoading(false);
+          setCurrentStep(2);
+        });
+    } else {
+      const { firstname, lastname } = form;
+      if (email) {
+        createUserFromEmailAndPassword(email, password, tribeData)
+      } else {
+        const emailAddress = (
+          firstname +
+          lastname +
+          day +
+          month +
+          year +
+          "@codejika.com"
+        ).toLowerCase();
+        const userPassword = (
+          firstname +
+          lastname +
+          day +
+          month +
+          year
+        ).toLowerCase();
+        createUserFromEmailAndPassword(emailAddress, userPassword, tribeData)
+      }
+    }
+  };
+
+  const createUserFromEmailAndPassword = async (email, password, tribeData) => {
+    const {
+      city,
+      day,
+      month,
+      year,
+      phone,
+      schoolname,
+      schoolAlreadySigned,
+      joincode,
+      firstname,
+      lastname
     } = form;
     Auth.createUser(email, password)
       .then(async (res) => {
@@ -101,48 +184,51 @@ const CreateNewAccountPage = () => {
           tribeInfo.users.push(res.user.uid);
           await Auth.updateTribe(tribeInfo);
           firebaseInsert("Users/" + res.user.uid, {
-            uid:res.user.uid,
+            uid: res.user.uid,
             email: email,
+            dob: day + "-" + month + "-" + year,
             firstname: firstname,
             lastname: lastname,
             city: city,
-            is_teacher: isTeacher,
-            dob: day + "-" + month + "-" + year,
+            is_teacher: false,
+            hasEntered: false,
             phone: phone,
             schoolName: schoolname,
             tribe_joined: [joincode],
           });
+          insertDefaultTodo(res.user.uid);
           Auth.setCookies(email, firstname);
           setTokens({ isAuthenticate: true });
-          if(history.location && history.location.search.indexOf("redirect=/join") >= 0){
+          if (
+            history.location &&
+            history.location.search.indexOf("redirect=/join") >= 0
+          ) {
             history.push(routes.TRIBE);
-          }else{
-          setTribeCode(joincode);
-          setCurrentStep(4);
+          } else {
+            setTribeCode(joincode);
+            setCurrentStep(4);
           }
         } else {
-          CreateTribeAndRegister(res);
+          CreateTribeAndRegister(res, email);
         }
       })
       .catch((err) => {
         updateError(err.message);
         updateLoading(false);
-        setCurrentStep(2);
+        setCurrentStep(1);
       });
-  };
+  }
 
-  const CreateTribeAndRegister = async (res) => {
+  const CreateTribeAndRegister = async (res, emailAddress) => {
     const {
       email,
-      firstname,
-      lastname,
+      name,
       city,
       day,
       month,
       year,
       type,
       phone,
-      isTeacher,
       schoolname,
     } = form;
     const tribeCode = `${randomize("A", 2)}${randomize("0", 3)}`;
@@ -150,30 +236,72 @@ const CreateNewAccountPage = () => {
     if (isCodeExist) {
       alert("Error while creting a tribe.");
     } else {
-      const tribeName = `${firstname.substring(0, 3)}-${schoolname.substring(
-        0,
-        3
-      )}-${city}-${year}`;
-      firebaseInsert("Tribes/" + tribeCode, {
-        code: tribeCode,
-        name: tribeName,
-        users: [res.user.uid],
-      });
-      firebaseInsert("Users/" + res.user.uid, {
-        uid:res.user.uid,
-        email: email,
-        firstname: firstname,
-        lastname: lastname,
-        city: city,
-        is_teacher: isTeacher,
-        dob: day + "-" + month + "-" + year,
-        phone: phone,
-        schoolName: schoolname,
-        type: type,
-        tribe_code: tribeCode,
-        tribe_joned: [],
-      });
-      Auth.setCookies(email, firstname);
+      if (registerType === "2") {
+        let tempName = name.split(" ");
+        let firstname = "";
+        let lastname = "";
+        if (tempName.length > 1) {
+          lastname = tempName[tempName.length - 1];
+          tempName.pop();
+          firstname = tempName.toString().replace(/,/g, " ");
+        } else {
+          firstname = tempName[0];
+        }
+        const tribeName = `${firstname.substring(0, 3)}-${schoolname.substring(
+          0,
+          3
+        )}-${city}-${year}`;
+        firebaseInsert("Tribes/" + tribeCode, {
+          code: tribeCode,
+          name: tribeName,
+          users: [res.user.uid],
+        });
+        firebaseInsert("Users/" + res.user.uid, {
+          uid: res.user.uid,
+          email: email,
+          firstname: firstname,
+          lastname: lastname,
+          city: city,
+          is_teacher: true,
+          hasEntered: false,
+          dob: day + "-" + month + "-" + year,
+          phone: phone,
+          schoolName: schoolname,
+          type: type,
+          tribe_code: tribeCode,
+          tribe_joned: [],
+        });
+        insertDefaultTodo(res.user.uid);
+        Auth.setCookies(email, firstname);
+      } else {
+        const { firstname, lastname } = form;
+        const tribeName = `${firstname.substring(0, 3)}-${schoolname.substring(
+          0,
+          3
+        )}-${city}-${year}`;
+        firebaseInsert("Tribes/" + tribeCode, {
+          code: tribeCode,
+          name: tribeName,
+          users: [res.user.uid],
+        });
+        firebaseInsert("Users/" + res.user.uid, {
+          uid: res.user.uid,
+          email: emailAddress,
+          firstname: firstname,
+          lastname: lastname,
+          city: city,
+          is_teacher: false,
+          hasEntered: false,
+          dob: day + "-" + month + "-" + year,
+          phone: phone,
+          schoolName: schoolname,
+          type: type,
+          tribe_code: tribeCode,
+          tribe_joned: [],
+        });
+        insertDefaultTodo(res.user.uid);
+        Auth.setCookies(emailAddress, firstname);
+      }
       setTokens({ isAuthenticate: true });
       updateLoading(false);
       setTribeCode(tribeCode);
@@ -191,21 +319,22 @@ const CreateNewAccountPage = () => {
       });
   };
 
-  const handleSubmitFirstForm = async (e) => {
+  const handleSubmitStudentFirstForm = async (e) => {
     e.preventDefault();
     updateError("");
     setCurrentStep(2);
   };
 
-  const handleSubmitSecondForm = async (e) => {
-    const { schoolAlreadySigned } = form;
+  const handleSubmitTeacherFirstForm = async (e) => {
     e.preventDefault();
     updateError("");
-    if (schoolAlreadySigned) {
-      handleFormSubmit();
-    } else {
-      setCurrentStep(3);
-    }
+    setCurrentStep(2);
+  };
+
+  const handleSubmitTeacherSecondForm = async (e) => {
+    e.preventDefault();
+    updateError("");
+    handleFormSubmitTeacher();
   };
 
   const sendTribeCode = async (e) => {
@@ -218,6 +347,32 @@ const CreateNewAccountPage = () => {
     }
   };
 
+  const setTypeOfUser = (evt) => {
+    setRegisterType(evt);
+  };
+  const handleEmailSkip = (evt) => {
+    createUser();
+  };
+
+  const handleSubmitWithJoinCode = async (evt) => {
+    try {
+      const { joincode } = form;
+      const isCodeExist = await CheckIfTribeCodeExist(joincode);
+      if (!isCodeExist) {
+        updateError("Invalid Join code");
+        updateLoading(false);
+        setCurrentStep(2);
+      } else {
+        createUser(isCodeExist);
+      }
+    } catch (err) { }
+  }
+
+  const handleSubmitUserSecondForm = async (evt) => {
+    try {
+      createUser();
+    } catch (err) { }
+  };
   return (
     <>
       {isInitialized === false && currentStep === 1 && (
@@ -226,8 +381,11 @@ const CreateNewAccountPage = () => {
           search={search}
           error={error}
           loading={loading}
-          handleSubmitFirstForm={handleSubmitFirstForm}
+          handleSubmitTeacherFirstForm={handleSubmitTeacherFirstForm}
           updateForm={updateForm}
+          registerType={registerType}
+          setRegisterType={(evt) => setTypeOfUser(evt)}
+          handleSubmitStudentFirstForm={handleSubmitStudentFirstForm}
         />
       )}
       {isInitialized === false && currentStep === 2 && (
@@ -236,18 +394,12 @@ const CreateNewAccountPage = () => {
           search={search}
           error={error}
           loading={loading}
-          handleSubmitSecondForm={handleSubmitSecondForm}
+          handleSubmitTeacherSecondForm={handleSubmitTeacherSecondForm}
           updateForm={updateForm}
-        />
-      )}
-      {isInitialized === false && currentStep === 3 && (
-        <SchoolDetailForm
-          form={form}
-          search={search}
-          error={error}
-          loading={loading}
-          handleSubmit={handleTeacherSubmit}
-          updateForm={updateForm}
+          registerType={registerType}
+          handleEmailSkip={handleEmailSkip}
+          handleSubmitUserSecondForm={handleSubmitUserSecondForm}
+          handleSubmitWithJoinCode={handleSubmitWithJoinCode}
         />
       )}
       {isInitialized === false && currentStep === 4 && (

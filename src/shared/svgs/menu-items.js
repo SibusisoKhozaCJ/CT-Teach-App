@@ -17,9 +17,22 @@ import Newicon from "../../assets/images/pls.svg";
 import Homeicon from "../../assets/images/home.svg";
 import ProjectsIcon from "../../assets/images/rocket-icon.png";
 import ToCodeIcon from "../../assets/images/toCode.png";
+import FriendIcon from "../../assets/images/friend.svg";
+import Mailicon from "../../assets/images/mailSend.svg";
+import MailsendIcon from "../../assets/images/mailsendicon.svg";
+
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
+};
+export const FriendSVG = () => {
+  return <img src={FriendIcon} alt="" />;
+};
+export const MailsendIconSVG = () => {
+  return <img src={MailsendIcon} alt="" />;
+};
+export const MailiconSVG = () => {
+  return <img src={Mailicon} alt="" />;
 };
 
 export const TribeSVG = () => {

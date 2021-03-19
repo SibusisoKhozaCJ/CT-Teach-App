@@ -13,6 +13,7 @@ import {
 } from "../../redux/actions/friend-actions";
 import { saveUser } from "../../redux/actions/user-actions";
 import AddFriendModal from "./modals/add-friend-modal.jsx";
+import AddRemoveFriendModal from "./modals/accept-reject.jsx";
 const FriendsPage = () => {
   const [expand, setExpand] = useState("false");
   const dispatch = useDispatch();
@@ -20,12 +21,16 @@ const FriendsPage = () => {
   const [friendListType, setTriendListType] = useState("friend");
   const { user } = useSelector((state) => state.user);
   const [openModal, setOpenModal] = useState(false);
+  const [openAcceptModal, setAcceptOpenModal] = useState(false);
+  
+
+  
   const { friendList, pendingList, successErrorMessage } = useSelector(
     (state) => state.friend
   );
   useEffect(() => {
     if (user !== null) {
-      if (user.friends && user.friends.length > 0) {
+      if (user.friends && user.friends.length > 0) {         
         dispatch(setUserFriends(user));
       }
     } else {
@@ -52,6 +57,13 @@ const FriendsPage = () => {
         openModal={openModal}
         handleModalClose={() => {
           setOpenModal(false);
+        }}
+        handleSendRequest={(email) => handleSendRequest(email)}
+      />
+       <AddRemoveFriendModal
+        openModal={openAcceptModal}
+        handleModalClose={() => {
+          setAcceptOpenModal(false);
         }}
         handleSendRequest={(email) => handleSendRequest(email)}
       />
@@ -153,6 +165,7 @@ const FriendsPage = () => {
 
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
+                        
                         <div
                           className="accept-btn"
                           onClick={() => handleremoveFriend(friend.info.uid)}
@@ -271,12 +284,20 @@ const FriendsPage = () => {
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
                           {friend.sender !== user.uid ? (
+                            <>
+                             <div
+                          className="frnd-cancel"
+                       
+                        >
+                          <span onClick={() => setAcceptOpenModal(true)}>X</span>
+                        </div>
                             <div
                           className="accept-btn"
                           onClick={() => handleAcceptRequest(friend.info.uid)}
                         >
                           <span>Accept</span>
                         </div>
+                        </>
                           ):(
 <div
                           className="accept-btn"

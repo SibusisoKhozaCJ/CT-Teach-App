@@ -27,6 +27,10 @@ export async function firebaseUpdateChild(state, data) {
   await firebase.database().ref(state).child(data.code).update(data);
 }
 
+export async function firebaseGetOnly(state,childId) {
+  await firebase.database().ref(state).equalTo(childId);
+}
+
 export function firebaseGet(state, dataValue, callback) {
   let data;
   if (callback)

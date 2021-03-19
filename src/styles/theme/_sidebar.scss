@@ -131,14 +131,18 @@ header {
 		line-height: 51px;
 		color: #000000;
 		left: 110px;
-		position: fixed;
+		
 	}
 	.headermenubutton {
 		width: 48px;
-		height: 48px;
-		position: fixed;
+		height: 48px;		
 		left: 40px;
 	}
+	.headhomeiocn {
+    
+   padding-left: 40px;
+		margin-bottom: 5px;
+}
 	.MuiToolbar-regular {
 		min-height: 74px;
 	}
@@ -146,7 +150,7 @@ header {
 
 .tribe-page {
 	width: calc(100vw - 240px);
-	padding: 24px;
+	padding: 24px 0;
 	flex-grow: 1;
 	min-height: 100vh;
 	.main-manu {
@@ -290,11 +294,10 @@ header {
 .close {
 	min-width: 33px !important;
 	border-radius: 50% !important;
-	height: 42px !important;
-	width: 42px !important;
-	box-shadow: none !important;
-	padding: 20px !important;
-	margin-left: 18px !important;
+	height: 50px !important;
+	width: 50px !important;
+	box-shadow: none !important;	
+	box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12) !important;
 	.new-tagsidebar {
 		display: none;
 	}
@@ -348,8 +351,7 @@ header {
 
 .page-divid {
 	.pgeBG {
-		background: rgba(240, 238, 238, 0.88);
-		border-radius: 35px;
+		background: rgba(240, 238, 238, 0.88);	
 		padding: 20px 40px;
 	}
 }

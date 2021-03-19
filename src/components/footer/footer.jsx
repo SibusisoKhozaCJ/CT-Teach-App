@@ -31,7 +31,7 @@ const Footer = () => {
         <img onClick={(evt)=>history.push("/tribe")} src={Icon1} className="coverage" alt="" />
       </div>
 
-      <div className="footer-icon">
+      <div className="footer-icon select-footer">
         <img onClick={(evt)=>history.push("/tribe")} src={Icon3} className="coverage" alt="" />
       </div>
 

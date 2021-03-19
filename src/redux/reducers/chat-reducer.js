@@ -1,67 +1,128 @@
-import * as actionTypes from '../constants/chat-types';
+import _ from 'lodash';
+import {
+  SET_ROOM_LIST,
+  SET_ROOM_INFO,
+  CLEAR_CURRENT_ROOM_NAME,
+  CLEAR_ID_ROOM,
+  SHOW_CHAT,
+  HIDE_CHAT,
+  CLEAR_MESSAGES,
+  INCREASE_LIMIT,
+  SET_INITIAL_LIMIT,
+  FETCH_MESSAGES_START,
+  FETCH_MESSAGES_SUCCESS,
+  UPDATE_CHATS,
+  CLEAR_ROOMS,
+  FETCH_ROOMS_SUCCESS,
+  FETCH_ROOMS_FAIL,
+  CHAT_STATUS,
+} from '../constants/chat-types';
+
+const filterChats = (state, action) => {
+  const roomsJoined = [...state.rooms, ...action.rooms];
+  return _.uniqBy(roomsJoined, 'idRoom');
+};
 
 const initialState = {
-  chatStatus: 'roomlist',
+  chatStatus: CHAT_STATUS.roomlist,
   idRoom: '',
-  currentRoomName: '',
+  selectedRoom: '',
   isVisibleChat: false,
   messages: [],
-  unreadMessages: 0,
+  loadingMessages: true,
+  loadingRooms: true,
+  rooms: [],
+  limit: 20,
+  errorLoadingRooms: false,
 };
 
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_ROOM_LIST:
+    case SET_ROOM_LIST:
       return {
         ...state,
         chatStatus: action.chatStatus,
       };
-    case actionTypes.SET_CHAT_ROOM:
+    case SET_ROOM_INFO: {
+      const { chatStatus, idRoom, selectedRoom } = action;
       return {
         ...state,
-        chatStatus: action.chatStatus,
-        idRoom: action.idRoom,
+        chatStatus,
+        idRoom,
+        selectedRoom,
       };
-    case actionTypes.SET_CURRENT_ROOM_NAME:
+    }
+    case CLEAR_CURRENT_ROOM_NAME:
       return {
         ...state,
-        currentRoomName: action.currentRoomName,
+        selectedRoom: '',
       };
-    case actionTypes.CLEAR_CURRENT_ROOM_NAME:
-      return {
-        ...state,
-        currentRoomName: '',
-      };
-    case actionTypes.CLEAR_ID_ROOM:
+    case CLEAR_ID_ROOM:
       return {
         ...state,
         idRoom: '',
       };
-    case actionTypes.SHOW_CHAT:
+    case SHOW_CHAT:
       return {
         ...state,
         isVisibleChat: true,
       };
-    case actionTypes.HIDE_CHAT:
+    case HIDE_CHAT:
       return {
         ...state,
         isVisibleChat: false,
       };
-    case actionTypes.SET_MESSAGES:
+    case CLEAR_MESSAGES:
       return {
         ...state,
+        messages: [],
+      };
+    case INCREASE_LIMIT:
+      return {
+        ...state,
+        limit: state.limit + 5,
+      };
+    case SET_INITIAL_LIMIT:
+      return {
+        ...state,
+        limit: 20,
+      };
+    case FETCH_MESSAGES_START:
+      return {
+        ...state,
+        loadingMessages: true,
+      };
+    case FETCH_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        loadingMessages: false,
         messages: action.payload,
       };
-    case actionTypes.CLEAR_MESSAGES:
+    case UPDATE_CHATS: {
       return {
         ...state,
-        messages: null,
+        rooms: filterChats(state, action),
       };
-    case actionTypes.SET_UNREAD_MESSAGES_COUNT:
+    }
+    case CLEAR_ROOMS: {
       return {
         ...state,
-        unreadMessages: action.payload,
+        rooms: [],
       };
+    }
+    case FETCH_ROOMS_SUCCESS: {
+      return {
+        ...state,
+        rooms: filterChats(state, action),
+        loadingRooms: false,
+      };
+    }
+    case FETCH_ROOMS_FAIL: {
+      return {
+        ...state,
+        errorLoadingRooms: true,
+      };
+    }
     default:
       return state;
   }

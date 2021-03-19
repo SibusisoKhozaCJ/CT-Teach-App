@@ -332,13 +332,13 @@ const ProectItem = (
                   <>
                     <Link onClick={() => {
                         console.log("trainings click")
-                        selectProject("P001");
+                        selectProject("P1");
                       }} className={classes.btnMore}>
                       Trainings
                     </Link>
                     <Link
                       onClick={() => {
-                        history.push(`/codepanel/C001/P001/${lessons[0]}`);
+                        history.push(`/rocket/C1/P1/${lessons[0]}`);
                         closeSidebar();
                       }}
                       className={classes.btnStart}
@@ -349,7 +349,7 @@ const ProectItem = (
                 ) : (
                   <button className={classes.btnStart} role="button" onClick={() => {
                     // selectProject(key);
-                    history.push(`/codepanel/C000/P000/L001`);
+                    history.push(`/rocket/C1/P0/T0`);
                     closeSidebar();
                   }}>
                     <span>Rock This!</span>

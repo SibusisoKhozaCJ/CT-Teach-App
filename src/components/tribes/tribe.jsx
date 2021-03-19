@@ -16,13 +16,8 @@ import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
 import { useHistory } from "react-router-dom";
-import * as actions from '../../redux/actions/chat-action';
-import { enterChatRoom } from '../../shared/lib/chat';
-import { getCookies } from '../../shared/lib/authentication';
-
 const Tribes = () => {
   const [expand, setExpand] = useState("");
-  const { userFirstName } = getCookies();
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.user);
@@ -43,18 +38,6 @@ const Tribes = () => {
       </div>
     );
   }
-
-  const openChatHandler = (idRoom, roomname) => {
-    dispatch(actions.showChat());
-    const roomInfo = {
-      dispatch,
-      firstname: userFirstName,
-      idRoom,
-      roomname,
-    };
-    enterChatRoom(roomInfo);
-  }
-
   return (
     <div className="tribe-page">
       <div className="commonheight"></div>
@@ -65,9 +48,9 @@ const Tribes = () => {
               userTribes.length > 0 &&
               <>
               <h1 className="tribe-mainheading">My Tribe</h1>
-
+              
               {userTribes.map((tribe, index) => (
-                <div className="nav-slide" key={index}>
+                <div className="nav-slide">
                   <Grid container spacing={1} className="main-manu" xs={12}>
                     <Grid item xs={12} className="tribe-header">
                       <Typography variant="h1" className="title">
@@ -87,9 +70,7 @@ const Tribes = () => {
                     </Grid>
                     <Grid item xs={3}>
                       <div className="tribe-icon">
-                        <img src={Icon4} className="coverage" alt="" onClick={() =>
-                          openChatHandler(tribe.code, tribe.name)}
-                        />
+                        <img src={Icon4} className="coverage" alt="" />
                       </div>
                     </Grid>
                     <Grid item xs={3}>
@@ -192,12 +173,12 @@ const Tribes = () => {
               ))}
               </>}
               {userJoinedTribes &&
-              userJoinedTribes.length &&
+              userJoinedTribes.length > 0 &&
               <>
             <h1 className="tribe-mainheading">Joined Tribes</h1>
-
+            
               {userJoinedTribes.map((tribe, index) => (
-                <div className="nav-slide" key={index}>
+                <div className="nav-slide">
                   <Grid container spacing={1} className="main-manu" xs={12}>
                     <Grid item xs={12}>
                       <Typography variant="h1" className="title">
@@ -216,8 +197,7 @@ const Tribes = () => {
                     </Grid>
                     <Grid item xs={3}>
                       <div className="tribe-icon">
-                        <img src={Icon4} className="coverage" alt="" onClick={() =>
-                          openChatHandler(tribe.code, tribe.name)} />
+                        <img src={Icon4} className="coverage" alt="" />
                       </div>
                     </Grid>
                     <Grid item xs={3}>

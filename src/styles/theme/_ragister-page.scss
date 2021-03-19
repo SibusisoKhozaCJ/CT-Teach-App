@@ -1,10 +1,43 @@
 .registration {
 	margin: 15vh auto;
+	header{
+		box-shadow: none;
+		.MuiTabs-flexContainer{
+				background-color: rgba(196, 196, 196, 0.49);	
+				color: #A6A6A6;
+		}
+			.MuiButtonBase-root{
+		margin-top: 0;
+		min-width: 190px;
+		font-weight: 700;
+		font-size: 24px;
+		
+			&::before {	
+				display: none;
+			}
+			
+		
+	}
+	 .Mui-selected{
+			background-color: #fff;
+			color:#43D4DD;
+			font-weight: 700;
+			border-top-left-radius: 30px;
+			border-top-right-radius: 30px;
+	 }
+	}
+	.tech-btn{
+		background-color: #FBDD3F;
+		color: #fff;
+	}
+
 	&_main {
-		width: 380px;
-		padding: 10px 15px;
+		width: 380px;		
 		background: #fff;
 		box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
+		border-radius: 30px;
+		overflow: hidden;
+		
 	}
 	&_title {
 		h1 {
@@ -35,11 +68,23 @@
 			margin-bottom: 6px;
 		}
 	}
-	button {
-		background: #43D4DD;
-		max-height: 61px;
-		margin-top: 20px;
+	button {		
+		max-height: 61px;	
 		border-radius: 0;
+		margin-top: 20px;
+		position: relative;
+		box-shadow: none !important;
+		border-radius: 5px;
+	&::before {
+    content: "";
+    width: 40px;
+	height: 40px;
+    background-size: cover;
+    position: absolute;
+	    left: 16px;   
+    background: url(../../assets/images/rocket.svg) top no-repeat;
+        background-size: auto;
+}
 		span {
 			display: block;
 			.reg-happy {
@@ -60,7 +105,7 @@
 	}
 	.reg-checkbox {
 		.MuiTypography-body1 {
-			font-size: 18px;
+			font-size: 16px;
 			line-height: 21px;
 			color: #364954;
 			padding: 2px 10px;
@@ -74,12 +119,14 @@
 	}
 	.letlogin {
 		font-weight: 700;
-		font-size: 12px;
+		font-size: 15px;
 		line-height: 14px;
 		text-align: center;
 		color: #364954;
 		a {
 			color: #d40073;
+			font-weight: 700;
+		font-size: 15px;
 		}
 	}
 	.MuiOutlinedInput-notchedOutline {
@@ -110,4 +157,220 @@
 	.MuiFilledInput-root {
 		border-radius: 0;
 	}
+}
+.skp-sur-btn{
+	padding: 0 5px;
+	button{
+		width: 100%;
+		color: #fff;
+		font-size: 22px;
+		font-weight: 700;
+		margin-top: 0;
+		&:before{
+			display: none;
+		}
+		
+	}
+	.skip-btn{
+		background: #C4C4C4;
+		&:hover{
+			background: #C4C4C4;
+		}
+	
+	}
+}
+.newprive{
+	padding: 0 5px;
+	font-size: 10px;
+	margin-top:10px;
+	text-align: center;
+	width: 100%;
+	font-weight: 700;
+}
+.registration-form{
+	h2 {
+			font-weight: 700;
+			font-size: 24px;
+			line-height: 28px;
+			text-align: center;
+			color: #000000;
+		}
+		}
+.btn-frmn{
+	background-color: #43D4DD !important;
+	color: #fff !important;
+}
+
+.codpage{
+	h1{
+		font-weight: 700;
+			font-size: 24px;
+			line-height: 28px;
+			text-align: center;
+			color: #000000;
+			margin-bottom: 0;
+	}
+	h2{
+		font-weight: 700;
+			font-size: 18px;
+			line-height: 28px;
+			text-align: center;
+			color: #000000;
+
+	}
+	#wrapper {
+    text-align: center;
+  box-sizing: border-box;
+  color: #333;
+  p{
+	  font-size: 14px;
+	  line-height: 18px;
+	  color: #A6A6A6;
+	  font-weight: 700;
+  }
+    span {
+      font-size: 90%;
+    }    
+    #codeform {     
+      margin: 25px 25px 0;    
+	  background: #EAEAEB;
+		padding: 15px;  
+      input {
+       margin: 0 5px;
+		text-align: center;
+		line-height: 40px;
+		font-size: 36px;
+		border-bottom: solid 4px #A6A6A6 !important;
+		outline: none;
+		width: 14%;
+		transition: all 0.2s ease-in-out;		
+		border: none;
+		font-weight: 700;
+		background: transparent;
+        
+        &:focus {
+          border-color: none;
+          box-shadow:none;
+        }
+        
+        &::selection {
+          background: transparent;
+        }
+      }
+    }
+}
+ .ent-code {
+    font-size: 14px;
+    font-weight: 700 !important;
+    margin-top: 15px;
+    margin-bottom: 5px;
+	color: #364954 !important;
+}
+  button {
+        width: 100%;
+        padding: 6px;
+        background-color: #C4C4C4;
+        border: none;
+        text-transform: uppercase;
+		border-radius: 5px;
+		height: 61px;
+		font-weight: bold;
+font-size: 24px;
+line-height: 28px;
+color: #fff;
+&::before{
+	display: none;
+}
+&:hover{
+			background: #C4C4C4;
+		}
+      }
+	  .reg-checkbox{
+		  padding-left: 20px;
+	  }
+	.active .MuiTypography-body1 {
+    background: #43D4DD;
+}
+.newprive{
+	padding: 0 5px;
+	font-size: 10px;
+	margin-top:10px;
+	text-align: center;
+	width: 100%;
+	font-weight: 700;
+}
+}
+.ylw-tech{
+	background: #FBDD3F !important;
+	color:#fff !important;
+	&:before{
+		display: none;
+	}
+}
+.reg-pd{
+.registration_main{
+	form{
+		padding: 20px;
+	}
+}
+}
+.techer-name {
+    font-size: 34px !important;
+    font-weight: 700;
+	color: #A6A6A6;
+}
+
+.Mui-selected.tech-tab{
+	span{
+		color: #FFDA1B;
+	}
+}
+.tech-btn.MuiButton-fullWidth:hover {
+    background: #FFDA1B;
+}
+.reg-pd1{
+	width: 100%;
+		form{
+		padding: 20px;
+	}
+	.registration_main {
+    margin: 0 auto;
+}
+.MuiFormLabel-root{
+	font-weight: 700;
+	font-size: 18px;
+line-height: 21px;
+color: #364954;
+}
+ button{
+	 margin-top: 0;
+ }
+ .chck-bx{
+	 padding-left: 10px;
+ }
+ .codpage .active .MuiTypography-body1 {
+    background: #FBDD3F;
+}
+.MuiTypography-colorError {
+    color: #f44336;
+    text-align: center;
+}
+}
+.sure-btn button{
+	background: #43D4DD;
+border-radius: 5px;
+&:hover{
+		background: #43D4DD;
+}
+}
+.reg-checkbox.user-chck{
+	padding: 0 0 0 15px;
+	.active .MuiTypography-body1 {
+    background: #43D4DD !important;
+}
+}
+.reg-checkbox.usr-check{
+.active .MuiTypography-body1 {
+    background: #43D4DD !important;
+}
 }

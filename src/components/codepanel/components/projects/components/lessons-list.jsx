@@ -11,6 +11,8 @@ import { projectsGetById } from "../../../../../redux/actions/projects-actions";
 import Loading from "../../../../../shared/components/loader/Loading";
 import LessonItem from "./lessons-item";
 import Card from "../../../../../shared/components/card/card";
+import * as authFetch from "../../../../../shared/lib/authorizedFetch";
+import { currentUserId } from "../../../../../shared/lib/authentication";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -95,8 +97,20 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   const isProjectLoading = useSelector(state => state.projects.is);
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
   const history = useHistory()
+  const userId = currentUserId();
+
+  const getProgressData = async (userId) => {
+    return await authFetch.firebaseGet(
+      `User_profile/${userId}/C001/`
+    );
+  }
 
   useEffect(() => {
+    getProgressData(userId).then((data) => {
+      if (data) {
+        console.log(data)
+      }
+    })
     // if (isLessonsLoading === null) {
       dispatch(lessonsGetList(id))
       dispatch(projectsGetById(id))
@@ -135,7 +149,7 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
               index={index + 1}
               key={index}
               lesson={lesson}
-              currentProgress={87}
+              currentProgress={0}
               closeSidebar={() => {
                 history.push(`/codepanel/C001/P001/${lesson.trainingId}`)
                 closeSidebar();

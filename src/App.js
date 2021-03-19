@@ -26,7 +26,8 @@ import ResetPage from './components/reset-password/ResetPage';
 import Welcome from './components/welcome/Welcome';
 import Home from './components/home/home';
 import Sidebar from './components/sidebar/sidebar';
-import Tribes from "./components/tribes/tribe"
+import Tribes from "./components/tribes/tribe";
+import Progress from "./components/progress/progress";
 import Profile from "./components/profile/Profile";
 import Layout from './hoc/Layout/Layout';
 import JoinTribe from "./components/join-tribe/join-tribe-page"
@@ -39,7 +40,7 @@ import Codepanel from './components/codepanel/codepanel';
 import Projects from './components/projects/projects';
 import Lessons from './components/lessons/lessons';
 import UploadLesson from "./components/upload-lesson/upload-lesson";
-
+import UserConfirmCode from './components/reset-password/UserConfirmCode';
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
   const { pathname, search } = useLocation();
@@ -114,6 +115,9 @@ const App = () => {
                     <Route path={routes.RESET}>
                       <ResetPage />
                     </Route>
+                    <Route path={routes.RESET_LINK_CONFIRMATION}>
+                      <UserConfirmCode />
+                    </Route>
                     <Route path={routes.JOIN_TRIBE_ID}>
                       <JoinTribe isAuthenticated={isAuthenticate}/>
                     </Route>
@@ -122,13 +126,14 @@ const App = () => {
                     <ProtectedRoute path={routes.WELCOME} component={Welcome} />
                     <ProtectedRoute path={routes.CONTACT_US} component={ContactUs} />
                     <ProtectedRoute path={routes.FORM} component={FormPage} />
-                    <ProtectedRoute path={routes.TRIBE} component={Tribes} />
+                    <ProtectedRoute path={routes.TRIBE} component={Tribes} />                
                     <ProtectedRoute path={routes.PROFILE_ID} component={Profile} />
                     <ProtectedRoute path={routes.TRIBE_PROFILE} component={TribeProfile} />
                     <ProtectedRoute path={routes.FRIENDS_LIST} component={FriendsPage} />
                     <ProtectedRoute path={routes.PROJECTS} component={Projects} />
                     <ProtectedRoute path={routes.LESSON_ID} component={Lessons} />
                     <ProtectedRoute path={routes.UPLOAD_LESSON} component={UploadLesson} />
+                    <ProtectedRoute path={routes.PROGRESS} component={Progress} />
                     <Redirect to="/" />
                   </Switch>
                 </Grid>
