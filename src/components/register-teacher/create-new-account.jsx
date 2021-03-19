@@ -9,6 +9,7 @@ import randomize from "randomatic";
 import BasicInfo from "./components/basic-info";
 import TypeAndEmailForm from "./components/type-email";
 import InviteToTribeForm from "./components/invite-code";
+import { insertDefaultTodo } from "../../redux/actions/todo-actions";
 
 const CreateNewAccountPage = () => {
   const history = useHistory();
@@ -29,6 +30,7 @@ const CreateNewAccountPage = () => {
     year: "",
     city: "",
     isTeacher: false,
+    hasEntered: false,
     phone: "",
     schoolAlreadySigned: false,
   });
@@ -111,10 +113,12 @@ const CreateNewAccountPage = () => {
               lastname: lastname,
               city: city,
               is_teacher: true,
+              hasEntered: false,
               phone: phone,
               schoolName: schoolname,
               tribe_joined: [joincode],
             });
+            insertDefaultTodo(res.user.uid);
             Auth.setCookies(email, firstname);
             setTokens({ isAuthenticate: true });
             if (
@@ -187,10 +191,12 @@ const CreateNewAccountPage = () => {
             lastname: lastname,
             city: city,
             is_teacher: false,
+            hasEntered: false,
             phone: phone,
             schoolName: schoolname,
             tribe_joined: [joincode],
           });
+          insertDefaultTodo(res.user.uid);
           Auth.setCookies(email, firstname);
           setTokens({ isAuthenticate: true });
           if (
@@ -257,6 +263,7 @@ const CreateNewAccountPage = () => {
           lastname: lastname,
           city: city,
           is_teacher: true,
+          hasEntered: false,
           dob: day + "-" + month + "-" + year,
           phone: phone,
           schoolName: schoolname,
@@ -264,6 +271,7 @@ const CreateNewAccountPage = () => {
           tribe_code: tribeCode,
           tribe_joned: [],
         });
+        insertDefaultTodo(res.user.uid);
         Auth.setCookies(email, firstname);
       } else {
         const { firstname, lastname } = form;
@@ -283,6 +291,7 @@ const CreateNewAccountPage = () => {
           lastname: lastname,
           city: city,
           is_teacher: false,
+          hasEntered: false,
           dob: day + "-" + month + "-" + year,
           phone: phone,
           schoolName: schoolname,
@@ -290,6 +299,7 @@ const CreateNewAccountPage = () => {
           tribe_code: tribeCode,
           tribe_joned: [],
         });
+        insertDefaultTodo(res.user.uid);
         Auth.setCookies(emailAddress, firstname);
       }
       setTokens({ isAuthenticate: true });

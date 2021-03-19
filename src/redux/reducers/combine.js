@@ -9,6 +9,7 @@ import projectsReducer from './projects-reducer';
 import lessonsReducer from './lessons-reducer';
 import notificationReducer from './notification-reducer';
 import progressReducer from './progress-reducer';
+import ToDoReducer from './todo-reducer';
 
 import { Types } from "../constants/combine-types";
 
@@ -23,6 +24,7 @@ const appReducer = combineReducers({
     lessons: lessonsReducer,
     notification: notificationReducer,
     progress:progressReducer,
+    todo: ToDoReducer,
 
 });
 
