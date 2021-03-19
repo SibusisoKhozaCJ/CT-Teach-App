@@ -1,15 +1,15 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   modal: {
-    position: 'relative',
+    position: "relative",
     [theme.breakpoints.down("xs")]: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: "center",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   },
-    container: {
+  container: {
     width: "500px",
     height: "250px",
     padding: "25px",
@@ -19,14 +19,14 @@ export const useStyles = makeStyles(theme => ({
     position: "relative",
     top: "230px",
     [theme.breakpoints.down("xs")]: {
-        width: "95%",
-        height: "auto",
-        top: 0,
-        padding: "10px",
+      width: "95%",
+      height: "auto",
+      top: 0,
+      padding: "10px",
     },
     [theme.breakpoints.up("md")]: {
-        left: "100px",
-    }
+      left: "100px",
+    },
   },
   closeButton: {
     position: "absolute",
@@ -67,12 +67,12 @@ export const useStyles = makeStyles(theme => ({
     color: "#FFFFFF",
     background: "#43D4DD",
     borderRadius: "25px",
-    position: 'absolute',
+    position: "absolute",
     bottom: "-20px",
     right: "80px",
     [theme.breakpoints.down("xs")]: {
-        right: "50%",
-        transform: "translate(50%)",
+      right: "50%",
+      transform: "translate(50%)",
     },
-  }
+  },
 }));

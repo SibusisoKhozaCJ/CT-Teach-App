@@ -13,18 +13,18 @@ export const useStyles = makeStyles({
     background: "#FFFFFF",
     border: "5px solid #43D4DD",
     borderRadius: "25px",
-    position: 'relative',
-    display: 'flex',
+    position: "relative",
+    display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     "& input": {
       marginBottom: "16px",
-    }
+    },
   },
   closeButton: {
-      position: 'absolute',
-      top: "10px",
-      right: "10px",
+    position: "absolute",
+    top: "10px",
+    right: "10px",
   },
   colorLabel: {
     margin: "0 8px 0 0 ",
@@ -36,6 +36,6 @@ export const useStyles = makeStyles({
       padding: 0,
       margin: 0,
       height: "40px",
-    }
+    },
   },
 });

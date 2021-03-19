@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HeaderToDo from "../todo/header-todo/header-todo";
 import ToDoMainArea from "../todo/todo-main-area/todo-main-area";
 import Grid from "@material-ui/core/Grid";
 import NotesBox from "../todo/notes-box/notes-box";
 import { useStyles } from "./styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectedToDo } from "../../redux/selectors/selectors";
 import Loading from "../../shared/components/loader/Loading";
 import ToDoTip from "./todo-tip/todo-tip";
+import { getTodoList, getUserNote } from "../../redux/actions/todo-actions";
 
 const ToDo = () => {
   const classes = useStyles();
   const { isFetchingToDo, isFetchingNote } = useSelector(selectedToDo);
-  if (isFetchingNote || isFetchingToDo) {
-    return (
-      <Loading/>
-    )
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTodoList());
+    dispatch(getUserNote());
+  }, [dispatch]);
+
+  if (isFetchingNote || isFetchingToDo || !user) {
+    return <Loading />;
   }
   return (
     <Grid container spacing={1} direction="column" style={{ minHeight: "80%" }}>
@@ -44,7 +51,7 @@ const ToDo = () => {
           <NotesBox />
         </Grid>
       </Grid>
-      <ToDoTip/>
+      <ToDoTip />
     </Grid>
   );
 };

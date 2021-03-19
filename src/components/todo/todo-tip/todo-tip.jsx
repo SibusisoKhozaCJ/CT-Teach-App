@@ -7,18 +7,18 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { HomeSVG } from "../../../shared/svgs/menu-items";
 import CloseButton from "../../../shared/components/buttons/CloseButton";
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
 import { useSelector } from "react-redux";
 import { userHasEntered } from "../../../redux/actions/todo-actions";
 
 const ToDoTip = () => {
   const classes = useStyles();
-  const { hasEntered } = useSelector(state => state.user.user);
-  const  [open, setOpen] = useState(!hasEntered);
+  const { hasEntered } = useSelector((state) => state.user.user);
+  const [open, setOpen] = useState(!hasEntered);
   const onButtonClick = () => {
     setOpen(false);
     userHasEntered();
-  }
+  };
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -41,23 +41,29 @@ const ToDoTip = () => {
               direction="column"
               classes={{ root: classes.textContainer }}
             >
-              <Typography variant="body1" classes={{root: classes.textStyle}}>
+              <Typography variant="body1" classes={{ root: classes.textStyle }}>
                 {`Hey there ${String.fromCodePoint(128075)}`}
               </Typography>
-              <Typography variant="body1" classes={{root: classes.textStyle}}>
-                This is <span className={classes.selectedText}>where you can just chill</span> and be happy.
+              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+                This is{" "}
+                <span className={classes.selectedText}>
+                  where you can just chill
+                </span>{" "}
+                and be happy.
               </Typography>
-              <Typography variant="body1" classes={{root: classes.textStyle}}>
+              <Typography variant="body1" classes={{ root: classes.textStyle }}>
                 Mark some cards as complete or create your own.
               </Typography>
             </Grid>
-            
           </Grid>
-          <CloseButton className={classes.closeButton} onClick={onButtonClick}/>
+          <CloseButton
+            className={classes.closeButton}
+            onClick={onButtonClick}
+          />
           <Button
             variant="contained"
             color="primary"
-            classes={{root: classes.primaryButton}}
+            classes={{ root: classes.primaryButton }}
             onClick={onButtonClick}
           >
             Got It

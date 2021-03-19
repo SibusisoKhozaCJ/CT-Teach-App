@@ -6,11 +6,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import IconButton from "@material-ui/core/IconButton";
 import { selectedToDo } from "../../../redux/selectors/selectors";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getUserNote,
-  updateUserNote,
-} from "../../../redux/actions/todo-actions";
+import { useSelector } from "react-redux";
+import { updateUserNote } from "../../../redux/actions/todo-actions";
 
 const NotesBox = () => {
   const classes = useStyles();
@@ -18,24 +15,18 @@ const NotesBox = () => {
   const { userNote } = useSelector(selectedToDo);
   const [note, setNote] = useState("");
   const { userId } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("mount");
-    dispatch(getUserNote());
-  }, []);
-
-  useEffect(() => {
-    setNote(userNote.value)
+    setNote(userNote.value);
   }, [userNote]);
 
   const onNoteChange = (e) => {
-    setNote(e.target.value)
-  }
+    setNote(e.target.value);
+  };
 
   const onUserStopInputNote = () => {
-    updateUserNote(userNote?.key, {value: note, userId });
-  }
+    updateUserNote(userNote?.key, { value: note, userId });
+  };
 
   const onExpandButtonClick = () => {
     setExpandMoreClick((state) => !state);

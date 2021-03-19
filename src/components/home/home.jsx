@@ -10,8 +10,7 @@ import ToDo from "../todo/todo";
 const Welcome = () => {
   const userIdFromCookies = Cookies.get("userid");
   const dispatch = useDispatch();
-  const { isCurrentUser, user } = useSelector((state) => state.user);
-
+  const { isCurrentUser } = useSelector((state) => state.user);
   useEffect(() => {
     if (!isCurrentUser) {
       dispatch(saveUser(userIdFromCookies));
@@ -33,7 +32,7 @@ const Welcome = () => {
       <Box pb={1}>
         <Typography variant="h1">Home Page</Typography>
       </Box>
-      {user && <ToDo/>}
+      <ToDo/>
       {/* <Typography>
         Thanks again for joining this portal! We have quite a few services
         available to you and there will be even more in the future. We have

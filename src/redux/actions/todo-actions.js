@@ -1,18 +1,12 @@
 import { getCookies } from "../../shared/lib/authentication";
 import firebase from "firebase";
 import {
-  DELETE_TODO,
-  FETCHING_TODO_LIST_ERROR,
   FETCHING_TODO_LIST_START,
   FETCHING_TODO_LIST_SUCCESS,
-  FETCHING_USER_NOTE_ERROR,
   FETCHING_USER_NOTE_START,
   FETCHING_USER_NOTE_SUCCESS,
-  SET_NEW_TODO,
-  UPDATE_USER_NOTE,
 } from "../constants/todo-types";
 import { snapshotToArray } from "./chat-action";
-import { isTryStatement } from "typescript";
 
 const fetchingToDoStart = () => ({
   type: FETCHING_TODO_LIST_START,
@@ -20,21 +14,6 @@ const fetchingToDoStart = () => ({
 
 const fetchingToDoSuccess = (payload) => ({
   type: FETCHING_TODO_LIST_SUCCESS,
-  payload,
-});
-
-const fetchingToDoError = (payload) => ({
-  type: FETCHING_TODO_LIST_ERROR,
-  payload,
-});
-
-const deleteToDo = (payload) => ({
-  type: DELETE_TODO,
-  payload,
-});
-
-const setNewTodo = (payload) => ({
-  type: SET_NEW_TODO,
   payload,
 });
 
@@ -47,19 +26,9 @@ const fetchingNoteSuccess = (payload) => ({
   payload,
 });
 
-const fetchingNoteError = (payload) => ({
-  type: FETCHING_USER_NOTE_ERROR,
-  payload,
-});
-
-const updateNote = (payload) => ({
-  type: UPDATE_USER_NOTE,
-  payload,
-});
-
 export const getTodoList = () => (dispatch) => {
+  const start = performance.now();
   const { userId } = getCookies();
-  console.log(userId);
   dispatch(fetchingToDoStart());
   firebase
     .database()
@@ -67,6 +36,7 @@ export const getTodoList = () => (dispatch) => {
     .orderByChild("userId")
     .equalTo(userId)
     .on("value", (snapshot) => {
+      console.log(performance.now()-start);
       dispatch(fetchingToDoSuccess(snapshotToArray(snapshot)));
     });
 };
@@ -143,16 +113,17 @@ export const insertDefaultTodo = (userId) => {
     },
     {
       color: "#C5206F",
-      content: "You do this by clicking publish in the “Preview” panel when coding.",
+      content:
+        "You do this by clicking publish in the “Preview” panel when coding.",
       contentType: "text",
       done: false,
       title: "Share one of your Projects to the Gallery",
     },
   ];
   const ref = firebase.database().ref(`todo/`);
-  defaultToDo.forEach( todo => {
-    ref.push().set({...todo, userId: userId});
-  })
+  defaultToDo.forEach((todo) => {
+    ref.push().set({ ...todo, userId: userId });
+  });
 };
 
 export const userHasEntered = () => {

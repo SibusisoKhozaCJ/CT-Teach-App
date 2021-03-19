@@ -18,12 +18,10 @@ const initialState = {
 };
 
 const ToDoAddModal = ({ open, onClose, onSubmit }) => {
-
-
   const [todo, setTodo] = useState(initialState);
   const [error, setError] = useState(false);
 
-  const classes = useStyles({color: todo.color});
+  const classes = useStyles({ color: todo.color });
 
   const onChange = (e) => {
     const { name, value } = e.target;
