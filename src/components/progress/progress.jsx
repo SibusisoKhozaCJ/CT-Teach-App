@@ -99,6 +99,7 @@ const Progress = () => {
         <SelectTaskDropDown trainingList={trainingList} selectedTraning={selectedTraning} setSelectedTraning={(evt) => setSelectedTraning(evt)} selectedProject={selectedProject} />
       )}
       {/* End Task Drop Down */}
+      <div className="main-progess-page">
       <div className="progess-page">
         {/* Users Info Section */}
         {isLoading && (<Box
@@ -122,6 +123,7 @@ const Progress = () => {
           />
         )}
 
+      </div>
       </div>
     </div>
   );

@@ -27,7 +27,9 @@ import { AuthContext } from '../../shared/contexts/authContext';
 import { removeCookies } from "../../shared/lib/authentication";
 import routes from "../../routes";
 import { isCurrentUser, setUserId } from "../../redux/actions/user-actions";
+import { onLogout} from "../../redux/actions/combined-actions";
 import * as actions from "../../redux/actions/chat-action";
+ 
 
 export default function Header() {
   const location = useLocation();
@@ -70,6 +72,7 @@ export default function Header() {
     setUser();
     setTokens();
     removeCookies();
+    dispatch(onLogout());
   };
 
   const handleClickShowChat = () => {

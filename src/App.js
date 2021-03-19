@@ -39,6 +39,7 @@ import Chat from './components/chat/chat';
 import Codepanel from './components/codepanel/codepanel';
 import Projects from './components/projects/projects';
 import Lessons from './components/lessons/lessons';
+import UserConfirmCode from './components/reset-password/UserConfirmCode';
 
 
 const ProtectedRoute = ({ component: Component, path, ...rest }) => {
@@ -113,6 +114,9 @@ const App = () => {
                     </Route>
                     <Route path={routes.RESET}>
                       <ResetPage />
+                    </Route>
+                    <Route path={routes.RESET_LINK_CONFIRMATION}>
+                      <UserConfirmCode />
                     </Route>
                     <Route path={routes.JOIN_TRIBE_ID}>
                       <JoinTribe isAuthenticated={isAuthenticate}/>

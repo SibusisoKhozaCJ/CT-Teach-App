@@ -17,7 +17,7 @@ const UserRow = ({
 }) => {
   return (
     <div className="table_row">
-      <div className="progress-name ">
+      <div className="progress-name newdiv ">
         <div class="table projecttable">
           <div class="theader name-header">
             <div class="table_header name-head">

@@ -296,21 +296,16 @@ const LoginPage = () => {
                       </Grid>
                      
                         <Grid item xs={12}  spacing={1} className="forget-psw">
-                          <Box my={1}>
-                            <FormControlLabel
-                              value="end"
-                              // className={checked ? "active" : ""}
-                              control={
-                                <Checkbox
-                                  name="schoolAlreadySigned"
-                                  // checked={checked}
-                                  // onChange={handleCheckChange}
-                                />
-                              }
-                              label=" Forgot password"
-                              labelPlacement="end"
-                            />
-                          </Box>
+                    <Box my={1}>
+                          <Button
+                    color="#D50073"
+                    variant="text"
+                    to={`${ROUTES.RESET}`}
+                    component={NavLink}
+                  >
+                    Forgot password..
+                  </Button>
+              </Box>
                
               </Grid>
                     </Grid>

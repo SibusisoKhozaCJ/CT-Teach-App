@@ -6,8 +6,14 @@ import Fade from "@material-ui/core/Fade";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-
+import  Btnicon from "../../../assets/icons/tribe/sendicon.svg"
+import {
+  MailiconSVG,
+  MailsendIconSVG,
+} from "../../../shared/svgs/menu-items";
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -56,26 +62,74 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
       >
         <Fade in={openModal}>
           <div className={classes.paper1}>
-            <section className="send-code joinTribe">
+            <section className="send-code joinTribe Addfrnd-request">
               <div className="send-code_main">
                 <Box my={2} className="send-code_title">
                   <h1>ADD FRIEND</h1>
                 </Box>
-                <Grid container spacing={3}>
+                <Grid container spacing={3} className="sentmailReq">
                   <Grid item xs={12}>
                     <Box my={1}>
                       <TextField
+                             InputProps={{
+                        startAdornment: <MailiconSVG />
+                      }}
                         fullWidth
-                        placeholder="Email address"
+                        placeholder="FRIEND’S EMAIL"
                         variant="outlined"
                         value={friendToAddID}
                         onChange={(e) => setFriendToAddID(e.target.value)}
+                     
                       />
                     </Box>
                   </Grid>
+                 
+                   <Grid item xs={12}>
+                    <Box my={1}>
+                      <TextField
+                             InputProps={{
+                        startAdornment: <MailsendIconSVG />
+                      }}
+                        fullWidth
+                        placeholder="USERNAME"
+                        variant="outlined"
+                        value={friendToAddID}
+                        onChange={(e) => setFriendToAddID(e.target.value)}
+                     
+                      />
+                    </Box>
+                  
+                  </Grid>
+                    <label className="errormsg">
+                                This is error message
+                    </label>
+                   <Grid item xs={12}>
+                     <label className="addNote">Wanna add a note? </label>
+                    <Box my={1}>
+                      <TextField
+                        fullWidth
+                        placeholder="Hey, this is a super fun coding app. Join me."
+                        variant="outlined"
+                        multiline
+                        rows={3}
+                      
+                      />
+                    </Box>
+                  </Grid>
+                    <Grid container spacing={3} className="reg-checkbox frnd-checkbox">
+                      <Grid item xs={12}>
+                        <Box my={1}>
+                          <FormControlLabel
+                            control={<Checkbox color="primary" />}
+                            label="  Search by User Name"
+                            labelPlacement="end"
+                          />
+                        </Box>
+                      </Grid>
+                    </Grid>
                 </Grid>
 
-                <Box my={2}>
+                <Box my={2} className="add-frndReq_btn">
                   {addFriendRespone.message && (
                     <p style={{ color: `${addFriendRespone.status}` }}>
                       {addFriendRespone.message}
@@ -87,7 +141,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                     color="primary"
                     onClick={handleAddFriendRequest}
                   >
-                    <p className="reg-happy">SEND FRIEND REQUEST</p>
+                    <p className="reg-happy">SEND <img src={Btnicon} /> </p>
                   </Button>
                 </Box>
               </div>
