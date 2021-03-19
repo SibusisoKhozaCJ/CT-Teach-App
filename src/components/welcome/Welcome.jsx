@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { saveUser } from "../../redux/actions/user-actions";
+
+
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Cookies from "js-cookie";
+
 
 const Welcome = () => {   
+    const userIdFromCookies = Cookies.get("userid");
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+          dispatch(saveUser(userIdFromCookies));
+      }, []);
 
     return (
         <div>

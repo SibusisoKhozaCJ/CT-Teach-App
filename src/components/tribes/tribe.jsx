@@ -173,7 +173,7 @@ const Tribes = () => {
               ))}
               </>}
               {userJoinedTribes &&
-              userJoinedTribes.length &&
+              userJoinedTribes.length > 0 &&
               <>
             <h1 className="tribe-mainheading">Joined Tribes</h1>
             

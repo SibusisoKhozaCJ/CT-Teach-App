@@ -10,7 +10,9 @@ import lessonsReducer from './lessons-reducer';
 import notificationReducer from './notification-reducer';
 import progressReducer from './progress-reducer';
 
-const reducers = combineReducers({
+import { Types } from "../constants/combine-types";
+
+const appReducer = combineReducers({
     user:userReducer,
     sidebar:sideBarReducer,
     tribe:tribeReducer,
@@ -24,4 +26,13 @@ const reducers = combineReducers({
 
 });
 
-export default reducers;
+const initialState = appReducer({}, {})
+
+const rootReducer = (state, action) => {   
+    // Clear all data in redux store to initial.
+    if(action.type === Types.DESTROY_SESSION)
+       state = initialState;
+       return appReducer(state, action);
+ };
+
+ export default rootReducer;
