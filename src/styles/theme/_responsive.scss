@@ -57,10 +57,77 @@
 }.MuiListItemIcon-root img {
     width: 30px;
 }
+.main-progess-page{
+overflow: scroll;
+max-width: 800px;
+width: 100%;
+border-radius: 35px;
+}
+
 
 }
 
 @media only screen and (max-width: 600px) {
+	.project-slect .MuiFilledInput-root{
+		max-height: 36px !important;
+		
+	}
+	.project-slect .projectslect{	
+		min-height: 36px !important;
+	}
+	.main-pro-page .progess-page , .main-pro-page .progress-name{
+		padding-left: 0 !important;
+		padding-top: 0 !important;
+	}
+	.theader.project-header{
+		.table_header{
+			padding: 20px 6px !important;
+			padding-bottom: 10px !important;
+		}
+	}
+	.main-pro-page .MuiLinearProgress-root {
+    height: 20px;
+    width: 35px;
+    margin: 0 auto;
+}
+.progress-name .table_row > .table_small > .table_cell{
+	max-width: 75px !important;
+}
+.main-pro-page .name-header {
+    width: 210px !important;
+}
+.project-slect .nextpevselect button{
+	padding: 5px !important;
+}
+	.main-progess-page {   
+    max-width: 500px;
+    width: 100%;   
+}
+	.tribe-menu #slect-filled-label {  
+    font-size: 18px !important;
+    line-height: 22px !important;    
+}
+	.main-pro-page .progess-page{
+		background: #ffff !important;
+		margin-top: 0 !important;
+	}
+
+	.tribe-menu .MuiFormControl-root {
+    width: 220px !important;
+}
+.tribe-menu .tribe-grid {
+    width: 60px !important;
+    height: 48px !important;
+}
+.project-slect .slt-btn button{
+  padding: 10px 8px !important;
+font-size: 20px !important;
+min-height: 40px !important;
+}
+.project-slect .projectslect{
+  width: 240px !important;
+}
+
 	header {
 		background: red;
 		.MuiIconButton-label img {
@@ -253,23 +320,43 @@ font-size: 20px;
 	.MuiListItemIcon-root img {
 		width: 30px;
 	}
-	.mt-ft-icon {
-		padding: 4px;
-		width: 50px;
-		height: 50px;
-		text-align: center;
-		line-height: 40px;
-		border-radius: 50%;
-		display: flex;
-		background: #fff;
-		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-		align-items: center;
-		justify-content: center;
-		img {
-			width: 100%;
-			max-width: 50px !important;
-			margin-bottom: 2px;
-			margin-left: 2px;
-		}
+
+
+}
+@media only screen and (max-width: 440px) {
+.tribe-menu .tribe-grid img {
+    margin-top: 10px !important;
+    width: 25px !important;
+}
+.tribe-menu .tribe-grid {
+    width: 50px !important;
+}
+.project-slect .slt-btn button{
+		min-width: 70px !important;
 	}
+}
+@media only screen and (max-width: 420px) {
+	.main-pro-page .progess-page{
+		margin-top: 0 !important;
+		padding-left: 0 !important;
+	}
+.main-pro-page .progress-name {
+    padding: 20px 25px;
+    margin-right: 90px;
+}
+.tribe-menu .MuiFormControl-root {
+    max-width: 240px !important;
+    width: 200px !important;
+}
+
+}
+@media only screen and (max-width: 400px) {
+.tribe-menu .MuiFormControl-root {
+    max-width: 240px !important;
+    width: 190px !important;
+}
+.project-slect .projectslect {
+    width: 230px !important;
+}
+
 }
