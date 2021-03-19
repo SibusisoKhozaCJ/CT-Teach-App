@@ -79,6 +79,7 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }
                   </Grid>
                 </Grid>
               </div>
+              
             </section>
           </div>
         </Fade>

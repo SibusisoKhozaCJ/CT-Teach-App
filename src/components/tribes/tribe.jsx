@@ -8,7 +8,7 @@ import Icon4 from "../../assets/icons/tribe/icon3.svg";
 import Icon9 from "../../assets/icons/tribe/icon4.svg";
 import Icon8 from "../../assets/icons/tribe/usericon.png";
 import Icon1 from "../../assets/icons/tribe/mission.png";
-
+import Box from "@material-ui/core/Box";
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +42,26 @@ const Tribes = () => {
     <div className="tribe-page">
       <div className="commonheight"></div>
       <div className="page-divid">
+          <Box pb={1} className="top-friend-btn">
+          <Grid md={12} xs={12}>
+            <Button
+              color="secondary"
+              
+            >
+              <span>1 TRIBES</span>
+            </Button>
+            <Button
+              color="secondary"
+              
+            >
+              <span>2 PENDING</span>
+            </Button>
+            <Button className="dived">|</Button>
+            <Button color="secondary" >
+              <span className="add-frnd-i">+ </span> TO TRIBE
+            </Button>
+          </Grid>
+        </Box>
         <Grid md={6} xs={12}>
           <div className="pgeBG">
               {userTribes &&

@@ -146,6 +146,27 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                 </Box>
               </div>
             </section>
+             <section className="add-remove add-remove-succes">
+              <div className="add-remove_main">
+                <Box my={2} className="add-remove_title">
+                  <h1>YOUR INVITATION WAS SENT SUPER SUCCESSFULLY.</h1>
+                  <p>You can send another.</p>
+                </Box>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} className="accept-remove-container">
+                  
+                      <Button
+                        className="successBtn"
+                    variant="contained"
+                    color="primary"                   
+                  >
+                    <span>GOT IT</span>
+                  </Button>
+                  </Grid>
+                </Grid>
+              </div>
+              
+            </section>
           </div>
         </Fade>
       </Modal>

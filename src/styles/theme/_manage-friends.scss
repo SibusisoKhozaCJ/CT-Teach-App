@@ -280,3 +280,61 @@ h1 {
 	padding: 10px 20px;
 }
 }
+.add-remove-succes{
+	h1{
+		color: #75CF6D !important;
+	}
+	p{
+		font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+text-align: center;
+color: #364954;
+	}
+	.successBtn{
+		background: rgba(196, 196, 196, 0.49);
+border: 2px solid rgba(196, 196, 196, 0.5);
+border-radius: 50px;
+padding: 10px 40px;
+box-shadow: none;
+font-size: 24px;
+line-height: 40px;
+text-align: center;
+color: #FFFFFF;
+font-weight: 700;
+&:hover{
+		background: rgba(196, 196, 196, 0.49);
+		border: 2px solid rgba(196, 196, 196, 0.5);
+}
+}
+}
+.frnd-drpBtn{
+	text-align: right;
+	img{
+		width: 14px;
+		padding: 4px;
+		cursor: pointer;
+	}
+}
+.unfriend-Btn{
+	text-align: right;
+	position: absolute;
+right: 40px;
+top: 40px;
+	button{
+		border: 4px solid #D50073;
+border-radius: 25px;
+background: #fff;
+font-weight: bold;
+font-size: 26px;
+line-height: 28px;
+text-align: center;
+padding: 12px 36px;
+color: #000;
+&:hover{
+	border: 4px solid #D50073;
+border-radius: 25px;
+background: #fff;
+}
+	}
+}

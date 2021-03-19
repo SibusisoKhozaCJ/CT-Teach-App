@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
+import DotIcon from "../../assets/icons/tribe/dot.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptRequest,
@@ -22,15 +23,25 @@ const FriendsPage = () => {
   const { user } = useSelector((state) => state.user);
   const [openModal, setOpenModal] = useState(false);
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
-  
-
-  
+  const [unfriendModal, setUnfriednModal] = useState(false)
+  const unFriendContainer = React.createRef();
   const { friendList, pendingList, successErrorMessage } = useSelector(
     (state) => state.friend
   );
+
+  const handleClickOutside =(evt)=>{
+    debugger
+    if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
+    setUnfriednModal(false)
+  }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+  }, []);
   useEffect(() => {
     if (user !== null) {
-      if (user.friends && user.friends.length > 0) {         
+      if (user.friends && user.friends.length > 0) {
         dispatch(setUserFriends(user));
       }
     } else {
@@ -60,7 +71,7 @@ const FriendsPage = () => {
         }}
         handleSendRequest={(email) => handleSendRequest(email)}
       />
-       <AddRemoveFriendModal
+      <AddRemoveFriendModal
         openModal={openAcceptModal}
         handleModalClose={() => {
           setAcceptOpenModal(false);
@@ -104,11 +115,25 @@ const FriendsPage = () => {
                 {friendList.map((friend, index) => (
                   <div className="nav-slide">
                     <Grid container spacing={1} className="main-manu" xs={12}>
-                      <Grid item xs={12} className="tribe-header">
+                      <Grid item xs={10} className="tribe-header">
                         <Typography variant="h1" className="title">
-                          {friend.info.firstname}
+                          {/* {friend.info.firstname} */} avinash
                         </Typography>
                       </Grid>
+                      <Grid xs={2} className="frnd-drpBtn">
+                        <img
+                          onClick={(evt) => setUnfriednModal(true)}
+                          src={DotIcon}
+                        />
+                      </Grid>
+                      {unfriendModal && (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary">
+                            UNFRIEND
+                          </Button>
+                        </Grid>
+                      )}
+
                       <Grid item xs={12} className="tribe-header">
                         <Typography variant="p" className="title-text">
                           Hey, saw your profile and the event you organized.
@@ -165,13 +190,12 @@ const FriendsPage = () => {
 
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
-                        
-                        <div
+                        {/* <div
                           className="accept-btn"
                           onClick={() => handleremoveFriend(friend.info.uid)}
                         >
                           <span>Remove</span>
-                        </div>
+                        </div> */}
                         {expand === "" || expand !== "friend" + index ? (
                           <button
                             style={{ cursor: "pointer", textAlign: "center" }}
@@ -283,30 +307,31 @@ const FriendsPage = () => {
 
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
-                          {friend.sender !== user.uid ? (
-                            <>
-                             <div
-                          className="frnd-cancel"
-                       
-                        >
-                          <span onClick={() => setAcceptOpenModal(true)}>X</span>
-                        </div>
+                        {friend.sender !== user.uid ? (
+                          <>
+                            <div className="frnd-cancel">
+                              <span onClick={() => setAcceptOpenModal(true)}>
+                                X
+                              </span>
+                            </div>
                             <div
-                          className="accept-btn"
-                          onClick={() => handleAcceptRequest(friend.info.uid)}
-                        >
-                          <span>Accept</span>
-                        </div>
-                        </>
-                          ):(
-<div
-                          className="accept-btn"
-                          onClick={() => handleremoveFriend(friend.info.uid)}
-                        >
-                          <span>Remove</span>
-                        </div>
-                          )}
-                        
+                              className="accept-btn"
+                              onClick={() =>
+                                handleAcceptRequest(friend.info.uid)
+                              }
+                            >
+                              <span>Accept</span>
+                            </div>
+                          </>
+                        ) : (
+                          <div
+                            className="accept-btn"
+                            onClick={() => handleremoveFriend(friend.info.uid)}
+                          >
+                            <span>Remove</span>
+                          </div>
+                        )}
+
                         {expand === "" || expand !== "pending" + index ? (
                           <button
                             style={{ cursor: "pointer", textAlign: "center" }}
