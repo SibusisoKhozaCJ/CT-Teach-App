@@ -21,6 +21,7 @@ const NotesBox = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("mount");
     dispatch(getUserNote());
   }, []);
 
@@ -29,7 +30,6 @@ const NotesBox = () => {
   }, [userNote]);
 
   const onNoteChange = (e) => {
-    console.log(note);
     setNote(e.target.value)
   }
 
@@ -45,8 +45,6 @@ const NotesBox = () => {
     <div className={classes.container}>
       <Typography variant="body1">NOTES & PLANNING</Typography>
       <InputBase
-        id=""
-        label=""
         placeholder="I can write reminders or anything here."
         value={note}
         multiline

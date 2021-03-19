@@ -9,6 +9,7 @@ export const useStyles = makeStyles({
         padding: "20px",
         display: 'flex',
         flexDirection: "column",
+        textAlign: "left",
       },
       ToDoButtonRoot: {
         width: "172px",

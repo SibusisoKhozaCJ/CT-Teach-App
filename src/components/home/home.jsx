@@ -10,7 +10,7 @@ import ToDo from "../todo/todo";
 const Welcome = () => {
   const userIdFromCookies = Cookies.get("userid");
   const dispatch = useDispatch();
-  const { isCurrentUser } = useSelector((state) => state.user);
+  const { isCurrentUser, user } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (!isCurrentUser) {
@@ -33,8 +33,8 @@ const Welcome = () => {
       <Box pb={1}>
         <Typography variant="h1">Home Page</Typography>
       </Box>
-      <ToDo/>
-      <Typography>
+      {user && <ToDo/>}
+      {/* <Typography>
         Thanks again for joining this portal! We have quite a few services
         available to you and there will be even more in the future. We have
         attempted to provide both educational and interesting content on our
@@ -45,7 +45,7 @@ const Welcome = () => {
         options as below, but please feel free to explore. {"\n\n"} It means a
         lot to us that you are here, so we hope that we have helped make life
         just that much easier and better for you.
-      </Typography>
+      </Typography> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
         width: "95%",
         background: "#FFFFFF",
         borderRadius: "25px",
-        border: "5px solid red",
+        border: "5px solid rgba(240, 238, 238, 0.5)",
         margin: '0 auto',
         padding: "20px",
     },
@@ -18,9 +18,5 @@ export const useStyles = makeStyles({
         width: "55px",
         height: "55px",
         color: "#D40073",
-        background: "yellow",
-        "&:hover": {
-            background: "yellow",
-        }
     }
 })

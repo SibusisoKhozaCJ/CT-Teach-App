@@ -12,6 +12,7 @@ import {
   UPDATE_USER_NOTE,
 } from "../constants/todo-types";
 import { snapshotToArray } from "./chat-action";
+import { isTryStatement } from "typescript";
 
 const fetchingToDoStart = () => ({
   type: FETCHING_TODO_LIST_START,
@@ -87,17 +88,26 @@ export const getUserNote = () => (dispatch) => {
     .orderByChild("userId")
     .equalTo(userId)
     .on("value", (snapshot) => {
-      if (snapshot.exists()){ 
-      const note = snapshot.val();
-      const {value, userId} = Object.values(note)[0];
-      dispatch(
-        fetchingNoteSuccess({
-          value, 
-          userId,
-          key: Object.keys(snapshot.val())[0],
-        })
-      );
-    }});
+      if (snapshot.exists()) {
+        const note = snapshot.val();
+        const { value, userId } = Object.values(note)[0];
+        dispatch(
+          fetchingNoteSuccess({
+            value,
+            userId,
+            key: Object.keys(snapshot.val())[0],
+          })
+        );
+      } else {
+        dispatch(
+          fetchingNoteSuccess({
+            value: "",
+            userId: "",
+            key: "",
+          })
+        );
+      }
+    });
 };
 
 export const updateUserNote = (key, value) => {
@@ -106,4 +116,48 @@ export const updateUserNote = (key, value) => {
   } else {
     firebase.database().ref("note/").push().set(value);
   }
+};
+
+export const insertDefaultTodo = (userId) => {
+  const defaultToDo = [
+    {
+      color: "#DA8E8E",
+      content: "",
+      contentType: "text",
+      done: false,
+      title: "Be cool.",
+    },
+    {
+      color: "#1E2CAB",
+      content: "Invite them to your tribe.",
+      contentType: "text",
+      done: false,
+      title: "Got some friends who like coding?",
+    },
+    {
+      color: "#46D8B5",
+      content: "",
+      contentType: "Link",
+      done: false,
+      title: "Start Project 1",
+    },
+    {
+      color: "#C5206F",
+      content: "You do this by clicking publish in the “Preview” panel when coding.",
+      contentType: "text",
+      done: false,
+      title: "Share one of your Projects to the Gallery",
+    },
+  ];
+  const ref = firebase.database().ref(`todo/`);
+  defaultToDo.forEach( todo => {
+    ref.push().set({...todo, userId: userId});
+  })
+};
+
+export const userHasEntered = () => {
+  const { userId } = getCookies();
+  firebase.database().ref(`Users/${userId}`).update({
+    hasEntered: true,
+  });
 };
