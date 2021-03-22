@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme) => ({
   toDoBlock: {
     display: "inline-block",
     width: "100%",
-    marginBottom: "30px",
+    marginBottom:  props => props.todo ? "30px" : "100px",
     [theme.breakpoints.down("xs")]: {
       width: "96%",
       margin: "0 2% 30px 2%",
