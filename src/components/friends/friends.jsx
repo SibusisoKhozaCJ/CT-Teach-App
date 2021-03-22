@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -23,22 +23,26 @@ const FriendsPage = () => {
   const { user } = useSelector((state) => state.user);
   const [openModal, setOpenModal] = useState(false);
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
-  const [unfriendModal, setUnfriednModal] = useState(false)
-  const unFriendContainer = React.createRef();
+  const [unfriendModal, setUnfriednModal] = useState(false);
   const { friendList, pendingList, successErrorMessage } = useSelector(
     (state) => state.friend
-  );
-
-  const handleClickOutside =(evt)=>{
-    debugger
+    );
+  const unFriendContainer = useRef();
+    
+  const handleClickOutsides =(evt)=>{
+    // debugger
     if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
-    setUnfriednModal(false)
-  }
+       setUnfriednModal(false);
+  }}
+
+  const toggleUnfriendMenu = () => {
+    setUnfriednModal(!unfriendModal);
   }
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutsides);
   }, []);
+  
   useEffect(() => {
     if (user !== null) {
       if (user.friends && user.friends.length > 0) {
@@ -49,8 +53,8 @@ const FriendsPage = () => {
     }
   }, [dispatch, user]);
 
-  const handleSendRequest = async (email) => {
-    await dispatch(sendFriendRequest(email));
+  const handleSendRequest = async (email, userName) => {
+    await dispatch(sendFriendRequest(email, userName));
     dispatch(saveUser(user.userId));
     setOpenModal(false);
   };
@@ -69,14 +73,14 @@ const FriendsPage = () => {
         handleModalClose={() => {
           setOpenModal(false);
         }}
-        handleSendRequest={(email) => handleSendRequest(email)}
+        handleSendRequest={(email, UserName) => handleSendRequest(email, UserName)}
       />
       <AddRemoveFriendModal
         openModal={openAcceptModal}
         handleModalClose={() => {
           setAcceptOpenModal(false);
         }}
-        handleSendRequest={(email) => handleSendRequest(email)}
+        handleSendRequest={(email, UserName) => handleSendRequest(email, UserName)}
       />
       <div className="commonheight"></div>
       <div className="page-divid">
@@ -120,14 +124,14 @@ const FriendsPage = () => {
                           {/* {friend.info.firstname} */} avinash
                         </Typography>
                       </Grid>
-                      <Grid xs={2} className="frnd-drpBtn">
-                        <img
-                          onClick={(evt) => setUnfriednModal(true)}
+                      <Grid ref={unFriendContainer} xs={2} className="frnd-drpBtn">
+                        <img 
+                          onClick={(evt) => toggleUnfriendMenu()}
                           src={DotIcon}
                         />
                       </Grid>
                       {unfriendModal && (
-                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                        <Grid  item xs={12} className="unfriend-Btn">
                           <Button variant="contained" color="primary">
                             UNFRIEND
                           </Button>

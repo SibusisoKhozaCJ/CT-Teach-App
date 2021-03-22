@@ -32,13 +32,15 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
+  const [friendToAddIDUserName, setFriendToAddIDUserName] = useState("");
   const [addFriendRespone, setAddFriendRespone] = useState({
     status: "",
     message: "",
   });
+  const [checked, setChecked] = useState(false);
   const handleAddFriendRequest = async () => {
-    if (friendToAddID !== "") {
-      handleSendRequest(friendToAddID);
+    if (friendToAddID !== "" || friendToAddIDUserName !== "") {
+      handleSendRequest(friendToAddID, friendToAddIDUserName);
     } else {
       alert("Please enter a valid username/email");
     }
@@ -68,7 +70,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                   <h1>ADD FRIEND</h1>
                 </Box>
                 <Grid container spacing={3} className="sentmailReq">
-                  <Grid item xs={12}>
+                 {!checked && <Grid item xs={12} >
                     <Box my={1}>
                       <TextField
                              InputProps={{
@@ -82,9 +84,9 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                      
                       />
                     </Box>
-                  </Grid>
+                  </Grid>}
                  
-                   <Grid item xs={12}>
+                 { checked && <Grid item xs={12}>
                     <Box my={1}>
                       <TextField
                              InputProps={{
@@ -93,13 +95,13 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                         fullWidth
                         placeholder="USERNAME"
                         variant="outlined"
-                        value={friendToAddID}
-                        onChange={(e) => setFriendToAddID(e.target.value)}
+                        value={friendToAddIDUserName}
+                        onChange={(e) => setFriendToAddIDUserName(e.target.value)}
                      
                       />
-                    </Box>
+                    </Box> 
                   
-                  </Grid>
+                  </Grid>}
                     <label className="errormsg">
                                 This is error message
                     </label>
@@ -123,6 +125,8 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                             control={<Checkbox color="primary" />}
                             label="  Search by User Name"
                             labelPlacement="end"
+                            checked={checked}
+                            onChange={() => {setChecked(!checked); setFriendToAddID(""); setFriendToAddIDUserName("");}}
                           />
                         </Box>
                       </Grid>

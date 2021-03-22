@@ -5,3 +5,9 @@ export function toggleSideBar() {
     dispatch({ type: Types.TOGGLE_SIDEBAR });
   };
 }
+
+export function closeSidebar() {
+  return async function(dispatch, getState) {
+    dispatch({ type: Types.CLOSE_SIDEBAR });
+  };
+}

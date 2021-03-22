@@ -2,13 +2,18 @@ import { Types } from "../constants/friend-types";
 import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
 import * as Auth from "../../shared/lib/authentication";
 import randomize from "randomatic";
-export function sendFriendRequest(friendEmail) {
+export function sendFriendRequest(friendEmail, friendUserName) {
   return async (dispatch, getState) => {
     try {
       const { user } = getState();
       let isFriendExist = false;
-      if (friendEmail !== user.user.email) {
-        const friendData = await Auth.getUserWithEmail(friendEmail);
+      if (friendEmail !== user.user.email || friendUserName !== user.user.userName) {
+        let friendData;
+        if (friendUserName == "") {
+             friendData = await Auth.getUserWithEmail(friendEmail);
+          } else if (friendEmail == "") {
+            friendData = await Auth.getUserWithUserName(friendUserName);
+          }
         if (friendData && friendData.length > 0) {
           let userData = user.user;
           const roomCode = `${randomize("A", 5)}${randomize("0", 5)}`;

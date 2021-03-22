@@ -6,6 +6,8 @@ export default function sideBarReducer(state = initialState, action) {
   switch (action.type) {
     case Types.TOGGLE_SIDEBAR:
       return { ...state, isSidebarOpened: !state.isSidebarOpened };
+    case Types.CLOSE_SIDEBAR:
+      return { ...state, isSidebarOpened: false};
     default:
       return state;
   }
