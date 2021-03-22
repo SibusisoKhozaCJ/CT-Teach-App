@@ -34,13 +34,16 @@ const NotesBox = () => {
 
   return (
     <div className={classes.container}>
-      <Typography variant="body1">NOTES & PLANNING</Typography>
+      <Typography variant="body1" classes={{ root: classes.noteBoxHeader }}>
+        NOTES & PLANNING
+      </Typography>
       <InputBase
         placeholder="I can write reminders or anything here."
         value={note}
         multiline
         fullWidth
-        rows={expandMoreClick ? 18 : 5}
+        rows={expandMoreClick ? 15 : 5}
+        classes={{ root: classes.noteBoxTextArea }}
         onChange={onNoteChange}
         onBlur={onUserStopInputNote}
       />

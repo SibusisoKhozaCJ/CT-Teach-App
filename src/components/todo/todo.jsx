@@ -25,15 +25,15 @@ const ToDo = () => {
     return <Loading />;
   }
   return (
-    <Grid container spacing={1} direction="column" style={{ minHeight: "80%" }}>
+    <Grid container spacing={1} direction="column">
       <HeaderToDo />
       <Grid container>
         <Grid
           xs={12}
           sm={12}
           md={8}
-          lg={9}
-          xl={9}
+          lg={8}
+          xl={8}
           item
           className={classes.mainArea}
         >
@@ -43,8 +43,8 @@ const ToDo = () => {
           xs={12}
           sm={12}
           md={4}
-          lg={3}
-          xl={3}
+          lg={4}
+          xl={4}
           item
           className={classes.notesBox}
         >

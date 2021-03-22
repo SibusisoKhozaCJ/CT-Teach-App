@@ -1,10 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
   ToDoRoot: {
     background: (props) => props.color,
     border: "5px solid rgba(240, 238, 238, 0.5)",
-    width: "300px",
     borderRadius: "25px",
     padding: "20px",
     display: "flex",
@@ -20,12 +19,13 @@ export const useStyles = makeStyles({
     alignSelf: "flex-end",
     "&:hover": {
       background: "rgba(196, 196, 196, 0.8)",
-    }
+    },
   },
   ToDoButtonOutlined: {
     fontWeight: "700",
     fontSize: "31px",
     color: "#FFFFFF",
+    lineHeight: "31px",
   },
   ToDoTitleText: {
     fontSize: "32px",
@@ -38,8 +38,25 @@ export const useStyles = makeStyles({
     color: "#FFFFFF",
   },
   ToDoGridHeight: {
-    width: "fit-content",
+    width: "100%",
     display: "inline-block",
-    marginBottom: 10,
+    marginBottom: "30px",
+    [theme.breakpoints.down("xs")]: {
+      width: "96%",
+      margin: "0 2% 30px 2%",
+      "&:last-child": {
+        marginBottom: "100px",
+      },
+    },
   },
-});
+  ToDoLink: {
+    color: "#FFFFFF",
+    fontSize: "24px",
+    fontWeight: "700",
+    textDecoration: "none",
+    "&:hover": {
+      color: "#FFFFFF",
+      textDecoration: "underline",
+    },
+  },
+}));

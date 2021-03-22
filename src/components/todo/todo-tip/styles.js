@@ -18,11 +18,14 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: "25px",
     position: "relative",
     top: "230px",
-    [theme.breakpoints.down("xs")]: {
+    left: "29px",
+    [theme.breakpoints.only("xs")]: {
       width: "95%",
       height: "auto",
       top: 0,
+      left: 0,
       padding: "10px",
+      paddingBottom: "20px",
     },
     [theme.breakpoints.up("md")]: {
       left: "100px",
@@ -46,6 +49,9 @@ export const useStyles = makeStyles((theme) => ({
       width: "35px",
       height: "35px",
     },
+    [theme.breakpoints.only("xs")]: {
+      marginRight: "10px",
+    },
   },
   textContainer: {
     flex: 1,
@@ -62,8 +68,8 @@ export const useStyles = makeStyles((theme) => ({
   primaryButton: {
     width: "150px",
     height: "40px",
-    lineHeight: "40px",
     fontSize: "24px",
+    lineHeight: "24px",
     color: "#FFFFFF",
     background: "#43D4DD",
     borderRadius: "25px",
