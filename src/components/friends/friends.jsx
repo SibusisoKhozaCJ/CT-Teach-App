@@ -56,8 +56,8 @@ const FriendsPage = () => {
     }
   }, [dispatch, user]);
 
-  const handleSendRequest = async (email, userName) => {
-    await dispatch(sendFriendRequest(email, userName));
+  const handleSendRequest = async (email, userName, requestNote) => {
+    await dispatch(sendFriendRequest(email, userName, requestNote));
     dispatch(saveUser(user.userId));
     setOpenModal(false);
   };
@@ -76,14 +76,14 @@ const FriendsPage = () => {
         handleModalClose={() => {
           setOpenModal(false);
         }}
-        handleSendRequest={(email, UserName) => handleSendRequest(email, UserName)}
+        handleSendRequest={(email, UserName, requestNote) => handleSendRequest(email, UserName, requestNote)}
       />
       <AddRemoveFriendModal
         openModal={openAcceptModal}
         handleModalClose={() => {
           setAcceptOpenModal(false);
         }}
-        handleSendRequest={(email, UserName) => handleSendRequest(email, UserName)}
+        handleSendRequest={(email, UserName, requestNote) => handleSendRequest(email, UserName, requestNote)}
       />
       <div className="commonheight"></div>
       <div className="page-divid">
@@ -262,8 +262,11 @@ const FriendsPage = () => {
                       </Grid>
                       <Grid item xs={12} className="tribe-header">
                         <Typography variant="p" className="title-text">
-                          Hey, saw your profile and the event you organized.
-                          Lets collabarate on the next one.
+                        {friend.requestNote ? friend.requestNote :
+                        `Hey, saw your profile and the event you organized.
+                         Lets collabarate on the next onejklfhwebkfwed`
+                        }
+                          
                         </Typography>
                       </Grid>
                       <Grid item xs={12} md={12}>

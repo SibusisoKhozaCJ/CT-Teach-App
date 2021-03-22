@@ -33,6 +33,8 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
   const [friendToAddIDUserName, setFriendToAddIDUserName] = useState("");
+  const [friendRequestNote, setfriendRequestNote] = useState("");
+
   const [addFriendRespone, setAddFriendRespone] = useState({
     status: "",
     message: "",
@@ -40,7 +42,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
   const [checked, setChecked] = useState(false);
   const handleAddFriendRequest = async () => {
     if (friendToAddID !== "" || friendToAddIDUserName !== "") {
-      handleSendRequest(friendToAddID, friendToAddIDUserName);
+      handleSendRequest(friendToAddID, friendToAddIDUserName, friendRequestNote);
     } else {
       alert("Please enter a valid username/email");
     }
@@ -113,7 +115,10 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                         placeholder="Hey, this is a super fun coding app. Join me."
                         variant="outlined"
                         multiline
-                        rows={3}
+                        rows={3} 
+                        value={friendRequestNote}
+                        onChange={(e) => setfriendRequestNote(e.target.value)}
+
                       
                       />
                     </Box>

@@ -2,7 +2,7 @@ import { Types } from "../constants/friend-types";
 import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
 import * as Auth from "../../shared/lib/authentication";
 import randomize from "randomatic";
-export function sendFriendRequest(friendEmail, friendUserName) {
+export function sendFriendRequest(friendEmail, friendUserName, requestNote) {
   return async (dispatch, getState) => {
     try {
       const { user } = getState();
@@ -23,7 +23,8 @@ export function sendFriendRequest(friendEmail, friendUserName) {
             sender: user.userId,
             idRoom: roomCode,
             firstname:friendData[0].firstname,
-            lastname:friendData[0].lastname
+            lastname:friendData[0].lastname,
+            requestNote: friendData[0].requestNote
           };
           //Add friend to current user
           if (userData && userData.friends && userData.friends.length > 0) {
@@ -45,6 +46,7 @@ export function sendFriendRequest(friendEmail, friendUserName) {
             friendObject.friendId = user.userId;
             friendObject.firstname = userData.firstname;
             friendObject.lastname = userData.lastname;
+            friendObject.requestNote = userData.requestNote;
             if (
               friendData[0] &&
               friendData[0].friends &&
