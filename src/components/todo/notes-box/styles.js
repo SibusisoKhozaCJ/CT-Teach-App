@@ -26,7 +26,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
     background: "#FFFFFF",
     border: "5px solid rgba(240, 238, 238, 0.5)",
-    color: "#D40073",
+    color:  props => props.click ? "#C4C4C4" : "#D40073",
     display: "flex",
     alignItems: "center",
     "&:hover": {
