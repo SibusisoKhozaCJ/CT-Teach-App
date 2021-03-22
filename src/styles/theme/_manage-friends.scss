@@ -117,14 +117,20 @@ border-radius: 50px;
         color: #adadad;
         font-size: 20px;
         margin-right: 20px;
-        font-weight: 500;
-        padding: 5px 20px;
-        span{
+        font-weight: 700;
+        padding: 2px 20px;
+        span span{
             margin-right: 20px;
         }
+		.totalFriend{
+			margin-right: 0px;
+		}
+		.margin-main{
+				margin-right: 40px;
+		}
         .add-frnd-i{
     color: #d3006e;
-    margin-right: 5px;
+    margin-right: 25px;
 }
     }
     .dived {

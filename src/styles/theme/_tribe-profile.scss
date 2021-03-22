@@ -73,28 +73,69 @@
 	.tribe-icon {
 		cursor: pointer;
 	}
-	.top-friend-btn{
-	 button {
-    border: 2px solid #adadad;
-    color: #adadad;
-    font-size: 20px;
-    margin-right: 20px;
-    font-weight: 500;
-    padding: 5px 20px;
-	span {
-    margin-right: 20px;
-}
-	}
-	span {
-    margin-right: 20px;
-}
-.dived {
-    border: none;
-    font-size: 30px;
-}
-.add-frnd-i {
+	.top-friend-btn {
+    padding:20px;
+    button{
+        border: 2px solid #adadad;       
+        color: #adadad;
+        font-size: 20px;
+        margin-right: 20px;
+        font-weight: 700;
+        padding: 2px 20px;
+        span span{
+            margin-right: 20px;
+        }
+		.totalFriend{
+			margin-right: 0px;
+		}
+		.margin-main{
+				margin-right: 40px;
+		}
+        .add-frnd-i{
     color: #d3006e;
-    margin-right: 5px;
+    margin-right: 25px;
+}
+    }
+    .dived {
+    border: none ;
+    font-size: 30px ;
+}
+}
+}
+
+.Tribe-request{
+	.send-code_title{
+		text-align: center;
+			h1{
+		margin-bottom: 0;
+		font-weight: bold;
+font-size: 39px;
+line-height: 46px;
+text-align: center;
+color: #000000;
+
+	}
+	p{
+		font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+text-align: center;
+color: #364954;
+margin-bottom: 30px;
+	}
+	}
+	
+.send-code_main .MuiBox-root {   
+    margin-bottom: 10px;
+}
+.copytolink{
+	margin-top: 30px !important;
+	p{
+	font-weight: 600;
+font-size: 20px;
+line-height: 28px;
+text-align: center;
+color: #364954;
 }
 }
 }

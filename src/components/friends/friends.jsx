@@ -5,6 +5,9 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
 import DotIcon from "../../assets/icons/tribe/dot.svg";
+import Friendicon from "../../assets/images/friend.svg";
+import Pandingicon from "../../assets/images/panding.svg";
+import PlusIcon from "../../assets/images/plus.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptRequest,
@@ -90,17 +93,19 @@ const FriendsPage = () => {
               color="secondary"
               onClick={() => setTriendListType("friend")}
             >
-              <span>{friendList.length + " Friends"}</span>
+              <span><img src={Friendicon} /> </span>
+              <span className="margin-main">Friends</span><span className="totalFriend">{friendList.length}</span>
             </Button>
             <Button
               color="secondary"
               onClick={() => setTriendListType("pending")}
             >
-              <span>{pendingList.length + " Panding"}</span>
+               <span><img src={Pandingicon} /> </span>
+              <span  className="margin-main">Panding</span><span className="totalFriend">{pendingList.length}</span>
             </Button>
             <Button className="dived">|</Button>
             <Button color="secondary" onClick={(evt) => setOpenModal(true)}>
-              <span className="add-frnd-i">@</span> +
+              <span className="add-frnd-i"><img src={PlusIcon} /></span> <span> A FRIEND</span>
             </Button>
           </Grid>
         </Box>
@@ -121,7 +126,7 @@ const FriendsPage = () => {
                     <Grid container spacing={1} className="main-manu" xs={12}>
                       <Grid item xs={10} className="tribe-header">
                         <Typography variant="h1" className="title">
-                          {/* {friend.info.firstname} */} avinash
+                          {friend.info.firstname}
                         </Typography>
                       </Grid>
                       <Grid ref={unFriendContainer} xs={2} className="frnd-drpBtn">
@@ -132,7 +137,7 @@ const FriendsPage = () => {
                       </Grid>
                       {unfriendModal && (
                         <Grid  item xs={12} className="unfriend-Btn">
-                          <Button variant="contained" color="primary">
+                          <Button variant="contained" color="primary"  onClick={() => setAcceptOpenModal(true)}>
                             UNFRIEND
                           </Button>
                         </Grid>
