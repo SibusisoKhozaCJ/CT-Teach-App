@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     height: '32px',
     width: '82%',
-    border: '1px solid grey',
+    border: '2px solid rgba(166, 166, 166, 0.5)',
     marginLeft: theme.spacing(1),
   },
   input: {
@@ -17,6 +17,16 @@ const useStyles = makeStyles(theme => ({
   iconButton: {
     padding: 10,
   },
+  switchButton: {
+    marginLeft: 0,
+  },
+  notificationsButton: {
+    width: "40px",
+    height: "32px",
+    border: "2px solid rgba(166, 166, 166, 0.5)",
+    borderRadius: "5px",
+    marginRight: "5px",
+  }
 }));
 
 export default useStyles;

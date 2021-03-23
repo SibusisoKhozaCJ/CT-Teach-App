@@ -9,11 +9,11 @@ import { deleteTodo, setTodo } from "../../../redux/actions/todo-actions";
 import ToDoAddModal from "../todo-add-modal/todo-add-modal";
 
 const ToDoMainArea = () => {
-  const classes = useStyles();
   const { userToDoList } = useSelector(selectedToDo);
   const { userId } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const classes = useStyles({todo: !!userToDoList.length});
 
   const onDoneButtonClick = (key) => () => {
     dispatch(deleteTodo(key));
