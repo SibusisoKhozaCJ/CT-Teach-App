@@ -31,11 +31,13 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "32px",
     fontWeight: "700",
     color: "#FFFFFF",
+    marginBottom: "16px",
   },
   ToDoContentText: {
     fontSize: "24px",
     fontWeight: "400",
     color: "#FFFFFF",
+    marginBottom: "16px",
   },
   ToDoGridHeight: {
     width: "100%",
@@ -54,6 +56,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "24px",
     fontWeight: "700",
     textDecoration: "none",
+    marginBottom: "16px",
     "&:hover": {
       color: "#FFFFFF",
       textDecoration: "underline",
