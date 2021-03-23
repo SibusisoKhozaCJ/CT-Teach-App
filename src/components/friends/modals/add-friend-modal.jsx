@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles, createStyles, useTheme } from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -14,6 +14,7 @@ import {
   MailiconSVG,
   MailsendIconSVG,
 } from "../../../shared/svgs/menu-items";
+import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -28,21 +29,39 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
+const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handleSuccessRequest }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
   const [friendToAddIDUserName, setFriendToAddIDUserName] = useState("");
   const [friendRequestNote, setfriendRequestNote] = useState("");
+  const [pageErrors, setPageErrors]  = useState("");
+  const [showSuccessMessage, setShowSuccessMessage]  = useState(false);
 
   const [addFriendRespone, setAddFriendRespone] = useState({
     status: "",
     message: "",
   });
   const [checked, setChecked] = useState(false);
+  const { successErrorMessage } = useSelector(
+    (state) => state.friend
+    );
+
+    const closeModal = () => {
+      handleSuccessRequest();
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 1000);
+    }
+
   const handleAddFriendRequest = async () => {
     if (friendToAddID !== "" || friendToAddIDUserName !== "") {
       handleSendRequest(friendToAddID, friendToAddIDUserName, friendRequestNote);
+      if(successErrorMessage) {
+        setPageErrors(successErrorMessage);
+      } else {
+        setShowSuccessMessage(true);
+      }
     } else {
       alert("Please enter a valid username/email");
     }
@@ -66,8 +85,8 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
       >
         <Fade in={openModal}>
           <div className={classes.paper1}>
-            <section className="send-code joinTribe Addfrnd-request">
-              <div className="send-code_main">
+             <section className="send-code joinTribe Addfrnd-request">
+            {!showSuccessMessage &&  <div className="send-code_main">
                 <Box my={2} className="send-code_title">
                   <h1>ADD FRIEND</h1>
                 </Box>
@@ -105,7 +124,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                   
                   </Grid>}
                     <label className="errormsg">
-                                This is error message
+                                {successErrorMessage !== '' ? successErrorMessage: ''}
                     </label>
                    <Grid item xs={12}>
                      <label className="addNote">Wanna add a note? </label>
@@ -153,9 +172,9 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                     <p className="reg-happy">SEND <img src={Btnicon} /> </p>
                   </Button>
                 </Box>
-              </div>
-            </section>
-             <section className="add-remove add-remove-succes">
+              </div> }
+            </section> 
+            {showSuccessMessage &&  <section className="add-remove add-remove-succes">
               <div className="add-remove_main">
                 <Box my={2} className="add-remove_title">
                   <h1>YOUR INVITATION WAS SENT SUPER SUCCESSFULLY.</h1>
@@ -167,7 +186,8 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                       <Button
                         className="successBtn"
                     variant="contained"
-                    color="primary"                   
+                    color="primary"   
+                    onClick={closeModal}                
                   >
                     <span>GOT IT</span>
                   </Button>
@@ -175,7 +195,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
                 </Grid>
               </div>
               
-            </section>
+            </section> }
           </div>
         </Fade>
       </Modal>

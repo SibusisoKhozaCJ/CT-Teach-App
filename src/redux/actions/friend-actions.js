@@ -2,18 +2,13 @@ import { Types } from "../constants/friend-types";
 import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
 import * as Auth from "../../shared/lib/authentication";
 import randomize from "randomatic";
-export function sendFriendRequest(friendEmail, friendUserName, requestNote) {
+export function sendFriendRequest(friendEmail) {
   return async (dispatch, getState) => {
     try {
       const { user } = getState();
       let isFriendExist = false;
-      if (friendEmail !== user.user.email || friendUserName !== user.user.userName) {
-        let friendData;
-        if (friendUserName == "") {
-             friendData = await Auth.getUserWithEmail(friendEmail);
-          } else if (friendEmail == "") {
-            friendData = await Auth.getUserWithUserName(friendUserName);
-          }
+      if (friendEmail !== user.user.email) {
+        const friendData = await Auth.getUserWithEmail(friendEmail);
         if (friendData && friendData.length > 0) {
           let userData = user.user;
           const roomCode = `${randomize("A", 5)}${randomize("0", 5)}`;
@@ -23,8 +18,7 @@ export function sendFriendRequest(friendEmail, friendUserName, requestNote) {
             sender: user.userId,
             idRoom: roomCode,
             firstname:friendData[0].firstname,
-            lastname:friendData[0].lastname,
-            requestNote: friendData[0].requestNote
+            lastname:friendData[0].lastname
           };
           //Add friend to current user
           if (userData && userData.friends && userData.friends.length > 0) {
@@ -46,7 +40,6 @@ export function sendFriendRequest(friendEmail, friendUserName, requestNote) {
             friendObject.friendId = user.userId;
             friendObject.firstname = userData.firstname;
             friendObject.lastname = userData.lastname;
-            friendObject.requestNote = userData.requestNote;
             if (
               friendData[0] &&
               friendData[0].friends &&
@@ -106,6 +99,14 @@ export function setUserFriends(user) {
   };
 }
 
+export function resetSuccessError(user) {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: Types.SEND_REQUEST_FAILURE, payload: "" });
+    } catch (err) {}
+  };
+}
+
 export function acceptRequest(friendID) {
   return async (dispatch, getState) => {
     try {
@@ -147,6 +148,31 @@ export function removeFriend(friendID) {
         await firebaseUpdate(`Users/${friendData.uid}`, friendData);
         await firebaseUpdate(`Users/${userData.uid}`, userData);
         setUserFriends(userData);
+      }
+    } catch (err) {}
+  };
+}
+
+export function deleteFriend(friendID) {
+  return async (dispatch, getState) => {
+    try {
+      const { user } = getState();
+      const friendData = await Auth.getProfile(friendID);
+      const userData = await Auth.getProfile();
+      if (friendData) {
+        let friendIndex = friendData.friends.findIndex(
+          (x) => x.friendId === user.userId
+        );
+        let userFriendIndex = userData.friends.findIndex(
+          (x) => x.friendId === friendID
+        );
+        console.log('userData.friends before',userData.friends);
+           userData.friends.splice(userFriendIndex, 1);
+         console.log('userData.friends after',userData.friends);
+          friendData.friends.splice(friendIndex, 1);
+        await firebaseUpdate(`Users/${friendData.uid}`, friendData);
+        await firebaseUpdate(`Users/${userData.uid}`, userData);
+        dispatch(setUserFriends(userData));
       }
     } catch (err) {}
   };

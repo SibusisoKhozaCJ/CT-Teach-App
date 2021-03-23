@@ -14,6 +14,7 @@ import {
   sendFriendRequest,
   setUserFriends,
   removeFriend,
+  deleteFriend,
 } from "../../redux/actions/friend-actions";
 import { saveUser } from "../../redux/actions/user-actions";
 import AddFriendModal from "./modals/add-friend-modal.jsx";
@@ -31,6 +32,9 @@ const FriendsPage = () => {
     (state) => state.friend
     );
   const unFriendContainer = useRef();
+  const [pageErrors, setPageErrors]  = useState("");
+  const [successMessage, setShowSuccessMessage]  = useState(false);
+
     
   const handleClickOutsides =(evt)=>{
     // debugger
@@ -59,14 +63,28 @@ const FriendsPage = () => {
   const handleSendRequest = async (email, userName, requestNote) => {
     await dispatch(sendFriendRequest(email, userName, requestNote));
     dispatch(saveUser(user.userId));
-    setOpenModal(false);
+    if(successErrorMessage) {
+      setPageErrors(successErrorMessage)
+    } else {
+      setShowSuccessMessage(true);
+      // setOpenModal(false);
+    }
   };
+
+  const handleSuccessRequest = () => {
+     setOpenModal(false);
+  };
+
   const handleAcceptRequest = async (friendId) => {
     await dispatch(acceptRequest(friendId));
     dispatch(saveUser(user.userId));
   };
   const handleremoveFriend = async (friendId) => {
-    await dispatch(removeFriend(friendId));
+    await dispatch(deleteFriend(friendId));
+    dispatch(saveUser(user.userId));
+  };
+  const handledeleteFriend = async (friendId) => {
+    await dispatch(deleteFriend(friendId));
     dispatch(saveUser(user.userId));
   };
   return (
@@ -74,6 +92,9 @@ const FriendsPage = () => {
       <AddFriendModal
         openModal={openModal}
         handleModalClose={() => {
+          setOpenModal(false);
+        }}
+        handleSuccessRequest={() =>{
           setOpenModal(false);
         }}
         handleSendRequest={(email, UserName, requestNote) => handleSendRequest(email, UserName, requestNote)}
@@ -129,15 +150,15 @@ const FriendsPage = () => {
                           {friend.info.firstname}
                         </Typography>
                       </Grid>
-                      <Grid ref={unFriendContainer} xs={2} className="frnd-drpBtn">
+                      <Grid  xs={2} className="frnd-drpBtn">
                         <img 
                           onClick={(evt) => toggleUnfriendMenu()}
                           src={DotIcon}
                         />
                       </Grid>
                       {unfriendModal && (
-                        <Grid  item xs={12} className="unfriend-Btn">
-                          <Button variant="contained" color="primary"  onClick={() => setAcceptOpenModal(true)}>
+                        <Grid   item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary"  onClick={(evt) => { handledeleteFriend(friend.info.uid); setAcceptOpenModal(true);}}>
                             UNFRIEND
                           </Button>
                         </Grid>
@@ -145,8 +166,10 @@ const FriendsPage = () => {
 
                       <Grid item xs={12} className="tribe-header">
                         <Typography variant="p" className="title-text">
-                          Hey, saw your profile and the event you organized.
-                          Lets collabarate on the next one.
+                        {friend.requestNote ? friend.requestNote :
+                        `Hey, saw your profile and the event you organized.
+                         Lets collabarate on the next one`
+                        }
                         </Typography>
                       </Grid>
                       <Grid item xs={12} md={12}>
@@ -264,7 +287,7 @@ const FriendsPage = () => {
                         <Typography variant="p" className="title-text">
                         {friend.requestNote ? friend.requestNote :
                         `Hey, saw your profile and the event you organized.
-                         Lets collabarate on the next onejklfhwebkfwed`
+                         Lets collabarate on the next one`
                         }
                           
                         </Typography>
