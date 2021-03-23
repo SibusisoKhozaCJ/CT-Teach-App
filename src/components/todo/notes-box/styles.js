@@ -11,9 +11,16 @@ export const useStyles = makeStyles((theme) => ({
     padding: "20px",
     boxSizing: "border-box",
     [theme.breakpoints.down("md")]: {
+      width: "calc(100% - 30px)",
+    },
+    [theme.breakpoints.only('sm')]: {
       width: "100%",
       margin: "0",
     },
+    [theme.breakpoints.down('xs')]: {
+      width: "96%",
+      margin: "0 2%",
+    }
   },
   iconColor: {
     position: "absolute",
