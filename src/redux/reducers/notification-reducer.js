@@ -1,13 +1,18 @@
-import { SET_NOTIFICATIONS, UPDATE_NOTIFICATIONS, DELETE_NOTIFICATIONS, SWITCH_NOTIFICATION_TYPE } from "../constants/notification-types";
+import { SET_NOTIFICATIONS, UPDATE_NOTIFICATIONS, DELETE_NOTIFICATIONS, SWITCH_NOTIFICATION_TYPE, SWITCH_DISPLAY_HEADER_NOTIFICATION } from "../constants/notification-types";
 
-const initLocalStorage = () => localStorage.getItem("notificationType") === null ? 
+const initNotificationType = () => localStorage.getItem("notificationType") === null ? 
                                     localStorage.setItem("notificationType", "withNumber") || true: 
                                     localStorage.getItem("notificationType") === "withNumber"
+                                    
+const initHeaderNotification = () => localStorage.getItem("headerNotification") === null ? 
+                                    localStorage.setItem("headerNotification", "display") || true: 
+                                    localStorage.getItem("headerNotification") === "display"
 
 const initialState = {
     notificationByRooms: {},
     sumNotifications: 0,
-    notificationWithNumber: initLocalStorage(),
+    notificationWithNumber: initNotificationType(),
+    headerNotification: initHeaderNotification(),
 }
 
 const notificationReducer = (state = initialState, action) => {
@@ -34,6 +39,11 @@ const notificationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 notificationWithNumber: !state.notificationWithNumber,
+            }
+        case SWITCH_DISPLAY_HEADER_NOTIFICATION: 
+            return {
+                ...state,
+                headerNotification: !state.headerNotification,
             }
         default:
             return state;

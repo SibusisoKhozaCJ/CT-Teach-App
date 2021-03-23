@@ -7,7 +7,7 @@ const IOSSwitch = withStyles(theme => ({
     width: 44,
     height: 28,
     padding: 0,
-    margin: '0 5px 0 auto',
+    margin: '0 5px 0 5px',
     border: '2px solid black',
     borderRadius: '14px',
   },

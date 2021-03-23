@@ -7,19 +7,26 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import useStyles from './styles';
 import IOSSwitch from '../switch/switch';
-import {switchNotificationType} from '../../../../redux/actions/notification-actions'
-
+import {switchHeaderNotification, switchNotificationType} from '../../../../redux/actions/notification-actions'
+import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import NotificationsOffOutlinedIcon from '@material-ui/icons/NotificationsOffOutlined';
 
 const SearchRoomList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const {notificationWithNumber} = useSelector(state => state.notification)
+  const {notificationWithNumber, headerNotification} = useSelector(state => state.notification)
 
   const handleChange = event => {
     let type = localStorage.getItem("notificationType");
     localStorage.setItem("notificationType", type === "withNumber" ? "withoutNumber" : "withNumber");
     dispatch(switchNotificationType());
   };
+
+  const onBellClick = () => {
+    let type = localStorage.getItem("headerNotification");
+    localStorage.setItem("headerNotification", type === "display" ? "none" : "display");
+    dispatch(switchHeaderNotification());
+  }
 
   return (
     <div className="search">
@@ -29,7 +36,10 @@ const SearchRoomList = () => {
         </IconButton>
         <InputBase className={classes.input} placeholder="SEARCH" inputProps={{ 'aria-label': 'search' }} />
       </Paper>
-      <IOSSwitch checked={notificationWithNumber} onChange={handleChange} name="checkedA" />
+      <IOSSwitch checked={notificationWithNumber} onChange={handleChange} name="checkedA" className={{root: classes.switchButton}}/>
+      <IconButton classes={{root: classes.notificationsButton}} onClick={onBellClick}>
+        {headerNotification ? <NotificationsNoneOutlinedIcon/> : <NotificationsOffOutlinedIcon/>}
+      </IconButton>
     </div>
   );
 };
