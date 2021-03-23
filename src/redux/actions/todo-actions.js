@@ -27,7 +27,6 @@ const fetchingNoteSuccess = (payload) => ({
 });
 
 export const getTodoList = () => (dispatch) => {
-  const start = performance.now();
   const { userId } = getCookies();
   dispatch(fetchingToDoStart());
   firebase
@@ -36,7 +35,6 @@ export const getTodoList = () => (dispatch) => {
     .orderByChild("userId")
     .equalTo(userId)
     .on("value", (snapshot) => {
-      console.log(performance.now()-start);
       dispatch(fetchingToDoSuccess(snapshotToArray(snapshot)));
     });
 };

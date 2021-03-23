@@ -10,7 +10,7 @@ const Layout = ({children, pathname}) => {
     routes = children
   } else {
     routes = (
-      <Box m={1}>
+      <Box m={1} width={"100%"}>
         <Container>
           {children}
         </Container>

@@ -22,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "calc(100% - 75px)",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
-      marginLeft: "10%",
+      marginLeft: "calc(2% + 20px)",
     },
   },
 }));

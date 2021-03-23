@@ -21,7 +21,9 @@ const ToDoList = ({ todo, onDoneButtonClick }) => {
             {todo.content}
           </Typography>
         ) : (
-          <a href={todo.content}>Here</a>
+          <a href={todo.content} className={classes.ToDoLink}>
+            Here
+          </a>
         )}
         <Button
           classes={{
