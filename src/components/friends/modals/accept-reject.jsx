@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
+const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest, handledeleteFriend }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
@@ -35,6 +35,9 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }
     } else {
       alert("Please enter a valid username/email");
     }
+  };
+  const handleUnFriendPerson = async () => {
+      handledeleteFriend();
   };
   return (
     <div>
@@ -65,14 +68,16 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }
                      <Button
                     className="frnd-yesBtn"
                     variant="contained"
-                    color="primary"                   
+                    color="primary"     
+                    onClick={() => {handleUnFriendPerson(); handleModalClose()}}              
                   >
                     <label>YES</label>
                   </Button>
                       <Button
                         className="not-nowBtn"
                     variant="contained"
-                    color="primary"                   
+                    color="primary"     
+                    onClick={handleModalClose}              
                   >
                     <span>NOT NOW</span>
                   </Button>

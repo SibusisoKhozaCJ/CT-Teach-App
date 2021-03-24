@@ -52,20 +52,24 @@ export function sendFriendRequest(friendEmail) {
               await firebaseUpdate(`Users/${friendData[0].uid}`, friendData[0]);
             }
             setUserFriends(userData);
+            dispatch({type: Types.SET_REQUEST_SUCCESS, payload: true})
             dispatch({ type: Types.SEND_REQUEST_FAILURE, payload: "" });
           } else {
+            dispatch({type: Types.SET_REQUEST_SUCCESS, payload: false})
             dispatch({
               type: Types.SEND_REQUEST_FAILURE,
               payload: "Friend already exist in list",
             });
           }
         } else {
+          dispatch({type: Types.SET_REQUEST_SUCCESS, payload: false})
           dispatch({
             type: Types.SEND_REQUEST_FAILURE,
             payload: "User not found.",
           });
         }
       } else {
+        dispatch({type: Types.SET_REQUEST_SUCCESS, payload: false})
         dispatch({
           type: Types.SEND_REQUEST_FAILURE,
           payload: "Cannot send request to your self",
@@ -175,5 +179,12 @@ export function deleteFriend(friendID) {
         dispatch(setUserFriends(userData));
       }
     } catch (err) {}
+  };
+}
+
+export function resetFriendModal() {
+  return {
+    type: Types.REST_VALUES_TO_DEFAULT,
+    payload: {},
   };
 }

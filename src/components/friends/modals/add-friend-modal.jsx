@@ -29,39 +29,33 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handleSuccessRequest }) => {
+const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
   const [friendToAddIDUserName, setFriendToAddIDUserName] = useState("");
   const [friendRequestNote, setfriendRequestNote] = useState("");
-  const [pageErrors, setPageErrors]  = useState("");
-  const [showSuccessMessage, setShowSuccessMessage]  = useState(false);
-
   const [addFriendRespone, setAddFriendRespone] = useState({
     status: "",
     message: "",
   });
   const [checked, setChecked] = useState(false);
-  const { successErrorMessage } = useSelector(
-    (state) => state.friend
-    );
-
     const closeModal = () => {
       handleSuccessRequest();
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 1000);
+    }
+
+    const resetOnCloseModal=()=>{
+      setFriendToAddID("");
+      setFriendToAddIDUserName("")
+      setChecked(false)
+      setfriendRequestNote("")
+      handleSuccessRequest();
+       
     }
 
   const handleAddFriendRequest = async () => {
     if (friendToAddID !== "" || friendToAddIDUserName !== "") {
       handleSendRequest(friendToAddID, friendToAddIDUserName, friendRequestNote);
-      if(successErrorMessage) {
-        setPageErrors(successErrorMessage);
-      } else {
-        setShowSuccessMessage(true);
-      }
     } else {
       alert("Please enter a valid username/email");
     }
@@ -74,7 +68,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
         className={classes.modal}
         open={openModal}
         onClose={() => {
-          handleModalClose();
+          resetOnCloseModal();
           setAddFriendRespone({ status: "", message: "" });
         }}
         closeAfterTransition
@@ -187,7 +181,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                         className="successBtn"
                     variant="contained"
                     color="primary"   
-                    onClick={closeModal}                
+                    onClick={resetOnCloseModal}                
                   >
                     <span>GOT IT</span>
                   </Button>

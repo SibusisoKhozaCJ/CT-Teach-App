@@ -2,7 +2,8 @@ import { Types } from "../constants/friend-types";
 const initialState = {
   friendList: [],
   pendingList:[],
-  successErrorMessage: ""
+  successErrorMessage: "",
+  showSuccessModal:false
 };
 
 export default function friendReducer(state = initialState, action) {
@@ -13,6 +14,10 @@ export default function friendReducer(state = initialState, action) {
       return { ...state, pendingList: action.payload };
     case Types.SEND_REQUEST_FAILURE:
       return { ...state, successErrorMessage: action.payload };
+      case Types.SET_REQUEST_SUCCESS:
+      return { ...state, showSuccessModal: action.payload };
+      case Types.REST_VALUES_TO_DEFAULT:
+        return { ...state, showSuccessModal: initialState.showSuccessModal, successErrorMessage:initialState.successErrorMessage };
     default:
       return state;
   }
