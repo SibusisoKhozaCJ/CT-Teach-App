@@ -11,6 +11,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import { ChromePicker } from "react-color";
 import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 
 const initialState = {
   name: "",
@@ -34,14 +35,18 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
     onClose();
     setError(false);
     setTodo(initialState);
+    setDisplayColorPicker(false);
   };
 
   const handleColorPickerClick = () => {
     setDisplayColorPicker((state) => !state);
   };
 
-  const handleColorPickerClose = () => {
+  const handleColorPickerClose = (e) => {
     setDisplayColorPicker(false);
+    if (e.currentTarget.classList.contains("MuiIconButton-root")) {
+      setTodo((state) => ({ ...state, color: "" }));
+    }
   };
 
   const handleColorPickerChange = (color) => {
@@ -65,23 +70,30 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
             <Grid item>
               <Grid container direction="column">
                 <FormControl error={error}>
-                  <InputBase
+                  <TextField
                     placeholder="Enter Name ..."
                     name="name"
                     value={todo.name}
                     onChange={onChange}
+                    variant="outlined"
+                    size="small"
+                    classes={{ root: classes.nameField }}
                   />
                   <div className={classes.error}>
                     {error && (
-                      <FormHelperText>This are required</FormHelperText>
+                      <FormHelperText>This field are required</FormHelperText>
                     )}
                   </div>
                 </FormControl>
-                <InputBase
+                <TextField
                   placeholder="Enter Description ..."
                   name="description"
+                  variant="outlined"
                   value={todo.description}
                   onChange={onChange}
+                  multiline
+                  size="small"
+                  classes={{ root: classes.descriptionField }}
                 />
               </Grid>
             </Grid>
@@ -94,10 +106,6 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
               </div>
               {displayColorPicker ? (
                 <div className={classes.popover}>
-                  <div
-                    className={classes.cover}
-                    onClick={handleColorPickerClose}
-                  />
                   <ChromePicker
                     disableAlpha={true}
                     color={todo.color}
@@ -105,6 +113,10 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
                     className={classes.colorPicker}
                     width="250px"
                   />
+                  <Button variant="outlined" onClick={handleColorPickerClose} classes={{root: classes.doneButton}}>
+                    Done
+                  </Button>
+                  <CloseButton className={classes.closePickerButton} onClick={handleColorPickerClose} />
                 </div>
               ) : null}
             </Grid>

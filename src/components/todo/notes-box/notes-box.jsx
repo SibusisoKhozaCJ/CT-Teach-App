@@ -24,9 +24,16 @@ const NotesBox = () => {
     setNote(e.target.value);
   };
 
-  const onUserStopInputNote = () => {
+  const onUserStopInputNote = (e) => {
     updateUserNote(userNote?.key, { value: note, userId });
+    if (!note) {
+      e.target.setAttribute("placeholder", "I can write reminders or anything here.");
+    }
   };
+
+  const onFocus = (e) => {
+    e.target.removeAttribute("placeholder");
+  }
 
   const onExpandButtonClick = () => {
     setExpandMoreClick((state) => !state);
@@ -46,6 +53,7 @@ const NotesBox = () => {
         classes={{ root: classes.noteBoxTextArea }}
         onChange={onNoteChange}
         onBlur={onUserStopInputNote}
+        onFocus={onFocus}
       />
       <IconButton
         classes={{ root: classes.iconColor }}

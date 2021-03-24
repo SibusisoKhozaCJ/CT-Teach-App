@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const HeaderToDo = (props) => {
   const classes = useStyles();
-  const { firstname, lastname } = useSelector((state) => state.user.user);
+  const { firstname } = useSelector((state) => state.user.user);
   return (
     <Grid container alignItems="center">
       <Grid item classes={{ root: classes.logoWidth }}>
@@ -19,7 +19,7 @@ const HeaderToDo = (props) => {
         classes={{ root: classes.greatingBoxWidth }}
       >
         <Typography classes={{ root: classes.heading }} variant="body1">
-          {`Hi ${firstname} ${lastname},`}
+          {`Hi ${firstname},`}
         </Typography>
         <Typography classes={{ root: classes.subHeading }} variant="body1">
           What do you want to do today?

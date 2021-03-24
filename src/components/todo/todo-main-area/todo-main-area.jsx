@@ -13,7 +13,7 @@ const ToDoMainArea = () => {
   const { userId } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const classes = useStyles({todo: !!userToDoList.length});
+  const classes = useStyles({ todo: !!userToDoList.length });
 
   const onDoneButtonClick = (key) => () => {
     dispatch(deleteTodo(key));
@@ -51,7 +51,7 @@ const ToDoMainArea = () => {
           variant="outlined"
           onClick={onToDoAddButtonClick}
         >
-          +
+          <span className={classes.plus}>+</span> ADD TASK
         </Button>
       </Grid>
       {userToDoList.map((todo, i) => (
