@@ -20,11 +20,12 @@ import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSideBar } from "../../redux/actions/side-actions";
+import { closeSidebar, toggleSideBar } from "../../redux/actions/side-actions";
 import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
 import routes from "../../routes";
 import { codepanelSetProjectsIsActive } from "../../redux/actions/codepanel-actions";
+const sideBarContainer = React.createRef();
 
 
 let sidebarStructure = [
@@ -97,6 +98,17 @@ function Sidebar({ location }) {
   };
 
   useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleClickOutside =(evt)=>{
+    // debugger
+    if (sideBarContainer.current && !sideBarContainer.current.contains(evt.target)) {
+    dispatch(closeSidebar())
+  }
+  }
+
+  useEffect(() => {
     setIsLayoutRender(shouldLayoutRender(location.pathname));
     window.addEventListener("resize", handleWindowWidthChange);
     handleWindowWidthChange();
@@ -120,7 +132,7 @@ function Sidebar({ location }) {
   };
 
   return (
-    (isLayoutRender && <div className="sidebar">
+    (isLayoutRender && <div ref={sideBarContainer} className="sidebar">
       <JoinTribeModal
         tribeCode={tribeCode}
         setTribeChange={setTribeChange}

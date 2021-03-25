@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest, handledeleteFriend }) => {
+const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
@@ -35,9 +35,6 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest, 
     } else {
       alert("Please enter a valid username/email");
     }
-  };
-  const handleUnFriendPerson = async () => {
-      handledeleteFriend();
   };
   return (
     <div>
@@ -61,29 +58,28 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest, 
             <section className="add-remove">
               <div className="add-remove_main">
                 <Box my={2} className="add-remove_title">
-                  <h1>ARE YOU SURE YOU WANT TO REJECT THIS PERSON?</h1>
+                  <h1>ARE YOU SURE YOU WANT TO LEAVE THIS TRIBE?</h1>
                 </Box>
                 <Grid container spacing={3}>
                   <Grid item xs={12} className="accept-remove-container">
                      <Button
                     className="frnd-yesBtn"
                     variant="contained"
-                    color="primary"     
-                    onClick={() => {handleUnFriendPerson(); handleModalClose()}}              
+                    color="primary"                   
                   >
                     <label>YES</label>
                   </Button>
                       <Button
                         className="not-nowBtn"
                     variant="contained"
-                    color="primary"     
-                    onClick={handleModalClose}              
+                    color="primary"                   
                   >
                     <span>NOT NOW</span>
                   </Button>
                   </Grid>
                 </Grid>
               </div>
+              
             </section>
           </div>
         </Fade>

@@ -8,21 +8,30 @@ import Icon4 from "../../assets/icons/tribe/icon3.svg";
 import Icon9 from "../../assets/icons/tribe/icon4.svg";
 import Icon8 from "../../assets/icons/tribe/usericon.png";
 import Icon1 from "../../assets/icons/tribe/mission.png";
-
+import Box from "@material-ui/core/Box";
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
-
+import Friendicon from "../../assets/images/friend.svg";
+import Pandingicon from "../../assets/images/panding.svg";
+import PlusIcon from "../../assets/images/plus.svg";
+import DotIcon from "../../assets/icons/tribe/dot.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserTribes } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
+import AddTribeModal from "./modals/add-tribe-modal.jsx";
 import { useHistory } from "react-router-dom";
+import AddRemoveTribeModal from "./modals/accept-reject-tribe.jsx";
 const Tribes = () => {
   const [expand, setExpand] = useState("");
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false);
   const { loading } = useSelector((state) => state.user);
   const history = useHistory();
+  const [openAcceptModal, setAcceptOpenModal] = useState(false);
+  const [unfriendModal, setUnfriednModal] = useState(false)
   const { userTribes, userJoinedTribes } = useSelector((state) => state.tribe);
+  
   useEffect(() => {
     if (user !== null) {
       dispatch(getUserTribes(user));
@@ -38,10 +47,48 @@ const Tribes = () => {
       </div>
     );
   }
+  
   return (
+    
     <div className="tribe-page">
+         <AddTribeModal
+        openModal={openModal}
+        handleModalClose={() => {
+          setOpenModal(false);
+        }}
+     
+      />
+        <AddRemoveTribeModal
+        openModal={openAcceptModal}
+        handleModalClose={() => {
+          setAcceptOpenModal(false);
+        }}
+      
+      />
       <div className="commonheight"></div>
       <div className="page-divid">
+          <Box pb={1} className="top-friend-btn">
+          <Grid md={12} xs={12}>
+            <Button
+              color="secondary"
+             
+            >
+              <span><img src={Friendicon} /> </span>
+              <span className="margin-main">TRIBES</span><span className="totalFriend">22</span>
+            </Button>
+            <Button
+              color="secondary"
+             
+            >
+               <span><img src={Pandingicon} /> </span>
+              <span  className="margin-main">Panding</span><span className="totalFriend">22</span>
+            </Button>
+            <Button className="dived">|</Button>
+            <Button color="secondary"  onClick={(evt) => setOpenModal(true)}>
+              <span className="tribplusfriend"><img src={PlusIcon} /></span> <span> TO TRIBE</span>
+            </Button>
+          </Grid>
+        </Box>
         <Grid md={6} xs={12}>
           <div className="pgeBG">
               {userTribes &&
@@ -52,11 +99,24 @@ const Tribes = () => {
               {userTribes.map((tribe, index) => (
                 <div className="nav-slide">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={12} className="tribe-header">
+                    <Grid item xs={9} className="tribe-header">
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
+                       <Grid xs={2} className="frnd-drpBtn">
+                        <img
+                          onClick={(evt) => setUnfriednModal(true)}
+                          src={DotIcon}
+                        />
+                      </Grid>
+                      {unfriendModal && (
+                        <Grid item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary" onClick={() => setAcceptOpenModal(true)}>
+                           LEAVE TRIBE
+                          </Button>
+                        </Grid>
+                      )}
 
                     <Grid item xs={3}>
                       <div className="tribe-icon">

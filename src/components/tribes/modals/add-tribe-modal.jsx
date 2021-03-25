@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles, createStyles, useTheme } from "@material-ui/core/styles";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -6,15 +6,12 @@ import Fade from "@material-ui/core/Fade";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import  Btnicon from "../../../assets/icons/tribe/sendicon.svg"
 import {
   MailiconSVG,
   MailsendIconSVG,
+  CopySVG,
 } from "../../../shared/svgs/menu-items";
-import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -29,37 +26,15 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
+const AddFriendModal = ({ openModal, handleModalClose}) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
-  const [friendToAddIDUserName, setFriendToAddIDUserName] = useState("");
-  const [friendRequestNote, setfriendRequestNote] = useState("");
   const [addFriendRespone, setAddFriendRespone] = useState({
     status: "",
     message: "",
   });
-  const [checked, setChecked] = useState(false);
-    const closeModal = () => {
-      handleSuccessRequest();
-    }
-
-    const resetOnCloseModal=()=>{
-      setFriendToAddID("");
-      setFriendToAddIDUserName("")
-      setChecked(false)
-      setfriendRequestNote("")
-      handleSuccessRequest();
-       
-    }
-
-  const handleAddFriendRequest = async () => {
-    if (friendToAddID !== "" || friendToAddIDUserName !== "") {
-      handleSendRequest(friendToAddID, friendToAddIDUserName, friendRequestNote);
-    } else {
-      alert("Please enter a valid username/email");
-    }
-  };
+ 
   return (
     <div>
       <Modal
@@ -68,7 +43,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
         className={classes.modal}
         open={openModal}
         onClose={() => {
-          resetOnCloseModal();
+          handleModalClose();
           setAddFriendRespone({ status: "", message: "" });
         }}
         closeAfterTransition
@@ -79,13 +54,14 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
       >
         <Fade in={openModal}>
           <div className={classes.paper1}>
-             <section className="send-code joinTribe Addfrnd-request">
-            {!showSuccessMessage &&  <div className="send-code_main">
+            <section className="send-code joinTribe Addfrnd-request Tribe-request">
+              <div className="send-code_main">
                 <Box my={2} className="send-code_title">
-                  <h1>ADD FRIEND</h1>
+                  <h1>ADD TO TRIBE</h1>
+                  <p>How do you wanna invite?</p>
                 </Box>
                 <Grid container spacing={3} className="sentmailReq">
-                 {!checked && <Grid item xs={12} >
+                  <Grid item xs={12}>
                     <Box my={1}>
                       <TextField
                              InputProps={{
@@ -96,12 +72,13 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                         variant="outlined"
                         value={friendToAddID}
                         onChange={(e) => setFriendToAddID(e.target.value)}
+                        
                      
                       />
                     </Box>
-                  </Grid>}
+                  </Grid>
                  
-                 { checked && <Grid item xs={12}>
+                   <Grid item xs={12}>
                     <Box my={1}>
                       <TextField
                              InputProps={{
@@ -110,48 +87,44 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                         fullWidth
                         placeholder="USERNAME"
                         variant="outlined"
-                        value={friendToAddIDUserName}
-                        onChange={(e) => setFriendToAddIDUserName(e.target.value)}
+                        value={friendToAddID}
+                        onChange={(e) => setFriendToAddID(e.target.value)}
                      
                       />
-                    </Box> 
+                    </Box>
                   
-                  </Grid>}
-                    <label className="errormsg">
-                                {successErrorMessage !== '' ? successErrorMessage: ''}
-                    </label>
+                  </Grid>
                    <Grid item xs={12}>
-                     <label className="addNote">Wanna add a note? </label>
                     <Box my={1}>
                       <TextField
+                             InputProps={{
+                        startAdornment: <CopySVG />
+                      }}
                         fullWidth
-                        placeholder="Hey, this is a super fun coding app. Join me."
+                        placeholder="codetribe.com/join/3495"
                         variant="outlined"
-                        multiline
-                        rows={3} 
-                        value={friendRequestNote}
-                        onChange={(e) => setfriendRequestNote(e.target.value)}
-
-                      
+                        value={friendToAddID}
+                        onChange={(e) => setFriendToAddID(e.target.value)}
+                     
                       />
                     </Box>
+                  
                   </Grid>
-                    <Grid container spacing={3} className="reg-checkbox frnd-checkbox">
-                      <Grid item xs={12}>
-                        <Box my={1}>
-                          <FormControlLabel
-                            control={<Checkbox color="primary" />}
-                            label="  Search by User Name"
-                            labelPlacement="end"
-                            checked={checked}
-                            onChange={() => {setChecked(!checked); setFriendToAddID(""); setFriendToAddIDUserName("");}}
-                          />
-                        </Box>
-                      </Grid>
-                    </Grid>
+                    <label className="errormsg">
+                                This is error message
+                    </label>
+                 
+                   
                 </Grid>
+                 <Box my={2} className="copytolink">
+                  
+                    <p>
+                      TIP: Copy the link above and send it to your friends.
+                    </p>
+                </Box>
 
                 <Box my={2} className="add-frndReq_btn">
+
                   {addFriendRespone.message && (
                     <p style={{ color: `${addFriendRespone.status}` }}>
                       {addFriendRespone.message}
@@ -161,14 +134,14 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                     fullWidth
                     variant="contained"
                     color="primary"
-                    onClick={handleAddFriendRequest}
+                    
                   >
-                    <p className="reg-happy">SEND <img src={Btnicon} /> </p>
+                    <p className="reg-happy">SHARE LINK  </p>
                   </Button>
                 </Box>
-              </div> }
-            </section> 
-            {showSuccessMessage &&  <section className="add-remove add-remove-succes">
+              </div>
+            </section>
+             {/* <section className="add-remove add-remove-succes">
               <div className="add-remove_main">
                 <Box my={2} className="add-remove_title">
                   <h1>YOUR INVITATION WAS SENT SUPER SUCCESSFULLY.</h1>
@@ -180,8 +153,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                       <Button
                         className="successBtn"
                     variant="contained"
-                    color="primary"   
-                    onClick={resetOnCloseModal}                
+                    color="primary"                   
                   >
                     <span>GOT IT</span>
                   </Button>
@@ -189,7 +161,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                 </Grid>
               </div>
               
-            </section> }
+            </section> */}
           </div>
         </Fade>
       </Modal>

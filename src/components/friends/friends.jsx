@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Icon7 from "../../assets/icons/tribe/icon7.svg";
+import DotIcon from "../../assets/icons/tribe/dot.svg";
+import Friendicon from "../../assets/images/friend.svg";
+import Pandingicon from "../../assets/images/panding.svg";
+import PlusIcon from "../../assets/images/plus.svg";
+import Loading from "../../shared/components/loader/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptRequest,
   sendFriendRequest,
   setUserFriends,
-  removeFriend,
+  deleteFriend,
+  resetFriendModal
 } from "../../redux/actions/friend-actions";
 import { saveUser } from "../../redux/actions/user-actions";
 import AddFriendModal from "./modals/add-friend-modal.jsx";
@@ -17,20 +23,39 @@ import AddRemoveFriendModal from "./modals/accept-reject.jsx";
 const FriendsPage = () => {
   const [expand, setExpand] = useState("false");
   const dispatch = useDispatch();
-  const [friendEmail, setFriendEmail] = useState("");
   const [friendListType, setTriendListType] = useState("friend");
   const { user } = useSelector((state) => state.user);
   const [openModal, setOpenModal] = useState(false);
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
+  const [unfriendModal, setUnfriednModal] = useState("");
+  const [btnOpen, setBtnOpen] = useState(false);
   
-
-  
-  const { friendList, pendingList, successErrorMessage } = useSelector(
+  const [friendUid, setFriendUid] = useState("");
+  const { friendList, pendingList, successErrorMessage, showSuccessModal } = useSelector(
     (state) => state.friend
   );
+  const unFriendContainer = useRef();
+  const handleClickOutsides = (evt) => {
+    // debugger
+    if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
+        setUnfriednModal("");
+         setBtnOpen(!btnOpen);
+    }
+  }
+  const isLoading = useSelector(state => state.friend.isLoading);
+
+
+  const toggleUnfriendMenu = (index) => {
+         setUnfriednModal("unfriend" + index);
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsides);
+  }, []);
+
   useEffect(() => {
     if (user !== null) {
-      if (user.friends && user.friends.length > 0) {         
+      if (user.friends && user.friends.length > 0) {
         dispatch(setUserFriends(user));
       }
     } else {
@@ -38,34 +63,57 @@ const FriendsPage = () => {
     }
   }, [dispatch, user]);
 
-  const handleSendRequest = async (email) => {
-    await dispatch(sendFriendRequest(email));
+  const handleSendRequest = async (email, userName, requestNote) => {
+    await dispatch(sendFriendRequest(email, userName, requestNote));
     dispatch(saveUser(user.userId));
-    setOpenModal(false);
   };
+
   const handleAcceptRequest = async (friendId) => {
     await dispatch(acceptRequest(friendId));
     dispatch(saveUser(user.userId));
   };
   const handleremoveFriend = async (friendId) => {
-    await dispatch(removeFriend(friendId));
+    await dispatch(deleteFriend(friendId));
     dispatch(saveUser(user.userId));
   };
+  const handledeleteFriend = async (friendId) => {
+    await dispatch(deleteFriend(friendId));
+    dispatch(saveUser(user.userId));
+    setFriendUid("");
+    setUnfriednModal("");
+    setBtnOpen(false);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <Loading />
+      </div>
+    )
+  }
   return (
-    <div className="manage-frnd">
-      <AddFriendModal
+    <div   className="manage-frnd">
+      <AddFriendModal 
+        friendList={friendList}
+        successErrorMessage={successErrorMessage}
+        showSuccessMessage={showSuccessModal}
         openModal={openModal}
         handleModalClose={() => {
           setOpenModal(false);
         }}
-        handleSendRequest={(email) => handleSendRequest(email)}
+        handleSuccessRequest={() => {
+          setOpenModal(false);
+          dispatch(resetFriendModal());
+        }}
+        handleSendRequest={(email, UserName, requestNote) => handleSendRequest(email, UserName, requestNote)}
       />
-       <AddRemoveFriendModal
+      <AddRemoveFriendModal
         openModal={openAcceptModal}
         handleModalClose={() => {
           setAcceptOpenModal(false);
         }}
-        handleSendRequest={(email) => handleSendRequest(email)}
+        handledeleteFriend={() => handledeleteFriend(friendUid)}
+
       />
       <div className="commonheight"></div>
       <div className="page-divid">
@@ -75,17 +123,19 @@ const FriendsPage = () => {
               color="secondary"
               onClick={() => setTriendListType("friend")}
             >
-              <span>{friendList.length + " Friends"}</span>
+              <span><img src={Friendicon} /> </span>
+              <span className="margin-main">Friends</span><span className="totalFriend">{friendList.length}</span>
             </Button>
             <Button
               color="secondary"
               onClick={() => setTriendListType("pending")}
             >
-              <span>{pendingList.length + " Panding"}</span>
+              <span><img src={Pandingicon} /> </span>
+              <span className="margin-main">Panding</span><span className="totalFriend">{pendingList.length}</span>
             </Button>
             <Button className="dived">|</Button>
             <Button color="secondary" onClick={(evt) => setOpenModal(true)}>
-              <span className="add-frnd-i">@</span> +
+              <span className="add-frnd-i"><img src={PlusIcon} /></span> <span> A FRIEND</span>
             </Button>
           </Grid>
         </Box>
@@ -94,7 +144,7 @@ const FriendsPage = () => {
           <div
             className={
               (friendListType === "friend" && friendList.length > 0) ||
-              (friendListType === "pending" && pendingList.length > 0)
+                (friendListType === "pending" && pendingList.length > 0)
                 ? "pgeBG"
                 : "hide"
             }
@@ -103,16 +153,32 @@ const FriendsPage = () => {
               <>
                 {friendList.map((friend, index) => (
                   <div className="nav-slide">
-                    <Grid container spacing={1} className="main-manu" xs={12}>
-                      <Grid item xs={12} className="tribe-header">
+                    <Grid  container spacing={1} className="main-manu" xs={12}>
+                      <Grid item xs={10} className="tribe-header">
                         <Typography variant="h1" className="title">
                           {friend.info.firstname}
                         </Typography>
                       </Grid>
+                      <Grid   xs={2} className="frnd-drpBtn">
+                        <img
+                          onClick={(evt) => {toggleUnfriendMenu(index); setBtnOpen(!btnOpen)}}
+                          src={DotIcon}
+                        />
+                      </Grid>
+                      {unfriendModal == "unfriend" + index && btnOpen && (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button  variant="contained" color="primary" onClick={(evt) => {setFriendUid(friend.info.uid);  setAcceptOpenModal(true); }}>
+                            UNFRIEND
+                          </Button>
+                        </Grid>
+                      )}
+
                       <Grid item xs={12} className="tribe-header">
                         <Typography variant="p" className="title-text">
-                          Hey, saw your profile and the event you organized.
-                          Lets collabarate on the next one.
+                          {friend.requestNote ? friend.requestNote :
+                            `Hey, saw your profile and the event you organized.
+                         Lets collabarate on the next one`
+                          }
                         </Typography>
                       </Grid>
                       <Grid item xs={12} md={12}>
@@ -165,13 +231,6 @@ const FriendsPage = () => {
 
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
-                        
-                        <div
-                          className="accept-btn"
-                          onClick={() => handleremoveFriend(friend.info.uid)}
-                        >
-                          <span>Remove</span>
-                        </div>
                         {expand === "" || expand !== "friend" + index ? (
                           <button
                             style={{ cursor: "pointer", textAlign: "center" }}
@@ -229,8 +288,11 @@ const FriendsPage = () => {
                       </Grid>
                       <Grid item xs={12} className="tribe-header">
                         <Typography variant="p" className="title-text">
-                          Hey, saw your profile and the event you organized.
-                          Lets collabarate on the next one.
+                          {friend.requestNote ? friend.requestNote :
+                            `Hey, saw your profile and the event you organized.
+                         Lets collabarate on the next one`
+                          }
+
                         </Typography>
                       </Grid>
                       <Grid item xs={12} md={12}>
@@ -283,30 +345,31 @@ const FriendsPage = () => {
 
                     <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
-                          {friend.sender !== user.uid ? (
-                            <>
-                             <div
-                          className="frnd-cancel"
-                       
-                        >
-                          <span onClick={() => setAcceptOpenModal(true)}>X</span>
-                        </div>
+                        {friend.sender !== user.uid ? (
+                          <>
+                            <div className="frnd-cancel">
+                              <span onClick={() => setAcceptOpenModal(true)}>
+                                X
+                              </span>
+                            </div>
                             <div
-                          className="accept-btn"
-                          onClick={() => handleAcceptRequest(friend.info.uid)}
-                        >
-                          <span>Accept</span>
-                        </div>
-                        </>
-                          ):(
-<div
-                          className="accept-btn"
-                          onClick={() => handleremoveFriend(friend.info.uid)}
-                        >
-                          <span>Remove</span>
-                        </div>
-                          )}
-                        
+                              className="accept-btn"
+                              onClick={() =>
+                                handleAcceptRequest(friend.info.uid)
+                              }
+                            >
+                              <span>Accept</span>
+                            </div>
+                          </>
+                        ) : (
+                          <div
+                            className="accept-btn"
+                            onClick={() => handleremoveFriend(friend.info.uid)}
+                          >
+                            <span>Remove</span>
+                          </div>
+                        )}
+
                         {expand === "" || expand !== "pending" + index ? (
                           <button
                             style={{ cursor: "pointer", textAlign: "center" }}

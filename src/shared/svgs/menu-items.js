@@ -20,10 +20,14 @@ import ToCodeIcon from "../../assets/images/toCode.png";
 import FriendIcon from "../../assets/images/friend.svg";
 import Mailicon from "../../assets/images/mailSend.svg";
 import MailsendIcon from "../../assets/images/mailsendicon.svg";
+import CopyIcon from "../../assets/images/copy.svg";
 
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
+};
+export const CopySVG = () => {
+  return <img src={CopyIcon} alt="" />;
 };
 export const FriendSVG = () => {
   return <img src={FriendIcon} alt="" />;

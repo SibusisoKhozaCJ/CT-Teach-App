@@ -63,6 +63,13 @@ export function getUserWithEmail(email) {
   });
 }
 
+export function getUserWithUserName(userName) {
+  return authFetch.firebaseGetByChild(`Users/`, {
+    key: "userName",
+    value: userName,
+  });
+}
+
 export function checkIfTribeExist(code) {
   return authFetch.firebaseGet("Tribes/" + code);
 }
