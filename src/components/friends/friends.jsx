@@ -8,6 +8,7 @@ import DotIcon from "../../assets/icons/tribe/dot.svg";
 import Friendicon from "../../assets/images/friend.svg";
 import Pandingicon from "../../assets/images/panding.svg";
 import PlusIcon from "../../assets/images/plus.svg";
+import Loading from "../../shared/components/loader/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptRequest,
@@ -27,20 +28,25 @@ const FriendsPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
   const [unfriendModal, setUnfriednModal] = useState("");
+  const [btnOpen, setBtnOpen] = useState(false);
+  
   const [friendUid, setFriendUid] = useState("");
   const { friendList, pendingList, successErrorMessage, showSuccessModal } = useSelector(
     (state) => state.friend
   );
   const unFriendContainer = useRef();
   const handleClickOutsides = (evt) => {
-    debugger
+    // debugger
     if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
-      setUnfriednModal("");
+        setUnfriednModal("");
+         setBtnOpen(!btnOpen);
     }
   }
+  const isLoading = useSelector(state => state.friend.isLoading);
+
 
   const toggleUnfriendMenu = (index) => {
-    setUnfriednModal("unfriend"+index);
+         setUnfriednModal("unfriend" + index);
   }
 
   useEffect(() => {
@@ -75,10 +81,19 @@ const FriendsPage = () => {
     dispatch(saveUser(user.userId));
     setFriendUid("");
     setUnfriednModal("");
+    setBtnOpen(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <Loading />
+      </div>
+    )
+  }
   return (
-    <div className="manage-frnd">
-      <AddFriendModal
+    <div   className="manage-frnd">
+      <AddFriendModal 
         friendList={friendList}
         successErrorMessage={successErrorMessage}
         showSuccessMessage={showSuccessModal}
@@ -138,22 +153,22 @@ const FriendsPage = () => {
             {friendListType === "friend" && friendList.length > 0 && (
               <>
                 {friendList.map((friend, index) => (
-                  <div ref={unFriendContainer} className="nav-slide">
+                  <div className="nav-slide">
                     <Grid  container spacing={1} className="main-manu" xs={12}>
                       <Grid item xs={10} className="tribe-header">
                         <Typography variant="h1" className="title">
                           {friend.info.firstname}
                         </Typography>
                       </Grid>
-                      <Grid xs={2} className="frnd-drpBtn">
+                      <Grid   xs={2} className="frnd-drpBtn">
                         <img
-                          onClick={(evt) => toggleUnfriendMenu(index)}
+                          onClick={(evt) => {toggleUnfriendMenu(index); setBtnOpen(!btnOpen)}}
                           src={DotIcon}
                         />
                       </Grid>
-                      {unfriendModal === "unfriend"+index && (
-                        <Grid  item xs={12} className="unfriend-Btn">
-                          <Button variant="contained" color="primary" onClick={(evt) => {setFriendUid(friend.info.uid);  setAcceptOpenModal(true); }}>
+                      {unfriendModal == "unfriend" + index && btnOpen && (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button  variant="contained" color="primary" onClick={(evt) => {setFriendUid(friend.info.uid);  setAcceptOpenModal(true); }}>
                             UNFRIEND
                           </Button>
                         </Grid>

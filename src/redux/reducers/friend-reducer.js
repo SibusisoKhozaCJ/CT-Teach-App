@@ -3,7 +3,8 @@ const initialState = {
   friendList: [],
   pendingList:[],
   successErrorMessage: "",
-  showSuccessModal:false
+  showSuccessModal:false,
+  isLoading: false
 };
 
 export default function friendReducer(state = initialState, action) {
@@ -12,6 +13,8 @@ export default function friendReducer(state = initialState, action) {
       return { ...state, friendList: action.payload };
     case Types.SAVE_FRIENDS_PENDING_LIST:
       return { ...state, pendingList: action.payload };
+    case Types.SET_LOADING:
+      return { ...state, isLoading: action.payload };
     case Types.SEND_REQUEST_FAILURE:
       return { ...state, successErrorMessage: action.payload };
       case Types.SET_REQUEST_SUCCESS:

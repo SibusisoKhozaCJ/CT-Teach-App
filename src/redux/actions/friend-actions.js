@@ -5,6 +5,7 @@ import randomize from "randomatic";
 export function sendFriendRequest(friendEmail) {
   return async (dispatch, getState) => {
     try {
+      dispatch({type: Types.SET_LOADING, payload: true})
       const { user } = getState();
       let isFriendExist = false;
       if (friendEmail !== user.user.email) {
@@ -78,6 +79,7 @@ export function sendFriendRequest(friendEmail) {
     } catch (error) {
       console.warn("Error save user", error);
     }
+    dispatch({type: Types.SET_LOADING, payload: false})
   };
 }
 
@@ -160,6 +162,8 @@ export function removeFriend(friendID) {
 export function deleteFriend(friendID) {
   return async (dispatch, getState) => {
     try {
+      dispatch({type: Types.SET_LOADING, payload: true})
+
       const { user } = getState();
       const friendData = await Auth.getProfile(friendID);
       const userData = await Auth.getProfile();
@@ -179,6 +183,8 @@ export function deleteFriend(friendID) {
         dispatch(setUserFriends(userData));
       }
     } catch (err) {}
+    dispatch({type: Types.SET_LOADING, payload: false})
+
   };
 }
 
