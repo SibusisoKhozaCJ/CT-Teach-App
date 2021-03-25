@@ -16,6 +16,7 @@ import FaceIcon from "@material-ui/icons/Face";
 
 import MainMenu from "../menu/main-menu";
 import { codepanelSetTab, codepanelSetCheckerActive } from '../../../../redux/actions/codepanel-actions';
+import Timer from "../timer/timer";
 
 const useStyles = makeStyles(() => ({
   mobileTopBar: {
@@ -61,11 +62,8 @@ const MobileTopBar = () => {
             <FolderOpenIcon />
           </IconButton>
         ) : (
-          <IconButton aria-label="Timer" onClick={() => {}} title="Timer">
-            <TimerIcon />
-          </IconButton>
+          <Timer mobile/>
         )}
-
         <Tabs
           aria-label="lesson tabs"
           id="unit-page-tabs"
