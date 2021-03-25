@@ -7,11 +7,11 @@ const MarginlessButton = withStyles(() => ({
     root: { padding: 0 },
 }))(IconButton);
 
-export default ({onClick, ...rest}) => {
+export default ({onClick, small,  ...rest}) => {
 
     return (
         <MarginlessButton {...rest} onClick={onClick}>
-            <ClearIcon fontSize="large" />
+            <ClearIcon fontSize={small ? "small" : "large"} />
         </MarginlessButton>
     );
 }

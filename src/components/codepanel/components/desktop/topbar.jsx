@@ -11,7 +11,6 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
 import { codepanelSetPreviewVisible, codepanelSetCheckerActive } from "../../../../redux/actions/codepanel-actions";
 import CodepanelLogoIcon from "../../../../assets/images/codepanel-logo.png";
 import TeacherIcon from "../../../../assets/images/teacher-icon.png";
-import TimerIcon from "../../../../assets/images/timer-icon.png";
 import DarkModeIcon from "../../../../assets/images/dark-mode-icon.png";
 import Split2Icon from "../../../../assets/images/split-2-icon.svg";
 import Split3Icon from "../../../../assets/images/split-3-icon.svg";
@@ -19,6 +18,7 @@ import Split3Icon from "../../../../assets/images/split-3-icon.svg";
 import MainMenu from "../menu/main-menu";
 import SideMenu from "../side-menu";
 import { openFullscreen, closeFullscreen } from "../../utils/fullscreen";
+import Timer from "../timer/timer";
 
 const useStyles = makeStyles(theme => ({
   topBarRight: {
@@ -84,9 +84,7 @@ const TopBar = () => {
             <IconButton onClick={() => {dispatch(codepanelSetCheckerActive(!isCheckerActive))}}>
               <img src={TeacherIcon} className="coverage" alt="" />
             </IconButton>
-            <IconButton>
-              <img src={TimerIcon} className="coverage" alt="" />
-            </IconButton>
+            <Timer/>
             <div className={classes.yellow}>
               <IconButton>
                 <img src={DarkModeIcon} className="coverage" alt="" />

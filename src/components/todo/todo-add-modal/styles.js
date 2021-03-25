@@ -7,9 +7,9 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   container: {
-    width: "400px",
-    height: "280px",
-    padding: "25px",
+    width: "450px",
+    minHeight: "320px",
+    padding: "35px",
     background: "#FFFFFF",
     border: "5px solid #43D4DD",
     borderRadius: "25px",
@@ -17,12 +17,6 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    "& input[name='description']": {
-      marginBottom: "16px",
-    },
-    "& input": {
-      padding: "0",
-    },
     [theme.breakpoints.down(440)]: {
       width: "93%",
       margin: "0",
@@ -30,8 +24,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   closeButton: {
     position: "absolute",
-    top: "10px",
-    right: "10px",
+    top: "5px",
+    right: "5px",
   },
   color: {
     width: "50px",
@@ -41,29 +35,72 @@ export const useStyles = makeStyles((theme) => ({
   },
   popover: {
     position: "absolute",
+    border:"5px solid #43D4DD",
+    borderRadius: "25px",
+    background: "#FFFFFF",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     zIndex: "2",
-  },
-  cover: {
-    position: "fixed",
-    top: "0px",
-    right: "0px",
-    bottom: "0px",
-    left: "0px",
   },
   switch: {
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
+    marginBottom: "16px",
   },
   text: {
     color: "#A6A6A6",
     marginRight: "10px",
   },
   colorPicker: {
+    boxShadow: "none !important",
+    borderRadius: "25px 25px 0 0 !important",
+    "&>div": {
+      borderRadius: "20px 20px 0 0 !important",
+    }
+  },
+  doneButton: {
     width: "80%",
+    borderRadius: "25px",
+    border: "none",
+    fontWeight: "bold",
+    fontSize: "24px",
+    lineHeight: "28px",
+    background: "#c4c4c4",
+    color: "#FFFFFF",
+    position: 'relative',
+    bottom: "10px",
+    left: "50%",
+    transform: "translate(-50%)",
+    "&:hover": {
+      background: "#c4c4c4",
+    }
+  },
+  closePickerButton: {
+    position: "absolute",
+    top: "-10px",
+    right: "-10px",
+    background: "#c4c4c4",
+    width: "30px",
+    height: "30px",
+    color: "#FFFFFF",
+    "& svg": {
+      stroke: "#FFFFFF",
+      strokeWidth: "2",
+      fontSize: "24px",
+    },
+    "&:hover": {
+      background: "#c4c4c4",
+    }
   },
   error: {
     marginTop: 0,
     height: "19px",
+  },
+  nameField: {
+  },
+  descriptionField: {
+    marginBottom: "16px",
   },
 }));
