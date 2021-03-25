@@ -112,7 +112,6 @@ const FriendsPage = () => {
         handleModalClose={() => {
           setAcceptOpenModal(false);
         }}
-        handleSendRequest={(email, UserName, requestNote) => handleSendRequest(email, UserName, requestNote)}
         handledeleteFriend={() => handledeleteFriend(friendUid)}
 
       />
