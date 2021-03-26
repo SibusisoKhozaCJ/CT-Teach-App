@@ -7,7 +7,7 @@ Structure: React with Firebase/FireStore/Functions
 
 Repo: https://github.com/C4CNYC/CT-Teach-App 
 
-Staging site: http://139.59.35.164:5000/home 
+Staging site: http://139.59.35.164:5000/home (Just register as a normal user.)
 
 Trello: https://trello.com/codetribedev/home 
 
