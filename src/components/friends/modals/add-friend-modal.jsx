@@ -56,6 +56,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
   const handleAddFriendRequest = async () => {
     if (friendToAddID !== "" || friendToAddIDUserName !== "") {
       handleSendRequest(friendToAddID, friendToAddIDUserName, friendRequestNote);
+      console.log('friendRequestNotefriendRequestNote',friendRequestNote);
     } else {
       alert("Please enter a valid username/email");
     }
