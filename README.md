@@ -1,4 +1,4 @@
-# CT-Teach-App
+# CT-Coding-App
 Fun, collaborative coding app for learners and teachers.
 
 Company Homepage with live legacy version: https://CodeTribe.com 
