@@ -102,7 +102,6 @@ function Sidebar({ location }) {
   }, []);
 
   const handleClickOutside =(evt)=>{
-    // debugger
     if (sideBarContainer.current && !sideBarContainer.current.contains(evt.target)) {
     dispatch(closeSidebar())
   }
@@ -176,7 +175,7 @@ function Sidebar({ location }) {
               aria-describedby={id}
               variant="contained"
               color="primary"
-              onClick={() => {history.push("/codepanel/C001/P001/L001")}}
+              onClick={() => {history.push("/codepanel/C001/P001/T001")}}
             >
               <ToCodeSvg/>
               <span className="tocode-tagsidebar">It's GO time</span>
@@ -186,7 +185,7 @@ function Sidebar({ location }) {
             location={location}
             isSidebarOpened={isSidebarOpened}
             id="12"
-            link={"/codepanel/C001/P001/L001"}
+            link={"/codepanel/C001/P001/T001"}
             label="Projects"
             icon={<ProjectsSvg />}
             callback={() => {dispatch(codepanelSetProjectsIsActive(true))}}

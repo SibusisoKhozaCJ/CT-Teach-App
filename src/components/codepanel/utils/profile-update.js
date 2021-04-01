@@ -54,14 +54,14 @@ const updateOne = (userId) => {
     const resData = {
       "C001": {
         "P001": {
-          "L001": newData
+          "T001": newData
         }
       },
-      "last_lesson": "C001/P001/L001"
+      "last_lesson": "C001/P001/T001"
     }
 
     authFetch.firebaseUpdate(
-      `user_profile/${userId}/lesson_progress`,
+      `User_profile/${userId}`,
       resData
     );
   })

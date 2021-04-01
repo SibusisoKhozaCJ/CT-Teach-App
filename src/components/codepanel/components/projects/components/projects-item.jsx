@@ -349,7 +349,7 @@ const ProectItem = (
                 ) : (
                   <button className={classes.btnStart} role="button" onClick={() => {
                     // selectProject(key);
-                    history.push(`/codepanel/C000/P000/L001`);
+                    history.push(`/codepanel/C000/P000/T001`);
                     closeSidebar();
                   }}>
                     <span>Rock This!</span>

@@ -36,7 +36,6 @@ const FriendsPage = () => {
   );
   const unFriendContainer = useRef();
   const handleClickOutsides = (evt) => {
-    // debugger
     if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
         setUnfriednModal("");
          setBtnOpen(!btnOpen);
