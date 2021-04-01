@@ -141,7 +141,7 @@ const Editor = () => {
           last_updated: new Date().toISOString()
         };
         authFetch.firebaseUpdate(
-          `user_profile/${userId}/lesson_progress/${lessonId}`,
+          `User_profile/${userId}/${lessonId}`,
           data
         );
       }
@@ -191,7 +191,7 @@ const Editor = () => {
 
       if (userId) {
         authFetch.firebaseUpdate(
-          `user_profile/${userId}/lesson_progress/${lessonId}`,
+          `User_profile/${userId}/${lessonId}`,
           data
         );
       }

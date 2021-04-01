@@ -48,7 +48,7 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
 
   const getProgressData = async (userId, trainingId) => {
     return await authFetch.firebaseGet(
-      `user_profile/${userId}/lesson_progress/${trainingId}`
+      `User_profile/${userId}/${trainingId}`
     );
   }
 
@@ -99,6 +99,7 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
 
     if (userId) {
       getProgressData(userId, lessonPath).then(data => {
+        
         if (data) {
           const { challenges, progress, current_slide, user_code } = data
           progress && dispatch(codepanelSetProgress(progress));
