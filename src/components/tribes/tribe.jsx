@@ -81,7 +81,7 @@ const Tribes = () => {
              
             >
                <span><img src={Pandingicon} /> </span>
-              <span  className="margin-main">Panding</span><span className="totalFriend">22</span>
+              <span  className="margin-main">Pending</span><span className="totalFriend">22</span>
             </Button>
             <Button className="dived">|</Button>
             <Button color="secondary"  onClick={(evt) => setOpenModal(true)}>

@@ -12,6 +12,8 @@ import {
   getUserTribes,
 } from "../../redux/actions/tribe-actions";
 import Celebrate from "../../assets/images/celebrate.svg";
+import FrgSuccIcon from "../../assets/images/forgetsucc.svg";
+import Arrowleft from "../../assets/images/arrowleft.svg";
 
 const JoinTribePage = ({ isAuthenticated }) => {
   const { id } = useParams();
@@ -302,7 +304,11 @@ const JoinTribePage = ({ isAuthenticated }) => {
         )}
 
         {joinResponse === "Invalid Join Code" && (
+          
           <Grid>
+            <Grid>
+              <button className="tribe-back">   <img src={Arrowleft} /> </button>
+          </Grid>
             <h1 className="link-heading">YAAAY!!!</h1>
             <Grid>
               <Grid item xs={12} className="top-section">
@@ -332,6 +338,8 @@ const JoinTribePage = ({ isAuthenticated }) => {
                       GO
                     </Button>
                   </Grid>
+                   <p className="tribe-succ">  <img src={FrgSuccIcon} /> SUCCESS! You’re about to join a Tribe.</p>
+                   <p className="tribe-error">Your code is invalid. Try one of the options below.</p>
                 </Grid>
                 <Grid className="codeB">
                   <Grid item xs={12} className="link-add">

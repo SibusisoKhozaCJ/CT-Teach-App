@@ -16,7 +16,7 @@
   .test-div {
       width: 20px;
       height: 20px;
-      border: 1px solid #000000;
+      border: 1px solid #a8a8a8;
       margin: 0 auto;
   }
   .progess-page {
@@ -174,7 +174,7 @@ border-radius: 15px;
       background-color: #FBDD3F;
   }
   .blue{
-      background-color: #0198ED;
+      background-color: #75cf6d;
   }
   .main-project-div-close{
       .theader {
@@ -344,13 +344,17 @@ display: block;
    border: 2px solid #A6A6A6;
 box-sizing: border-box;
 border-radius: 6px;
-padding: 10px 20px;
+padding: 10px 6px;
 color: #43D4DD;
 font-weight: bold;
 font-size: 22px;
 line-height: 24px;
 min-height: 50px;
 min-width: 90px;
+img{
+  width: 20px;
+margin-bottom: 4px;
+}
 }
 }
 .projectslect{

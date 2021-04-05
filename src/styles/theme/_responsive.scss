@@ -333,17 +333,7 @@ min-height: 40px !important;
 			margin-right: 20px;
 		}
 	}
-	.tocodepupupdiv button {
-		background: #43D4DD;
-		border-radius: 35px;
-		min-width: 197px;
-		margin-bottom: 20px;
-		.tocode-tagsidebar {
-			margin-right: 20px;
-			font-weight: 700;
-font-size: 20px;
-		}
-	}
+	
 	.tribe-page .tribe-expandtext .expand-icontext button img {
 		margin-left: 20px;
 		max-width: 20px;
@@ -402,7 +392,15 @@ font-size: 20px;
 }
 @media only screen and (max-width: 440px) {
 	.project-slect .slt-btn button {
-    padding: 6px 8px !important;
+    padding: 6px 4px !important;
+	font-size: 16px !important;
+}
+.project-slect .slt-btn button img {
+    width: 14px !important;  
+}
+.prj1 .MuiFilledInput-input {
+    padding: 8px 5px 10px !important;
+	font-size: 15px !important;
 }
 
 .tribe-menu .tribe-grid img {
@@ -417,6 +415,10 @@ font-size: 20px;
 	}
 }
 @media only screen and (max-width: 420px) {
+	.codpage #wrapper #codeform {
+    margin: 25px 5px 0 !important;
+   
+}
 	.main-pro-page .progess-page{
 		margin-top: 0 !important;
 		padding-left: 0 !important;
@@ -432,12 +434,15 @@ font-size: 20px;
 
 }
 @media only screen and (max-width: 400px) {
+	.project-slect .projectslect {
+    width: 215px !important;
+}
 .tribe-menu .MuiFormControl-root {
     max-width: 240px !important;
     width: 190px !important;
 }
-.project-slect .projectslect {
-    width: 230px !important;
+.project-slect .MuiSelect-selectMenu{
+	width: 160px;
 }
 
 }

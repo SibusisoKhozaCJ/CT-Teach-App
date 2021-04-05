@@ -130,7 +130,7 @@ const FriendsPage = () => {
               onClick={() => setTriendListType("pending")}
             >
               <span><img src={Pandingicon} /> </span>
-              <span className="margin-main">Panding</span><span className="totalFriend">{pendingList.length}</span>
+              <span className="margin-main">Pending</span><span className="totalFriend">{pendingList.length}</span>
             </Button>
             <Button className="dived">|</Button>
             <Button color="secondary" onClick={(evt) => setOpenModal(true)}>
