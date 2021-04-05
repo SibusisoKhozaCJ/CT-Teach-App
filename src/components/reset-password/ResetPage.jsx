@@ -14,6 +14,8 @@ import HeaderLogo from "../../assets/icons/Header";
 import { AuthContext } from "../../shared/contexts/authContext";
 import Bicon from "../../assets/images/b-icon.svg";
 import MailIcon from "../../assets/images/mail.svg";
+import FrgIcon from "../../assets/images/frgarrow.svg";
+import FrgSuccIcon from "../../assets/images/forgetsucc.svg";
 import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -208,7 +210,7 @@ const LoginPage = () => {
                 {loginType === "email" && (
                   <div>
                     <Grid container spacing={1} className="emaillogin">
-                      <Grid item xs={12}>
+                      <Grid item xs={12} className="forgetEmail">
                         <Box my={1}>
                           <TextField
                             fullWidth
@@ -219,10 +221,12 @@ const LoginPage = () => {
                             onChange={handleChange("email")}
                           />
                         </Box>
+                        <p>  <img src={FrgSuccIcon} /> Ok. We sent the email. Check your inbox.</p>
                       </Grid>
                    
                      
-                        {/* <Grid item xs={12}  spacing={1} className="forget-psw">
+{/*                        
+                        <Grid item xs={12}  spacing={1} className="forget-psw">
                           <Box my={1}>
                             <FormControlLabel
                               value="end"
@@ -244,6 +248,20 @@ const LoginPage = () => {
                   </div>
                 )}
                 {/* Email login End*/}
+                  <Grid container spacing={2}>
+                     <Grid item xs={3}  spacing={0}>
+                        <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"  
+                  className="Frgback"   
+                
+                >
+                  <p className="reg-happy">  <img src={FrgIcon} /> </p>
+                
+                </Button>
+                     </Grid>
+                      <Grid item xs={9}>
                 <Button
                   type="submit"
                   fullWidth
@@ -253,6 +271,8 @@ const LoginPage = () => {
                   <p className="reg-happy">SEND EMAIL</p>
                   <p className="reg">CREATE NEW PASSWORD</p>
                 </Button>
+                </Grid>
+                </Grid>
               </form>
               <div className="letlogin">
                 <Box

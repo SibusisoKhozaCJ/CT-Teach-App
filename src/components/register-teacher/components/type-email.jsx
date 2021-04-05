@@ -4,7 +4,9 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TeacherRegisterStep2 from "../register-steps/step2-teacher";
 import UserRegisterStep2 from "../register-steps/step2-user"
-
+import Grid from "@material-ui/core/Grid";
+import FrgIcon from "../../../assets/images/frgarrow.svg";
+import RightArrIcon from "../../../assets/images/rightarrow.svg";
 const TypeAndEmailForm = ({
   updateForm,
   form,
@@ -33,6 +35,20 @@ const TypeAndEmailForm = ({
               form={form}
               loading={loading}
             />
+             <Grid container spacing={2}>
+                     <Grid item xs={3}  spacing={0}>
+                        <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"  
+                  className="Frgback"   
+                
+                >
+                  <p className="reg-happy">  <img src={FrgIcon} /> </p>
+                
+                </Button>
+                     </Grid>
+              <Grid item xs={9}  >
             <Button
               type="submit"
               fullWidth
@@ -40,9 +56,12 @@ const TypeAndEmailForm = ({
               className="ylw-tech"
               disabled={loading}
             >
-              <p className="reg-happy">LET’S DO IT.</p>
+              <p className="reg-happy">LET’S DO IT.   <img src={RightArrIcon} /> </p>
             </Button>
-          </form>}
+            </Grid>
+            </Grid>
+          </form>
+          }
           {registerType === "1" && <form autocomplete="off" onSubmit={handleSubmitUserSecondForm}>
             <UserRegisterStep2
               onUpdate={updateForm}

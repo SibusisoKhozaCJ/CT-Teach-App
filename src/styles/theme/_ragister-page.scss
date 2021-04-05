@@ -340,7 +340,7 @@ color: #fff;
 	font-weight: 700;
 	font-size: 18px;
 line-height: 21px;
-color: #364954;
+color: #A6A6A6;
 }
  button{
 	 margin-top: 0;
@@ -372,5 +372,14 @@ border-radius: 5px;
 .reg-checkbox.usr-check{
 .active .MuiTypography-body1 {
     background: #43D4DD !important;
+}
+}
+.registration .Frgback:before {
+   content: none !important;
+	
+}
+@media only screen and (max-width: 420px) {
+.registration_main{
+	width: 340px;
 }
 }
