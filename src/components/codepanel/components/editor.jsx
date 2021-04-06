@@ -106,7 +106,6 @@ const Editor = () => {
     if (!rules) {
       return { progress: 100 }
     }
-
     const count = rules.length
     let completed = 0
     const validators = rules.map(rule => {

@@ -26,7 +26,8 @@ import LeaveModal from "./components/leave-modal";
 import TakeTour from "./components/take-tour";
 import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
-
+import lesson_dataC0001P001T000 from "./data-new/C001-P001-T000/lesson_data";
+import lesson_dataC0001P001T001 from "./data-new/C001-P001-T001/lesson_data";
 import { uploadLesson } from "./utils/upload-lesson";
 
 const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) => {
@@ -53,9 +54,15 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
   }
 
   const getLesson = async (id) => {
-    return await authFetch.firebaseGet(
-      `Lessons/${id}`
-    );
+    if(id === "T000"){
+      return lesson_dataC0001P001T000
+    }else{
+      return lesson_dataC0001P001T001
+    }
+    
+    // return await authFetch.firebaseGet(
+    //   `Lessons/${id}`
+    // );
   }
 
   useEffect(() => {
@@ -67,6 +74,7 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
       // dispatch(codepanelSetCurrentLesson(lessonPath));
       // setLesson(l);
       getLesson(trainingId).then(data => {
+        debugger
         if (data) {
           dispatch(codepanelSetSlides(data));
           dispatch(codepanelSetCurrentLesson(lessonPath));
