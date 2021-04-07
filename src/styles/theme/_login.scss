@@ -153,3 +153,21 @@ padding-left: 5px;
 }
     
 	
+.forgetpswp .login-form .Frgback{
+	background: #C4C4C4;
+}
+.login-form .forgetEmail{
+	margin-bottom: 40px;
+	p{
+		font-weight: 700;
+font-size: 16px;
+line-height: 19px;
+color: #364954;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+.login_main{
+	width: 340px;
+}
+}

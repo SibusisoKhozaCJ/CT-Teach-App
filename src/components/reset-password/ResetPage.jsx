@@ -1,36 +1,31 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { isMobile } from "react-device-detect";
 import { parse } from "qs";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Loading from "../../shared/components/loader/Loading";
 import ROUTES from "../../routes";
 import history from "../../shared/lib/history";
-import HeaderLogo from "../../assets/icons/Header";
 import { AuthContext } from "../../shared/contexts/authContext";
 import Bicon from "../../assets/images/b-icon.svg";
 import MailIcon from "../../assets/images/mail.svg";
+import FrgIcon from "../../assets/images/frgarrow.svg";
+import FrgSuccIcon from "../../assets/images/forgetsucc.svg";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { addUserToTribe } from "../../redux/actions/tribe-actions";
-import * as Auth from "../../shared/lib/authentication";
 import routes from "../../routes";
 import { useDispatch } from "react-redux";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const [loading, updateLoading] = useState(false);
   const [error, updateError] = useState();
-  const { setTokens } = useContext(AuthContext);
   const { search } = useLocation();
   const params = parse(search, { ignoreQueryPrefix: true });
   const [form, updateForm] = useState({ email: params.email, password: "" });
   const { email, password, firstname, lastname, day, month, year } = form;
   const [loginType, setLoginType] = useState("email");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (key) => (event) => {
     const {
@@ -40,63 +35,10 @@ const LoginPage = () => {
     updateForm({ ...form, [key]: value });
   };
 
-  const CheckIfTribeCodeExist = async (code) => {
-    return await Auth.checkIfTribeExist(code)
-      .then((tribe) => {
-        return tribe;
-      })
-      .catch((err) => {
-        return null;
-      });
-  };
-
   const submitForm = async (event) => {
-    const { email, password } = form;
+    const { email } = form;
     event.preventDefault();
-    updateLoading(true);
-    Auth.signIn(email, password)
-      .then((res) => {
-        Auth.getProfile()
-          .then(async (user) => {
-            Auth.setCookies(email, user.firstname);
-            setTokens({ isAuthenticate: true });
-            updateLoading(false);
-            if (params && params.redirect) {
-              const { redirect } = params;
-              if (
-                history.location &&
-                history.location.search.indexOf("redirect=/join") >= 0
-              ) {
-                let paramsString = redirect.replace("/join/", "");
-                paramsString = paramsString.split("-")[0];
-                if (user.tribe_joined.includes(paramsString)) {
-                  history.push(routes.TRIBE);
-                } else {
-                  const isCodeExist = await CheckIfTribeCodeExist(paramsString);
-                  if (isCodeExist) {
-                    dispatch(
-                      addUserToTribe(paramsString, isCodeExist, user)
-                    ).then((res) => {
-                      history.push(routes.TRIBE);
-                    });
-                  } else {
-                    history.push(routes.TRIBE);
-                  }
-                }
-              } else history.push(redirect);
-            } else {
-              history.push(ROUTES.WELCOME);
-            }
-          })
-          .catch((err) => {
-            updateError(err.message);
-            updateLoading(false);
-          });
-      })
-      .catch((err) => {
-        updateError(err.message);
-        updateLoading(false);
-      });
+    alert("Check email " + email);
   };
 
   return (
@@ -117,7 +59,7 @@ const LoginPage = () => {
                   <img src={Bicon} /> BIRTHDAY
                 </Button>
               </Grid>
-              <Grid item xs={6} >
+              <Grid item xs={6}>
                 <Button
                   className={loginType === "email" ? "login-active" : ""}
                   onClick={() => setLoginType("email")}
@@ -208,7 +150,7 @@ const LoginPage = () => {
                 {loginType === "email" && (
                   <div>
                     <Grid container spacing={1} className="emaillogin">
-                      <Grid item xs={12}>
+                      <Grid item xs={12} className="forgetEmail">
                         <Box my={1}>
                           <TextField
                             fullWidth
@@ -219,40 +161,48 @@ const LoginPage = () => {
                             onChange={handleChange("email")}
                           />
                         </Box>
+                        {successMessage && successMessage !== "" && (
+                          <p>
+                          <img src={FrgSuccIcon} /> Ok. We sent the email. Check
+                          your inbox.
+                        </p>
+                        )}
+                        
                       </Grid>
-                   
-                     
-                        {/* <Grid item xs={12}  spacing={1} className="forget-psw">
-                          <Box my={1}>
-                            <FormControlLabel
-                              value="end"
-                              // className={checked ? "active" : ""}
-                              control={
-                                <Checkbox
-                                  name="schoolAlreadySigned"
-                                  // checked={checked}
-                                  // onChange={handleCheckChange}
-                                />
-                              }
-                              label=" Forgot password"
-                              labelPlacement="end"
-                            />
-                          </Box>
-               
-              </Grid> */}
                     </Grid>
                   </div>
                 )}
                 {/* Email login End*/}
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"     
-                  onClick={() => history.push(routes.RESET_LINK_CONFIRMATION)}
-                >
-                  <p className="reg-happy">SEND EMAIL</p>
-                  <p className="reg">CREATE NEW PASSWORD</p>
-                </Button>
+                <Grid container spacing={2}>
+                  <Grid item xs={3} spacing={0}>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      className="Frgback"
+                      onClick={() =>
+                          history.push(routes.LOGIN)
+                        }
+                    >
+                      <p className="reg-happy">
+                        <img src={FrgIcon} />
+                      </p>
+                    </Button>
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      // onClick={() =>
+                      //   history.push(routes.RESET_LINK_CONFIRMATION)
+                      // }
+                    >
+                      <p className="reg-happy">SEND EMAIL</p>
+                      <p className="reg">CREATE NEW PASSWORD</p>
+                    </Button>
+                  </Grid>
+                </Grid>
               </form>
               <div className="letlogin">
                 <Box

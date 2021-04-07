@@ -162,7 +162,7 @@ const LoginPage = () => {
       <div className="login_main-page">
         <div className="login_main">
           <div className="login_header">
-            <h1>YAAAAAYYYY! :)</h1>
+            <h1>"YAAAAAYYY, TIME TO LOGIN. :)"</h1>
             <p>Choose your login method.</p>
           </div>
           <div className="login-frm">

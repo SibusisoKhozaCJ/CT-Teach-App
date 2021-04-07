@@ -398,3 +398,19 @@ button:focus {
 	box-sizing: border-box;
 	border-radius: 15px !important;
 }
+
+
+@media only screen and (max-width: 960px) {
+	.tocodepupupdiv button {
+		background: #43D4DD;
+		border-radius: 35px;
+		min-width: 197px;
+		margin-bottom: 20px;
+		.tocode-tagsidebar {
+			margin-right: 20px;
+			font-weight: 700;
+font-size: 20px;
+		}
+	}
+
+}

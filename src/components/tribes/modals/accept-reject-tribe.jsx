@@ -21,21 +21,9 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }) => {
+const AddRemoveFriendModal = ({ openModal, handleModalClose, handleRejectTribeRequest }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
-  const [friendToAddID, setFriendToAddID] = useState("");
-  const [addFriendRespone, setAddFriendRespone] = useState({
-    status: "",
-    message: "",
-  });
-  const handleAddFriendRequest = async () => {
-    if (friendToAddID !== "") {
-      handleSendRequest(friendToAddID);
-    } else {
-      alert("Please enter a valid username/email");
-    }
-  };
   return (
     <div>
       <Modal
@@ -45,7 +33,6 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }
         open={openModal}
         onClose={() => {
           handleModalClose();
-          setAddFriendRespone({ status: "", message: "" });
         }}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -65,14 +52,16 @@ const AddRemoveFriendModal = ({ openModal, handleModalClose, handleSendRequest }
                      <Button
                     className="frnd-yesBtn"
                     variant="contained"
-                    color="primary"                   
+                    color="primary"  
+                    onClick={(evt)=>handleRejectTribeRequest()}                 
                   >
                     <label>YES</label>
                   </Button>
                       <Button
                         className="not-nowBtn"
                     variant="contained"
-                    color="primary"                   
+                    color="primary"  
+                    onClick={()=> handleModalClose()}                 
                   >
                     <span>NOT NOW</span>
                   </Button>
