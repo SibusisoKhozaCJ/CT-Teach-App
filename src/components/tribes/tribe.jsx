@@ -15,7 +15,7 @@ import Pandingicon from "../../assets/images/panding.svg";
 import PlusIcon from "../../assets/images/plus.svg";
 import DotIcon from "../../assets/icons/tribe/dot.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserTribes } from "../../redux/actions/tribe-actions";
+import { acceptTribeRequest, getUserTribes, rejectTribeJoinRequest } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
 import AddTribeModal from "./modals/add-tribe-modal.jsx";
@@ -36,6 +36,7 @@ const Tribes = () => {
   const [showTribesRequests,setShowTrbiesRequest]=useState(false);
   const { userTribes, userJoinedTribes, requestedTribes } = useSelector((state) => state.tribe);
   const [joinUrl, setJoinUrl] = useState("")
+  const [selectedTribe, setSelectedTribe] = useState({})
   
   useEffect(() => {
     if (user !== null) {
@@ -77,6 +78,18 @@ const Tribes = () => {
     setJoinUrl(joinLink);
     setOpenModal(true);
   }
+
+  const handleRejectTribeRequest =()=>{
+    dispatch(rejectTribeJoinRequest(userTribes, selectedTribe)).then((res) => {
+      setAcceptOpenModal(false)
+    });
+  }
+
+  const handleAcceptRequest=(userId)=>{
+    dispatch(acceptTribeRequest(userTribes, userId)).then((res) => {
+      dispatch(getUserTribes(user));
+    });
+  }
   return (
     
     <div className="tribe-page">
@@ -90,6 +103,7 @@ const Tribes = () => {
       />
         <AddRemoveTribeModal
         openModal={openAcceptModal}
+        handleRejectTribeRequest={()=>handleRejectTribeRequest()}
         handleModalClose={() => {
           setAcceptOpenModal(false);
         }}
@@ -128,7 +142,7 @@ const Tribes = () => {
               <h1 className="tribe-mainheading">My Tribe</h1>
               
               {userTribes.map((tribe, index) => (
-                <div className="nav-slide">
+                <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
                     <Grid item xs={9} className="tribe-header">
                       <Typography variant="h1" className="title">
@@ -143,7 +157,7 @@ const Tribes = () => {
                       </Grid>
                       {removeTribeModal && (
                         <Grid item xs={12} className="unfriend-Btn">
-                          <Button variant="contained" color="primary" onClick={() => setAcceptOpenModal(true)}>
+                          <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true)}}>
                            LEAVE TRIBE
                           </Button>
                         </Grid>
@@ -269,7 +283,7 @@ const Tribes = () => {
             <h1 className="tribe-mainheading">Joined Tribes</h1>
             
               {userJoinedTribes.map((tribe, index) => (
-                <div className="nav-slide">
+                <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
                     <Grid item xs={12}>
                       <Typography variant="h1" className="title">
@@ -456,15 +470,15 @@ const Tribes = () => {
                 <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
                             <div className="frnd-cancel">
-                              <span onClick={() => setAcceptOpenModal(true)}>
+                              <span onClick={() => {setSelectedTribe(user); setAcceptOpenModal(true)}}>
                                 X
                               </span>
                             </div>
                             <div
                               className="accept-btn"
-                              // onClick={() =>
-                              //   handleAcceptRequest(friend.info.uid)
-                              // }
+                              onClick={() =>
+                                handleAcceptRequest(user)
+                              }
                             >
                               <span>Accept</span>
                             </div>

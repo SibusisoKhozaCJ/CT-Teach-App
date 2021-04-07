@@ -23,6 +23,8 @@ export function getUserTribes(user) {
       if(tribeData.requests && tribeData.requests.length > 0){
         const usersInfo = await getusersInfo(tribeData.requests);
         dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
+      }else{
+        dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: [] });
       }
       const data = [tribeData];
       dispatch({ type: Types.SAVE_USER_TRIBES, payload: data });
@@ -34,7 +36,7 @@ async function getusersInfo(users) {
   let usersInfo = []
   await Promise.all(
     users.map(async (user, index) => {
-      const userData = await Auth.getProfile(user.uid);
+      const userData = await Auth.getProfile(user.sender);
       usersInfo.push(userData);
     })
   );
@@ -196,6 +198,40 @@ export function sendTribeJoinRequest(data, tribeData, userEntered) {
   };
 }
 
+export function rejectTribeJoinRequest(userTribes, userData) {
+  return async (dispatch, getState) => {
+    const user = getState().user;
+    try {
+      let tribeCode = userTribes[0].code;
+      const tribeInfo = await authFetch.firebaseGet("Tribes/" + tribeCode);
+      if (tribeInfo && tribeInfo.requests) {
+        const filteredReq =  tribeInfo.requests.filter(function(item) {
+          return item.sender !== userData.uid
+        })
+        tribeInfo.requests = filteredReq;
+        await firebaseUpdate(`Tribes/${tribeCode}`, tribeInfo);
+        if(tribeInfo.requests && tribeInfo.requests.length > 0){
+          const usersInfo = await getusersInfo(tribeInfo.requests);
+          dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
+        }else{
+          dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: [] });
+        }
+        dispatch({
+          type: Types.SET_SUCCESS_MESSAGE,
+          payload: "",
+        });
+      } else {
+        dispatch({
+          type: Types.SET_SUCCESS_MESSAGE,
+          payload: "",
+        });
+      }
+    } catch (error) {
+      console.warn("Error update user", error);
+    }
+  };
+}
+
 export function startEditPublicTribeInfo() {
   return {
     type: Types.EDIT_PUBLIC_TRIBE_INFO,
@@ -244,6 +280,36 @@ export function updateTribeInfo(data) {
       dispatch(finishEditPublicTribeInfo());
     } else {
       dispatch(finishEditPrivateTribeInfo());
+    }
+  };
+}
+
+
+export function acceptTribeRequest(userTribes, userEntered) {
+  return async (dispatch, getState) => {
+    try {
+      let userDetails = userEntered;
+      let tribeCode = userTribes[0].code;
+      let tribeData = userTribes[0];
+      if(userDetails.tribe_joined){
+        userDetails.tribe_joined.push(tribeCode);
+      }else{
+        userDetails.tribe_joined = [tribeCode]
+      }
+      let tribeInfo = tribeData;
+      tribeInfo.users.push(userEntered.uid);
+      const filteredReq =  tribeInfo.requests.filter(function(item) {
+        return item.sender !== userEntered.uid
+      })
+      tribeInfo.requests = filteredReq;
+      await firebaseUpdate(`Users/${userDetails.uid}`, userDetails);
+      await firebaseUpdate(`Tribes/${tribeInfo.code}`, tribeInfo);
+      dispatch({
+        type: Types.SET_SUCCESS_MESSAGE,
+        payload: "",
+      });
+    } catch (error) {
+      console.warn("Error update user", error);
     }
   };
 }

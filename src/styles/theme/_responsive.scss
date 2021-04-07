@@ -1,5 +1,5 @@
 @media  only screen and (min-width: 1200px) and (max-width: 1600px) { 
-    .manage-frnd .accept-btn span, .tribe-page  .accept-btn span {
+    .manage-frnd .accept-btn span{
     padding: 12px 60px !important;
     background: #43d4dd;
     z-index: 9;
@@ -11,8 +11,26 @@
     color: #fff;
     border-radius: 40px;
 }
-.manage-frnd .read-more , .tribe-page .read-more{
+.tribe-page  .accept-btn span {
+    padding: 12px 60px !important;
+    background: #43d4dd;
+    z-index: 9;
+    position: relative;
+    font-size: 20px;
+    top: -21px;
+    right: 0;
+    left: 2% !important;
+    color: #fff;
+    border-radius: 40px;
+}
+.tribe-page .frnd-cancel{
+	left: 12%;
+}
+.manage-frnd .read-more {
 	margin-left: 25% !important;
+}
+.tribe-page .read-more{
+	margin-left:4% !important;
 }
 .manage-frnd .top-friend-btn button span {
     margin-right: 0px;
