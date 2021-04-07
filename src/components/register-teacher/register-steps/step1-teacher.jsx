@@ -1,20 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Button from "@material-ui/core/Button";
 
 const TeachRegisterStep1 = ({ onUpdate, form }) => {
   const handleFormEdit = (key) => (event) =>
     onUpdate({ ...form, [key]: event.target.value });
-  const [checked, setChecked] = useState(form.isTeacher);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-    onUpdate({ ...form, [event.target.name]: event.target.checked });
-  };
   return (
     <>
       <div className="registration-form">
