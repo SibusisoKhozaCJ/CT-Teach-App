@@ -327,8 +327,23 @@ const CreateNewAccountPage = () => {
 
   const handleSubmitTeacherFirstForm = async (e) => {
     e.preventDefault();
-    updateError("");
-    setCurrentStep(2);
+    updateLoading(true);
+    const {
+      email,
+    } = form;
+    await Auth.getUserWithEmail(email)
+      .then((res) => {
+        if(res && res.length > 0){
+          updateError("An account with same email already exist");
+          updateLoading(false);
+        }else{
+          updateError("");
+          setCurrentStep(2);
+        }
+      })
+      .catch((err) => {
+        return null;
+      });
   };
 
   const handleSubmitTeacherSecondForm = async (e) => {
@@ -368,6 +383,11 @@ const CreateNewAccountPage = () => {
     } catch (err) { }
   }
 
+  const handleBackClick = (evt)=>{
+    setTypeOfUser(evt);
+    setCurrentStep(1);
+  }
+
   const handleSubmitUserSecondForm = async (evt) => {
     try {
       createUser();
@@ -375,6 +395,7 @@ const CreateNewAccountPage = () => {
   };
   return (
     <>
+    {}
       {isInitialized === false && currentStep === 1 && (
         <BasicInfo
           form={form}
@@ -400,6 +421,7 @@ const CreateNewAccountPage = () => {
           handleEmailSkip={handleEmailSkip}
           handleSubmitUserSecondForm={handleSubmitUserSecondForm}
           handleSubmitWithJoinCode={handleSubmitWithJoinCode}
+          handleBackClick={handleBackClick}
         />
       )}
       {isInitialized === false && currentStep === 4 && (
