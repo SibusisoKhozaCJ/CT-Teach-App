@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import {
   addUserToTribe,
   getUserTribes,
+  sendTribeJoinRequest
 } from "../../redux/actions/tribe-actions";
 import Celebrate from "../../assets/images/celebrate.svg";
 import FrgSuccIcon from "../../assets/images/forgetsucc.svg";
@@ -21,8 +22,8 @@ const JoinTribePage = ({ isAuthenticated }) => {
   const history = useHistory();
 
   const { user } = useSelector((state) => state.user);
+  const { addTribeSuccessError,addTribeSuccessErrorMessage } = useSelector((state) => state.tribe);
   const dispatch = useDispatch();
-  //const { userTribes,userJoinedTribes } = useSelector((state) => state.tribe);
 
   const [loading, setLoading] = useState(true);
   const [joinResponse, setJoinRepsonse] = useState("");
@@ -34,6 +35,8 @@ const JoinTribePage = ({ isAuthenticated }) => {
   const [tribeInfo, setTribeInfo] = useState({});
   const [tribeOwnerInfo, setTribeOwnerInfo] = useState({});
   const [tribeInviter, setTribeInviter] = useState(undefined);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const CheckIfTribeCodeExist = async (code) => {
     return await Auth.checkIfTribeExist(code)
       .then((tribe) => {
@@ -64,9 +67,28 @@ const JoinTribePage = ({ isAuthenticated }) => {
       });
   };
   const initialize = async (id) => {
-    const isCodeExist = await CheckIfTribeCodeExist(id.split("-")[0]);
-    const tribeOwner = await getTribeOwnerInfo(id.split("-")[0]);
-    const isUserExist = await CheckifUserExist(id.split("-")[1]);
+    if (id && id.length > 5) {
+      const isFriendTribe = id.charAt(0) === "L" ? true : false;
+      if (isFriendTribe) {
+        const tribeCode = id.substring(1);
+        joinUsingTribe(tribeCode, "user")
+      } else {
+        alert("Invalid code")
+      }
+
+    } else {
+      joinUsingTribe(id, "admin")
+    }
+
+
+  };
+
+  const joinUsingTribe = async (id) => {
+    let [isCodeExist, tribeOwner, isUserExist] = await Promise.all([
+        CheckIfTribeCodeExist(id),
+        getTribeOwnerInfo(id),
+        CheckifUserExist(id)
+    ]);
     if (isCodeExist && tribeOwner && isUserExist) {
       setTribeInfo({
         ...isCodeExist,
@@ -90,7 +112,7 @@ const JoinTribePage = ({ isAuthenticated }) => {
       setLoading(false);
       return setJoinRepsonse("Invalid Join Code");
     }
-  };
+  }
 
   useEffect(() => {
     initialize(id);
@@ -102,7 +124,12 @@ const JoinTribePage = ({ isAuthenticated }) => {
     } else {
       dispatch(saveUser(undefined));
     }
-  }, [dispatch, user]);
+    if(addTribeSuccessError){
+      setShowSuccessMessage(true);
+    }else{
+      setShowErrorMessage(true)
+    }
+  }, [dispatch, user, addTribeSuccessError]);
 
   const handleLogInJoin = () => {
     history.replace(`/login?redirect=${location.pathname}`);
@@ -113,9 +140,21 @@ const JoinTribePage = ({ isAuthenticated }) => {
   };
 
   const handleInvite = async () => {
+    const isFriendTribe = id.charAt(0) === "L" ? true : false;
+    let tribeCode = ""
+    if (isFriendTribe) {
+      tribeCode = id.substring(1);
+      sendJoinTribeRequest(tribeCode)
+    } else {
+      joinUsingTribeCode(id)
+    }
+    
+  };
+
+  const sendJoinTribeRequest = async (tribeCode)=>{
     if (user.tribe_joined && user.tribe_joined.length) {
       for (let i = 0; i < user.tribe_joined.length; i++) {
-        if (user.tribe_joined[i] === id.split("-")[0]) {
+        if (user.tribe_joined[i] === tribeCode) {
           setJoinTribeResponse({
             status: "red",
             message: "You Have already been added to the tribe",
@@ -124,19 +163,27 @@ const JoinTribePage = ({ isAuthenticated }) => {
         }
       }
     }
+    dispatch(sendTribeJoinRequest(tribeCode, tribeInfo)).then((res) => {
+      
+    });
+  }
 
-    const isCodeExist = await CheckIfTribeCodeExist(id.split("-")[0]);
-    if (isCodeExist) {
-      dispatch(addUserToTribe(id.split("-")[0], isCodeExist)).then((res) => {
-        handleReject(true);
-      });
-    } else {
-      setJoinTribeResponse({
-        status: "red",
-        message: "The Entered Tribe is Not Found",
-      });
+  const joinUsingTribeCode = async (tribeCode)=>{
+    if (user.tribe_joined && user.tribe_joined.length) {
+      for (let i = 0; i < user.tribe_joined.length; i++) {
+        if (user.tribe_joined[i] === tribeCode) {
+          setJoinTribeResponse({
+            status: "red",
+            message: "You Have already been added to the tribe",
+          });
+          return;
+        }
+      }
     }
-  };
+    dispatch(addUserToTribe(tribeCode, tribeInfo)).then((res) => {
+      handleReject(true);
+    });
+  }
 
   const handleJoinByCode = async () => {
     if (!enteredCode) {
@@ -193,6 +240,11 @@ const JoinTribePage = ({ isAuthenticated }) => {
       <div className="invite-link">
         {joinResponse !== "Invalid Join Code" && (
           <Grid>
+            <Grid>
+              <button onClick={()=>{ if(isAuthenticated){history.push(`/home`);}else{
+                handleLogInJoin();
+              }}} className="tribe-back">   <img src={Arrowleft} /> </button>
+            </Grid>
             <h1 className="link-heading">OH MY GOSH</h1>
             <Grid>
               <Grid item xs={12} className="top-section">
@@ -203,20 +255,20 @@ const JoinTribePage = ({ isAuthenticated }) => {
                 <Grid item xs={12} className="link-user">
                   {tribeInviter && (
                     <p>
-                    By user:{" "}
-                    <span className="lbl-name"> {tribeInviter.firstname + " "+ tribeInviter.lastname}</span>
-                  </p>
+                      By user:{" "}
+                      <span className="lbl-name"> {tribeInviter.firstname + " " + tribeInviter.lastname}</span>
+                    </p>
                   )}
                   {!tribeInviter && (
                     <p>
-                    By user:{" "}
-                    <span className="lbl-name"> {tribeOwnerInfo.firstname + " "+ tribeOwnerInfo.lastname}</span>
-                  </p>
-                    )}
-                  
+                      By user:{" "}
+                      <span className="lbl-name"> {tribeOwnerInfo.firstname + " " + tribeOwnerInfo.lastname}</span>
+                    </p>
+                  )}
+
                   {tribeInviter && (
                     <p>
-                      Tribe Handle: <span className="lbl-name"> {tribeOwnerInfo.firstname + " "+ tribeOwnerInfo.lastname}</span>
+                      Tribe Handle: <span className="lbl-name"> {tribeOwnerInfo.firstname + " " + tribeOwnerInfo.lastname}</span>
                     </p>
                   )}
                 </Grid>
@@ -241,7 +293,9 @@ const JoinTribePage = ({ isAuthenticated }) => {
                 <Grid item xs={12}>
                   <h2>YAAASSSS!!!</h2>
                 </Grid>
-                <Grid item xs={12}>
+                {showSuccessMessage && (<p className="tribe-succ">  <img src={FrgSuccIcon} />SUCCESS! You’re about to join a Tribe.</p>)}
+                {showErrorMessage && (<p className="tribe-error">{addTribeSuccessErrorMessage}</p>)}
+                {!showSuccessMessage && (<Grid item xs={12}>
                   {isAuthenticated && !joinTribeResponse.message && (
                     <Button
                       color="primary"
@@ -297,18 +351,18 @@ const JoinTribePage = ({ isAuthenticated }) => {
                       I ALREADY HAVE AN ACCOUNT
                     </Button>
                   )}
-                </Grid>
+                </Grid>)}
               </Grid>
             </Grid>
           </Grid>
         )}
 
         {joinResponse === "Invalid Join Code" && (
-          
+
           <Grid>
             <Grid>
               <button className="tribe-back">   <img src={Arrowleft} /> </button>
-          </Grid>
+            </Grid>
             <h1 className="link-heading">YAAAY!!!</h1>
             <Grid>
               <Grid item xs={12} className="top-section">
@@ -338,8 +392,8 @@ const JoinTribePage = ({ isAuthenticated }) => {
                       GO
                     </Button>
                   </Grid>
-                   <p className="tribe-succ">  <img src={FrgSuccIcon} /> SUCCESS! You’re about to join a Tribe.</p>
-                   <p className="tribe-error">Your code is invalid. Try one of the options below.</p>
+                  <p className="tribe-succ">  <img src={FrgSuccIcon} /> SUCCESS! You’re about to join a Tribe.</p>
+                  <p className="tribe-error">Your code is invalid. Try one of the options below.</p>
                 </Grid>
                 <Grid className="codeB">
                   <Grid item xs={12} className="link-add">

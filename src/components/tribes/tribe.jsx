@@ -21,16 +21,21 @@ import { saveUser } from "../../redux/actions/user-actions";
 import AddTribeModal from "./modals/add-tribe-modal.jsx";
 import { useHistory } from "react-router-dom";
 import AddRemoveTribeModal from "./modals/accept-reject-tribe.jsx";
+import config from "../../config";
 const Tribes = () => {
   const [expand, setExpand] = useState("");
+  const [expandUser, setUserExpand] = useState("");
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const { loading } = useSelector((state) => state.user);
   const history = useHistory();
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
-  const [unfriendModal, setUnfriednModal] = useState(false)
-  const { userTribes, userJoinedTribes } = useSelector((state) => state.tribe);
+  const [removeTribeModal, setRemoveTribeModal] = useState(false)
+  const [showTribes,setShowTrbies]=useState(true);
+  const [showTribesRequests,setShowTrbiesRequest]=useState(false);
+  const { userTribes, userJoinedTribes, requestedTribes } = useSelector((state) => state.tribe);
+  const [joinUrl, setJoinUrl] = useState("")
   
   useEffect(() => {
     if (user !== null) {
@@ -47,12 +52,37 @@ const Tribes = () => {
       </div>
     );
   }
+
+  const bindPendingTribeCount=()=>{
+    return requestedTribes.length
+  }
   
+  const bindTribeCount=()=>{
+    if(userJoinedTribes && userTribes){
+      return userTribes.length + userJoinedTribes.length
+    }else{
+      return 0
+    }
+  }
+
+  const setJoinTribeLink = (tribeCode, senderType)=>{
+    let joinLink = "";
+    if(senderType === "self"){
+       const tribeJoinCode = tribeCode ? tribeCode : userTribes[0].code
+       joinLink = config.APP_BASE_URL + "/join/"+tribeJoinCode;
+      
+    }else{
+      joinLink = config.APP_BASE_URL + "/join/L"+tribeCode;
+    }
+    setJoinUrl(joinLink);
+    setOpenModal(true);
+  }
   return (
     
     <div className="tribe-page">
          <AddTribeModal
         openModal={openModal}
+        joinLink={joinUrl}
         handleModalClose={() => {
           setOpenModal(false);
         }}
@@ -71,26 +101,27 @@ const Tribes = () => {
           <Grid md={12} xs={12}>
             <Button
               color="secondary"
-             
+              onClick={()=> {setShowTrbiesRequest(false);setShowTrbies(true)}}
             >
               <span><img src={Friendicon} /> </span>
-              <span className="margin-main">TRIBES</span><span className="totalFriend">22</span>
+              <span className="margin-main">TRIBES</span><span className="totalFriend">{bindTribeCount()}</span>
             </Button>
             <Button
               color="secondary"
-             
+             onClick={()=> {setShowTrbiesRequest(true);setShowTrbies(false)}}
             >
                <span><img src={Pandingicon} /> </span>
-              <span  className="margin-main">Pending</span><span className="totalFriend">22</span>
+              <span  className="margin-main">Pending</span><span className="totalFriend">{bindPendingTribeCount()}</span>
             </Button>
             <Button className="dived">|</Button>
-            <Button color="secondary"  onClick={(evt) => setOpenModal(true)}>
+            <Button color="secondary"  onClick={(evt) => setJoinTribeLink(undefined, "self")}>
               <span className="tribplusfriend"><img src={PlusIcon} /></span> <span> TO TRIBE</span>
             </Button>
           </Grid>
         </Box>
         <Grid md={6} xs={12}>
           <div className="pgeBG">
+            {showTribes && (<>
               {userTribes &&
               userTribes.length > 0 &&
               <>
@@ -106,11 +137,11 @@ const Tribes = () => {
                     </Grid>
                        <Grid xs={2} className="frnd-drpBtn">
                         <img
-                          onClick={(evt) => setUnfriednModal(true)}
+                          onClick={(evt) => setRemoveTribeModal(true)}
                           src={DotIcon}
                         />
                       </Grid>
-                      {unfriendModal && (
+                      {removeTribeModal && (
                         <Grid item xs={12} className="unfriend-Btn">
                           <Button variant="contained" color="primary" onClick={() => setAcceptOpenModal(true)}>
                            LEAVE TRIBE
@@ -156,7 +187,7 @@ const Tribes = () => {
                           className="expand-icontext"
                         >
                           <Grid item xs={3} md={3}>
-                            <div className="tribe-icon">
+                            <div onClick={()=> setJoinTribeLink(tribe.code,"self")} className="tribe-icon">
                               <img src={Icon8} className="coverage" alt="" />
                             </div>
                           </Grid>
@@ -284,7 +315,7 @@ const Tribes = () => {
                           className="expand-icontext"
                         >
                           <Grid item xs={3} md={3}>
-                            <div className="tribe-icon">
+                            <div onClick={()=> setJoinTribeLink(tribe.code, "friend")} className="tribe-icon">
                               <img src={Icon8} className="coverage" alt="" />
                             </div>
                           </Grid>
@@ -359,6 +390,129 @@ const Tribes = () => {
                 </div>
               ))}
               </>}
+              </>)}
+              {showTribesRequests && (<>
+              {requestedTribes &&
+              requestedTribes.length > 0 &&
+              <>
+              <h1 className="tribe-mainheading">Join Requests</h1>
+              
+              {requestedTribes.map((user, index) => (
+                <div className="nav-slide">
+                <Grid  container spacing={1} className="main-manu" xs={12}>
+                  <Grid item xs={10} className="tribe-header">
+                    <Typography variant="h1" className="title">
+                      {user.firstname}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <div className="manage-frnd-btn">
+                      <Button variant="contained" color="secondary">
+                        Profile
+                        <img src={Icon7} alt="" />
+                      </Button>
+                    </div>
+                  </Grid>
+                  {expandUser === "user" + index && (
+                    <Grid xs={12} className="tribe-expandtext">
+                      <Grid item xs={12} md={12}>
+                        <ul>
+                          <li>
+                            <strong> SCHOOL : </strong>
+                            <span>
+                              {user.schoolName
+                                ? user.schoolName
+                                : ""}
+                            </span>
+                          </li>
+                          <li className="friend-tag">
+                            <strong> TAGS : </strong>{" "}
+                            <span>
+                              {user.tags
+                                ? user.tags
+                                : "No tag"}
+                            </span>
+                          </li>
+                          <li>
+                            <strong> INVITED : </strong>
+                            <span>3 days ago (8 feb 2021) </span>
+                          </li>
+                          <li>
+                            <strong> JOINED : </strong>
+                            <span>3 March 2021</span>
+                          </li>
+                          <li>
+                            <strong> CITY : </strong>
+                            <span>
+                              {user.city ? user.city : ""}
+                            </span>
+                          </li>
+                        </ul>
+                      </Grid>
+                    </Grid>
+                  )}
+                </Grid>
+
+                <div className="expand-btn">
+                      <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
+                            <div className="frnd-cancel">
+                              <span onClick={() => setAcceptOpenModal(true)}>
+                                X
+                              </span>
+                            </div>
+                            <div
+                              className="accept-btn"
+                              // onClick={() =>
+                              //   handleAcceptRequest(friend.info.uid)
+                              // }
+                            >
+                              <span>Accept</span>
+                            </div>
+                        {expandUser === "" || expandUser !== "user" + index ? (
+                          <button
+                            style={{ cursor: "pointer", textAlign: "center" }}
+                            className="text-primary read-more"
+                            onClick={(e) => setUserExpand("user" + index)}
+                          >
+                            <svg
+                              width="22"
+                              height="15"
+                              viewBox="0 0 22 15"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M17.9971 0.332031L21.5654 4.11133L10.5439 14.7109L0.348633 3.86523L4.25098 0.367187L10.7549 7.53906L17.9971 0.332031Z"
+                                fill="#D50073"
+                              />
+                            </svg>
+                          </button>
+                        ) : (
+                          <button
+                            style={{ cursor: "pointer", textAlign: "center" }}
+                            className="text-primary read-more"
+                            onClick={(e) => setUserExpand("")}
+                          >
+                            <svg
+                              width="22"
+                              height="16"
+                              viewBox="0 0 22 16"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M3.65234 15.2188L0.0839844 11.4395L11.1055 0.839844L21.3008 11.6855L17.3984 15.1836L10.8945 8.01172L3.65234 15.2188Z"
+                                fill="#A6A6A6"
+                              />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                    </div>
+              </div>
+            ))}
+              </>}
+              </>)}
           </div>
         </Grid>
       </div>

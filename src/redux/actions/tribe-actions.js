@@ -2,6 +2,7 @@ import * as authFetch from "../../shared/lib/authorizedFetch";
 import { textWithImg, textWithLinks } from "../../shared/lib/regExp";
 import { Types } from "../constants/tribe-types";
 import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
+import * as Auth from "../../shared/lib/authentication";
 export function getUserTribes(user) {
   return async function (dispatch, getState) {
     const userTribes = user.tribe_code;
@@ -19,10 +20,25 @@ export function getUserTribes(user) {
       }
     }
     if (tribeData) {
+      if(tribeData.requests && tribeData.requests.length > 0){
+        const usersInfo = await getusersInfo(tribeData.requests);
+        dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
+      }
       const data = [tribeData];
       dispatch({ type: Types.SAVE_USER_TRIBES, payload: data });
     }
   };
+}
+
+async function getusersInfo(users) {
+  let usersInfo = []
+  await Promise.all(
+    users.map(async (user, index) => {
+      const userData = await Auth.getProfile(user.uid);
+      usersInfo.push(userData);
+    })
+  );
+  return usersInfo;
 }
 
 export function tribeCodeToIframe(code) {
@@ -69,7 +85,7 @@ export function findLinkOrImg(text) {
   };
 }
 
-export function updateTribeHeader(data,tribeCode) {
+export function updateTribeHeader(data, tribeCode) {
   return async (dispatch, getState) => {
     dispatch(findLinkOrImg(data.codeInIframe));
     const tribe = getState().tribe;
@@ -134,6 +150,45 @@ export function addUserToTribe(data, tribeData, userEntered) {
             payload: joinedTribes,
           });
         }
+      }
+    } catch (error) {
+      console.warn("Error update user", error);
+    }
+  };
+}
+
+export function sendTribeJoinRequest(data, tribeData, userEntered) {
+  return async (dispatch, getState) => {
+    const user = getState().user;
+    try {
+      let userDetails = user.user || userEntered;
+      const rerquestData = {
+        "status": "pending",
+        "sender": userDetails.uid
+      }
+      let tribeInfo = tribeData;
+      if (tribeInfo && tribeInfo.requests) {
+        const ifAlreadyRequested = tribeInfo.requests.find(x => x.sender === userDetails.uid);
+        if (ifAlreadyRequested) {
+          dispatch({
+            type: Types.SET_ERROR_MESSAGE,
+            payload: "You have already requested for to join this tribe!",
+          });
+        } else {
+          tribeInfo.requests.push(rerquestData);
+          await firebaseUpdate(`Tribes/${tribeInfo.code}`, tribeInfo);
+          dispatch({
+            type: Types.SET_SUCCESS_MESSAGE,
+            payload: "",
+          });
+        }
+      } else {
+        tribeInfo.requests = [rerquestData];
+        await firebaseUpdate(`Tribes/${tribeInfo.code}`, tribeInfo);
+        dispatch({
+          type: Types.SET_SUCCESS_MESSAGE,
+          payload: "",
+        });
       }
     } catch (error) {
       console.warn("Error update user", error);
