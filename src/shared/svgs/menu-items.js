@@ -21,10 +21,17 @@ import FriendIcon from "../../assets/images/friend.svg";
 import Mailicon from "../../assets/images/mailSend.svg";
 import MailsendIcon from "../../assets/images/mailsendicon.svg";
 import CopyIcon from "../../assets/images/copy.svg";
-
+import InputIcon from "../../assets/images/inputicon.svg";
+import InputCopyIcon from "../../assets/images/copyinput.svg";
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
+};
+export const InArrowSVG = () => {
+  return <img src={InputIcon} alt="" />;
+};
+export const InCopySVG = () => {
+  return <img src={InputCopyIcon} alt="" />;
 };
 export const CopySVG = () => {
   return <img src={CopyIcon} alt="" />;

@@ -205,8 +205,7 @@ const CreateNewAccountPage = () => {
           ) {
             history.push(routes.TRIBE);
           } else {
-            setTribeCode(joincode);
-            setCurrentStep(4);
+            history.push(routes.HOME);
           }
         } else {
           CreateTribeAndRegister(res, email);
@@ -215,7 +214,7 @@ const CreateNewAccountPage = () => {
       .catch((err) => {
         updateError(err.message);
         updateLoading(false);
-        setCurrentStep(1);
+        setCurrentStep(2);
       });
   }
 
@@ -304,8 +303,9 @@ const CreateNewAccountPage = () => {
       }
       setTokens({ isAuthenticate: true });
       updateLoading(false);
-      setTribeCode(tribeCode);
-      setCurrentStep(4);
+      history.push(routes.HOME);
+      // setTribeCode(tribeCode);
+      // setCurrentStep(4);
     }
   };
 

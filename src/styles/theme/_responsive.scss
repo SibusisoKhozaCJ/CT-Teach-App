@@ -89,6 +89,21 @@ border-radius: 35px;
 }
 
 @media only screen and (max-width: 600px) {
+	.mob-dived {  
+    display: none !important;
+}
+	.btnplusfrnd {
+			span{
+				span{
+					display:none;
+				}
+			}
+			.tribplusfriend {
+    display: block !important;
+    text-align: center;
+    margin: 0 auto;
+}
+	}
 
 	.tribe-page{
 		.frnd-cancel {
@@ -169,7 +184,7 @@ section.add-remove .not-nowBtn{
 	padding: 0 !important;
 }
 .top-friend-btn img {
-    width: 24px;
+    width: 16px;
 }
 
 	.tribe-menu .pro-head{
@@ -455,6 +470,9 @@ min-height: 40px !important;
 	}
 }
 @media only screen and (max-width: 420px) {
+	.send-code_main{
+		width: 360px;
+	}
 	.codpage #wrapper #codeform {
     margin: 25px 5px 0 !important;
    
