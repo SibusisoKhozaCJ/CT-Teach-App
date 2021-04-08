@@ -156,7 +156,7 @@ padding: 0 10px;
 }
 
 .join-link-input input{
-	font-size: 18px !important;
+	font-size: 16px !important;
 }
 .tribe-page {
 .manage-frnd-btn button {
@@ -215,3 +215,16 @@ span {
 }
 }
 }
+
+.flash-message-copied p{
+	font-size: 20px;
+    font-weight: bold;
+    color: #211f21;
+    margin-left: 20px;
+}
+
+@media only screen and (min-width: 800px) {
+	.share-tribe-code {
+	  display: none !important;
+	}
+  }

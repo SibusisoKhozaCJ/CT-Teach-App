@@ -17,6 +17,11 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
     onUpdate({ ...form, [event.target.name]: event.target.checked });
   };
 
+  const handleSubmitForm = ()=>{
+    onUpdate({ ...form, ["email"]: undefined });
+    handleEmailSkip()
+  }
+
   const handleJoinCodeChange = (code) => {
     onUpdate({ ...form, ["joincode"]: code });
   };
@@ -85,7 +90,7 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
               </Grid>
               <Grid container className="skp-sur-btn" spacing={1}>
                 <Grid item xs={4}>
-                  <Button onClick={()=>handleEmailSkip()} className="skip-btn">SKIP</Button>
+                  <Button onClick={()=>handleSubmitForm()} className="skip-btn">SKIP</Button>
                 </Grid>
                 <Grid item xs={8} className="sure-btn">
                   <Button onClick={()=>handleEmailSkip()}>SURE</Button>

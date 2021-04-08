@@ -14,6 +14,8 @@ import {
   InArrowSVG,
   InCopySVG
 } from "../../../shared/svgs/menu-items";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import FlashMessage from 'react-flash-message'
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -38,11 +40,11 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
     message: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const sendTribeJoinLink=()=>{
     setShowSuccessModal(true)
   }
+  const [copied, setCopied] = useState(false)
 
   const handleCloseModal = ()=>{
     handleModalClose();
@@ -75,6 +77,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
           <div className={classes.paper1}>
             {!showSuccessModal && (
               <section className="send-code joinTribe Addfrnd-request Tribe-request">
+                
                 <div className="send-code_main">
                   <Box my={2} className="send-code_title">
                     <h1>ADD TO TRIBE</h1>
@@ -114,7 +117,8 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Box my={1} className="join-link-input">
-                        <TextField
+                      <CopyToClipboard onCopy={() => setCopied(true)} text={joinLink}>
+                      <TextField
                           InputProps={{
                             startAdornment: <CopySVG />,
                             endAdornment: <InCopySVG />,   
@@ -124,11 +128,14 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                           value={joinLink}
                           disabled
                         />
+                      </CopyToClipboard>
+                      <div className="flash-message-copied">
+                      {copied &&<FlashMessage duration={5000} persistOnHover={true}>
+                        <p>Link copied</p>
+                      </FlashMessage>}
+                      </div>
                       </Box>
                     </Grid>
-                    {errorMessage && errorMessage !== "" && (
-                      <label className="errormsg">This is error message</label>
-                    )}
                   </Grid>
                   <Box my={2} className="copytolink">
                     <p>TIP: Copy the link above and send it to your friends.</p>
@@ -140,7 +147,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         {addFriendRespone.message}
                       </p>
                     )}
-                    <Button onClick={()=> sendTribeJoinLink()} fullWidth variant="contained" color="primary">
+                    <Button className="share-tribe-code" onClick={()=> sendTribeJoinLink()} fullWidth variant="contained" color="primary">
                       <p className="reg-happy">SHARE LINK </p>
                     </Button>
                   </Box>
