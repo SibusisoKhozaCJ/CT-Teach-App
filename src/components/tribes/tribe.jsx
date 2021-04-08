@@ -127,8 +127,8 @@ const Tribes = () => {
                <span><img src={Pandingicon} /> </span>
               <span  className="margin-main">Pending</span><span className="totalFriend">{bindPendingTribeCount()}</span>
             </Button>
-            <Button className="dived">|</Button>
-            <Button color="secondary"  onClick={(evt) => setJoinTribeLink(undefined, "self")}>
+            <Button className="dived mob-dived">|</Button>
+            <Button color="secondary" className="btnplusfrnd" onClick={(evt) => setJoinTribeLink(undefined, "self")}>
               <span className="tribplusfriend"><img src={PlusIcon} /></span> <span> TO TRIBE</span>
             </Button>
           </Grid>

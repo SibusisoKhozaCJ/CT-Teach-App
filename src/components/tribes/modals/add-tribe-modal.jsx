@@ -11,6 +11,8 @@ import {
   MailiconSVG,
   MailsendIconSVG,
   CopySVG,
+  InArrowSVG,
+  InCopySVG
 } from "../../../shared/svgs/menu-items";
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -84,6 +86,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         <TextField
                           InputProps={{
                             startAdornment: <MailiconSVG />,
+                             endAdornment: <InArrowSVG />,
                           }}
                           fullWidth
                           placeholder="FRIEND’S EMAIL"
@@ -99,6 +102,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         <TextField
                           InputProps={{
                             startAdornment: <MailsendIconSVG />,
+                            endAdornment: <InArrowSVG />,
                           }}
                           fullWidth
                           placeholder="USERNAME"
@@ -113,6 +117,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         <TextField
                           InputProps={{
                             startAdornment: <CopySVG />,
+                            endAdornment: <InCopySVG />,   
                           }}
                           fullWidth
                           variant="outlined"
