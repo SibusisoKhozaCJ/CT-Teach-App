@@ -89,6 +89,9 @@ border-radius: 35px;
 }
 
 @media only screen and (max-width: 600px) {
+	.default-layout {
+    margin-bottom: 30%;
+}
 	.tribe-mainheading {
     color: #000;
     display: none;
