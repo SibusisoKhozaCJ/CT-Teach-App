@@ -132,9 +132,9 @@ const FriendsPage = () => {
               <span><img src={Pandingicon} /> </span>
               <span className="margin-main">Pending</span><span className="totalFriend">{pendingList.length}</span>
             </Button>
-            <Button className="dived">|</Button>
-            <Button color="secondary" onClick={(evt) => setOpenModal(true)}>
-              <span className="add-frnd-i"><img src={PlusIcon} /></span> <span> A FRIEND</span>
+            <Button className="dived mob-dived">|</Button>
+            <Button className="btnplusfrnd" color="secondary" onClick={(evt) => setOpenModal(true)}>
+              <span className="add-frnd-i tribplusfriend"><img src={PlusIcon} /></span> <span> A FRIEND</span>
             </Button>
           </Grid>
         </Box>
@@ -151,7 +151,7 @@ const FriendsPage = () => {
             {friendListType === "friend" && friendList.length > 0 && (
               <>
                 {friendList.map((friend, index) => (
-                  <div className="nav-slide">
+                  <div className="nav-slide tribes-section">
                     <Grid  container spacing={1} className="main-manu" xs={12}>
                       <Grid item xs={10} className="tribe-header">
                         <Typography variant="h1" className="title">
@@ -278,7 +278,7 @@ const FriendsPage = () => {
             {friendListType === "pending" && pendingList.length > 0 && (
               <>
                 {pendingList.map((friend, index) => (
-                  <div className="nav-slide">
+                  <div className="nav-slide ">
                     <Grid container spacing={1} className="main-manu" xs={12}>
                       <Grid item xs={12} className="tribe-header">
                         <Typography variant="h1" className="title">

@@ -89,6 +89,13 @@ border-radius: 35px;
 }
 
 @media only screen and (max-width: 600px) {
+	.tribe-mainheading {
+    color: #000;
+    display: none;
+}
+	.manage-frnd{
+		padding: 24px 0 !important;
+	}
 	.mob-dived {  
     display: none !important;
 }
@@ -295,7 +302,8 @@ min-height: 40px !important;
 	.page-divid .pgeBG {
 		background: transparent;
 		border-radius: 35px;
-		padding: 0 30px;
+		padding: 0 30px !important;
+		margin-top: 20px
 	}
 	.commonheight {
 		min-height: 75px;
