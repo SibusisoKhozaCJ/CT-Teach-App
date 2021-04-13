@@ -39,16 +39,12 @@ const Codepanel = ({
   // const userId = useSelector(state => state.user.userId);
   const userId = currentUserId();
   // const lessonId = "5-min-website";
-  const isProjectsActive = useSelector(
-    (state) => state.codepanel.isProjectsActive
-  );
+  const isProjectsActive = useSelector((state) => state.codepanel.isProjectsActive);
   const isLeaveActive = useSelector((state) => state.codepanel.isLeaveActive);
   const isTourActive = useSelector((state) => state.codepanel.isTourActive);
   const isResetActive = useSelector((state) => state.codepanel.isResetActive);
   const currentLesson = useSelector((state) => state.codepanel.currentLesson);
-  const currentSlideNumber = useSelector(
-    (state) => state.codepanel.currentSlide
-  );
+  const currentSlideNumber = useSelector((state) => state.codepanel.currentSlide);
   const [panel, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`;

@@ -109,7 +109,8 @@ const useStyles = makeStyles(() => ({
   title: {
     fontSize: 18,
     color: "#43D4DD",
-    fontWeight: 700,
+    fontWeight: 400,
+    fontFamily: "Montserrat, sans-serif !important",
     textTransform: "uppercase",
     margin: 0,
     marginLeft: 4
@@ -122,9 +123,15 @@ const useStyles = makeStyles(() => ({
     listStyle: "none",
     display: "flex",
     alignItems: "center",
-    overflow: "hidden",
+    overflow: "visible",
   },
-
+  close: {
+    position: "absolute",
+    right: -2,
+    top: -10,
+    zIndex: 1000,
+    cursor: "pointer",
+  },
   text: {
     marginLeft: 12,
     fontSize: 18
@@ -135,23 +142,23 @@ const Checker = ({ challenges, percent }) => {
   const classes = useStyles();
   const [collapsed, setCollapsed] = useState(true);
   // const isCheckerOpen = useSelector(state => state.codepanel.isCheckerOpen);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const curveLength = percent * 2 * Math.PI / 10;
 
   return isOpen ? (
     <ul className={collapsed ? classes.list : classes.listExpand}>
       {collapsed ? (
         <div>
-          <li className={classes.item}>
+          <li className={classes.item} style={{ marginBottom: 22 }}>
             <img
               src={CloseIcon}
               width="24"
               className={`${classes.close} coverage`}
               alt=""
-              onClick={() => {setIsOpen(false)}}
+              onClick={() => { setIsOpen(false) }}
             />
           </li>
-          <div onClick={() => {setCollapsed(false)}}>
+          <div onClick={() => { setCollapsed(false) }}>
             {challenges.map(challenge => (
               <li key={challenge.description} className={classes.item}>
                 <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
@@ -162,7 +169,7 @@ const Checker = ({ challenges, percent }) => {
       ) : (
         <>
           <li className={classes.item}>
-            <img onClick={()=>{setCollapsed(!collapsed)}} src={ChevronRightIcon} className="coverage" alt="" style={{ marginLeft: -7 }}/>
+            <img onClick={() => { setCollapsed(!collapsed) }} src={ChevronRightIcon} className="coverage" alt="" style={{ marginLeft: -7 }} />
             <h3 className={classes.title}>Checker</h3>
             <div className={classes.closeExpand}>
               <img
@@ -170,26 +177,26 @@ const Checker = ({ challenges, percent }) => {
                 width="24"
                 className={`${classes.close} coverage`}
                 alt=""
-                onClick={() => {setIsOpen(false)}}
+                onClick={() => { setIsOpen(false) }}
               />
             </div>
           </li>
           {challenges.map(challenge => (
-            <li key={challenge.description} className={classes.item} onClick={() => {setCollapsed(!collapsed)}}>
+            <li key={challenge.description} className={classes.item} onClick={() => { setCollapsed(!collapsed) }}>
               <img src={challenge.status ? TickIcon : TestTubeIcon} className="coverage" width="20" alt="" />
               <span className={classes.text}>{challenge.description}</span>
             </li>
           ))}
         </>
 
-      ) }
+      )}
     </ul>
   ) : percent === 100 ? (
-    <div className={classes.completed} onClick={() => {setIsOpen(true)}}>
+    <div className={classes.completed} onClick={() => { setIsOpen(true) }}>
       <img src={Tick} className={`${classes.tick} coverage`} width="20" alt="" />
     </div>
   ) : (
-    <div onClick={() => {setIsOpen(true)}} className={classes.chart}>
+    <div onClick={() => { setIsOpen(true) }} className={classes.chart}>
       {percent > 0 && (
         <svg
           className={classes.svg}
