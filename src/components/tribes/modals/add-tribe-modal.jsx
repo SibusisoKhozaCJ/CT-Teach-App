@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Newicon from "./../../../assets/images/inputicon.png"
 import {
   MailiconSVG,
   MailsendIconSVG,
@@ -53,6 +54,22 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
     setFriendEmail("")
     setShowSuccessModal(false);
   }
+
+  const handleShareJoinLink = ()=>{
+    try{
+      if (navigator.share) {
+        navigator.share({
+          title: 'Code Tribe',
+          text: 'Hey lets join this for a coding adventure.',
+          url: joinLink,
+        })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      }
+    }catch(err){
+
+    }
+  }
   return (
     <div>
       <Modal
@@ -89,7 +106,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         <TextField
                           InputProps={{
                             startAdornment: <MailiconSVG />,
-                             endAdornment: <InArrowSVG />,
+                             endAdornment: friendEmail !== "" ? <img src={Newicon}/> : <InArrowSVG />,
                           }}
                           fullWidth
                           placeholder="FRIEND’S EMAIL"
@@ -105,7 +122,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         <TextField
                           InputProps={{
                             startAdornment: <MailsendIconSVG />,
-                            endAdornment: <InArrowSVG />,
+                            endAdornment: friendUserName !== "" ? <img src={Newicon}/> : <InArrowSVG />,
                           }}
                           fullWidth
                           placeholder="USERNAME"
@@ -147,7 +164,7 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
                         {addFriendRespone.message}
                       </p>
                     )}
-                    <Button className="share-tribe-code" onClick={()=> sendTribeJoinLink()} fullWidth variant="contained" color="primary">
+                    <Button className="share-tribe-code" onClick={()=> handleShareJoinLink()} fullWidth variant="contained" color="primary">
                       <p className="reg-happy">SHARE LINK </p>
                     </Button>
                   </Box>
