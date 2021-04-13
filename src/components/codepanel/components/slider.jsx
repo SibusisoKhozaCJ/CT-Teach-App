@@ -72,7 +72,8 @@ const useStyles = makeStyles(theme => ({
     height: 30,
     padding: 5,
     borderRadius: "50%",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    zIndex: 10
   }
 }));
 
