@@ -137,7 +137,7 @@ export const HeaderProfileStyles = theme => ({
   },
   modalPrivate: {
     backgroundColor: '#ffffff',
-    padding: 30,
+    padding: 30
   },
   personalize: {
     '& > h5': {

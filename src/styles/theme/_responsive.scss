@@ -89,6 +89,9 @@ border-radius: 35px;
 }
 
 @media only screen and (max-width: 600px) {
+	.default-layout {
+    margin-bottom: 30%;
+}
 	.tribe-mainheading {
     color: #000;
     display: none;
@@ -500,6 +503,9 @@ min-height: 40px !important;
 
 }
 @media only screen and (max-width: 400px) {
+	.top-friend-btn button {
+    padding: 2px 8px !important;
+}
 	.project-slect .projectslect {
     width: 215px !important;
 }

@@ -20,12 +20,13 @@ import {
   codepanelSetCurrentLesson,
 } from '../../redux/actions/codepanel-actions';
 // import { getCodeFromLocal } from "./utils/localStorage"
-import * as authFetch from '../../shared/lib/authorizedFetch';
-import ProjectsModal from './components/projects/projects-modal';
-import LeaveModal from './components/leave-modal';
-import TakeTour from './components/take-tour';
-import ResetModal from './components/reset-modal';
-import { currentUserId } from '../../shared/lib/authentication';
+import * as authFetch from "../../shared/lib/authorizedFetch";
+import ProjectsModal from "./components/projects/projects-modal";
+import LeaveModal from "./components/leave-modal";
+import TakeTour from "./components/take-tour";
+import ResetModal from "./components/reset-modal";
+import { currentUserId } from "../../shared/lib/authentication";
+import ToolTip from './components/tool-tip/tool-tip';
 
 import { uploadLesson } from './utils/upload-lesson';
 
@@ -153,10 +154,10 @@ const Codepanel = ({
           )}
         </Media>
       )}
-      {isProjectsActive && <ProjectsModal />}
-      {isLeaveActive && <LeaveModal />}
-      {isTourActive && <TakeTour />}
-      {isResetActive && <ResetModal />}
+    {isProjectsActive && <ProjectsModal />}
+    {isLeaveActive && <LeaveModal />}
+    {isTourActive && <ToolTip />}
+    {isResetActive && <ResetModal />}
     </>
   );
 };

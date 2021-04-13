@@ -33,7 +33,7 @@
 	}
    .manage-frnd-btn button {
 				min-width: 195px;
-				height: 46px;				
+				// height: 46px;				
 				border-radius: 40px;
 				font-weight: 700;
 				font-size: 20px;
@@ -44,6 +44,7 @@
                 margin-top: 20px;
                 margin-bottom: 20px;
                 box-shadow: none;
+				padding: 2px;
 				img {
 					margin-left: 10px;
 				}

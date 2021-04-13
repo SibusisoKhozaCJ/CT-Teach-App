@@ -23,9 +23,41 @@ import MailsendIcon from "../../assets/images/mailsendicon.svg";
 import CopyIcon from "../../assets/images/copy.svg";
 import InputIcon from "../../assets/images/inputicon.svg";
 import InputCopyIcon from "../../assets/images/copyinput.svg";
+import YellowArrow from '../../assets/images/yellow-arrow.svg';
+import Smile from '../../assets/images/smile.svg';
+import CodeArrow from '../../assets/images/code-arrow.svg';
+import Browser from '../../assets/images/browser.svg';
+import ToolTip from '../../assets/images/tooltip-image.png';
+import Challenge from '../../assets/images/challenge-icon.png';
+import User from '../../assets/images/jonathan.png';
+import Bulb from '../../assets/images/bulb-icon.svg';
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
+};
+export const YellowArrowIcon = () => {
+  return <img src={YellowArrow} alt="" style={{width: 50}} />;
+};
+export const BulbIcon = () => {
+  return <img src={Bulb} alt="" />;
+};
+export const CodeArrowIcon = () => {
+  return <img src={CodeArrow} alt="" />;
+};
+export const UserIcon = () => {
+  return <img src={User} alt="" style={{width: 60, margin: '10px auto 0'}} />;
+};
+export const ToolTipIcon = () => {
+  return <img src={ToolTip} alt="" style={{height: 200, width: 126}} />;
+};
+export const ChallengeIcon = () => {
+  return <img src={Challenge} alt="" style={{height: 200, width: 126}} />;
+};
+export const SmileIcon = () => {
+  return <img src={Smile} alt="" />;
+};
+export const BrowserIcon = () => {
+  return <img src={Browser} alt="" />;
 };
 export const InArrowSVG = () => {
   return <img src={InputIcon} alt="" />;

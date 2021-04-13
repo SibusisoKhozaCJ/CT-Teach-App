@@ -452,7 +452,7 @@ $query-lg: 1280px;
     width: 100%;
     padding: 14px 17px;
     resize: none;
-
+    display: block;
     &::placeholder {
       color: #ffffff;
       font-size: 17px;
@@ -465,6 +465,16 @@ $query-lg: 1280px;
 
   .btnModalSave {
     @extend %btnModalSave;
+    margin: 0;
+    width: 100%;
+    height: 55px;
+    border-radius: 35px;
+    background: #43D4DD;
+    font-size: 28px;
+    font-weight: 700;
+    &:hover{
+      background: #43D4DD;;
+    }
   }
 
   .inputWrapper {
@@ -483,16 +493,22 @@ $query-lg: 1280px;
 
   .modalPrivate {
     background-color: #ffffff;
-    padding: 30px;
+    padding: 0;
+    border: 5px solid #43D4DD;
+    border-radius: 15px;
   }
 
   .closeBtn {
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 10;
   }
 
   .personalize {
+    padding: 18px 12px;
+    position: relative;
+    padding-right: 40px;
     > h5 {
       font-size: 24px;
       font-weight: 700;
@@ -504,12 +520,22 @@ $query-lg: 1280px;
       font-size: 18px;
       font-weight: 700;
       line-height: 21px;
-      margin-top: 10px;
+      margin-bottom: 0;
     }
 
     > p {
       font-size: 18px;
-      line-height: 1;
+      line-height: 21px;
+    }
+    .tipBtn{
+      position: absolute;
+      background: #FBDD3F;
+      border: none;
+      border-radius: 10px 0px 0px 10px;
+      right: 0;
+      padding: 5px 3px 0 2px;
+      bottom: 30px;
+      z-index: 1;
     }
   }
 
@@ -517,11 +543,15 @@ $query-lg: 1280px;
     font-size: 14px;
     line-height: 16px;
     letter-spacing: 0.6px;
-    margin: 20px auto;
-
+    position:  absolute;
+    background: #fff;
+    border: 3px solid #FBDD3F;
+    border-radius: 10px 0px 0 10px;
+    padding: 15px 40px 15px 24px;
+    bottom: 0;
     > a {
       font-weight: 700;
-      color: #0198ED;
+      color: #364954;
     }
   }
 
@@ -536,5 +566,8 @@ $query-lg: 1280px;
     margin-bottom: 0;
     text-align: center;
     color: red
+  }
+  .btnBox{
+    padding: 26px 50px;
   }
 }
