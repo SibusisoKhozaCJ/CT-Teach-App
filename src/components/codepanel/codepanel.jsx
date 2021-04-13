@@ -28,6 +28,7 @@ import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
 import lesson_dataC0001P001T000 from "./data-new/C001-P001-T000/lesson_data";
 import lesson_dataC0001P001T001 from "./data-new/C001-P001-T001/lesson_data";
+import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data";
 import { uploadLesson } from "./utils/upload-lesson";
 
 const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) => {
@@ -54,15 +55,17 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
   }
 
   const getLesson = async (id) => {
-    if(id === "T000"){
-      return lesson_dataC0001P001T000
-    }else{
-      return lesson_dataC0001P001T001
-    }
+    // if(id === "T000"){
+    //   return lesson_dataC0001P001T000
+    // }else if (id === "T001"){
+    //   return lesson_dataC0001P001T001
+    // }else if (id === "T003"){
+    //   return lesson_dataC0001P001T003
+    // }
     
-    // return await authFetch.firebaseGet(
-    //   `Lessons/${id}`
-    // );
+    return await authFetch.firebaseGet(
+      `Lessons/${id}`
+    );
   }
 
   useEffect(() => {
@@ -74,7 +77,6 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
       // dispatch(codepanelSetCurrentLesson(lessonPath));
       // setLesson(l);
       getLesson(trainingId).then(data => {
-        debugger
         if (data) {
           dispatch(codepanelSetSlides(data));
           dispatch(codepanelSetCurrentLesson(lessonPath));
@@ -107,7 +109,6 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
 
     if (userId) {
       getProgressData(userId, lessonPath).then(data => {
-        
         if (data) {
           const { challenges, progress, current_slide, user_code } = data
           progress && dispatch(codepanelSetProgress(progress));
