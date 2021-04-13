@@ -133,6 +133,8 @@ export const useStyles = makeStyles((theme) => ({
     bottom: "-20px",
     right: "40px",
     padding: '6px 30px',
+    fontFamily: 'inherit',
+    textTransform: 'initial',
     [theme.breakpoints.down(768)]: {
       right: "50%",
       transform: "translate(50%)",
