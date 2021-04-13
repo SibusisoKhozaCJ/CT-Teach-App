@@ -26,6 +26,7 @@ import LeaveModal from "./components/leave-modal";
 import TakeTour from "./components/take-tour";
 import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
+import ToolTip from './components/tool-tip/tool-tip';
 
 import { uploadLesson } from "./utils/upload-lesson";
 
@@ -142,7 +143,7 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
       )}
     {isProjectsActive && <ProjectsModal />}
     {isLeaveActive && <LeaveModal />}
-    {isTourActive && <TakeTour />}
+    {isTourActive && <ToolTip />}
     {isResetActive && <ResetModal />}
     </>
   )
