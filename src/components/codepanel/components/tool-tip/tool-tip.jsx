@@ -54,7 +54,7 @@ const ToolTip = () => {
               direction="column"
               classes={{ root: classes.textContainer }}
             >
-              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+              <Typography variant="body1" classes={{ root: classes.titleStyle }}>
                 <span className={classes.selectedText}>
                   Welcome!
                 </span>
@@ -98,7 +98,7 @@ const ToolTip = () => {
               direction="column"
               classes={{ root: classes.textContainer }}
             >
-              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+              <Typography variant="body1" classes={{ root: classes.titleStyle }}>
                 Ta-Daa!{" "}
                 <span className={classes.selectedText}>
                   Here are the "SLIDES."
@@ -141,10 +141,10 @@ const ToolTip = () => {
               direction="column"
               classes={{ root: classes.textContainer }}
             >
-              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+              <Typography variant="body1" classes={{ root: classes.titleStyle }}>
                 Some of the slides will be...
               </Typography>
-              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+              <Typography variant="body1" classes={{ root: classes.titleStyle }}>
                 <span className={classes.selectedText}>
                   CHALLENGES
                 </span>{" "}
@@ -189,7 +189,7 @@ const ToolTip = () => {
               direction="column"
               classes={{ root: classes.textContainer }}
             >
-              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+              <Typography variant="body1" classes={{ root: classes.titleStyle }}>
                 <span className={classes.selectedText}>
                   This is the "Editor"
                 </span>{" "}
@@ -230,7 +230,7 @@ const ToolTip = () => {
               direction="column"
               classes={{ root: classes.textContainer }}
             >
-              <Typography variant="body1" classes={{ root: classes.textStyle }}>
+              <Typography variant="body1" classes={{ root: classes.titleStyle }}>
                 <span className={classes.selectedText}>
                   Aaand,... the "Browser"
                 </span>{" "}

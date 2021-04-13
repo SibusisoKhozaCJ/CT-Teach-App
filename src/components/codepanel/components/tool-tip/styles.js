@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
       height: "auto",
       top: 0,
       left: '0 !important',
-      padding: "10px",
+      padding: "30px 10px",
       paddingBottom: "20px",
     },
     [theme.breakpoints.up("md")]: {
@@ -35,13 +35,19 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '18px',
     color: '#C4C4C4',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif !important',
+    [theme.breakpoints.down(768)]: {
+      fontSize: '15px'
+    }
   },
   slideLabel: {
     fontSize: '16px',
     color: '#364954',
     fontWeight: '700',
     margin: '0',
-    height: '24px'
+    height: '24px',
+    [theme.breakpoints.down(768)]: {
+      fontSize: '13px'
+    }
   },
   arrow: {
     display: 'inline-block',
@@ -80,22 +86,36 @@ export const useStyles = makeStyles((theme) => ({
       height: "35px",
     },
     [theme.breakpoints.down(768)]: {
-      marginRight: "10px",
+      //marginRight: "10px",
     },
   },
   textContainer: {
     flex: 1,
   },
   textStyle: {
+    fontSize: "20px",
+    color: "#364954",
+    marginBottom: "4px",
+    [theme.breakpoints.down(768)]: {
+      fontSize: '16px'
+    }
+  },
+  titleStyle: {
     fontSize: "24px",
     color: "#364954",
     marginBottom: "4px",
+    [theme.breakpoints.down(768)]: {
+      fontSize: '20px'
+    }
   },
   textStyleSmall: {
     fontSize: "20px",
     color: "#364954",
     marginBottom: "4px",
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    [theme.breakpoints.down(768)]: {
+      fontSize: '16px'
+    }
   },
   selectedText: {
     color: "#d40073",
@@ -107,7 +127,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "24px",
     lineHeight: "24px",
     color: "#FFFFFF",
-    background: "#43D4DD",
+    background: "#43D4DD !important",
     borderRadius: "25px",
     position: "absolute",
     bottom: "-20px",
@@ -116,6 +136,7 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down(768)]: {
       right: "50%",
       transform: "translate(50%)",
+      fontSize: "18px",
     },
   },
 }));

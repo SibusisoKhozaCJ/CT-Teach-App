@@ -27,9 +27,9 @@ import YellowArrow from '../../assets/images/yellow-arrow.svg';
 import Smile from '../../assets/images/smile.svg';
 import CodeArrow from '../../assets/images/code-arrow.svg';
 import Browser from '../../assets/images/browser.svg';
-import ToolTip from '../../assets/images/tooltip-image.svg';
-import Challenge from '../../assets/images/challenge-icon.svg';
-import User from '../../assets/images/user-icon.svg';
+import ToolTip from '../../assets/images/tooltip-image.png';
+import Challenge from '../../assets/images/challenge-icon.png';
+import User from '../../assets/images/jonathan.png';
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
