@@ -1,5 +1,5 @@
 .manage-frnd {
-	width: calc(100vw - 240px);
+	
 	padding: 24px;
 	flex-grow: 1;
 	min-height: 100vh;
@@ -258,6 +258,7 @@ width: 30px;
 	img{
 		z-index: 99;
 		padding-right:5px;
+		height: 43px;
 	}
 }
 input, textarea{

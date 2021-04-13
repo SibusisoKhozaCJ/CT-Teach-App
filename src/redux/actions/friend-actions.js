@@ -124,7 +124,7 @@ export function acceptRequest(friendID) {
     try {
       const { user } = getState();
       const friendData = await Auth.getProfile(friendID);
-      const userData = await Auth.getProfile();
+      const userData = user.user;
       if (friendData) {
         let friendIndex = friendData.friends.findIndex(
           (x) => x.friendId === user.userId

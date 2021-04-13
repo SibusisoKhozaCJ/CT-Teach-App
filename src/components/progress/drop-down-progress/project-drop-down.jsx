@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Arrowleft from "../../../assets/images/arrowleft.svg";
 import Arrowright from "../../../assets/images/arrowright.svg";
+import ArrowUp from "../../../assets/images/uparrow.svg";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -49,7 +50,7 @@ const SelectProjects = ({
       <div className="project-slect">
         <div className="select-header">
           <div className="slt-btn">
-            <button className="btn-move-back" title="Move back to courses" onClick={()=>setSelectedProject("")}>{selectedCourse}</button>
+            <button className="btn-move-back" title="Move back to courses" onClick={()=>setSelectedProject("")}>{selectedCourse}    <img src={ArrowUp} /></button>
           </div>
           <div className="projectslect prj1">
             <FormControl variant="filled">

@@ -8,8 +8,9 @@
 
 .invite-link {
 	max-width: 500px;
-	margin: 0 auto;
-	padding: 30px 10px;
+	margin: 10px auto;
+	padding: 0px 10px;
+	padding-top: 10px;
 	border-radius: 10px;
 	width: 100%;
 	box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
@@ -37,6 +38,14 @@
 			color: #364954;
 			margin-bottom: 20px;
 		}
+	}
+	.tribe-back{		
+font-weight: 700;
+font-size: 20px;
+color: #A6A6A6;
+background: transparent;
+border: none;
+margin-bottom: 25px;
 	}
 	.main-link-section {
 		padding: 0 10px;
@@ -81,6 +90,12 @@
 			background-color: #43D4DD;
 		}
 	}
+	.MuiInputLabel-outlined {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #A6A6A6;
+}
 	.linkbtn1 {
 		background: #C4C4C4;
 		border: 1px solid #EAEAEB;
@@ -89,6 +104,7 @@
 		color: #fff;
 		width: 100%;
 		min-height: 46px;
+		margin-bottom: 25px;
 		span {
 			font-size: 20px;
 		}
@@ -100,8 +116,9 @@
 	.main-joincode-section {
 		.GOlinkbtn {
 			background: #75CF6D;
-			height: 56px;
+			height: 60px;
 			border-color: #75CF6D;
+			border-radius: 15px;
 			span {
 				font-size: 36px;
 				line-height: 42px;
@@ -129,8 +146,9 @@
 		font-weight: 700;
 	}
 	fieldset {
-		border-color: #75CF6D;
+		border: 3px solid #43D4DD;
 		background: rgba(240, 238, 238, 0.5);
+		border-radius: 15px;
 	}
 	.codeB {
 		background: rgba(240, 238, 238, 0.5);

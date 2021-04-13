@@ -8,6 +8,8 @@ export default {
         messagingSenderId: "745697149367",
         appId: "1:745697149367:web:4079e0f2c85c8c92646832",
         measurementId: "G-62MYN5DBME"
-    }
+    },
+
+    APP_BASE_URL: "http://localhost:3000"
 }
 

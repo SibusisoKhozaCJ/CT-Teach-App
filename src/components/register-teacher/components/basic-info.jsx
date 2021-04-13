@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -21,14 +21,18 @@ const BasicInfo = ({
   handleSubmitTeacherFirstForm,
   error,
   search,
+  registerType,
   setRegisterType,
 }) => {
 
   const[value,setValue]=useState("1");
-    const handleChange = (event,string) => {     
+  const handleChange = (event,string) => {     
     setValue(string);
     setRegisterType(string)
   };
+  useEffect(()=>{
+    setValue(registerType)
+  },[registerType])
   return (
     <section className="registration">
       <div className="registration_main">

@@ -1,5 +1,5 @@
 @media  only screen and (min-width: 1200px) and (max-width: 1600px) { 
-    .manage-frnd .accept-btn span {
+    .manage-frnd .accept-btn span{
     padding: 12px 60px !important;
     background: #43d4dd;
     z-index: 9;
@@ -11,8 +11,26 @@
     color: #fff;
     border-radius: 40px;
 }
-.manage-frnd .read-more{
+.tribe-page  .accept-btn span {
+    padding: 12px 60px !important;
+    background: #43d4dd;
+    z-index: 9;
+    position: relative;
+    font-size: 20px;
+    top: -21px;
+    right: 0;
+    left: 2% !important;
+    color: #fff;
+    border-radius: 40px;
+}
+.tribe-page .frnd-cancel{
+	left: 12%;
+}
+.manage-frnd .read-more {
 	margin-left: 25% !important;
+}
+.tribe-page .read-more{
+	margin-left:4% !important;
 }
 .manage-frnd .top-friend-btn button span {
     margin-right: 0px;
@@ -35,6 +53,9 @@
 }
 }
 @media only screen and (max-width: 1024px) {
+	.tribe-page{
+		width: 100%;
+	}
 .newpopupdiv button {
 		background: #43D4DD;
 		border-radius: 35px;
@@ -68,6 +89,115 @@ border-radius: 35px;
 }
 
 @media only screen and (max-width: 600px) {
+	.tribe-mainheading {
+    color: #000;
+    display: none;
+}
+	.manage-frnd{
+		padding: 24px 0 !important;
+	}
+	.mob-dived {  
+    display: none !important;
+}
+	.btnplusfrnd {
+			span{
+				span{
+					display:none;
+				}
+			}
+			.tribplusfriend {
+    display: block !important;
+    text-align: center;
+    margin: 0 auto;
+}
+	}
+
+	.tribe-page{
+		.frnd-cancel {
+    left: 10% !important;
+	 span {
+    padding: 5px 20px !important;
+    font-size: 16px !important;
+}
+}
+.accept-btn span{
+	left: 0 !important;
+	padding: 5px 50px !important;
+font-size: 16px !important;
+}
+.read-more{
+	margin-left: 2% !important;
+	margin-top: -28px !important;
+}
+	}
+	.manage-frnd{
+		.pgeBG {
+    margin-top: 20px;
+	padding: 0 10px !important;
+}
+.accept-btn span{
+	left:0 !important;
+	padding: 5px 50px !important;
+	font-size: 16px !important;
+}
+.frnd-cancel span{
+	padding: 5px 20px !important;
+	font-size: 16px !important;
+}
+.read-more{
+	margin-left: 2% !important; 
+	width: 40px !important;
+height: 40px !important;
+margin-top: -28px !important;
+}
+.frnd-cancel{
+	left: 10% !important;
+}
+	}
+	.unfriend-Btn button {
+    font-size: 16px !important;
+    line-height: 16px !important;   
+}
+section.add-remove {
+    width: 330px !important;  
+}
+section.add-remove .frnd-yesBtn {   
+    margin-right: -25px !important;
+}
+section.add-remove .not-nowBtn{
+	padding: 6px 40px !important;
+}
+	.top-friend-btn {
+    padding: 0 !important;
+}
+.top-friend-btn button {   
+    font-size: 16px !important;
+    margin-right: 5px !important;
+    
+}
+.top-friend-btn button span span {
+    margin-right: 10px !important;
+}
+.top-friend-btn button .totalFriend {
+    margin-right: 0px !important;
+}
+.top-friend-btn button{
+	padding: 2px 10px !important;
+}
+.top-friend-btn .dived {
+    border: none;
+    font-size: 30px !important;
+    min-width: 0;
+	padding: 0 !important;
+}
+.top-friend-btn img {
+    width: 16px;
+}
+
+	.tribe-menu .pro-head{
+		min-height: 13px !important;
+		max-height: 43px !important;
+	}
 	.project-slect .MuiFilledInput-root{
 		max-height: 36px !important;
 		
@@ -106,6 +236,10 @@ border-radius: 35px;
 	.tribe-menu #slect-filled-label {  
     font-size: 18px !important;
     line-height: 22px !important;    
+	top:-14px !important
+}
+.tribe-menu .tribe-project .MuiFilledInput-input {
+    padding: 8px 12px 11px !important;   
 }
 	.main-pro-page .progess-page{
 		background: #ffff !important;
@@ -117,10 +251,15 @@ border-radius: 35px;
 }
 .tribe-menu .tribe-grid {
     width: 60px !important;
-    height: 48px !important;
+    height: 42px !important;
+	margin-left: 0 !important;
+}
+.tribe-menu .headPicon{
+	height: 44px !important;
+	margin-left: 10px;
 }
 .project-slect .slt-btn button{
-  padding: 10px 8px !important;
+  padding: 6px 8px !important;
 font-size: 20px !important;
 min-height: 40px !important;
 }
@@ -163,7 +302,8 @@ min-height: 40px !important;
 	.page-divid .pgeBG {
 		background: transparent;
 		border-radius: 35px;
-		padding: 0;
+		padding: 0 30px !important;
+		margin-top: 20px
 	}
 	.commonheight {
 		min-height: 75px;
@@ -256,17 +396,7 @@ min-height: 40px !important;
 			margin-right: 20px;
 		}
 	}
-	.tocodepupupdiv button {
-		background: #43D4DD;
-		border-radius: 35px;
-		min-width: 197px;
-		margin-bottom: 20px;
-		.tocode-tagsidebar {
-			margin-right: 20px;
-			font-weight: 700;
-font-size: 20px;
-		}
-	}
+	
 	.tribe-page .tribe-expandtext .expand-icontext button img {
 		margin-left: 20px;
 		max-width: 20px;
@@ -324,18 +454,37 @@ font-size: 20px;
 
 }
 @media only screen and (max-width: 440px) {
+	.project-slect .slt-btn button {
+    padding: 6px 4px !important;
+	font-size: 16px !important;
+}
+.project-slect .slt-btn button img {
+    width: 14px !important;  
+}
+.prj1 .MuiFilledInput-input {
+    padding: 8px 5px 10px !important;
+	font-size: 15px !important;
+}
+
 .tribe-menu .tribe-grid img {
-    margin-top: 10px !important;
-    width: 25px !important;
+    margin-top: 8px !important;
+    width: 22px !important;
 }
 .tribe-menu .tribe-grid {
     width: 50px !important;
 }
 .project-slect .slt-btn button{
-		min-width: 70px !important;
+		min-width: 65px !important;
 	}
 }
 @media only screen and (max-width: 420px) {
+	.send-code_main{
+		width: 360px;
+	}
+	.codpage #wrapper #codeform {
+    margin: 25px 5px 0 !important;
+   
+}
 	.main-pro-page .progess-page{
 		margin-top: 0 !important;
 		padding-left: 0 !important;
@@ -351,12 +500,15 @@ font-size: 20px;
 
 }
 @media only screen and (max-width: 400px) {
+	.project-slect .projectslect {
+    width: 215px !important;
+}
 .tribe-menu .MuiFormControl-root {
     max-width: 240px !important;
     width: 190px !important;
 }
-.project-slect .projectslect {
-    width: 230px !important;
+.project-slect .MuiSelect-selectMenu{
+	width: 160px;
 }
 
 }

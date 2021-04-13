@@ -17,6 +17,11 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
     onUpdate({ ...form, [event.target.name]: event.target.checked });
   };
 
+  const handleSubmitForm = ()=>{
+    onUpdate({ ...form, ["email"]: undefined });
+    handleEmailSkip()
+  }
+
   const handleJoinCodeChange = (code) => {
     onUpdate({ ...form, ["joincode"]: code });
   };
@@ -27,16 +32,15 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
         {!checked && (
           <>
             <h2>
-          WANNA ADD AN <br />
+          WANNA ADD AN  <br />
           EMAIL?
         </h2>
             <Grid container spacing={1}>
               <Grid item xs={12}>
                 <Box my={1}>
                   <TextField
-                    fullWidth
-                    required
-                    label="Email"
+                    fullWidth                  
+                    label="Email  (Optional)"                    
                     variant="outlined"
                     value={form.email}
                     onChange={handleFormEdit("email")}
@@ -46,9 +50,8 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
               <Grid item xs={12}>
                 <Box my={1}>
                   <TextField
-                    fullWidth
-                    required
-                    label="Password"
+                    fullWidth                   
+                    label="Password  (Optional)"
                      type="password"
                     variant="outlined"
                     value={form.password}
@@ -59,9 +62,8 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
               <Grid item xs={12}>
                 <Box my={1}>
                   <TextField
-                    fullWidth
-                    required
-                    label="City"
+                    fullWidth                   
+                    label="City  (Optional)"
                     variant="outlined"
                     value={form.city}
                     onChange={handleFormEdit("city")}
@@ -88,7 +90,7 @@ const UserRegisterStep2 = ({ onUpdate, form, handleEmailSkip, handleSubmitWithJo
               </Grid>
               <Grid container className="skp-sur-btn" spacing={1}>
                 <Grid item xs={4}>
-                  <Button onClick={()=>handleEmailSkip()} className="skip-btn">SKIP</Button>
+                  <Button onClick={()=>handleSubmitForm()} className="skip-btn">SKIP</Button>
                 </Grid>
                 <Grid item xs={8} className="sure-btn">
                   <Button onClick={()=>handleEmailSkip()}>SURE</Button>

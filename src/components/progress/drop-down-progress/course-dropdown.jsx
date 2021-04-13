@@ -56,7 +56,7 @@ const SelectCourseDropDown = ({ selectedCourse, setSelectedCourse, coursesData }
       <div className="project-slect">
         <div className="select-header">
           <div className="slt-btn">
-            <button></button>
+            <button> </button>
           </div>
 
           <div className="projectslect ">
