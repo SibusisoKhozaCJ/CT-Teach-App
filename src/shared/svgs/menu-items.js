@@ -30,12 +30,16 @@ import Browser from '../../assets/images/browser.svg';
 import ToolTip from '../../assets/images/tooltip-image.png';
 import Challenge from '../../assets/images/challenge-icon.png';
 import User from '../../assets/images/jonathan.png';
+import Bulb from '../../assets/images/bulb-icon.svg';
 
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
 };
 export const YellowArrowIcon = () => {
   return <img src={YellowArrow} alt="" style={{width: 50}} />;
+};
+export const BulbIcon = () => {
+  return <img src={Bulb} alt="" />;
 };
 export const CodeArrowIcon = () => {
   return <img src={CodeArrow} alt="" />;
