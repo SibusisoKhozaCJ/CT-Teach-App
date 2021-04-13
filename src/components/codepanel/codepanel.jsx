@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Media from "react-media";
-import { useDispatch, useSelector } from "react-redux";
+import Media from 'react-media';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // import { getLesson } from "./data/getLesson";
-import MobileLayout from './components/mobile/mobile-layout'
-import DesktopLayout from './components/desktop/desktop-layout'
-import Editor from './components/editor'
-import Preview from './components/preview'
-import Slider from './components/slider'
+import MobileLayout from './components/mobile/mobile-layout';
+import DesktopLayout from './components/desktop/desktop-layout';
+import Editor from './components/editor';
+import Preview from './components/preview';
+import Slider from './components/slider';
 import {
   codepanelSetSlides,
   codepanelSetChallenges,
@@ -17,56 +17,60 @@ import {
   codepanelSetProgress,
   codepanelSetSlideNumber,
   codepanelSetBlockUpdate,
-  codepanelSetCurrentLesson
+  codepanelSetCurrentLesson,
 } from '../../redux/actions/codepanel-actions';
 // import { getCodeFromLocal } from "./utils/localStorage"
-import * as authFetch from "../../shared/lib/authorizedFetch";
-import ProjectsModal from "./components/projects/projects-modal";
-import LeaveModal from "./components/leave-modal";
-import TakeTour from "./components/take-tour";
-import ResetModal from "./components/reset-modal";
-import { currentUserId } from "../../shared/lib/authentication";
-import lesson_dataC0001P001T000 from "./data-new/C001-P001-T000/lesson_data";
-import lesson_dataC0001P001T001 from "./data-new/C001-P001-T001/lesson_data";
-import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data";
-import { uploadLesson } from "./utils/upload-lesson";
+import * as authFetch from '../../shared/lib/authorizedFetch';
+import ProjectsModal from './components/projects/projects-modal';
+import LeaveModal from './components/leave-modal';
+import TakeTour from './components/take-tour';
+import ResetModal from './components/reset-modal';
+import { currentUserId } from '../../shared/lib/authentication';
 
-const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) => {
+import { uploadLesson } from './utils/upload-lesson';
+
+const Codepanel = ({
+  match: {
+    params: { courseId, projectId, trainingId },
+  },
+}) => {
   const dispatch = useDispatch();
   // const lesson = getLesson(trainingId);
   // const userId = useSelector(state => state.user.userId);
   const userId = currentUserId();
   // const lessonId = "5-min-website";
-  const isProjectsActive = useSelector(state => state.codepanel.isProjectsActive);
-  const isLeaveActive = useSelector(state => state.codepanel.isLeaveActive);
-  const isTourActive = useSelector(state => state.codepanel.isTourActive);
-  const isResetActive = useSelector(state => state.codepanel.isResetActive);
-  const currentLesson = useSelector(state => state.codepanel.currentLesson);
+  const isProjectsActive = useSelector(
+    (state) => state.codepanel.isProjectsActive
+  );
+  const isLeaveActive = useSelector((state) => state.codepanel.isLeaveActive);
+  const isTourActive = useSelector((state) => state.codepanel.isTourActive);
+  const isResetActive = useSelector((state) => state.codepanel.isResetActive);
+  const currentLesson = useSelector((state) => state.codepanel.currentLesson);
+  const currentSlideNumber = useSelector(
+    (state) => state.codepanel.currentSlide
+  );
   const [panel, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
-  const lessonPath = `${courseId}/${projectId}/${trainingId}`
+  const lessonPath = `${courseId}/${projectId}/${trainingId}`;
 
-  const history = useHistory()
+  const history = useHistory();
 
   const getProgressData = async (userId, trainingId) => {
-    return await authFetch.firebaseGet(
-      `User_profile/${userId}/${trainingId}`
-    );
-  }
+    return await authFetch.firebaseGet(`User_profile/${userId}/${trainingId}`);
+  };
 
   const getLesson = async (id) => {
-    // if(id === "T000"){
-    //   return lesson_dataC0001P001T000
-    // }else if (id === "T001"){
-    //   return lesson_dataC0001P001T001
-    // }else if (id === "T003"){
-    //   return lesson_dataC0001P001T003
-    // }
-    
-    return await authFetch.firebaseGet(
-      `Lessons/${id}`
-    );
-  }
+    return await authFetch.firebaseGet(`Lessons/${id}`);
+  };
+
+  const slideChangeHandler = (e) => {
+    if (e.target.value === 'top') {
+      dispatch(codepanelSetSlideNumber(currentSlideNumber - 1));
+    }
+    if (e.target.value === 'bottom') {
+      dispatch(codepanelSetSlideNumber(currentSlideNumber + 1));
+    }
+  };
 
   useEffect(() => {
     // uploadLesson();
@@ -76,13 +80,13 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
       // dispatch(codepanelSetSlides(l));
       // dispatch(codepanelSetCurrentLesson(lessonPath));
       // setLesson(l);
-      getLesson(trainingId).then(data => {
+      getLesson(trainingId).then((data) => {
         if (data) {
           dispatch(codepanelSetSlides(data));
           dispatch(codepanelSetCurrentLesson(lessonPath));
           setLesson(data);
         }
-      })
+      });
     }
 
     // if (typeof localStorage !== "undefined") {
@@ -108,53 +112,53 @@ const Codepanel = ({ match: { params: { courseId, projectId, trainingId } } }) =
     dispatch(codepanelSetChallenges(challenges));
 
     if (userId) {
-      getProgressData(userId, lessonPath).then(data => {
+      getProgressData(userId, lessonPath).then((data) => {
         if (data) {
-          const { challenges, progress, current_slide, user_code } = data
+          const { challenges, progress, current_slide, user_code } = data;
           progress && dispatch(codepanelSetProgress(progress));
           current_slide && dispatch(codepanelSetSlideNumber(current_slide));
-          challenges && dispatch(codepanelSetChallenges(challenges))
-          user_code && dispatch(codepanelSetCode(user_code))
+          challenges && dispatch(codepanelSetChallenges(challenges));
+          user_code && dispatch(codepanelSetCode(user_code));
         }
         dispatch(codepanelSetBlockUpdate(false));
-      })
+      });
     }
-
   }, [userId, lessonPath, lesson]);
 
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,
     editor: <Editor />,
-    preview: <Preview />
-  }
+    preview: <Preview />,
+  };
 
   return (
     <>
       {panels && lesson && (
         <Media
-        queries={{
-          mobile: "(max-width: 767px)",
-          desktop: "(min-width: 768px)"
-        }}
-      >
-        {matches => (
-          <>
-            {matches.desktop && (
-              <DesktopLayout {...panels}/>
-            )}
-            {matches.mobile && (
-              <MobileLayout {...panels}/>
-            )}
-          </>
-        )}
-      </Media>
+          queries={{
+            mobile: '(max-width: 767px)',
+            desktop: '(min-width: 768px)',
+          }}
+        >
+          {(matches) => (
+            <>
+              {matches.desktop && (
+                <DesktopLayout
+                  {...panels}
+                  slideChangeHandler={slideChangeHandler}
+                />
+              )}
+              {matches.mobile && <MobileLayout {...panels} />}
+            </>
+          )}
+        </Media>
       )}
-    {isProjectsActive && <ProjectsModal />}
-    {isLeaveActive && <LeaveModal />}
-    {isTourActive && <TakeTour />}
-    {isResetActive && <ResetModal />}
+      {isProjectsActive && <ProjectsModal />}
+      {isLeaveActive && <LeaveModal />}
+      {isTourActive && <TakeTour />}
+      {isResetActive && <ResetModal />}
     </>
-  )
+  );
 };
 
-export default Codepanel
+export default Codepanel;
