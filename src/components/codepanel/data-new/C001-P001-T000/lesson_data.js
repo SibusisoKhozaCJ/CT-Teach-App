@@ -1,10 +1,6 @@
-export const lesson_data = {
+const lesson_dataC0001P001T000 = {
   // default code, if user has not already started coding
-  defaultCode: `
-
-
-
-`,
+  defaultCode: ``,
   kbLayout: "", // not currently in use
   loadJS: "", // not currently in use
   prevLessonID: "", // Lesson ID of previous lesson where to load user's code
@@ -25,9 +21,9 @@ export const lesson_data = {
   slides: [
     {
       slide_number: 1,
+      challenge_id: 0,
       action: true,
       challenge: true,
-      challenge_id: 0,
       reg: [
         {
           description: "add <h1> tag",
@@ -73,6 +69,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 2,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -97,6 +94,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 3,
       action: true,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
@@ -108,6 +106,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 4,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -117,6 +116,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 5,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -126,6 +126,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 6,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -135,6 +136,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 7,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -144,6 +146,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 8,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -153,9 +156,10 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 9,
+      challenge_id: 1,
       action: true,
       challenge: true,
-      challenge_id: 1,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp-peach black",
       html_content: `
@@ -191,19 +195,20 @@ export const lesson_data = {
           description: "type your name inside <h1> tag",
           rule: "<h1>[\\s\\r\\n]*(.*)[\\s\\r\\n]*<\\/h1>",
         },
-        {
-          description: "create <p> tag",
-          rule: "<p(.*)>",
-        },
-        {
-          description: "create <b> tag",
-          rule: "<b(.*)>",
-        },
+        // {
+        //   description: "create <p> tag",
+        //   rule: "<p(.*)>",
+        // },
+        // {
+        //   description: "create <b> tag",
+        //   rule: "<b(.*)>",
+        // },
       ],
       sort_order: 15,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 10,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -213,6 +218,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 11,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -222,6 +228,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 12,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -231,6 +238,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 13,
       action: true,
       challenge: true,
       challenge_id: 2,
@@ -275,6 +283,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 14,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -284,6 +293,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 15,
       action: true,
       challenge: true,
       challenge_id: 3,
@@ -328,6 +338,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 16,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -337,6 +348,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 17,
       action: true,
       challenge: true,
       challenge_id: 4,
@@ -381,6 +393,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 18,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -390,6 +403,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 19,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -399,6 +413,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 20,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -408,6 +423,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 21,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -417,6 +433,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 22,
       action: true,
       challenge: true,
       challenge_id: 5,
@@ -462,6 +479,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 23,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -471,6 +489,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 24,
       action: true,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
@@ -481,6 +500,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 25,
       action: true,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
@@ -500,6 +520,7 @@ export const lesson_data = {
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
+      slide_number: 26,
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
@@ -523,30 +544,5 @@ export const lesson_data = {
   ],
 };
 
-let check_points = {};
+export default lesson_dataC0001P001T000;
 
-let hintsForCheckPonts = {};
-
-let hints_data = `
-
-  <p style="margin-bottom:0px;">Slide: 12</p>
-  <pre style="margin-bottom:10px; color:#ccc;">&lt;h1&gt;Nomzamo Mbatha&lt;/h1&gt;</pre>
-  <p style="margin-bottom:0px;">Slide: 14</p>
-  <pre style="margin-bottom:10px;">&lt;p>Hi! I'm Nomzamo Mbatha, An Actress. Say Hello!&lt;/p&gt;</pre>
-  <p style="margin-bottom:0px;">Slide: 19</p>
-  <pre style="margin-bottom:10px;">&lt;input type="email"&gt;</pre>
-  <p style="margin-bottom:0px;">Slide: 23</p>
-  <pre style="margin-bottom:10px;">&lt;input type="submit" &gt;</pre>
-  <p style="margin-bottom:0px;">Slide: 27</p>
-  <pre>placeholder="Your email"</pre>
-
-`;
-// / Add custom JS for lesson below here
-
-// function onlessonLoaded() {
-//   $("#lesson-page").addClass("show-help");
-
-//   $(".submit-CodeChallenge").click(function () {
-//     submitCodeChallengeModal("submit-lesson-url");
-//   });
-// }
