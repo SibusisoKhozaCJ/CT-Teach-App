@@ -338,7 +338,7 @@ const ProectItem = (
                     </Link>
                     <Link
                       onClick={() => {
-                        history.push(`/codepanel/C001/P001/T001`);
+                        history.push(`/codepanel/C001/P001/${lessons[0]}`);
                         closeSidebar();
                       }}
                       className={classes.btnStart}
