@@ -53,6 +53,7 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
         </ReflexElement>
 
         <ReflexSplitter style={{ zIndex: 0 }} />
+        
         <ReflexElement flex={1}>{editor}</ReflexElement>
         {isPreviewVisible ? (
           <>

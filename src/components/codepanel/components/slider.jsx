@@ -161,6 +161,7 @@ const Slider = () => {
     return <div>Loading</div>
   }
 
+  console.log("lesson===", lesson)
   return (
     <ReflexContainer
       className={classes.pageLesson}
