@@ -282,7 +282,6 @@ const ProectItem = (
   useEffect(() => {
     setIsListEmpty(!(level || fun || time || outline))
   }, [level, fun, time, outline])
-
   return (
     <Card button={{
       classes: "bottom-right",
