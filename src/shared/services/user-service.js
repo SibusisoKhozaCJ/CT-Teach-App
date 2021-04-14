@@ -8,6 +8,7 @@ function isLoggedIn() {
 function logOut() {
 	if (typeof window == 'undefined')
 		localStorage.removeItem('user');
+		localStorage.removeItem('tutorial-finished');
 	removeCookie('token');
 }
 
