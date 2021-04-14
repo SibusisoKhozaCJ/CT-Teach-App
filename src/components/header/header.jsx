@@ -29,7 +29,8 @@ import routes from "../../routes";
 import { isCurrentUser, setUserId } from "../../redux/actions/user-actions";
 import { onLogout} from "../../redux/actions/combined-actions";
 import * as actions from "../../redux/actions/chat-action";
- 
+import Homeicon from "../../assets/images/home.svg";
+
 
 export default function Header() {
   const location = useLocation();
@@ -42,6 +43,9 @@ export default function Header() {
   const dispatch = useDispatch();
   const [idFromUrl, setIdFromUrl] = useState('');
   const [isLayoutRender,setIsLayoutRender] = useState(false);
+  var splitPath = window.location.pathname.split('/')
+  var path = splitPath[splitPath.length - 1];
+
   const shouldLayoutRender = (pathname)=>{
     if (
         pathname === routes.LOGIN ||
@@ -109,7 +113,11 @@ export default function Header() {
           )}
           
         </IconButton>
-         <div className="headhomeiocn"> < HomeSVG/></div>
+         <div className="headhomeiocn">
+
+           <a href={"home"}>
+           <img src={Homeicon} class={` ${path == "home" ? "header-accont" : ""}`} alt="" /></a>
+         </div>
         <Typography variant="h6" weight="medium" className="headerlogotext">
           {location.pathname === "/tribe" ? "Tribes" : ""}
         </Typography>
