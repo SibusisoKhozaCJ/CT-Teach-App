@@ -95,12 +95,11 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   const isProjectLoading = useSelector(state => state.projects.is);
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
   const history = useHistory()
-
   useEffect(() => {
-    // if (isLessonsLoading === null) {
+     if (id === "P001") {
       dispatch(lessonsGetList(id))
       dispatch(projectsGetById(id))
-    // }
+     }
   }, [dispatch, id])
 
   if (isLessonsLoading || isProjectLoading) {
@@ -110,10 +109,9 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
       </div>
     )
   }
-
   return (
     <div className={classes.root}>
-      <Card
+      {id === 'P001' && <Card
         button={isDesktop ? null : {
           classes: "bottom-left",
           content: (
@@ -144,7 +142,7 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
           )}
         </ul>
         {!isDesktop && <Link onClick={backToProjects} className={classes.back}>Back</Link>}
-      </Card>
+      </Card>}
     </div>
 
   )
