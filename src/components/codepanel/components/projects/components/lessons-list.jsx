@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import LeftArrowIcon from "../../../../../assets/images/chevron-left-pink.png";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import classNames from 'classnames';
 import Grid from '@material-ui/core/Grid';
@@ -111,10 +112,9 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
   const history = useHistory()
   useEffect(() => {
-     if (id === "P001") {
       dispatch(lessonsGetList(id))
       dispatch(projectsGetById(id))
-     }
+     
   }, [dispatch, id])
 
   if (isLessonsLoading || isProjectLoading) {
@@ -126,13 +126,14 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   }
   return (
     <div className={classes.root}>
-      {id === 'P001' && <Card
+       <Card
         button={{
           classes: "bottom-left",
           content: (
-            <Link onClick={backToProjects} className={classes.leftArrow}>
-              <KeyboardArrowLeftIcon />
-            </Link>
+            <img src={LeftArrowIcon} alt="" className="coverage" />
+            // <Link onClick={backToProjects} className={classes.leftArrow}>
+            //   <KeyboardArrowLeftIcon />
+            // </Link>
           )
         }}
         // style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 24, margin: "20px 10px", minHeight: "80%"  }}
@@ -161,7 +162,7 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
           )}
         </ul>
         {<Link onClick={backToProjects} className={classes.back} style={{marginBottom: isDesktopQuery ? "0px" : "26px"}}>Back</Link>}
-      </Card>}
+      </Card>
     </div>
 
   )

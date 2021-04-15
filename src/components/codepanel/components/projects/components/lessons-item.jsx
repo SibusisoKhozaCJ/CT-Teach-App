@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
 
   title: {
     marginLeft: 12,
-    fontSize: 13,
+    fontSize: 15,
   },
 
   link: {
