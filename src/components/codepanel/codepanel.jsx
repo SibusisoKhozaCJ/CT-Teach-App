@@ -69,6 +69,7 @@ const Codepanel = ({
   };
 
   const slideChangeHandler = (e) => {
+    e.preventDefault();
     if (e.target.value === 'top') {
       dispatch(codepanelSetSlideNumber(currentSlideNumber - 1));
     }

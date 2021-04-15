@@ -12,7 +12,7 @@ import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
-
+import rightArrow from "../../../../assets/images/chevron-right-icon.png"
 import {
   codepanelIncSlideNumber,
   codepanelDecSlideNumber
@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    width:'100%',
+    marginLeft:'20px'
   },
   moreBtn: {
     "&:hover $morePopup": {
@@ -43,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
     right: "100%",
     backgroundColor: theme.palette.secondary.main,
     borderRadius: 25
+  },
+  pagination:{
+    width:'50%',
+    marginLeft:'10px'
   }
 }));
 
@@ -56,25 +62,25 @@ const Bottombar = () => {
       <AppBar position="static">
         <Toolbar>
           <div className={classes.bottomBarWrapper}>
-            <div className={classes.bottomBarField}>
+            {/* <div className={classes.bottomBarField}>
               <Typography style={{ color: "#000" }}>
                 Lesson Breadcrumbs
               </Typography>
-            </div>
+            </div> */}
             <div className={classes.bottomBarField}>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelDecSlideNumber())}
                 variant="outlined"
               >
-                Back
+                <KeyboardArrowLeftIcon />Back  
               </Button>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelIncSlideNumber())}
                 variant="outlined"
               >
-                Next
+                Next  <KeyboardArrowRightIcon />
               </Button>
             </div>
             <div className={classes.bottomBarField}>
@@ -84,7 +90,7 @@ const Bottombar = () => {
                   onClick={() => setIsCollapse(v => !v)}
                   title="Expand"
                 >
-                  <KeyboardArrowLeftIcon />
+                  {/* <KeyboardArrowLeftIcon /> */}
                 </IconButton>
               ) : (
                 <IconButton
@@ -92,7 +98,7 @@ const Bottombar = () => {
                   onClick={() => setIsCollapse(v => !v)}
                   title="Collapse"
                 >
-                  <KeyboardArrowRightIcon />
+                  {/* <KeyboardArrowRightIcon /> */}
                 </IconButton>
               )}
               <IconButton
