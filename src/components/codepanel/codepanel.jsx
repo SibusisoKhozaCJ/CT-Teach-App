@@ -61,8 +61,11 @@ const Codepanel = ({
   };
 
   const getLesson = async (id) => {
-    return lesson_dataC0001P001T003;
-    // return await authFetch.firebaseGet(`Lessons/${id}`);
+    if(id === "T003"){
+      return lesson_dataC0001P001T003;
+    }else{
+      return await authFetch.firebaseGet(`Lessons/${id}`);
+    }
   };
 
   const slideChangeHandler = (e) => {

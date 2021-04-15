@@ -147,7 +147,7 @@ padding: 0px 15px;
 }
 .preview-iframe {
 position: absolute;
-tXop: 32px;
+top: 32px;
 bottom: 0px;
 right: 0px;
 height: 100%;
@@ -316,7 +316,7 @@ display: block;
 width: 100%;
 margin: 0;
 border-radius: 0;
-paddiXng-bottom: 40px;
+padding-bottom: 40px;
 }
 .pagination .col-4 {
 text-align: center!important;
@@ -329,7 +329,7 @@ vertical-align: middle;
 color: black;
 font-size: 16px;
 padding: 10px;
-bordXer-radius: 10px;
+border-radius: 10px;
 background-color: white;
 width: 100%;
 }
@@ -416,24 +416,24 @@ min-width: 100px;
 max-width: 400px;
 padding: 12px;
 }
-.cheXckpoint {
+.checkpoint {
 z-index: 80;
-heXight: 300px;
-botXtom: 3px;
-toXp: 0;
-lefXt: 0;
-rigXht: 0;
+height: 300px;
+bottom: 3px;
+top: 0;
+left: 0;
+right: 0;
 background: #FFDE01!important;
-overfXlow: hidden;
-textX-align: center;
-paddXing-bottom: 25px;
--webXkit-user-select: none;
--webXkit-transform: translateZ(0);
--mozX-transform: translateZ(0);
-tranXsform: translateZ(0);
+overflow: hidden;
+text-align: center;
+padding-bottom: 25px;
+-webkit-user-select: none;
+-webkit-transform: translateZ(0);
+-moz-transform: translateZ(0);
+transform: translateZ(0);
 }
 #lesson-page .swiper-slide.cp_yellow {
-z-indXex: 80;
+z-index: 80;
 background-color: #FFDE01!important;
 }
 
@@ -654,7 +654,7 @@ position: relative;
 float: left;
 width: 100%;
 position: relative;
-oveXrflow: hidden;
+overflow: hidden;
 }
 .card {
 box-shadow: none;
@@ -665,7 +665,7 @@ margin-left: auto;
 margin-right: auto;
 padding: 20px;
 /*		padding: 20px 26px 20px 20px;*/
-heXight: 100%;
+height: 100%;
 }
 .show-menu .container {
   padding: 20px 10px 20px 10px;
@@ -768,7 +768,7 @@ display: block;
 float: left;
 width: 100%;
 position: relative;
-oveXrflow: hidden;
+overflow: hidden;
 }
 #previewXs_page,
 #editor-page {
@@ -796,7 +796,7 @@ color: #fff;
 
 .section {
 text-align: center;
-padXding: 40px;
+padding: 40px;
 background-color: black;
 }
 /* Fixed header and footer.
@@ -955,7 +955,7 @@ color: #fff;
 }
 
 .modal-open .modal {
-bacXkground-color: rgba(0, 0, 0, 0.60);
+background-color: rgba(0, 0, 0, 0.60);
 }
 .modal-backdrop.show {
 opacity: .9;
@@ -1121,7 +1121,7 @@ color: #ff6a04;
 transform: translate(0, 0);
 top: calc(50% - 120px);
 transform: translateY(-50%);
-margXin: 2.0rem;
+margin: 2.0rem;
 margin: auto;
 }
 .modal.show .modal-dialog.top-align {
@@ -1250,7 +1250,7 @@ list-style: none;
 	padding: 4px 10px 4px 4px;
 	margin-bottom: 10px;
 	cursor: pointer;
-	Xmin-height: 54px;
+	min-height: 54px;
 	color: #000;
 }
 #profile_page li:hover {
@@ -1462,7 +1462,7 @@ background: #fff;*/
 
 
 .embed-nav li.active a:after {
-borXder-top-color: #3ec9cb;
+border-top-color: #3ec9cb;
 border-top-color: #f2ffff;
 display: none;
 }
@@ -1530,7 +1530,7 @@ line-height: 20px;
 padding: 0;
 }
 .ui-keyboard-button span {
-padXding-bottom: 4px;
+padding-bottom: 4px;
 }
 .ui-keyboard-div {
 position: fixed;
@@ -1552,12 +1552,12 @@ width: 100%;
 height: 100%;
 }
 .swiper-container-h .swiper-wrapper {
-heigXht: calc(100% - 50px);
+height: calc(100% - 50px);
 height: 100%;
 }
 .swiper-container-h  {
 padding-top: 35px;
-		marXgin-top: 32px;
+		margin-top: 32px;
 }
 .is-projects .swiper-container-h {
   padding-top: 40px;
@@ -1569,8 +1569,8 @@ background-color: rgba(0, 0, 0, 0.7);
         z-index: 1100;
 }
 .swiper-slide {
-texXt-align: center;
-fonXt-size: 18px;
+text-align: center;
+font-size: 18px;
 background: #fff;
 /* Center slide text vertically */
 display: -webkit-box;
@@ -1593,7 +1593,7 @@ align-items: center;
   height: 100%;
 }
 .is-desktop .swiper-slide {
-	Xheight: fit-content !important;
+	height: fit-content !important;
 }
 .swiper-container-v {
 background: #333;
@@ -1790,7 +1790,7 @@ width: fit-content;
 
 
 #lesson-page .container {
-color: #fff;
+// color: #fff;
 padding: 20px 40px 20px 24px;
 }
 
@@ -1806,7 +1806,7 @@ font-size: 80%!important;
 
 #lesson-page .slide-chapter {
 color: #fff;
-font-faXmily: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 font-size: 48px;
 text-transform: none;
 }
@@ -1869,7 +1869,7 @@ color: white;
 .myLabel {background-color: #fff;} 
 #container {width: 100%;position: relative;margin: 10px;} 
 #w1 {
-	posXition: absolute;
+	position: absolute;
 	left: 360px;
 	top: 110px;
 	width: 100px;
@@ -1878,7 +1878,7 @@ color: white;
 	word-break: break-all;
 } 
 #w2 {
-	posiXtion: absolute;
+	position: absolute;
 	left: 250px;
 	top: 250px;
 	width: 220px;
@@ -1959,7 +1959,7 @@ stroke-width:1;
 }
  
  .lesson-Xtitle {
- weight: normal;
+ font-weight: normal;
  }
  #lesson-page h3.lesson-title {
 	font-size: 32px;
@@ -2190,20 +2190,20 @@ text-transform: unset;
 	background-color:#0f0f0f;
 	} */
 	#ediXtor_page {
-		backXground: #1f1f1f;
-	paddXing-top: 10px;
+		background: #1f1f1f;
+	padding-top: 10px;
 	padding-bottom: initial;
 	}
 	#editor-page, #prevXiew_page, #profile_page {
 			padding-bottom: initial;
-					heiXght: calc(100% - 32px);
+					height: calc(100% - 32px);
 					height:100%;
 	}
 
 
 .is-mobile .CodeMirror {
 	font-size: 20px;
-	paddXing: 10px 0 0 0;
+	padding: 10px 0 0 0;
 }
 
 .swiper-coXntainer-h {
@@ -2219,7 +2219,7 @@ text-transform: unset;
 	left: 0;
 	position: absolute;
 	z-index: 1050;
-	dispXlay: none;
+	display: none;
 }
 .spinner {
 margin: calc(50vh - 60px) calc(50% - 25px);
@@ -2756,7 +2756,7 @@ content: "\f2bd";
 #createGalleryPage  .gallery-container{
 	margin-left: auto;
 	margin-right: auto;
-	Xmargin-bottom: 25em;
+	margin-bottom: 25em;
 }
 #createGalleryPage .card-blog{
 border: 1px solid #dddddd;
@@ -3863,11 +3863,11 @@ vertical-align: 0 !important
   .modal {
     z-index: 1200;
    /* padding-top: 10px!important;*/
-    Xvertical-align: text-bottom;
+    vertical-align: text-bottom;
   }
 
   .modal a.close-modal {
-    toXp: 0px !important;
+    top: 0px !important;
   }
 
   .blocker {
@@ -4425,7 +4425,7 @@ vertical-align: 0 !important
 .pagination {
 	position: relative;
     top: -29px;
-    wiXdth: 95%;
+    width: 95%;
 	margin: auto;
 	    background: black;
 }
@@ -4777,7 +4777,7 @@ opacity: 1;
     #userKey{
         /* max-width: calc(100% / 3 - 30px); */
         margin: 10px;
-        Xbox-shadow: 0 0 36px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 36px rgba(0, 0, 0, 0.1);
     }
     
 /* modal css start */
@@ -4935,7 +4935,7 @@ opacity: 1;
 #galleryModal .modal-dialog {
     max-width: 95%;
    width: 1600px;
-    Xoverflow-y: auto;
+    overflow-y: auto;
         height: 95%;
 }
 
@@ -5139,14 +5139,14 @@ opacity: 1;
     flex: 1 1 auto;
     height: 100%;
     background: rgba(0,0,0,0.3);
-    Xwidth: 100%; 
+    width: 100%; 
     min-width: 300px;
 }
 .col-preview {
     flex: 1 1 auto; 
-    Xheight: unset; 
+    height: unset; 
     background: rgba(0,0,0,0.4);    
-    Xwidth: 100%; 
+    width: 100%; 
     min-width: 300px;
 }
 /*
@@ -5584,7 +5584,7 @@ position: absolute;
     height: 2.4em;
     width: 2.4em;
     text-align: center;
-    Xopacity: .5;
+    opacity: .5;
     align-items: center;
     display: flex;
     vertical-align: middle;
@@ -5623,10 +5623,10 @@ color: #454534;
 }
 
 .is-lessons .tippy-box[data-theme~=green][data-placement^=right]>.tippy-arrow:before{
-    borXder-right-color: #F657A9;
+    border-right-color: #F657A9;
 }
 .is-lessons .tippy-box[data-theme~=green][data-placement^=bottom]>.tippy-arrow:before{
-    borXder-bottom-color: #F657A9;
+    border-bottom-color: #F657A9;
 }
 
 .is-lessons .tippy-box[data-theme~=intro1] .tippy-arrow{
@@ -5676,7 +5676,7 @@ color: #454534;
 }
 
 a.menu-button.cross.close-tour {
-  tXop: 4px;
+  top: 4px;
   right: 4px;
   height: 2.4em;
   width: 2.4em;
@@ -5776,6 +5776,17 @@ a.menu-button.cross.close-tour .bar {
   width: initial !important;
 }
 
+@media (min-width:992px){
+  #lesson-page .challenge .button-locked{
+    max-width:75%;
+    margin:0 auto;
+  }
+}
+
+#lesson-page .challenge .skip{
+  font-size:14px !important;
+}
+
 /* COLOR PRESETS */
 
 /* default */
@@ -5810,7 +5821,8 @@ a.menu-button.cross.close-tour .bar {
 }
 
 #lesson-page .challenge .swiper-editor {
-  background-color: #35abe6 !important;
+  // background-color: #35abe6 !important;
+  background-color: #ff6a00 !important;
 }
 
 #lesson-page .bg-peach,
@@ -5883,7 +5895,7 @@ a.menu-button.cross.close-tour .bar {
 }
 
 #lesson-page .yellow {
-  xcolor: #ffc000 !important;
+  color: #ffc000 !important;
   color: #ffe712 !important;
 }
 
@@ -5990,7 +6002,7 @@ a.menu-button.cross.close-tour .bar {
 
 #lesson-page .h0 {
   font-size: 3.5em !important;
-  mxargin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .tippy-box .h1,
@@ -6003,60 +6015,60 @@ a.menu-button.cross.close-tour .bar {
 #editor-page .h2,
 #lesson-page .h2 {
   font-size: 1.8em;
-  xmargin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .tippy-box .h3,
 #editor-page .h3,
 #lesson-page .h3 {
   font-size: 1.75em;
-  xmargin-bottom: 0.9em;
+  margin-bottom: 0.9em;
 }
 
 .tippy-box .h4,
 #editor-page .h4,
 #lesson-page .h4 {
   font-size: 1.2em;
-  xmargin-bottom: 0.75em;
+  margin-bottom: 0.75em;
 }
 
 .tippy-box .h5,
 #editor-page .h5,
 #lesson-page .h5 {
   font-size: 1em;
-  xmargin-bottom: 0.65em;
+  margin-bottom: 0.65em;
 }
 
 .tippy-box .h6,
 #editor-page .h6,
 #lesson-page .h6 {
   font-size: 1em;
-  xmargin-bottom: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 #lesson-page .fs55 {
   font-size: 0.55em !important;
-  xmargin-bottom: 0.35em;
+  margin-bottom: 0.35em;
 }
 
 #lesson-page .fs65 {
   font-size: 0.65em !important;
-  xmargin-bottom: 0.35em;
+  margin-bottom: 0.35em;
 }
 
 #lesson-page .fs75 {
   font-size: 0.75em !important;
-  xmargin-bottom: 0.35em;
+  margin-bottom: 0.35em;
 }
 
 #lesson-page .fs80 {
   font-size: 0.8em !important;
-  xmargin-bottom: 0.35em;
+  margin-bottom: 0.35em;
 }
 
 #lesson-page .fs85 {
   font-size: 0.85em !important;
-  xmargin-bottom: 0.35em;
+  margin-bottom: 0.35em;
 }
 
 #lesson-page .arial {
@@ -6083,7 +6095,8 @@ a.menu-button.cross.close-tour .bar {
 }
 
 .inline-code {
-  color: #666;
+  // color: #666;
+  font-weight: inherit;
 }
 
 .html-code-box {
@@ -6104,11 +6117,11 @@ a.menu-button.cross.close-tour .bar {
 }
 
 .fade-box-top {
-  xpadding-top: 0px !important;
+  padding-top: 0px !important;
 }
 
 .fade-box-bottom {
-  xpadding-bottom: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 .fade-box,
@@ -6213,7 +6226,7 @@ a.menu-button.cross.close-tour .bar {
 }
 
 #lesson-page .briefing .slide-header {
-  xfont-weight: bold;
+  font-weight: bold;
   text-transform: unset;
 }
 
@@ -6234,7 +6247,7 @@ a.menu-button.cross.close-tour .bar {
 
 .tasks {
   margin: 0;
-  xpadding-bottom: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .debugging .tasks {
@@ -6425,7 +6438,7 @@ a.menu-button.cross.close-tour .bar {
   animation: 2s blink step-end infinite;
 }
 
-@keyframes "blink" {
+@keyframes blink {
   from,
   to {
     color: transparent;
@@ -6445,7 +6458,7 @@ a.menu-button.cross.close-tour .bar {
   }
 }
 
-@-webkit-keyframes "blink" {
+@-webkit-keyframes blink {
   from,
   to {
     color: transparent;
@@ -6455,7 +6468,7 @@ a.menu-button.cross.close-tour .bar {
   }
 }
 
-@-ms-keyframes "blink" {
+@-ms-keyframes blink {
   from,
   to {
     color: transparent;
@@ -6465,7 +6478,7 @@ a.menu-button.cross.close-tour .bar {
   }
 }
 
-@-o-keyframes "blink" {
+@-o-keyframes blink {
   from,
   to {
     color: transparent;
