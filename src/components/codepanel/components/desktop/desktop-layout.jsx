@@ -52,12 +52,10 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
           )}
         </ReflexElement>
 
-        <ReflexSplitter style={{ zIndex: 0 }} />
-        <ReflexElement flex={1} style={{ borderRadius:'4%'}}>{editor}</ReflexElement>
+        <ReflexElement flex={1} style={{ borderRadius:'4%',  marginLeft: 7}}>{editor}</ReflexElement>
         {isPreviewVisible ? (
           <>
-            <ReflexSplitter style={{ zIndex: 0 }} />
-            <ReflexElement flex={1} style={{ borderRadius:'4%'}}>{preview}</ReflexElement>
+            <ReflexElement flex={1} style={{ borderRadius:'4%',  marginLeft: 7}}>{preview}</ReflexElement>
           </>
         ) : null}
       </ReflexContainer>
