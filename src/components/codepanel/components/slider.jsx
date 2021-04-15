@@ -193,7 +193,7 @@ const Slider = () => {
                   classes.reflex
                 } snap1 white hide-help swiper-slide ${
                   slide.reg ? " bg-orange" : ""
-                }`}
+                } ${slide.css_class ? slide.css_class : ""} `} 
                 flex={1}
                 style={{ height: "100%" }}
               >
