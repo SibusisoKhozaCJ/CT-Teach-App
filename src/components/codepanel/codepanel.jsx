@@ -27,7 +27,7 @@ import TakeTour from "./components/take-tour";
 import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
 import ToolTip from './components/tool-tip/tool-tip';
-
+import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data"
 import { uploadLesson } from './utils/upload-lesson';
 
 const Codepanel = ({
@@ -61,7 +61,8 @@ const Codepanel = ({
   };
 
   const getLesson = async (id) => {
-    return await authFetch.firebaseGet(`Lessons/${id}`);
+    return lesson_dataC0001P001T003;
+    // return await authFetch.firebaseGet(`Lessons/${id}`);
   };
 
   const slideChangeHandler = (e) => {
