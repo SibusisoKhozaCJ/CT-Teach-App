@@ -126,7 +126,7 @@ const Editor = () => {
   }, [dispatch, textareaRef])
 
   useEffect(() => {
-    const isChallenge = lesson.slides[currentSlide].challenge;
+    const isChallenge =  ( currentSlide != null && typeof (lesson.slides[currentSlide])  !== 'undefined' ) ?   lesson.slides[currentSlide].challenge:'';
     if (isBlocked) {
       return;
     }
@@ -295,7 +295,8 @@ const Editor = () => {
         </div>
       ) : null}
       {challengesPrepared && isCheckerActive && <Checker challenges={challengesPrepared} percent={percent}/>}
-      {lesson.slides[currentSlide].tip && <Tip content={lesson.slides[currentSlide].tip} />}
+      typeof(value) !== 'undefined' && value != null
+      { currentSlide != null && typeof (lesson.slides[currentSlide])  !== 'undefined' && lesson.slides[currentSlide].tip && <Tip content={lesson.slides[currentSlide].tip} />}
     </form>
   );
 }
