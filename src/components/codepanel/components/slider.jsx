@@ -162,6 +162,8 @@ const Slider = () => {
   }
 
   console.log("lesson===", lesson)
+  console.log("currentSlideNumber===", currentSlideNumber)
+  
   return (
     <ReflexContainer
       className={classes.pageLesson}

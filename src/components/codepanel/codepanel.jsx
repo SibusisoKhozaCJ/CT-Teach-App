@@ -48,7 +48,7 @@ const Codepanel = ({
   const [panel, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`;
-
+  console.log(" lessonPath=== ", lessonPath)
   const history = useHistory();
 
   const getProgressData = async (userId, trainingId) => {
@@ -77,6 +77,7 @@ const Codepanel = ({
       // dispatch(codepanelSetCurrentLesson(lessonPath));
       // setLesson(l);
       getLesson(trainingId).then((data) => {
+        console.log(" lession data in codepanel === ", data)
         if (data) {
           dispatch(codepanelSetSlides(data));
           dispatch(codepanelSetCurrentLesson(lessonPath));
@@ -127,6 +128,7 @@ const Codepanel = ({
     preview: <Preview />,
   };
 
+  console.log("userId===>", userId);
   return (
     <>
       {panels && lesson && (

@@ -33,6 +33,10 @@ export const debounce = (fn, time) => {
   timer = setTimeout(fn, time);
 };
 
+function upperCasefirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const Editor = () => {
   const storedCode = useSelector(state => state.codepanel.code);
   const fontSize = useSelector(state => state.codepanel.fontSize);
@@ -63,7 +67,7 @@ const Editor = () => {
     const currentChallenge = challenges[lesson.slides[currentSlide].challenge_id]
     if (currentChallenge.validators) {
       challengesPrepared = rules.map((rule, index) => ({
-        description: rule.description,
+        description: upperCasefirst(rule.description),
         status: currentChallenge.validators[index]
       }))
     }
@@ -168,9 +172,9 @@ const Editor = () => {
         setIsAnimation(false);
       }
 
-      let newChallenges = {...challenges, [challenge_id]: validated};
+      let newChallenges = { ...challenges, [challenge_id]: validated };
       let challenges_completed = 0
-      for (let i=0; i <= challengesCount -1; i++) {
+      for (let i = 0; i <= challengesCount - 1; i++) {
         if (challenges[i].progress === 100) {
           challenges_completed++
         }
@@ -236,19 +240,19 @@ const Editor = () => {
     >
       {isDesktop ? (
         <Suspense fallback={<div>loading</div>}>
-            <CodeMirror
-              onChange={onChange}
-              onUpdate={onUpdate}
-              options={{
-                theme: "monokai",
-                tabSize: 2,
-                // keyMap: "sublime",
-                mode: "jsx"
-              }}
-              spellcheck="false"
-              styles={{ fontSize }}
-              value={code}
-            />
+          <CodeMirror
+            onChange={onChange}
+            onUpdate={onUpdate}
+            options={{
+              theme: "monokai",
+              tabSize: 2,
+              // keyMap: "sublime",
+              mode: "jsx"
+            }}
+            spellcheck="false"
+            styles={{ fontSize }}
+            value={code}
+          />
         </Suspense>
       ) : (
         <div style={{ width: "100%", height: "100%", display: "flex" }}>
@@ -260,7 +264,7 @@ const Editor = () => {
             backgroundColor: "#333",
             display: "flex",
             flexDirection: "column"
-            }}
+          }}
           >
             {linesRendered}
           </div>
@@ -295,7 +299,7 @@ const Editor = () => {
           <Tick size="96px" />
         </div>
       ) : null}
-      {challengesPrepared && isCheckerActive && <Checker challenges={challengesPrepared} percent={percent}/>}
+      {challengesPrepared && isCheckerActive && <Checker challenges={challengesPrepared} percent={percent} />}
       {lesson.slides[currentSlide].tip && <Tip content={lesson.slides[currentSlide].tip} />}
     </form>
   );
