@@ -34,7 +34,7 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
         orientation="vertical"
         style={{ width: '100%', height: '100%' }}
       >
-        <ReflexElement flex={1} style={{ borderRadius:'4%', borderRight: '3px solid #c6c6c6'}}>
+        <ReflexElement flex={1} style={{ borderRadius:'4%', marginLeft: 7}}>
           {!!currentSlideNumber && (
             <button
               className="slide_btn slide_btn-top"
@@ -51,11 +51,10 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
             ></button>
           )}
         </ReflexElement>
-        <ReflexElement flex={1} style={{ borderRadius:'4%',  marginLeft: 5, borderLeft: '3px solid #c6c6c6',
-    borderRight: '3px solid #c6c6c6'}}>{editor}</ReflexElement>
+        <ReflexElement flex={1} style={{ borderRadius:'4%',  marginLeft: 7, marginRight:7}}>{editor}</ReflexElement>
         {isPreviewVisible ? (
           <>
-            <ReflexElement flex={1} style={{ borderRadius:'4%',  marginLeft: 5, borderLeft: '3px solid #c6c6c6' }}>{preview}</ReflexElement>
+            <ReflexElement flex={1} style={{ borderRadius:'4%',  marginRight: 7 }}>{preview}</ReflexElement>
           </>
         ) : null}
       </ReflexContainer>
