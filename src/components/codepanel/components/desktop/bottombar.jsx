@@ -12,7 +12,7 @@ import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
-import rightArrow from "../../../../assets/images/chevron-right-icon.png"
+import leftArrow from "../../../../assets/images/grey-left-arrow1.png"
 import Grid from '@material-ui/core/Grid';
 
 import {
@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
   },
   pagination:{
     width:'100%',
-    marginLeft:'10px'
+    border: '3px solid #eaeaeb',
+    borderRadius: '10px'
   }
 }));
 
@@ -62,19 +63,18 @@ const Bottombar = () => {
       <AppBar position="static">
         <Toolbar>
           <div className={classes.bottomBarWrapper}>
-            {/* <div className={classes.bottomBarField}>
-              <Typography style={{ color: "#000" }}>
-                Lesson Breadcrumbs
-              </Typography>
-            </div> */}
-            <Grid tem xs={12} sm={8} className={classes.bottomBarField} style={{justifyContent:'flex-start', marginLeft:'-10px'}}>
+      
+            <Grid item xs>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelDecSlideNumber())}
                 variant="outlined"
+                style={{marginLeft:'-14px'}}
               >
-                <KeyboardArrowLeftIcon />Back  
+               <KeyboardArrowLeftIcon />Back  
               </Button>
+            </Grid>
+            <Grid item xs>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelIncSlideNumber())}
@@ -83,14 +83,47 @@ const Bottombar = () => {
                 Next  <KeyboardArrowRightIcon />
               </Button>
             </Grid>
-            <Grid  tem xs={12} sm={4} className={classes.bottomBarField}>
+            <Grid item xs style={{textAlign:'end'}}>
+            <IconButton
+                aria-label="More"
+                className={classes.moreBtn}
+                onClick={() => {}}
+                title="More"
+              >
+                <div className={classes.morePopup}>
+                  <IconButton
+                    aria-label="Gallery"
+                    onClick={() => {}}
+                    title="Gallery"
+                  >
+                    <CropOriginalIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="Publish"
+                    onClick={() => {}}
+                    title="Publish"
+                  >
+                    <PublishIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="Save as"
+                    onClick={() => {}}
+                    title="Save as"
+                  >
+                    <SaveIcon />
+                  </IconButton>
+                </div>
+                <MoreVertIcon />
+              </IconButton>
+            </Grid>
+            {/* <Grid  tem xs={12} sm={4} className={classes.bottomBarField}>
               {isCollapsed ? (
                 <IconButton
                   aria-label="Expand"
                   onClick={() => setIsCollapse(v => !v)}
                   title="Expand"
                 >
-                  {/* <KeyboardArrowLeftIcon /> */}
+                   <KeyboardArrowLeftIcon /> 
                 </IconButton>
               ) : (
                 <IconButton
@@ -98,7 +131,7 @@ const Bottombar = () => {
                   onClick={() => setIsCollapse(v => !v)}
                   title="Collapse"
                 >
-                  {/* <KeyboardArrowRightIcon /> */}
+                  <KeyboardArrowRightIcon /> 
                 </IconButton>
               )}
               <IconButton
@@ -132,7 +165,7 @@ const Bottombar = () => {
                 </div>
                 <MoreVertIcon />
               </IconButton>
-            </Grid>
+            </Grid> */}
           </div>
         </Toolbar>
       </AppBar>
