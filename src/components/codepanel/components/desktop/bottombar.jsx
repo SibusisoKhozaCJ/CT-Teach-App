@@ -13,6 +13,8 @@ import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
 import rightArrow from "../../../../assets/images/chevron-right-icon.png"
+import Grid from '@material-ui/core/Grid';
+
 import {
   codepanelIncSlideNumber,
   codepanelDecSlideNumber
@@ -27,12 +29,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%"
   },
   bottomBarField: {
-    flex: 1,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     width:'100%',
-    marginLeft:'20px'
   },
   moreBtn: {
     "&:hover $morePopup": {
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 25
   },
   pagination:{
-    width:'50%',
+    width:'100%',
     marginLeft:'10px'
   }
 }));
@@ -67,7 +67,7 @@ const Bottombar = () => {
                 Lesson Breadcrumbs
               </Typography>
             </div> */}
-            <div className={classes.bottomBarField}>
+            <Grid tem xs={12} sm={8} className={classes.bottomBarField} style={{justifyContent:'flex-start', marginLeft:'-10px'}}>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelDecSlideNumber())}
@@ -82,8 +82,8 @@ const Bottombar = () => {
               >
                 Next  <KeyboardArrowRightIcon />
               </Button>
-            </div>
-            <div className={classes.bottomBarField}>
+            </Grid>
+            <Grid  tem xs={12} sm={4} className={classes.bottomBarField}>
               {isCollapsed ? (
                 <IconButton
                   aria-label="Expand"
@@ -132,7 +132,7 @@ const Bottombar = () => {
                 </div>
                 <MoreVertIcon />
               </IconButton>
-            </div>
+            </Grid>
           </div>
         </Toolbar>
       </AppBar>
