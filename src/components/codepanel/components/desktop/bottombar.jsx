@@ -12,7 +12,8 @@ import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
-import leftArrow from "../../../../assets/images/grey-left-arrow1.png"
+import leftArrow from "../../../../assets/images/grey-left-Arrow.png"
+import rightArrow from "../../../../assets/images/grey-right-Arrow.png"
 import Grid from '@material-ui/core/Grid';
 
 import {
@@ -71,7 +72,7 @@ const Bottombar = () => {
                 variant="outlined"
                 style={{marginLeft:'-14px'}}
               >
-               <KeyboardArrowLeftIcon />Back  
+               <div style={{paddingRight: 7}}><img src={rightArrow}  width={20} /></div> {" "}Back  
               </Button>
             </Grid>
             <Grid item xs>
@@ -80,7 +81,7 @@ const Bottombar = () => {
                 onClick={() => dispatch(codepanelIncSlideNumber())}
                 variant="outlined"
               >
-                Next  <KeyboardArrowRightIcon />
+                Next {" "}<div style={{paddingLeft: 7}}><img src={leftArrow} width={20} /></div>
               </Button>
             </Grid>
             <Grid item xs style={{textAlign:'end'}}>
