@@ -3,7 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import LeftArrowIcon from "../../../../../assets/images/chevron-left-pink.png";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import classNames from 'classnames';
+import Grid from '@material-ui/core/Grid';
+
 import { useHistory } from 'react-router-dom';
 
 import { lessonsGetList } from "../../../../../redux/actions/lessons-actions";
@@ -32,15 +36,14 @@ const useStyles = makeStyles(() => ({
 
   title: {
     margin: 0,
-    marginTop: 20,
-    fontSize: 19,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#000",
     textTransform: "uppercase"
   },
 
   objective: {
-    fontSize: 12,
+    fontSize: 15,
     color: "#000"
   },
 
@@ -51,7 +54,7 @@ const useStyles = makeStyles(() => ({
 
   back: {
     flexGrow: 1,
-    marginTop: 70,
+    marginTop: 53,
     textAlign: "center",
     justifyContent: "center",
     display: "inline-block",
@@ -60,8 +63,9 @@ const useStyles = makeStyles(() => ({
     fontSize: 22,
     fontWeight: "bold",
     textTransform: "uppercase",
-    padding: "11px 26px",
+    padding: "4px 33px",
     borderRadius: 10,
+    marginLeft: '10px',
 
     "&:hover": {
       color: "#fff",
@@ -83,6 +87,18 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#fff",
     fontSize: 20,
     color: "#D40073"
+  }, 
+  subtitle:{
+    marginTop:19
+  }, 
+  object:{
+    marginTop:17
+  },
+  training:{
+    marginTop:10
+  },
+  leftArrow:{
+    color: '#D50073'
   }
 }));
 
@@ -96,10 +112,9 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
   const history = useHistory()
   useEffect(() => {
-     if (id === "P001") {
       dispatch(lessonsGetList(id))
       dispatch(projectsGetById(id))
-     }
+     
   }, [dispatch, id])
 
   if (isLessonsLoading || isProjectLoading) {
@@ -111,22 +126,27 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
   }
   return (
     <div className={classes.root}>
-      {id === 'P001' && <Card
-        button={isDesktop ? null : {
+       <Card
+        button={{
           classes: "bottom-left",
           content: (
-            <Link onClick={backToProjects}>
-              <KeyboardArrowLeftIcon />
-            </Link>
+            <img src={LeftArrowIcon} alt="" className="coverage" />
+            // <Link onClick={backToProjects} className={classes.leftArrow}>
+            //   <KeyboardArrowLeftIcon />
+            // </Link>
           )
         }}
         // style={{ backgroundColor: "#fff", padding: 8, paddingBottom: 24, margin: "20px 10px", minHeight: "80%"  }}
-        style={{ backgroundColor: "#fff", padding: isDesktopQuery ? "31px 50px 48px 50px" : "11px 10px 18px 10px"}}
+        style={{ backgroundColor: "#fff", padding: isDesktopQuery ? "0px 12px 48px 12px" : "0px 10px 18px 10px", marginTop:'80px'}}
       >
-        <h1 className={classes.title}>{project.title}</h1>
-        <h2 className={classes.title}>Objective</h2>
-        <p className={classes.objective}>{project.objective}</p>
-        <h2 className={classes.title}>Training:</h2>
+        <h1 className={classNames(classes.title, classes.subtitle)}>{project.subtitle}: {project.title}</h1>
+        <h2 className={classNames(classes.title, classes.object)}>Objective</h2>
+        <div className={classes.objective}>
+        <Grid item xs={12} sm={8}>
+        {project.objective}
+        </Grid>
+      </div>
+        <h2 className={classNames(classes.title, classes.training)}>Training:</h2>
         <ul className={classes.lessons}>
           {lessons.map((lesson, index) => (
             <LessonItem
@@ -141,8 +161,8 @@ const Lessons = ({id, backToProjects, closeSidebar, isDesktop}) => {
             />)
           )}
         </ul>
-        {!isDesktop && <Link onClick={backToProjects} className={classes.back}>Back</Link>}
-      </Card>}
+        {<Link onClick={backToProjects} className={classes.back} style={{marginBottom: isDesktopQuery ? "0px" : "26px"}}>Back</Link>}
+      </Card>
     </div>
 
   )

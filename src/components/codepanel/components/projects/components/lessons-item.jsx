@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { divide } from "lodash-es";
 
 const useStyles = makeStyles(() => ({
   item: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles(() => ({
 
   title: {
     marginLeft: 12,
-    fontSize: 12,
+    fontSize: 15,
   },
 
   link: {
@@ -52,15 +53,20 @@ const useStyles = makeStyles(() => ({
 
 const LessonItem = ({ lesson, index, currentProgress, closeSidebar }) => {
   const classes = useStyles();
-
+  console.log(lesson, "lesson")
   return (
     <li className={classes.item}>
       <span className={classes.order}>
         {index}.
       </span>
-      <span className={classes.title}>
+      <div>
+      <div className={classes.title}>
         {lesson.title}
-      </span>
+      </div>
+      <div className={classes.title}>
+      {lesson.defaultCode}
+      </div>
+      </div>
       <Link onClick={closeSidebar} className={classes.link}>
         <PlayArrowIcon />
       </Link>

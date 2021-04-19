@@ -86,9 +86,9 @@ const TopBar = () => {
             </IconButton>
             <Timer/>
             <div className={classes.yellow}>
-              <IconButton>
+              {/* <IconButton>
                 <img src={DarkModeIcon} className="coverage" alt="" />
-              </IconButton>
+              </IconButton> */}
               <IconButton onClick={() => {dispatch(codepanelSetPreviewVisible(!isPreviewVisible))}}>
                 {isPreviewVisible ? (
                   <img src={Split2Icon} className="coverage" alt="" />
