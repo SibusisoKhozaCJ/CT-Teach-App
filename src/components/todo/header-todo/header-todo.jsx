@@ -10,9 +10,9 @@ const HeaderToDo = (props) => {
   const { firstname } = useSelector((state) => state.user.user);
   return (
     <Grid container alignItems="center">
-      <Grid item classes={{ root: classes.logoWidth }}>
+     {/* <Grid item classes={{ root: classes.logoWidth }}>
         <HomeSVG />
-      </Grid>
+      </Grid>*/}
       <Grid
         container
         direction="column"
