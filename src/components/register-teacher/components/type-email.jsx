@@ -55,7 +55,7 @@ const TypeAndEmailForm = ({
                       fullWidth
                       variant="contained"
                       className="ylw-tech"
-                      disabled={loading}
+                      // disabled={loading}
                     >
                       <p className="reg-happy">
                         LET’S DO IT. <img src={RightArrIcon} />

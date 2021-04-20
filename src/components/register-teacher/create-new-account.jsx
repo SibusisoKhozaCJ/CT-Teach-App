@@ -60,6 +60,7 @@ const CreateNewAccountPage = () => {
   }, []);
 
   const handleFormSubmitTeacher = async () => {
+    debugger
     const { schoolAlreadySigned, joincode } = form;
     if (schoolAlreadySigned) {
       const isCodeExist = await CheckIfTribeCodeExist(joincode);
@@ -347,6 +348,7 @@ const CreateNewAccountPage = () => {
   };
 
   const handleSubmitTeacherSecondForm = async (e) => {
+    debugger
     e.preventDefault();
     updateError("");
     handleFormSubmitTeacher();
