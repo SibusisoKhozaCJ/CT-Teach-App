@@ -93,10 +93,15 @@ export default makeStyles(theme => ({
       // color: "white",
     },
   },
-  headerMenuButton: {
-    marginLeft: theme.spacing(2),
-    padding: theme.spacing(0.5),
+  headermenubutton: {
+    width: 48,
+    height: 48,
+    left: 20,
   },
+/*  headerMenuButton: {
+    // left: 20,
+    padding: theme.spacing(1),
+  },*/
   headerMenuButtonSandwich: {
     marginLeft: 9,
     [theme.breakpoints.down("sm")]: {
@@ -179,6 +184,9 @@ export default makeStyles(theme => ({
   customBadge: {
     backgroundColor: "#76dc37",
     color: "white"
+  },
+  homeIconImg: {
+    marginRight:10,
   }
 
 }));

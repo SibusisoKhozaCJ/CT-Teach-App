@@ -38,7 +38,7 @@ const  useStyles = makeStyles(theme => ({
 
 const ModalDesktop = ({ closeSidebar }) => {
   const classes = useStyles();
-  const [currentProjectId, setCurrentProjectId] = useState("5-min-website");
+  const [currentProjectId, setCurrentProjectId] = useState(null);
 
   const selectProject = (id) => {
     setCurrentProjectId(id);

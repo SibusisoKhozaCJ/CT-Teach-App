@@ -12,7 +12,10 @@ import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch } from "react-redux";
-import rightArrow from "../../../../assets/images/chevron-right-icon.png"
+import leftArrow from "../../../../assets/images/grey-left-Arrow.png"
+import rightArrow from "../../../../assets/images/grey-right-Arrow.png"
+import Grid from '@material-ui/core/Grid';
+
 import {
   codepanelIncSlideNumber,
   codepanelDecSlideNumber
@@ -27,12 +30,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%"
   },
   bottomBarField: {
-    flex: 1,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     width:'100%',
-    marginLeft:'20px'
   },
   moreBtn: {
     "&:hover $morePopup": {
@@ -47,8 +48,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 25
   },
   pagination:{
-    width:'50%',
-    marginLeft:'10px'
+    width:'100%',
+    border: '3px solid #eaeaeb',
+    borderRadius: '10px'
   }
 }));
 
@@ -62,35 +64,67 @@ const Bottombar = () => {
       <AppBar position="static">
         <Toolbar>
           <div className={classes.bottomBarWrapper}>
-            {/* <div className={classes.bottomBarField}>
-              <Typography style={{ color: "#000" }}>
-                Lesson Breadcrumbs
-              </Typography>
-            </div> */}
-            <div className={classes.bottomBarField}>
+      
+            <Grid item xs>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelDecSlideNumber())}
                 variant="outlined"
+                style={{marginLeft:'-14px'}}
               >
-                <KeyboardArrowLeftIcon />Back  
+               <div style={{paddingRight: 7}}><img src={rightArrow}  width={20} /></div> {" "}Back  
               </Button>
+            </Grid>
+            <Grid item xs>
               <Button
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelIncSlideNumber())}
                 variant="outlined"
               >
-                Next  <KeyboardArrowRightIcon />
+                Next {" "}<div style={{paddingLeft: 7}}><img src={leftArrow} width={20} /></div>
               </Button>
-            </div>
-            <div className={classes.bottomBarField}>
+            </Grid>
+            <Grid item xs style={{textAlign:'end'}}>
+            <IconButton
+                aria-label="More"
+                className={classes.moreBtn}
+                onClick={() => {}}
+                title="More"
+              >
+                <div className={classes.morePopup}>
+                  <IconButton
+                    aria-label="Gallery"
+                    onClick={() => {}}
+                    title="Gallery"
+                  >
+                    <CropOriginalIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="Publish"
+                    onClick={() => {}}
+                    title="Publish"
+                  >
+                    <PublishIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="Save as"
+                    onClick={() => {}}
+                    title="Save as"
+                  >
+                    <SaveIcon />
+                  </IconButton>
+                </div>
+                <MoreVertIcon />
+              </IconButton>
+            </Grid>
+            {/* <Grid  tem xs={12} sm={4} className={classes.bottomBarField}>
               {isCollapsed ? (
                 <IconButton
                   aria-label="Expand"
                   onClick={() => setIsCollapse(v => !v)}
                   title="Expand"
                 >
-                  {/* <KeyboardArrowLeftIcon /> */}
+                   <KeyboardArrowLeftIcon /> 
                 </IconButton>
               ) : (
                 <IconButton
@@ -98,7 +132,7 @@ const Bottombar = () => {
                   onClick={() => setIsCollapse(v => !v)}
                   title="Collapse"
                 >
-                  {/* <KeyboardArrowRightIcon /> */}
+                  <KeyboardArrowRightIcon /> 
                 </IconButton>
               )}
               <IconButton
@@ -132,7 +166,7 @@ const Bottombar = () => {
                 </div>
                 <MoreVertIcon />
               </IconButton>
-            </div>
+            </Grid> */}
           </div>
         </Toolbar>
       </AppBar>

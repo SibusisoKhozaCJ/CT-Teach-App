@@ -67,11 +67,11 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
       <Fade in={open}>
         <div className={classes.container}>
           <Grid container direction="column">
-            <Grid item>
+            <Grid item style={{marginTop:'15px'}}>
               <Grid container direction="column">
                 <FormControl error={error}>
                   <TextField
-                    placeholder="Enter Name ..."
+                    placeholder="Enter Name"
                     name="name"
                     value={todo.name}
                     onChange={onChange}
@@ -81,12 +81,12 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
                   />
                   <div className={classes.error}>
                     {error && (
-                      <FormHelperText>This field are required</FormHelperText>
+                      <FormHelperText>This field is required.</FormHelperText>
                     )}
                   </div>
                 </FormControl>
                 <TextField
-                  placeholder="Enter Description ..."
+                  placeholder="Enter Description"
                   name="description"
                   variant="outlined"
                   value={todo.description}
@@ -100,7 +100,7 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
             <Grid container alignItems="center">
               <div className={classes.switch} onClick={handleColorPickerClick}>
                 <Typography variant="body1" className={classes.text}>
-                  Pick a color ...
+                  Pick a color
                 </Typography>
                 <div className={classes.color} />
               </div>
@@ -124,7 +124,6 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
           <CloseButton className={classes.closeButton} onClick={onModalClose} />
           <Button
             variant="contained"
-            color="primary"
             onClick={() => {
               if (!todo.name) {
                 setError(true);
@@ -134,6 +133,7 @@ const ToDoAddModal = ({ open, onClose, onSubmit }) => {
                 setError(false);
               }
             }}
+            style={{borderRadius:'12px', backgroundColor:'#43D4DD', color:'#fff'}}
           >
             Add ToDo
           </Button>

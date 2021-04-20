@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
   title: {
     margin: 0,
     marginTop: 20,
-    fontSize: 19,
+    fontSize: 50,
     fontWeight: "bold",
     color: "#000",
     textTransform: "uppercase"
@@ -89,7 +89,7 @@ const Lessons = (params) => {
   const isLessonsLoading = useSelector(state => state.lessons.isLoading);
   const isProjectLoading = useSelector(state => state.projects.is);
   const { match: {params: { id }} } = params;
-
+console.log(lessons, "lessonslessonslessons")
   useEffect(() => {
     if (isLessonsLoading === null) {
       dispatch(lessonsGetList(id))
@@ -104,7 +104,6 @@ const Lessons = (params) => {
       </div>
     )
   }
-
   return (
     <div className={classes.root}>
       <div className="commonheight" />
@@ -124,6 +123,7 @@ const Lessons = (params) => {
         <h2 className={classes.title}>Training:</h2>
         <ul className={classes.lessons}>
           {lessons.map((lesson, index) => (
+            console.log(lesson, "lesson"),
             <LessonItem
               index={index + 1}
               key={index}
