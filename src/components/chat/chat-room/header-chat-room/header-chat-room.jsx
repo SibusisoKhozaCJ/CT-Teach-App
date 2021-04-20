@@ -45,9 +45,9 @@ const HeaderChatRoom = ({ exitChat, avatar }) => {
         <p className={classes.roomName}>{selectedRoom}</p>
       </div>
       <div className={classes.wrapper}>
-        <IconButton type="button" onClick={fetchMoreMessages}>
+        {/* <IconButton type="button" onClick={fetchMoreMessages}>
           <CloudDownloadIcon className={classes.cloudDownloadIcon} />
-        </IconButton>
+        </IconButton> */}
         <MoreVertIcon className={classes.dots} />
       </div>
     </header>
