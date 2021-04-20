@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import {
   Person as AccountIcon,
@@ -29,9 +30,10 @@ import routes from "../../routes";
 import { isCurrentUser, setUserId } from "../../redux/actions/user-actions";
 import { onLogout} from "../../redux/actions/combined-actions";
 import * as actions from "../../redux/actions/chat-action";
-import Homeicon from "../../assets/images/home.svg";
+import Homeicon from "../../assets/images/home-icon.svg";
+import Homelogo from "../../assets/images/CodeTribe.svg";
 
-
+import {isMobile} from 'react-device-detect';
 export default function Header() {
   const location = useLocation();
   const classes = useStyles();
@@ -44,6 +46,8 @@ export default function Header() {
   const [idFromUrl, setIdFromUrl] = useState('');
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   var splitPath = window.location.pathname.split('/')
+  const isDesktop = useMediaQuery("(min-width:768px)");
+
   var path = splitPath[splitPath.length - 1];
 
   const shouldLayoutRender = (pathname)=>{
@@ -115,8 +119,8 @@ export default function Header() {
         </IconButton>
          <div className="headhomeiocn">
 
-           <a href={"home"}>
-           <img src={Homeicon} class={` ${path == "home" ? "header-accont" : ""}`} alt="" /></a>
+           {isDesktop ? <a className="headhomeiocn" href={"home"}><img className={classes.homeIconImg} src={Homeicon} /></a>:''}
+           <img src={Homelogo} alt="" />
          </div>
         <Typography variant="h6" weight="medium" className="headerlogotext">
           {location.pathname === "/tribe" ? "Tribes" : ""}
