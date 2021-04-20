@@ -106,9 +106,9 @@ const lesson_dataC0001P001T003 = {
       <div>
           <p class='slide-header h6'>BRIEFING : Website Structure</p>
       </div>    
-      <div>
-        <p>This is a <strong>Desktop</strong> Website Page Structure.</p>
-        <img class='swiper-lazy' data-src='../learn/lessons/P001-T03-M-V001/img/desktop-website-page-structure.png' alt=''> 
+      <div class="my-auto">
+        <p class='w-75 pb-4'>This is a <strong>Desktop</strong> Website Page Structure.</p>
+        <img class='swiper-lazy w-50' src='/img/lessons/C001-P001-T003/desktop-website-page-structure.png' alt=''> 
       </div>
       `,
       //sort_order: 6,
@@ -124,9 +124,9 @@ const lesson_dataC0001P001T003 = {
       <div>
           <p class='slide-header h6'>BRIEFING : Website Structure</p>
       </div>    
-      <div>
+      <div class="my-auto">
         <p class='w-75 pb-4'>and here is a <strong>Mobile</strong> Website Page Structure. </p>
-        <img class='w-50 my-auto swiper-lazy' data-src='../learn/lessons/P001-T03-M-V001/img/mobile-website-page-structure.png' alt=''> 
+        <img class='w-30 my-auto swiper-lazy' src='/img/lessons/C001-P001-T003/mobile-website-page-structure.png' alt=''> 
       </div> 
       `,
       //sort_order: 12,
@@ -139,10 +139,10 @@ const lesson_dataC0001P001T003 = {
       css_class : "briefing",
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
-      <div>
-        <p class='h2 yellow pb-3 bold'>OBSERVE:</p>
+      <div class="my-auto">
+        <p class='h2 yellow pb-3 bold'><strong>OBSERVE:<strong></p>
         <p class='h3 pb-4'>How is the Desktop PC Structure different then the Mobile?</p>
-        <img class='swiper-lazy' data-src='../img/emoji/72/thinking-face.png' alt=''> 
+        <img class='swiper-lazy' src='/img/emoji/72/thinking-face.png' alt=''> 
       </div>
       `,
       //sort_order: 13,
@@ -155,10 +155,10 @@ const lesson_dataC0001P001T003 = {
       css_class : "bg-pink",
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
-      <div>
-        <p class='h2 pb-4 bold'>THINK:</p>
+      <div class="my-auto">
+        <p class='h2 pb-4 bold'><strong>THINK:<strong></p>
         <p class='h3 pb-4'>How do you think the sections are created?</p>
-        <img class='swiper-lazy' data-src='../img/emoji/72/thought-balloon.png' alt=''> 
+        <img class='swiper-lazy' src='/img/emoji/72/thought-balloon.png' alt=''> 
       </div>
       `,
       //sort_order: 14,
@@ -177,11 +177,11 @@ const lesson_dataC0001P001T003 = {
     <div>
       <p class='h4 pb-4'>STRUCTURE:</p>
       <p class=' pb-4'>Each section is constructed with:</p>
-      <ol class='h5'>
+      <ol class='h5 text-left'>
         <li><strong class='pink'>CSS boxes</strong> and styles linked to</li>
         <li><strong class='blue'>HTML sections</strong>.</li>
       </ol>
-      <img class='w-30 swiper-lazy' data-src='../learn/lessons/P001-T03-M-V001/img/mobile-website-page-structure.png' alt=''>
+      <img class='w-30 swiper-lazy' src='/img/lessons/C001-P001-T003/mobile-website-page-structure.png' alt=''>
     </div>   
     <div class='slide-footer tips'>
       <span>Tip:</span> Remember this.
@@ -201,7 +201,7 @@ const lesson_dataC0001P001T003 = {
       <div>
         <p class='slide-header h2'>Remember</p>
       </div>
-    <div>
+    <div class="my-auto">
       <p class='h2'>What is<br>linked?</p>
     </div>
       `,
@@ -218,7 +218,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : Website Structure</p>
     </div> 
-    <div>
+    <div class="my-auto">
       <p class='h3 pb-4'>Here are some common HTML sections:</p>
       <p class='h3 pb-2 blue'>&lt;header&gt;</p>
       <p class='h3 pb-2 pink'>&lt;menu&gt;</p>
@@ -239,14 +239,12 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : Website Structure</p>
     </div> 
-    <div>
-      <p class='h3 pb-4'>All placed inside the <body> tags.</p>
-      <div class='inside-body-tag'>
-        <p class='h3 pb-2 blue'>&lt;header&gt;</p>
-        <p class='h3 pb-2 pink'>&lt;menu&gt;</p>
-        <p class='h3 pb-2 green'>&lt;section&gt;</p>
-        <p class='h3 orange'>&lt;footer&gt;</p>
-      </div>
+	<div class="my-auto">
+      <p class='h3 pb-4'>All placed inside tags.</p>
+      <p class='h3 pb-2 blue'>&lt;header&gt;</p>
+      <p class='h3 pb-2 pink'>&lt;menu&gt;</p>
+      <p class='h3 pb-2 green'>&lt;section&gt;</p>
+      <p class='h3 orange'>&lt;footer&gt;</p>
     </div>
       `,
       //sort_order: 17,
@@ -262,7 +260,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : Website Structure</p>
     </div> 
-    <div class=''>
+    <div class=' my-auto'>
       <p class='h3 pb-4'>Like this:</p>
       <div class='text-left mx-auto w-50'>
         <p class='h5 pl-1x pb-1 '>&lt;body&gt;</p>
@@ -290,9 +288,9 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <p class='h3 pb-5'>All good so far?</p>
-      <img class='swiper-lazy' data-src='../img/emoji/72/smiling-face-with-sunglasses.png' alt=''> 
+      <img class='swiper-lazy' src='/img/emoji/72/smiling-face-with-sunglasses.png' alt=''> 
     </div>
       `,
       //sort_order: 19,
@@ -342,7 +340,6 @@ const lesson_dataC0001P001T003 = {
     </div>
       `,
       //sort_order: 21,
-      tip: "Goes in the &lt;body&gt; section.<br>&lt;header&gt; has <u>nothing</u> to do with &lt;head&gt;.",
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -355,7 +352,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : &lt;header&gt;</p>
     </div> 
-    <div>
+    <div class="my-auto">
       <div class='text-left w-fit  mx-auto'>
         <p class='h5 pb-2 pl-2'>EXAMPLE:</p>
         <p class='pl-4 blue'>&lt;header&gt;</p>
@@ -377,7 +374,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>PRE-CHECK : &lt;header&gt;</p>
     </div> 
-    <div>
+    <div class="my-auto">
       <div class='h4 pb-4'>Wrap <span class='inline-code'>&lt;h1&gt;</span> and <span class='inline-code'>&lt;p&gt;</span> in a <span class='inline-code'>&lt;header&gt;</span> tag.</div>
       <p class='pb-1 green text-left'>CODE PREVIEW:</p>
         <div class='html-code-box'>
@@ -439,7 +436,7 @@ const lesson_dataC0001P001T003 = {
         },
       ],
       //sort_order: 24,
-      tip: ">Open it before &lt;h1&gt;<br>Close it after the &lt;/p&gt; tags.",
+      tip: "Open it before <h1>. Close it after the </p> tags.",
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -449,10 +446,10 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
-      <p class='h3 green pb-4 bold'>AWESOME!</p>
+      <div class="my-auto">
+      <p class='h3 green pb-4 bold'><strong>AWESOME!</strong></p>
       <p class='h4 pb-4'>That’s a great first step.</p>
-      <img class='swiper-lazy' data-src='../img/emoji/72/clapping-hands-sign-type-4.png' alt=''> 
+      <img class='swiper-lazy' src='/img/emoji/72/clapping-hands-sign-type-4.png' alt=''> 
     </div>      `,
       //sort_order: 25,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -464,7 +461,7 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <div class='h3 pb-4 w-75'>Let's give the <spna class='inline-code'>&lt;header&gt;</span> a <strong class='green'>LIT</strong> background.</div>
     </div>      `,
       //sort_order: 26,
@@ -480,7 +477,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>PRE-CHECK : linear-gradient</p>
     </div> 
-    <div>
+    <div class="my-auto">
       <p class='h4 pb-5'>Like this:</p>
       <p class='pb-1 green text-left'>CODE PREVIEW:</p>
       <div class='html-code-box'>
@@ -497,9 +494,9 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <p class='h3 pb-4'>I know you are thinking...</p>
-      <img class='swiper-lazy' data-src='../img/emoji/72/astonished-face.png' alt=''> 
+      <img class='swiper-lazy' src='/img/emoji/72/astonished-face.png' alt=''> 
     </div>
       `,
       tip: "Notice <strong>:</strong> and <strong>;</strong>",
@@ -513,7 +510,7 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <p class='h3'>Just try it:</p>
     </div>
       `,
@@ -532,7 +529,7 @@ const lesson_dataC0001P001T003 = {
         <h2 class='mb-0'>Challenge</h2>
         <p class='fs75'>STEP 1 of 3</p>
       </div>
-      <div>
+      <div class="my-auto">
         <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
           <ul class='list-none'>
@@ -575,33 +572,32 @@ const lesson_dataC0001P001T003 = {
       css_class: "challenge cp_yellow",
       html_content: `
       <div>
-        <p class="slide-header h2 white">CHALLENGE</p>
+        <h2 class='mb-0'>Challenge</h2>
+        <p class='fs75'>STEP 2 of 3</p>
       </div>
-      <div>
-         <div class='text-left pb-3'>
-          <p class='text-uppercase'>Instructions:</p>
-          <ol class='list-numbered'>
-            <li class='tasks'><div class="h2 white text-left">Type your school name inside <div class='inline-code bg-black p-2'>&lt;p&gt;</div> and <div class='inline-code bg-black p-2'>&lt;/p&gt;</div> in the code editor.</div></li>
-          </ol>
+      <div class="my-auto">
+        <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
+          <ul class='list-none'>
+            <li class='tasks'>Add the first rule:</li>
+          </ul>
         </div>
-        <p class='fs75 pb-0 text-left'>Your code will look like this:</p>
-        <div class='html-code-box pt-2 pb-2 mb-5'>
-          <span class='code-fade'>&lt;body style="background: </span><span class="blinking-cursor">|</span>red<span class='code-fade'>;" &gt;<br>
-          &lt;h1&gt;Your Name&lt;/h1&gt;</span><br><span>&lt;h2&gt;</span><span class="blinking-cursor">|Last name</span> <span>&lt;/h2&gt;</span><br>
-          <span>&lt;p&gt;</span><span> School Name <span>&lt;/p&gt;</span>
-        </div>
+        <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class="html-code-box">
+               <span class="code-fade">header&nbsp;{</span> <br>
+               background: linear-gradient <br>
+               <span class="code-fade">}</span>
+			</div>
+
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
         </div>
         <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
         </div>
       </div>
-      <div class='slide-footer tips'>
-        <span class='red'>TIP:</span> Notice <strong>:</strong> and <strong>;</strong>
-      </div>
       `,
-      //tip: "Notice <strong>:</strong> and <strong>;</strong>",
+      //tip: ,
       reg: [
         {
           //description: "type your name inside <p> tag",
@@ -665,17 +661,17 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h2'>Debugging</p>
     </div>    
-    <div>
+    <div class="my-auto">
       <p class='h5 pb-4 text-left'>Is a yellow and pink background showing?</p>
       <p class='pb-4 text-left'>If not, then :</p>
-      <ul class='tasks faX-ul list-img'>
-        <li><img class='swiper-lazy' data-src='../img/emoji/72/white-right-pointing-backhand-index-type-4.png'>Is your header { } in the <span class='inline-code'>&lt;style&gt;</span> section?
+      <ul class='tasks faX-ul list-img text-left'>
+        <li><img class='swiper-lazy' src='/img/emoji/72/white-right-pointing-backhand-index-type-4.png'>Is your header { } in the <span class='inline-code'>&lt;style&gt;</span> section?
         </li>
-        <li><img class='swiper-lazy' data-src='../img/emoji/72/white-right-pointing-backhand-index-type-4.png'>Are <span class='inline-code'>&lt;header&gt;</span> opening and <span class='blue'>closing tags</span> correct?
+        <li><img class='swiper-lazy' src='/img/emoji/72/white-right-pointing-backhand-index-type-4.png'>Are <span class='inline-code'>&lt;header&gt;</span> opening and <span class='blue'>closing tags</span> correct?
         </li>
-        <li><img class='swiper-lazy' data-src='../img/emoji/72/white-right-pointing-backhand-index-type-4.png'>
+        <li><img class='swiper-lazy' src='/img/emoji/72/white-right-pointing-backhand-index-type-4.png'>
           <span class='blue'>EXACT code</span> for <nobr>linear-gradient</nobr>&nbsp;:<br>
-          <ul class='ls-disc mt-2'>
+          <ul class='ls-disc mt-2 text-left'>
             <li>Same spaces?</li>
             <li>Same comas?</li>
           </ul>
@@ -694,15 +690,13 @@ const lesson_dataC0001P001T003 = {
       html_content: `
       <div>
     </div>
-    <div>
-      <p class='h2 pb-4 aqua text-uppercase bold'>Be proud.</p>
+    <div class="my-auto">
+      <p class='h2 pb-4 aqua text-uppercase bold'><strong>Be proud.</strong></p>
       <p class='h4 w-50'>You now have an awesome background</p>
-    </div>
-    <div class='slide-footer tips'>
-      <span class='red'>TIP:</span> If not, ask a friend to or keep learning. 
     </div>
       `,
       //sort_order: 30,
+	  tip: "If not, ask a friend to or keep learning.",
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -712,8 +706,8 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
-      <img class='swiper-lazy' data-src='../img/emoji/72/winking-face.png' alt=''> 
+      <div class="my-auto">
+      <img class='swiper-lazy' src='/img/emoji/72/winking-face.png' alt=''> 
     </div>
       `,
       //sort_order: 30,
@@ -726,7 +720,7 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <div class='h3 pb-4'>Let’s rock this next <span class='inline-code'>&lt;section&gt;</span></div>
     </div>
       `,
@@ -743,7 +737,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : &lt;section&gt;</p>
     </div> 
-    <div>
+    <div class="my-auto">
       <p class='h2 pb-2'><span class="inline-code">&lt;section&gt;</span></p>
       <p class='h5 pb-4 w-75'>is for the <u>main content</u> of your site.</p>
       <p class='fs75 pt-4 text-left'>EXAMPLE:</p>
@@ -763,7 +757,7 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <p class='h2 pb-0 mb-1'>BTW...</p>
       <p class='fs75 pb-5'>(By the way)</p>
       <p class='h3 w-75'>Were you wondering what "Content" means?</p>
@@ -778,12 +772,12 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "definition",
       html_content: `
-      <div>
+      <div >
       <p class='slide-header h2'>DEFINITION</p>
     </div>     
-    <div>
+    <div class="my-auto">
       <p class='h4 pb-3'>CONTENT</p>
-      <ol  class='h5 w-75'>
+      <ol  class='h5 w-75 text-left'>
         <li>Is the <u>main message</u> of the webpage.</li>
         <li>Can be text, graphics or video.</li>
       </ol>
@@ -800,7 +794,7 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>PRE-CHECK : &lt;section&gt;</p>
     </div> 
-    <div>
+    <div class="my-auto">
       <p class='h5 pb-4 w-75'>Wrap the motivation content in the <span class='inline-code'>&lt;section&gt;</span> tag.
 </p>
       <p class='fs75 pt-4 text-left green'>PRE-CHECK:</p>
@@ -829,7 +823,7 @@ const lesson_dataC0001P001T003 = {
         <h2 class='mb-0'>Challenge</h2>
         <p class='fs75'>STEP 1 of 2</p>
       </div>
-      <div>
+      <div class="my-auto">
         <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
           <ul class='list-none'>
@@ -860,9 +854,28 @@ const lesson_dataC0001P001T003 = {
       css_class: "challenge cp_yellow",
       html_content: `
       <div>
-      <div class='h1 pb-4 aqua'>NICE.</div>
-      <div class='h3 w-75'>Add a footer to make your Landing Page look more complete.</div>
-    </div> 
+        <h2 class='mb-0'>Challenge</h2>
+        <p class='fs75'>STEP 2 of 2</p>
+      </div>
+      <div class="my-auto">
+        <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
+          <ul class='list-none'>
+            <li class='tasks'>Style <b>&lt;section&gt;</b> with a grey background.</li>
+          </ul>
+        </div>
+		<div class="html-code-box">
+              <span class="code-fade">section&nbsp;{</span> <br>
+              background: lightgrey; <br>
+              <span class="code-fade">}</span>
+			  </div>
+        <div class='button-locked'>
+          <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
+        </div>
+        <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
+        </div>
+      </div> 
       `,
       reg: [
         {
@@ -878,7 +891,7 @@ const lesson_dataC0001P001T003 = {
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "briefing",
       html_content: `
-      <div>
+      <div class="my-auto">
       <div class='h1 pb-4 aqua'>NICE.</div>
       <div class='h3 w-75'>Add a footer to make your Landing Page look more complete.</div>
     </div> 
@@ -914,9 +927,9 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : &lt;footer&gt;</p>
     </div> 
-    <div class=''>
+    <div class='my-auto'>
       <p class='h2 pb-4'>&lt;footer&gt;</p>
-      <ol class=''>
+      <ol class='text-left'>
         <li>Important <span class='blue'>links</span> & resources are listed here.</li>
         <li><span class='blue'>Copyright</span> symbol is inserted here.</li>
       </ol>
@@ -942,7 +955,7 @@ const lesson_dataC0001P001T003 = {
         <h2 class='mb-0'>Challenge</h2>
         <p class='fs75'>STEP 1 of 3</p>
       </div>
-      <div>
+      <div class='my-auto'>
         <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
           <ul class='list-none'>
@@ -981,9 +994,9 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : Copyright</p>
     </div> 
-    <div class=''>
+    <div class='my-auto'>
       <p class='h2 pb-4'>Copyright</p>
-      <ol class='h5 pb-4'>
+      <ol class='h5 pb-4 text-left'>
         <li>Copyright says "You <span class='blue'>can't copy</span> my content without asking me."</li>
         <li>It is normally the <span class='blue'>last line</span> on the website.</li>
       </ol>
@@ -1001,10 +1014,10 @@ const lesson_dataC0001P001T003 = {
       <div>
       <p class='slide-header h6'>BRIEFING : Copyright</p>
     </div> 
-    <div class=''>
+    <div class='my-auto'>
       <p class='h2 pb-4'>Copyright</p>
       <p class='h5 pb-1 text-left'>The line should include:</p>
-      <ol class='h5 pb-5'>
+      <ol class='h5 pb-5 text-left'>
         <li>Copyright symbol (<span class='blue'>&amp;copy;</span>)</li>
         <li>The <span class='blue'>Year</span></li>
         <li><span class='blue'>Your Name</span></li>
@@ -1025,7 +1038,7 @@ const lesson_dataC0001P001T003 = {
         <h2 class='mb-0'>Challenge</h2>
         <p class='fs75'>STEP 2 of 3</p>
       </div>
-      <div>
+      <div class='my-auto'>
         <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
           <ul class='list-none'>
@@ -1063,7 +1076,7 @@ const lesson_dataC0001P001T003 = {
         <div>
       <p class='slide-header h6'>PRE-CHECK : Footer Style</p>
     </div> 
-    <div>
+    <div class='my-auto'>
       <div class='h4 pb-4'>Style your <span class='inline-code'>&lt;footer&gt;</span>  with a black background and white text.</div>
       <p class='pb-1 green text-left'>CODE PREVIEW:</p>
         <div class='html-code-box fade-box-top fade-box-bottom'>
@@ -1079,45 +1092,40 @@ const lesson_dataC0001P001T003 = {
         updated_at: "2017-09-28T16:09:40.256Z",
       },
     {
-       slide_number: 45,
-      action: true,
-     challenge: true,
-     challenge_id: 9,
-      created_at: "2017-08-23T00:55:40.386Z",
-      css_class: "challenge cp_yellow",
-      html_content: `
-      <div>
-      h2 class='mb-0'>Challenge</h2>
-          <p class='fs75'>STEP 2 of 3</p>
-        </div>
+      slide_number: 43,
+        action: true,
+        challenge: true,
+        challenge_id: 8,
+        created_at: "2017-08-23T00:55:40.386Z",
+        css_class: "challenge cp_yellow",
+        html_content: `
         <div>
-          <div class='text-left pb-3'>
-            <p class='blue text-uppercase'>Code:</p>
-            <ul class='list-none'>
-              <li class='tasks'>Add a copyright line in the <span class='inline-code'>&lt;footer&gt;</span>.</li>
-            </ul>
-          </div>
-          <p class='fs75 pb-0 text-left'>Like this:</p>
-          <div class='html-code-box fade-box-top fade-box-bottom'>
-            <span class='code-fade'>&lt;footer&gt;<br></span>          
-            &nbsp;&nbsp;&amp;copy; 2021 My Name<br>
-            <span class='code-fade'>&lt;/footer&gt;<br></span>
-          </div>
-          <div class='button-locked'>
-            <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-            <a class='swiper-next skip' style=''>Skip this step</a> 
-          </div>
-          <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
-          </div>
-        </div> 
-          `,
-          reg: [
-            {
-              rule: "(<style>|<style [^>]*>)((.|\n)*)footer((.|\n)*)\s*{((.|\n)*)\s*background((.|\n)*)\s*:((.|\n)*)\s*;((.|\n)*)\s*color((.|\n)*)\s*:((.|\n)*)\s*white;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
-            }
-          ],
-          updated_at: "2017-09-28T16:09:40.256Z",
-        },
+        <h2 class='mb-0'>Challenge</h2>
+        <p class='fs75'>STEP 3 of 3</p>
+      </div>
+      <div class='my-auto'>
+        <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
+          <ul class='list-none'>
+            <li class='tasks'>Using a <b>footer { }</b> selector in CSS, make your footer <strong>background black</strong> and the <strong>text white.</strong></li>
+          </ul>
+        </div>
+        <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class='button-locked'>
+          <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
+        </div>
+        <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
+        </div>
+      </div> 
+        `,
+        reg: [
+          {
+            rule: "(<style>|<style [^>]*>)((.|\n)*)footer((.|\n)*)\s*{((.|\n)*)\s*background((.|\n)*)\s*:((.|\n)*)\s*;((.|\n)*)\s*color((.|\n)*)\s*:((.|\n)*)\s*white;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
+          }
+        ],
+        updated_at: "2017-09-28T16:09:40.256Z",
+      },
       {
         slide_number: 46,
         action: false,
@@ -1129,7 +1137,7 @@ const lesson_dataC0001P001T003 = {
     <p class='slide-header h2'>CHECKPOINT</p>
     <p class='fs75'>Your code should look something like this:</p>
     </div>
-    <div>
+    <div class='my-auto'>
     <p class='fs75 pb-0 text-left'>Like this:</p>
     <div class='html-code-box fade-box-top fade-box-bottom fs75'>
       <span class='code-fade'>&nbsp;&nbsp;}</span><br>
@@ -1156,10 +1164,10 @@ const lesson_dataC0001P001T003 = {
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "briefing",
         html_content: `
-        <div>
+        <div class='my-auto'>
       <div class='h3 pb-4'>CONGRATS!</div>
       <div style='background-color: #6aa2c7;border-radius:50%;margin: 40px auto;width: 200px;height: 200px;'>
-        <div class='lesson-instructions '><img style='padding-top:20px;' class='w-75 swiper-lazy mb-3' data-src='../img/lessons/congrats_training_sml.png'></div>
+        <div class='lesson-instructions '><img style='padding-top:20px;' class='w-75 swiper-lazy mb-3' src='/img/lessons/congrats_training_sml.png'></div>
       </div>
       <div class='h3 pb-4'>You've finished<br> Training 3</div>  
     </div>
@@ -1173,9 +1181,9 @@ const lesson_dataC0001P001T003 = {
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "briefing",
         html_content: `
-        <div>
+        <div class='my-auto'>
         <div class='h0 aqua'>YIPPEEE.</div>
-        <img class='pt-5 swiper-lazy' data-src='../img/emoji/72/smiling-face-with-open-mouth.png' alt=''> 
+        <img class='pt-5 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png' alt=''> 
       </div>
         `,
         updated_at: "2017-09-28T16:09:40.256Z",
@@ -1187,10 +1195,10 @@ const lesson_dataC0001P001T003 = {
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "briefing",
         html_content: `
-        <div>
+        <div class='my-auto'>
       <p class='h3 pb-4 w-75'>Ready for Training 4?</p>
-      <a class="btn-primary next"" href="../learn/P1Training4">Start Now</a>
-      <a class="btn-primary-alt next check" href='../learn/projects'>Projects Page</a>
+      <a class="btn-primary next __buttons" href="../learn/P1Training4">Start Now</a>
+      <a class="btn-primary-alt next check __buttons" href='../learn/projects'>Projects Page</a>
     </div>
         `,
         updated_at: "2017-09-28T16:09:40.256Z",
