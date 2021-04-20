@@ -6,12 +6,9 @@ import Fade from "@material-ui/core/Fade";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import  Btnicon from "../../../assets/icons/tribe/sendicon.svg";
 import Newicon from "./../../../assets/images/inputicon.png";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {
   MailiconSVG,
   MailsendIconSVG,
@@ -19,8 +16,7 @@ import {
   InArrowSVG,
   InCopySVG
 } from "../../../shared/svgs/menu-items";
-import { useSelector } from "react-redux";
-
+import config from "../../../config";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -36,7 +32,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
+const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
@@ -105,7 +101,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                         placeholder="FRIEND’S EMAIL"
                         variant="outlined"
                         value={friendToAddID}
-                        onChange={(e) => setFriendToAddID(e.target.value)}
+                        onChange={(e) => {setFriendToAddID(e.target.value);setFriendToAddIDUserName("")} }
                      
                       />
                     </Box>
@@ -138,7 +134,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                         placeholder="USERNAME"
                         variant="outlined"
                         value={friendToAddIDUserName}
-                        onChange={(e) => setFriendToAddIDUserName(e.target.value)}
+                        onChange={(e) => { setFriendToAddIDUserName(e.target.value); setFriendToAddID("")}}
                      
                       />
                     </Box> 
@@ -175,7 +171,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                           }}
                           fullWidth
                           variant="outlined"
-                          // value={joinLink}
+                          value={config.APP_BASE_URL+userShareLink}
                           disabled
                         />
                     
