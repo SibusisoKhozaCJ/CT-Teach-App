@@ -68,7 +68,7 @@ const BasicInfo = ({
               fullWidth
               variant="contained"
               className="btn-frmn"
-              disabled={loading}
+              // disabled={loading}
             >
               <p className="reg-happy">WOOOO HOOOO!</p>
               <p className="reg">REGISTER</p>
@@ -120,7 +120,7 @@ const BasicInfo = ({
               fullWidth
               variant="contained"
              className="tech-btn"
-              disabled={loading}
+              // disabled={loading}
             >
               <p className="reg-happy">WOOOO HOOOO!</p>
               <p className="reg">REGISTER</p>

@@ -6226,7 +6226,7 @@ a.menu-button.cross.close-tour .bar {
 }
 
 #lesson-page .briefing .slide-header {
-  font-weight: bold;
+  Xfont-weight: bold;
   text-transform: unset;
 }
 
@@ -6659,4 +6659,14 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+/*P1T3 testing template*/
+
+.__buttons{
+	border-radius: 0.25rem;
+	padding: .45em .75em;
+    margin: 1.5em auto 0 auto;
+	width: 75% !important;
 }

@@ -222,6 +222,34 @@ span {
     color: #211f21;
     margin-left: 20px;
 }
+.send-code.joinTribe.Addfrnd-request{
+	 .send-code_title h1{
+		 margin-bottom: 0;
+font-weight: 700;
+font-size: 39px;
+line-height: 46px;
+text-align: center;
+color: #000;
+	 }
+	 .send-code_title p {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #364954;
+    margin-bottom: 30px;
+}
+.send-code_main .MuiBox-root {
+    margin-bottom: 10px;
+}
+.copytolink p {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    color: #364954;
+}
+}
 
 @media only screen and (min-width: 800px) {
 	.share-tribe-code {
