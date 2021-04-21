@@ -84,6 +84,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
     return Object.keys(formControls).map((controlName, index) => {
       const item = formControls[controlName];
       return (
+        <form>
         <Controller
           key={controlName + index}
           control={control}
@@ -103,6 +104,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
               )
             }}
         />
+        </form>
       )
     });
   };
