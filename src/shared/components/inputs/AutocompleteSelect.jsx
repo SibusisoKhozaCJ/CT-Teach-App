@@ -16,6 +16,8 @@ const AutocompleteSelect = ({ type, maxDigits, options, onSelect, selectedValue,
 			fullwidth
 			autoSelect
 			autoHighlight
+			freeSolo
+			disableClearable
 			disabled={disabled}
 			inputValue={selectedValue}
 			onInputChange={(e, newInputValue) => {

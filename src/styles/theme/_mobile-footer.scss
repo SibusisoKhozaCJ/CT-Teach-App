@@ -5,17 +5,64 @@
 	background: #fff;
 	position: fixed;
 	width: 100%;
-	bottom: 0;
-	padding: 10px 10px 5px 10px;
+	bottom: 0px;
+	padding: 6px 30px 7px 25px;
 	z-index: 1201;
 	left: 0;
 	right: 0;
 	box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.81), 0px 3px 14px 2px rgba(216, 216, 216, 0.25);
 
-	.footer-icon img {
-		width: 100%;
-		max-width: 45px;
+	.footer-icon .coverage {
+		svg {width: 100%;
+		max-width: 41px;
 		cursor: pointer;
+		max-height: 30px;
+		g path{	
+			stroke:#a6a6a6;
+			fill:#a6a6a6
+		}
+		g{
+			stroke:#a6a6a6;
+			
+		}
+		path{
+			stroke:#a6a6a6;
+			fill:#a6a6a6
+		}
+		}
+	} 
+	.footer-icon .coverage.galleryIcon{
+			svg {
+		ellipse{
+			fill:#a6a6a6
+		}
+		}
+	}
+	.footer-icon .active.galleryIcon{
+		svg {
+	ellipse{
+		fill:#000000
+	}
+	}
+}
+	.footer-icon .active {
+		svg {width: 100%;
+		max-width: 41px;
+		cursor: pointer;
+		max-height: 30px;
+		g path{	
+			stroke:#000000;
+			fill:#000000
+		}
+		g{
+			stroke:#000000;
+			
+		}
+		path{
+			stroke:#000000;
+			fill:#000000
+		}
+		}
 	}
 		.footer-icon.select-footer{
 		border: 4px solid #43D4DD;
@@ -26,7 +73,7 @@
 		}
 }
 	.footer-icon.centr-Ficon {
-    margin-top: -60px;
+    margin-top: -43px;
 }
 	.mt-ft-icon {
 		padding: 4px;
@@ -36,12 +83,20 @@
 		line-height: 40px;
 		border-radius: 50%;
 		display: flex;
-		background: #fff;
-		box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+		// background: #fff;
+		// box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 		align-items: center;
 		justify-content: center;
-		img {		
-			max-width: 75px !important;
+		// img {		
+		// 	max-width: 75px !important;
+		// 	margin-bottom: 2px;
+		// 	margin-left: 2px;
+		// 	width: 75px !important;
+		// }
+	}
+	.mt-ft-icon{
+		svg{
+		max-width: 75px !important;
 			margin-bottom: 2px;
 			margin-left: 2px;
 			width: 75px !important;

@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { makeStyles } from '@material-ui/core/styles';
 import ROUTES from "../../routes";
 import history from "../../shared/lib/history";
 import { AuthContext } from "../../shared/contexts/authContext";
@@ -41,7 +42,13 @@ const LoginPage = () => {
         return null;
       });
   };
-
+  const useStyles = makeStyles(() => ({
+    emailLoginInputField: {
+      "& .MuiInputLabel-outlined": {
+        zIndex:10
+      }
+    }
+  }))
   const login = async () => {
     const { email, password, firstname, lastname, day, month, year } = form;
     if(loginType === "email"){
@@ -156,6 +163,7 @@ const LoginPage = () => {
     updateLoading(true);
     login();
   };
+  const classes = useStyles();
 
   return (
     <>
@@ -265,7 +273,7 @@ const LoginPage = () => {
                 {/* Email login */}
                 {loginType === "email" && (
                   <div>
-                    <Grid container spacing={1} className="emaillogin">
+                    <Grid container spacing={1} className={"emaillogin"}>
                       <Grid item xs={12}>
                         <Box my={1}>
                           <TextField
@@ -275,6 +283,7 @@ const LoginPage = () => {
                             variant="outlined"
                             value={email}
                             onChange={handleChange("email")}
+                            className={classes.emailLoginInputField}
                           />
                         </Box>
                       </Grid>
@@ -288,6 +297,7 @@ const LoginPage = () => {
                              type="password"
                             value={password}
                             onChange={handleChange("password")}
+                            className={classes.emailLoginInputField}
                           />
                         </Box>
                       </Grid>

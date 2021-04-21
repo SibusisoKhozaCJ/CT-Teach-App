@@ -126,9 +126,9 @@ $query-sm: 600px;
       .RightBubble {
         position: relative;
         background: #FFFFFF;
-        border-top-left-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+        border-bottom-left-radius: 1em;
         padding: 5px 10px 10px;
         left: 15%;
         border: 3px solid #D50073;
@@ -137,9 +137,9 @@ $query-sm: 600px;
       .RightBubbleBlack {
         position: relative;
         background: #FFFFFF;
-        border-top-left-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+        border-bottom-left-radius: 1em;
         padding: 5px 10px 10px;
         left: 15%;
         border: 3px solid #D50073;
@@ -173,42 +173,42 @@ $query-sm: 600px;
         font-size: 10px;
       }
 
-      .RightBubble:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-left-color: #FFFFFF;
-        border-right: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-right: -27px;
-      }
+      // .RightBubble:after {
+      //   content: '';
+      //   position: absolute;
+      //   right: 0;
+      //   top: 13px;
+      //   width: 0;
+      //   height: 0;
+      //   border: 27px solid transparent;
+      //   border-left-color: #FFFFFF;
+      //   border-right: 0;
+      //   border-top: 0;
+      //   margin-top: -13.5px;
+      //   margin-right: -27px;
+      // }
 
-      .RightBubbleBlack:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-left-color: #000000;
-        border-right: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-right: -27px;
-      }
+      // .RightBubbleBlack:after {
+      //   content: '';
+      //   position: absolute;
+      //   right: 0;
+      //   top: 13px;
+      //   width: 0;
+      //   height: 0;
+      //   border: 27px solid transparent;
+      //   border-left-color: #000000;
+      //   border-right: 0;
+      //   border-top: 0;
+      //   margin-top: -13.5px;
+      //   margin-right: -27px;
+      // }
 
       .LeftBubble {
         position: relative;
         background: #FFFFFF;
-        border-top-right-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-top-right-radius: 1em;
+        border-top-left-radius: 1em;
+        border-bottom-right-radius: 1em;
         padding: 5px 10px 10px;
         left: 5%;
         border: 3px solid #35BDAD;
@@ -217,9 +217,9 @@ $query-sm: 600px;
       .LeftBubbleBack {
         position: relative;
         background: #FFFFFF;
-        border-top-right-radius: .4em;
-        border-bottom-left-radius: .4em;
-        border-bottom-right-radius: .4em;
+        border-top-right-radius: 1em;
+        border-top-left-radius: 1em;
+        border-bottom-right-radius: 1em;
         padding: 5px 10px 10px;
         left: 5%;
         border: 3px solid #35BDAD;
@@ -253,35 +253,35 @@ $query-sm: 600px;
         font-size: 10px;
       }
 
-      .LeftBubble:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-right-color: #FFFFFF;
-        border-left: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-left: -27px;
-      }
+      // .LeftBubble:after {
+      //   content: '';
+      //   position: absolute;
+      //   left: 0;
+      //   top: 13px;
+      //   width: 0;
+      //   height: 0;
+      //   border: 27px solid transparent;
+      //   border-right-color: #FFFFFF;
+      //   border-left: 0;
+      //   border-top: 0;
+      //   margin-top: -13.5px;
+      //   margin-left: -27px;
+      // }
 
-      .LeftBubbleBack:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 13px;
-        width: 0;
-        height: 0;
-        border: 27px solid transparent;
-        border-right-color: #000000;
-        border-left: 0;
-        border-top: 0;
-        margin-top: -13.5px;
-        margin-left: -27px;
-      }
+      // .LeftBubbleBack:after {
+      //   content: '';
+      //   position: absolute;
+      //   left: 0;
+      //   top: 13px;
+      //   width: 0;
+      //   height: 0;
+      //   border: 27px solid transparent;
+      //   border-right-color: #000000;
+      //   border-left: 0;
+      //   border-top: 0;
+      //   margin-top: -13.5px;
+      //   margin-left: -27px;
+      // }
 
       .codeBlack {
         background: black;
