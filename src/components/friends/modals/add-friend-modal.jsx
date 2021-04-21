@@ -6,15 +6,18 @@ import Fade from "@material-ui/core/Fade";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import  Btnicon from "../../../assets/icons/tribe/sendicon.svg"
+import  Btnicon from "../../../assets/icons/tribe/sendicon.svg";
+import Newicon from "./../../../assets/images/inputicon.png";
 import {
   MailiconSVG,
   MailsendIconSVG,
+  CopySVG,
+  InArrowSVG,
+  InCopySVG
 } from "../../../shared/svgs/menu-items";
-import { useSelector } from "react-redux";
+import config from "../../../config";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -29,7 +32,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
+const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
   const [friendToAddID, setFriendToAddID] = useState("");
@@ -84,44 +87,26 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
             {!showSuccessMessage &&  <div className="send-code_main">
                 <Box my={2} className="send-code_title">
                   <h1>ADD FRIEND</h1>
+                  <p>How do you wanna invite?</p>
                 </Box>
                 <Grid container spacing={3} className="sentmailReq">
-                 {!checked && <Grid item xs={12} >
+                <Grid item xs={12} >
                     <Box my={1}>
                       <TextField
                              InputProps={{
-                        startAdornment: <MailiconSVG />
+                        startAdornment: <MailiconSVG />,
+                          endAdornment: friendToAddID !== "" ? <img src={Newicon}/> : <InArrowSVG />,
                       }}
                         fullWidth
                         placeholder="FRIEND’S EMAIL"
                         variant="outlined"
                         value={friendToAddID}
-                        onChange={(e) => setFriendToAddID(e.target.value)}
+                        onChange={(e) => {setFriendToAddID(e.target.value);setFriendToAddIDUserName("")} }
                      
                       />
                     </Box>
-                  </Grid>}
-                 
-                 { checked && <Grid item xs={12}>
-                    <Box my={1}>
-                      <TextField
-                             InputProps={{
-                        startAdornment: <MailsendIconSVG />
-                      }}
-                        fullWidth
-                        placeholder="USERNAME"
-                        variant="outlined"
-                        value={friendToAddIDUserName}
-                        onChange={(e) => setFriendToAddIDUserName(e.target.value)}
-                     
-                      />
-                    </Box> 
-                  
-                  </Grid>}
-                    <label className="errormsg">
-                                {successErrorMessage !== '' ? successErrorMessage: ''}
-                    </label>
-                   <Grid item xs={12}>
+                  </Grid>
+                    <Grid item xs={12} className={friendToAddID !== "" ? "show":"hide"}>
                      <label className="addNote">Wanna add a note? </label>
                     <Box my={1}>
                       <TextField
@@ -137,7 +122,71 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                       />
                     </Box>
                   </Grid>
-                    <Grid container spacing={3} className="reg-checkbox frnd-checkbox">
+                 
+             <Grid item xs={12}>
+                    <Box my={1}>
+                      <TextField
+                             InputProps={{
+                        startAdornment: <MailsendIconSVG />,
+                          endAdornment: friendToAddIDUserName !== "" ? <img src={Newicon}/> : <InArrowSVG />,
+                      }}
+                        fullWidth
+                        placeholder="USERNAME"
+                        variant="outlined"
+                        value={friendToAddIDUserName}
+                        onChange={(e) => { setFriendToAddIDUserName(e.target.value); setFriendToAddID("")}}
+                     
+                      />
+                    </Box> 
+                  
+                  </Grid>
+
+                      <Grid item xs={12} className={friendToAddIDUserName !== "" ? "show":"hide"}>
+                     <label className="addNote">Wanna add a note? </label>
+                    <Box my={1}>
+                      <TextField
+                        fullWidth
+                        placeholder="Hey, this is a super fun coding app. Join me."
+                        variant="outlined"
+                        multiline
+                        rows={3} 
+                        value={friendRequestNote}
+                        onChange={(e) => setfriendRequestNote(e.target.value)}
+
+                      
+                      />
+                    </Box>
+                  </Grid>
+                    <label className="errormsg">
+                                {successErrorMessage !== '' ? successErrorMessage: ''}
+                    </label>
+
+                       <Grid item xs={12}>
+                      <Box my={1} className="join-link-input">
+                   
+                      <TextField
+                          InputProps={{
+                            startAdornment: <CopySVG />,
+                            endAdornment: <InCopySVG />,   
+                          }}
+                          fullWidth
+                          variant="outlined"
+                          value={config.APP_BASE_URL+userShareLink}
+                          disabled
+                        />
+                    
+                      {/* <div className="flash-message-copied">
+                      {copied &&<FlashMessage duration={5000} persistOnHover={true}>
+                        <p>Link copied</p>
+                      </FlashMessage>}
+                      </div> */}
+                      </Box>
+                    </Grid>                 
+                      <Box my={2} className="copytolink">
+                        <p>TIP: Copy the link above and send it to your friends.</p>
+                      </Box>
+                 
+                    {/* <Grid container spacing={3} className="reg-checkbox frnd-checkbox">
                       <Grid item xs={12}>
                         <Box my={1}>
                           <FormControlLabel
@@ -149,7 +198,7 @@ const AddFriendModal = ({ openModal, handleModalClose, handleSendRequest, handle
                           />
                         </Box>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
 
                 <Box my={2} className="add-frndReq_btn">

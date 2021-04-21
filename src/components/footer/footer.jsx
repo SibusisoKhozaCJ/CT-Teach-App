@@ -12,6 +12,9 @@ import ProjectIcon from "../../assets/svg/ProjectIcon"
 import ArrowIcon from "../../assets/svg/ArrowIcon"
 import ProgressCheck from "../../assets/svg/ProgressCheck"
 import GalleryIcon from "../../assets/svg/GalleryIcon"
+import ProjectsIcon from "../../assets/images/rocket-icon.png";
+import {ProjectsSvg} from "../../shared/svgs/menu-items";
+
 const Footer = () => {
     const history = useHistory();
     const location = useLocation();
@@ -24,7 +27,6 @@ const Footer = () => {
     var splitPath = window.location.pathname.split('/')
     var path = splitPath[splitPath.length - 1];
     const [keyboardExist, setKeyboardExist] = useState(false);
-    const initialScreenSize = window.innerHeight;
 
     const shouldLayoutRender = (pathname) => {
         if (
@@ -113,7 +115,7 @@ const Footer = () => {
     }
     return (
 
-        (isLayoutRender && keyboardExist && <footer className='footer-mobile'>
+       (isLayoutRender && keyboardExist && <footer className='footer-mobile'>
             {/* <div className="footer-icon">
                 <img onClick={(evt)=>history.push("/tribe")} src={Icon1} className="coverage" alt="" />
             </div> */}

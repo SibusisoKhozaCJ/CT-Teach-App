@@ -23,7 +23,7 @@ import {
 } from "../../../../redux/actions/codepanel-actions";
 
 import ProjectsIcon from "../../../../assets/images/rocket-icon.png";
-import DashboardIcon from "../../../../assets/images/dashboard-icon.png";
+import DashboardIcon from "../../../../assets/images/home.svg";
 import ProfileIcon from "../../../../assets/images/profile.svg";
 import GalleryIcon from "../../../../assets/images/gallery-icon.png";
 import LogoutIcon from "../../../../assets/images/logout-icon.png";

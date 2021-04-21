@@ -56,4 +56,18 @@ export default makeStyles(theme => ({
       display: "none",
     },
   },
+  tagSide : {
+    display: "flex",
+    flexDirection :"column",
+    // whiteSpace: "normal"
+  },
+  tagBottomSide: {
+    fontSize: 16
+/*line-height: 41px;
+text-align: center;
+color: rgba(255, 255, 255, 0.75);
+text-transform: none;
+font-family: "Righteous", sans-serif;*/
+}
+
 }));
