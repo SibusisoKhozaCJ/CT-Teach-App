@@ -8,6 +8,7 @@ import EditPrivateInfo from "./forms/edit-private-info/EditPrivateInfo";
 import Loading from "../../shared/components/loader/Loading";
 import { useParams } from 'react-router-dom';
 import { isCurrentUser, saveUser } from '../../redux/actions/user-actions';
+import TabPanels from './tabs/TabPanels';
 
 
 const Profile = () => {
@@ -36,8 +37,9 @@ const Profile = () => {
       <div className="commonheightProfile"/>
       <Header/>
       <Grid container>
-        <EditPublicInfo/>
-        {isRenderForm && <EditPrivateInfo/>}
+      <TabPanels isRenderForm={isRenderForm} />
+        {/* <EditPublicInfo/>
+        {isRenderForm && <EditPrivateInfo/>} */}
       </Grid>
     </div>
   );

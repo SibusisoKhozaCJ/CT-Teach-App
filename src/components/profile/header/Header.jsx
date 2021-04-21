@@ -15,9 +15,9 @@ import { wrapperEmojiInHtmlString, writeContentToIframe } from '../../../shared/
 
 Modal.setAppElement('#modalInProfile');
 
-const defaultCodeInIframe = `<body style="background:grey; color: white; font-family: helvetica; text-align: center;" >
+const defaultCodeInIframe = `<body style="background:linear-gradient(to right, rgba(213, 0, 115, 0.5) 50%, #76DC37 50%); color: white; font-family: helvetica; text-align: center;" >
 <h2>
-ADD YOUR OWN CODE HERE TO PERSONALIZE YOUR HEADER.
+INNOVATE NOW
 </h2>
 </body>`;
 
