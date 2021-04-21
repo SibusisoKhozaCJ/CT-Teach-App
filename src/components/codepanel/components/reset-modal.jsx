@@ -1,10 +1,10 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {
   codepanelSetResetIsActive,
-  codepanelSetCode
+  codepanelSetCode, codepanelSetIsValid, codepanelSetTab, codepanelSetSlideNumber
 } from "../../../redux/actions/codepanel-actions";
 
 const useStyles = makeStyles(() => ({
@@ -112,7 +112,7 @@ const useStyles = makeStyles(() => ({
 const ResetModal = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const currentSlideNumber = useSelector(state => state.codepanel.currentSlide);
   const closeHandler = () => {
     dispatch(codepanelSetResetIsActive(false));
   }
@@ -120,6 +120,11 @@ const ResetModal = () => {
   const resetHandler = () => {
     dispatch(codepanelSetCode(""));
     dispatch(codepanelSetResetIsActive(false));
+    dispatch(codepanelSetIsValid(false));
+    dispatch(codepanelSetTab(0));
+    setTimeout(() => {
+      dispatch(codepanelSetSlideNumber(currentSlideNumber - 1 ));
+    }, 1000);
   }
 
   return (
