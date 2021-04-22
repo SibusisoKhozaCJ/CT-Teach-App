@@ -187,6 +187,59 @@ export default makeStyles(theme => ({
   },
   homeIconImg: {
     marginRight:10,
-  }
+  },
+  progressBtn: {
+    backgroundColor: "#110f0f",
+    borderRadius: 30,
+    position: "relative",
+    margin: "15 0",
+    height: 49,
+    width: 215,
+    textAlign:"center",
+    marginLeft: -25,
+    ["@media (max-width:1300px)"]: {
+      fontSize: 25,
+      width: 123,
+      height: 32,
+      textAlign: "center"
+    }
+  },
 
+  progressText:{
+    color:"#FFF",
+    position: "absolute",
+    left:0,
+    margin: "15 0",
+    width: 215,
+    textAlign:"center",
+    fontSize: 20,
+    top:10,
+    fontWeight:600,
+    ["@media (max-width:1300px)"]: {
+      fontSize: 14,
+      width: 130,
+      top: 5,
+    }
+  },
+  progressDone: {
+    background: "#61d546",
+    color: "#FFF",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    width: 0,
+    opacity: 0,
+    transition: "1s ease 0.3s",
+  },
+  body1: {
+    backgroundColor: "#f4f4f4",
+    flexDirection: "column",
+    fontFamily: 'Montserrat',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100vh",
+    margin: 0,
+  },
 }));
