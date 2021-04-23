@@ -5,6 +5,8 @@ import {FormProfileStyles} from "../../Profile.styles";
 import {tribeFormPublicControlsProfilePage} from "../../../../../shared/lib/forms/tribeProfileFormControls";
 import EditFormProfile from "../edit-tribe-form";
 import {publicFormProfile} from "../../../../../shared/lib/forms/validation";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 import {
   finishEditPrivateTribeInfo,
   finishEditPublicTribeInfo,
@@ -14,7 +16,8 @@ import {
 const useStyles = makeStyles(FormProfileStyles);
 
 const EditPublicInfo = ({isEditable, tribeData, tribeOwner}) => {
-  const classes = useStyles({borderColor: '#43D4DD', paddingTop: 23, background: 'rgba(240, 238, 238, 0.5)'});
+  const isDesktopQuery = useMediaQuery("(min-width:1275px)");
+  const classes = useStyles({borderColor: '#43D4DD', paddingTop: 23, background:  isDesktopQuery ? 'rgba(240, 238, 238, 0.5)' : 'transparent'});
   // const {editPublicUserInfo, user } = useSelector(state => state.user);
   const {editPublicTribeInfo} = useSelector(state => state.tribe);
   const dispatch = useDispatch();

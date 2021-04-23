@@ -13,6 +13,11 @@ import {createIframe} from "../../../../shared/lib/createIframe";
 import {Button} from "@material-ui/core";
 import { wrapperEmojiInHtmlString, writeContentToIframe } from '../../../../shared/lib/contentRender';
 
+const defaultCodeInIframe = `<body style="background:linear-gradient(to right, rgba(213, 0, 115, 0.5) 50%, #76DC37 50%); color: white; font-family: helvetica; text-align: center;" >
+<h2>
+INNOVATE NOW
+</h2>
+</body>`;
 Modal.setAppElement('#modalInProfile');
 
 const modalStyles = {
@@ -70,7 +75,7 @@ const Header = ({isEditable, tribeCode}) => {
 
   useEffect(() => {
     if (iframe_code && iframe_emoji) {
-      writeContentToIframe(iframe_code, codeInIframe);
+      writeContentToIframe(iframe_code, codeInIframe || defaultCodeInIframe);
       writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
     }
   }, [iframe_code, iframe_emoji, codeInIframe, emojiCode]);
@@ -84,7 +89,7 @@ const Header = ({isEditable, tribeCode}) => {
 
     dispatch(updateTribeHeader(data,tribeCode));
 
-    writeContentToIframe(iframe_code, codeInIframe);
+    writeContentToIframe(iframe_code, codeInIframe || defaultCodeInIframe);
     writeContentToIframe(iframe_emoji, wrapperEmojiInHtmlString(emojiCode));
   }, [iframe_code, iframe_emoji, inputValue, textareaValue, codeInIframe, emojiCode, dispatch]);
 
