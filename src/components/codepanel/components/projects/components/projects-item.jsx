@@ -9,9 +9,20 @@ import ShareIcon from "../../../../../assets/icons/footer-icon/share.png";
 import Card from "../../../../../shared/components/card/card";
 import ExpandIcon from "../../../../../assets/images/chevron-down-pink.png";
 import CollapseIcon from "../../../../../assets/images/chevron-up-gray.png";
-
+import Progress from "../../progress-bar";
 const useStyles = makeStyles(() => ({
-  cardContainer: {
+  body1: {
+    backgroundColor: "#f4f4f4",
+flexDirection: "column",
+fontFamily: 'Montserrat',
+display: "flex",
+alignItems: "center",
+justifyContent: "center",
+height: "100vh",
+margin: 0,
+},
+
+cardContainer: {
     display: "flex",
     alignItems: "stretch",
     backgroundColor: "#fff",
@@ -329,12 +340,6 @@ const ProectItem = (
               <>
                 {lessons.length > 1 ? (
                   <>
-                    <Link onClick={() => {
-                        console.log("trainings click")
-                        selectProject("P001");
-                      }} className={classes.btnMore}>
-                      Trainings
-                    </Link>
                     <Link
                       onClick={() => {
                         history.push(`/codepanel/C001/P001/${lessons[0]}`);
@@ -344,6 +349,7 @@ const ProectItem = (
                     >
                       <PlayArrowIcon className={classes.btnIcon}/>
                     </Link>
+                      <Progress done="50"/>
                   </>
                 ) : (
                   <button className={classes.btnStart} role="button" onClick={() => {

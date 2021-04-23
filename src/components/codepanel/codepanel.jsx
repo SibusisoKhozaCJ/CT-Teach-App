@@ -50,6 +50,7 @@ const Codepanel = ({
   const currentSlideNumber = useSelector(
     (state) => state.codepanel.currentSlide
   );
+
   const [panel, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`;
@@ -93,6 +94,18 @@ const Codepanel = ({
           setLesson(data);
         }
       });
+    }else{
+        getLesson(trainingId).then((data) => {
+          if (data) {
+            setTimeout(() => {
+            dispatch(codepanelSetSlides(data));
+            dispatch(codepanelSetCurrentLesson(lessonPath));
+            setLesson(data);
+          },1000)
+          }
+        });
+
+
     }
 
     // if (typeof localStorage !== "undefined") {
