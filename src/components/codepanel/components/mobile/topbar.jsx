@@ -13,7 +13,11 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import MenuIcon from "@material-ui/icons/Menu";
 import FolderOpenIcon from "@material-ui/icons/FolderOpen";
 import FaceIcon from "@material-ui/icons/Face";
-
+import ClockIcon from "../../../../assets/icons/timer-button.png";
+import Smily from "../../../../assets/icons/smiley.png";
+import Coding from "../../../../assets/icons/coding.png";
+import Eyes from "../../../../assets/icons/eyes.png";
+import Avatar from "../../../../assets/icons/avatar.png";
 import MainMenu from "../menu/main-menu";
 import { codepanelSetTab, codepanelSetCheckerActive } from '../../../../redux/actions/codepanel-actions';
 import Timer from "../timer/timer";
@@ -62,7 +66,7 @@ const MobileTopBar = () => {
             <FolderOpenIcon />
           </IconButton>
         ) : (
-          <Timer mobile/>
+          <Timer mobile ClockIcon={ClockIcon}/>
         )}
         <Tabs
           aria-label="lesson tabs"
@@ -77,13 +81,13 @@ const MobileTopBar = () => {
         >
           <Tab
             aria-label="Lesson"
-            icon={<AssignmentIcon />}
+            icon={<img src={Smily} />}
             {...a11yProps(0)}
           />
-          <Tab aria-label="Code" icon={<CodeIcon />} {...a11yProps(1)} />
+          <Tab aria-label="Code" icon={<img src={Coding} />} {...a11yProps(1)} />
           <Tab
             aria-label="Preview"
-            icon={<VisibilityIcon />}
+            icon={<img src={Eyes} />}
             {...a11yProps(2)}
           />
         </Tabs>
@@ -98,7 +102,7 @@ const MobileTopBar = () => {
             }}
             title="Teacher"
           >
-            <FaceIcon />
+           <img src={Avatar} />
           </IconButton>
         ) : (
           <IconButton

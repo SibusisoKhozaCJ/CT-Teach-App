@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseButton from "../../../../shared/components/buttons/CloseButton";
 import TimerIcon from '@material-ui/icons/Timer';
 
-const Timer = ({ mobile }) => {
+const Timer = ({ mobile, ...props }) => {
   const classes = useStyles({mobile});
   const [minutes, setMinutes] = useState(1);
   const [start, setStart] = useState(false);
@@ -113,7 +113,8 @@ const Timer = ({ mobile }) => {
             setFinish={setFinishTimer}
           />
         ) : (
-          <TimerIcon className={classes.timerIcon}/>
+          <img src={props.ClockIcon} />
+          // <TimerIcon className={classes.timerIcon}/>
         )}
       </IconButton>
       <Popover
