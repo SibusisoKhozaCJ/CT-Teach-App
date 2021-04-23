@@ -83,8 +83,34 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   const renderInputs = () => {
     return Object.keys(formControls).map((controlName, index) => {
       const item = formControls[controlName];
+      if(controlName == 'twitter'){
+        return (
+          <Controller
+            key={controlName + index}
+            control={control}
+            name={controlName}
+            render={
+              ({value, ref, name, onChange}) => {
+                return (
+                  <>
+                  <div className={'borderLineAbove'}></div>
+                  <Input
+                    item={item}
+                    onChange={onChange}
+                    ref={ref}
+                    value={value}
+                    name={name}
+                    errors={errors}
+                    isEdit={isEditForm}
+                  />
+                  </>
+                )
+              }}
+          />
+        )
+      }
+      else{
       return (
-        <form>
         <Controller
           key={controlName + index}
           control={control}
@@ -104,8 +130,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
               )
             }}
         />
-        </form>
       )
+          }
     });
   };
 
@@ -124,7 +150,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
             disabled={!isEmpty(errors)}
             type="submit"
           >
-            Save
+            Update
           </Button>
         </Grid>
       )

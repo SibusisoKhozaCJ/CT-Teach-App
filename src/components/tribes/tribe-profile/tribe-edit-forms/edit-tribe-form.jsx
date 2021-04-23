@@ -11,7 +11,7 @@ import Input from "./input/input";
 import classNames from "classnames";
 import Button from "@material-ui/core/Button";
 import {isEmpty} from "lodash";
-
+import AddIcon from "../../../../assets/icons/tribe/copy-icon.png"
 const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
   const dispatch = useDispatch();
   const {
@@ -54,6 +54,39 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
           </Button>  
         )
       }
+      if(controlName == 'joinCode'){
+        return (
+          <Controller
+            key={controlName + index}
+            control={control}
+            name={controlName}
+            render={
+              ({value, ref, name, onChange}) => {
+                return (
+                  <>
+                  <Grid item md={5} sm={12}>
+                  <Input
+                    item={item}
+                    onChange={onChange}
+                    ref={ref}
+                    value={value}
+                    name={name}
+                    errors={errors}
+                    isEdit={isEditForm}
+                  />
+                  <Button className={classes.joinBtn}>
+                   <img src ={AddIcon} width='23px'/>
+                  </Button>  
+                  <Button className={classes.joinBtn}>
+                    New
+                  </Button>
+                  </Grid>
+                  </>
+                )
+              }}
+          />
+        )
+      }
       else{
       return (
         <Controller
@@ -63,6 +96,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
           render={
             ({value, ref, name, onChange}) => {
               return (
+                <>
                 <Input
                   item={item}
                   onChange={onChange}
@@ -72,6 +106,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser, tribeCode}) => {
                   errors={errors}
                   isEdit={isEditForm}
                 />
+                </>
               )
             }}
         />

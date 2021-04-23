@@ -40,6 +40,7 @@ const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) =
             onChange={event => props.onChange(event.target.value)}
             className={inputClasses}
             disabled={!isEdit}
+            placeholder={item.placeHolder}
           />
         ) : (
           <div className={classes[item.className]}>{props.value}</div>

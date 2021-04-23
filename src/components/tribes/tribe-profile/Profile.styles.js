@@ -260,7 +260,7 @@ export const FormProfileStyles = theme => ({
     marginLeft: 20,
     width: 200,
     [theme.breakpoints.down("sm")]: {
-      width: 140,
+      width: 159,
       textAlign: 'end',
       border: 'none !important',
       marginTop: 14,
@@ -292,7 +292,9 @@ export const FormProfileStyles = theme => ({
     padding: 5,
     boxSizing: 'border-box',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontSize: 14
+    fontSize: 14,
+    border: '1px solid #EAEAEB'
+
   },
   activeControlInput: {
     ...activeControl,
@@ -346,12 +348,37 @@ export const FormProfileStyles = theme => ({
     boxSizing: 'border-box',
     paddingTop: 0,
     border: '1px solid #cccccc',
-    borderRadius: 5,
+    background: '#FFFFFF',
+    [theme.breakpoints.down("sm")]: {
+      height: 27,
+      lineHeight: '27px',
+      fontSize: 15
+     
+    }
+  },
+  joinInputPrivateForm:{
+    display: 'block',
+    width:'178px',
+    height: 32,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontSize: 18,
+    lineHeight: '32px',
+    paddingLeft: 6,
+    paddingRight: 6,
+    boxSizing: 'border-box',
+    paddingTop: 0,
+    border: '1px solid #cccccc',
+    background: '#FFFFFF',
     [theme.breakpoints.down("sm")]: {
       height: 27,
       lineHeight: '27px',
       fontSize: 15
     }
+  },
+  joinBtn:{
+    border: '1px solid #C4C4C4',
+    borderRadius: '5px',
+    marginLeft: '10px'
   },
   header: {
     position: 'relative',

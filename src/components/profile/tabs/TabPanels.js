@@ -13,6 +13,7 @@ import FriendIcon from "../../../assets/icons/profile-icon/Friends.png";
 import GalleryIcon from "../../../assets/icons/profile-icon/galleryarticon.png";
 import BlingIcon from "../../../assets/icons/profile-icon/web-certificate.png";
 import { MicNone } from '@material-ui/icons';
+import { Grid } from "@material-ui/core";
 
 
 function TabPanel(props) {
@@ -53,13 +54,20 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     marginTop:6,
-    border: '3px solid rgba(240, 238, 238, 0.5)',
-    boxShadow: '0px 10px #0000'
+    borderTop: '3px solid rgba(240, 238, 238, 0.5)',
+    boxShadow: '0px 10px #0000',
+    '& header':{
+        boxShadow: 'none',
+        borderBottom: '3px solid rgba(240, 238, 238, 0.5)'
+    }
   },
   Tabs:{
       color: '#A6A6A6',
       '& div' :{
-        maxHeight: 59
+        maxHeight: 59,
+        '& .PrivateTabIndicator-colorSecondary-407':{
+            backgroundColor: '#FBDD3F'
+        }
       }
   },
   Tab:{
@@ -89,8 +97,8 @@ export default function TabPanels(props) {
       </AppBar>
       <TabPanel value={value} index={0}>
       <EditPublicInfo/>
-        {props.isRenderForm && <EditPrivateInfo/>}
-      </TabPanel>
+      {props.isRenderForm && <EditPrivateInfo/>}
+        </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
@@ -98,7 +106,7 @@ export default function TabPanels(props) {
         Item Three
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Three
+        Item four
       </TabPanel>
     </div>
   );

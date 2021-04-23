@@ -8,21 +8,27 @@ import {
   finishEditPublicUserInfo,
   startEditPublicUserInfo
 } from "../../../../redux/actions/user-actions";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 
 const EditPublicInfo = () => {
   const {editPublicUserInfo, user, isCurrentUser} = useSelector(state => state.user);
+  const isDesktopQuery = useMediaQuery("(min-width:1275px)");
   const dispatch = useDispatch();
-
   const settingsForm = {
     formControls: formPublicControlsProfilePage,
     defaultValues: {
-      userName: user.userName || '',
-      points: user.points || '',
-      joined: user.joined || '',
-      aboutMe: user.aboutMe || '',
-      country: user.country || '',
-      question: user.question || '',
+      ME: user.userName || '',
+      atRate: user.userName || '',
+      Date: user.joined || '',
+      Bio: user.aboutMe || '',
+      Code: user.code || '',
+      Country: user.country || '',
+      School: user.userName || '',
+      twitter: user.joined || '',
+      Tiktok: user.aboutMe || '',
+      instagram: user.code || '',
+      Discord: user.country || '',
     },
     validateResolver: publicFormProfile,
     isEditForm: editPublicUserInfo,
@@ -31,8 +37,8 @@ const EditPublicInfo = () => {
       dispatch(finishEditPrivateUserInfo())
     },
     finishEdit: finishEditPublicUserInfo,
-    classesWrapper: { border: '5px solid #43D4DD'},
-    classesForm: { background: 'rgba(240, 238, 238, 0.5)', paddingTop: 23},
+    classesWrapper: { border: '5px solid #43D4DD', display: 'inline-block', width: '100%',margin: isDesktopQuery ?'0 50px': '0 0px'},
+    classesForm: { background: isDesktopQuery ?'rgba(240, 238, 238, 0.5)' : 'transparent', paddingTop: 23},
   }
 
   return (
