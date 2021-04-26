@@ -20,7 +20,7 @@ export const lesson_data = {
       challenge: false,
       html_content: `
       <div class="container">
-        <h1 class='yellow'>PROJECT 1</h1>
+        <h1 class='yellow'>PROJECT 1...</h1>
         <h2 class="mt-2 lesson-title font-weight-normal">YAAAAAYYYYY!</h2>
       </div>
       `,
