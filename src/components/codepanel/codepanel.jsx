@@ -27,7 +27,10 @@ import TakeTour from "./components/take-tour";
 import ResetModal from "./components/reset-modal";
 import { currentUserId } from "../../shared/lib/authentication";
 import ToolTip from './components/tool-tip/tool-tip';
-import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data"
+import lesson_dataC0001P001T000 from "./data-new/C001-P001-T000/lesson_data";
+import lesson_dataC0001P001T001 from "./data-new/C001-P001-T001/lesson_data";
+import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data";
+import lesson_dataC0001P001T004 from "./data-new/C001-P001-T004/lesson_data";
 import { uploadLesson } from './utils/upload-lesson';
 
 const Codepanel = ({
@@ -62,9 +65,18 @@ const Codepanel = ({
   };
 
   const getLesson = async (id) => {
-    if(id === "T003"){
-      return lesson_dataC0001P001T003;
-    }else{
+  if(id === "T003"){
+    return lesson_dataC0001P001T003;
+  }
+	if(id === "T004"){
+	  return lesson_dataC0001P001T004;
+	}
+  if(id === "T000"){
+    return lesson_dataC0001P001T000;
+  }if(id === "T001"){
+    return lesson_dataC0001P001T001;
+  }
+	else{
       return await authFetch.firebaseGet(`Lessons/${id}`);
     }
   };

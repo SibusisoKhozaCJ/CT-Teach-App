@@ -35,33 +35,16 @@ const lesson_dataC0001P001T000 = {
     <div>
         <p class="slide-header h2">CHALLENGE</p>
     </div>
+    <div class="my-auto">
     <div class='white'>
       <p class="h1 white text-left">Hi,... <img class='swiper-lazy' src='/img/emoji/72/waving-hand-sign-type-3.png' alt=''> </p>
       <div class="h2 white text-left">Type <div class='inline-code bg-black p-2'>&lt;h1&gt;</div> in the code editor.</div>
-      <p class="h5 pt-3 text-left">Tip: Swipe left <img class='swiper-lazy w-1em' src='/img/emoji/72/leftwards-black-arrow.png' alt=''> or click the button below.</p>
-
-        <div class="">
-          <div class="button-locked">
-            <div class="content-mobile-only btn btn-primary swiper-editor bg-dark-grey skip check" style="backgroXund-color: #29c1c4!important;">Start typing...</div>
-          </div>
-          <div class="button-unlocked">
-            <a class="btn btn-primary btn-success check swiper-next" style="bacXkground-color: #29c1c4!important;">I did it <i class="icon-sentiment_satisfied"></i></a>
-           </div>
-        </div>
-    </div>
-    <div class='white content-mobile-only'>
-      <p class=" pt-3 mb-1">Not sure what to do?</p>
-      <p class="pt-0X underlineX take-tour pointer bg-aqua2 white" data->Take the Tour</p>
-    </div>
-    <div class='white content-mobile-only'>
       <div class='button-locked'>
-        <a class='swiper-next skip' style=''>Skip this step</a>
-      </div>
+      <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
+      <a class='swiper-next skip' style=''>Skip this step</a> 
     </div>
-    <div class='white content-desktop-only'>
-      <div class='button-locked'>
-        <a class='swiper-next skip' style='font-size: 25px'>Skip this step</a>
-      </div>
+    <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
+    </div>
     </div>
     `,
       js_function: "console.log('I am a DB loaded function')",
@@ -99,7 +82,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>  <h3 class='lesson-title font-weight-normal  mb-5'>You completed<br> the first step<br> of the famous…</h3> <img style='' class='w-50 swiper-lazy' src='/img/timer_circle.png'> <h1 class='h2 lesson-title font-weight-normal mt-1'>5-Minute <br>Website</h1>  </div>
+      </div>
     `,
       js_function: "console.log('I am a DB loaded function')",
       sort_order: 5,
@@ -110,7 +95,12 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
-      <div class='container'>  <h2 class='lesson-title encouraging mb-4'>Awesome!</h2><img class='w-20 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png'></div>
+      <div class="my-auto">
+      <div class='container'>
+      <h2 class='lesson-title encouraging mb-4'>Awesome!</h2>
+      <img class='w-20 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png'>
+      </div>
+      </div>
       `,
       sort_order: 6,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -120,7 +110,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class="container"><h3 class='lesson-title font-weight-normal mb-0' style='text-transform: none'>We are going to<br> learn how to code<br> your website using </h3><h2 class='lesson-title mb-5'>HTML</h2><h3 class='lesson-title font-weight-normal mt-5' style='text-transform: none'>What is that?</h3><div><img class='w-20 pr-1  swiper-lazy' src='/img/emoji/thinking-face_1f914.png' alt=''><img class='w-20 pl-1 swiper-lazy' src='/img/emoji/thinking-face_1f914.png' alt=''></div></div>
+      </div>
       `,
       sort_order: 12,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -130,7 +122,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>  <h2 class='lesson-title blue'>HTML</h2><p class='lesson-instructions fs-16 mb-4'>HyperText Markup Language.</p> <img src='/img/lessons/P001-L00-M-V001-HTML-skeleton.jpg?00' class='swiper-lazy mb-4' style='max-height: 40vh;'><div class='swiper-lazy-preloader'></div><h3 class='lesson-title font-weight-normal mt-4'>HTML is the website <span class='yellow'>STRUCTURE</span><br><small>(SKELETON)</small></h3> </div>
+      </div>
       `,
       sort_order: 13,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -140,8 +134,10 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
-                          <div class='container'>  <h3 class='lesson-title font-weight-normal mb-5'>It works like this:</h3> <img src='/img/lessons/bold-tags.png' class='swiper-lazy mb-4'><div class='swiper-lazy-preloader'></div> </div>
-      `,
+      <div class="my-auto">
+        <div class='container'>  <h3 class='lesson-title font-weight-normal mb-5'>It works like this:</h3> <img src='/img/lessons/bold-tags.png' class='swiper-lazy mb-4'><div class='swiper-lazy-preloader'></div> </div>
+      </div>
+        `,
       sort_order: 14,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
@@ -150,7 +146,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>      <h2 class='lesson-title font-weight-normal  mb-5' style='text-transform: none'>Ready for a<br> “Challenge?”</h2>               <img class='w-30 swiper-lazy' src='/img/emoji/boxing-glove.png' alt=''><img src="https://code.org/api/hour/begin_codejika.png" alt="HoC tracking pixel"></div>
+      </div>
       `,
       sort_order: 9,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -161,33 +159,30 @@ const lesson_dataC0001P001T000 = {
       action: true,
       challenge: true,
       created_at: "2017-08-23T00:55:40.386Z",
-      css_class: "challenge cp-peach black",
+      css_class: "challenge cp_yellow",
       html_content: `
       <div>
-        <p class="slide-header h2 white">CHALLENGE</p>
+        <p class="slide-header h2">CHALLENGE</p>
       </div>
-      <div>
-         <div class='text-left pb-3'>
-          <p class='text-uppercase'>Instructions:</p>
+      <div class="my-auto">
+      <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
           <ol class='list-numbered'>
             <li class='tasks'>Type your name after the opening <span class='inline-code'>&lt;h1&gt;</span> tag</li>
             <li class='tasks'>Add a closing <span class='inline-code'>&lt;/h1&gt;</span> tag</li>
           </ol>
         </div>
-        <p class='fs75 pb-0 text-left'>Your code will look like this:</p>
-        <div class='html-code-box pt-3 pb-3 mb-5'>
-          <span class='code-fade'>&lt;h1&gt;</span><span class="blinking-cursor">|</span>Your Name &lt;/h1&gt;
+        <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class='html-code-box '>
+        <span class='code-fade'>&lt;h1&gt;</span><span class="blinking-cursor"></span>Your Name &lt;/h1&gt;
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
         </div>
         <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
         </div>
-      </div>
-      <div class='slide-footer tips'>
-        <span class='red'>TIP:</span> Swipe left to start.
-      </div>
+        </div>
       `,
       tip: "Swipe left to start.",
       reg: [
@@ -212,7 +207,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'><h2 class='lesson-title encouraging  mb-5'>GOOD JOB!</h2><h3 class='lesson-title font-weight-normal mb-5'>Now we’ll add <br> some styling with <br><span class='pink' style='font-weight: bold'>CSS</span>.</h3><h3 class='lesson-title font-weight-normal mt-5'>Are you ready?</h3></div>
+      </div>
       `,
       sort_order: 16,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -222,7 +219,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>                    <h2 class='lesson-title pink '>CSS</h2>                      <p class='lesson-instructions fs-16 mb-4'>Cascading Style Sheets</p>                     <div style='position: relative'>                         <p class='lesson-instructions pink' style='position:absolute;top: 53%;left: 10%'>style='...'</p>                         <img src='/img/lessons/css-girl.png' class='swiper-lazy mb-2' style='max-height: 50vh;'>                     </div>                     <div class='swiper-lazy-preloader'></div>                      <h3 class='lesson-title font-weight-normal mt-2'>                       <span class=' pink' style='margin-left: -25%'>CSS</span> is the <br>                        <span class='yellow' style='margin-left: 25%'>STYLE </span>                       <small> (BLING)</small></h3>                      </div>
+      </div>
       `,
       sort_order: 17,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -232,54 +231,60 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>      <h3 class='lesson-title font-weight-normal mb-5'>This will add a beautiful background color to your website.</h3>     <h3 class='lesson-title font-weight-normal mt-5 mb-5'>It’s worth it.<br>I promise.</h3>     <p class='lesson-instructions mb-4'>         <img class='swiper-lazy w-20' src='/img/emoji/ok-hand-sign_1f44c.png'>         <img class='swiper-lazy w-20' src='/img/emoji/grinning-face-with-smiling-eyes_1f601.png'>         <img class='swiper-lazy w-20' src='/img/emoji/ok-hand-sign_1f44c.png'>     </p> </div>
+      </div>
       `,
       sort_order: 18,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
       slide_number: 13,
+      challenge_id: 2,
       action: true,
       challenge: true,
-      challenge_id: 2,
       created_at: "2017-08-23T00:55:40.386Z",
-      css_class: "challenge cp-peach black",
+      css_class: "challenge cp_yellow",
       html_content: `
       <div>
-        <p class="slide-header h2 white">CHALLENGE</p>
+        <p class="slide-header h2">CHALLENGE</p>
       </div>
-      <div>
-         <div class='text-left pb-3'>
-          <p class='text-uppercase'>Instructions:</p>
+      <div class="my-auto">
+      <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
           <ol class='list-numbered'>
-            <li class='tasks'>Add a line <span class='underline'>above</span> your <span class='inline-code'>&lt;h1&gt;</span> tags. </li>
-            <li class='tasks'>Type <span class='inline-code'>&lt;body&gt;</span> </li>
+          <li class='tasks'>Add a line <span class='underline'>above</span> your <span class='inline-code'>&lt;h1&gt;</span> tags. </li>
+          <li class='tasks'>Type <span class='inline-code'>&lt;body&gt;</span> </li>
           </ol>
         </div>
-        <p class='fs75 pb-0 text-left'>Your code will look like this:</p>
-        <div class='html-code-box  pt-2 pb-2 mb-5'>
-          <span class="blinking-cursor">|</span>&lt;body&gt;<br>
+        <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class='html-code-box '>
+        <span class="blinking-cursor"></span>&lt;body&gt;<br>
           <span class='code-fade'>&lt;h1&gt;Your Name&lt;/h1&gt;</span>
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
         </div>
         <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
         </div>
-      </div>
-      <div class='slide-footer tips'>
-        <span class='red'>TIP:</span> Add the &lt;body&gt; tag as the first line.
-      </div>
+        </div>
       `,
-      tip: "Add the &lt;body&gt; tag as the first line.",
       reg: [
         {
           description: "add <body> tag",
           rule: "<body(.*)>",
         },
+        // {
+        //   description: "create <p> tag",
+        //   rule: "<p(.*)>",
+        // },
+        // {
+        //   description: "create <b> tag",
+        //   rule: "<b(.*)>",
+        // },
       ],
-      sort_order: 19,
+      sort_order: 15,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -287,6 +292,7 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'><h2 class='lesson-title encouraging  mb-5'>GOOD!</h2><p class='lesson-instructions mt-5'>Now let's add some<br> style into body.</p></div>
       `,
       sort_order: 20,
@@ -294,39 +300,36 @@ const lesson_dataC0001P001T000 = {
     },
     {
       slide_number: 15,
+      challenge_id: 3,
       action: true,
       challenge: true,
-      challenge_id: 3,
       created_at: "2017-08-23T00:55:40.386Z",
-      css_class: "challenge cp-peach black",
+      css_class: "challenge cp_yellow",
       html_content: `
       <div>
-        <p class="slide-header h2 white">CHALLENGE</p>
+        <p class="slide-header h2">CHALLENGE</p>
       </div>
-      <div>
-         <div class='text-left pb-3'>
-          <p class='text-uppercase'>Instructions:</p>
+      <div class="my-auto">
+      <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
           <ol class='list-numbered'>
-            <li class='tasks'>Add <span class='inline-code'>style=" "</span> inside the <span class='inline-code'>&lt;body&gt;</span> tag. Before the <span class='inline-code'>&gt;</span> symbol. </li>
+          <li class='tasks'>Add <span class='inline-code'>style=" "</span> inside the <span class='inline-code'>&lt;body&gt;</span> tag. Before the <span class='inline-code'>&gt;</span> symbol. </li>
           </ol>
         </div>
-        <p class='fs75 pb-0 text-left'>Your code will look like this:</p>
-        <div class='html-code-box pt-2 pb-2 mb-5'>
-          <span class='code-fade'>&lt;body </span><span class="blinking-cursor">|</span>style=" " <span class='code-fade'>&gt;<br>
-          &lt;h1&gt;Your Name&lt;/h1&gt;</span>
+        <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class='html-code-box '>
+        <span class="blinking-cursor">
+        &lt;body </span><span class="blinking-cursor"></span>style=" " <span class='code-fade'>&gt;<br>
+        &lt;h1&gt;Your Name&lt;/h1&gt;</span>
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
         </div>
         <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
         </div>
-      </div>
-      <div class='slide-footer tips'>
-        <span class='red'>TIP:</span> Find “ on the quick-keys.
-      </div>
+        </div>
       `,
-      tip: "Find “ on the quick-keys.",
       reg: [
         {
           description: "add style to body tag",
@@ -334,7 +337,7 @@ const lesson_dataC0001P001T000 = {
             '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[s\0-9a-z:;#]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)',
         },
       ],
-      sort_order: 21,
+      sort_order: 15,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -342,46 +345,44 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'><h2 class='lesson-title encouraging mb-5'>GREAT!</h2> <h3 class='lesson-title mt-5'>Now for the best part.</h3> <div> <img class='swiper-lazy w-20' src='/img/emoji/72/winking-face.png' alt=''> </div> <p class='lesson-instructions mt-5'>(This is where you<br> add your color.)</p> </div>
+      </div>
       `,
       sort_order: 22,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
       slide_number: 17,
+      challenge_id: 4,
       action: true,
       challenge: true,
-      challenge_id: 4,
       created_at: "2017-08-23T00:55:40.386Z",
-      css_class: "challenge cp-peach black",
+      css_class: "challenge cp_yellow",
       html_content: `
       <div>
-        <p class="slide-header h2 white">CHALLENGE</p>
+        <p class="slide-header h2">CHALLENGE</p>
       </div>
-      <div>
-         <div class='text-left pb-3'>
-          <p class='text-uppercase'>Instructions:</p>
+      <div class="my-auto">
+      <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
           <ol class='list-numbered'>
-            <li class='tasks'>Add <span class='inline-code'>background: pink;</span> inbetween the quotes of <span class='inline-code'>style=" "</span>. </li>
+          <li class='tasks'>Add <span class='inline-code'>background: pink;</span> inbetween the quotes of <span class='inline-code'>style=" "</span>. </li>
           </ol>
         </div>
-        <p class='fs75 pb-0 text-left'>Your code will look like this:</p>
-        <div class='html-code-box pt-2 pb-2 mb-5'>
-          <span class='code-fade'>&lt;body style="</span><span class="blinking-cursor">|</span>background: pink;<span class='code-fade'>" &gt;<br>
-          &lt;h1&gt;Your Name&lt;/h1&gt;</span>
+        <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class='html-code-box '>
+        background: pink;<span class='code-fade'>" &gt;<br>
+        &lt;h1&gt;Your Name&lt;/h1&gt;</span>
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
         </div>
         <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
         </div>
-      </div>
-      <div class='slide-footer tips'>
-        <span class='red'>TIP:</span> Notice <strong>:</strong> and <strong>;</strong>
-      </div>
+        </div>
       `,
-      tip: "Notice <strong>:</strong> and <strong>;</strong>",
       reg: [
         {
           description: "add pink color to body background",
@@ -389,7 +390,7 @@ const lesson_dataC0001P001T000 = {
             '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[\\s\\r\\n]*background[\\s\\r\\n]*:[\\s\\r\\n]*(pink|red)[\\s\\r\\n]*;[\\s\\r\\n]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)',
         },
       ],
-      sort_order: 23,
+      sort_order: 15,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -397,7 +398,16 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
-                    <div class='container'></div><div class='container'><h2 class='lesson-title encouraging'>Great!</h2><h3 class='lesson-title font-weight-normal  mb-5'>Now check it in <br> the PREVIEW tab.</h3><p class='lesson-instructions mt-5'>Then come back here.</p>   </div>   <div class='container'><p class='lesson-tip'><span>Tip:</span> Swipe left twice to see Preview tab.</p></div>
+      <div class="my-auto">
+      <div class='container'>
+      <h2 class='lesson-title encouraging'>Great!</h2>
+      <h3 class='lesson-title font-weight-normal  mb-5'>Now check it in <br> the PREVIEW tab.</h3><p class='lesson-instructions mt-5'>Then come back here.</p>
+      </div>
+      <div class='container'>
+      <p class='lesson-tip'><span>Tip:</span> Swipe left twice to see Preview tab.
+      </p>
+      </div>
+      </div>
       `,
       sort_order: 24,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -407,7 +417,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'> <h3 class='lesson-title encouraging mb-5 '>CONGRATULATIONS</h3> <div style='background-color: #6aa2c7;border-radius:50%; margin: 40px auto; width: 200px;height: 200px;'> <img class='w-75' style='padding-top:20px;' src='/img/congrats.png'> </div> <h3 class='lesson-title font-weight-normal  mt-5'>You’ve made <br>your first <br>website!</h2> </div>
+      </div>
       `,
       sort_order: 25,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -417,7 +429,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'><h3 class='lesson-title font-weight-normal  mb-5 w-75'>Want to try a different color for the background?</h3>                 <div style='margin-top: 3rem'>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/grinning-face-with-star-eyes.png' alt=''>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/grinning-face-with-star-eyes.png' alt=''>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/grinning-face-with-star-eyes.png' alt=''>                   </div>                 </div>
+      </div>
       `,
       sort_order: 26,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -427,55 +441,52 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <ldiv class="my-auto">
       <div class='container'><h3 class='lesson-title font-weight-normal  mb-5'>Which color do you<br> want to try?</h3>                 <div style='margin-top: 1rem'><h3 class='lesson-title font-weight-normal  mb-5'><span style="color:teal">teal</span> <span style="color:violet">violet</span> <br> <span style="color:dodgerblue">dodgerblue</span> <br><span style="color:deeppink">deeppink</span> <br><span style="color:aquamarine">aquamarine</span> <span style="color:gold">gold</span> <br> <span style="color:green">green</span> <span style="color:yellow">yellow</span> </h3> </div> <div style='margin-top: mt-2'><img class='swiper-lazy' src='/img/emoji/72/rainbow.png' alt=''></div>                 </div>
+      </div>
       `,
       sort_order: 27,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
       slide_number: 22,
+      challenge_id: 5,
       action: true,
       challenge: true,
-      challenge_id: 5,
       created_at: "2017-08-23T00:55:40.386Z",
-      css_class: "challenge cp-peach black",
+      css_class: "challenge cp_yellow",
       html_content: `
       <div>
-        <p class="slide-header h2 white">CHALLENGE</p>
+        <p class="slide-header h2">CHALLENGE</p>
       </div>
-      <div>
-         <div class='text-left pb-3'>
-          <p class='text-uppercase'>Instructions:</p>
+      <div class="my-auto">
+      <div class='text-left pb-3'>
+          <p class='blue text-uppercase'>Code:</p>
           <ol class='list-numbered'>
-            <li class='tasks'>Change  <span class='inline-code'>pink</span> to <span class='inline-code'> red</span> or any color you like.</li>
+          <li class='tasks'>Change  <span class='inline-code'>pink</span> to <span class='inline-code'> red</span> or any color you like.</li>
           </ol>
         </div>
-        <p class='fs75 pb-0 text-left'>Your code will look like this:</p>
+        <p class='fs75 pb-0 text-left'>Like this:</p>
         <div class='html-code-box pt-2 pb-2 mb-5'>
-          <span class='code-fade'>&lt;body style="background: </span><span class="blinking-cursor">|</span>red<span class='code-fade'>;" &gt;<br>
-          &lt;h1&gt;Your Name&lt;/h1&gt;</span>
+        <span class='code-fade'>&lt;body style="background: </span>red<span class='code-fade'>;" &gt;<br>
+        &lt;h1&gt;Your Name&lt;/h1&gt;</span>
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a>
+          <a class='swiper-next skip' style=''>Skip this step</a> 
         </div>
         <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
         </div>
-      </div>
-      <div class='slide-footer tips'>
-        <span class='red'>TIP:</span> Notice <strong>:</strong> and <strong>;</strong>
-      </div>
+        </div>
       `,
-      tip: "Notice <strong>:</strong> and <strong>;</strong>",
       reg: [
         {
           description: "change body background color",
-          // rule: "body(.*)background:[s\r\n]*(?!pink;)[a-z]"
           rule:
             '<body [\\s\\r\\n]*style[\\s\\r\\n]*=[\\s\\r\\n]*"[\\s\\r\\n]*background[\\s\\r\\n]*:[\\s\\r\\n]*(red)[\\s\\r\\n]*;[\\s\\r\\n]*"[\\s\\r\\n]*>[\\s\\r\\n]*(.*)',
         },
       ],
-      sort_order: 28,
+      sort_order: 15,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -483,7 +494,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'> <h3 class='lesson-title font-weight-normal mb-5'>Did you check it in the PREVIEW tab?</h3> <div style='margin-top: 1rem'> <h3 class='lesson-title font-weight-normal mb-5'> Did it work? </h3> </div> <div style='margin-top: 3rem'> <h2 class='lesson-title encouraging aqua mb-2'>AWESOME!</h2> <img class='w-15 swiper-lazy' src='/img/emoji/fisted-hand-sign_1f44a.png' alt=''> </div> </div>
+      </div>
       `,
       sort_order: 29,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -494,7 +507,9 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>                 <h3 class='lesson-title font-weight-normal'>Share your creative work with your friends.</h3>                 <div>                     <img class='w-15 swiper-lazy' src='/img/emoji/72/smiling-face-with-open-mouth.png' alt=''>                 </div>                 <div>                                      <div class='mt-5'>     <a class='btn btn-share check mt-3' id='whatsapp-code-link' href='' style='width: 80%;font-size: 20px;color: #fff;font-family: 'Rajdhani', sans-serif;'>Share with Friends</a>  <br><button class='btn btn-encouraging next check mt-3' style='width:80%' id='gallery' href=''>Share to CodeJika Gallery<i class='icon-arrow_forward'></i></button> <div class="mt-4"> <a class="swiper-next skip white " style="">Skip this step</a></div> </div>                 </div>               </div>
+      </div>
       `,
       sort_order: 30,
       updated_at: "2017-09-28T16:09:40.256Z",
@@ -505,6 +520,7 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
      <div class='container '>
        <h2 class='lesson-title font-weight-normal pb-3'>GREAT WORK!</h2>
        <h3 class='lesson-title font-weight-normal'>Get your Hour of Code certificate.</h3>
@@ -524,6 +540,7 @@ const lesson_dataC0001P001T000 = {
       challenge: false,
       created_at: "2017-08-23T00:55:40.386Z",
       html_content: `
+      <div class="my-auto">
       <div class='container'>
         <h3 class='lesson-title font-weight-normal'> Are you ready to start <br>Training 1? </h3>
           <div>
