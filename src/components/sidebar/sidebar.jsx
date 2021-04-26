@@ -146,14 +146,14 @@ function Sidebar({ location }) {
   }
   return (
     (isLayoutRender && <div ref={sideBarContainer} className="sidebar">
-      {/* <JoinTribeModal
+      <JoinTribeModal
         tribeCode={tribeCode}
         setTribeChange={setTribeChange}
         checked={checked}
         handleJoinLinkChange={handleJoinLinkChange}
         openModal={openModal}
         handleModalClose={handleModalClose}
-      /> */}
+      />
       <Drawer
         variant={isPermanent ? "permanent" : "temporary"}
         className={classNames(classes.drawer, {
