@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 
-const drawerWidth = 230;
+const drawerWidth = 300;
 
 export default makeStyles(theme => ({
   menuButton: {
@@ -28,7 +28,7 @@ export default makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
-    width: theme.spacing(7) + 10,
+    width: theme.spacing(7) + 40,
     [theme.breakpoints.down("sm")]: {
       width: drawerWidth,
     },
@@ -68,15 +68,6 @@ text-align: center;
 color: rgba(255, 255, 255, 0.75);
 text-transform: none;
 font-family: "Righteous", sans-serif;*/
-},
-largeIcon: {
-  width: 60,
-  height: 60,
-},
-arrowRight:{
-  width: '26px !important',
-  marginLeft: 6,
-  marginTop: 6
 }
 
 }));
