@@ -129,7 +129,7 @@ function Sidebar({ location }) {
   const handleJoinLinkChange = () => {
     setChecked(!checked);
   };
-
+  console.log(isPermanent, "isPermanent")
   return (
     (isLayoutRender && <div ref={sideBarContainer} className="sidebar">
       <JoinTribeModal
@@ -240,11 +240,11 @@ function Sidebar({ location }) {
     var windowWidth = window.innerWidth;
     var breakpointWidth = theme.breakpoints.values.md;
     var isSmallScreen = windowWidth < breakpointWidth;
-
     if (isSmallScreen && isPermanent) {
-      setPermanent(false);
-    } else if (!isSmallScreen && !isPermanent) {
-      setPermanent(true);
+     return setPermanent(false);
+    } 
+     if (!isSmallScreen && isPermanent) {
+     return setPermanent(true);
     }
   }
 }
