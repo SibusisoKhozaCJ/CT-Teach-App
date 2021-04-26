@@ -42,7 +42,7 @@ const ToolTip = () => {
 
   const renderContent = () => {
     if (step === 1) {
-      return <div className={classes.container}>
+      return <div className={classes.container} onClick={onButtonClick}>
           <Grid container>
             <div className={classes.leftCon}>
               <UserIcon />
@@ -81,7 +81,7 @@ const ToolTip = () => {
           </Button>
         </div>
     } else if (step === 2) {
-      return <div className={classes.container}>
+      return <div className={classes.container} onClick={onButtonClick}>
         <span className={classes.arrow}>
           <YellowArrowIcon />
         </span>
@@ -124,7 +124,7 @@ const ToolTip = () => {
           </Button>
         </div>
     }  else if (step === 3) {
-      return <div className={classes.container}>
+      return <div className={classes.container} onClick={onButtonClick}>
         <span className={classes.arrow}>
           <YellowArrowIcon />
         </span>
@@ -172,7 +172,7 @@ const ToolTip = () => {
           </Button>
         </div>
     }  else if (step === 4) {
-      return <div className={classes.container} style={{left: 'calc(50% - 225px)'}}>
+      return <div className={classes.container} style={{left: 'calc(50% - 225px)'}} onClick={onButtonClick}>
         <span className={classes.arrow} style={{left: 'calc(50% - 37px)'}}>
           <YellowArrowIcon />
         </span>
@@ -213,7 +213,7 @@ const ToolTip = () => {
           </Button>
         </div>
     }  else if (step === 5) {
-      return <div className={classes.container} style={{left: 'calc(100% - 460px)'}}>
+      return <div className={classes.container} style={{left: 'calc(100% - 460px)'}} onClick={onButtonClick}>
         <span className={classes.arrow} style={{left: 'auto', right: '30px'}}>
           <YellowArrowIcon />
         </span>
