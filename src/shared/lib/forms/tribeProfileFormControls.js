@@ -1,7 +1,7 @@
 export const tribeFormPrivateControlsProfilePage = {
   joinCode: {
     label: '',
-    className: 'controlInputPrivateForm',
+    className: 'joinInputPrivateForm',
     placeHolder:'JOIN CODE',
     inputActiveClassName: 'activeControlInput',
     type: 'div'
@@ -120,11 +120,12 @@ export const tribeFormPublicControlsProfilePage = {
     errorMessage: 'Can\'t be empty.',
   },
   joinTribe: {
-    label: 'joinTribe',
+    label: 'join Tribe',
     type: 'textarea',
     className: 'controlTextarea',
     inputActiveClassName: 'activeControlTextarea',
     errorMessage: 'Can\'t be empty.',
+    placeHolder:' Add an optional message to your Join Request.'
   },
   RequestToJoin: {
       type:'button',

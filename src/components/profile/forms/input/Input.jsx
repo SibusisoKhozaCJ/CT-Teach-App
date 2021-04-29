@@ -3,7 +3,7 @@ import classNames from "classnames";
 import {isEmpty} from "lodash";
 
 
-const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) => {
+const Input = React.forwardRef(({ item, errors, name, isEdit, ...props}, ref) => {
   const isError = !isEmpty(errors) && errors[name];
 
   const inputClasses = classNames(
@@ -26,6 +26,7 @@ const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) =
             onChange={event => props.onChange(event.target.value)}
             value={props.value}
             disabled={!isEdit}
+            placeholder={item.placeholder}
           />
         ) : item.type === 'textarea' ? (
           <textarea
@@ -34,6 +35,7 @@ const Input = React.forwardRef(({ item, errors, name, isEdit, ...props }, ref) =
             onChange={event => props.onChange(event.target.value)}
             className={inputClasses}
             disabled={!isEdit}
+            placeholder={item.placeholder}
           />
         ) : (
           <div className={item.className}>{props.value}</div>

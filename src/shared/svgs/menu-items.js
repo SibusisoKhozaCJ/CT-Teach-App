@@ -31,7 +31,7 @@ import ToolTip from '../../assets/images/tooltip-image.png';
 import Challenge from '../../assets/images/challenge-icon.png';
 import User from '../../assets/images/jonathan.png';
 import Bulb from '../../assets/images/bulb-icon.svg';
-
+import ArrowRight from '../../assets/images/arrowRight.png'
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
 };
@@ -140,3 +140,6 @@ export const ProjectsSvg = () => {
 export const ToCodeSvg = () => {
   return <img src={ToCodeIcon} alt="" />;
 };
+export const ArrowRightSvg = (props) => {
+  return <img src={ArrowRight} className={props.className} alt="" />
+}

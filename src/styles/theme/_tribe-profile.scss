@@ -52,6 +52,7 @@
 	font-weight: 700 !important;
 }
 
+
 .TribeP {
 	#content {
 		box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.12), 0px 8px 10px 1px rgba(0, 0, 0, 0.05), 0px 3px 14px 2px rgba(0, 0, 0, 0.04);
@@ -221,6 +222,34 @@ span {
     font-weight: bold;
     color: #211f21;
     margin-left: 20px;
+}
+.send-code.joinTribe.Addfrnd-request{
+	 .send-code_title h1{
+		 margin-bottom: 0;
+font-weight: 700;
+font-size: 39px;
+line-height: 46px;
+text-align: center;
+color: #000;
+	 }
+	 .send-code_title p {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #364954;
+    margin-bottom: 30px;
+}
+.send-code_main .MuiBox-root {
+    margin-bottom: 10px;
+}
+.copytolink p {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    color: #364954;
+}
 }
 
 @media only screen and (min-width: 800px) {

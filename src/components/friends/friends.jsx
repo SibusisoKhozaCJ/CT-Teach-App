@@ -29,6 +29,7 @@ const FriendsPage = () => {
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
   const [unfriendModal, setUnfriednModal] = useState("");
   const [btnOpen, setBtnOpen] = useState(false);
+  const [userShareLink, setUserShareLink] = useState("");
   
   const [friendUid, setFriendUid] = useState("");
   const { friendList, pendingList, successErrorMessage, showSuccessModal } = useSelector(
@@ -57,6 +58,7 @@ const FriendsPage = () => {
       if (user.friends && user.friends.length > 0) {
         dispatch(setUserFriends(user));
       }
+      setUserShareLink("/profile/"+user.uid)
     } else {
       dispatch(saveUser(undefined));
     }
@@ -97,6 +99,7 @@ const FriendsPage = () => {
         successErrorMessage={successErrorMessage}
         showSuccessMessage={showSuccessModal}
         openModal={openModal}
+        userShareLink={userShareLink}
         handleModalClose={() => {
           setOpenModal(false);
         }}

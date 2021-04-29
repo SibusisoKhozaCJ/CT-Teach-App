@@ -37,7 +37,7 @@ const EditPublicInfo = ({tribeData, tribeOwner}) => {
   };
 
   return (
-    <EditFormProfile settingsForm={settingsForm} />
+    <EditFormProfile settingsForm={settingsForm}  />
   );
 };
 
