@@ -19,6 +19,10 @@ export async function firebaseUpdate(state, data) {
   await firebase.database().ref(state).update(data);
 }
 
+export async function firebaseDelete(state, data) {
+  await firebase.database().ref(`${state}/${data}`).remove()
+}
+
 export async function firebadeGetSelectedValues(state, data) {
   await firebase.database().ref(state).equalTo("B631J421");
 }
