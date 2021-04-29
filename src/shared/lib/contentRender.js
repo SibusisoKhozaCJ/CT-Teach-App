@@ -14,7 +14,7 @@ export function wrapperEmojiInHtmlString(emoji) {
                     font-size: 120px;
                     line-height: 148px;
                   }
-                  @media screen and (max-device-width: 959px) {
+                  @media (max-width: 91px) {
                       .fa {
                           font-size: 60px;
                           line-height: 70px;

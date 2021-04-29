@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 59,
         display: 'flex',
       justifyContent: 'space-around',
+      flex: 1,
         '& .PrivateTabIndicator-colorSecondary-407':{
             backgroundColor: '#FBDD3F'
         },
