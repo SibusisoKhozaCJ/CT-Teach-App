@@ -19,6 +19,7 @@ import {
 import FlashMessage from 'react-flash-message';
 import {getAppBaseUrl} from "../../../helper";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -98,6 +99,9 @@ const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendR
           <div className={classes.paper1}>
              <section className="send-code joinTribe Addfrnd-request">
             {!showSuccessMessage &&  <div className="send-code_main">
+                <Grid container justify="flex-end">
+                  <Typography className="close-req-modal" onClick={()=>{resetOnCloseModal();handleModalClose()}}>X</Typography>
+                  </Grid>
                 <Box my={2} className="send-code_title">
                   <h1>ADD FRIEND</h1>
                   <p>How do you wanna invite?</p>

@@ -210,22 +210,24 @@ const fetchOwnTribeChat = dispatch => {
         const tribesChats = [];
         if (userTribe) {
           const tribe = (await getTribeInfo(userTribe)).val();
-          tribesChats.push({
-            name: tribe.name,
-            idRoom: tribe.code,
-            isPrivateRoom: false,
-            emojiCode: tribe.emojiCode || "&#128512", 
-            unreadMessages: 0,
-          });
-          if (isInitialFetch) {
-            resolve(tribesChats);
-            isInitialFetch = false;
-          } else {
-            dispatch({
-              type: UPDATE_CHATS,
-              rooms: tribesChats,
+          if(tribe){
+            tribesChats.push({
+              name: tribe.name,
+              idRoom: tribe.code,
+              isPrivateRoom: false,
+              emojiCode: tribe.emojiCode || "&#128512", 
+              unreadMessages: 0,
             });
-            dispatch(setNotifictation());
+            if (isInitialFetch) {
+              resolve(tribesChats);
+              isInitialFetch = false;
+            } else {
+              dispatch({
+                type: UPDATE_CHATS,
+                rooms: tribesChats,
+              });
+              dispatch(setNotifictation());
+            }
           }
         } else {
           if (isInitialFetch) {
