@@ -1,7 +1,7 @@
 $query-sm: 600px;
 $query-md: 960px;
 $query-lg: 1280px;
-$query-xs: 517px;
+$query-xs: 520px;
 $query-mb: 401px;
 %buttonStyles {
   margin-top: 15px;
@@ -177,7 +177,7 @@ $query-mb: 401px;
   }
   .profileDivider{
    width:376px;
-   margin-left: -5px;
+  
   }
 }
 @media (max-width: $query-mb) {
