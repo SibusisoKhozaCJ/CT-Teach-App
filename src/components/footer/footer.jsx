@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Icon1 from "../../assets/icons/footer-icon/icon1.svg";
 import Icon3 from "../../assets/icons/footer-icon/icon3.svg";
 import Icon2 from "../../assets/icons/footer-icon/icon2.svg";
@@ -14,7 +14,7 @@ import ProgressCheck from "../../assets/svg/ProgressCheck"
 import GalleryIcon from "../../assets/svg/GalleryIcon"
 import ProjectsIcon from "../../assets/images/rocket-icon.png";
 import {ProjectsSvg} from "../../shared/svgs/menu-items";
-import LockIcon from "../../assets/svg/LockIcon"
+
 const Footer = () => {
     const history = useHistory();
     const location = useLocation();
@@ -26,7 +26,7 @@ const Footer = () => {
 
     var splitPath = window.location.pathname.split('/')
     var path = splitPath[splitPath.length - 1];
-    const [keyboardExist, setKeyboardExist] = useState(false);
+    const [keyboardExist, setKeyboardExist] = useState(true);
 
     const shouldLayoutRender = (pathname) => {
         if (
@@ -39,16 +39,16 @@ const Footer = () => {
         return true;
     }
     useEffect(() => {
-        const unsubscribe = subscribe(visibility => {
-            if (visibility === "hidden") {
+
+        const initialHeight = window.innerHeight
+        window.addEventListener('resize', function (e) {
+            if (window.innerHeight != initialHeight && path === 'home') {
+                setKeyboardExist(keyboardExist => false)
+            } else {
                 setKeyboardExist(keyboardExist => true)
-            } else if (path === 'home' && visibility === "visible") {
-                setKeyboardExist(keyboardExist => false)
             }
-            else {
-                setKeyboardExist(keyboardExist => false)
-            }
-        });
+        })
+
         setIsLayoutRender(shouldLayoutRender(location.pathname));
     }, [location]);
     const onHandleClick = (value, index) => {
@@ -133,7 +133,7 @@ const Footer = () => {
             <div className="footer-icon">
                 {/* <img onClick={(evt)=>history.push("/tribe")} src={Icon5} className="coverage" alt="" /> */}
                 <div className={activeGalleryClass()} onClick={(evt) => onHandleClick("/home", 3)}>
-                    <LockIcon />
+                    <GalleryIcon />
                 </div>
             </div>
             <div className="footer-icon centr-Ficon">

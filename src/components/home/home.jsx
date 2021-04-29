@@ -6,10 +6,13 @@ import { saveUser } from "../../redux/actions/user-actions";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import ToDo from "../todo/todo";
+import {codepanelSetCurrentLesson} from "../../redux/actions/codepanel-actions";
 
 const Welcome = () => {
   const userIdFromCookies = Cookies.get("userid");
   const dispatch = useDispatch();
+  dispatch(codepanelSetCurrentLesson(null));
+
   const { isCurrentUser } = useSelector((state) => state.user);
   useEffect(() => {
     if (!isCurrentUser) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -21,7 +21,7 @@ import { saveUser } from "../../redux/actions/user-actions";
 import AddTribeModal from "./modals/add-tribe-modal.jsx";
 import { useHistory } from "react-router-dom";
 import AddRemoveTribeModal from "./modals/accept-reject-tribe.jsx";
-import config from "../../config";
+import {getAppBaseUrl} from "../../helper"
 const Tribes = () => {
   const [expand, setExpand] = useState("");
   const [expandUser, setUserExpand] = useState("");
@@ -31,13 +31,23 @@ const Tribes = () => {
   const { loading } = useSelector((state) => state.user);
   const history = useHistory();
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
-  const [removeTribeModal, setRemoveTribeModal] = useState(false)
+  const [removeTribeModal, setRemoveTribeModal] = useState("")
   const [showTribes,setShowTrbies]=useState(true);
   const [showTribesRequests,setShowTrbiesRequest]=useState(false);
   const { userTribes, userJoinedTribes, requestedTribes } = useSelector((state) => state.tribe);
   const [joinUrl, setJoinUrl] = useState("")
   const [selectedTribe, setSelectedTribe] = useState({})
-  
+  const unFriendContainer = useRef();
+  const [btnOpen, setBtnOpen] = useState(false);
+  const handleClickOutsides = (evt) => {
+    if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
+      setRemoveTribeModal("");
+         setBtnOpen(!btnOpen);
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsides);
+  }, []);
   useEffect(() => {
     if (user !== null) {
       dispatch(getUserTribes(user));
@@ -70,10 +80,10 @@ const Tribes = () => {
     let joinLink = "";
     if(senderType === "self"){
        const tribeJoinCode = tribeCode ? tribeCode : userTribes[0].code
-       joinLink = config.APP_BASE_URL + "/join/"+tribeJoinCode;
+       joinLink = getAppBaseUrl() + "/join/"+tribeJoinCode;
       
     }else{
-      joinLink = config.APP_BASE_URL + "/join/L"+tribeCode;
+      joinLink = getAppBaseUrl() + "/join/L"+tribeCode;
     }
     setJoinUrl(joinLink);
     setOpenModal(true);
@@ -84,6 +94,10 @@ const Tribes = () => {
       setAcceptOpenModal(false)
     });
   }
+
+  const toggleLeaveTribeMenu = (index) => {
+    setRemoveTribeModal("unfriend" + index);
+}
 
   const handleAcceptRequest=(userId)=>{
     dispatch(acceptTribeRequest(userTribes, userId)).then((res) => {
@@ -144,24 +158,24 @@ const Tribes = () => {
               {userTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={9} className="tribe-header">
+                    <Grid item xs={12} className="tribe-header">
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
-                       <Grid xs={2} className="frnd-drpBtn">
+                       {/* <Grid xs={2} className="frnd-drpBtn">
                         <img
                           onClick={(evt) => setRemoveTribeModal(true)}
                           src={DotIcon}
                         />
                       </Grid>
                       {removeTribeModal && (
-                        <Grid item xs={12} className="unfriend-Btn">
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
                           <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true)}}>
                            LEAVE TRIBE
                           </Button>
                         </Grid>
-                      )}
+                      )} */}
 
                     <Grid item xs={3}>
                       <div className="tribe-icon">
@@ -285,11 +299,24 @@ const Tribes = () => {
               {userJoinedTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={12}>
+                    <Grid item xs={9}>
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
+                    <Grid xs={2} className="frnd-drpBtn">
+                        <img
+                          onClick={(evt) => {toggleLeaveTribeMenu(index); setBtnOpen(!btnOpen)}}
+                          src={DotIcon}
+                        />
+                      </Grid>
+                      {removeTribeModal == "unfriend" + index && btnOpen&& (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true)}}>
+                           LEAVE TRIBE
+                          </Button>
+                        </Grid>
+                      )}
                     <Grid item xs={3}>
                       <div className="tribe-icon">
                         <img src={Icon2} className="coverage" alt="" />
