@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -37,7 +37,17 @@ const Tribes = () => {
   const { userTribes, userJoinedTribes, requestedTribes } = useSelector((state) => state.tribe);
   const [joinUrl, setJoinUrl] = useState("")
   const [selectedTribe, setSelectedTribe] = useState({})
-  
+  const unFriendContainer = useRef();
+  const [btnOpen, setBtnOpen] = useState(false);
+  const handleClickOutsides = (evt) => {
+    if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
+      setRemoveTribeModal("");
+         setBtnOpen(!btnOpen);
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsides);
+  }, []);
   useEffect(() => {
     if (user !== null) {
       dispatch(getUserTribes(user));
@@ -156,7 +166,7 @@ const Tribes = () => {
                         />
                       </Grid>
                       {removeTribeModal && (
-                        <Grid item xs={12} className="unfriend-Btn">
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
                           <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true)}}>
                            LEAVE TRIBE
                           </Button>
