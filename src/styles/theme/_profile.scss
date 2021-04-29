@@ -70,6 +70,8 @@ $query-mb: 401px;
   }
   .MuiGrid-root.MuiGrid-container {
     margin-top: 90px;
+    .BtnGrid{
+
     .butttonGroup{
       text-align: center;
       padding: 0 40px;
@@ -81,7 +83,7 @@ $query-mb: 401px;
       font-size: 32px;
       font-weight: bold;
       line-height: 37px;
-      width: 460px;
+      width: 100%;
       margin: auto;
       span.MuiButton-label{
         justify-content: flex-start;
@@ -90,8 +92,8 @@ $query-mb: 401px;
       }
       .MessageBtnIcon{
         position: absolute;
-        left: 5px;
-        top: 15px;
+        left: 41px;
+        top: 16px;
       }
       .btnIcon{
         width: 37px;
@@ -108,17 +110,41 @@ $query-mb: 401px;
     background-color: #43D4DD !important;
    
   }
+  @media (max-width: $query-md) {
+    .MessageBtn{
+      font-size: 18px !important;
+      min-height: 68px !important;
+    .MessageBtnIcon{
+      left: 41px !important;
+      top: 16px !important; 
+      .btnIcon{
+        width: 33px !important;
+      }
+    }
+    .MessageBtnText{
+      margin-left: 12px !important; 
+    }
+  }
+  }
     @media (max-width: $query-sm) {
       margin-top: 40px;
+      .profileDivider{
+        display: block;
+      }
+      .BtnGrid{
+        margin-top: 20px;
+      }
+      .butttonGroup{
+      .MessageBtn{
+        margin-top: 21px;
+      }
       .addFriend{
         margin-top: 13px !important;
       }
       .sayHi{
         margin-top: 14px !important;
       }
-      .profileDivider{
-        display: block;
-      }
+    }
       .borderLine{
         width: 320px;
       margin-left: 23px;
@@ -136,6 +162,7 @@ $query-mb: 401px;
         top: 19px !important; 
       }
     }
+  
     }
     @media (max-width: $query-xs) {
       .butttonGroup{
@@ -145,7 +172,8 @@ $query-mb: 401px;
     }
   }
   .profileDivider{
-   width:376px
+   width:376px;
+   margin-left: -5px;
   }
 }
 @media (max-width: $query-mb) {
@@ -169,6 +197,7 @@ width:339px
 }
 
 }
+  }
   }
 }
 
@@ -257,14 +286,31 @@ width:339px
   box-sizing: border-box;
   margin: 0 auto;
   height: 880px;
+  width: 50%;
+  max-width: inherit;
+  flex-basis: inherit;
+  @media (max-width: $query-md){
+    width: 100%;
+  }
   @media (max-width: $query-sm) {
     width: 100%;
     border: none !important;
-    margin-top: 14px;
+    margin-top: 1px;
     padding: 0;
     height: 100%;
   }
-
+  .editProfile{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    max-width: initial;
+    flex-basis: auto;
+    padding: 28px;
+    height: 895px;
+    @media (max-width: $query-sm) {
+      border:transparent !important;
+      padding-top: 0px !important;
+    }
   .form {
     position: relative;
     display: flex;
@@ -279,8 +325,8 @@ width:339px
 
     & svg {
       position: absolute;
-      top: 15px;
-      right: 29px;
+      top: -2px;
+      right: 0px;
       cursor: pointer;
       @media (max-width: $query-sm) {
         top: -16px;
@@ -296,11 +342,11 @@ width:339px
 
     .btnButtons {
       position: absolute;
-      bottom: -35px;
+      bottom: -36px;
      
       @media (max-width: $query-sm) {
         position: relative;
-        bottom: 0px
+        bottom: 42px
       }
     }
 
@@ -308,11 +354,15 @@ width:339px
       @extend %btnModalCancel;
       margin-top: 0;
       margin-bottom: 15px;
-      min-height: 59px;
+      min-height: 45px;
       background-color: #c4c4c4;
       border-radius: 30px;
-      font-size: 29px;
+      font-size: 21px;
       line-height: 34px;
+      @media (max-width: $query-md) {
+        min-height: 59px;
+        font-size: 29px;
+      }
       @media (max-width: $query-xs) {
         font-size: 20px;
         line-height: 23px;
@@ -324,10 +374,14 @@ width:339px
       @extend %btnModalSave;
       margin-top: 0;
       margin-bottom: 15px;
-      min-height: 59px;
+      min-height: 45px;
       border-radius: 30px;
-      font-size: 29px;
+      font-size: 21px;
       line-height: 34px;
+      @media (max-width: $query-md) {
+        min-height: 59px;
+        font-size: 29px;
+      }
       @media (max-width: $query-xs) {
         font-size: 20px;
         line-height: 23px;
@@ -384,13 +438,13 @@ width:339px
     }
   }
 }
+}
 
 .controlProfile {
   display: flex;
   margin-left: 26px;
   margin-right: 29px;
   margin-bottom: 23px;
-  width: 100%;
 
   div {
     display: inline-block;
@@ -444,7 +498,7 @@ width:339px
     @extend %controlStyles;
     color: black;
     margin-left: 20px;
-    width: 250px;
+    width: 82%;
     border: 2px solid #EAEAEB;
     border-radius: 5px;
     white-space: nowrap;
@@ -475,7 +529,7 @@ width:339px
     margin-left: 20px;
     border: 2px solid #EAEAEB;
     border-radius: 5px;
-    width:250px;
+    width:82%;
     background-color: transparent;
     resize: none;
     &::placeholder{
@@ -564,7 +618,7 @@ width:339px
 
   .controlInputPrivateForm {
     display: block;
-    width: 370px;
+    width: 100%;
     margin-left: 80px;
     height: 32px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;

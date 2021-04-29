@@ -40,7 +40,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
     classesWrapper,
     classesForm,
     startEdit,
-    finishEdit
+    finishEdit,
+    classesWrapper1
   } = settingsForm;
 
   const isRenderButton = !isEditForm && !settingsForm.privateForm && isCurrentUser;
@@ -158,7 +159,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   };
 
   return (
-      <Grid id='content' item md={5} sm={12} style={classesWrapper} className={'wrapperFormEditProfile'}>
+      <Grid id='content' item md={5} sm={12} style={classesWrapper1} className={'wrapperFormEditProfile'} spacing>
+        <div className="editProfile" style={classesWrapper}>
         <form onSubmit={handleSubmit(handleSaveAbout)} style={classesForm} className="form">
           {settingsForm.privateForm && (
             <div className="header">
@@ -183,6 +185,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
             </div>
           </Modal>
         </form>
+        </div>
       </Grid>
   );
 };

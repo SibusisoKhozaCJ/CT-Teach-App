@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop:6,
     borderTop: '3px solid rgba(240, 238, 238, 0.5)',
     boxShadow: '0px 10px #0000',
+    width:'100%',
     '& header':{
         boxShadow: 'none',
         borderBottom: '3px solid rgba(240, 238, 238, 0.5)'
@@ -77,9 +78,13 @@ const useStyles = makeStyles((theme) => ({
   Tab:{
     fontSize:10,
     marginTop:-5,
-    marginRight:21
+    display: 'flex',
+    flex: 1,
   },
-  
+ 
+  TabPanel1:{
+    marginTop:'10px !important'
+  }
 }));
 
 export default function TabPanels(props) {
@@ -102,11 +107,12 @@ export default function TabPanels(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
+        <Grid container spacing={2} className={classes.TabPanel1}>
       <EditPublicInfo/>
       {props.isRenderForm && <EditPrivateInfo/>}
-      <Divider variant="middle" width={'476px'} className="profileDivider divider-1" />
-       { !isDesktopQuery && 
-       <div>
+      </Grid>
+            <Grid container className="BtnGrid">
+            <Divider variant="middle" width={'476px'} className="profileDivider divider-1" />
         <Grid item xs={12} sm={6} className="butttonGroup">
         <Button
             variant="contained"
@@ -128,7 +134,7 @@ export default function TabPanels(props) {
             <div className="MessageBtnText">Say Hi</div>
       </Button>
         </Grid>
-        </div>}
+        </Grid>
         </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
