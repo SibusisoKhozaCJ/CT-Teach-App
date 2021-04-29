@@ -60,7 +60,6 @@ const CreateNewAccountPage = () => {
   }, []);
 
   const handleFormSubmitTeacher = async () => {
-    debugger
     const { schoolAlreadySigned, joincode } = form;
     if (schoolAlreadySigned) {
       const isCodeExist = await CheckIfTribeCodeExist(joincode);
@@ -304,9 +303,15 @@ const CreateNewAccountPage = () => {
       }
       setTokens({ isAuthenticate: true });
       updateLoading(false);
-      history.push(routes.HOME);
-      // setTribeCode(tribeCode);
-      // setCurrentStep(4);
+      if(registerType === "2"){
+          setTribeCode(tribeCode);
+          setCurrentStep(4);
+      }else{
+        history.push(routes.HOME);
+      }
+      
+     
+      
     }
   };
 
@@ -348,7 +353,6 @@ const CreateNewAccountPage = () => {
   };
 
   const handleSubmitTeacherSecondForm = async (e) => {
-    debugger
     e.preventDefault();
     updateError("");
     handleFormSubmitTeacher();
