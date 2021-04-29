@@ -95,29 +95,16 @@ const Codepanel = ({
     // uploadLesson();
     dispatch(codepanelSetBlockUpdate(true));
     if (currentLesson !== lessonPath) {
-      // const l = getLesson("5-min-website");
-      // dispatch(codepanelSetSlides(l));
-      // dispatch(codepanelSetCurrentLesson(lessonPath));
-      // setLesson(l);
       getLesson(trainingId).then((data) => {
         if (data) {
           dispatch(codepanelSetSlides(data));
+          setTimeout(() => {
           dispatch(codepanelSetCurrentLesson(lessonPath));
+          },1000)
           setLesson(data);
+
         }
       });
-    }else{
-        getLesson(trainingId).then((data) => {
-          if (data) {
-            setTimeout(() => {
-            dispatch(codepanelSetSlides(data));
-            dispatch(codepanelSetCurrentLesson(lessonPath));
-            setLesson(data);
-          },1000)
-          }
-        });
-
-
     }
 
     // if (typeof localStorage !== "undefined") {

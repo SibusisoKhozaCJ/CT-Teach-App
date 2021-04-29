@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Icon1 from "../../assets/icons/footer-icon/icon1.svg";
 import Icon3 from "../../assets/icons/footer-icon/icon3.svg";
 import Icon2 from "../../assets/icons/footer-icon/icon2.svg";
@@ -26,7 +26,7 @@ const Footer = () => {
 
     var splitPath = window.location.pathname.split('/')
     var path = splitPath[splitPath.length - 1];
-    const [keyboardExist, setKeyboardExist] = useState(false);
+    const [keyboardExist, setKeyboardExist] = useState(true);
 
     const shouldLayoutRender = (pathname) => {
         if (
@@ -39,16 +39,16 @@ const Footer = () => {
         return true;
     }
     useEffect(() => {
-        const unsubscribe = subscribe(visibility => {
-            if (visibility === "hidden") {
+
+        const initialHeight = window.innerHeight
+        window.addEventListener('resize', function (e) {
+            if (window.innerHeight != initialHeight && path === 'home') {
+                setKeyboardExist(keyboardExist => false)
+            } else {
                 setKeyboardExist(keyboardExist => true)
-            } else if (path === 'home' && visibility === "visible") {
-                setKeyboardExist(keyboardExist => false)
             }
-            else {
-                setKeyboardExist(keyboardExist => false)
-            }
-        });
+        })
+
         setIsLayoutRender(shouldLayoutRender(location.pathname));
     }, [location]);
     const onHandleClick = (value, index) => {
