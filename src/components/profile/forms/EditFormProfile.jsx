@@ -94,7 +94,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
               ({value, ref, name, onChange}) => {
                 return (
                   <>
-                  <Divider variant="middle" width={'476px'} className="profileDivider divider-1" />
+                  <div className="BtnGrid">
+                  <Divider variant="middle" width={'476px'} className="profileDivider divider-3" />
                   <Input
                     item={item}
                     onChange={onChange}
@@ -104,6 +105,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
                     errors={errors}
                     isEdit={isEditForm}
                   />
+                  </div>
                   </>
                 )
               }}

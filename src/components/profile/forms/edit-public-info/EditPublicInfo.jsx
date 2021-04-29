@@ -14,7 +14,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const EditPublicInfo = () => {
   const {editPublicUserInfo, user, isCurrentUser} = useSelector(state => state.user);
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
-  const isMediumScreen = useMediaQuery("(min-width:600px)");
+  const isMediumScreen = useMediaQuery("(min-width:601px)");
   const dispatch = useDispatch();
   const settingsForm = {
     formControls: formPublicControlsProfilePage,

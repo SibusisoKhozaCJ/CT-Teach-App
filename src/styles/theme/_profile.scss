@@ -67,6 +67,10 @@ $query-mb: 401px;
     .divider-2{
       margin-top: 16px;
     }
+    .divider-3{
+      width: 455px;
+      margin-top: -30px;
+    }
   }
   .MuiGrid-root.MuiGrid-container {
     margin-top: 90px;
@@ -506,6 +510,7 @@ width:339px
     overflow: hidden;
     text-align: left;
     padding-left: 11px;
+    background: transparent;
     &::placeholder{
       color: #c4c4c4;
       font-size: 16px;
@@ -577,6 +582,7 @@ width:339px
   .activeControlInput {
     @extend %activeControl;
     min-width: 170px;
+    background-color: #ffff;
     @media (max-width: $query-sm) {
       min-width: 140px;
       padding: 8px 21px 3px 10px;
@@ -630,6 +636,7 @@ width:339px
     padding-top: 0;
     border: 1px solid #cccccc;
     border-radius: 5px;
+    background: transparent;
     @media (max-width: $query-sm) {
       height: 27px;
       line-height: 27px;
