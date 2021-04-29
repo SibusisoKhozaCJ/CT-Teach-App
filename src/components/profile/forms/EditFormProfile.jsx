@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { isEmpty } from "lodash";
 import Modal from 'react-modal';
-
+import Divider from '@material-ui/core/Divider';
 import { updateUserInfo } from "../../../redux/actions/user-actions";
 import EditIcon from "../../../assets/icons/EditIcon";
 import { formPublicControlsProfilePage } from "../../../shared/lib/forms/formControls";
@@ -93,7 +93,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
               ({value, ref, name, onChange}) => {
                 return (
                   <>
-                  <div className={'borderLineAbove'}></div>
+                  <Divider variant="middle" width={'476px'} className="profileDivider divider-1" />
                   <Input
                     item={item}
                     onChange={onChange}

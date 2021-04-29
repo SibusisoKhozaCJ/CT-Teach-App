@@ -35,7 +35,7 @@ const EditPrivateInfo = () => {
     },
     finishEdit: finishEditPrivateUserInfo,
     privateForm: true,
-    classesWrapper: { border: '5px solid #D50073', display: 'inline-block', width: '100%',margin: isDesktopQuery ?'0 50px': '0 0px', marginTop: isDesktopQuery ? '0px' :'80px'},
+    classesWrapper: { border: '5px solid #D50073', display: 'inline-block', width: '100%',margin: isDesktopQuery ?'0 50px': '0 0px', marginTop: isDesktopQuery ? '0px' :'10px'},
     classesForm: { background: 'rgba(240, 238, 238, 1)', paddingTop: 0 ,marginLeft: isDesktopQuery ?'0px' :'-9px'},
   };
 
