@@ -16,7 +16,7 @@ import { MicNone } from '@material-ui/icons';
 import { Grid } from "@material-ui/core";
 import AddFriend from "../../../assets/icons/profile-icon/userIcon.png"
 import Message from "../../../assets/icons/profile-icon/messageIcon.png"
-import Divider from '@material-ui/core/Divider';
+  import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
@@ -72,15 +72,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
       justifyContent: 'space-around',
       flex: 1,
-        '& .PrivateTabIndicator-colorSecondary-407':{
-            backgroundColor: '#FBDD3F'
-        },
-        '& .PrivateTabIndicator-colorSecondary-479': {
-          backgroundColor: '#FBDD3F'
-      },
-      '& .PrivateTabIndicator-colorSecondary-409' : {
-        backgroundColor: '#FBDD3F'
-      }
     }
   },
   Tab:{
@@ -103,7 +94,7 @@ export default function TabPanels(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className={classes.Tabs}>
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className={classes.Tabs} TabIndicatorProps={{style: {background:'#FBDD3F'}}}>
           <Tab label="Profile" icon={<img src={ProfileIcon} />} {...a11yProps(0)} className={classes.Tab} />
           <Tab label="Friends" icon={<img src={FriendIcon} />} {...a11yProps(1)} className={classes.Tab} />
           <Tab label="Published" icon={<img src={GalleryIcon} />} {...a11yProps(2)} className={classes.Tab} />
