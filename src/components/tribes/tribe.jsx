@@ -31,7 +31,7 @@ const Tribes = () => {
   const { loading } = useSelector((state) => state.user);
   const history = useHistory();
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
-  const [removeTribeModal, setRemoveTribeModal] = useState(false)
+  const [removeTribeModal, setRemoveTribeModal] = useState("")
   const [showTribes,setShowTrbies]=useState(true);
   const [showTribesRequests,setShowTrbiesRequest]=useState(false);
   const { userTribes, userJoinedTribes, requestedTribes } = useSelector((state) => state.tribe);
@@ -95,6 +95,10 @@ const Tribes = () => {
     });
   }
 
+  const toggleLeaveTribeMenu = (index) => {
+    setRemoveTribeModal("unfriend" + index);
+}
+
   const handleAcceptRequest=(userId)=>{
     dispatch(acceptTribeRequest(userTribes, userId)).then((res) => {
       dispatch(getUserTribes(user));
@@ -154,12 +158,12 @@ const Tribes = () => {
               {userTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={9} className="tribe-header">
+                    <Grid item xs={12} className="tribe-header">
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
-                       <Grid xs={2} className="frnd-drpBtn">
+                       {/* <Grid xs={2} className="frnd-drpBtn">
                         <img
                           onClick={(evt) => setRemoveTribeModal(true)}
                           src={DotIcon}
@@ -171,7 +175,7 @@ const Tribes = () => {
                            LEAVE TRIBE
                           </Button>
                         </Grid>
-                      )}
+                      )} */}
 
                     <Grid item xs={3}>
                       <div className="tribe-icon">
@@ -295,11 +299,24 @@ const Tribes = () => {
               {userJoinedTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={12}>
+                    <Grid item xs={9}>
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
+                    <Grid xs={2} className="frnd-drpBtn">
+                        <img
+                          onClick={(evt) => {toggleLeaveTribeMenu(index); setBtnOpen(!btnOpen)}}
+                          src={DotIcon}
+                        />
+                      </Grid>
+                      {removeTribeModal == "unfriend" + index && btnOpen&& (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true)}}>
+                           LEAVE TRIBE
+                          </Button>
+                        </Grid>
+                      )}
                     <Grid item xs={3}>
                       <div className="tribe-icon">
                         <img src={Icon2} className="coverage" alt="" />
