@@ -11,8 +11,3 @@ export function closeSidebar() {
     dispatch({ type: Types.CLOSE_SIDEBAR });
   };
 }
-export function openSidebar() {
-  return async function(dispatch, getState) {
-    dispatch({ type: Types.OPEN_SIDEBAR });
-  };
-}

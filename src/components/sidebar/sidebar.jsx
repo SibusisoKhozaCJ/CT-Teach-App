@@ -11,7 +11,6 @@ import {
   ProjectsSvg,
   ToCodeSvg,
   ProgressSvg,
-  ArrowRightSvg
 } from "../../shared/svgs/menu-items";
 import { ArrowBack as ArrowBackIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
@@ -21,12 +20,11 @@ import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import { useDispatch, useSelector } from "react-redux";
-import { closeSidebar, toggleSideBar ,openSidebar } from "../../redux/actions/side-actions";
+import { closeSidebar, toggleSideBar } from "../../redux/actions/side-actions";
 import Button from "@material-ui/core/Button";
 import JoinTribeModal from "./modals/join-tribe";
 import routes from "../../routes";
 import { codepanelSetProjectsIsActive } from "../../redux/actions/codepanel-actions";
-import LockIcon from "../../assets/svg/LockIcon"
 const sideBarContainer = React.createRef();
 
 
@@ -40,16 +38,16 @@ let sidebarStructure = [
   },
   
 { id: 11, label: "Friends", link: "/friends", icon: <FriendSVG />},
- { id: 8, label: "Gallery", link: "/", icon: <LockIcon /> },
+ { id: 8, label: "Gallery", link: "/", icon: <GallerySvg /> },
  {  type: "divider" },
-  { id: 2, label: "Goals", link: "/", icon: <LockIcon /> },
+  { id: 2, label: "Goals", link: "/", icon: <MissionSvg /> },
   { id: 12, label: "Progress", link: "/progress", icon: <ProgressSvg /> },
   {  type: "divider" },
  
   
 
-  { id: 6, label: "Invite", link: "/", icon: <LockIcon /> },
-  { id: 10, label: "Feedback", link: "/", icon: <LockIcon /> },
+  { id: 6, label: "Invite", link: "/", icon: <InviteSvg /> },
+  { id: 10, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
 ];
 
 let protectedSidebarStructure = [
@@ -64,7 +62,6 @@ function Sidebar({ location }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [onHover, setOnHover] = useState(false);
   const [tribeCode, setTribeChange] = useState("");
   const [isLayoutRender,setIsLayoutRender] = useState(false);
   const history = useHistory();
@@ -96,9 +93,9 @@ function Sidebar({ location }) {
     setAnchorEl(event.currentTarget);
   };
 
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -132,18 +129,7 @@ function Sidebar({ location }) {
   const handleJoinLinkChange = () => {
     setChecked(!checked);
   };
-  const handleOpen = () => {
-     dispatch(openSidebar())
-     setOnHover(true)
-
-  }
-  const handleClose = () => {
-    if(onHover){
-    dispatch(closeSidebar())
-    setOnHover(false)
-    }
-    setOnHover(false)
-  }
+  console.log(isPermanent, "isPermanent")
   return (
     (isLayoutRender && <div ref={sideBarContainer} className="sidebar">
       <JoinTribeModal
@@ -181,8 +167,8 @@ function Sidebar({ location }) {
             />
           </IconButton>
         </div>
-        <div>
-        <List className={classes.sidebarList} onMouseOver={() => handleOpen()} onMouseLeave={() =>handleClose()}>
+
+        <List className={classes.sidebarList}>
           <div className="tocodepupupdiv">
             <Button
               className={isSidebarOpened ? "open" : "close"}
@@ -190,8 +176,8 @@ function Sidebar({ location }) {
               variant="contained"
               color="primary"
               onClick={() => {history.push("/codepanel/C001/P001/T001")}}
-              >
-              <ArrowRightSvg className={classes.arrowRight} />
+            >
+              <ToCodeSvg/>
               <span className="tocode-tagsidebar">It's GO time</span>
             </Button>
           </div>
@@ -246,8 +232,6 @@ function Sidebar({ location }) {
             />
           ))}
         </List>
-        </div>
-       
       </Drawer>
     </div>)
   );
