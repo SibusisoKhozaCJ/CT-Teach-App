@@ -70,6 +70,16 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
 
     }
   }
+
+  useEffect(() => {
+    if(copied){
+      const interval = setInterval(() => {
+        setCopied(false);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+    
+  }, [copied]);
   return (
     <div>
       <Modal

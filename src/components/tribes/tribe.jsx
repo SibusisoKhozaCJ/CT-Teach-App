@@ -21,7 +21,7 @@ import { saveUser } from "../../redux/actions/user-actions";
 import AddTribeModal from "./modals/add-tribe-modal.jsx";
 import { useHistory } from "react-router-dom";
 import AddRemoveTribeModal from "./modals/accept-reject-tribe.jsx";
-import config from "../../config";
+import {getAppBaseUrl} from "../../helper"
 const Tribes = () => {
   const [expand, setExpand] = useState("");
   const [expandUser, setUserExpand] = useState("");
@@ -70,10 +70,10 @@ const Tribes = () => {
     let joinLink = "";
     if(senderType === "self"){
        const tribeJoinCode = tribeCode ? tribeCode : userTribes[0].code
-       joinLink = config.APP_BASE_URL + "/join/"+tribeJoinCode;
+       joinLink = getAppBaseUrl() + "/join/"+tribeJoinCode;
       
     }else{
-      joinLink = config.APP_BASE_URL + "/join/L"+tribeCode;
+      joinLink = getAppBaseUrl() + "/join/L"+tribeCode;
     }
     setJoinUrl(joinLink);
     setOpenModal(true);
