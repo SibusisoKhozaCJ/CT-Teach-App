@@ -80,7 +80,7 @@ export const formPublicControlsProfilePage = {
   Bio: {
     label: 'Bio:',
     className: 'Descrption',
-    inputActiveClassName: 'activeControlInput',
+    inputActiveClassName: 'activeControlTextarea',
     hiddenClass: 'controlLabelHidden',
     errorMessage: 'Can\'t be empty.',
     type: 'textarea',
@@ -89,7 +89,7 @@ export const formPublicControlsProfilePage = {
   Code: {
     label: <img src={Code} width="21px" />,
     className: 'Descrption',
-    inputActiveClassName: 'activeControlInput',
+    inputActiveClassName: 'activeControlTextarea',
     hiddenClass: 'controlLabelHidden',
     errorMessage: 'Can\'t be empty.',
     type: 'textarea',

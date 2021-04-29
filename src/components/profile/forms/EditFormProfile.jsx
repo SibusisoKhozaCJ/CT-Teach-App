@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { isEmpty } from "lodash";
 import Modal from 'react-modal';
-
+import Divider from '@material-ui/core/Divider';
 import { updateUserInfo } from "../../../redux/actions/user-actions";
 import EditIcon from "../../../assets/icons/EditIcon";
 import { formPublicControlsProfilePage } from "../../../shared/lib/forms/formControls";
@@ -40,7 +40,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
     classesWrapper,
     classesForm,
     startEdit,
-    finishEdit
+    finishEdit,
+    classesWrapper1
   } = settingsForm;
 
   const isRenderButton = !isEditForm && !settingsForm.privateForm && isCurrentUser;
@@ -93,7 +94,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
               ({value, ref, name, onChange}) => {
                 return (
                   <>
-                  <div className={'borderLineAbove'}></div>
+                  <div className="BtnGrid">
+                  <Divider variant="middle" width={'476px'} className="profileDivider divider-3" />
                   <Input
                     item={item}
                     onChange={onChange}
@@ -103,6 +105,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
                     errors={errors}
                     isEdit={isEditForm}
                   />
+                  </div>
                   </>
                 )
               }}
@@ -158,7 +161,8 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
   };
 
   return (
-      <Grid id='content' item md={5} sm={12} style={classesWrapper} className={'wrapperFormEditProfile'}>
+      <Grid id='content' item md={5} sm={12} style={classesWrapper1} className={'wrapperFormEditProfile'} spacing>
+        <div className="editProfile" style={classesWrapper}>
         <form onSubmit={handleSubmit(handleSaveAbout)} style={classesForm} className="form">
           {settingsForm.privateForm && (
             <div className="header">
@@ -183,6 +187,7 @@ const EditFormProfile = ({settingsForm, isCurrentUser}) => {
             </div>
           </Modal>
         </form>
+        </div>
       </Grid>
   );
 };

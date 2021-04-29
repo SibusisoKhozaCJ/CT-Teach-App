@@ -11,6 +11,8 @@ import { isCurrentUser, saveUser } from '../../redux/actions/user-actions';
 import TabPanels from './tabs/TabPanels';
 import AddFriend from "../../assets/icons/profile-icon/userIcon.png"
 import Message from "../../assets/icons/profile-icon/messageIcon.png"
+import Divider from '@material-ui/core/Divider';
+
 const Profile = () => {
   const { id } = useParams();
   const { loading, userId, isCurrentUser: isRenderForm } = useSelector((state) => state.user);
@@ -36,30 +38,9 @@ const Profile = () => {
     <div className="profileStylesRoot">
       <div className="commonheightProfile" />
       <Header />
-      <Grid container>
+      <Grid container className="ProfileGrid">
         <TabPanels isRenderForm={isRenderForm} />
-        <div className="borderLine"></div>
-        <Grid item xs={12} sm={6} className="butttonGroup">
-        <Button
-            variant="contained"
-            color="secondary"
-            className="MessageBtn addFriend"
-          >
-            <div className="MessageBtnIcon"><img src={AddFriend} width='37px'/></div>
-           <div className="MessageBtnText">Add as a Friend</div>
-      </Button>
-        </Grid>
-        <div className="borderLine" style={{marginTop:'16px'}}></div>
-        <Grid item xs={12} sm={6} className="butttonGroup">
-          <Button
-            variant="contained"
-            color="secondary"
-            className="MessageBtn"
-          >
-            <div className="MessageBtnIcon"><img src={Message} width='37px'/></div>
-            <div className="MessageBtnText">Say Hi</div>
-      </Button>
-        </Grid>
+      
         {/* <EditPublicInfo/>
         {isRenderForm && <EditPrivateInfo/>} */}
         {/* <div className="borderLine"></div>

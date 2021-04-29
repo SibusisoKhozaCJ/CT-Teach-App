@@ -1,7 +1,8 @@
 $query-sm: 600px;
 $query-md: 960px;
 $query-lg: 1280px;
-
+$query-xs: 520px;
+$query-mb: 401px;
 %buttonStyles {
   margin-top: 15px;
   margin-right: 5%;
@@ -53,21 +54,56 @@ $query-lg: 1280px;
 
 .profileStylesRoot {
   width: 100%;
-
+  .ProfileGrid{
+    display: flex;
+    justify-content: space-evenly;
+    .profileDivider{
+      width: 476px;
+      display: none;
+    }
+    .divider-1{
+      margin-top: 16px;
+    }
+    .divider-2{
+      margin-top: 16px;
+    }
+    .divider-3{
+      width: 455px;
+      margin-top: -30px;
+    }
+  }
   .MuiGrid-root.MuiGrid-container {
     margin-top: 90px;
+    .BtnGrid{
+
     .butttonGroup{
       text-align: center;
+      padding: 0 40px;
     .MessageBtn{
-      width: 460px;
+      min-height: 80px;
       border-radius: 50px;
       color: #ffff;
       background-color: #C4C4C4;
       font-size: 32px;
       font-weight: bold;
-      .MuiButton-label{
+      line-height: 37px;
+      width: 100%;
+      margin: auto;
+      span.MuiButton-label{
         justify-content: flex-start;
-        margin-left: 12px;
+        text-align: left;
+        padding-left: 60px;
+      }
+      .MessageBtnIcon{
+        position: absolute;
+        left: 41px;
+        top: 16px;
+      }
+      .btnIcon{
+        width: 37px;
+      }
+      .MuiButton-label{
+       
       .MessageBtnText{
         margin-left: 22px;
       }
@@ -76,9 +112,43 @@ $query-lg: 1280px;
   }
   .addFriend{
     background-color: #43D4DD !important;
+   
+  }
+  @media (max-width: $query-md) {
+    .MessageBtn{
+      font-size: 18px !important;
+      min-height: 68px !important;
+    .MessageBtnIcon{
+      left: 41px !important;
+      top: 16px !important; 
+      .btnIcon{
+        width: 33px !important;
+      }
+    }
+    .MessageBtnText{
+      margin-left: 12px !important; 
+    }
+  }
   }
     @media (max-width: $query-sm) {
       margin-top: 40px;
+      .profileDivider{
+        display: block;
+      }
+      .BtnGrid{
+        margin-top: 20px;
+      }
+      .butttonGroup{
+      .MessageBtn{
+        margin-top: 21px;
+      }
+      .addFriend{
+        margin-top: 13px !important;
+      }
+      .sayHi{
+        margin-top: 14px !important;
+      }
+    }
       .borderLine{
         width: 320px;
       margin-left: 23px;
@@ -89,18 +159,49 @@ $query-lg: 1280px;
         width: 320px;
       border-bottom: 1px solid #f0eeee;
       }
-      .butttonGroup{
       .MessageBtn{
-        width: 370px;
-        border-radius: 50px;
-        color: #ffff;
-        background-color: #C4C4C4;
-        font-size: 18px;
-        margin-top: 13px;
-        padding: 12px;
+        width: 100% !important;
+      .MessageBtnIcon{
+        left: 30px !important;
+        top: 19px !important; 
       }
     }
+  
     }
+    @media (max-width: $query-xs) {
+      .butttonGroup{
+      .MessageBtn{
+        font-size: 25px;
+        line-height: 26px;
+    }
+  }
+  .profileDivider{
+   width:376px;
+  
+  }
+}
+@media (max-width: $query-mb) {
+  .butttonGroup{
+    .MessageBtn{
+      font-size: 15px;
+      line-height: 26px;
+      min-height: 60px;
+  }
+  .btnIcon{
+    width: 27px !important;
+    top: 10px !important;
+    left: 31px !important;
+  }
+  .MessageBtnText{
+    margin-left: 0px !important; 
+  }
+}
+.profileDivider{
+width:339px
+}
+
+}
+  }
   }
 }
 
@@ -189,14 +290,31 @@ $query-lg: 1280px;
   box-sizing: border-box;
   margin: 0 auto;
   height: 880px;
+  width: 50%;
+  max-width: inherit;
+  flex-basis: inherit;
+  @media (max-width: $query-md){
+    width: 100%;
+  }
   @media (max-width: $query-sm) {
     width: 100%;
     border: none !important;
-    margin-top: 14px;
+    margin-top: 1px;
     padding: 0;
     height: 100%;
   }
-
+  .editProfile{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    max-width: initial;
+    flex-basis: auto;
+    padding: 28px;
+    height: 895px;
+    @media (max-width: $query-sm) {
+      border:transparent !important;
+      padding-top: 0px !important;
+    }
   .form {
     position: relative;
     display: flex;
@@ -211,8 +329,8 @@ $query-lg: 1280px;
 
     & svg {
       position: absolute;
-      top: 15px;
-      right: 29px;
+      top: -2px;
+      right: 0px;
       cursor: pointer;
       @media (max-width: $query-sm) {
         top: -16px;
@@ -228,10 +346,11 @@ $query-lg: 1280px;
 
     .btnButtons {
       position: absolute;
-      bottom: -8px;
+      bottom: -36px;
+     
       @media (max-width: $query-sm) {
-        position: absolute;
-        bottom: -8vh
+        position: relative;
+        bottom: 42px
       }
     }
 
@@ -239,12 +358,39 @@ $query-lg: 1280px;
       @extend %btnModalCancel;
       margin-top: 0;
       margin-bottom: 15px;
+      min-height: 45px;
+      background-color: #c4c4c4;
+      border-radius: 30px;
+      font-size: 21px;
+      line-height: 34px;
+      @media (max-width: $query-md) {
+        min-height: 59px;
+        font-size: 29px;
+      }
+      @media (max-width: $query-xs) {
+        font-size: 20px;
+        line-height: 23px;
+        min-height: 50px;
+      }
     }
 
     .btnSave {
       @extend %btnModalSave;
       margin-top: 0;
-      margin-bottom: 15px
+      margin-bottom: 15px;
+      min-height: 45px;
+      border-radius: 30px;
+      font-size: 21px;
+      line-height: 34px;
+      @media (max-width: $query-md) {
+        min-height: 59px;
+        font-size: 29px;
+      }
+      @media (max-width: $query-xs) {
+        font-size: 20px;
+        line-height: 23px;
+        min-height: 50px;
+      }
     }
   }
 
@@ -296,6 +442,7 @@ $query-lg: 1280px;
     }
   }
 }
+}
 
 .controlProfile {
   display: flex;
@@ -326,7 +473,7 @@ $query-lg: 1280px;
     @media (max-width: $query-sm) {
       font-size: 18px;
       margin-bottom: 7px;
-      margin-top: 12px
+      margin-top: 16px
     }
   }
 
@@ -338,44 +485,64 @@ $query-lg: 1280px;
 
   ::-moz-placeholder { /* Firefox 19+ */
     color: #C4C4C4;
+    font-size: 16px;
+    line-height: 19px;  
   }
   :-ms-input-placeholder { /* IE 10+ */
     color: #C4C4C4;
+    font-size: 16px;
+   line-height: 19px;
   }
   :-moz-placeholder { /* Firefox 18- */
     color: #C4C4C4;
+    font-size: 16px;
+    line-height: 19px;
   }
   .userName {
     @extend %controlStyles;
-    color: #D40073;
+    color: black;
     margin-left: 20px;
-    width: 250px;
+    width: 82%;
     border: 2px solid #EAEAEB;
     border-radius: 5px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    text-align: center;
-    
+    text-align: left;
+    padding-left: 11px;
+    background: transparent;
+    &::placeholder{
+      color: #c4c4c4;
+      font-size: 16px;
+     line-height: 19px;
+     font-weight: 100;
+    }
     @media (max-width: $query-sm) {
-      width: 262px;
+      width: 100%;
       text-align: start !important;
       margin-top: 14px;
-      padding: 0;
       background: none;
       margin-right: 16px;
       right: 0;
-      font-size: 14px
+      font-size: 14px;
+      padding: 8px 21px 3px 10px;
     }
   }
   .Descrption{
     @extend %controlStyles;
-    color: #D40073;
+    color: black;
     margin-left: 20px;
     border: 2px solid #EAEAEB;
     border-radius: 5px;
-    width:250px;
+    width:82%;
     background-color: transparent;
+    resize: none;
+    &::placeholder{
+      color: #c4c4c4;
+      font-size: 16px;
+     line-height: 19px;
+     font-weight: 100;
+    }
     @media (max-width: $query-sm) {
       text-align: start;
       margin-top: 14px;
@@ -384,7 +551,9 @@ $query-lg: 1280px;
       margin-right: 16px;
       right: 0;
       font-size: 14px;
-      width:263px
+      width:100%;
+      padding: 10px 46px 27px 9px;
+    
     }
   }
 
@@ -413,25 +582,30 @@ $query-lg: 1280px;
   .activeControlInput {
     @extend %activeControl;
     min-width: 170px;
+    background-color: #ffff;
     @media (max-width: $query-sm) {
       min-width: 140px;
-      padding: 0
+      padding: 8px 21px 3px 10px;
     }
   }
 
-  .activeControlInput {
-    @extend %activeControl;
-    min-width: 170px;
-    @media (max-width: $query-sm) {
-      min-width: 140px;
-      padding: 0
-    }
-  }
+  // .activeControlInput {
+  //   @extend %activeControl;
+  //   min-width: 170px;
+  //   @media (max-width: $query-sm) {
+  //     min-width: 140px;
+  //     padding: 0
+  //   }
+  // }
 
   .activeControlTextarea {
     @extend %activeControl;
-    width: 100%;
+    min-width: 140px;
     padding: 5px;
+    background-color: #ffff;
+    @media (max-width: $query-sm) {
+      width: 100%;
+    }
   }
 
   .invalid {
@@ -450,7 +624,7 @@ $query-lg: 1280px;
 
   .controlInputPrivateForm {
     display: block;
-    width: 370px;
+    width: 100%;
     margin-left: 80px;
     height: 32px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -462,6 +636,7 @@ $query-lg: 1280px;
     padding-top: 0;
     border: 1px solid #cccccc;
     border-radius: 5px;
+    background: transparent;
     @media (max-width: $query-sm) {
       height: 27px;
       line-height: 27px;
