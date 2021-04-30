@@ -112,15 +112,9 @@ const Tribes = () => {
 }
 
   const handleAcceptRequest=(userId)=>{
-    if(modalType === "accept"){
-      dispatch(acceptTribeRequest(userTribes, userId)).then((res) => {
-        dispatch(getUserTribes(user));
-      });
-    }else if(modalType === "leave"){
-      leaveTribe();
-    }else if(modalType === "delete"){
-      deleteTribe();
-    }
+    dispatch(acceptTribeRequest(userTribes, userId)).then((res) => {
+      dispatch(getUserTribes(user));
+    });
   }
 
   const leaveTribe =()=>{
@@ -184,7 +178,7 @@ const Tribes = () => {
               <span  className="margin-main">Pending</span><span className="totalFriend">{bindPendingTribeCount()}</span>
             </Button>
             <Button className="dived mob-dived">|</Button>
-            <Button color="secondary" className="btnplusfrnd" onClick={(evt) => setJoinTribeLink(undefined, "self")}>
+            <Button color="secondary" className="btnplusfrnd" onClick={(evt) =>{userTribes && userTribes.length > 0 ? setJoinTribeLink(undefined, "self") : alert("Tribe is not created yet.") }}>
               <span className="tribplusfriend"><img src={PlusIcon} /></span> <span> TO TRIBE</span>
             </Button>
           </Grid>
@@ -200,12 +194,12 @@ const Tribes = () => {
               {userTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={9} className="tribe-header">
+                    <Grid item xs={12} className="tribe-header">
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
-                       <Grid xs={2} className="frnd-drpBtn">
+                       {/* <Grid xs={2} className="frnd-drpBtn">
                         <img
                           onClick={(evt) => setDeleteTribeModal(true)}
                           src={DotIcon}
@@ -217,7 +211,7 @@ const Tribes = () => {
                            DELETE TRIBE
                           </Button>
                         </Grid>
-                      )}
+                      )} */}
 
                     <Grid item xs={3}>
                       <div className="tribe-icon">

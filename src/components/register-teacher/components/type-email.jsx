@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TeacherRegisterStep2 from "../register-steps/step2-teacher";
-import UserRegisterStep2 from "../register-steps/step2-user";
+import UserRegisterStep2 from "../register-steps/user-reg-step2";
 import Grid from "@material-ui/core/Grid";
 import FrgIcon from "../../../assets/images/frgarrow.svg";
 import RightArrIcon from "../../../assets/images/rightarrow.svg";
@@ -15,8 +15,6 @@ const TypeAndEmailForm = ({
   error,
   handleEmailSkip,
   registerType,
-  handleSubmitUserSecondForm,
-  handleSubmitWithJoinCode,
   handleBackClick
 }) => {
   return (
@@ -66,13 +64,12 @@ const TypeAndEmailForm = ({
               </form>
             )}
             {registerType === "1" && (
-              <form autocomplete="off" onSubmit={handleSubmitUserSecondForm}>
+              <form autocomplete="off">
                 <UserRegisterStep2
                   onUpdate={updateForm}
                   form={form}
                   loading={loading}
                   handleEmailSkip={handleEmailSkip}
-                  handleSubmitWithJoinCode={handleSubmitWithJoinCode}
                 />
               </form>
             )}
