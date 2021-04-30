@@ -409,7 +409,10 @@ button:focus {
 		.tocode-tagsidebar {
 			margin-right: 20px;
 			font-weight: 700;
-font-size: 20px;
+            font-size: 22px;
+			text-transform: none;
+			color: rgba(#fff, .75);
+			margin-left: 10px;
 		}
 	}
 

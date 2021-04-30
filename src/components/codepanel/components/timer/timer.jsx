@@ -113,8 +113,8 @@ const Timer = ({ mobile, ...props }) => {
             setFinish={setFinishTimer}
           />
         ) : (
-          <img src={props.ClockIcon} />
-          // <TimerIcon className={classes.timerIcon}/>
+           !props.desktop ? <img src={props.ClockIcon} /> :
+         <TimerIcon className={classes.timerIcon}/>
         )}
       </IconButton>
       <Popover

@@ -15,7 +15,7 @@ import ProgressCheck from "../../assets/svg/ProgressCheck"
 import GalleryIcon from "../../assets/svg/GalleryIcon"
 import ProjectsIcon from "../../assets/images/rocket-icon.png";
 import {ProjectsSvg} from "../../shared/svgs/menu-items";
-
+import LockIcon from "../../assets/svg/LockIcon"
 const Footer = () => {
     const history = useHistory();
     const location = useLocation();
@@ -144,7 +144,7 @@ const Footer = () => {
             <div className="footer-icon">
                 {/* <img onClick={(evt)=>history.push("/tribe")} src={Icon5} className="coverage" alt="" /> */}
                 <div className={activeGalleryClass()} onClick={(evt) => onHandleClick("/home", 3)}>
-                    <GalleryIcon />
+                    <LockIcon />
                 </div>
             </div>
             <div className="footer-icon centr-Ficon">
