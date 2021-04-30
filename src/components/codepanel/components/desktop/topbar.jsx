@@ -84,7 +84,7 @@ const TopBar = () => {
             <IconButton onClick={() => {dispatch(codepanelSetCheckerActive(!isCheckerActive))}}>
               <img src={TeacherIcon} className="coverage" alt="" />
             </IconButton>
-            <Timer/>
+            <Timer desktop/>
             <div className={classes.yellow}>
               {/* <IconButton>
                 <img src={DarkModeIcon} className="coverage" alt="" />
