@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+
 import Icon1 from "../../assets/icons/footer-icon/icon1.svg";
 import Icon3 from "../../assets/icons/footer-icon/icon3.svg";
 import Icon2 from "../../assets/icons/footer-icon/icon2.svg";
@@ -38,18 +39,28 @@ const Footer = () => {
             return false;
         return true;
     }
+    const resizeListener = window.innerHeight
+
     useEffect(() => {
 
-        const initialHeight = window.innerHeight
-        window.addEventListener('resize', function (e) {
-            if (window.innerHeight != initialHeight && path === 'home') {
-                setKeyboardExist(keyboardExist => false)
+        setIsLayoutRender(shouldLayoutRender(location.pathname));
+
+            if (typeof window !== "undefined") {
+                window.addEventListener('resize', function () {
+                    if (window.innerHeight != resizeListener && path === 'home') {
+                        setKeyboardExist(keyboardExist => false)
+                    } else {
+                        setKeyboardExist(keyboardExist => true)
+                    }
+                });
+                return () => {
+                    window.removeEventListener('resize', function () {
+                        setKeyboardExist(keyboardExist => true)
+                    });
+                }
             } else {
                 setKeyboardExist(keyboardExist => true)
             }
-        })
-
-        setIsLayoutRender(shouldLayoutRender(location.pathname));
     }, [location]);
     const onHandleClick = (value, index) => {
       if(value){
@@ -115,7 +126,7 @@ const Footer = () => {
     }
     return (
 
-       (isLayoutRender && keyboardExist && <footer className='footer-mobile'>
+       ( isLayoutRender && keyboardExist && <footer className='footer-mobile'>
             {/* <div className="footer-icon">
                 <img onClick={(evt)=>history.push("/tribe")} src={Icon1} className="coverage" alt="" />
             </div> */}

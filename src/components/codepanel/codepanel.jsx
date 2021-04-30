@@ -32,6 +32,8 @@ import lesson_dataC0001P001T001 from "./data-new/C001-P001-T001/lesson_data";
 import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data";
 import lesson_dataC0001P001T004 from "./data-new/C001-P001-T004/lesson_data";
 import { uploadLesson } from './utils/upload-lesson';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Loading from "../../shared/components/loader/Loading";
 
 const Codepanel = ({
   match: {
@@ -56,6 +58,7 @@ const Codepanel = ({
 
   const [panel, setPanels] = useState(null);
   const [lesson, setLesson] = useState(null);
+  const [loader, setLoader] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`;
 
   const history = useHistory();
@@ -81,6 +84,7 @@ const Codepanel = ({
     }
   };
 
+
   const slideChangeHandler = (e) => {
     e.preventDefault();
     if (e.target.value === 'top') {
@@ -90,18 +94,22 @@ const Codepanel = ({
       dispatch(codepanelSetSlideNumber(currentSlideNumber + 1));
     }
   };
+  const isDesktop = useMediaQuery("(min-width:768px)");
 
   useEffect(() => {
     // uploadLesson();
     dispatch(codepanelSetBlockUpdate(true));
+
+
     if (currentLesson !== lessonPath) {
       getLesson(trainingId).then((data) => {
         if (data) {
-          dispatch(codepanelSetSlides(data));
           setTimeout(() => {
-          dispatch(codepanelSetCurrentLesson(lessonPath));
-          },1000)
-          setLesson(data);
+            dispatch(codepanelSetSlides(data));
+            dispatch(codepanelSetCurrentLesson(lessonPath));
+            setLesson(data);
+            setLoader(true)
+          },3000)
 
         }
       });
@@ -143,6 +151,13 @@ const Codepanel = ({
     }
   }, [userId, lessonPath, lesson]);
 
+  if (isDesktop && !loader) {
+    return (
+        <div className="loader">
+          <Loading />
+        </div>
+    );
+  }
   const panels = {
     slider: <Slider style={{ overflowY: 'hidden' }} />,
     editor: <Editor />,

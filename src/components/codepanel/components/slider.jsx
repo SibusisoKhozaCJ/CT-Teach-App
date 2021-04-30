@@ -149,6 +149,7 @@ const Slider = () => {
             e.target.closest(".swiper-editor") &&
             e.target.closest(".validated"))
     ) {
+      console.log("GGGGGGG")
       dispatch(codepanelSetSlideNumber(currentSlideNumber + 1));
       // setCurrentSlide(currentSlide + 1);
     }
@@ -195,7 +196,7 @@ const Slider = () => {
           style={{ height: isDesktop ? "calc(100vh - 148px)"  : "100%" }}
       >
         <ReactPageScroller
-            animationTimer={300}
+            animationTimer={isDesktop ? 15 :300}
             blockScrollUp={scrollBlocked}
             blockScrollDown={!isValid || scrollBlocked}
             containerWidth="100%"
