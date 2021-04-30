@@ -6,7 +6,21 @@ import * as Auth from "../../shared/lib/authentication";
 export function getUserTribes(user) {
   return async function (dispatch, getState) {
     const userTribes = user.tribe_code;
-    const tribeData = await authFetch.firebaseGet("Tribes/" + userTribes);
+    if(userTribes){
+      const tribeData = await authFetch.firebaseGet("Tribes/" + userTribes);
+      if (tribeData) {
+        if(tribeData.requests && tribeData.requests.length > 0){
+          const usersInfo = await getusersInfo(tribeData.requests);
+          dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
+        }else{
+          dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: [] });
+        }
+        const data = [tribeData];
+        dispatch({ type: Types.SAVE_USER_TRIBES, payload: data });
+      }
+    }
+    
+    
     if (user && user.tribe_joined && user.tribe_joined.length > 0) {
       const joinedTribes = await authFetch.firebaseGet(
         "Tribes/",
@@ -18,16 +32,6 @@ export function getUserTribes(user) {
           payload: joinedTribes,
         });
       }
-    }
-    if (tribeData) {
-      if(tribeData.requests && tribeData.requests.length > 0){
-        const usersInfo = await getusersInfo(tribeData.requests);
-        dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
-      }else{
-        dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: [] });
-      }
-      const data = [tribeData];
-      dispatch({ type: Types.SAVE_USER_TRIBES, payload: data });
     }
   };
 }

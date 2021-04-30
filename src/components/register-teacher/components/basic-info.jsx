@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import routes from "../../../routes";
-import StudentRegisterStep1 from "../register-steps/step1-user";
+import StudentRegisterStep1 from "../register-steps/user-reg-step1";
 import TeachRegisterStep1 from "../register-steps/step1-teacher";
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
@@ -26,6 +26,7 @@ const BasicInfo = ({
 }) => {
 
   const[value,setValue]=useState("1");
+  const [codeCheckd, setCodeChecked] = useState(false)
   const handleChange = (event,string) => {     
     setValue(string);
     setRegisterType(string)
@@ -45,12 +46,15 @@ const BasicInfo = ({
           </TabList>
         </AppBar>
         <TabPanel  value="1">
-           <Box my={2} className="registration_title">
+          {!codeCheckd && (
+            <Box my={2} className="registration_title">
           <h1>
             REGISTRATION IS <br />
             SOOOOO EASY
           </h1>
         </Box>
+          )}
+        
         <Box my={2}>
           {error && (
             <Box my={1}>
@@ -62,17 +66,21 @@ const BasicInfo = ({
               onUpdate={updateForm}
               form={form}
               loading={loading}
+              isCodeChecked={(e)=>setCodeChecked(e)}
+              handleSubmitWithJoinCode={(e)=>setCodeChecked(false)}
+              codeCheckd={codeCheckd}
             />
-            <Button
+            {!codeCheckd && (
+              <Button
               type="submit"
               fullWidth
               variant="contained"
               className="btn-frmn"
-              // disabled={loading}
             >
               <p className="reg-happy">WOOOO HOOOO!</p>
               <p className="reg">REGISTER</p>
             </Button>
+            )}
           </form>
         </Box>
         <div className="letlogin">
