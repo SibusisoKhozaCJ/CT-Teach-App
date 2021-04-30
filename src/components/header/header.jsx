@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
 import {
   Person as AccountIcon,
   ArrowBack as ArrowBackIcon,
@@ -23,7 +22,7 @@ import Typography from "@material-ui/core/Typography";
 import Badge from '@material-ui/core/Badge';
 import { toggleSideBar } from "../../redux/actions/side-actions";
 import { useDispatch, useSelector } from "react-redux";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import { AuthContext } from '../../shared/contexts/authContext';
 import { removeCookies } from "../../shared/lib/authentication";
 import routes from "../../routes";
@@ -36,6 +35,8 @@ import Homelogo from "../../assets/images/CodeTribe.svg";
 import {isMobile} from 'react-device-detect';
 export default function Header() {
   const location = useLocation();
+  const history = useHistory();
+
   const classes = useStyles();
   const [profileMenu, setProfileMenu] = useState(null);
   const {isSidebarOpened} = useSelector(state => state.sidebar);
@@ -118,8 +119,10 @@ export default function Header() {
           
         </IconButton>
          <div className="headhomeiocn">
-
-           {isDesktop ? <a className="headhomeiocn" href={"home"}><img className={classes.homeIconImg} src={Homeicon} /></a>:''}
+           {isDesktop ?
+                 <img src={Homeicon} className={` ${path == "home" ? "header-accont" : ""}`}
+                      onClick={()=>{history.push(`/home`);}  } alt=""/>
+               :''}
            <img src={Homelogo} alt="" />
          </div>
         <Typography variant="h6" weight="medium" className="headerlogotext">
