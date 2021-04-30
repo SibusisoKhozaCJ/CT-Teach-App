@@ -3,35 +3,37 @@ import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import AutocompleteSelect from "../../../shared/components/inputs/AutocompleteSelect";
+import CommonSelect from "../../../shared/components/inputs/CommonSelect";
+
 
 const daysOfTheMonth = Array(31)
-    .fill()
-    .map((_, idx) => (1 + idx).toString())
-    .map(option => option.length === 1 ? `0${option}` : option);
+  .fill()
+  .map((_, idx) => (1 + idx).toString())
+  .map(option => option.length === 1 ? `0${option}` : option);
 const UserRegisterStep1 = ({ onUpdate, form, formOptions }) => {
-  const { dob} = form;
+  const { dob } = form;
   const [month, day, year] = dob ? dob.split('/') : ['', '', ''];
   const handleFormEdit = (key) => (event) =>
     onUpdate({ ...form, [key]: event.target.value });
-    const handleDobEdit = key => val => {
-      let newDob;
-      if (key === 'year') {
-          newDob = [month, day, val];
-      } else if (key === 'month') {
-          newDob = [val, day, year];
-      } else if (key === 'day') {
-          newDob = [month, val, year];
-      } else return;
-      onUpdate({...form, 'dob': newDob.join('/')})
-    
+  const handleDobEdit = key => val => {
+    let newDob;
+    if (key === 'year') {
+      newDob = [month, day, val];
+    } else if (key === 'month') {
+      newDob = [val, day, year];
+    } else if (key === 'day') {
+      newDob = [month, val, year];
+    } else return;
+    onUpdate({ ...form, 'dob': newDob.join('/') })
+
   };
   const yearOptions = useMemo(() => {
     return (
-        Array(112)
+      Array(112)
         .fill(10)
-        .map((value, idx) => (2021-idx).toString())
+        .map((value, idx) => (2021 - idx).toString())
     );
-}, [])
+  }, [])
   return (
     <>
       <div className="registration-form">
@@ -73,14 +75,20 @@ const UserRegisterStep1 = ({ onUpdate, form, formOptions }) => {
                   value={form.day}
                   onChange={handleFormEdit("day")}
                 /> */}
-                <AutocompleteSelect
+                {/* <AutocompleteSelect
                   type="number"
                   maxDigits={2}
                   label="Day"
                   selectedValue={day}
                   options={daysOfTheMonth}
                   onSelect={handleDobEdit('day')}
-                  />
+                  /> */}
+                <CommonSelect
+                  options={daysOfTheMonth}
+                  placeholder={"Date"}
+                  selectedValue={day}
+                  onSelect={handleDobEdit('day')}
+                />
               </Box>
             </Grid>
             <Grid item xs={4}>
@@ -92,14 +100,21 @@ const UserRegisterStep1 = ({ onUpdate, form, formOptions }) => {
                   value={form.month}
                   onChange={handleFormEdit("month")}
                 /> */}
-                <AutocompleteSelect
+                <CommonSelect
+                  options={daysOfTheMonth}
+                  placeholder={"Month"}
+                  selectedValue={month}
+                  options={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']}
+                  onSelect={handleDobEdit('month')}
+                />
+                {/* <AutocompleteSelect
                   label="Month"
                   type="number"
                   maxDigits={2}
                   selectedValue={month}
                   options={['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']}
                   onSelect={handleDobEdit('month')}
-                            />
+                            /> */}
               </Box>
             </Grid>
             <Grid item xs={4}>
@@ -112,14 +127,20 @@ const UserRegisterStep1 = ({ onUpdate, form, formOptions }) => {
                   value={form.year}
                   onChange={handleFormEdit("year")}
                 /> */}
-                  <AutocompleteSelect
+                <CommonSelect
+                  placeholder={"Year"}
+                  selectedValue={year}
+                  options={yearOptions}
+                  onSelect={handleDobEdit('year')}
+                />
+                {/* <AutocompleteSelect
                     label="Year"
                     type="number"
                     maxDigits={4}
                     selectedValue={year}
                     options={yearOptions}
                     onSelect={handleDobEdit('year')}
-                />
+                /> */}
               </Box>
             </Grid>
           </Grid>

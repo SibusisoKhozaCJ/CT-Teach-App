@@ -76,6 +76,10 @@ largeIcon: {
 arrowRight:{
   width: '26px !important',
   marginLeft: 6,
-  marginTop: 6
+  marginTop: 6,
+  [theme.breakpoints.down('sm')]: {
+    width: '21px !important',
+  }
+
 }
 }));
