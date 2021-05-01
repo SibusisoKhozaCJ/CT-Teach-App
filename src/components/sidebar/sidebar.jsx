@@ -139,16 +139,13 @@ function Sidebar({ location }) {
  }
  const handleClose = () => {
    if(onHover){
-     console.log("onhoverrrrr")
    dispatch(closeSidebar())
    setOnHover(false)
    }
    else{
-    console.log("not on hoverr")
    setOnHover(false)
    }
  }
- console.log(onHover, "onHoveronHoveronHoveronHoveronHoveronHover")
   return (
     (isLayoutRender && <div ref={sideBarContainer} className="sidebar">
       <JoinTribeModal
