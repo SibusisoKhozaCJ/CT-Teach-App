@@ -16,9 +16,20 @@ import GalleryIcon from "../../assets/svg/GalleryIcon"
 import ProjectsIcon from "../../assets/images/rocket-icon.png";
 import {ProjectsSvg} from "../../shared/svgs/menu-items";
 import LockIcon from "../../assets/svg/LockIcon"
+import MinLockIcon from "../../assets/images/lock-icon.png";
+import { makeStyles } from "@material-ui/styles";
+
+const  useStyles = makeStyles(theme => ({
+    lockIcon: {
+        position: "absolute",
+        top: 6,
+        width: "16px !important",
+      }
+}))
 const Footer = () => {
     const history = useHistory();
     const location = useLocation();
+    const classes = useStyles();
     const [isLayoutRender, setIsLayoutRender] = useState(false);
     const [isActive, setIsActive] = useState(false)
     const [isProgressActive, setIsProgressActive] = useState(false)
@@ -144,7 +155,8 @@ const Footer = () => {
             <div className="footer-icon">
                 {/* <img onClick={(evt)=>history.push("/tribe")} src={Icon5} className="coverage" alt="" /> */}
                 <div className={activeGalleryClass()} onClick={(evt) => onHandleClick("/home", 3)}>
-                    <LockIcon />
+                    <GalleryIcon />
+                    <img src={MinLockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
                 </div>
             </div>
             <div className="footer-icon centr-Ficon">
