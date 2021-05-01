@@ -18,6 +18,7 @@ import Smily from "../../../../assets/icons/smiley.png";
 import Coding from "../../../../assets/icons/coding.png";
 import Eyes from "../../../../assets/icons/eyes.png";
 import Avatar from "../../../../assets/icons/avatar.png";
+import FolderIcon from "../../../../assets/icons/folderIcon.png";
 import MainMenu from "../menu/main-menu";
 import { codepanelSetTab, codepanelSetCheckerActive } from '../../../../redux/actions/codepanel-actions';
 import Timer from "../timer/timer";
@@ -63,7 +64,7 @@ const MobileTopBar = () => {
       <Toolbar className={classes.mobieleTopBarWrapper}>
         {index === 1 ? (
           <IconButton aria-label="Folder" onClick={() => {}} title="Folder">
-            <FolderOpenIcon />
+            <img src={FolderIcon} />
           </IconButton>
         ) : (
           <Timer mobile ClockIcon={ClockIcon}/>
