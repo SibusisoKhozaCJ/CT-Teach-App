@@ -40,16 +40,16 @@ let sidebarStructure = [
   },
   
 { id: 11, label: "Friends", link: "/friends", icon: <FriendSVG />},
- { id: 8, label: "Gallery", link: "/", icon:<LockIcon /> },
+ { id: 8, label: "Gallery", link: "/", icon:<GallerySvg /> },
  {  type: "divider" },
-  { id: 2, label: "Goals", link: "/", icon: <LockIcon /> },
+  { id: 2, label: "Goals", link: "/", icon: <MissionSvg /> },
   { id: 12, label: "Progress", link: "/progress", icon: <ProgressSvg /> },
   {  type: "divider" },
  
   
 
-  { id: 6, label: "Invite", link: "/", icon: <LockIcon /> },
-  { id: 10, label: "Feedback", link: "/", icon: <LockIcon /> },
+  { id: 6, label: "Invite", link: "/", icon: <InviteSvg /> },
+  { id: 10, label: "Feedback", link: "/", icon: <FeedbackSvg /> },
 ];
 
 let protectedSidebarStructure = [
@@ -139,11 +139,16 @@ function Sidebar({ location }) {
  }
  const handleClose = () => {
    if(onHover){
+     console.log("onhoverrrrr")
    dispatch(closeSidebar())
    setOnHover(false)
    }
+   else{
+    console.log("not on hoverr")
    setOnHover(false)
+   }
  }
+ console.log(onHover, "onHoveronHoveronHoveronHoveronHoveronHover")
   return (
     (isLayoutRender && <div ref={sideBarContainer} className="sidebar">
       <JoinTribeModal
@@ -155,6 +160,8 @@ function Sidebar({ location }) {
         handleModalClose={handleModalClose}
       />
       <Drawer
+        onMouseOver={() => handleOpen()} 
+        onMouseLeave={() =>handleClose()}
         variant={isPermanent ? "permanent" : "temporary"}
         className={classNames(classes.drawer, {
           [classes.drawerOpen]: isSidebarOpened,
@@ -182,7 +189,7 @@ function Sidebar({ location }) {
           </IconButton>
         </div>
 
-        <List className={classes.sidebarList} onMouseOver={() => handleOpen()} onMouseLeave={() =>handleClose()}>
+        <List className={classes.sidebarList} >
           <div className="tocodepupupdiv">
             <Button
               className={isSidebarOpened ? "open" : "close"}
