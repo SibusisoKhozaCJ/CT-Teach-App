@@ -15,6 +15,8 @@ import Grid from "@material-ui/core/Grid";
 import { addUserToTribe } from "../../redux/actions/tribe-actions";
 import * as Auth from "../../shared/lib/authentication";
 import { useDispatch } from "react-redux";
+import Backdrop from '@material-ui/core/Backdrop';
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const [loading, updateLoading] = useState(false);
@@ -42,7 +44,7 @@ const LoginPage = () => {
         return null;
       });
   };
-  const useStyles = makeStyles(() => ({
+  const useStyles = makeStyles((theme) => ({
     emailLoginInputField: {
       "& .MuiInputLabel-outlined": {
         zIndex:10
@@ -167,6 +169,7 @@ const LoginPage = () => {
 
   return (
     <>
+     <Backdrop open={true}>
       <div className="login_main-page">
         <div className="login_main">
           <div className="login_header">
@@ -355,6 +358,7 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+      </Backdrop>
     </>
   );
 };

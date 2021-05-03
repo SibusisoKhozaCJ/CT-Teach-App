@@ -11,6 +11,7 @@ import Tab from '@material-ui/core/Tab';
 import TabContext from '@material-ui/lab/TabContext';
 import TabList from '@material-ui/lab/TabList';
 import TabPanel from '@material-ui/lab/TabPanel';
+import Backdrop from '@material-ui/core/Backdrop';
 
 
 const BasicInfo = ({
@@ -35,6 +36,8 @@ const BasicInfo = ({
     setValue(registerType)
   },[registerType])
   return (
+    <>
+    <Backdrop open={true}>
     <section className="registration">
       <div className="registration_main">
         <TabContext value={value}>
@@ -161,6 +164,8 @@ const BasicInfo = ({
       </TabContext>
       </div>
     </section>
+    </Backdrop>
+    </>
   );
 };
 
