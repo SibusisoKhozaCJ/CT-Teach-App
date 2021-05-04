@@ -350,7 +350,7 @@ const CreateNewAccountPage = () => {
     await Auth.getUserWithEmail(email)
       .then((res) => {
         if(res && res.length > 0){
-          updateError("An account with same email already exist");
+          updateError("An account with same email already exists.");
           updateLoading(false);
         }else{
           updateError("");
