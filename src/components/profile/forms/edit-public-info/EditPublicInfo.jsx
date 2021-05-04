@@ -14,6 +14,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const EditPublicInfo = () => {
   const {editPublicUserInfo, user, isCurrentUser} = useSelector(state => state.user);
   const isDesktopQuery = useMediaQuery("(min-width:1275px)");
+  const isMediumScreen = useMediaQuery("(min-width:601px)");
   const dispatch = useDispatch();
   const settingsForm = {
     formControls: formPublicControlsProfilePage,
@@ -37,8 +38,8 @@ const EditPublicInfo = () => {
       dispatch(finishEditPrivateUserInfo())
     },
     finishEdit: finishEditPublicUserInfo,
-    classesWrapper: { border: '5px solid #43D4DD', display: 'inline-block', width: '100%',margin: isDesktopQuery ?'0 50px': '0 0px'},
-    classesForm: { background: isDesktopQuery ?'rgba(240, 238, 238, 0.5)' : 'transparent', paddingTop: 23},
+    classesWrapper: { border: '5px solid #43D4DD', display: 'inline-block', width: '100%',margin: isDesktopQuery ?'0 0px': '0 0px'},
+    classesForm: { background: isMediumScreen ?'rgba(240, 238, 238, 0.5)' : 'transparent', paddingTop: 23},
   }
 
   return (

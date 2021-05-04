@@ -17,6 +17,7 @@ import {
 } from "../../../shared/svgs/menu-items";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import FlashMessage from 'react-flash-message'
+import { Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) =>
   createStyles({
     modal: {
@@ -70,6 +71,16 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
 
     }
   }
+
+  useEffect(() => {
+    if(copied){
+      const interval = setInterval(() => {
+        setCopied(false);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+    
+  }, [copied]);
   return (
     <div>
       <Modal
@@ -96,6 +107,9 @@ const AddTribeModal = ({ openModal, handleModalClose, joinLink }) => {
               <section className="send-code joinTribe Addfrnd-request Tribe-request">
                 
                 <div className="send-code_main">
+                  <Grid container justify="flex-end">
+                  <Typography className="close-req-modal" onClick={()=>handleModalClose()}>X</Typography>
+                  </Grid>
                   <Box my={2} className="send-code_title">
                     <h1>ADD TO TRIBE</h1>
                     <p>How do you wanna invite?</p>

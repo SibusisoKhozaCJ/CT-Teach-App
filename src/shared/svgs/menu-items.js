@@ -31,7 +31,19 @@ import ToolTip from '../../assets/images/tooltip-image.png';
 import Challenge from '../../assets/images/challenge-icon.png';
 import User from '../../assets/images/jonathan.png';
 import Bulb from '../../assets/images/bulb-icon.svg';
-import ArrowRight from '../../assets/images/arrowRight.png'
+import ArrowRight from '../../assets/images/arrowRight.png';
+import LockIcon from "../../assets/images/lock-icon.png";
+//Material-ui
+import { makeStyles } from "@material-ui/styles";
+const  useStyles = makeStyles(theme => ({
+  lockIcon: {
+    position: "absolute",
+    top: 3,
+    right: -2,
+    width: "16px !important",
+  }
+}))
+
 export const HomeSVG = () => {
   return <img src={Homeicon} alt="" />;
 };
@@ -91,7 +103,12 @@ export const ProgressSvg = () => {
 };
 
 export const MissionSvg = () => {
-  return <img src={Missionicon} alt="" />;
+  const classes = useStyles();
+  return (
+    <>
+  <img src={Missionicon} className="coverage" alt="" />
+  <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+  </>);
 };
 
 export const NotificationSvg = () => {
@@ -102,7 +119,12 @@ export const ShareSvg = () => {
   return <img src={Shareicon} alt="" />;
 };
 export const InviteSvg = () => {
-  return <img src={Inviteicon} alt="" />;
+  const classes = useStyles();
+  return (
+  <>
+  <img src={Inviteicon} alt="" className="coverage" />
+  <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+  </>);
 };
 
 export const ProfileSvg = () => {
@@ -110,13 +132,24 @@ export const ProfileSvg = () => {
 };
 
 export const GallerySvg = () => {
-  return <img src={Galleryicon} alt="" />;
+  const classes = useStyles();
+  return (
+    <>
+  <img src={Galleryicon} className="coverage" alt="" />
+  <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+  </>
+  );
 };
 export const SkillsSvg = () => {
   return <img src={Skillsicon} alt="" />;
 };
 export const FeedbackSvg = () => {
-  return <img src={Feedbackicon} alt="" />;
+  const classes = useStyles();
+  return (
+    <>
+  <img src={Feedbackicon} className="coverage"  alt="" />
+  <img src={LockIcon} className={`coverage ${classes.lockIcon}`} alt="" />
+  </>);
 };
 export const GridSvg = () => {
   return <img src={Gridicon} alt="" />;

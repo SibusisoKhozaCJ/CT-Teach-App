@@ -14,7 +14,11 @@ import GalleryIcon from "../../../assets/icons/profile-icon/galleryarticon.png";
 import BlingIcon from "../../../assets/icons/profile-icon/web-certificate.png";
 import { MicNone } from '@material-ui/icons';
 import { Grid } from "@material-ui/core";
-
+import AddFriend from "../../../assets/icons/profile-icon/userIcon.png"
+import Message from "../../../assets/icons/profile-icon/messageIcon.png"
+  import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop:6,
     borderTop: '3px solid rgba(240, 238, 238, 0.5)',
     boxShadow: '0px 10px #0000',
+    width:'100%',
     '& header':{
         boxShadow: 'none',
         borderBottom: '3px solid rgba(240, 238, 238, 0.5)'
@@ -65,21 +70,27 @@ const useStyles = makeStyles((theme) => ({
       color: '#A6A6A6',
       '& div' :{
         maxHeight: 59,
-        '& .PrivateTabIndicator-colorSecondary-407':{
-            backgroundColor: '#FBDD3F'
-        }
-      }
+        display: 'flex',
+      justifyContent: 'space-around',
+      flex: 1,
+    }
   },
   Tab:{
     fontSize:10,
     marginTop:-5,
-    marginRight:21
+    display: 'flex',
+    flex: 1,
+  },
+ 
+  TabPanel1:{
+    marginTop:'10px !important'
   }
 }));
 
 export default function TabPanels(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const isDesktopQuery = useMediaQuery("(min-width:600px)");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -88,7 +99,7 @@ export default function TabPanels(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className={classes.Tabs}>
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className={classes.Tabs} TabIndicatorProps={{style: {background:'#FBDD3F'}}}>
           <Tab label="Profile" icon={<img src={ProfileIcon} />} {...a11yProps(0)} className={classes.Tab} />
           <Tab label="Friends" icon={<img src={FriendIcon} />} {...a11yProps(1)} className={classes.Tab} />
           <Tab label="Published" icon={<img src={GalleryIcon} />} {...a11yProps(2)} className={classes.Tab} />
@@ -96,8 +107,34 @@ export default function TabPanels(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
+        <Grid container spacing={2} className={classes.TabPanel1}>
       <EditPublicInfo/>
       {props.isRenderForm && <EditPrivateInfo/>}
+      </Grid>
+            <Grid container className="BtnGrid">
+            <Divider variant="middle" width={'476px'} className="profileDivider divider-1" />
+        <Grid item xs={12} sm={6} className="butttonGroup">
+        <Button
+            variant="contained"
+            color="secondary"
+            className="MessageBtn addFriend"
+          >
+            <div className="MessageBtnIcon"><img src={AddFriend} className={"btnIcon"}/></div>
+           <div className="MessageBtnText">Add as Friend</div>
+      </Button>
+        </Grid>
+        <Divider variant="middle" width={'476px'} className="profileDivider divider-2" />
+        <Grid item xs={12} sm={6} className="butttonGroup">
+          <Button
+            variant="contained"
+            color="secondary"
+            className="MessageBtn sayHi"
+          >
+            <div className="MessageBtnIcon"><img src={Message}  className={"btnIcon"}/></div>
+            <div className="MessageBtnText">Say Hi</div>
+      </Button>
+        </Grid>
+        </Grid>
         </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

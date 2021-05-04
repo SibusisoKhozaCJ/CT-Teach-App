@@ -60,7 +60,6 @@ const CreateNewAccountPage = () => {
   }, []);
 
   const handleFormSubmitTeacher = async () => {
-    debugger
     const { schoolAlreadySigned, joincode } = form;
     if (schoolAlreadySigned) {
       const isCodeExist = await CheckIfTribeCodeExist(joincode);
@@ -141,27 +140,7 @@ const CreateNewAccountPage = () => {
           setCurrentStep(2);
         });
     } else {
-      const { firstname, lastname } = form;
-      if (email) {
-        createUserFromEmailAndPassword(email, password, tribeData)
-      } else {
-        const emailAddress = (
-          firstname +
-          lastname +
-          day +
-          month +
-          year +
-          "@codejika.com"
-        ).toLowerCase();
-        const userPassword = (
-          firstname +
-          lastname +
-          day +
-          month +
-          year
-        ).toLowerCase();
-        createUserFromEmailAndPassword(emailAddress, userPassword, tribeData)
-      }
+      createUserFromEmailAndPassword(email, password, tribeData)
     }
   };
 
@@ -275,10 +254,16 @@ const CreateNewAccountPage = () => {
         Auth.setCookies(email, firstname);
       } else {
         const { firstname, lastname } = form;
-        const tribeName = `${firstname.substring(0, 3)}-${schoolname.substring(
-          0,
-          3
-        )}-${city}-${year}`;
+        let tribeName = ""
+        if(firstname && firstname !== ""){
+          tribeName = `${firstname.substring(0, 3)}-${schoolname.substring(
+            0,
+            3
+          )}-${city}-${year}`;
+        }else{
+          tribeName = tribeCode;
+        }
+        
         firebaseInsert("Tribes/" + tribeCode, {
           code: tribeCode,
           name: tribeName,
@@ -304,9 +289,12 @@ const CreateNewAccountPage = () => {
       }
       setTokens({ isAuthenticate: true });
       updateLoading(false);
-      history.push(routes.HOME);
-      // setTribeCode(tribeCode);
-      // setCurrentStep(4);
+      if(registerType === "2"){
+          setTribeCode(tribeCode);
+          setCurrentStep(4);
+      }else{
+        history.push(routes.HOME);
+      }
     }
   };
 
@@ -322,8 +310,35 @@ const CreateNewAccountPage = () => {
 
   const handleSubmitStudentFirstForm = async (e) => {
     e.preventDefault();
-    updateError("");
-    setCurrentStep(2);
+    updateLoading(true);
+    const { email, joincode,schoolAlreadySigned } = form;
+    await Auth.getUserWithEmail(email)
+      .then( async (res) => {
+        if(res && res.length > 0){
+          updateError("Email already exist!");
+          updateLoading(false);
+        }else{
+          if(schoolAlreadySigned){
+            const isCodeExist = await CheckIfTribeCodeExist(joincode);
+            if (isCodeExist) {
+              updateError("");
+              updateLoading(true);
+              setCurrentStep(2);
+            }else{
+              updateError("Join code not exist");
+              updateLoading(false);
+            }
+          }else{
+            updateError("");
+            updateLoading(true);
+            setCurrentStep(2);
+          }
+        }
+      })
+      .catch((err) => {
+        updateLoading(true);
+        return null;
+      });
   };
 
   const handleSubmitTeacherFirstForm = async (e) => {
@@ -335,7 +350,7 @@ const CreateNewAccountPage = () => {
     await Auth.getUserWithEmail(email)
       .then((res) => {
         if(res && res.length > 0){
-          updateError("An account with same email already exist");
+          updateError("An account with same email already exists.");
           updateLoading(false);
         }else{
           updateError("");
@@ -348,7 +363,6 @@ const CreateNewAccountPage = () => {
   };
 
   const handleSubmitTeacherSecondForm = async (e) => {
-    debugger
     e.preventDefault();
     updateError("");
     handleFormSubmitTeacher();
@@ -367,34 +381,29 @@ const CreateNewAccountPage = () => {
   const setTypeOfUser = (evt) => {
     setRegisterType(evt);
   };
-  const handleEmailSkip = (evt) => {
-    createUser();
-  };
-
-  const handleSubmitWithJoinCode = async (evt) => {
+  const handleEmailSkip = async (evt) => {
     try {
-      const { joincode } = form;
-      const isCodeExist = await CheckIfTribeCodeExist(joincode);
-      if (!isCodeExist) {
-        updateError("Invalid Join code");
-        updateLoading(false);
-        setCurrentStep(2);
-      } else {
-        createUser(isCodeExist);
+    const { joincode, schoolAlreadySigned } = form;
+      if(schoolAlreadySigned){
+        const isCodeExist = await CheckIfTribeCodeExist(joincode);
+        if (!isCodeExist) {
+          updateError("Invalid Join code");
+          updateLoading(false);
+          setCurrentStep(1);
+        } else {
+          createUser(isCodeExist);
+        }
+      }else{
+        createUser();
       }
     } catch (err) { }
-  }
+  };
 
   const handleBackClick = (evt)=>{
     setTypeOfUser(evt);
     setCurrentStep(1);
   }
 
-  const handleSubmitUserSecondForm = async (evt) => {
-    try {
-      createUser();
-    } catch (err) { }
-  };
   return (
     <>
     {}
@@ -421,8 +430,6 @@ const CreateNewAccountPage = () => {
           updateForm={updateForm}
           registerType={registerType}
           handleEmailSkip={handleEmailSkip}
-          handleSubmitUserSecondForm={handleSubmitUserSecondForm}
-          handleSubmitWithJoinCode={handleSubmitWithJoinCode}
           handleBackClick={handleBackClick}
         />
       )}

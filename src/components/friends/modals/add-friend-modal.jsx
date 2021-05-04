@@ -16,7 +16,10 @@ import {
   InArrowSVG,
   InCopySVG
 } from "../../../shared/svgs/menu-items";
-import config from "../../../config";
+import FlashMessage from 'react-flash-message';
+import {getAppBaseUrl} from "../../../helper";
+import CopyToClipboard from "react-copy-to-clipboard";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -35,6 +38,7 @@ const useStyles = makeStyles((theme) =>
 const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendRequest, handleSuccessRequest,successErrorMessage,showSuccessMessage }) => {
   var theme = useTheme();
   const classes = useStyles(theme);
+  const [copied, setCopied] = useState(false);
   const [friendToAddID, setFriendToAddID] = useState("");
   const [friendToAddIDUserName, setFriendToAddIDUserName] = useState("");
   const [friendRequestNote, setfriendRequestNote] = useState("");
@@ -64,6 +68,16 @@ const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendR
       alert("Please enter a valid username/email");
     }
   };
+
+  useEffect(() => {
+    if(copied){
+      const interval = setInterval(() => {
+        setCopied(false);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+    
+  }, [copied]);
   return (
     <div>
       <Modal
@@ -85,6 +99,9 @@ const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendR
           <div className={classes.paper1}>
              <section className="send-code joinTribe Addfrnd-request">
             {!showSuccessMessage &&  <div className="send-code_main">
+                <Grid container justify="flex-end">
+                  <Typography className="close-req-modal" onClick={()=>{resetOnCloseModal();handleModalClose()}}>X</Typography>
+                  </Grid>
                 <Box my={2} className="send-code_title">
                   <h1>ADD FRIEND</h1>
                   <p>How do you wanna invite?</p>
@@ -163,7 +180,7 @@ const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendR
 
                        <Grid item xs={12}>
                       <Box my={1} className="join-link-input">
-                   
+                      <CopyToClipboard onCopy={() => setCopied(true)} text={getAppBaseUrl()+userShareLink}>
                       <TextField
                           InputProps={{
                             startAdornment: <CopySVG />,
@@ -171,15 +188,15 @@ const AddFriendModal = ({userShareLink, openModal, handleModalClose, handleSendR
                           }}
                           fullWidth
                           variant="outlined"
-                          value={config.APP_BASE_URL+userShareLink}
+                          value={getAppBaseUrl()+userShareLink}
                           disabled
                         />
-                    
-                      {/* <div className="flash-message-copied">
+                    </CopyToClipboard>
+                      <div className="flash-message-copied">
                       {copied &&<FlashMessage duration={5000} persistOnHover={true}>
                         <p>Link copied</p>
                       </FlashMessage>}
-                      </div> */}
+                      </div>
                       </Box>
                     </Grid>                 
                       <Box my={2} className="copytolink">

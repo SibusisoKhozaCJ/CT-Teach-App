@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -15,13 +15,13 @@ import Pandingicon from "../../assets/images/panding.svg";
 import PlusIcon from "../../assets/images/plus.svg";
 import DotIcon from "../../assets/icons/tribe/dot.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { acceptTribeRequest, getUserTribes, rejectTribeJoinRequest } from "../../redux/actions/tribe-actions";
+import { acceptTribeRequest, getUserTribes, rejectTribeJoinRequest,leaveTribeAction, deleteTribeAction } from "../../redux/actions/tribe-actions";
 import Loading from "../../shared/components/loader/Loading";
 import { saveUser } from "../../redux/actions/user-actions";
 import AddTribeModal from "./modals/add-tribe-modal.jsx";
 import { useHistory } from "react-router-dom";
 import AddRemoveTribeModal from "./modals/accept-reject-tribe.jsx";
-import config from "../../config";
+import {getAppBaseUrl} from "../../helper"
 const Tribes = () => {
   const [expand, setExpand] = useState("");
   const [expandUser, setUserExpand] = useState("");
@@ -31,20 +31,35 @@ const Tribes = () => {
   const { loading } = useSelector((state) => state.user);
   const history = useHistory();
   const [openAcceptModal, setAcceptOpenModal] = useState(false);
-  const [removeTribeModal, setRemoveTribeModal] = useState(false)
+  const [removeTribeModal, setRemoveTribeModal] = useState("")
+  const [deleteTribeModal, setDeleteTribeModal] = useState(false)
   const [showTribes,setShowTrbies]=useState(true);
   const [showTribesRequests,setShowTrbiesRequest]=useState(false);
   const { userTribes, userJoinedTribes, requestedTribes } = useSelector((state) => state.tribe);
   const [joinUrl, setJoinUrl] = useState("")
   const [selectedTribe, setSelectedTribe] = useState({})
-  
+  const unFriendContainer = useRef();
+  const [btnOpen, setBtnOpen] = useState(false);
+  const [tribeToDeleteLeave, setTribeToDeleteLeave] = useState({})
+  const [modalType, setModalType] = useState("");
+  const [ loader, setLoader ] = useState(false);
+  const handleClickOutsides = (evt) => {
+    if (unFriendContainer.current && !unFriendContainer.current.contains(evt.target)) {
+      setRemoveTribeModal("");
+      setDeleteTribeModal(false);
+         setBtnOpen(!btnOpen);
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsides);
+  }, []);
   useEffect(() => {
     if (user !== null) {
       dispatch(getUserTribes(user));
     } else {
       dispatch(saveUser(undefined));
     }
-  }, [dispatch, user]);
+  }, [user]);
 
   if (loading) {
     return (
@@ -70,25 +85,60 @@ const Tribes = () => {
     let joinLink = "";
     if(senderType === "self"){
        const tribeJoinCode = tribeCode ? tribeCode : userTribes[0].code
-       joinLink = config.APP_BASE_URL + "/join/"+tribeJoinCode;
+       joinLink = getAppBaseUrl() + "/join/"+tribeJoinCode;
       
     }else{
-      joinLink = config.APP_BASE_URL + "/join/L"+tribeCode;
+      joinLink = getAppBaseUrl() + "/join/L"+tribeCode;
     }
     setJoinUrl(joinLink);
     setOpenModal(true);
   }
 
   const handleRejectTribeRequest =()=>{
-    dispatch(rejectTribeJoinRequest(userTribes, selectedTribe)).then((res) => {
-      setAcceptOpenModal(false)
-    });
+    if(modalType === "accept"){
+      dispatch(rejectTribeJoinRequest(userTribes, selectedTribe)).then((res) => {
+        setAcceptOpenModal(false)
+      });
+    }else if(modalType === "leave"){
+      leaveTribe();
+    }else if(modalType === "delete"){
+      deleteTribe();
+    }
   }
+
+  const toggleLeaveTribeMenu = (index) => {
+    setRemoveTribeModal("unfriend" + index);
+    setDeleteTribeModal(false)
+}
 
   const handleAcceptRequest=(userId)=>{
     dispatch(acceptTribeRequest(userTribes, userId)).then((res) => {
       dispatch(getUserTribes(user));
     });
+  }
+
+  const leaveTribe =()=>{
+    setLoader(true);
+    dispatch(leaveTribeAction(tribeToDeleteLeave, user)).then((res) => {
+      dispatch(getUserTribes(user)).then((res) => {
+        setAcceptOpenModal(false);
+      });
+    });
+    setLoader(true);
+  }
+
+  const deleteTribe =()=>{
+    setLoader(true);
+    dispatch(deleteTribeAction(tribeToDeleteLeave,user)).then((res) => {
+      if(user.tribe_joined && user.tribe_joined.length > 0){
+        dispatch(getUserTribes(user)).then((res) => {
+          setAcceptOpenModal(false);
+        });
+      }else{
+        setAcceptOpenModal(false);
+      }
+    });
+    setLoader(true);
   }
   return (
     
@@ -128,7 +178,7 @@ const Tribes = () => {
               <span  className="margin-main">Pending</span><span className="totalFriend">{bindPendingTribeCount()}</span>
             </Button>
             <Button className="dived mob-dived">|</Button>
-            <Button color="secondary" className="btnplusfrnd" onClick={(evt) => setJoinTribeLink(undefined, "self")}>
+            <Button color="secondary" className="btnplusfrnd" onClick={(evt) =>{userTribes && userTribes.length > 0 ? setJoinTribeLink(undefined, "self") : alert("Tribe is not created yet.") }}>
               <span className="tribplusfriend"><img src={PlusIcon} /></span> <span> TO TRIBE</span>
             </Button>
           </Grid>
@@ -144,24 +194,24 @@ const Tribes = () => {
               {userTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={9} className="tribe-header">
+                    <Grid item xs={12} className="tribe-header">
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
-                       <Grid xs={2} className="frnd-drpBtn">
+                       {/* <Grid xs={2} className="frnd-drpBtn">
                         <img
-                          onClick={(evt) => setRemoveTribeModal(true)}
+                          onClick={(evt) => setDeleteTribeModal(true)}
                           src={DotIcon}
                         />
                       </Grid>
-                      {removeTribeModal && (
-                        <Grid item xs={12} className="unfriend-Btn">
-                          <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true)}}>
-                           LEAVE TRIBE
+                      {deleteTribeModal && (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true); setTribeToDeleteLeave(tribe); setModalType("delete")}} >
+                           DELETE TRIBE
                           </Button>
                         </Grid>
-                      )}
+                      )} */}
 
                     <Grid item xs={3}>
                       <div className="tribe-icon">
@@ -285,11 +335,24 @@ const Tribes = () => {
               {userJoinedTribes.map((tribe, index) => (
                 <div className="nav-slide tribes-section">
                   <Grid container spacing={1} className="main-manu" xs={12}>
-                    <Grid item xs={12}>
+                    <Grid item xs={9}>
                       <Typography variant="h1" className="title">
                         {tribe.name || tribe.code}
                       </Typography>
                     </Grid>
+                    <Grid xs={2} className="frnd-drpBtn">
+                        <img
+                          onClick={(evt) => {toggleLeaveTribeMenu(index); setBtnOpen(!btnOpen)}}
+                          src={DotIcon}
+                        />
+                      </Grid>
+                      {removeTribeModal == "unfriend" + index && btnOpen&& (
+                        <Grid ref={unFriendContainer} item xs={12} className="unfriend-Btn">
+                          <Button variant="contained" color="primary" onClick={() =>{setAcceptOpenModal(true); setTribeToDeleteLeave(tribe); setModalType("leave")}}>
+                           LEAVE TRIBE
+                          </Button>
+                        </Grid>
+                      )}
                     <Grid item xs={3}>
                       <div className="tribe-icon">
                         <img src={Icon2} className="coverage" alt="" />
@@ -470,7 +533,7 @@ const Tribes = () => {
                 <div className="expand-btn">
                       <div className="d-flex mt-2 justify-content-center font-13 expand-btn">
                             <div className="frnd-cancel">
-                              <span onClick={() => {setSelectedTribe(user); setAcceptOpenModal(true)}}>
+                              <span onClick={() => {setSelectedTribe(user); setAcceptOpenModal(true);setModalType("accept")}}>
                                 X
                               </span>
                             </div>

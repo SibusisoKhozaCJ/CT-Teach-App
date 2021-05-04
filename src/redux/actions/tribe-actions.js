@@ -1,12 +1,26 @@
 import * as authFetch from "../../shared/lib/authorizedFetch";
 import { textWithImg, textWithLinks } from "../../shared/lib/regExp";
 import { Types } from "../constants/tribe-types";
-import { firebaseUpdate } from "../../shared/lib/authorizedFetch";
+import { firebaseUpdate, firebaseDelete } from "../../shared/lib/authorizedFetch";
 import * as Auth from "../../shared/lib/authentication";
 export function getUserTribes(user) {
   return async function (dispatch, getState) {
     const userTribes = user.tribe_code;
-    const tribeData = await authFetch.firebaseGet("Tribes/" + userTribes);
+    if(userTribes){
+      const tribeData = await authFetch.firebaseGet("Tribes/" + userTribes);
+      if (tribeData) {
+        if(tribeData.requests && tribeData.requests.length > 0){
+          const usersInfo = await getusersInfo(tribeData.requests);
+          dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
+        }else{
+          dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: [] });
+        }
+        const data = [tribeData];
+        dispatch({ type: Types.SAVE_USER_TRIBES, payload: data });
+      }
+    }
+    
+    
     if (user && user.tribe_joined && user.tribe_joined.length > 0) {
       const joinedTribes = await authFetch.firebaseGet(
         "Tribes/",
@@ -18,16 +32,6 @@ export function getUserTribes(user) {
           payload: joinedTribes,
         });
       }
-    }
-    if (tribeData) {
-      if(tribeData.requests && tribeData.requests.length > 0){
-        const usersInfo = await getusersInfo(tribeData.requests);
-        dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: usersInfo });
-      }else{
-        dispatch({ type: Types.SAVE_TRIBES_REQUESTS, payload: [] });
-      }
-      const data = [tribeData];
-      dispatch({ type: Types.SAVE_USER_TRIBES, payload: data });
     }
   };
 }
@@ -312,4 +316,61 @@ export function acceptTribeRequest(userTribes, userEntered) {
       console.warn("Error update user", error);
     }
   };
+}
+
+export function leaveTribeAction(tribeInfo,userDetails) {
+  return async (dispatch, getState) => {
+    try {
+      let userTribes = userDetails.tribe_joined.filter(function (str) { return str !== tribeInfo.code; });
+      let tribeUsers = tribeInfo.users.filter(function (str) { return str !== userDetails.uid; });
+      tribeInfo.users = tribeUsers;
+      userDetails.tribe_joined = userTribes
+      await firebaseUpdate(`Users/${userDetails.uid}`, userDetails);
+      await firebaseUpdate(`Tribes/${tribeInfo.code}`, tribeInfo);
+      dispatch({
+        type: Types.SET_SUCCESS_MESSAGE,
+        payload: "",
+      });
+    } catch (error) {
+      console.warn("Error update user", error);
+    }
+  };
+}
+
+
+export function deleteTribeAction(tribeInfo,user) {
+  return async (dispatch, getState) => {
+    try {
+      let tribeUsers = tribeInfo.users;
+      let userDetails = user;
+      userDetails.tribe_code = null;
+      const usersInfo = await updateUserTribes(tribeUsers,tribeInfo.code);
+      await firebaseDelete(`Users`, `${userDetails.uid}/tribe_code/${tribeInfo.code}`);
+      await firebaseDelete(`Tribes`, tribeInfo.code);
+      dispatch({
+        type: Types.SET_SUCCESS_MESSAGE,
+        payload: "",
+      });
+      dispatch({ type: Types.SAVE_USER_TRIBES, payload: [] });
+    } catch (error) {
+      console.warn("Error update user", error);
+    }
+  };
+}
+
+
+async function updateUserTribes(users, tribeCode) {
+  await Promise.all(
+    users.map(async (user, index) => {
+      try{
+        let userDetails = await Auth.getProfile(user);
+        let userTribes = userDetails.tribe_joined.filter(function (str) { return str !== tribeCode; });
+        userDetails.tribe_joined = userTribes;
+        await firebaseUpdate(`Users/${userDetails.uid}`, userDetails);
+      }catch(err){
+
+      }
+    })
+  );
+  return users;
 }

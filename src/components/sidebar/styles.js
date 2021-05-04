@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 
-const drawerWidth = 230;
+const drawerWidth = 250;
 
 export default makeStyles(theme => ({
   menuButton: {
@@ -76,7 +76,10 @@ largeIcon: {
 arrowRight:{
   width: '26px !important',
   marginLeft: 6,
-  marginTop: 6
-}
+  marginTop: 6,
+  [theme.breakpoints.down('sm')]: {
+    width: '21px !important',
+  }
 
+}
 }));

@@ -17,6 +17,7 @@
     "caniuse-lite": "^1.0.30001209",
     "classnames": "^2.2.6",
     "codemirror": "^5.59.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "firebase": "^8.4.1",
     "js-cookie": "^2.2.1",
@@ -53,8 +54,9 @@
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env REACT_APP_HOST_ENV=development react-scripts start",
+    "stage": "cross-env REACT_APP_HOST_ENV=staging react-scripts build",
+    "build": "cross-env REACT_APP_HOST_ENV=production react-scripts build",
     "test": "react-scripts test",
     "start:dev": "serve -s build",
     "eject": "react-scripts eject"

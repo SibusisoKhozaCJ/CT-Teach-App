@@ -9,7 +9,7 @@ export default function sideBarReducer(state = initialState, action) {
     case Types.CLOSE_SIDEBAR:
       return { ...state, isSidebarOpened: false};
       case Types.OPEN_SIDEBAR:
-      return { ...state, isSidebarOpened: true};
+        return { ...state, isSidebarOpened: true};
     default:
       return state;
   }

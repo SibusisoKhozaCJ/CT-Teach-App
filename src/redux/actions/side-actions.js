@@ -14,5 +14,5 @@ export function closeSidebar() {
 export function openSidebar() {
   return async function(dispatch, getState) {
     dispatch({ type: Types.OPEN_SIDEBAR });
-  };
+  }
 }
