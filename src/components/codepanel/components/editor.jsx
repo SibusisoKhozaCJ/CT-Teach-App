@@ -34,7 +34,7 @@ export const debounce = (fn, time) => {
 };
 
 function upperCasefirst(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return string ? string.charAt(0).toUpperCase() + string.slice(1) : "";
 }
 
 const Editor = () => {
@@ -67,6 +67,7 @@ const Editor = () => {
     const currentChallenge = challenges[lesson.slides[currentSlide].challenge_id]
     if (currentChallenge.validators) {
       challengesPrepared = rules.map((rule, index) => ({
+        // description: rule.description,
         description: upperCasefirst(rule.description),
         status: currentChallenge.validators[index]
       }))
@@ -160,8 +161,8 @@ const Editor = () => {
     } else {
       return;
     }
-
-
+    
+    
     if (challenges[challenge_id].progress !== 100) {
       const validated = validate(storedCode)
       setPercent(validated.progress);

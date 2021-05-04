@@ -33,7 +33,7 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
                 >
                   {tribesList && tribesList.length > 0 && (
                     tribesList.map((tribe, index) => (
-                      <MenuItem value={tribe.code}>{tribe.name}</MenuItem>
+                      <MenuItem key={index} value={tribe.code}>{tribe.name}</MenuItem>
                     ))
                   )}
                 </Select>
@@ -46,15 +46,15 @@ const ProgressHeader = ({ tribesList, setSelectedTribe, selectedTribe }) => {
             <div className="headPicon">
               <span className="tribe-grid">
                 <img src={Filter} alt="" />
-              </span>
-        
+              </span>    
+
             </div>
           </div>
-
+          
         </div>
 
-      </div>
-   
+      </div>   
+      
     </div>
   );
 };
