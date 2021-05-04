@@ -120,8 +120,8 @@ export default function Header() {
         </IconButton>
          <div className="headhomeiocn">
            {isDesktop ?
-                 <img src={Homeicon} className={` ${path == "home" ? "header-accont" : ""}`}
-                      onClick={()=>{history.push(`/home`);}  } alt=""/>
+                 <img src={Homeicon} className={classes.homeIconImg}
+                      onClick={(_e)=>{history.push(`/home`);}  } alt=""/>
                :''}
            <img src={Homelogo} alt="" />
          </div>
