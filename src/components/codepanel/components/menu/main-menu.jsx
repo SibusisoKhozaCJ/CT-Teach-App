@@ -129,7 +129,8 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
             <CloseIcon />
           </IconButton>
         </MenuItem>
-        {userId ? (
+
+        {(userId  && !userId.includes('GUEST'))? (
           <div>
             <MenuItem onClick={() => {}}>
               <Typography className={classes.name}>

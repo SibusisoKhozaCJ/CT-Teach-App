@@ -7,6 +7,8 @@ import history from "./history";
 import config from "../../config";
 import firebase from "firebase";
 import * as authFetch from "./authorizedFetch";
+import {useLocation,useHistory} from "react-router-dom";
+import randomize from "randomatic";
 firebase.initializeApp(config.firebaseConfig);
 const Auth = firebase.auth();
 
@@ -37,9 +39,21 @@ export function createUser(userid, userpass) {
 }
 
 export function currentUserId() {
+
   if (Auth.currentUser) {
     return Auth.currentUser?.uid;
-  } else {
+  }
+
+  else if (window.location.pathname.includes('/codepanel')){
+    if(!Cookies.get('USER_ID')) {
+      const rand = `${randomize("A", 20)}`;
+      Cookies.set('USER_ID', rand)
+    }
+    const userID = Cookies.get('USER_ID')
+
+    return userID;
+  }
+  else {
     return getCookies().userId;
   }
 }
