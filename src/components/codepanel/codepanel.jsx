@@ -45,9 +45,7 @@ const Codepanel = ({
   // const userId = useSelector(state => state.user.userId);
   const userId = currentUserId();
   // const lessonId = "5-min-website";
-  const isProjectsActive = useSelector(
-    (state) => state.codepanel.isProjectsActive
-  );
+  const isProjectsActive = useSelector((state) => state.codepanel.isProjectsActive);
   const isLeaveActive = useSelector((state) => state.codepanel.isLeaveActive);
   const isTourActive = useSelector((state) => state.codepanel.isTourActive);
   const isResetActive = useSelector((state) => state.codepanel.isResetActive);
@@ -60,7 +58,7 @@ const Codepanel = ({
   const [lesson, setLesson] = useState(null);
   const [loader, setLoader] = useState(null);
   const lessonPath = `${courseId}/${projectId}/${trainingId}`;
-
+  console.log(" lessonPath=== ", lessonPath)
   const history = useHistory();
 
   const getProgressData = async (userId, trainingId) => {
@@ -103,6 +101,7 @@ const Codepanel = ({
 
     if (currentLesson !== lessonPath) {
       getLesson(trainingId).then((data) => {
+        console.log(" lession data in codepanel === ", data)
         if (data) {
           setTimeout(() => {
             dispatch(codepanelSetSlides(data));
@@ -164,6 +163,7 @@ const Codepanel = ({
     preview: <Preview />,
   };
 
+  console.log("userId===>", userId);
   return (
     <>
       {panels && lesson && (

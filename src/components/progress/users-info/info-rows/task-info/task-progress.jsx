@@ -17,8 +17,8 @@ const TaskProgressBar = ({ progress, selectedCourse, selectproject, traningList 
     return (
 <>
         { traningList && traningList.length > 0 && traningList.map((traning, index) => (
-            <div class="table_small">
-                <div key={"traning" + index} class="table_cell">
+            <div className="table_small">
+                <div key={"traning" + index} className="table_cell">
                     <LinearProgress variant="determinate" value={setTotalProgress(traning)} />
                 </div>
             </div>

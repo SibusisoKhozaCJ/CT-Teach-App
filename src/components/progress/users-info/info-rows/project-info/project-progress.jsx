@@ -22,8 +22,8 @@ const ProjectProgressBar = ({ progress, projectList,selectedCourse }) => {
     return (
         <>
             {projectList.map((project, index) => (
-                <div class="table_small">
-                <div class="table_cell project-progress">
+                <div className="table_small">
+                <div className="table_cell project-progress">
                     <LinearProgress variant="determinate" value={setTotalProgress(project)} />
                 </div>
                 </div>

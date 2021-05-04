@@ -31,7 +31,7 @@ const ProjectInfoRows = ({
         {usersProgressList &&
           usersProgressList.length > 0 &&
           usersProgressList.map((progress, index) => (
-            <div class="table_row">
+            <div className="table_row">
               <ProjectProgressBar selectedCourse={selectedCourse} projectList={projectList} progress={progress}/>
             </div>
           ))}

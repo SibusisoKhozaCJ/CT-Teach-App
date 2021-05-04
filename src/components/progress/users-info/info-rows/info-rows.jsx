@@ -18,9 +18,9 @@ const UserRow = ({
   return (
     <div className="table_row">
       <div className="progress-name newdiv ">
-        <div class="table projecttable">
-          <div class="theader name-header">
-            <div class="table_header name-head">
+        <div className="table projecttable">
+          <div className="theader name-header">
+            <div className="table_header name-head">
               <div className="crsarrow">
                 <img src={CrsArrow} />
               </div>
@@ -38,7 +38,7 @@ const UserRow = ({
                 />
               </svg>
             </div>
-            <div class="table_header name-head">
+            <div className="table_header name-head">
               <div className="crsarrow">
                 <img src={CrsArrow} />
               </div>
