@@ -15,7 +15,8 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
     (state) => state.codepanel.currentSlide
   );
   const lastSlidesNumber = slides.slides.length - 1;
-
+  const skipSlide = slides.slides[currentSlideNumber]? slides.slides[currentSlideNumber]?.challenge : false;
+console.log(slides)
   return (
     <div
       style={{
@@ -43,7 +44,7 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
             ></button>
           )}
           {slider}
-          {!(currentSlideNumber === lastSlidesNumber) && (
+          {!(currentSlideNumber === lastSlidesNumber ) && !(skipSlide == true) && (
             <button
               className="slide_btn slide_btn-bottom"
               value={'bottom'}
@@ -58,7 +59,7 @@ const DesktopLayout = ({ editor, preview, slider, slideChangeHandler }) => {
           </>
         ) : null}
       </ReflexContainer>
-      <Bottombar />
+      <Bottombar skipSlide={skipSlide} />
     </div>
   );
 };

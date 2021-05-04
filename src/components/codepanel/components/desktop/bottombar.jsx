@@ -54,11 +54,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Bottombar = () => {
+const Bottombar = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [isCollapsed, setIsCollapse] = useState(false);
-
   return (
     <div className={classes.bottomBar}>
       <AppBar position="static">
@@ -76,7 +75,7 @@ const Bottombar = () => {
               </Button>
             </Grid>
             <Grid item xs>
-              <Button
+              <Button disabled={props.skipSlide == true}
                 className={classes.pagination}
                 onClick={() => dispatch(codepanelIncSlideNumber())}
                 variant="outlined"

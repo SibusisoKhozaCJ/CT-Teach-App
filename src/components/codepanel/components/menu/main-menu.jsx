@@ -130,7 +130,7 @@ const MainMenu = ({ anchorEl, open, closeHandler }) => {
           </IconButton>
         </MenuItem>
 
-        {(userId  && !userId.includes('GUEST'))? (
+        {(userId  && !userId.includes('CDTB'))? (
           <div>
             <MenuItem onClick={() => {}}>
               <Typography className={classes.name}>
