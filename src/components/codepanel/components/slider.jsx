@@ -216,7 +216,7 @@ const Slider = () => {
                     ref={lessonRef}
                 >
                   <ReflexElement
-                      className={`${
+                      className={`${slide.css_class} ${
                           classes.reflex
                       } snap1 white hide-help swiper-slide ${
                           slide.reg ? " bg-orange" : ""
