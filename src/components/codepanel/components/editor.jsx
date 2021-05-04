@@ -132,7 +132,7 @@ const Editor = () => {
     }
 
     if (!isChallenge) {
-      dispatch(codepanelSetIsValid(true));
+      dispatch(codepanelSetIsValid(false));
       if (userId) {
         const data = {
           current_slide: currentSlide,
@@ -196,7 +196,7 @@ const Editor = () => {
       }
 
     } else {
-      dispatch(codepanelSetIsValid(true));
+      dispatch(codepanelSetIsValid(false));
     }
 
   }, [currentSlide, storedCode, isBlocked])

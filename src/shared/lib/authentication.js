@@ -46,7 +46,7 @@ export function currentUserId() {
 
   else if (window.location.pathname.includes('/codepanel')){
     if(!Cookies.get('USER_ID')) {
-      const rand = `${randomize("A", 20)}`;
+      const rand = `CDTB${randomize("A", 20)}`;
       Cookies.set('USER_ID', rand)
     }
     const userID = Cookies.get('USER_ID')
