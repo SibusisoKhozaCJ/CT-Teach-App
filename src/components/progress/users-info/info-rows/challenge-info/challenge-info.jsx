@@ -23,7 +23,7 @@ const ChallengeInfoRows = ({selectedTraning, trainingList,selectedProject,usersP
       {usersProgressList &&
           usersProgressList.length > 0 &&
           usersProgressList.map((progress, index) => (
-            <div class="table_row">
+            <div className="table_row">
                 <ChallengeProgressBar challengeList={challengeList} selectedTraning={selectedTraning} selectedCourse={selectedCourse} selectproject={selectedProject} progress={progress}/>
             </div>
           ))}

@@ -44,8 +44,8 @@ const ChallengeProgressBar = ({
       {challengesList &&
         challengesList.length > 0 &&
         challengesList.map((challenge, index) => (
-          <div key={"challenge" + index} class="table_small">
-            <div class="table_cell">
+          <div key={"challenge" + index} className="table_small">
+            <div className="table_cell">
               <div
                 className={
                   challenge === 0
@@ -60,8 +60,8 @@ const ChallengeProgressBar = ({
         ))}
         {challengesList && challengesList.length <= 0 && challengeList && (
           challengeList.map((challenge, index) => (
-            <div key={"challenge" + index} class="table_small">
-              <div class="table_cell">
+            <div key={"challenge" + index} className="table_small">
+              <div className="table_cell">
                 <div
                   className="test-div"
                 ></div>
