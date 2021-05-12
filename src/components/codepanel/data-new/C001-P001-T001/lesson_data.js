@@ -141,7 +141,7 @@ const lesson_dataC0001P001T001 = {
       <div class="my-auto">
       <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
-          <ol class='list-numbered'>
+          <ol class='list-none'>
           <li>Add <span class="html-code">head</span> in the editor section.</li>
           </ol>
         </div>
@@ -158,10 +158,9 @@ const lesson_dataC0001P001T001 = {
         </div>
         </div>
       `,
-      tip: "Swipe left to start.",
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: "Add head in the editor section.",
           rule: "<head(.*)>[\\s\\r\\n]*(.*)<\\/head>",
         },
       ],
@@ -196,7 +195,7 @@ const lesson_dataC0001P001T001 = {
       <div class="my-auto">
       <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
-          <ol class='list-numbered'>
+          <ol class='list-none'>
           <li>Add a <b>body section</b> below your head section.</li>
           </ol>
         </div>
@@ -216,7 +215,7 @@ const lesson_dataC0001P001T001 = {
       tip: "Check the structure slide.",
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: "Add a body section below your head section.",
           rule: "<body(.*)>[\\s\\r\\n]*(.*)</body>",
         },
       ],
@@ -299,7 +298,7 @@ const lesson_dataC0001P001T001 = {
       <div class="my-auto">
       <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
-          <ol class='list-numbered'>
+          <ol class='list-none'>
           <li>Type an opening & closing <span class="html-code"><strong>&lt;h1&gt;</strong></span> tag.</li>
           </ol>
         </div>
@@ -317,10 +316,9 @@ const lesson_dataC0001P001T001 = {
         </div>
         </div>
       `,
-      tip: "Swipe left to start.",
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: "Type an opening & closing <h1> tag.",
           rule: "<body(.*)>[\\s\\r\\n]*<h1(.*)>[\\s\\r\\n]*</h1(.*)>[\\s\\r\\n]*</body(.*)>",
         },
       ],
@@ -341,7 +339,7 @@ const lesson_dataC0001P001T001 = {
       <div class="my-auto">
       <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
-          <ol class='list-numbered'>
+          <ol class='list-none'>
           <li>Type your first and last name between the <span class="html-code"><strong>&lt;h1&gt;</strong></span> tags.</li>
           </ol>
         </div>
@@ -359,10 +357,9 @@ const lesson_dataC0001P001T001 = {
         </div>
         </div>
       `,
-      tip: "Swipe left to start.",
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: "Type your first and last name between the <h1> tags.",
           rule: "<body(.*)>[\\s\\r\\n]*<h1(.*)>[\\s\\r\\n]*[a-z]{4,}[\\s\\r\\n]*</h1(.*)>[\\s\\r\\n]*</body(.*)>",
         },
       ],
@@ -485,7 +482,7 @@ const lesson_dataC0001P001T001 = {
       <div class="my-auto">
       <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
-          <ol class='list-numbered'>
+          <ol class='list-none'>
           <li>Write: <b>"Launching Soon..."</b> between <span class="html-code">&lt;h3&gt;</span> tags.</li>
           </ol>
         </div>
@@ -504,10 +501,9 @@ const lesson_dataC0001P001T001 = {
         </div>
         </div>
       `,
-      tip: "Swipe left to start.",
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: 'Write: "Launching Soon..." between <h3> tags.',
           rule: "[\\s\\r\\n]*<h3(.*)>[\\s\\r\\n]*Launching Soon...[\\s\\r\\n]*</h3(.*)>",
         },
       ],
@@ -521,13 +517,14 @@ const lesson_dataC0001P001T001 = {
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'bg-green',
       html_content: `
-      <h2 class="lesson-title ">Remember</h2><div class="container"> <h2 class="lesson-title font-weight-normal mt-5 text-lowercase"><span class="text-uppercase">W</span>hat is<br><span style="font-family: consolas;font-weight: bold">&lt;p&gt;</span>  for?</h2> <div style="text-align: left" class="mt-5"> <p class="text-left pl-4 text-white" style="font-size: 16px">EXAMPLE:</p> </div> <div class="h1-content-area text-left pl-4"><span class="consolas blue"> &lt;p&gt; </span> <br> <span class="text-secondary pl-4">10 October, 2021</span> <br><span class="consolas blue"> &lt;/p&gt; </span> </div> </div>
+      <div class="my-auto">
+      <h2 class="lesson-title ">Remember</h2><div class="container"> <h2 class="lesson-title font-weight-normal mt-5 text-lowercase"><span class="">W</span>hat is<br><span style="font-family: consolas;font-weight: bold">&lt;p&gt;</span>  for?</h2> <div style="text-align: left" class="mt-5"> <p class="text-left pl-4 text-white" style="font-size: 16px">EXAMPLE:</p> </div> <div class="h1-content-area text-left pl-4"><span class="consolas blue"> &lt;p&gt; </span> <br> <span class="text-secondary pl-4">10 October, 2021</span> <br><span class="consolas blue"> &lt;/p&gt; </span> </div> </div>
       `,
       sort_order: 24,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
-    {
-      /* slide_number: 24,
+   /*  {
+      slide_number: 24,
       challenge_id: 6,
       action: true,
       challenge: true,
@@ -557,11 +554,11 @@ const lesson_dataC0001P001T001 = {
       `,
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: "Write a <p> with todays's date.",
           rule: "(<p>|<p [^>]*>)((.|\n)*)\s*([1-9]|[0-9][0-9])((.|\n)*)\s*([a-z][a-z][a-z])((.|\n)*)\s*([0-9][0-9][0-9][0-9])(.|\n)*\s*<\/p>",
         },
-      ], */
-    },
+      ], 
+    }, */
     {
       slide_number: 25,
       action: false,
@@ -632,7 +629,7 @@ const lesson_dataC0001P001T001 = {
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="my-auto">
-      <div class="container">                 <h3 class="lesson-title font-weight-normal">Share your creative work with your friends.</h3>                 <div>                     <img class="w-15 swiper-lazy" data-src="/img/emoji/smiling-face-with-open-mouth.png" alt="">                 </div>                 <div>                                      <div class="mt-5">     <a class="btn btn-share check mt-3" id="whatsapp-code-link" href="" style="width: 80%;font-size: 20px;color: #fff;font-family: 'Rajdhani', sans-serif;">Share with Friends</a>  <br><button class="btn btn-encouraging next check mt-3" style="     width: 80%; " id="gallery" href="">Share to CodeJika Gallery<i class="icon-arrow_forward"></i></button> <div> <a class="swiper-next skip btn btn-primary light cancel mt-4" style="width: auto;font-size: 16px;padding: 3px 10px;color: #fff;font-family: 'Rajdhani', sans-serif;">Skip</a></div> </div>                 </div>               </div>
+      <div class="container">                 <h3 class="lesson-title font-weight-normal">Share your creative work with your friends.</h3>
       </div>
       `,
       sort_order: 30,
@@ -644,7 +641,12 @@ const lesson_dataC0001P001T001 = {
       created_at: '2017-08-23T00:55:40.386Z',
       html_content: `
       <div class="my-auto">
-      <div class="container">     <h3 class="lesson-title font-weight-normal"> Ready to start <br>Training 2? </h3>     <div> <img class="w-15 swiper-lazy" data-src="/img/emoji/smiling-face-with-open-mouth.png" alt=""> </div>     <div style=" /* display: flex; */">         <div class="mt-2" style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">             <br><a class="btn btn-encouraging next check " style="width: 80%;" href="P1Training2">Start Now</a> <a class="btn btn-encouraging next check mt-4" style="width: 80%;" href="m-projects.htm">Projects Page</a><a class="btn btn-primary light cancel mt-4" style=" padding: 3px 10px; font-size: 16px;" href="https://www.codejika.com/">Home</a>  </div>     </div> </div>
+      <div class="my-auto">
+      <p class='h3 pb-4 w-75'>Ready for Training 2?</p>
+      <p class='h3 pb-4 w-75'>Lets Go...</p>
+      <a class='btn btn-encouraging next check' data-click="gt:/codepanel/C001/P001/T002" style='width: 80%;' href='#'>Start Now</a>
+      <a class='btn btn-encouraging next check mt-4' data-click="o:projects" style='width: 80%;' href='#'>Projects Page</a>
+      </div>
       </div>
       `,
       sort_order: 31,

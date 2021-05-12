@@ -29,8 +29,15 @@ import { currentUserId } from "../../shared/lib/authentication";
 import ToolTip from './components/tool-tip/tool-tip';
 import lesson_dataC0001P001T000 from "./data-new/C001-P001-T000/lesson_data";
 import lesson_dataC0001P001T001 from "./data-new/C001-P001-T001/lesson_data";
+import lesson_dataC0001P001T002 from "./data-new/C001-P001-T002/lesson_data";
 import lesson_dataC0001P001T003 from "./data-new/C001-P001-T003/lesson_data";
 import lesson_dataC0001P001T004 from "./data-new/C001-P001-T004/lesson_data";
+import lesson_dataC0001P001T005 from "./data-new/C001-P001-T005/lesson_data"; //P2T1
+import lesson_dataC0001P001T006 from "./data-new/C001-P001-T006/lesson_data"; //P2T2
+import lesson_dataC0001P001T007 from "./data-new/C001-P001-T007/lesson_data"; //P2T3
+import lesson_dataC0001P001T008 from "./data-new/C001-P001-T008/lesson_data"; //P2T4
+import lesson_dataC0001P001T009 from "./data-new/C001-P001-T009/lesson_data"; //P2T5
+import lesson_dataC0001P001T010 from "./data-new/C001-P001-T010/lesson_data"; //P2T6
 import { uploadLesson } from './utils/upload-lesson';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Loading from "../../shared/components/loader/Loading";
@@ -66,17 +73,29 @@ const Codepanel = ({
   };
 
   const getLesson = async (id) => {
-  if(id === "T003"){
-    return lesson_dataC0001P001T003;
-  }
-	if(id === "T004"){
-	  return lesson_dataC0001P001T004;
-	}
-  if(id === "T000"){
-    return lesson_dataC0001P001T000;
-  }if(id === "T001"){
-    return lesson_dataC0001P001T001;
-  }
+    if(id === "T000"){
+      return lesson_dataC0001P001T000;
+    }if(id === "T001"){
+      return lesson_dataC0001P001T001;
+    }if(id === "T002"){
+      return lesson_dataC0001P001T002;
+    }if(id === "T003"){
+      return lesson_dataC0001P001T003;
+    }if(id === "T004"){
+    return lesson_dataC0001P001T004;
+    }if(id === "T005"){
+      return lesson_dataC0001P001T005;
+    }if(id === "T006"){
+      return lesson_dataC0001P001T006;
+    }if(id === "T007"){
+      return lesson_dataC0001P001T007;
+    }if(id === "T008"){
+      return lesson_dataC0001P001T008;
+    }if(id === "T009"){
+      return lesson_dataC0001P001T009;
+    }if(id === "T010"){
+      return lesson_dataC0001P001T010;
+    }
 	else{
       return await authFetch.firebaseGet(`Lessons/${id}`);
     }

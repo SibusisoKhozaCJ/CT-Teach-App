@@ -291,11 +291,9 @@ const lesson_dataC0001P001T004 = {
         </ol>
       </div>
       `,
-      //sort_order: 9,
-      //tip:"Remember this.",
        reg: [
         {
-          //description: "add <h1> tag",
+          description: ">Insert a <div> in <section>.",
           rule: "(<section>|<section [^>]*>)((.|\n)*)\s*(<div>|<div [^>]*>)((.|\n)*)\s*(<h3>|<h3 [^>]*>)((.|\n)*)\s*<\/h3>((.|\n)*)\s*<\/div>((.|\n)*)\s*<\/section>",
         },
       ],
@@ -394,7 +392,7 @@ const lesson_dataC0001P001T004 = {
       //tip:"Remember this.",
        reg: [
         {
-          //description: "add <h1> tag",
+          description: "Wrap the content in <footer> with a <div>.",
           rule: "(<footer>|<footer [^>]*>)((.|\n)*)\s*(<div>|<div [^>]*>)((.|\n)*)\s*<\/div>((.|\n)*)\s*<\/footer>",
         },
       ],
@@ -713,6 +711,7 @@ const lesson_dataC0001P001T004 = {
       `,
       reg: [
         {
+          description: "Add a div { } selector in the <style> section",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*div((.|\n)*)\s*{((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -747,7 +746,7 @@ const lesson_dataC0001P001T004 = {
       slide_number: 30,
       action: true,
       challenge: true,
-      challenge_id: 5,
+      challenge_id: 4,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp_yellow",
       html_content: `
@@ -777,6 +776,7 @@ const lesson_dataC0001P001T004 = {
       `,
       reg: [
         {
+          description: "Center align all the content in the <div>s",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*div((.|\n)*)\s*{((.|\n)*)\s*text-align((.|\n)*)\s*:((.|\n)*)\s*center;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -826,7 +826,7 @@ const lesson_dataC0001P001T004 = {
       slide_number: 33,
       action: true,
       challenge: true,
-      challenge_id: 6,
+      challenge_id: 5,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp_yellow",
       html_content: `
@@ -856,6 +856,7 @@ const lesson_dataC0001P001T004 = {
       `,
       reg: [
         {
+          description: ">Add 40px padding (pillows) to the <div>s.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*div((.|\n)*)\s*{((.|\n)*)\s*padding((.|\n)*)\s*:((.|\n)*)\s*40px;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -886,9 +887,9 @@ const lesson_dataC0001P001T004 = {
     },
     {
       slide_number: 35,
-      action: true,
-      challenge: true,
-      challenge_id: 5,
+      action: false,
+      challenge: false,
+      //challenge_id: 5,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "checkpoint",
       html_content: `
@@ -896,7 +897,7 @@ const lesson_dataC0001P001T004 = {
       <p class='slide-header h2'>CHECKPOINT</p>
     </div>
     <div class="my-auto">
-      <div class='html-code-box fade-box-top fade-box-bottom fs65'>
+      <div class='html-code-box fade-box-top fade-box-bottom'>
         <span class='code-fade'>&lt;style&gt;<br></span>
         &nbsp;&nbsp;h1 {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;font-size: 75px;<br>
@@ -975,7 +976,7 @@ const lesson_dataC0001P001T004 = {
       slide_number: 39,
       action: true,
       challenge: true,
-      challenge_id: 7,
+      challenge_id: 6,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp_yellow",
       html_content: `
@@ -1005,6 +1006,7 @@ const lesson_dataC0001P001T004 = {
       `,
       reg: [
         {
+          description: "Add the h3 selector <span class='inline-code'>h3 { }.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h3((.|\n)*)\s*{((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -1058,7 +1060,7 @@ const lesson_dataC0001P001T004 = {
       slide_number: 42,
       action: true,
       challenge: true,
-      challenge_id: 8,
+      challenge_id: 7,
       created_at: "2017-08-23T00:55:40.386Z",
       css_class: "challenge cp_yellow",
       html_content: `
@@ -1088,6 +1090,7 @@ const lesson_dataC0001P001T004 = {
       `,
       reg: [
         {
+          description: "Add a white solid 2px border to h3 { }.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h3((.|\n)*)\s*{((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -1097,7 +1100,7 @@ const lesson_dataC0001P001T004 = {
       slide_number: 43,
         action: true,
         challenge: true,
-        challenge_id: 9,
+        challenge_id: 8,
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "challenge cp_yellow",
         html_content: `
@@ -1134,6 +1137,7 @@ const lesson_dataC0001P001T004 = {
         `,
         reg: [
           {
+            description: "Add a font-size of  45px and a padding of 15px to h3 { }.",
             rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h3((.|\n)*)\s*{((.|\n)*)\s*font-size:((.|\n)*)\s*45px;((.|\n)*)\s*padding:((.|\n)*)\s*15px;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
           }
         ],
@@ -1190,7 +1194,7 @@ const lesson_dataC0001P001T004 = {
         slide_number: 46,
         action: true,
         challenge: true,
-        challenge_id: 10,
+        challenge_id: 9,
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "challenge cp_yellow",
         html_content: `
@@ -1224,6 +1228,7 @@ const lesson_dataC0001P001T004 = {
         `,
         reg: [
           {
+            description: "Center your h3 { } by  using the margin trick.",
             rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h3((.|\n)*)\s*{((.|\n)*)\s*margin((.|\n)*)\s*auto((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
           }
         ],
@@ -1284,7 +1289,7 @@ const lesson_dataC0001P001T004 = {
         slide_number: 48,
         action: true,
         challenge: true,
-        challenge_id: 11,
+        challenge_id: 10,
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "challenge cp_yellow",
         html_content: `
@@ -1317,6 +1322,7 @@ const lesson_dataC0001P001T004 = {
         `,
         reg: [
           {
+            description: "Beautify your h3  border by giving it a max-width of 400px.",
             rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h3((.|\n)*)\s*{((.|\n)*)\s*max-width((.|\n)*)\s*:((.|\n)*)\s*400px;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
           }
         ],
@@ -1389,40 +1395,36 @@ const lesson_dataC0001P001T004 = {
         slide_number: 52,
         action: true,
         challenge: true,
-        challenge_id: 12,
+        challenge_id: 11,
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "challenge cp_yellow",
         html_content: `
         <div>
         <h2 class='mb-0'>Challenge</h2>
-        <p class='fs75'>STEP 5 of 5</p>
+        <p class='fs75'>STEP 1 of 1</p>
       </div>
 
       <div class="my-auto">
-        <div class='text-left pb-3'>
-          <p class='blue text-uppercase'>Code:</p>
-          <ul class='list-none'>
-            <li class='tasks'>Beautify your h3  border by giving it a <strong>max-width</strong> of <strong>400px</strong>.</li>
-          </ul>
-        </div>
-        <p class='fs75 pb-0 text-left'>Like this:</p>
-        <div class='html-code-box fade-box-top fade-box-bottom'>
-          &nbsp;&nbsp;<span class='code-fade'>margin: auto;</span><br>
-          &nbsp;&nbsp;max-width: 400px;<br>
-          <span class='code-fade'>}</span>
-        </div>        
+      <div>
+      <div class='text-left pb-3'>
+        <p class='blue text-uppercase'>Code:</p>
+        <ul class='list-none'>
+          <li class='tasks'>Make your h1 text white.</li>
+        </ul>
+      </div>
         <div class='button-locked'>
-          <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
-          <a class='swiper-next skip' style=''>Skip this step</a> 
-        </div>
-        <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
-        </div>
-        </div>
+        <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
+        <a class='swiper-next skip' style=''>Skip this step</a> 
+      </div>
+      <div class='button-unlocked'><a class='btn-success swiper-next'>I did it <i class='icon-sentiment-satisfied'></i></a>
+      </div>
+    </div>
       </div>  
         `,
         reg: [
           {
-            rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h3((.|\n)*)\s*{((.|\n)*)\s*max-width((.|\n)*)\s*:((.|\n)*)\s*400px;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
+            description: "Make your h1 text white.",
+            rule: "(<style>|<style [^>]*>)((.|\n)*)\s*h1((.|\n)*)\s*{((.|\n)*)\s*color((.|\n)*)\s*white;((.|\n)*)\s*}((.|\n)*)\s*i((.|\n)*)\s*{((.|\n)*)\s*font-size((.|\n)*)\s*25px((.|\n)*)\s*<\/style>",
           }
         ],
        // tip: "Inside h3{ } in <style>",

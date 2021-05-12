@@ -431,11 +431,10 @@ const lesson_dataC0001P001T003 = {
      `,
       reg: [
         {
-          //description: "add <h1> tag",
+          description: "Insert a <header>.",
           rule: "(<header>|<header [^>]*>)((.|\n)*)\s*(<h1>|<h1 [^>]*>)((.|\n)*)\s*<\/h1>((.|\n)*)\s*<\/header>",
         },
       ],
-      //sort_order: 24,
       tip: "Open it before <h1>. Close it after the </p> tags.",
       updated_at: "2017-09-28T16:09:40.256Z",
     },
@@ -552,7 +551,7 @@ const lesson_dataC0001P001T003 = {
       `,
       reg: [
         {
-          //description: "type your name inside <h1> tag",
+          description: "Add a header selector in <style>.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*header((.|\n)*)\s*{((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
        /*  {
@@ -600,7 +599,7 @@ const lesson_dataC0001P001T003 = {
       //tip: ,
       reg: [
         {
-          //description: "type your name inside <p> tag",
+          description: "Add the first rule of linear-gradient.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*header((.|\n)*)\s*{((.|\n)*)\s*background((.|\n)*)\s*:((.|\n)*)\s*linear-gradient((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -642,10 +641,10 @@ const lesson_dataC0001P001T003 = {
         <div><span class='red'>TIP:</span> There is no space between <strong class='inline-code'>gradient</strong> and <strong class='inline-code'>(110deg</strong> </div>
       </div>
       `,
-      tip: "There is no space between <strong class='inline-code'>gradient</strong> and <strong class='inline-code'>(110deg</strong>",
+      tip: "There is no space between gradient and (110deg...",
       reg: [
         {
-          //description: "type your name inside <h3> tag",
+          description: "Complete the rule with this line.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)\s*header((.|\n)*)\s*{((.|\n)*)\s*background((.|\n)*)\s*:((.|\n)*)\s*linear-gradient((.|\n)*)\s*[(]100deg((.|\n)*)\s*,((.|\n)*)\s*yellow((.|\n)*)\s*40%((.|\n)*)\s*,((.|\n)*)\s*pink((.|\n)*)\s*40%((.|\n)*)\s*[)]((.|\n)*)\s*;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
         }
       ],
@@ -840,6 +839,7 @@ const lesson_dataC0001P001T003 = {
       `,
       reg: [
         {
+          description: 'Place your "Motivation" <h3> within <section> tags.',
           rule: "(<section>|<section [^>]*>)((.|\n)*)\s*(<h3>|<h3 [^>]*>)((.|\n)*)\s*motivation((.|\n)*)\s*<\/h3>((.|\n)*)\s*<\/section>",
         }
       ],
@@ -879,6 +879,7 @@ const lesson_dataC0001P001T003 = {
       `,
       reg: [
         {
+          description: "Style <section> with a grey background.",
           rule: "(<style>|<style [^>]*>)((.|\n)*)section((.|\n)*)\s*{((.|\n)*)\s*(background|background-color)((.|\n)*)\s*:((.|\n)*)\s*lightgrey;((.|\n)*)\s*<\/style>",
         }
       ],
@@ -979,6 +980,7 @@ const lesson_dataC0001P001T003 = {
       `,
       reg: [
         {
+          description: "Insert a <footer> before the closing <body> tag.",
           rule: "(<footer>|<footer [^>]*>)((.|\n)*)\s*<\/footer>",
         }
       ],
@@ -1061,6 +1063,7 @@ const lesson_dataC0001P001T003 = {
         `,
         reg: [
           {
+            description: "Add a copyright line in the <footer>.",
             rule: "(<footer>|<footer [^>]*>)((.|\n)*)\s*&copy;((.|\n)*)\s*([1-9][0-9][0-9][0-9])((.|\n)*)\s*([a-z][a-z][a-z])<\/footer>",
           }
         ],
@@ -1121,6 +1124,7 @@ const lesson_dataC0001P001T003 = {
         `,
         reg: [
           {
+            description: "Using a footer { } selector in CSS, make your footer background black and the text white.",
             rule: "(<style>|<style [^>]*>)((.|\n)*)footer((.|\n)*)\s*{((.|\n)*)\s*background((.|\n)*)\s*:((.|\n)*)\s*;((.|\n)*)\s*color((.|\n)*)\s*:((.|\n)*)\s*white;((.|\n)*)\s*}((.|\n)*)\s*<\/style>",
           }
         ],
@@ -1196,9 +1200,10 @@ const lesson_dataC0001P001T003 = {
         css_class: "briefing",
         html_content: `
         <div class='my-auto'>
-      <p class='h3 pb-4 w-75'>Ready for Training 4?</p>
-      <a class="btn-primary next __buttons" href="../learn/P1Training4">Start Now</a>
-      <a class="btn-primary-alt next check __buttons" href='../learn/projects'>Projects Page</a>
+        <p class='h3 pb-4 w-75'>Ready for Training 4?</p>
+        <p class='h3 pb-4 w-75'>Lets Go...</p>
+        <a class='btn btn-encouraging next check' data-click="gt:/codepanel/C001/P001/T004" style='width: 80%;' href='#'>Start Now</a>
+        <a class='btn btn-encouraging next check mt-4' data-click="o:projects" style='width: 80%;' href='#'>Projects Page</a>
     </div>
         `,
         updated_at: "2017-09-28T16:09:40.256Z",
