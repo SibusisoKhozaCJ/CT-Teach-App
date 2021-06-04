@@ -4,7 +4,7 @@ const lesson_dataC0001P001T004 = {
   kbLayout: "", 
   loadJS: "", 
   prevLessonID: "", 
-  nextLessonSlug: "", 
+  nextLessonSlug: "P1Training3", 
   pageDesc:
     "Learn how to make your first website in only 5 minutes with this easy intro lesson to coding.",
   pageKeywords:
@@ -1538,7 +1538,7 @@ const lesson_dataC0001P001T004 = {
         css_class: "briefing",
         html_content: `
         <div class="my-auto">
-        <div class='h4 w-75'>See you in PROJECT 2.</div>
+        <div class='h3 w-75'>See you in PROJECT 2.</div>
         </div>
         `,
         updated_at: "2017-09-28T16:09:40.256Z",
@@ -1550,11 +1550,12 @@ const lesson_dataC0001P001T004 = {
         created_at: "2017-08-23T00:55:40.386Z",
         css_class: "briefing",
         html_content: `
-        <div class="my-auto">
-      <div class='h0  pb-4 yellow'>BYE.</div>
-      <div class='h3'>See you soon.
-</div>
-    </div>
+        <div class='my-auto'>
+        <p class='h3 pb-4 w-75'>Ready for Project 2</p>
+        <p class='h3 pb-4 w-75'>Lets Go...</p>
+        <a class='btn btn-encouraging next check' data-click="gt:/codepanel/C001/P002/T001" style='width: 80%;' href='#'>Start Now</a>
+        <a class='btn btn-encouraging next check mt-4' data-click="o:projects" style='width: 80%;' href='#'>Projects Page</a>
+      </div>
         `,
         updated_at: "2017-09-28T16:09:40.256Z",
       },

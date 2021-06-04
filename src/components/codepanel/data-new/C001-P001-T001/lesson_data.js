@@ -10,7 +10,7 @@ const lesson_dataC0001P001T001 = {
   pageKeywords:
     "coding, code, 5-minute-website, learn to code, code website, my first website",
   pageTitle: "CodeJIKA - 5-Minute Website",
-  save_lesson_id: "5-minute-website", // This is id that will be used to store save code in Firebase
+  save_lesson_id: "P1Training1", // This is id that will be used to store save code in Firebase
   cert_awarded_at: 5, // the checkpoint when to mark lesson as complete
   slug: "", // not currently in use
   show_intro: true,
@@ -278,7 +278,7 @@ const lesson_dataC0001P001T001 = {
       html_content: `
       <h2 class="lesson-title mt-2">Remember</h2>
       <div class="my-auto">
-      <div class="container"> <h2 class=" lesson-title font-weight-normal mb-1 text-lowercase"><span>W</span>hat is <br> <span style="font-family:consolas"><strong>&lt;h1&gt;</strong></span> for?</h2> </div>
+      <p class="h2 white">What is <span class="html-code bold">&lt;h1&gt;</span> used for?</p>
       </div>
       `,
       sort_order: 13,
@@ -360,7 +360,7 @@ const lesson_dataC0001P001T001 = {
       reg: [
         {
           description: "Type your first and last name between the <h1> tags.",
-          rule: "<body(.*)>[\\s\\r\\n]*<h1(.*)>[\\s\\r\\n]*[a-z]{4,}[\\s\\r\\n]*</h1(.*)>[\\s\\r\\n]*</body(.*)>",
+          rule: "((.|\n)*)\s*<body>((.|\n)*)\s*<h1(.*)>((.|\n)*)\s*[a-z][a-z][a-z]((.|\n)*)\s*<\\/h1>((.|\n)*)\s*</body>((.|\n)*)\s*",
         },
       ],
       //sort_order: 15,
@@ -447,7 +447,14 @@ const lesson_dataC0001P001T001 = {
       <p class='slide-header h6'>BRIEFING : h3 tag</p>
     </div> 
     <div class="my-auto">
-     <div class="container mt-1"> <h3 class="lesson-title consolas">&lt;h3&gt; &lt;/h3&gt;</h3> <div> <ol style="list-style-type: none"> <li class="task-1"> <span style="font-family: consolas">&lt;h3&gt;</span> is used mainly for subtitles.</li> </ol> </div> <div style="text-align: left" class="mt-1"> <p class="text-left pl-4 text-white">Like this:</p> </div> <div class="h1-content-area text-left pl-4"> <span class="consolas"> &lt;body&gt; </span> <br> <span class="consolas ml-3"> &lt;h1&gt;</span> <br> <span class="ml-5">My Name</span><br> <span class="consolas ml-3"> &lt;/h1&gt; </span> <br> <span class="consolas blue ml-3"> &lt;h3&gt; </span> <br> <span class="ml-5">Launching Soon...</span> <br> <span class="consolas blue ml-3"> &lt;/h3&gt; </span> <br> <span class="consolas"> &lt;/body&gt; </span> </div> </div>
+     <div class="container mt-1"> <h3 class="lesson-title consolas">&lt;h3&gt; &lt;/h3&gt;</h3> <div> <ol style="list-style-type: none"> <li class="task-1"> <span style="font-family: consolas">&lt;h3&gt;</span> is used mainly for subtitles.</li> </ol> </div> <div style="text-align: left" class="mt-1"> <p class="text-left pl-4 text-white">Like this:</p> </div>
+     <div class="my-auto">
+      <div class='html-code-box '>
+      &lt;body&gt;<br>
+      &nbsp;&lt;h1&gt;<br>&nbsp;&nbsp;My Name <br>&nbsp;&lt;/h1&gt;<br>
+      &nbsp;&lt;h3&gt;<br>&nbsp;&nbsp;Launchong Soon...<br>&nbsp;&lt;/h3&gt;<br>
+      &lt;/body&gt;
+      </div>
       </div>
       `,
       sort_order: 20,
@@ -462,7 +469,7 @@ const lesson_dataC0001P001T001 = {
       html_content: `
       <h2 class="lesson-title mt-2">Remember</h2>
       <div class="my-auto">
-      <div class="container"> <h2 class=" lesson-title font-weight-normal mb-1 text-lowercase"><span>W</span>hat is <br> <span style="font-family:consolas"><strong>&lt;h1&gt;</strong></span> for?</h2> </div>
+      <p class="h2 white">What is <span class="html-code bold">&lt;h3&gt;</span> used for?</p>
       </div>
       `,
       sort_order: 22,
@@ -517,15 +524,23 @@ const lesson_dataC0001P001T001 = {
       created_at: '2017-08-23T00:55:40.386Z',
       css_class: 'bg-green',
       html_content: `
+      <h2 class="lesson-title mt-2">Remember</h2>
       <div class="my-auto">
-      <h2 class="lesson-title ">Remember</h2><div class="container"> <h2 class="lesson-title font-weight-normal mt-5 text-lowercase"><span class="">W</span>hat is<br><span style="font-family: consolas;font-weight: bold">&lt;p&gt;</span>  for?</h2> <div style="text-align: left" class="mt-5"> <p class="text-left pl-4 text-white" style="font-size: 16px">EXAMPLE:</p> </div> <div class="h1-content-area text-left pl-4"><span class="consolas blue"> &lt;p&gt; </span> <br> <span class="text-secondary pl-4">10 October, 2021</span> <br><span class="consolas blue"> &lt;/p&gt; </span> </div> </div>
+      <p class="h2 white">What is <span class="html-code bold">&lt;p&gt;</span> used for?</p>
+      <p class='fs75 pb-0 text-left'>Like this:</p>
+        <div class='html-code-box '>
+			 &lt;p&gt;<br>
+       &nbsp;10 October, 2021<br>
+       &lt;/p&gt;
+        </div>
+      </div>
       `,
       sort_order: 24,
       updated_at: '2017-09-28T16:09:40.256Z'
     },
-   /*  {
+     {
       slide_number: 24,
-      challenge_id: 6,
+      challenge_id: 5,
       action: true,
       challenge: true,
       css_class: "challenge cp_yellow",
@@ -536,13 +551,13 @@ const lesson_dataC0001P001T001 = {
       <div class="my-auto">
       <div class='text-left pb-3'>
           <p class='blue text-uppercase'>Code:</p>
-          <ol class='list-numbered'>
+          <ol class='list-none'>
           <li>Write a  <span class="html-code"><strong>&lt;p&gt;</strong></span> with todays's date.</li>
           </ol>
         </div>
         <p class='fs75 pb-0 text-left'>Like this:</p>
         <div class='html-code-box '>
-        lt;p&gt;<br>&nbsp;&nbsp;10 October, 2019<br>&lt;/p&gt;
+        &lt;p&gt;<br>&nbsp;&nbsp;10 October, 2019<br>&lt;/p&gt;
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
@@ -558,7 +573,7 @@ const lesson_dataC0001P001T001 = {
           rule: "(<p>|<p [^>]*>)((.|\n)*)\s*([1-9]|[0-9][0-9])((.|\n)*)\s*([a-z][a-z][a-z])((.|\n)*)\s*([0-9][0-9][0-9][0-9])(.|\n)*\s*<\/p>",
         },
       ], 
-    }, */
+    },
     {
       slide_number: 25,
       action: false,

@@ -3,14 +3,14 @@ const lesson_dataC0001P001T009 = {
   defaultCode: ``,
   kbLayout: "", 
   loadJS: "", 
-  prevLessonID: "", 
+  prevLessonID: "P2Training4", 
   nextLessonSlug: "", 
   pageDesc:
     "Learn how to make your first website in only 5 minutes with this easy intro lesson to coding.",
   pageKeywords:
     "coding, code, training 1, learn to code, code website, my first website",
   pageTitle: "CodeJIKA - Project 2 Training 2",
-  save_lesson_id: "P1Training3", 
+  save_lesson_id: "P2Training5", 
   cert_awarded_at: 5, 
   slug: "", 
   show_intro: true,

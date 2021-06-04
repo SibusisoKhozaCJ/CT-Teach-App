@@ -3,14 +3,14 @@ const lesson_dataC0001P001T002 = {
   defaultCode: ``,
   kbLayout: "", 
   loadJS: "", 
-  prevLessonID: "", 
+  prevLessonID: "P1Training1", 
   nextLessonSlug: "", 
   pageDesc:
     "Learn how to make your first website in only 5 minutes with this easy intro lesson to coding.",
   pageKeywords:
     "coding, code, training 3, learn to code, code website, my first website",
   pageTitle: "CodeJIKA - Project 1 Training 3",
-  save_lesson_id: "P1Training3", 
+  save_lesson_id: "P1Training2", 
   cert_awarded_at: 5, 
   slug: "", 
   show_intro: true,
@@ -23,12 +23,6 @@ const lesson_dataC0001P001T002 = {
       slide_number: 1,
       action: false,
       challenge: false,
-     /*  reg: [
-        {
-          description: "add <h1> tag",
-          rule: "<h1(.*)>",
-        },
-      ], */
       css_class: "intro",
       html_content: `
       <div>    
@@ -98,13 +92,7 @@ const lesson_dataC0001P001T002 = {
       <h4 class='lesson-title font-weight-normal text-white white mt-2'>REMEMBER THIS?</h4>
       <div class="my-auto">
       <h3 class='lesson-title blue'>PAGE STRUCTURE</h3>
-      <div class='container d-flex justify-content-around bg-editor ' style='font-family: consolas;font-size: 22px;'> 
-      <div> 
-      <div class='d-flex flex-column' style=' height: 36%;'> <span>&lt;<span class='blue'>head</span>&gt;</span> <span class='ml-5'>&lt;<span class='pink'>style</span>&gt;</span> <span class='ml-5'>&lt;/<span class='pink'>style</span>&gt;</span> <span>&lt;/<span class='blue'>head</span>&gt;</span> 
-      </div>
-      <div class='d-flex flex-column justify-content-between' style='height: 52%;'> <span>&lt;<span style='color:red;'>body</span>&gt; </span><span>&lt;/<span style='color:red;'>body</span>&gt; </span></div> </div><div> <img class='swiper-lazy  mb-5' style='max-height: 54vh;' src='/img/lessons/html_skeleton_sml.png'>
-      </div>
-      </div>
+      <img class='swiper-lazy w-50' src='/img/lessons/C001-P001-T001/HTML_structure.png' alt=''>
       </div>
     `,
       js_function: "console.log('I am a DB loaded function')",
@@ -383,7 +371,8 @@ const lesson_dataC0001P001T002 = {
       css_class: "briefing",
       html_content: `
     <div class="my-auto">
-    <div class='container'> <p class='lesson-title h2 font-weight-normal text-lowercase'>Next, you'll add a<br>h1 selector</p> <div style='text-align: left' class='mt-5'> <p class='text-left pl-4 text-white'>Like this:</p> </div><div class='h1-content-area text-center center d-flex justify-content-start p-4' style=' position: relative;'> <div class="text-center center"> <p class="h2 white text-center center"><strong>h1 { }</strong></p></div> </div> </div> 
+    <div class='container'> <p class='lesson-title h2 font-weight-normal text-lowercase'>Next, you'll add a<br>h1 selector</p> <div style='text-align: left' class='mt-5'> <p class='text-left pl-4 text-white'>Like this:</p> </div>
+    <div class='h1-content-area text-center center d-flex justify-content-start p-4' style=' position: relative;'> <div class="text-center center"> <p class="h2 white text-center center my-auto"><strong>h1 { }</strong></p></div> </div> </div> 
     </div>
       `,
       //sort_order: 23,
@@ -480,7 +469,7 @@ const lesson_dataC0001P001T002 = {
         html_content: `
         <div>
     <p class='slide-header h2'>CHECKPOINT</p>
-    <p class='fs75'>Your code should look something like this:</p>
+    <p class='fs75 white'>Your code should look something like this:</p>
     </div>
     <div class='my-auto'>
     <p class='fs75 pb-0 text-left'>Like this:</p>
@@ -519,7 +508,7 @@ const lesson_dataC0001P001T002 = {
       <div class='text-left pb-5'>
         <p class='blue text-uppercase text-left'>Code:</p>
         <ul class='list-none'>
-          <li class='tasks'>Add the following.</li>
+          <li class='tasks'>Type "MOTIVATION" below the <span class="html-code">&lt;h1&gt;</span> tags.</li>
         </ul>
       </div>
       <div class="html-code-box">
@@ -537,8 +526,8 @@ const lesson_dataC0001P001T002 = {
      `,
       reg: [
         {
-          description: "Add the following.",
-          rule: "(<h1>|<h1 [^>]*>)((.|\n)*)\s*<\/h1>((.|\n)*)\s*Motivation",
+          description: 'Type "MOTIVATION" below the <h1> tags.',
+          rule: "(<h1>|<h1 [^>]*>)((.|\n)*)\s*<\/h1>((.|\n)*)\s*(Motivation | MOTIVATION)((.|\n)*)\s*",
         },
       ],
       tip: "Place it below the <h1> tags",
@@ -913,7 +902,7 @@ const lesson_dataC0001P001T002 = {
         html_content: `
         <div>
     <p class='slide-header h2'>CHECKPOINT</p>
-    <p class='fs75'>Your code should look something like this:</p>
+    <p class='fs75 white'>Your code should look something like this:</p>
     </div>
     <div class='my-auto'>
     <p class='fs75 pb-0 text-left'>Like this:</p>
@@ -993,7 +982,7 @@ const lesson_dataC0001P001T002 = {
         html_content: `
         <div>
     <p class='slide-header h2'>CHECKPOINT</p>
-    <p class='fs75'>Your code should look something like this:</p>
+    <p class='fs75 white'>Your code should look something like this:</p>
     </div>
     <div class='my-auto'>
     <p class='fs75 pb-0 text-left'>Like this:</p>

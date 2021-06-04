@@ -3747,8 +3747,6 @@ vertical-align: 0 !important
   .h1-content-area-2,
   .h1-content-area-3 {
 	background: #404040;
-	border-top: 2px solid #3c6f9e;
-	border-bottom: 2px solid #3c6f9e;
 	font-family: consolas !important;
   }
 
@@ -6661,12 +6659,32 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.mobile-only{
+  visibility: visible;
+  display: block;
+  }
 
-/*P1T3 testing template*/
-
-.__buttons{
-	border-radius: 0.25rem;
-	padding: .45em .75em;
-    margin: 1.5em auto 0 auto;
-	width: 75% !important;
+.desktop-only{
+  visibility: visible;
+  display: block;
 }
+
+//Only Mobile
+
+@media only screen and (max-width: 768px) {
+  //hide elements on mobile and tablets and only visibile on Desktop
+  .desktop-only{
+  display: none;
+  }
+
+}
+
+//Only Desktop
+
+@media only screen and (min-width: 768px) {
+  //hide elements on Desktop and only visible on mobile
+  .mobile-only{
+  display: none;
+  }
+}
+

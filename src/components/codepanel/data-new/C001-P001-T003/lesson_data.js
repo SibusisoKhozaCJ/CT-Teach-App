@@ -3,7 +3,7 @@ const lesson_dataC0001P001T003 = {
   defaultCode: ``,
   kbLayout: "", 
   loadJS: "", 
-  prevLessonID: "", 
+  prevLessonID: "P1Training2", 
   nextLessonSlug: "", 
   pageDesc:
     "Learn how to make your first website in only 5 minutes with this easy intro lesson to coding.",
@@ -1139,7 +1139,7 @@ const lesson_dataC0001P001T003 = {
         html_content: `
         <div>
     <p class='slide-header h2'>CHECKPOINT</p>
-    <p class='fs75'>Your code should look something like this:</p>
+    <p class='fs75 white'>Your code should look something like this:</p>
     </div>
     <div class='my-auto'>
     <p class='fs75 pb-0 text-left'>Like this:</p>

@@ -36,9 +36,9 @@ const lesson_dataC0001P001T000 = {
         <p class="slide-header h2">CHALLENGE</p>
     </div>
     <div class="my-auto">
-    <div class='white'>
       <p class="h1 white text-left">Hi,... <img class='swiper-lazy' src='/img/emoji/72/waving-hand-sign-type-3.png' alt=''> </p>
       <div class="h2 white text-left">Type <div class='inline-code bg-black p-2'>&lt;h1&gt;</div> in the code editor.</div>
+      <p class="h5 pt-3 text-left mobile-only">Tip: Swipe left <img class='swiper-lazy w-1em' src='/img/emoji/72/leftwards-black-arrow.png' alt=''> or click the button below.</p> 
       <div class='button-locked'>
       <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
       <a class='swiper-next skip' style=''>Skip this step</a> 
@@ -49,6 +49,19 @@ const lesson_dataC0001P001T000 = {
     `,
       js_function: "console.log('I am a DB loaded function')",
       sort_order: 1,
+      updated_at: "2017-09-28T16:09:40.256Z",
+    }, {
+      slide_number: 2,
+      challenge: false,
+      css_class: "think",
+      created_at: "2017-08-23T00:55:40.386Z",
+      html_content: `
+    <div class="my-auto">
+    <img class='swiper-lazy mb-4' style='max-height: 100vh;' style="width:100%;"src='/img/lessons/C001-P001-T001/Picture3.png' alt=''>
+      </div>
+      `,
+      tip: "Swipe up to view the next slide",
+      sort_order: 11,
       updated_at: "2017-09-28T16:09:40.256Z",
     },
     {
@@ -174,7 +187,7 @@ const lesson_dataC0001P001T000 = {
         </div>
         <p class='fs75 pb-0 text-left'>Like this:</p>
         <div class='html-code-box '>
-        <span class='code-fade'>&lt;h1&gt;</span><span class="blinking-cursor"></span>Your Name &lt;/h1&gt;
+        <span class='code-fade'>&lt;h1&gt;</span><span></span>Your Name &lt;/h1&gt;
         </div>
         <div class='button-locked'>
           <a class='btn-action swiper-editor'>Let's get Coding <i class='icon-arrow-forward'></i></a> <br>
